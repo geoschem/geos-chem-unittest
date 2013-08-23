@@ -1,0 +1,15 @@
+*.[oax]
+*.mod
+*.MOD
+*~*
+job.*
+*.log
+trac_avg.*
+trac_rst.*
+soil_rst.*
+diaginfo.dat
+tracerinfo.dat
+geos.mp
+geos.sp
+input.geos
+smv2.log

@@ -1,0 +1,402 @@
+#!/usr/bin/perl -w
+
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: gcUnitTest
+#
+# !DESCRIPTION: This perl script is the driver for the GEOS-Chem Unit Tester,
+#  which submits several automatic debugging jobs.
+#\\
+#\\
+# !USES:
+#
+require 5.003;                       # Need this version of Perl or newer
+use English;                         # Use English language
+use Carp;                            # Get detailed error messages
+use strict;
+use Dates   qw( &getLocalTime );     # Get routines from Dates.pm
+use UtUtils qw( &checkDir
+                &fmtStr
+                &makeInputGeos
+                &makeRunScript
+                &parse         
+                &replaceDate   );    # Get routines from UtUtils.pm
+#
+# !PUBLIC DATA MEMBERS:
+#
+
+# Directories
+our $CODE_DIR  = "";
+our $DATA_ROOT = "";
+our $JOB_DIR   = "";
+our $LOG_DIR   = "";
+our $PERL_DIR  = "";
+our $RUN_DIR   = "";
+
+# Options
+our $COMPILER  = "";	
+our $MAKE_CMD  = "";
+our $QUEUE     = "";
+our $SUBMIT    = "";
+our $VERSION   = "";
+#		
+# !PUBLIC MEMBER FUNCTIONS:
+#  &main()     : Driver routine for gcUnitTest
+#
+# !PRIVATE MEMBER FUNCTIONS:
+#  &getRunDir  : Returns the name of the GEOS-Chem run directory
+#  &makeInputs : Creates the input.geos file the run directory 
+#  &doUnitTest : Reads user options from a file and starts the unit test
+#
+# !CALLING SEQUENCE:
+#  gcUnitTest [ OPTIONS-FILENAME ]
+#
+# !REMARKS:
+#  If no value is passed for OPTIONS-FILENAME, then gcUnitTest will
+#  read user options from the input file: "UnitTest.input".
+#
+# !REVISION HISTORY: 
+#  22 Aug 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: getRunDir
+#
+# !DESCRIPTION: Returns the unit test run directory for a given combination
+#  of met field, grid, simulation type, and nested-grid type.
+#\\
+#\\
+# !INTERFACE:
+#
+sub getRunDir($$$$) {
+#
+# !INPUT PARAMETERS:
+#
+  # $met  : Met field type
+  # $grid : Horiziontal grid
+  # $nest : Nested grid option (if necessary)
+  # $sim  : Simulation type
+  my ( $met, $grid, $nest, $sim ) = @_;
+#
+# !RETURN VALUE:
+#
+  my $runDir = ""; 
+#
+# !CALLING SEQUENCE:
+#  &doUnitTest( "UnitTest.input" );
+#
+# !REVISION HISTORY:
+#  22 Aug 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Run directory string
+  my $runLoc = "{MET}_{GRID}_{SIM}";
+
+  # Append nested grid string if necessary
+  if ( !( $nest =~ m/\-/ )  ) { $runLoc .= "_{NEST}"; }
+
+  # Replace tokens
+  $runLoc =~ s/{MET}/$met/g;
+  $runLoc =~ s/{GRID}/$grid/g;
+  $runLoc =~ s/{SIM}/$sim/g;
+  $runLoc =~ s/{NEST}/$nest/g;
+  $runDir = "$RUN_DIR";
+  $runDir =~ s/{RUNDIR}/$runLoc/g;
+
+  # Return the run directory
+  return( $runDir );
+}
+#EOP
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: makeInputs
+#
+# !DESCRIPTION: Creates the input.geos file in a unit-test run-directory.
+#  It starts with a template file and then replaces some tokens to customize
+#  the input.geos file for the given simulation.
+#\\
+#\\
+# !INTERFACE:
+#
+sub makeInputs($$$) {
+#
+# !INPUT PARAMETERS:
+#
+  # $start  : Start date of test simulation (YYYYMMDDhh)
+  # $end    : End   date of test simulation (YYYYMMDDhh)
+  # $runDir : Run directory
+  my ( $start, $end, $runDir ) = @_;
+#
+# !CALLING SEQUENCE:
+#  &makeInputFiles( $start, $end, $runDir );
+#
+# !REVISION HISTORY:
+#  22 Aug 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  my $d0      = "";
+  my $h0      = "";
+  my $d1      = "";
+  my $h1      = "";
+  my $inpTmpl = "$runDir/input.geos.template";
+  my $inpGeos = "$runDir/input.geos";
+
+  # Get start date and hour
+  $d0       = substr( $start, 0, 8 );
+  $h0       = substr( $start, 8, 2 );
+  $h0      .= "0000";
+
+  # Get end date and hour
+  $d1       = substr( $end,   0, 8 );
+  $h1       = substr( $end,   8, 2 );
+  $h1      .= "0000";
+
+  # Make the input.geos file in the run directory
+  &makeInputGeos( $d0, $h0, $d1, $h1, $DATA_ROOT, $inpTmpl, $inpGeos );
+
+  # Return 
+  return( $? );
+}
+#EOP
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: doUnitTest
+#
+# !DESCRIPTION: Reads the UnitTest.input file and creates a job script
+#  that will be used to call Makefiles to compile & run GEOS-Chem with
+#  debugging options.
+#\\
+#\\
+# !INTERFACE:
+#
+sub doUnitTest($) {
+#
+# !INPUT PARAMETERS:
+#
+  my ( $fileName ) = @_;  # File in which NRT defaults are stored
+#
+# !CALLING SEQUENCE:
+#  &doUnitTest( "UnitTest.input" );
+#
+# !REVISION HISTORY:
+#  22 Aug 2013 - R. Yantosca - Initial version, based on sleepNrt
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Scalar
+  my $cmd     = "";
+  my $end     = "";
+  my $grid    = "";
+  my $jobFile = "";
+  my $logMain = "";
+  my $logTop  = "";
+  my $met     = "";
+  my $makeCmd = ""; 
+  my $nest    = "";
+  my $runDir  = "";
+  my $sim     = "";
+  my $status  = "";
+  my $start   = "";
+  my $locTime = "";
+
+  # Arrays
+  my @cmds    = ();
+  my @txt     = ();
+
+  #---------------------------------------------------------------------------
+  # Read options from the input file
+  #---------------------------------------------------------------------------
+  
+  # Read entire file into an array and remove newlines
+  open( I, "<$fileName" ) or die "Cannot open $fileName!\n";
+  chomp( @txt = <I> );
+  close( I );
+
+  # Loop thru each line in the file; parse information into global variables
+  for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
+
+    #------------------------------------------------------------------------
+    # Get values for global options (these precede the list of simulations)
+    #------------------------------------------------------------------------
+    if    ( $txt[$i] =~ "CODE_DIR"  ) { $CODE_DIR  = &parse( $txt[$i] ); } 
+    elsif ( $txt[$i] =~ "COMPILER"  ) { $COMPILER  = &parse( $txt[$i] ); } 
+    elsif ( $txt[$i] =~ "DATA_ROOT" ) { $DATA_ROOT = &parse( $txt[$i] ); } 
+    elsif ( $txt[$i] =~ "JOB_DIR"   ) { $JOB_DIR   = &parse( $txt[$i] ); } 
+    elsif ( $txt[$i] =~ "LOG_DIR"   ) { $LOG_DIR   = &parse( $txt[$i] ); }
+    elsif ( $txt[$i] =~ "MAKE_CMD"  ) { $MAKE_CMD  = &parse( $txt[$i] ); } 
+    elsif ( $txt[$i] =~ "PERL_DIR"  ) { $PERL_DIR  = &parse( $txt[$i] ); } 
+    elsif ( $txt[$i] =~ "QUEUE"     ) { $QUEUE     = &parse( $txt[$i] ); }
+    elsif ( $txt[$i] =~ "RUN_DIR"   ) { $RUN_DIR   = &parse( $txt[$i] ); } 
+    elsif ( $txt[$i] =~ "SUBMIT"    ) { $SUBMIT    = &parse( $txt[$i] ); } 
+    elsif ( $txt[$i] =~ "VERSION"   ) { $VERSION   = &parse( $txt[$i] ); }
+
+    #------------------------------------------------------------------------
+    # Get information about requested debug simulatons
+    # and create the make commands corresponding to each simulation
+    #------------------------------------------------------------------------
+    elsif ( $txt[$i] =~ "!RUNS"     ) {
+
+      # Make sure each of these directories exist before proceeding
+      &checkDir( $DATA_ROOT );
+      &checkDir( $CODE_DIR  );
+      &checkDir( $JOB_DIR   );
+      &checkDir( $LOG_DIR   );
+      &checkDir( $PERL_DIR  );
+     
+      # Skip over comment lines
+      while ( $txt[$i] =~ m/^\#/ ) { $i++ }
+
+      # Loop over all requested simulations
+      while ( !($txt[$i] =~ m/END/ ) ) { 
+
+	# Parse each line into values
+	( $met, $grid, $nest, $sim, $start, $end ) = split( ' ', $txt[$i] );
+
+	# Define the run directory name
+	$runDir = &getRunDir( $met, $grid, $nest, $sim );
+	&checkDir( $runDir );
+
+	# Construct the make command, for single & multi processor
+	$makeCmd  = "$MAKE_CMD COMPILER=$COMPILER MET=$met GRID=$grid";
+	$makeCmd .= " SIM=$sim VERSION=$VERSION LOG_DIR=$LOG_DIR";
+	$makeCmd .= " CODE_DIR=$CODE_DIR START=$start END=$end"; 
+
+	# The main log file
+	$logMain  = "$LOG_DIR/$VERSION.log";
+
+	# If necessary, also add on the nested grid flags
+	if ( !( $nest =~ m/\-/ ) ) { $makeCmd .= " NEST=$nest"; }
+	
+	# Make the input.geos file in the run directory
+	&makeInputs( $start, $end, $runDir );
+
+	# Save make commands to an array for use below
+	@cmds = ( "\n\n\# %%% $runDir %%%\n",
+                  "cd $runDir >> $logMain\n\n",
+                  "$makeCmd unittest >> $logMain\n" );
+	
+	# Increment counter
+	$i++;
+      }
+    }	
+  }
+
+  #--------------------------------------------------------------------------
+  # Write a script to call Makefiles in each of the run directories
+  # that will compile and run GEOS-Chem with debugging options
+  #--------------------------------------------------------------------------
+
+  # Get local time
+  $locTime = &getLocalTime();
+
+  # Make some text for the top of the main log file
+  $logTop = <<EOF;
+rm -f $LOG_DIR/*
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" >  $logMain
+echo "%%%"                                                         >> $logMain
+echo "%%%  GEOS-CHEM UNIT TEST, VERSION: $VERSION"                 >> $logMain
+echo "%%%  job submitted at $locTime"                              >> $logMain
+echo "%%%"                                                         >> $logMain
+echo "%%%  This is the main log file, which shows output from"     >> $logMain
+echo "%%%  each individual phase of the unit test sequence."       >> $logMain
+echo "%%%"                                                         >> $logMain
+echo "%%%  Log files from individual unit-test runs are also"      >> $logMain
+echo "%%%  stored in this same directory."                         >> $logMain
+echo "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%" >> $logMain
+EOF
+
+  # Add some more commands to the top of the job script
+  @cmds = ( '#!/bin/bash'."\n", 
+	    "echo $logTop\n", 
+            @cmds               );
+
+  # WRITE the make commands to a job file
+  $jobFile = "$JOB_DIR/job.$VERSION";
+  open( O, ">$jobFile" ) or die "Cannot open $jobFile!\n";
+  print O @cmds;
+  close( O );
+  chmod( 0755, $jobFile );
+
+  # Print
+  print "Created job file $jobFile\n";
+
+  # Submit the job
+  $cmd = "cd $JOB_DIR; $SUBMIT $jobFile\n";
+  chomp( $status = qx( $cmd ) );
+  print "$status\n";
+  				
+  # Return normally
+  return( $? );
+}
+#EOP
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: main
+#
+# !DESCRIPTION: Driver program for the gcUnitTest script.
+#\\
+#\\
+# !INTERFACE:
+#
+sub main(@) {
+#
+# !CALLING SEQUENCE:
+#  doUnitTest OPTIONS-FILENAME
+#
+# !REVISION HISTORY:
+#  23 May 2013 - R. Yantosca - Initial version, based on NRT-ARCTAS
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+  # Filename with user options
+  my $optFile = "";
+
+  # If the user passes a filename from the command line, use it
+  # Otherwise, default to "UnitTest.input"
+  if ( scalar( @ARGV ) == 1 ) { $optFile = $ARGV[0];         }
+  else                        { $optFile = "UnitTest.input"; }
+  
+
+  # Read defaults from the input file
+  &doUnitTest( $optFile );
+
+  # Exit and pass status code back
+  return( $? );
+}
+#EOC
+#------------------------------------------------------------------------------
+
+# Call main program
+main();
+
+# Exit and pass status code back to Unix shell
+exit( $? );
+
+

@@ -1,0 +1,329 @@
+#!/usr/bin/perl -w
+
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: NrtUtils.pm
+#
+# !DESCRIPTION: Contains functions that are used to generate NRT simulations
+#  with GEOS-Chem, esp. in support of aircraft campaigns.
+#\\
+#\\
+# !INTERFACE:
+#
+package UtUtils;
+#
+# !USES:
+#
+require 5.003;      # need this version of Perl or newer
+use English;        # Use English language
+use strict;         # Force explicit variable declarations (like IMPLICIT NONE)
+#
+# !PUBLIC MEMBER FUNCTIONS:
+#  &checkDir      : Ensures that a directory exists
+#  &fmtStr        : Pads a date string w/ leading zeroes if necessary
+#  &makeInputGeos : Creates a new input.geos file for each day of simulation
+#  &makeRunScript : Creates a GEOS-Chem run script for NRT simulations
+#  &replaceDate   : Replaces YYYY, MM, DD tokens in a string w/ date values
+#
+# !CALLING SEQUENCE:
+#  use NrtUtils qw( function-name1, function-name2, ... );
+#
+# !REVISION HISTORY:
+#  20 Jun 2013 - R. Yantosca - Initial version, moved other routines here
+#  30 Jul 2013 - R. Yantosca - Added function &checkDir
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+BEGIN {
+
+  #=========================================================================
+  # The BEGIN method lists the names to export to the calling routine
+  #=========================================================================
+  use Exporter ();
+  use vars     qw( $VERSION @ISA @EXPORT_OK );
+
+  $VERSION   = 1.00;                                   # version number
+  @ISA       = qw( Exporter       );                   # export method
+  @EXPORT_OK = qw( &checkDir
+                   &fmtStr        
+                   &makeInputGeos
+                   &makeRunScript
+                   &parse
+                   &replaceDate   );                   # export on request
+}
+#EOP
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: fmtStr
+#
+# !DESCRIPTION: Routine fmtStr returns a date/time string in either YYYYMMDD 
+#  or HHMMSS format.  The string is padded with leading zeroes if necessary.
+#\\
+#\\
+# !INTERFACE:
+#
+sub fmtStr($) {
+#
+# !INPUT PARAMETERS:
+#
+  my ( $num ) = @_;   # Value to pad (if necessary)
+#
+# !RETURN VALUE:
+#
+  my $str     = "";   # Modified string
+#
+# !CALLING SEQUENCE:
+#  $dateStr = &fmtStr( 20040101 );
+#  $dateStr = &fmtStr( 0        );
+#
+# !REVISION HISTORY:
+#  23 May 2013 - R. Yantosca - Initial version, based on NRT-ARCTAS
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  my $tmp = int( $num );
+
+  # Pad w/ proper # of leading zeroes (if necessary)
+  if    ( $tmp == 0                      ) { $str = "000000";    }
+  elsif ( $tmp >= 100   && $tmp < 1000   ) { $str = "000$tmp";   }
+  elsif ( $tmp >= 1000  && $tmp < 10000  ) { $str = "00$tmp";    }
+  elsif ( $tmp >= 10000 && $tmp < 100000 ) { $str = "0$tmp";     }
+  else                                     { $str = "$tmp";      }
+
+  # Return to calling program
+  return( $str );
+}
+#EOP
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: makeInputGeos
+#
+# !DESCRIPTION: Routine makeInputGeos constructs the "input.geos" file for 
+#  GEOS-Chem.  It reads a pre-defined template file and then just replaces 
+#  tokens # with the start and end date and time.
+#\\
+#\\
+# !INTERFACE:
+#
+sub makeInputGeos($$$$$$) {
+#
+# !INPUT PARAMETERS:
+#
+  # $date1    : Starting date for GEOS-Chem model run (e.g. 20040101) 
+  # $time1    : Starting time for GEOS-Chem model run (e.g. 000000  ) 
+  # $date2    : Ending   date for GEOS-Chem model run (e.g. 20040102)
+  # $time2    : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
+  # $dataRoot : GEOS-chem root data directory
+  # $template : Path for input.geos "template" file
+  # $fileName : Path for input.geos file (w/ dates replaced)
+  my ( $date1, $time1, $date2, $time2, $dataRoot, $inFile, $outFile ) = @_;
+#
+# !CALLING SEQUENCE:
+# &makeInputGeos( 20130101,             000000, 
+#                 20130102,             000000, 
+#                "input.geos.template", "input.geos" );
+#
+# !REVISION HISTORY:
+#  23 May 2013 - R. Yantosca - Initial version, adapted from NRT-ARCTAS
+#  31 Jul 2013 - R. Yantosca - Change permission of input.geos to chmod 777
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  my @lines  = "";
+  my $line   = "";
+  my $dStr1  = &fmtStr( $date1 );
+  my $dStr2  = &fmtStr( $date2 );
+  my $tStr1  = &fmtStr( $time1 );
+  my $tStr2  = &fmtStr( $time2 );
+
+  #------------------------------  
+  # Read template file
+  #------------------------------ 
+
+  # Read template "input.geos" file into an array
+  open( I, "$inFile" ) or croak( "Cannot open $inFile!\n" );
+  @lines = <I>;
+  close( I );
+
+  #------------------------------  
+  # Create "input.geos" file
+  #------------------------------ 
+
+  # Open file
+  open( O, ">$outFile") or die "Can't open $outFile\n";
+
+  # Loop thru each line
+  foreach $line ( @lines ) {
+    
+    # Remove newline character
+    chomp( $line );
+
+    # Replace start & end dates
+    $line =~ s/{DATE1}/$dStr1/g;
+    $line =~ s/{TIME1}/$tStr1/g;
+    $line =~ s/{DATE2}/$dStr2/g; 
+    $line =~ s/{TIME2}/$tStr2/g;
+    $line =~ s/{DATA_ROOT}/$dataRoot/g;
+
+    # Write to output file
+    print O "$line\n";
+  }
+
+  # Close output file
+  close( O );
+
+  # Make the input.geos file chmod 644
+  chmod( 0644, $outFile );
+
+  # Exit
+  return(0);
+}
+#EOP
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: replaceDate
+#
+# !DESCRIPTION: Routine replaceDate replaces date tokens (YYYY, MM, DD) in
+#  a string with the actual year, month, and date values.
+#\\
+#\\
+# !INTERFACE:
+#
+sub replaceDate($$) {
+#
+# !INPUT PARAMETERS:
+#
+  my ( $str, $date ) = @_;  # $str: String w/ tokens; 
+                            # $date: YYYYMMDD date
+#
+# !RETURN VALUE:
+#
+  my $newStr = "";          # Updated string 
+#
+# !CALLING SEQUENCE:
+#  $newStr = &replaceDate( "file.YYYYMMDD", 20130101 );
+#
+# !REVISION HISTORY:
+#  23 May 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  my $yyyy = substr( $date, 0, 4 );    # Extract year  from $date
+  my $mm   = substr( $date, 4, 2 );    # Extract month from $date
+  my $dd   = substr( $date, 6, 2 );    # Extract day   from $date
+
+  # Replace tokens
+  $newStr =  $str;          
+  $newStr =~ s/YYYY/$yyyy/g;           # Replace year 
+  $newStr =~ s/MM/$mm/g;               # Replace month
+  $newStr =~ s/DD/$dd/g;               # Replace day
+
+  # Return modified string
+  return( $newStr );
+}
+#EOC
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: checkDir
+#
+# !DESCRIPTION: Checks to make sure a directory exists.  If not, then it
+#  will exit with an error code.
+#\\
+#\\
+# !INTERFACE:
+#
+sub checkDir($) { 
+#
+# !INPUT PARAMETERS:
+#
+  # Directory to be tested
+  my ( $dir ) =  @_;
+#
+# !CALLING SEQUENCE:
+#  &checkDir( $dir );
+#
+# !REVISION HISTORY:
+#  30 Jul 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+  # Halt execution if directory is not found
+  if ( !( -d $dir ) ) {    
+    print "Directory $dir does not exist!  Exiting.";
+    exit(999)
+  }
+  
+  # Otherwise return w/ error status
+  return( $? );
+}
+#EOC
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: parse
+#
+# !DESCRIPTION: Convenience routine for gcUnitTest.  Parses a line with
+#  two substrings separated by a colon, and returns second value.
+#\\
+#\\
+# !INTERFACE:
+#
+sub parse($) { 
+#
+# !INPUT PARAMETERS:
+#
+  # $str      : String to be parsed
+  my ( $str ) =  @_;
+#
+# !CALLING SEQUENCE:
+#  &checkDir( $dir );
+#
+# !REVISION HISTORY:
+#  30 Jul 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+  # Take the text following the colon
+  my @result = split( ':', $str );
+  
+  # Strip leading spaces
+  $result[1] =~ s/^\s+//; 
+
+  # Strip trailing spaces
+  $result[1] =~ s/^\s+$//;
+
+  # Return to calling routine
+  return( $result[1] );
+}
+#EOC
+
+END {}
