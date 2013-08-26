@@ -357,8 +357,8 @@ EOF
   # Submit the job.  Send the stdout stream to $logMain
   # and the stderr stream to a file in the $LOG_DIR.
   $cmd = "cd $LOG_DIR; $SUBMIT $jobFile\n";
-#  chomp( $status = qx( $cmd ) );
-#  print "$status\n";
+  chomp( $status = qx( $cmd ) );
+  print "$status\n";
   				
   # Return normally
   return( $? );
