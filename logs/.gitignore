@@ -1,9 +1,9 @@
-*.[oax]
+.[oax]
 *.mod
 *.MOD
 *~*
 job.*
 log.*
-*.log
-*.mp
-*.sp
+*.log*
+*o.*
+*po.*

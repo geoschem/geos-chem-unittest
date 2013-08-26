@@ -1,0 +1,24 @@
+README -- GEOS-Chem Unit Tester: perl/ subdirectory 
+26 Aug 2013
+GEOS-Chem Support Team
+geos-chem-support@as.harvard.edu
+
+
+Perl Modules:
+-------------
+
+Dates.pm       : Module w/ various date & time routines
+UtUtils.pm     : Module w/ common routines for the GEOS-Chem Unit Tester
+
+
+Perl Modules:
+-------------
+gcUnitTest     : Main driver script for the GEOS-Chem Unit Tester
+cleanFiles     : Script to clean old files from logs & jobs subdirectories
+
+
+Input Files:
+-------------
+UnitTest.input : Input file for gcUntiTest.  You can create as many other
+                 such input files as you need by copying & pasting.
+                 

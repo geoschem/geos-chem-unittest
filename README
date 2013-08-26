@@ -1,0 +1,65 @@
+README -- describes contents of the GEOS-Chem-UnitTest directories
+26 Aug 2013
+GEOS-Chem Support Team
+geos-chem-support@as.harvard.edu
+
+
+The GEOS-Chem Unit Tester is a package of scripts and Makefiles that will
+compile and run several GEOS-Chem with a set of standard debugging flags.
+The user may select the types of simulations (e.g. GEOS-5, 4x5, fullchem,
+GEOS-5, 2x25, tagged CO, etc) to be tested.
+
+For more information, see our page on the GEOS-Chem wiki:
+
+   http://wiki.geos-chem.org/Debugging_with_the_GEOS-Chem_unit_tester
+
+
+Directories:
+------------
+
+jobs/ : Job scripts created by the GEOS-Chem Unit Test driver script 
+        "gcUnitTest" will be sent here.
+
+logs/ : Log files containing output from the GEOS-Chem Unit Test simulations
+        will be sent here.
+
+perl/ : Contains the Perl scripts that are used to submit GEOS-Chem Unit Test
+        simulations.  The driver script is called "gcUnitTest".  
+
+runs/ : Contains the various run directories.  Each run directory is named
+        according to the met field, horizontal grid, and type of simulation
+        (e.g. geos5_4x5_fullchem, geosfp_2x25_RnPbBe, etc).
+
+
+Using the GEOS-Chem Unit Tester:
+---------------------------------
+
+To run the gcUnitTest script, you first specify the options for the unit 
+test simulations in an input file.  You can specify the directory paths for
+your system, the location of the GEOS-Chem code directory, the submit command
+for your system, and the types of simulations that you want the Unit Tester
+to validate.  The default input file is named UnitTest.input, but you can 
+copy and cut-n-paste to create as many input  files as you need.  
+
+To start the unit test simulation, cd into the perl subdirectory and type:
+
+  gcUnitTest FILENAME
+
+where FILENAME is the name of input file (e.g. UnitTest.input).  This will
+start the Unit Test simulations.  Normally this will run in a queue on your
+computational cluster.
+
+The GEOS-Chem Unit Tester will compile and run the code for each of the 
+types of simulations that you specified in the input file.  The Unit Tester
+will compile and run GEOS-Chem twice for each type of simulation (once with
+OpenMP parallelizaton turned off, and again with OpenMP parallelization
+turned on).  Then the Unit tester will check to see if the output files from
+both simulations are identical.
+
+Output from each simulation is sent to the logs/ subdirectory.  The stdout
+from the Unit Test simulation is sent to the log file {VERSION}.stdout.log,
+where {VERSION} is an ID tag used to identify the simulation.  The log files
+from each individual Unit Test simulation is also sent to the logs/ 
+subdirectory.  The stderr output is sent to a file whose name is determined
+by the queue system, also in logs/.
+

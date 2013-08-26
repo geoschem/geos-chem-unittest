@@ -1,0 +1,187 @@
+#!/usr/bin/perl -w
+
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: cleanFiles
+#
+# !DESCRIPTION: This Perl script removes all individual files from the
+#  GEOS-Chem Unit Test log directory and job directory.
+#\\
+#\\
+# !USES:
+#
+require 5.003;                # Need this version of Perl or newer
+use strict;                   # Force IMPLICIT NONE-style declarations
+use UtUtils qw( &parse );     # Get routines from the UtUtils module
+#
+# !PUBLIC MEMBER FUNCTIONS:
+#
+# &getDirs($)
+# &cleanDir($)
+# &main(@)         
+#
+# !CALLING SEQUENCE:
+#  cleanFiles [ OPTIONS-FILENAME ]
+#
+# !REVISION HISTORY:
+#  26 Aug 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: getDefaults
+#
+# !DESCRIPTION: Routine getDefaults reads the input file and returns the
+#  name of the directory where log files are stored.
+#\\
+#\\
+# !INTERFACE:
+#
+sub getDirs($) {
+#
+# !INPUT PARAMETERS:
+#
+  my ( $fileName ) = @_;   # File with unit test input options
+#
+# !RETURN VALUE:
+#
+  my $jobDir       = "";    # Job script directory
+  my $logDir       = "";    # Log file directory
+#
+# !CALLING SEQUENCE:
+#  ( $jobDir, $logDir ) = &getDirs( $fileName );
+#
+# !REVISION HISTORY:
+#  26 Aug 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  my @txt = ();
+
+  # Read data from input file
+  open( I, "<$fileName" ) or die "Cannot open $fileName!\n";
+  chomp( @txt = <I> );
+  close( I );
+
+  # Parse each line until we find the log directory
+  for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
+    if ( $txt[$i] =~ "JOB_DIR" ) { $jobDir = &parse( $txt[$i] ); }
+    if ( $txt[$i] =~ "LOG_DIR" ) { $logDir = &parse( $txt[$i] ); }
+  }
+
+  # Return to main program
+  return( $jobDir, $logDir );
+}
+#EOC
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: cleanDir
+#
+# !DESCRIPTION: Removes files from a directory.
+#\\
+#\\
+# !INTERFACE:
+#
+sub cleanDir($) {
+#
+# !INPUT PARAMETERS:
+#
+  my ( $dir ) = @_;   # Directory to be cleaned
+#
+# !CALLING SEQUENCE:
+#  &cleanDir( $dir );
+#
+# !REVISION HISTORY:
+#  26 Aug 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Scalars
+  my $cmd   = "";
+  my $file  = "";
+  
+  # Arrays
+  my @files = ();
+
+  # Read all log files in the directory
+  opendir( D, "$dir" ) or die "$$dir is an invalid directory!\n";
+  chomp( @files = readdir( D ) );
+  closedir( D );
+
+  # Remove log files only
+  foreach $file ( @files ) {
+    $cmd = "rm -f $dir/$file";
+    print "$cmd\n";
+    qx( $cmd );
+  }	
+}
+#EOC
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: main
+#
+# !DESCRIPTION: Removes files from the GEOS-Chem Unit Test job script
+#  directory and log file directory.
+#\\
+#\\
+# !INTERFACE:
+#
+sub main() {
+#
+# !CALLING SEQUENCE:
+#  cleanFiles [ OPTIONS-FILENAME ]
+#
+# !REVISION HISTORY:
+#  26 Aug 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Scalars
+  my $jobDir  = "";
+  my $logDir  = "";
+  my $optFile = "";
+
+  # If the user passes a filename from the command line, use it
+  # Otherwise, default to "UnitTest.input"
+  if ( scalar( @ARGV ) == 1 ) { $optFile = $ARGV[0];         }
+  else                        { $optFile = "UnitTest.input"; }
+
+  # Get the log file directory
+  ( $jobDir, $logDir ) = &getDirs( $optFile );
+
+  # Remove files
+  &cleanDir( $jobDir );
+  &cleanDir( $logDir );
+
+  # Return w/ status
+  return( $? );
+}
+#EOC
+
+#------------------------------------------------------------------------------
+
+# Call main driver routine
+main();
+
+# Exit and pass status code to Unix shell
+exit( $? );
