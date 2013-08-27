@@ -1,5 +1,5 @@
 README -- GEOS-Chem Unit Tester: perl/ subdirectory 
-26 Aug 2013
+27 Aug 2013
 GEOS-Chem Support Team
 geos-chem-support@as.harvard.edu
 
@@ -15,6 +15,7 @@ Perl Modules:
 -------------
 gcUnitTest     : Main driver script for the GEOS-Chem Unit Tester
 cleanFiles     : Script to clean old files from logs & jobs subdirectories
+validate       : Script to difference GEOS-Chem output files
 
 
 Input Files:

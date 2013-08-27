@@ -13,6 +13,7 @@
 #
 # !REVISION HISTORY: 
 #  23 Aug 2013 - R. Yantosca - Initial version
+#  27 Aug 2013 - R. Yantosca - Now use a perl script to validate output files
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -28,13 +29,16 @@ EXE_SP   :=geos.sp
 EXE_MP   :=geos.mp
 
 # Log file names
-LOG_SP   := $(LOG_DIR)/$(VERSION).$(RUNID).sp
-LOG_MP   := $(LOG_DIR)/$(VERSION).$(RUNID).mp
+LOG_SP   :=$(LOG_DIR)/$(VERSION).$(RUNID).sp
+LOG_MP   :=$(LOG_DIR)/$(VERSION).$(RUNID).mp
 
 # Output file names
-TRAC_AVG := trac_avg.$(RUNID).$(START)
-TRAC_RST := trac_rst.$(RUNID).$(END)
-SOIL_RST := soil_rst.$(RUNID).$(END)
+TRAC_AVG :=trac_avg.$(RUNID).$(START)
+TRAC_RST :=trac_rst.$(RUNID).$(END)
+SOIL_RST :=soil_rst.$(RUNID).$(END)
+
+# Validation script
+VALIDATE :=/usr/bin/perl $(PERL_DIR)/validate
 
 #=============================================================================
 # Makefile targets: type "make help" for a complete list!
@@ -70,9 +74,9 @@ mp:
 	mv $(SOIL_RST) $(SOIL_RST).mp
 
 check:
-	diff $(TRAC_AVG).sp $(TRAC_AVG).mp
-	diff $(TRAC_RST).sp $(TRAC_RST).mp
-	diff $(SOIL_RST).sp $(SOIL_RST).mp
+	$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0
+	$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0
+	$(VALIDATE) $(SOIL_RST).sp $(SOIL_RST).mp 0 1
 
 clean:
 	@$(MAKE) -C $(CODE_DIR) clean

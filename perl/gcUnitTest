@@ -199,6 +199,7 @@ sub doUnitTest($) {
 #
 # !REVISION HISTORY:
 #  22 Aug 2013 - R. Yantosca - Initial version, based on sleepNrt
+#  27 Aug 2013 - R. Yantosca - Now add $PERL_DIR to the make command
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -289,6 +290,7 @@ sub doUnitTest($) {
 	  $makeCmd  = "$MAKE_CMD COMPILER=$COMPILER MET=$met GRID=$grid";
 	  $makeCmd .= " SIM=$sim VERSION=$VERSION LOG_DIR=$LOG_DIR";
 	  $makeCmd .= " CODE_DIR=$CODE_DIR START=$start END=$end"; 
+	  $makeCmd .= " PERL_DIR=$PERL_DIR";
 
 	  # The main log file
 	  $logMain  = "$LOG_DIR/$VERSION.stdout.log";
