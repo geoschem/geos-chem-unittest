@@ -17,13 +17,12 @@ require 5.003;                       # Need this version of Perl or newer
 use English;                         # Use English language
 use Carp;                            # Get detailed error messages
 use strict;
-use Dates   qw( &getLocalTime );     # Get routines from Dates.pm
-use UtUtils qw( &checkDir
-                &fmtStr
+use Dates   qw( &getLocalTime  );    # Get routines from Dates.pm
+use UtUtils qw( &baseName
+                &checkDir
+                &cleanDir
                 &makeInputGeos
-                &makeRunScript
-                &parse         
-                &replaceDate   );    # Get routines from UtUtils.pm
+                &parse         );    # Get routines from UtUtils.pm
 #
 # !PUBLIC DATA MEMBERS:
 #
@@ -200,6 +199,9 @@ sub doUnitTest($) {
 # !REVISION HISTORY:
 #  22 Aug 2013 - R. Yantosca - Initial version, based on sleepNrt
 #  27 Aug 2013 - R. Yantosca - Now add $PERL_DIR to the make command
+#  28 Aug 2013 - R. Yantosca - Now call &cleanDir from UtUtils.pm
+#  28 Aug 2013 - R. Yantosca - Minor bug fixes.  Also now send results
+#                              to a separate file from stdout.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -212,14 +214,16 @@ sub doUnitTest($) {
   my $grid    = "";
   my $jobFile = "";
   my $logHdr  = "";
-  my $logMain = "";
+  my $logRslt = "";
   my $logTop  = "";
   my $met     = "";
   my $makeCmd = ""; 
   my $nest    = "";
+  my $notDir  = "";
   my $runDir  = "";
   my $sim     = "";
   my $status  = "";
+  my $stdout  = "";
   my $start   = "";
   my $locTime = "";
 
@@ -241,17 +245,20 @@ sub doUnitTest($) {
 
     #------------------------------------------------------------------------
     # Get values for global options (these precede the list of simulations)
+    # Skip over lines beginning with the # comment character
     #------------------------------------------------------------------------
-    if    ( $txt[$i] =~ "CODE_DIR"  ) { $CODE_DIR  = &parse( $txt[$i] ); } 
-    elsif ( $txt[$i] =~ "COMPILER"  ) { $COMPILER  = &parse( $txt[$i] ); } 
-    elsif ( $txt[$i] =~ "DATA_ROOT" ) { $DATA_ROOT = &parse( $txt[$i] ); } 
-    elsif ( $txt[$i] =~ "JOB_DIR"   ) { $JOB_DIR   = &parse( $txt[$i] ); } 
-    elsif ( $txt[$i] =~ "LOG_DIR"   ) { $LOG_DIR   = &parse( $txt[$i] ); }
-    elsif ( $txt[$i] =~ "MAKE_CMD"  ) { $MAKE_CMD  = &parse( $txt[$i] ); } 
-    elsif ( $txt[$i] =~ "PERL_DIR"  ) { $PERL_DIR  = &parse( $txt[$i] ); } 
-    elsif ( $txt[$i] =~ "RUN_DIR"   ) { $RUN_DIR   = &parse( $txt[$i] ); } 
-    elsif ( $txt[$i] =~ "SUBMIT"    ) { $SUBMIT    = &parse( $txt[$i] ); } 
-    elsif ( $txt[$i] =~ "VERSION"   ) { $VERSION   = &parse( $txt[$i] ); }
+    if ( !( $txt[$i] =~ m/\#/ ) ) { 
+      if    ( $txt[$i] =~ "CODE_DIR"  ) { $CODE_DIR  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "COMPILER"  ) { $COMPILER  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "DATA_ROOT" ) { $DATA_ROOT = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "JOB_DIR"   ) { $JOB_DIR   = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "LOG_DIR"   ) { $LOG_DIR   = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "MAKE_CMD"  ) { $MAKE_CMD  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "PERL_DIR"  ) { $PERL_DIR  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "RUN_DIR"   ) { $RUN_DIR   = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "SUBMIT"    ) { $SUBMIT    = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "VERSION"   ) { $VERSION   = &parse( $txt[$i] ); }
+    }
 
     #------------------------------------------------------------------------
     # Get information about requested debug simulatons
@@ -279,21 +286,27 @@ sub doUnitTest($) {
 	  ( $met, $grid, $nest, $sim, $start, $end ) = split( ' ', $txt[$i] );
 
 	  # Remove extraneous characters from $met
-	  $met     =~ s/-//g;
-	  $met     =~ s/_//g;
+	  $met     =~ s/\-//g;
+	  $met     =~ s/\_//g;
+	  $met     =~ s/\=//g;
+	  $met     =~ s/\.//g;
 
 	  # Define the run directory name
 	  $runDir   = &getRunDir( $met, $grid, $nest, $sim );
 	  &checkDir( $runDir );
 
+	  # Get the directory name minus the full path
+	  $notDir   = &baseName( $runDir );
+
 	  # Construct the make command, for single & multi processor
 	  $makeCmd  = "$MAKE_CMD COMPILER=$COMPILER MET=$met GRID=$grid";
 	  $makeCmd .= " SIM=$sim VERSION=$VERSION LOG_DIR=$LOG_DIR";
-	  $makeCmd .= " CODE_DIR=$CODE_DIR START=$start END=$end"; 
-	  $makeCmd .= " PERL_DIR=$PERL_DIR";
+	  $makeCmd .= " CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR";
+	  $makeCmd .= " START=$start END=$end"; 
 
 	  # The main log file
-	  $logMain  = "$LOG_DIR/$VERSION.stdout.log";
+	  $stdout   = "$LOG_DIR/$VERSION.stdout.log";
+	  $logRslt  = "$LOG_DIR/$VERSION.results.log";
 
 	  # If necessary, also add on the nested grid flags
 	  if ( !( $nest =~ m/\-/ ) ) { $makeCmd .= " NEST=$nest"; }
@@ -302,9 +315,9 @@ sub doUnitTest($) {
 	  &makeInputs( $start, $end, $runDir );
 
 	  # Save make commands to an array for use below
-	  @cmds = ( "\n\n\# %%% $runDir %%%\n",
-		    "cd $runDir >> $logMain\n\n",
-		    "$makeCmd unittest >> $logMain\n" );
+	  @cmds = ( @cmds, "\n\n\# %%% $notDir %%%\n",
+		           "cd $runDir >> $stdout\n\n",
+		           "$makeCmd unittest >> $stdout\n" );
         }
 
 	# Increment counter
@@ -320,30 +333,34 @@ sub doUnitTest($) {
   # that will compile and run GEOS-Chem with debugging options
   #--------------------------------------------------------------------------
 
+  # Remove all files in the job & log dir
+  &cleanDir( $JOB_DIR );
+  &cleanDir( $LOG_DIR );
+
   # Get local time
   $locTime = &getLocalTime();
 
-  # Make some text for the top of the main log file
+  # Make some text for the top of the log file that will hold results
   $logHdr = "%" x 79;
   $logTop = <<EOF;
-rm -f $LOG_DIR/*
-echo $logHdr                                                   >  $logMain
-echo "%%%"                                                     >> $logMain
-echo "%%%  GEOS-CHEM UNIT TEST, VERSION: $VERSION"             >> $logMain
-echo "%%%  job sent to queue at $locTime"                      >> $logMain
-echo "%%%"                                                     >> $logMain
-echo "%%%  This is the main log file, which shows output from" >> $logMain
-echo "%%%  each individual phase of the unit test sequence."   >> $logMain
-echo "%%%"                                                     >> $logMain
-echo "%%%  Log files from individual unit-test runs are also"  >> $logMain
-echo "%%%  stored in this same directory."                     >> $logMain
-echo "%%%"                                                     >> $logMain
-echo $logHdr                                                   >> $logMain
+echo "$logHdr"                                                 >> $logRslt
+echo "%%%"                                                     >> $logRslt
+echo "%%%  GEOS-CHEM UNIT TEST RESULTS FOR VERSION: $VERSION"  >> $logRslt
+echo "%%%  job sent to queue at $locTime"                      >> $logRslt
+echo "%%%"                                                     >> $logRslt
+echo "%%%  This is the main log file, which shows output from" >> $logRslt
+echo "%%%  each individual phase of the unit test sequence."   >> $logRslt
+echo "%%%"                                                     >> $logRslt
+echo "%%%  Log files from individual unit-test runs are also"  >> $logRslt
+echo "%%%  stored in this same directory."                     >> $logRslt
+echo "%%%"                                                     >> $logRslt
+echo "$logHdr"                                                 >> $logRslt
 EOF
 
   # Add some more commands to the top of the job script
-  @cmds = ( '#!/bin/bash'."\n", 
-	    "echo $logTop\n", 
+  @cmds = ( '#!/bin/bash'."\n",
+            "set \-e\n", 
+	    "$logTop\n", 
             @cmds               );
 
   # WRITE the make commands to a job file
@@ -356,7 +373,7 @@ EOF
   # Print
   print "Created job file $jobFile\n";
 
-  # Submit the job.  Send the stdout stream to $logMain
+  # Submit the job.  Send the stdout stream to $logRslt
   # and the stderr stream to a file in the $LOG_DIR.
   $cmd = "cd $LOG_DIR; $SUBMIT $jobFile\n";
   chomp( $status = qx( $cmd ) );
@@ -389,17 +406,10 @@ sub main(@) {
 #------------------------------------------------------------------------------
 #BOC
 #
-  # Filename with user options
-  my $optFile = "";
-
   # If the user passes a filename from the command line, use it
   # Otherwise, default to "UnitTest.input"
-  if ( scalar( @ARGV ) == 1 ) { $optFile = $ARGV[0];         }
-  else                        { $optFile = "UnitTest.input"; }
-  
-
-  # Read defaults from the input file
-  &doUnitTest( $optFile );
+  if ( scalar( @ARGV ) == 1 ) { &doUnitTest( $ARGV[0]         ); }
+  else                        { &doUnitTest( "UnitTest.input" ); }
 
   # Exit and pass status code back
   return( $? );

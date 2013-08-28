@@ -29,6 +29,7 @@ EXE_SP   :=geos.sp
 EXE_MP   :=geos.mp
 
 # Log file names
+RESULTS  :=$(LOG_DIR)/$(VERSION).results..og
 LOG_SP   :=$(LOG_DIR)/$(VERSION).$(RUNID).sp
 LOG_MP   :=$(LOG_DIR)/$(VERSION).$(RUNID).mp
 
@@ -71,8 +72,8 @@ mp:
 	mv $(TRAC_RST) $(TRAC_RST).mp
 
 check:
-	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0
-	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 1
+	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
+	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 1 >> $(RESULTS)
 
 clean:
 	@$(MAKE) -C $(CODE_DIR) clean

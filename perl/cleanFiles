@@ -13,9 +13,10 @@
 #\\
 # !USES:
 #
-require 5.003;                # Need this version of Perl or newer
-use strict;                   # Force IMPLICIT NONE-style declarations
-use UtUtils qw( &parse );     # Get routines from the UtUtils module
+require 5.003;                 # Need this version of Perl or newer
+use strict;                    # Force IMPLICIT NONE-style declarations
+use UtUtils qw( &cleanDir
+                &parse    );   # Get routines from the UtUtils module
 #
 # !PUBLIC MEMBER FUNCTIONS:
 #
@@ -28,6 +29,7 @@ use UtUtils qw( &parse );     # Get routines from the UtUtils module
 #
 # !REVISION HISTORY:
 #  26 Aug 2013 - R. Yantosca - Initial version
+#  28 Aug 2013 - R. Yantosca - Now reference &cleanDir from UtUtils.pm
 #EOP
 #------------------------------------------------------------------------------
 #          Harvard University Atmospheric Chemistry Modeling Group            !
@@ -79,57 +81,6 @@ sub getDirs($) {
 
   # Return to main program
   return( $jobDir, $logDir );
-}
-#EOC
-#------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
-#------------------------------------------------------------------------------
-#BOP
-#
-# !IROUTINE: cleanDir
-#
-# !DESCRIPTION: Removes files from a directory.
-#\\
-#\\
-# !INTERFACE:
-#
-sub cleanDir($) {
-#
-# !INPUT PARAMETERS:
-#
-  my ( $dir ) = @_;   # Directory to be cleaned
-#
-# !CALLING SEQUENCE:
-#  &cleanDir( $dir );
-#
-# !REVISION HISTORY:
-#  26 Aug 2013 - R. Yantosca - Initial version
-#EOP
-#------------------------------------------------------------------------------
-#BOC
-#
-# !LOCAL VARIABLES:
-#
-  # Scalars
-  my $cmd   = "";
-  my $file  = "";
-  
-  # Arrays
-  my @files = ();
-
-  # Read all log files in the directory
-  opendir( D, "$dir" ) or die "$$dir is an invalid directory!\n";
-  chomp( @files = readdir( D ) );
-  closedir( D );
-
-  # Remove log files only
-  foreach $file ( @files ) {
-    if ( !( $file =~ m/.gitignore/) ) {
-      $cmd = "rm -f $dir/$file";
-      print "$cmd\n";
-      qx( $cmd );
-    }
-  }	
 }
 #EOC
 #------------------------------------------------------------------------------

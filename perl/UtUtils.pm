@@ -34,6 +34,7 @@ use strict;         # Force explicit variable declarations (like IMPLICIT NONE)
 # !REVISION HISTORY:
 #  20 Jun 2013 - R. Yantosca - Initial version, moved other routines here
 #  30 Jul 2013 - R. Yantosca - Added function &checkDir
+#  28 Aug 2013 - R. Yantosca - Added functions &cleanDir, $baseName
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -48,12 +49,148 @@ BEGIN {
 
   $VERSION   = 1.00;                                   # version number
   @ISA       = qw( Exporter       );                   # export method
-  @EXPORT_OK = qw( &checkDir
+  @EXPORT_OK = qw( &baseName
+                   &checkDir
+                   &cleanDir
                    &fmtStr        
                    &makeInputGeos
                    &makeRunScript
                    &parse
                    &replaceDate   );                   # export on request
+}
+#EOC
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: baseName
+#
+# !DESCRIPTION: Returns the last part of a full path name.  Similar to the
+#  GNU Make "notdir" function.
+#\\
+#\\
+# !INTERFACE:
+#
+sub baseName($) { 
+#
+# !INPUT PARAMETERS:
+#
+  # $dir  : String to be parsed
+  my ( $dir )  =  @_;
+#
+# !RETURN VALUE:
+#
+  my $baseName = "";
+#
+# !CALLING SEQUENCE:
+#  &baseName( $dir );
+#
+# !REVISION HISTORY:
+#  30 Jul 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+  # Take the text following the colon
+  my @result = split( '/', $dir );
+  
+  # Return the last part of the directory
+  $baseName = $result[ scalar( @result ) - 1 ];
+  print "$baseName\n";
+
+  # Return to calling routine
+  return( $baseName );
+}
+#EOC
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: checkDir
+#
+# !DESCRIPTION: Checks to make sure a directory exists.  If not, then it
+#  will exit with an error code.
+#\\
+#\\
+# !INTERFACE:
+#
+sub checkDir($) { 
+#
+# !INPUT PARAMETERS:
+#
+  # Directory to be tested
+  my ( $dir ) =  @_;
+#
+# !CALLING SEQUENCE:
+#  &checkDir( $dir );
+#
+# !REVISION HISTORY:
+#  30 Jul 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+  # Halt execution if directory is not found
+  if ( !( -d $dir ) ) {    
+    print "Directory $dir does not exist!  Exiting.\n";
+    exit(999)
+  }
+  
+  # Otherwise return w/ error status
+  return( $? );
+}
+#EOC
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: cleanDir
+#
+# !DESCRIPTION: Removes files from a directory.
+#\\
+#\\
+# !INTERFACE:
+#
+sub cleanDir($) {
+#
+# !INPUT PARAMETERS:
+#
+  my ( $dir ) = @_;   # Directory to be cleaned
+#
+# !CALLING SEQUENCE:
+#  &cleanDir( $dir );
+#
+# !REVISION HISTORY:
+#  26 Aug 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Scalars
+  my $cmd   = "";
+  my $file  = "";
+  
+  # Arrays
+  my @files = ();
+
+  # Read all log files in the directory
+  opendir( D, "$dir" ) or die "$$dir is an invalid directory!\n";
+  chomp( @files = readdir( D ) );
+  closedir( D );
+
+  # Remove log files only
+  foreach $file ( @files ) {
+    if ( !( $file =~ m/^\./ ) ) {
+      $cmd = "rm -f $dir/$file";
+      print "$cmd\n";
+      qx( $cmd );
+    }
+  }	
 }
 #EOP
 #------------------------------------------------------------------------------
@@ -194,6 +331,48 @@ sub makeInputGeos($$$$$$) {
   # Exit
   return(0);
 }
+#EOC
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: parse
+#
+# !DESCRIPTION: Convenience routine for gcUnitTest.  Parses a line with
+#  two substrings separated by a colon, and returns second value.
+#\\
+#\\
+# !INTERFACE:
+#
+sub parse($) { 
+#
+# !INPUT PARAMETERS:
+#
+  # $str      : String to be parsed
+  my ( $str ) =  @_;
+#
+# !CALLING SEQUENCE:
+#  &checkDir( $dir );
+#
+# !REVISION HISTORY:
+#  30 Jul 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+  # Take the text following the colon
+  my @result = split( ':', $str );
+  
+  # Strip leading spaces
+  $result[1] =~ s/^\s+//; 
+
+  # Strip trailing spaces
+  $result[1] =~ s/^\s+$//;
+
+  # Return to calling routine
+  return( $result[1] );
+}
 #EOP
 #------------------------------------------------------------------------------
 #          Harvard University Atmospheric Chemistry Modeling Group            !
@@ -243,87 +422,9 @@ sub replaceDate($$) {
   # Return modified string
   return( $newStr );
 }
-#EOC
-#------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
-#------------------------------------------------------------------------------
-#BOP
-#
-# !IROUTINE: checkDir
-#
-# !DESCRIPTION: Checks to make sure a directory exists.  If not, then it
-#  will exit with an error code.
-#\\
-#\\
-# !INTERFACE:
-#
-sub checkDir($) { 
-#
-# !INPUT PARAMETERS:
-#
-  # Directory to be tested
-  my ( $dir ) =  @_;
-#
-# !CALLING SEQUENCE:
-#  &checkDir( $dir );
-#
-# !REVISION HISTORY:
-#  30 Jul 2013 - R. Yantosca - Initial version
-#EOP
-#------------------------------------------------------------------------------
-#BOC
 
-  # Halt execution if directory is not found
-  if ( !( -d $dir ) ) {    
-    print "Directory $dir does not exist!  Exiting.";
-    exit(999)
-  }
-  
-  # Otherwise return w/ error status
-  return( $? );
-}
-#EOC
-#------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
-#------------------------------------------------------------------------------
-#BOP
-#
-# !IROUTINE: parse
-#
-# !DESCRIPTION: Convenience routine for gcUnitTest.  Parses a line with
-#  two substrings separated by a colon, and returns second value.
-#\\
-#\\
-# !INTERFACE:
-#
-sub parse($) { 
-#
-# !INPUT PARAMETERS:
-#
-  # $str      : String to be parsed
-  my ( $str ) =  @_;
-#
-# !CALLING SEQUENCE:
-#  &checkDir( $dir );
-#
-# !REVISION HISTORY:
-#  30 Jul 2013 - R. Yantosca - Initial version
-#EOP
-#------------------------------------------------------------------------------
-#BOC
 
-  # Take the text following the colon
-  my @result = split( ':', $str );
-  
-  # Strip leading spaces
-  $result[1] =~ s/^\s+//; 
 
-  # Strip trailing spaces
-  $result[1] =~ s/^\s+$//;
-
-  # Return to calling routine
-  return( $result[1] );
-}
 #EOC
 
 END {}

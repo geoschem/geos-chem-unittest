@@ -8,7 +8,19 @@
 # !DESCRIPTION: Specifies debugging options for the GEOS-Chem unit tester.
 #\\
 #\\
-# !REMARKS:
+# !REMARKS:  
+#  Customize the unit tests for your system by specifying these values:
+#  -------------------------------------------------------------------
+#  VERSION   : A tag used to identify this Unit Test (e.g. v9-02o)
+#  CODE_DIR  : Full path of the GEOS-Chem code directory
+#  DATA_ROOT : Root GEOS-Chem data directory
+#  RUN_DIR   : Unit Test run directory
+#  JOB_DIR   : Unit Test job script directory
+#  LOG_DIR   : Unit Test log file directory
+#  PERL_DIR  : Unit Test perl script directory (i.e. this directory)
+#  COMPILER  : Compiler used to build GEOS-Chem (e.g. "ifort", "pgi")
+#  MAKE_CMD  : Make command with basic debugging flags
+#  SUBMIT    : Submit command and queue name
 #
 # !REVISION HISTORY: 
 #  22 Aug 2013 - R. Yantosca - Initial version
@@ -22,7 +34,7 @@
    RUN_DIR   : /home/bmy/UT/runs/{RUNDIR}
    JOB_DIR   : /home/bmy/UT/jobs
    LOG_DIR   : /home/bmy/UT/logs
-   PERL_DIR  : /home/bmy/UT/perl/
+   PERL_DIR  : /home/bmy/UT/perl
    COMPILER  : ifort
    MAKE_CMD  : make -j4 BOUNDS=y DEBUG=y FPE=y
    SUBMIT    : submit smp4
@@ -45,7 +57,7 @@
 #  geos4     2x25        -      fullchem        2005070100   2005070102
 #  geos4     4x5         -      fullchem        2005070100   2005070102
 #  merra     4x5         -      fullchem        2005070100   2005070102
-#  merra     4x5         -      Rn-Pb-Be        2005070100   2005070102
+#  merra     4x5         -      RnPbBe          2005070100   2005070102
 #  merra     4x5         -      tagCO           2005070100   2005070102
 #  merra     4x5         -      mercury         2005070100   2005070102
   !END OF RUNS:
