@@ -97,7 +97,6 @@ sub baseName($) {
   
   # Return the last part of the directory
   $baseName = $result[ scalar( @result ) - 1 ];
-  print "$baseName\n";
 
   # Return to calling routine
   return( $baseName );

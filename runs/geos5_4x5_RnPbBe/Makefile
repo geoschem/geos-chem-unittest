@@ -29,7 +29,7 @@ EXE_SP   :=geos.sp
 EXE_MP   :=geos.mp
 
 # Log file names
-RESULTS  :=$(LOG_DIR)/$(VERSION).results..og
+RESULTS  :=$(LOG_DIR)/$(VERSION).results.log
 LOG_SP   :=$(LOG_DIR)/$(VERSION).$(RUNID).sp
 LOG_MP   :=$(LOG_DIR)/$(VERSION).$(RUNID).mp
 
