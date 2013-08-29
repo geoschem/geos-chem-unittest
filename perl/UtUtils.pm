@@ -5,10 +5,10 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !MODULE: NrtUtils.pm
+# !MODULE: UtUtils.pm
 #
-# !DESCRIPTION: Contains functions that are used to generate NRT simulations
-#  with GEOS-Chem, esp. in support of aircraft campaigns.
+# !DESCRIPTION: Contains utility functions that are used by the 
+#  GEOS-Chem Unit Tester package.
 #\\
 #\\
 # !INTERFACE:
@@ -22,14 +22,16 @@ use English;        # Use English language
 use strict;         # Force explicit variable declarations (like IMPLICIT NONE)
 #
 # !PUBLIC MEMBER FUNCTIONS:
+#  &baseName      : Returns a directory name minus the full path
 #  &checkDir      : Ensures that a directory exists
+#  &cleanDir      : Removes files from a directory
 #  &fmtStr        : Pads a date string w/ leading zeroes if necessary
 #  &makeInputGeos : Creates a new input.geos file for each day of simulation
-#  &makeRunScript : Creates a GEOS-Chem run script for NRT simulations
+#  &parse         : Parses a line separated by ":" and returns the 2nd value
 #  &replaceDate   : Replaces YYYY, MM, DD tokens in a string w/ date values
 #
 # !CALLING SEQUENCE:
-#  use NrtUtils qw( function-name1, function-name2, ... );
+#  use UtUtils qw( function-name1, function-name2, ... );
 #
 # !REVISION HISTORY:
 #  20 Jun 2013 - R. Yantosca - Initial version, moved other routines here
@@ -54,7 +56,6 @@ BEGIN {
                    &cleanDir
                    &fmtStr        
                    &makeInputGeos
-                   &makeRunScript
                    &parse
                    &replaceDate   );                   # export on request
 }
@@ -76,12 +77,11 @@ sub baseName($) {
 #
 # !INPUT PARAMETERS:
 #
-  # $dir  : String to be parsed
-  my ( $dir )  =  @_;
+  my ( $dir )  =  @_;   # String to be parsed
 #
 # !RETURN VALUE:
 #
-  my $baseName = "";
+  my $baseName = "";    # Directory name minus the full path
 #
 # !CALLING SEQUENCE:
 #  &baseName( $dir );
@@ -119,8 +119,7 @@ sub checkDir($) {
 #
 # !INPUT PARAMETERS:
 #
-  # Directory to be tested
-  my ( $dir ) =  @_;
+  my ( $dir ) =  @_;   # Directory to be tested
 #
 # !CALLING SEQUENCE:
 #  &checkDir( $dir );
@@ -199,8 +198,8 @@ sub cleanDir($) {
 #
 # !IROUTINE: fmtStr
 #
-# !DESCRIPTION: Routine fmtStr returns a date/time string in either YYYYMMDD 
-#  or HHMMSS format.  The string is padded with leading zeroes if necessary.
+# !DESCRIPTION: Returns a date/time string in either YYYYMMDD or HHMMSS format.
+#  The string is padded with leading zeroes if necessary.
 #\\
 #\\
 # !INTERFACE:
@@ -218,6 +217,9 @@ sub fmtStr($) {
 # !CALLING SEQUENCE:
 #  $dateStr = &fmtStr( 20040101 );
 #  $dateStr = &fmtStr( 0        );
+# 
+# !REMARKS:
+#  Used by routine &makeInputGeos below.
 #
 # !REVISION HISTORY:
 #  23 May 2013 - R. Yantosca - Initial version, based on NRT-ARCTAS
@@ -247,9 +249,9 @@ sub fmtStr($) {
 #
 # !IROUTINE: makeInputGeos
 #
-# !DESCRIPTION: Routine makeInputGeos constructs the "input.geos" file for 
-#  GEOS-Chem.  It reads a pre-defined template file and then just replaces 
-#  tokens # with the start and end date and time.
+# !DESCRIPTION: Constructs the "input.geos" file for GEOS-Chem.  It reads a 
+#  pre-defined template file and then just replaces tokens with the values
+#  passed via the argument list.
 #\\
 #\\
 # !INTERFACE:
@@ -270,6 +272,7 @@ sub makeInputGeos($$$$$$) {
 # !CALLING SEQUENCE:
 # &makeInputGeos( 20130101,             000000, 
 #                 20130102,             000000, 
+#                 "/as/data/geos/",
 #                "input.geos.template", "input.geos" );
 #
 # !REVISION HISTORY:
@@ -421,9 +424,6 @@ sub replaceDate($$) {
   # Return modified string
   return( $newStr );
 }
-
-
-
 #EOC
 
 END {}

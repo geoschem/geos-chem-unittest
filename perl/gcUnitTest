@@ -36,7 +36,7 @@ our $PERL_DIR  = "";                 # Unit Test Perl directory
 our $RUN_DIR   = "";                 # Unit Test run directory
 
 # Options
-our $COMPILER  = "";	             # Compiler variable for GEOS-Chem
+our $COMPILER  = "";                 # Compiler variable for GEOS-Chem
 our $MAKE_CMD  = "";                 # Make command with debug options
 our $SUBMIT    = "";                 # Queue submit command
 our $VERSION   = "";                 # GEOS-Chem version ID
@@ -180,9 +180,10 @@ sub makeInputs($$$) {
 #
 # !IROUTINE: doUnitTest
 #
-# !DESCRIPTION: Reads the UnitTest.input file and creates a job script
-#  that will be used to call Makefiles to compile & run GEOS-Chem with
-#  debugging options.
+# !DESCRIPTION: Reads the input file name (containing user-specified options)
+#  file and creates a job script.  The job script (which can be submitted to
+#  a computational queue) will be used to call Makefiles to compile and run 
+#  GEOS-Chem with debugging options.
 #\\
 #\\
 # !INTERFACE:
@@ -191,10 +192,10 @@ sub doUnitTest($) {
 #
 # !INPUT PARAMETERS:
 #
-  my ( $fileName ) = @_;  # File in which NRT defaults are stored
+  my ( $fileName ) = @_;  # File in which unit test options are listed
 #
 # !CALLING SEQUENCE:
-#  &doUnitTest( "UnitTest.input" );
+#  &doUnitTest( $fileName );
 #
 # !REVISION HISTORY:
 #  22 Aug 2013 - R. Yantosca - Initial version, based on sleepNrt

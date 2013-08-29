@@ -38,8 +38,8 @@ use UtUtils qw( &cleanDir
 #
 # !IROUTINE: getDefaults
 #
-# !DESCRIPTION: Routine getDefaults reads the input file and returns the
-#  name of the directory where log files are stored.
+# !DESCRIPTION: Reads the input file and returns the name of the directory 
+#  where log files are stored.
 #\\
 #\\
 # !INTERFACE:
@@ -56,7 +56,7 @@ sub getDirs($) {
   my $logDir       = "";    # Log file directory
 #
 # !CALLING SEQUENCE:
-#  ( $jobDir, $logDir ) = &getDirs( $fileName );
+#  &getDirs( $fileName );   # Saves values to global variables
 #
 # !REVISION HISTORY:
 #  26 Aug 2013 - R. Yantosca - Initial version
