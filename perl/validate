@@ -134,9 +134,10 @@ sub doChecks($$$$) {
   # Diff the files
   $cmd = "diff $file1 $file2";
   chomp( $result = qx( $cmd ) );
-  @subStr = split( '/', $result );
-  $notDir = $subStr[ scalar( @subStr ) - 1 ];
-  
+
+  # If the result is a blank string, they are identical
+  if ( length( $result ) == 0 ) { $diffOK = "IDENTICAL"; }
+
   #----------------------------------------
   # Report the results
   #----------------------------------------
