@@ -87,7 +87,7 @@ sub julDay($$$) {
 # !RETURN VALUE:
 #
   # Astronomical Julian Date (initialize to zero)
-  my $jd = 0.0
+  my $jd = 0.0;
 #
 # !CALLING SEQUENCE:
 #  $jd = &julDay( $year, $month, $day );
@@ -108,8 +108,13 @@ sub julDay($$$) {
 #
 # !LOCAL VARIABLES:
 #
-  my( $year1, $month1, $x1, $a  ) = ( 0,   0,   0.0, 0.0 );
-  my( $b,     $c,      $d       ) = ( 0.0, 0.0, 0.0      );
+  my $year1  = 0;
+  my $month1 = 0;
+  my $x1     = 0.0;
+  my $a      = 0.0;
+  my $b      = 0.0;
+  my $c      = 0.0;
+  my $d      = 0.0;
   
   #=========================================================================
   # julDay begins here!
@@ -324,7 +329,7 @@ sub addDate($$) {
 # !RETURN VALUE:
 #
   # New YYYYMMDD date
-  my $nymd1 = 0.0
+  my $nymd1 = 0.0;
 #
 # !CALLING SEQUENCE:
 #  $nymd1 = &addDate( $nymd0, $addDays );
@@ -342,9 +347,14 @@ sub addDate($$) {
 #
 # !LOCAL VARIABLES:
 #
-  my( $y0,    $m0, $d0 ) = ( 0,   0,   0.0 );
-  my( $y1,    $m1, $d1 ) = ( 0,   0,   0.0 );
-  my( $nhms1, $jd      ) = ( 0.0, 0.0      );
+  my $y0    = 0;
+  my $m0    = 0;
+  my $d0    = 0.0;
+  my $y1    = 0;
+  my $m1    = 0;
+  my $d1    = 0.0;
+  my $nhms1 = 0.0;
+  my $jd    = 0.0;
   
   #=========================================================================
   # addDate begins here!
@@ -392,7 +402,7 @@ sub getDayOfYear($) {
 #
 # !RETURN VALUE:
 #
-  my $doy      = 0.0   # Day of year
+  my $doy      = 0;    # Day of year
 #
 # !CALLING SEQUENCE:
 #  $doy = &getDayOfYear( $nymd );
@@ -449,7 +459,7 @@ sub getDayOfWeek($) {
 #
 # !RETURN VALUE:
 #
-  my $dow      = 0     # Day of week
+  my $dow      = 0;    # Day of week
 #
 # !CALLING SEQUENCE:
 #  $dow = &getDayOfWeek( $nymd );
