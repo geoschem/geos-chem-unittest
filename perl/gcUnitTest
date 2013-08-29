@@ -202,6 +202,8 @@ sub doUnitTest($) {
 #  28 Aug 2013 - R. Yantosca - Now call &cleanDir from UtUtils.pm
 #  28 Aug 2013 - R. Yantosca - Minor bug fixes.  Also now send results
 #                              to a separate file from stdout.
+#  29 Aug 2013 - R. Yantosca - Make sure that $met, $grid, $nest are in
+#                              lowercase, regardless of input
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -284,6 +286,11 @@ sub doUnitTest($) {
 
 	  # Parse each line into values
 	  ( $met, $grid, $nest, $sim, $start, $end ) = split( ' ', $txt[$i] );
+
+	  # Make sure met, grid, nest are in lowercase
+	  $met     =~ tr/[A-Z]/[a-z]/;
+	  $grid    =~ tr/[A-Z]/[a-z]/;
+	  $nest    =~ tr/[A-Z]/[a-z]/;
 
 	  # Remove extraneous characters from $met
 	  $met     =~ s/\-//g;

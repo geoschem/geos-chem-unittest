@@ -37,6 +37,7 @@ use strict;                      # Use "IMPLICIT NONE" syntax
 #
 # !REVISION HISTORY: 
 #  27 Aug 2013 - R. Yantosca - Initial version
+#  29 Aug 2013 - R. Yantosca - Now print the directory name in the results
 #EOP
 #------------------------------------------------------------------------------
 #          Harvard University Atmospheric Chemistry Modeling Group            !
@@ -71,6 +72,7 @@ sub doChecks($$$$) {
 #
 # !REVISION HISTORY:
 #  27 Aug 2013 - R. Yantosca - Initial version
+#  29 Aug 2013 - R. Yantosca - Now print the base name of the current dir
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -84,6 +86,7 @@ sub doChecks($$$$) {
   my $ckSumOK = "DIFFERENT";
   my $diffOK  = "DIFFERENT";
   my $header  = '#' x 79;
+  my $notDir  = "";
   my $result  = "";
   my $size1   = "";
   my $size2   = "";
@@ -131,17 +134,23 @@ sub doChecks($$$$) {
   # Diff the files
   $cmd = "diff $file1 $file2";
   chomp( $result = qx( $cmd ) );
-  
-  # If the result is a blank string, they are identical
-  if ( length( $result ) == 0 ) { $diffOK = "IDENTICAL"; }
+  @subStr = split( '/', $result );
+  $notDir = $subStr[ scalar( @subStr ) - 1 ];
   
   #----------------------------------------
   # Report the results
   #----------------------------------------
-  	
+  
+  # First find the name of this directory (skip full path)
+  $cmd = "pwd";
+  chomp( $result = qx( $cmd ) );
+  @subStr = split( '/', $result );
+  $notDir = $subStr[ scalar( @subStr ) - 1 ];
+	
   # Print top header if requested
   if ( $topHdr ) { print '#' x 79; 
-		   print "\n### VALIDATION OF GEOS-CHEM OUTPUT FILES\n"; }
+		   print "\n### VALIDATION OF GEOS-CHEM OUTPUT FILES\n"; 
+                   print "### In directory: $notDir\n"; }
 
   # Print information
   print "###\n";
