@@ -341,9 +341,11 @@ sub doUnitTest($) {
   # that will compile and run GEOS-Chem with debugging options
   #--------------------------------------------------------------------------
 
-  # Remove all files in the job & log dir
-  &cleanDir( $JOB_DIR );
-  &cleanDir( $LOG_DIR );
+# For now comment this out, in case we want to save results from 
+# previous unit test runs (bmy, 9/3/13)
+#  # Remove all files in the job & log dir
+#  &cleanDir( $JOB_DIR );
+#  &cleanDir( $LOG_DIR );
 
   # Get local time
   $locTime = &getLocalTime();

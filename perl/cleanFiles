@@ -54,6 +54,7 @@ sub getDirs($) {
 #
   my $jobDir       = "";    # Job script directory
   my $logDir       = "";    # Log file directory
+  my $runDir       = "";    # Run directory
 #
 # !CALLING SEQUENCE:
 #  &getDirs( $fileName );   # Saves values to global variables
@@ -77,10 +78,14 @@ sub getDirs($) {
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
     if ( $txt[$i] =~ "JOB_DIR" ) { $jobDir = &parse( $txt[$i] ); }
     if ( $txt[$i] =~ "LOG_DIR" ) { $logDir = &parse( $txt[$i] ); }
+    if ( $txt[$i] =~ "RUN_DIR" ) { $runDir = &parse( $txt[$i] ); }
   }
 
+  # Only get the root part of the run directory
+  $runDir =~ s/{RUNDIR}//g;
+
   # Return to main program
-  return( $jobDir, $logDir );
+  return( $jobDir, $logDir, $runDir  );
 }
 #EOC
 #------------------------------------------------------------------------------
@@ -103,6 +108,8 @@ sub main() {
 #
 # !REVISION HISTORY:
 #  26 Aug 2013 - R. Yantosca - Initial version
+#  03 Sep 2013 - R. Yantosca - Now do a "make fileclean" in the runs directory,
+#                              which will remove files in run subdirectories
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -110,9 +117,14 @@ sub main() {
 # !LOCAL VARIABLES:
 #
   # Scalars
+  my $cmd     = "";
   my $jobDir  = "";
   my $logDir  = "";
   my $optFile = "";
+  my $runDir  = "";
+  my $result  = "";
+  
+  # Arrays
 
   # If the user passes a filename from the command line, use it
   # Otherwise, default to "UnitTest.input"
@@ -120,12 +132,17 @@ sub main() {
   else                        { $optFile = "UnitTest.input"; }
 
   # Get the log file directory
-  ( $jobDir, $logDir ) = &getDirs( $optFile );
+  ( $jobDir, $logDir, $runDir ) = &getDirs( $optFile );
 
   # Remove files
   &cleanDir( $jobDir );
   &cleanDir( $logDir );
 
+  # Execute a "make fileclean" in the run directory
+  $cmd    = "cd $runDir; make all";
+  $result = qx( $cmd );
+  print "$result\n";
+  
   # Return w/ status
   return( $? );
 }
