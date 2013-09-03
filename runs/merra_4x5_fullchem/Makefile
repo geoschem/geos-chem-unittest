@@ -93,7 +93,6 @@ logclean:
 	rm -f $(LOG_SP) 
 	rm -f $(LOG_MP)
 
-
 realclean:
 	@$(MAKE) -C $(CODE_DIR) realclean
 

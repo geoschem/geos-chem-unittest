@@ -82,7 +82,7 @@ fileclean:
 	@$(MAKE) logclean
 	rm -f $(EXE_SP) $(EXE_MP)
 	rm -f $(TRAC_AVG).sp $(TRAC_AVG).mp
-	rm -f $(TRAC_RST).sp $(TRAC_RST).mp
+	rm -f $(TRAC_RST).sp $(TRAC_RST).mp 
 
 logclean:
 	rm -f $(LOG_SP) 

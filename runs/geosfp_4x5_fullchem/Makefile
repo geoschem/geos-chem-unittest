@@ -13,6 +13,7 @@
 #
 # !REVISION HISTORY: 
 #  23 Aug 2013 - R. Yantosca - Initial version
+#  03 Sep 2013 - R. Yantosca - Minor fix in fileclean target 
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -91,7 +92,6 @@ fileclean:
 logclean:
 	rm -f $(LOG_SP) 
 	rm -f $(LOG_MP)
-
 
 realclean:
 	@$(MAKE) -C $(CODE_DIR) realclean
