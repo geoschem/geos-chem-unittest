@@ -205,6 +205,10 @@ sub doUnitTest($) {
 #                              to a separate file from stdout.
 #  29 Aug 2013 - R. Yantosca - Make sure that $met, $grid, $nest are in
 #                              lowercase, regardless of input
+#  05 Sep 2013 - R. Yantosca - Now the user must explicitly call the separate
+#                              cleanFiles program to remove files in the
+#                              job & log dirs.  Still need to work on cleaning
+#                              up all files in the run dirs.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -269,6 +273,11 @@ sub doUnitTest($) {
     #------------------------------------------------------------------------
     elsif ( $txt[$i] =~ "!RUNS"     ) {
 
+      # Also append the version tag to the log directory
+      # So that we can keep several log files simultaneously
+      $LOG_DIR =~ s/{VERSION}/$VERSION/g;
+      if ( !( -f $LOG_DIR ) ) { qx( mkdirhier $LOG_DIR ); }
+
       # Make sure each of these directories exist before proceeding
       &checkDir( $DATA_ROOT );
       &checkDir( $CODE_DIR  );
@@ -330,8 +339,6 @@ sub doUnitTest($) {
 
 	# Increment counter
 	$i++;
-
-
       }
     }	
   }
@@ -340,10 +347,6 @@ sub doUnitTest($) {
   # Write a script to call Makefiles in each of the run directories
   # that will compile and run GEOS-Chem with debugging options
   #--------------------------------------------------------------------------
-
-  # Remove all files in the job & log dir
-  &cleanDir( $JOB_DIR );
-  &cleanDir( $LOG_DIR );
 
   # Get local time
   $locTime = &getLocalTime();

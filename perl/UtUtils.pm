@@ -163,6 +163,7 @@ sub cleanDir($) {
 #
 # !REVISION HISTORY:
 #  26 Aug 2013 - R. Yantosca - Initial version
+#  05 Sep 2013 - R. Yantosca - Now can remove subdirs of $dir
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -181,10 +182,12 @@ sub cleanDir($) {
   chomp( @files = readdir( D ) );
   closedir( D );
 
-  # Remove log files only
+  # Remove log files and subdirectories of $dir.
+  # Skip over the "." and ".." directories.
   foreach $file ( @files ) {
     if ( !( $file =~ m/^\./ ) ) {
-      $cmd = "rm -f $dir/$file";
+      if ( -d "$dir/$file" ) { $cmd = "rm -rf $dir/$file"; }
+      else                   { $cmd = "rm -f $dir/$file";  }
       print "$cmd\n";
       qx( $cmd );
     }

@@ -81,8 +81,9 @@ sub getDirs($) {
     if ( $txt[$i] =~ "RUN_DIR" ) { $runDir = &parse( $txt[$i] ); }
   }
 
-  # Only get the root part of the run directory
+  # Only get the root part of the run & log directories
   $runDir =~ s/{RUNDIR}//g;
+  $logDir =~ s/\/{VERSION}//g;
 
   # Return to main program
   return( $jobDir, $logDir, $runDir  );
@@ -139,9 +140,9 @@ sub main() {
   &cleanDir( $logDir );
 
   # Execute a "make fileclean" in the run directory
-  $cmd    = "cd $runDir; make all";
-  $result = qx( $cmd );
-  print "$result\n";
+  #$cmd    = "cd $runDir; make all";
+  #$result = qx( $cmd );
+  #print "$result\n";
   
   # Return w/ status
   return( $? );
