@@ -209,6 +209,7 @@ sub doUnitTest($) {
 #                              cleanFiles program to remove files in the
 #                              job & log dirs.  Still need to work on cleaning
 #                              up all files in the run dirs.
+#   5 Sep 2013 - R. Yantosca - Now print log directory name
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -383,6 +384,7 @@ EOF
 
   # Print
   print "Created job file $jobFile\n";
+  print "Log files will be sent to $LOG_DIR\n";
 
   # Submit the job.  Send the stdout stream to $logRslt
   # and the stderr stream to a file in the $LOG_DIR.
