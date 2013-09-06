@@ -81,7 +81,7 @@ clean:
 
 fileclean:
 	@$(MAKE) logclean
-	rm -f input.geos diaginfo.dat tracerinfo.dat
+	rm -f diaginfo.dat tracerinfo.dat
 	rm -f *.sp
 	rm -f *.mp
 

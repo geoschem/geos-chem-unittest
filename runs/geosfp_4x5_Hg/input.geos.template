@@ -1,12 +1,12 @@
-GEOS-CHEM SIMULATION v9-02: merra_4x5_Hg
+GEOS-CHEM SIMULATION v9-02: geosfp_4x5_Hg
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : initial_trac_rst.merra_4x5_Hg
+Input restart file      : initial_trac_rst.geosfp_4x5_Hg
 Make new restart file?  : T
-Output restart file(s)  : trac_rst.merra_4x5_Hg.YYYYMMDDhh
+Output restart file(s)  : trac_rst.geosfp_4x5_Hg.YYYYMMDDhh
 Root data directory     : {DATA_ROOT}/GEOS_4x5/
  => GCAP       subdir   : AGRID/YYYY/MM/
  => GEOS-4     subdir   : GEOS_4_v4/YYYY/MM/
@@ -139,7 +139,7 @@ Use future emissions?   : PRESENT
 Error check tag/tot Hg? : F
 Use dynamic ocean Hg?   : T
 Preindustrial sim?      : F
-Ocean Hg restart file   : ocean_rst.merra_4x5_Hg.YYYYMMDDhh
+Ocean Hg restart file   : ocean_rst.geosfp_4x5_Hg.YYYYMMDDhh
 Use GTMM soil model?    : F
 GTMM Hg restart file    : GTM.totHg.YYYYMMDDhh
 ------------------------+------------------------------------------------------
@@ -162,7 +162,7 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% : 
-Binary punch file name  :  trac_avg.merra_4x5_RnPbBe.YYYYMMDDhh
+Binary punch file name  :  trac_avg.geosfp_4x5_RnPbBe.YYYYMMDDhh
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND01: Rn/Pb/Be source   :  0   all        
 ND02: Rn/Pb/Be decay    :  0   all             
