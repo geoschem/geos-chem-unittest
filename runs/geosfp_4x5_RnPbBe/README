@@ -1,0 +1,14 @@
+This directory is the run directory for the GEOS-Chem unit tester,
+for GEOS-5 met fields, 4x5 grid, and standard Rn-Pb-Be simulation.
+
+The tracer restart files are linked to the files in the ../geos5_4x5_RnPbBe 
+GEOS-FP uses the same vertical grid as the GEOS-5 (aka GEOS-5.2.0) and MERRA 
+met field products, so the restart files are interchangeable.
+
+A new input.geos file will be created from the input.geos.template file
+each time the unit tester is run.  This allows the location of the data
+files to be customized for each user.
+
+06 Sep 2013
+GEOS-Chem Support Team
+geos-chem-support@as.harvard.edu

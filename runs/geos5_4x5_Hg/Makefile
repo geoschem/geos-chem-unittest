@@ -13,6 +13,7 @@
 #
 # !REVISION HISTORY: 
 #  05 Sep 2013 - R. Yantosca - Initial version
+#  06 Sep 2013 - R. Yantosca - "fileclean" now removes *.sp and *.mp files
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -81,9 +82,9 @@ clean:
 
 fileclean:
 	@$(MAKE) logclean
-	rm -f $(EXE_SP) $(EXE_MP)
-	rm -f $(TRAC_AVG).sp $(TRAC_AVG).mp
-	rm -f $(TRAC_RST).sp $(TRAC_RST).mp 
+	rm -f input.geos diaginfo.dat tracerinfo.dat
+	rm -f *.sp
+	rm -f *.mp
 
 logclean:
 	rm -f $(LOG_SP) 

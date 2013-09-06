@@ -5,15 +5,14 @@
 #
 # !MODULE: Makefile
 #
-# !DESCRIPTION: Makefile for G-C Unit Test rundir: merra_4x5_RnPbBe
+# !DESCRIPTION: Makefile for G-C Unit Test rundir: geosfp_4x5_RnPbBe
 #\\
 #\\
 # !REMARKS:
 #  This will be called by the gcUnitTest script.
 #
 # !REVISION HISTORY: 
-#  05 Sep 2013 - R. Yantosca - Initial version
-#  06 Sep 2013 - R. Yantosca - "fileclean" now removes *.sp and *.mp files
+#  06 Sep 2013 - R. Yantosca - Initial version
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -80,7 +79,7 @@ clean:
 
 fileclean:
 	@$(MAKE) logclean
-	rm -f input.geos tracerinfo.dat diaginfo.dat
+	rm -f input.geos diaginfo.dat tracerinfo.dat
 	rm -f *.sp
 	rm -f *.mp
 

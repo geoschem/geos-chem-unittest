@@ -5,7 +5,7 @@
 #
 # !MODULE: Makefile
 #
-# !DESCRIPTION: Makefile for G-C Unit Test rundir: merra_4x5_RnPbBe
+# !DESCRIPTION: Makefile for G-C Unit Test rundir: geos5_4x5_Hg
 #\\
 #\\
 # !REMARKS:
@@ -13,7 +13,7 @@
 #
 # !REVISION HISTORY: 
 #  05 Sep 2013 - R. Yantosca - Initial version
-#  06 Sep 2013 - R. Yantosca - "fileclean" now removes *.sp and *.mp files
+#   6 Sep 2013 - R. Yantosca - "fileclean" now removes *.sp and *.mp files
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -36,6 +36,7 @@ LOG_MP   :=$(LOG_DIR)/$(VERSION).$(RUNID).mp
 # Output file names
 TRAC_AVG :=trac_avg.$(RUNID).$(START)
 TRAC_RST :=trac_rst.$(RUNID).$(END)
+OCN_RST  :=ocean_rst.$(RUNID).$(END)
 
 # Validation script
 VALIDATE :=/usr/bin/perl $(PERL_DIR)/validate
@@ -73,14 +74,15 @@ mp:
 
 check:
 	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
-	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 1 >> $(RESULTS)
+	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
+	@$(VALIDATE) $(OCN_RST).sp  $(OCN_RST).mp  0 1 >> $(RESULTS)
 
 clean:
 	@$(MAKE) -C $(CODE_DIR) clean
 
 fileclean:
 	@$(MAKE) logclean
-	rm -f input.geos tracerinfo.dat diaginfo.dat
+	rm -f input.geos diaginfo.dat tracerinfo.dat
 	rm -f *.sp
 	rm -f *.mp
 
