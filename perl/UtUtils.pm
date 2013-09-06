@@ -19,7 +19,9 @@ package UtUtils;
 #
 require 5.003;      # need this version of Perl or newer
 use English;        # Use English language
+use Carp;           # Strict error checking
 use strict;         # Force explicit variable declarations (like IMPLICIT NONE)
+
 #
 # !PUBLIC MEMBER FUNCTIONS:
 #  &baseName      : Returns a directory name minus the full path
