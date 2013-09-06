@@ -1,5 +1,5 @@
 README -- describes contents of the GEOS-Chem-UnitTest directories
-26 Aug 2013
+06 Sep 2013
 GEOS-Chem Support Team
 geos-chem-support@as.harvard.edu
 
@@ -24,7 +24,8 @@ logs/ : Log files containing output from the GEOS-Chem Unit Test simulations
         will be sent here.
 
 perl/ : Contains the Perl scripts that are used to submit GEOS-Chem Unit Test
-        simulations.  The driver script is called "gcUnitTest".  
+        simulations.  The driver script is called "gcUnitTest".  Sample input
+        files are stored in the perl/inputs subdirectory.
 
 runs/ : Contains the various run directories.  Each run directory is named
         according to the met field, horizontal grid, and type of simulation
@@ -47,7 +48,8 @@ To start the unit test simulation, cd into the perl subdirectory and type:
 
 where FILENAME is the name of input file (e.g. UnitTest.input).  This will
 start the Unit Test simulations.  Normally this will run in a queue on your
-computational cluster.
+computational cluster.  If no FILENAME is given, gcUnitTest will read the 
+default file "UnitTest.input".
 
 The GEOS-Chem Unit Tester will compile and run the code for each of the 
 types of simulations that you specified in the input file.  The Unit Tester
@@ -56,10 +58,16 @@ OpenMP parallelizaton turned off, and again with OpenMP parallelization
 turned on).  Then the Unit tester will check to see if the output files from
 both simulations are identical.
 
-Output from each simulation is sent to the logs/ subdirectory.  The stdout
+Output from each simulation is sent to the logs/ subdirectory.  A new
+subdirectory can be created for each individual unit test.  The stdout
 from the Unit Test simulation is sent to the log file {VERSION}.stdout.log,
 where {VERSION} is an ID tag used to identify the simulation.  The log files
 from each individual Unit Test simulation is also sent to the logs/ 
 subdirectory.  The stderr output is sent to a file whose name is determined
 by the queue system, also in logs/.
+
+To clean all of the files created by the unit tester (job scripts, logs,
+bpch files), change to the perl/ directory and type
+
+   cleanFiles
 

@@ -119,6 +119,7 @@ sub main() {
 #
   # Scalars
   my $cmd     = "";
+  my $dir     = "";
   my $jobDir  = "";
   my $logDir  = "";
   my $optFile = "";
@@ -126,6 +127,7 @@ sub main() {
   my $result  = "";
   
   # Arrays
+  my @dirs    = ();
 
   # If the user passes a filename from the command line, use it
   # Otherwise, default to "UnitTest.input"
@@ -135,15 +137,28 @@ sub main() {
   # Get the log file directory
   ( $jobDir, $logDir, $runDir ) = &getDirs( $optFile );
 
-  # Remove files
+  # Remove job scripts
   &cleanDir( $jobDir );
+
+  # Remove log files
   &cleanDir( $logDir );
 
-  # Execute a "make fileclean" in the run directory
-  #$cmd    = "cd $runDir; make all";
-  #$result = qx( $cmd );
-  #print "$result\n";
-  
+  # Get all of the subdirectories of $runDir
+  opendir( D, "$runDir" ) or die "$runDir is an invalid directory!\n";
+  chomp( @dirs = readdir( D ) );
+  closedir( D );
+
+  # Execute "make fileclean" in each run directory
+  foreach $dir ( @dirs ) {
+    if ( !( $dir =~ m/^\./ ) ) {
+      if ( !( $dir =~ m/chem_inputs/ ) ) { 
+	$cmd = "make -C $runDir/$dir fileclean";
+	chomp( $result = qx( $cmd ) );
+	print "$result\n";
+      }
+    }
+  }	
+
   # Return w/ status
   return( $? );
 }
