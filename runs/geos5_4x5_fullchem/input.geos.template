@@ -348,7 +348,7 @@ Turn on P/L (ND65) diag?: F
 Save O3 P/L (ND20)?     : F
 Number of P/L families  : 7
 1st  chemical family    : POX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3 BrO HOBr BrNO2 2BrNO3 MPN
-2nd  chemical family    : LOX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3 BrO HOBr BrNO2 2BrNO3 MPN
+2nd  chemical family    : LOX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3 BrO HOBr BrNO2 2BrNO3 MPN}
 3rd  chemical family    : PCO: CO
 4th  chemical family    : LCO: CO
 5th  chemical family    : PBrOx: Br BrO
@@ -356,10 +356,10 @@ Number of P/L families  : 7
 7th  chemical family    : LBry: 2Br2 Br BrO HOBr HBr BrNO2 BrNO3
 ------------------------+------------------------------------------------------
 %%% ARCHIVED OH MENU %%%: 
-Dir w/ archived OH files: /as/data/geos/GEOS_MEAN/OHmerge/v5-07-08/
+Dir w/ archived OH files: {DATA_ROOT}/GEOS_MEAN/OHmerge/v5-07-08/
 ------------------------+------------------------------------------------------
 %%% O3 P/L MENU %%%     : 
-Dir w/ O3 P/L rate files: /as/data/geos/GEOS_MEAN/O3_PROD_LOSS/2003.v6-01-05/
+Dir w/ O3 P/L rate files: {DATA_ROOT}/GEOS_MEAN/O3_PROD_LOSS/2003.v6-01-05/
 ------------------------+------------------------------------------------------
 %%% BENCHMARK MENU %%%  :  
 Save benchmark output?  : F
