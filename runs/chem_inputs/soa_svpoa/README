@@ -1,0 +1,7 @@
+This file contains the chemistry input files for the secondary organic
+aerosol chemistry with semi-volatile primary organic aerosols.  
+We keep them here so that they can be symbolically linked to other directories.
+
+16 Sep 2013
+GEOS-Chem Support Team
+geos-chem-support@as.harvard.edu
