@@ -3,10 +3,10 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !INCLUDE: UnitTest.input
+# !INCLUDE: UnitTest.geosfp
 #
 # !DESCRIPTION: Input file that specifies debugging options for the 
-#  GEOS-Chem unit tester.  Edited for runs w/ MERRA met.
+#  GEOS-Chem unit tester.
 #\\
 #\\
 # !REMARKS:  
@@ -24,7 +24,8 @@
 #  SUBMIT    : Submit command and queue name
 #
 # !REMARKS:
-#  This file is for unit testing GEOS-Chem with MERRA met fields only.
+#  This file specifies unit tests with GEOS-FP meteorology.
+#  To omit individual unit tests, place a # in the first column.
 #
 # !REVISION HISTORY: 
 #  22 Aug 2013 - R. Yantosca - Initial version
@@ -34,7 +35,7 @@
 #
 # !INPUTS:
 #
-   VERSION   : v9-02p.geosfp
+   VERSION   : v9-02r.geosfp
    CODE_DIR  : /home/bmy/GC/Code.v9-02
    DATA_ROOT : /as/data/geos
    RUN_DIR   : /home/bmy/UT/runs/{RUNDIR}
@@ -42,7 +43,7 @@
    LOG_DIR   : /home/bmy/UT/logs/{VERSION}
    PERL_DIR  : /home/bmy/UT/perl
    COMPILER  : ifort
-   MAKE_CMD  : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
+   MAKE_CMD  : make -j4 BOUNDS=n DEBUG=n FPE=y NO_ISO=y
    SUBMIT    : submit smp4
 #
 # !RUNS:
@@ -53,8 +54,10 @@
 #  MET    | GRID      | NEST | SIMULATION     | START DATE | END DATE   |
 #---------|-----------|------|----------------|------------|------------|
    geosfp   4x5         -      RnPbBe           2013070100   2013070101
-   geosfp   4x5         -      Hg               2013070100   2013070101
-   geosfp   4x5         -      fullchem         2013070100   2013070101
+#  geosfp   4x5         -      Hg               2013070100   2013070101
+#  geosfp   4x5         -      fullchem         2013070100   2013070101
+#  geosfp   4x5         -      soa              2013070100   2013070101
+#  geosfp   4x5         -      soa_svpoa        2013070100   2013070101
 #  geosfp   4x5         -      tagCO            2013070100   2013070101
   !END OF RUNS:
 #EOP
