@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !INCLUDE: UnitTest.fullchem
+# !INCLUDE: UnitTest.geos4
 #
 # !DESCRIPTION: Input file that specifies debugging options for the 
 #  GEOS-Chem unit tester.
@@ -24,17 +24,17 @@
 #  SUBMIT    : Submit command and queue name
 #
 # !REMARKS:
-#  This file specifies unit tests for fullchem simulations (all met types).
+#  This file specifies unit tests with GEOS-4 meteorology.
 #  To omit individual unit tests, place a # in the first column.
 #
 # !REVISION HISTORY: 
-#  23 Oct 2013 - R. Yantosca - Initial version
+!  28 Oct 2013 - R. Yantosca - Initial version
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION   : v9-02r.fullchem
+   VERSION   : v9-02r.geos4
    CODE_DIR  : /home/bmy/GC/Code.v9-02
    DATA_ROOT : /as/data/geos
    RUN_DIR   : /home/bmy/UT/runs/{RUNDIR}
@@ -42,7 +42,7 @@
    LOG_DIR   : /home/bmy/UT/logs/{VERSION}
    PERL_DIR  : /home/bmy/UT/perl
    COMPILER  : ifort
-   MAKE_CMD  : make -j4 BOUNDS=n DEBUG=n FPE=y NO_ISO=y
+   MAKE_CMD  : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
    SUBMIT    : submit smp4
 #
 # !RUNS:
@@ -52,16 +52,13 @@
 #---------|-----------|------|----------------|------------|------------|
 #  MET    | GRID      | NEST | SIMULATION     | START DATE | END DATE   |
 #---------|-----------|------|----------------|------------|------------|
+   geos4    4x5         -      RnPbBe           2005070100   2005070101
+#  geos4    4x5         -      Hg               2005070100   2005070101
    geos4    4x5         -      fullchem         2005070100   2005070101
-   geos5    4x5         -      fullchem         2005070100   2005070101
-   merra    4x5         -      fullchem         2010570100   2005070101
-   geosfp   4x5         -      fullchem         2013070100   2013070101
-   geos5    4x5         -      soa              2005070100   2005070101
-   merra    4x5         -      soa              2010570100   2005070101
-   geosfp   4x5         -      soa              2013070100   2013070101
-   geos5    4x5         -      soa_svpoa        2005070100   2005070101
-   merra    4x5         -      soa_svpoa        2010570100   2005070101
-   geosfp   4x5         -      soa_svpoa        2013070100   2013070101
+#  geos4    4x5         -      soa              2005070100   2005070101
+#  geos4    4x5         -      soa_svpoa        2005070100   2005070101
+#  geos4    4x5         -      tagCO            2005070100   2005070101
+#  geos4    2x25        -      CO2              2005070100   2005070101
   !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------
