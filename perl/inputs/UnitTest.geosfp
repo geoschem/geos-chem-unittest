@@ -43,7 +43,7 @@
    LOG_DIR   : /home/bmy/UT/logs/{VERSION}
    PERL_DIR  : /home/bmy/UT/perl
    COMPILER  : ifort
-   MAKE_CMD  : make -j4 BOUNDS=n DEBUG=n FPE=y NO_ISO=y
+   MAKE_CMD  : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
    SUBMIT    : submit smp4
 #
 # !RUNS:
