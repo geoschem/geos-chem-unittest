@@ -37,7 +37,7 @@ Transport Timestep [min]: 30
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
 Turn on PBL Mixing?     : T
- => Use non-local PBL?  : T
+ => Use non-local PBL?  : F
 Convect Timestep (min)  : 30
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
