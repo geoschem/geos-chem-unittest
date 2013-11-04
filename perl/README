@@ -1,5 +1,5 @@
 README -- GEOS-Chem Unit Tester: perl/ subdirectory 
-27 Aug 2013
+04 Nov 2013
 GEOS-Chem Support Team
 geos-chem-support@as.harvard.edu
 
@@ -22,4 +22,7 @@ Input Files:
 -------------
 UnitTest.input : Input file for gcUntiTest.  You can create as many other
                  such input files as you need by copying & pasting.
+
+Also many other "template" versions of UnitTest.input (specifying different
+options) may be found in the inputs/ subdirectory.
                  
