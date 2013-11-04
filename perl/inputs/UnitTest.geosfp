@@ -54,7 +54,7 @@
 #  MET    | GRID      | NEST | SIMULATION     | START DATE | END DATE   |
 #---------|-----------|------|----------------|------------|------------|
    geosfp   4x5         -      RnPbBe           2013070100   2013070101
-#  geosfp   4x5         -      Hg               2013070100   2013070101
+   geosfp   4x5         -      Hg               2013070100   2013070101
 #  geosfp   4x5         -      fullchem         2013070100   2013070101
 #  geosfp   4x5         -      soa              2013070100   2013070101
 #  geosfp   4x5         -      soa_svpoa        2013070100   2013070101

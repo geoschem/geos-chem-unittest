@@ -36,7 +36,7 @@
 #
    VERSION   : v9-02r.gcap
    CODE_DIR  : /home/bmy/GC/Code.v9-02
-   DATA_ROOT : /as/data/gcap
+   DATA_ROOT : /as/data/geos
    RUN_DIR   : /home/bmy/UT/runs/{RUNDIR}
    JOB_DIR   : /home/bmy/UT/jobs
    LOG_DIR   : /home/bmy/UT/logs/{VERSION}
