@@ -29,6 +29,7 @@
 #
 # !REVISION HISTORY: 
 #  23 Oct 2013 - R. Yantosca - Initial version
+#  06 Nov 2013 - R. Yantosca - Add geos5_4x5_tagO3
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -55,7 +56,7 @@
    geos5    4x5         -      RnPbBe           2005070100   2005070101
    geos5    4x5         -      Hg               2005070100   2005070101
 #  geos5    4x5         -      tagCO            2005070100   2005070101
-#  geos5    4x5         -      tagOx            2005070100   2005070101
+   geos5    4x5         -      tagO3            2005070100   2005070101
    merra    4x5         -      RnPbBe           2010570100   2005070101
    merra    4x5         -      Hg               2010570100   2005070101
 #  merra    4x5         -      tagCO            2010570100   2005070101

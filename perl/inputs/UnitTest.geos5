@@ -30,7 +30,8 @@
 # !REVISION HISTORY: 
 #  22 Aug 2013 - R. Yantosca - Initial version
 #  03 Sep 2013 - R. Yantosca - Now do 1-hr test runs for expediency
-#  06 Sep 2013 - R. Yantosca - Add geos5_2x25_CO2 run directory
+#  06 Sep 2013 - R. Yantosca - Add geos5_2x25_CO2
+#  06 Nov 2013 - R. Yantosca - Add geos5_4x5_tagO3
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -59,6 +60,7 @@
    geos5    4x5         -      fullchem         2005070100   2005070101
    geos5    4x5         -      soa              2005070100   2005070101
    geos5    4x5         -      soa_svpoa        2005070100   2005070101
+#  geos5    4x5         -      tagO3            2005070100   2005070101
 #  geos5    4x5         -      tagCO            2005070100   2005070101
    geos5    2x25        -      CO2              2005070100   2005070101
   !END OF RUNS:
