@@ -30,6 +30,7 @@
 # !REVISION HISTORY: 
 #  23 Oct 2013 - R. Yantosca - Initial version
 #  04 Nov 2013 - R. Yantosca - Added gcap_4x5_fullchem
+#  06 Nov 2013 - R. Yantosca - Added geos5_2x25_fullchem
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -56,6 +57,7 @@
    gcap     4x5         -      fullchem         2005070100   2005070101
    geos4    4x5         -      fullchem         2005070100   2005070101
    geos5    4x5         -      fullchem         2005070100   2005070101
+   geos5    2x25        -      fullchem         2005070100   2005070101
    merra    4x5         -      fullchem         2010570100   2005070101
    geosfp   4x5         -      fullchem         2013070100   2013070101
    geos5    4x5         -      soa              2005070100   2005070101
