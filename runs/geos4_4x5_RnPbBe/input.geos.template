@@ -185,7 +185,7 @@ ND32: NOx sources       :  0   all
 ND33: Column tracer     :  0   all
 ND34: Biofuel emissions :  0   1 4 5 9 10 11 18 19 20 21
 ND35: Tracers at 500 mb :  0   all
-ND36: Anthro emissions  :  0   1 4 5 9 10 11 18 19 20 21
+ND36: Anthro emissions  :  0   1 2 4 5 7 9 10 11 18 19 20 21
 ND37: Updraft scav frac :  0   all
 ND38: Cld Conv scav loss: 30   all
 ND39: Wetdep scav loss  : 30   all
@@ -193,7 +193,6 @@ ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem OH,NO,HO2,NO2: 30   all
   ==> OH/HO2 time range :       0 24   
-  ==> NO/NO2 time range :      10 14
 ND44: Drydep flx/vel    :  1   2 3
 ND45: Tracer Conc's     : 30   all 
   ==> ND45 Time range   :       0 24
@@ -240,7 +239,7 @@ LMIN, LMAX of region    :   1   1
 %%% ND50 MENU %%%       :
 Turn on ND50 diagnostic : F
 24-hr avg timeser. file : ts_24h_avg.YYYYMMDD.bpch
-Output as HDF           : F
+Output as HDF5?         : F
 Tracers to include      : 82 83 84 85 86 87
 IMIN, IMAX of region    :   1  72
 JMIN, JMAX of region    :   1  46
@@ -249,7 +248,7 @@ LMIN, LMAX of region    :   1   1
 %%% ND51 MENU %%%       :
 Turn on ND51 diagnostic : F
 LT avg timeseries file  : ts_satellite.YYYYMMDD.bpch
-Output as HDF           : F
+Output as HDF5?         : F
 Tracers to include      : 82 83 84 85 86 87
 GMT Hour for disk write :   0
 Avg Period [LT hours]   :  10  12
@@ -309,8 +308,8 @@ Over Europe?            : F
 TPCORE EU BC directory  : BC_2x25_EU/
 Over China?             : F
 TPCORE CH BC directory  : BC_2x25_CH/
-Over SE region?         : F
-TPCORE SE BC dir        : BC_2x25_SE/
+Over SE Asia region?    : F
+TPCORE SE BC directory  : BC_2x25_SE/
 Over Custom Region?     : F
 TPCORE BC directory     : BC_2x25/
 BC timestep [min]       : 180

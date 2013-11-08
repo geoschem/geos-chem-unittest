@@ -162,18 +162,18 @@ Tagged CO2 runs         :---
   Tag Global Plane CO2  : F
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
-Schedule output for JAN : 3000000000000000000000000000000
-Schedule output for FEB : 30000000000000000000000000000  
-Schedule output for MAR : 3000000000000000000000000000000
-Schedule output for APR : 300000000000000000000000000000
-Schedule output for MAY : 3000000000000000000000000000000
-Schedule output for JUN : 300000000000000000000000000000
-Schedule output for JUL : 3000000000000000000000000000000
-Schedule output for AUG : 3000000000000000000000000000000
-Schedule output for SEP : 300000000000000000000000000000
-Schedule output for OCT : 3000000000000000000000000000000
-Schedule output for NOV : 300000000000000000000000000000
-Schedule output for DEC : 3000000000000000000000000000000
+Schedule output for JAN : 3333333333333333333333333333333
+Schedule output for FEB : 33333333333333333333333333333
+Schedule output for MAR : 3333333333333333333333333333333
+Schedule output for APR : 333333333333333333333333333333
+Schedule output for MAY : 3333333333333333333333333333333
+Schedule output for JUN : 333333333333333333333333333333
+Schedule output for JUL : 3333333333333333333333333333333
+Schedule output for AUG : 3333333333333333333333333333333
+Schedule output for SEP : 333333333333333333333333333333
+Schedule output for OCT : 3333333333333333333333333333333
+Schedule output for NOV : 333333333333333333333333333333
+Schedule output for DEC : 3333333333333333333333333333333
 ------------------------+------------------------------------------------------
 %%% GAMAP MENU %%%      :
 diaginfo.dat path       : diaginfo.dat
@@ -216,7 +216,7 @@ ND32: NOx sources       :  0   all
 ND33: Column tracer     :  0   all
 ND34: Biofuel emissions :  0   1 4 5 9 10 11 18 19 20 21
 ND35: Tracers at 500 mb :  0   all
-ND36: Anthro emissions  :  0   1 4 5 9 10 11 18 19 20 21
+ND36: Anthro emissions  :  0   1 2 4 5 7 9 10 11 18 19 20 21
 ND37: Updraft scav frac :  0   all
 ND38: Cld Conv scav loss:  0   all
 ND39: Wetdep scav loss  :  0   all
@@ -224,7 +224,6 @@ ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem OH,NO,HO2,NO2:  0   all
   ==> OH/HO2 time range :       0 24   
-  ==> NO/NO2 time range :      10 14
 ND44: Drydep flx/vel    :  0   all
 ND45: Tracer Conc's     : 47   1
   ==> ND45 Time range   :       0 24
@@ -333,7 +332,7 @@ TPCORE EU BC directory  : BC_2x25_EU/
 Over China?             : F
 TPCORE CH BC directory  : BC_2x25_CH/
 Over SE Asia region?    : F
-TPCORE SE Asia BC dir   : BC_2x25_SE/
+TPCORE SE BC directory  : BC_2x25_SE/
 Over Custom Region?     : F
 TPCORE BC directory     : BC_2x25/
 BC timestep [min]       : 180

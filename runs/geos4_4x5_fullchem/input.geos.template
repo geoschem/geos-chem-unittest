@@ -248,7 +248,7 @@ ND32: NOx sources       : 30   all
 ND33: Column tracer     :  0   all
 ND34: Biofuel emissions : 30   1 4 5 9 10 11 18 19 20 21
 ND35: Tracers at 500 mb :  0   all
-ND36: Anthro emissions  : 30   1 4 5 9 10 11 18 19 20 21
+ND36: Anthro emissions  : 30   1 2 4 5 7 9 10 11 18 19 20 21
 ND37: Updraft scav frac :  0   all
 ND38: Cld Conv scav loss:  0   all
 ND39: Wetdep scav loss  :  0   all
@@ -256,7 +256,6 @@ ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem OH,NO,HO2,NO2: 30   all
   ==> OH/HO2 time range :       0 24   
-  ==> NO/NO2 time range :      10 14
 ND44: Drydep flx/vel    : 30   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 47 48 50 55 57 58 59 60 61 62 63 64
 ND45: Tracer Conc's     : 30   all
   ==> ND45 Time range   :       0 24
@@ -303,7 +302,7 @@ LMIN, LMAX of region    :   1   1
 %%% ND50 MENU %%%       :
 Turn on ND50 diagnostic : F
 24-hr avg timeser. file : ts_24h_avg.YYYYMMDD.bpch
-Output as HDF           : F
+Output as HDF5?         : F
 Tracers to include      : 82 83 84 85 86 87
 IMIN, IMAX of region    :   1  72
 JMIN, JMAX of region    :   1  46
@@ -312,7 +311,7 @@ LMIN, LMAX of region    :   1   1
 %%% ND51 MENU %%%       :
 Turn on ND51 diagnostic : F
 LT avg timeseries file  : ts_satellite.YYYYMMDD.bpch
-Output as HDF           : F
+Output as HDF5?         : F
 Tracers to include      : 82 83 84 85 86 87
 GMT Hour for disk write :   0
 Avg Period [LT hours]   :  10  12
@@ -345,7 +344,7 @@ Turn on P/L (ND65) diag?: F
 Save O3 P/L (ND20)?     : F
 Number of P/L families  : 7
 1st  chemical family    : POX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3 BrO HOBr BrNO2 2BrNO3 MPN
-2nd  chemical family    : LOX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3 BrO HOBr BrNO2 2BrNO3 MPN}
+2nd  chemical family    : LOX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3 BrO HOBr BrNO2 2BrNO3 MPN
 3rd  chemical family    : PCO: CO
 4th  chemical family    : LCO: CO
 5th  chemical family    : PBrOx: Br BrO
@@ -372,8 +371,8 @@ Over Europe?            : F
 TPCORE EU BC directory  : BC_2x25_EU/
 Over China?             : F
 TPCORE CH BC directory  : BC_2x25_CH/
-Over SE region?         : F
-TPCORE SE BC dir        : BC_2x25_SE/
+Over SE Asia region?    : F
+TPCORE SE BC directory  : BC_2x25_SE/
 Over Custom Region?     : F
 TPCORE BC directory     : BC_2x25/
 BC timestep [min]       : 180

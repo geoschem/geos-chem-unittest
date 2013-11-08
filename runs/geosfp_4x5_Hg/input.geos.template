@@ -1,4 +1,4 @@
-GEOS-CHEM SIMULATION v9-02: geosfp_4x5_Hg
+GEOS-CHEM UNIT TEST SIMULATION: geosfp_4x5_Hg
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
@@ -44,7 +44,7 @@ Convect Timestep (min)  : 30
 Turn on emissions?      : T
 Emiss timestep (min)    : 60
 Include anthro emiss?   : T
- => Scale from 1985 to  : 1995
+ => Scale to (1985-2005): 1995
  => Use EMEP emissions? : F
  => Use BRAVO emissions?: F
  => Use EDGAR emissions?: F
@@ -181,13 +181,13 @@ ND17: Rainout fraction  :  0   all
 ND18: Washout fraction  :  0   all            
 ND19: CH4 loss          :  0   all            
 ND21: Optical depths    :  0   all            
-ND22: J-Values          :  0   1 7 8 20 99              
+ND22: J-Values          :  0   64 7 8 20 99              
       => JV time range  :      11 13
 ND24: E/W transpt flx   : 47   all
 ND25: N/S transpt flx   : 47   all
 ND26: U/D transpt flx   : 47   all
 ND27: Strat NOx,Ox,HNO3 :  0   1 2 7
-ND28: Biomass emissions :  0   1 4 5 9 10 11 18 19 20 21
+ND28: Biomass emissions :  0   1 4 5 9 10 11 18 19 20 21 26 30 34 35
 ND29: CO sources        :  0   all
 ND30: Land Map          :  0   all
 ND31: Surface pressure  :  0   all
@@ -195,7 +195,7 @@ ND32: NOx sources       :  0   all
 ND33: Column tracer     :  0   all
 ND34: Biofuel emissions :  0   1 4 5 9 10 11 18 19 20 21
 ND35: Tracers at 500 mb :  0   all
-ND36: Anthro emissions  :  0   1 4 5 9 10 18 19 21
+ND36: Anthro emissions  :  0   1 2 4 5 7 9 10 11 18 19 20 21
 ND37: Updraft scav frac :  0   all
 ND38: Cld Conv scav loss: 47   2 3
 ND39: Wetdep scav loss  : 47   2 3
@@ -203,7 +203,6 @@ ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem OH,NO,HO2,NO2:  0   all
   ==> OH/HO2 time range :       0 24   
-  ==> NO/NO2 time range :      10 14
 ND44: Drydep flx/vel    :  1   all
 ND45: Tracer Conc's     : 47   all 
   ==> ND45 Time range   :       0 24
@@ -256,7 +255,7 @@ LMIN, LMAX of region    :   1   5
 %%% ND50 MENU %%%       :
 Turn on ND50 diagnostic : F
 24-hr avg timeser. file : ts_24h_avg.YYYYMMDD.bpch
-Output as HDF           : F
+Output as HDF5?         : F
 Tracers to include      : 82 83 84 85 86 87
 IMIN, IMAX of region    :   1  72
 JMIN, JMAX of region    :   1  46
@@ -265,7 +264,7 @@ LMIN, LMAX of region    :   1   1
 %%% ND51 MENU %%%       :
 Turn on ND51 diagnostic : F
 LT avg timeseries file  : ts_satellite.YYYYMMDD.bpch
-Output as HDF           : F
+Output as HDF5?         : F
 Tracers to include      : 82 83 84 85 86 87
 GMT Hour for disk write :   0
 Avg Period [LT hours]   :  10  12
@@ -310,17 +309,17 @@ Input BCs at 2x2.5?     : F
 Over North America?     : F
 TPCORE NA BC directory  : BC_4x5_NA/
 Over Europe?            : F
-TPCORE EU BC directory  : BC_4x5_EU/       
-Over China?             : F                  
-TPCORE CH BC directory  : BC_4x5_CH/       
-Over SE region?         : F
-TPCORE SE BC dir        : BC_4x5_SE/
-Over Custom Region?     : F                 
-TPCORE BC directory     : BC_4x5/          
-BC timestep [min]       : 180                
-LL box of BC region     :   9  26           
-UR box of BC region     :  29  41           
-1x1 offsets I0_W, J0_W  :   3   3       
+TPCORE EU BC directory  : BC_2x25_EU/
+Over China?             : F
+TPCORE CH BC directory  : BC_2x25_CH/
+Over SE Asia region?    : F
+TPCORE SE BC directory  : BC_2x25_SE/
+Over Custom Region?     : F
+TPCORE BC directory     : BC_2x25/
+BC timestep [min]       : 180
+LL box of BC region     :   9  26
+UR box of BC region     :  29  41
+1x1 offsets I0_W, J0_W  :   3   3
 ------------------------+------------------------------------------------------
 %%% UNIX CMDS MENU %%%  : 
 Background symbol       : & 
