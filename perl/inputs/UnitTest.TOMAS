@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !INCLUDE: UnitTest.TOMAS40
+# !INCLUDE: UnitTest.TOMAS
 #
 # !DESCRIPTION: Input file that specifies debugging options for the 
 #  GEOS-Chem unit tester.
@@ -24,7 +24,7 @@
 #  SUBMIT    : Submit command and queue name
 #
 # !REMARKS:
-#  This file specifies unit tests for TOMAS microphysics.
+#  This file specifies unit tests for TOMAS microphysics simulations.
 #  To omit individual unit tests, place a # in the first column.
 #
 # !REVISION HISTORY: 
