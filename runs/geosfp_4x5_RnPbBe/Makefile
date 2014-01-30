@@ -13,6 +13,7 @@
 #
 # !REVISION HISTORY: 
 #  06 Sep 2013 - R. Yantosca - Initial version
+#  30 Jan 2014 - R. Yantosca - Test if output files are present before renaming
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -59,16 +60,16 @@ sp:
 	@$(MAKE) -C $(CODE_DIR) OMP=no > $(LOG_SP)
 	cp -f $(CODE_DIR)/bin/geos geos.sp
 	$(EXE_SP) >> $(LOG_SP)
-	mv $(TRAC_AVG) $(TRAC_AVG).sp
-	mv $(TRAC_RST) $(TRAC_RST).sp
+	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).sp; fi;
+	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
 
 mp:
 	rm -f $(LOG_MP)
 	@$(MAKE) -C $(CODE_DIR) OMP=yes > $(LOG_MP)
 	cp -f $(CODE_DIR)/bin/geos geos.mp
 	$(EXE_MP) >> $(LOG_MP)
-	mv $(TRAC_AVG) $(TRAC_AVG).mp
-	mv $(TRAC_RST) $(TRAC_RST).mp
+	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
+	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
 
 check:
 	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
