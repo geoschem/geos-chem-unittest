@@ -32,7 +32,7 @@
 #
 # !INPUTS:
 #
-   VERSION   : v9-02r
+   VERSION   : v9-02
    CODE_DIR  : /home/bmy/GC/Code.v9-02
    DATA_ROOT : /as/data/geos
    RUN_DIR   : /home/bmy/UT/runs/{RUNDIR}
@@ -54,12 +54,12 @@
 #  geosfp   2x25        -      fullchem     2013070100   2013070101   -
 #  geos5    05x0666     na     fullchem     2005070100   2005070101   -
 #  geos5    2x25        -      fullchem     2005070100   2005070101   -
-#  geos5    4x5         -      fullchem     2005070100   2005070101   -
+   geos5    4x5         -      fullchem     2005070100   2005070101   -
 #  geos5    4x5         -      RnPbBe       2005070100   2005070101   -
 #  geos5    4x5         -      soa          2005070100   2005070101   -
 #  geos5    4x5         -      soa_svpoa    2005070100   2005070101   -
 #  geos5    4x5         -      Hg           2005070100   2005070101   -
-   geos5    4x5         -      CH4          2005070100   2005070101   -
+#  geos5    4x5         -      CH4          2005070100   2005070101   -
 #  geos5    4x5         -      TOMAS40      2005070100   2005070101  TOMAS40=y
 #  geos5    4x5         -      TOMAS30      2005070100   2005070101  TOMAS30=y
 #  geos5    4x5         -      TOMAS15      2005070100   2005070101  TOMAS15=y
