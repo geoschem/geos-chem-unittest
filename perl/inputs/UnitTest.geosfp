@@ -30,12 +30,13 @@
 # !REVISION HISTORY: 
 #  22 Aug 2013 - R. Yantosca - Initial version
 #  03 Sep 2013 - R. Yantosca - Now do 1-hr test runs for expediency
+#  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION   : v9-02r.geosfp
+   VERSION   : v9-02.geosfp
    CODE_DIR  : /home/bmy/GC/Code.v9-02
    DATA_ROOT : /as/data/geos
    RUN_DIR   : /home/bmy/UT/runs/{RUNDIR}
@@ -50,15 +51,15 @@
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#---------|-----------|------|----------------|------------|------------|
-#  MET    | GRID      | NEST | SIMULATION     | START DATE | END DATE   |
-#---------|-----------|------|----------------|------------|------------|
-   geosfp   4x5         -      RnPbBe           2013070100   2013070101
-   geosfp   4x5         -      Hg               2013070100   2013070101
-#  geosfp   4x5         -      fullchem         2013070100   2013070101
-#  geosfp   4x5         -      soa              2013070100   2013070101
-#  geosfp   4x5         -      soa_svpoa        2013070100   2013070101
-#  geosfp   4x5         -      tagCO            2013070100   2013070101
+#---------|-----------|------|------------|------------|------------|---------|
+#  MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
+#---------|-----------|------|------------|------------|------------|---------|
+   geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
+   geosfp   4x5         -      Hg           2013070100   2013070101   -
+#  geosfp   4x5         -      fullchem     2013070100   2013070101   -
+#  geosfp   4x5         -      soa          2013070100   2013070101   -
+#  geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
+#  geosfp   4x5         -      tagCO        2013070100   2013070101   -
   !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

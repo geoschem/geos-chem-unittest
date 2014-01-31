@@ -91,6 +91,8 @@ sub getRunDir($$$$) {
 #
 # !REVISION HISTORY:
 #  22 Aug 2013 - R. Yantosca - Initial version
+#  31 Jan 2014 - R. Yantosca - Now append the nested grid suffix if
+#                              length( $nest ) is greater than zero
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -101,7 +103,7 @@ sub getRunDir($$$$) {
   my $runLoc = "{MET}_{GRID}_{SIM}";
 
   # Append nested grid string if necessary
-  if ( !( $nest =~ m/\-/ )  ) { $runLoc .= "_{NEST}"; }
+  if ( length( $nest ) > 0 ) { $runLoc .= "_{NEST}"; }
 
   # Replace tokens
   $runLoc =~ s/{MET}/$met/g;
@@ -110,7 +112,7 @@ sub getRunDir($$$$) {
   $runLoc =~ s/{NEST}/$nest/g;
   $runDir = "$RUN_DIR";
   $runDir =~ s/{RUNDIR}/$runLoc/g;
-
+  
   # Return the run directory
   return( $runDir );
 }
@@ -209,7 +211,9 @@ sub doUnitTest($) {
 #                              cleanFiles program to remove files in the
 #                              job & log dirs.  Still need to work on cleaning
 #                              up all files in the run dirs.
-#   5 Sep 2013 - R. Yantosca - Now print log directory name
+#  05 Sep 2013 - R. Yantosca - Now print log directory name
+#  30 Jan 2014 - R. Yantosca - Improve informational output
+#  31 Jan 2014 - R. Yantosca - Now allow for extra Makefile flags
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -219,6 +223,7 @@ sub doUnitTest($) {
   # Scalar
   my $cmd     = "";
   my $end     = "";
+  my $extra   = "";
   my $grid    = "";
   my $jobFile = "";
   my $logHdr  = "";
@@ -296,7 +301,8 @@ sub doUnitTest($) {
 	if ( !( $txt[$i] =~ m/^\#/ ) ) {
 
 	  # Parse each line into values
-	  ( $met, $grid, $nest, $sim, $start, $end ) = split( ' ', $txt[$i] );
+	  ( $met,   $grid, $nest, $sim, 
+	    $start, $end,  $extra       ) = split( ' ', $txt[$i] );
 
 	  # Make sure met, grid, nest are in lowercase
 	  $met     =~ tr/[A-Z]/[a-z]/;
@@ -308,6 +314,16 @@ sub doUnitTest($) {
 	  $met     =~ s/\_//g;
 	  $met     =~ s/\=//g;
 	  $met     =~ s/\.//g;
+
+	  # Remove extraneous characters from $nest
+	  $nest    =~ s/\-//g;
+	  $nest    =~ s/\_//g;
+	  $nest    =~ s/\.//g;
+
+	  # Remove extraneous characters from $extra
+	  $extra   =~ s/\-//g;
+	  $extra   =~ s/\_//g;
+	  $extra   =~ s/\.//g;
 
 	  # Define the run directory name
 	  $runDir   = &getRunDir( $met, $grid, $nest, $sim );
@@ -327,8 +343,12 @@ sub doUnitTest($) {
 	  $logRslt  = "$LOG_DIR/$VERSION.results.log";
 
 	  # If necessary, also add on the nested grid flags
-	  if ( !( $nest =~ m/\-/ ) ) { $makeCmd .= " NEST=$nest"; }
+	  if ( length( $nest ) > 0  ) { $makeCmd .= " NEST=$nest"; }
 	
+	  # If necessary, also add extra Makefile options that are specific 
+	  # to each simulaton.  Specify these in the "EXTRA?" column.
+	  if ( length( $extra ) > 0 ) { $makeCmd .= " $extra"; }
+
 	  # Make the input.geos file in the run directory
 	  &makeInputs( $start, $end, $runDir );
 
@@ -383,8 +403,12 @@ EOF
   chmod( 0755, $jobFile );
 
   # Print
-  print "Created job file $jobFile\n";
-  print "Log files will be sent to $LOG_DIR\n";
+  print '%%%%%%%%% GEOS-Chem UNIT TEST SIMULATION(S) %%%%%%%%%%%%%%%%%%'."\n";
+  print "\%\%\% Version ID         : $VERSION\n";
+  print "\%\%\% Testing code in    : $CODE_DIR\n";
+  print "\%\%\% Using job file:    : $jobFile\n";
+  print "\%\%\% Log file directory : $LOG_DIR\n";
+  print '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'."\n";
 
   # Submit the job.  Send the stdout stream to $logRslt
   # and the stderr stream to a file in the $LOG_DIR.

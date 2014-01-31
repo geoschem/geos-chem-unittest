@@ -28,13 +28,14 @@
 #  To omit individual unit tests, place a # in the first column.
 #
 # !REVISION HISTORY: 
-!  28 Oct 2013 - R. Yantosca - Initial version
+#  28 Oct 2013 - R. Yantosca - Initial version
+#  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION   : v9-02r.geos4
+   VERSION   : v9-02.geos4
    CODE_DIR  : /home/bmy/GC/Code.v9-02
    DATA_ROOT : /as/data/geos
    RUN_DIR   : /home/bmy/UT/runs/{RUNDIR}
@@ -49,16 +50,20 @@
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#---------|-----------|------|----------------|------------|------------|
-#  MET    | GRID      | NEST | SIMULATION     | START DATE | END DATE   |
-#---------|-----------|------|----------------|------------|------------|
-   geos4    4x5         -      RnPbBe           2005070100   2005070101
-   geos4    4x5         -      Hg               2005070100   2005070101
-   geos4    4x5         -      fullchem         2005070100   2005070101
-#  geos4    4x5         -      soa              2005070100   2005070101
-#  geos4    4x5         -      soa_svpoa        2005070100   2005070101
-#  geos4    4x5         -      tagCO            2005070100   2005070101
-#  geos4    2x25        -      CO2              2005070100   2005070101
+#---------|-----------|------|------------|------------|------------|---------|
+#  MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
+#---------|-----------|------|------------|------------|------------|---------|
+   geos4    4x5         -      RnPbBe       2005070100   2005070101   -
+   geos4    4x5         -      Hg           2005070100   2005070101   -
+   geos4    4x5         -      fullchem     2005070100   2005070101   -
+#  geos4    4x5         -      soa          2005070100   2005070101   -
+#  geos4    4x5         -      soa_svpoa    2005070100   2005070101   -
+#  geos4    4x5         -      tagCO        2005070100   2005070101   -
+#  geos4    4x5         -      TOMAS40      2005070100   2005070101  TOMAS40=y
+#  geos4    4x5         -      TOMAS30      2005070100   2005070101  TOMAS30=y
+#  geos4    4x5         -      TOMAS15      2005070100   2005070101  TOMAS15=y
+#  geos4    4x5         -      TOMAS12      2005070100   2005070101  TOMAS12=y
+#  geos4    2x25        -      CO2          2005070100   2005070101   -
   !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

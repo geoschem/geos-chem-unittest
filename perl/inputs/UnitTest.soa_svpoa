@@ -29,12 +29,13 @@
 #
 # !REVISION HISTORY: 
 #  23 Oct 2013 - R. Yantosca - Initial version
+#  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION   : v9-02r.SOA
+   VERSION   : v9-02.SOA
    CODE_DIR  : /home/bmy/GC/Code.v9-02
    DATA_ROOT : /as/data/geos
    RUN_DIR   : /home/bmy/UT/runs/{RUNDIR}
@@ -49,15 +50,15 @@
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#---------|-----------|------|----------------|------------|------------|
-#  MET    | GRID      | NEST | SIMULATION     | START DATE | END DATE   |
-#---------|-----------|------|----------------|------------|------------|
-   geos5    4x5         -      soa              2005070100   2005070101
-   merra    4x5         -      soa              2010570100   2005070101
-   geosfp   4x5         -      soa              2013070100   2013070101
-   geos5    4x5         -      soa_svpoa        2005070100   2005070101
-   merra    4x5         -      soa_svpoa        2010570100   2005070101
-   geosfp   4x5         -      soa_svpoa        2013070100   2013070101
+#---------|-----------|------|------------|------------|------------|---------|
+#  MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
+#---------|-----------|------|------------|------------|------------|---------|
+   geos5    4x5         -      soa          2005070100   2005070101   -
+   merra    4x5         -      soa          2010570100   2005070101   -
+   geosfp   4x5         -      soa          2013070100   2013070101   -
+   geos5    4x5         -      soa_svpoa    2005070100   2005070101   -
+   merra    4x5         -      soa_svpoa    2010570100   2005070101   -
+   geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
   !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

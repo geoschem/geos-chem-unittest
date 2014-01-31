@@ -29,6 +29,7 @@
 #
 # !REVISION HISTORY: 
 #  18 Aug 2013 - R. Yantosca - Initial version
+#  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -42,20 +43,20 @@
    LOG_DIR   : /home/bmy/UT/logs/{VERSION}
    PERL_DIR  : /home/bmy/UT/perl
    COMPILER  : ifort
-   MAKE_CMD  : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y TOMAS40=y
+   MAKE_CMD  : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
    SUBMIT    : submit smp-large
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#---------|-----------|------|----------------|------------|------------|
-#  MET    | GRID      | NEST | SIMULATION     | START DATE | END DATE   |
-#---------|-----------|------|----------------|------------|------------|
-   geos5    4x5         -      TOMAS40          2005070100   2005070101
-#  geos5    4x5         -      TOMAS30          2005070100   2005070101
-#  geos5    4x5         -      TOMAS15          2005070100   2005070101
-#  geos5    4x5         -      TOMAS12          2005070100   2005070101
+#---------|-----------|------|------------|------------|------------|---------|
+#  MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
+#---------|-----------|------|------------|------------|------------|---------|
+   geos5    4x5         -      TOMAS40      2005070100   2005070101  TOMAS40=y
+#  geos5    4x5         -      TOMAS30      2005070100   2005070101  TOMAS30=y
+#  geos5    4x5         -      TOMAS15      2005070100   2005070101  TOMAS15=y
+#  geos5    4x5         -      TOMAS12      2005070100   2005070101  TOMAS12=y
   !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

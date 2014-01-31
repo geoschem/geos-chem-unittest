@@ -28,13 +28,14 @@
 #  To omit individual unit tests, place a # in the first column.
 #
 # !REVISION HISTORY: 
-!  31 Oct 2013 - M. Sulprizio- Initial version
+#  31 Oct 2013 - M. Sulprizio- Initial version
+#  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION   : v9-02r.gcap
+   VERSION   : v9-02.gcap
    CODE_DIR  : /home/bmy/GC/Code.v9-02
    DATA_ROOT : /as/data/geos
    RUN_DIR   : /home/bmy/UT/runs/{RUNDIR}
@@ -49,10 +50,10 @@
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#---------|-----------|------|----------------|------------|------------|
-#  MET    | GRID      | NEST | SIMULATION     | START DATE | END DATE   |
-#---------|-----------|------|----------------|------------|------------|
-   gcap      4x5         -      fullchem        2005070100   2005070101
+#---------|-----------|------|------------|------------|------------|---------|
+#  MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
+#---------|-----------|------|------------|------------|------------|---------|
+   gcap     4x5         -      fullchem     2005070100   2005070101   -
   !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------
