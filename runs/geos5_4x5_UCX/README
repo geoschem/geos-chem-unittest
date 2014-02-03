@@ -1,0 +1,14 @@
+GEOS-Chem Support Team
+geos-chem-support@as.harvard.edu
+12 Sep 2012
+
+
+This directory contains input files for the standard simulation as of
+the GEOS-Chem version 9-01-03.
+
+This set of input files was used for the 1-month benchmark.
+
+The restart file is obtained from the 1-year benchmark simulation
+v9-01-03-Release-geos5-Run1. The benchmark simulation was initialized with
+tracer concentrations from the end of a 10+ year spinup simulation using
+Lee Murray's linearized stratospheric chemistry scheme updates.
