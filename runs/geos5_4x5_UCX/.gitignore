@@ -14,3 +14,5 @@ geos.mp
 geos.sp
 input.geos
 smv2.log
+restart.soilnox.*
+restart.psc.*

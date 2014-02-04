@@ -35,7 +35,11 @@ LOG_MP   :=$(LOG_DIR)/$(VERSION).$(RUNID).mp
 # Output file names
 TRAC_AVG :=trac_avg.$(RUNID).$(START)
 TRAC_RST :=trac_rst.$(RUNID).$(END)
-SOIL_RST :=soil_rst.$(RUNID).$(END)
+#------------------------------------------------------------------------------
+# NOTE: This version of the code hardwires the soilnox restart name 
+#SOIL_RST :=soil_rst.$(RUNID).$(END)
+#------------------------------------------------------------------------------
+SOIL_RST :=restart.soilnox.$(END)
 PSC_RST  :=restart.psc.$(RUNID).$(END)
 
 # Validation script
@@ -120,7 +124,8 @@ print:
 	@echo "START    : $(START)"
 	@echo "END      : $(END)"
 	@echo "RUNID    : $(RUNID)"
-	@echo "BPCH     : $(BPCH)"
-	@echo "SOIL     : $(SOIL)"
-	@echo "RST      : $(RST)"
+	@echo "TRAC_AVG : $(TRAC_AVG)"
+	@echo "TRAC_RST : $(TRAC_RST)"
+	@echo "SOIL_RST : $(SOIL_RST)"
+	@echo "PSC_RST  : $(PSC_RST)"
 #EOC

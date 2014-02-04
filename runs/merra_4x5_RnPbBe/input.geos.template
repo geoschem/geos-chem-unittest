@@ -186,7 +186,7 @@ ND33: Column tracer     :  0   all
 ND34: Biofuel emissions :  0   1 4 5 9 10 11 18 19 20 21
 ND35: Tracers at 500 mb :  0   all
 ND36: Anthro emissions  :  0   1 2 4 5 7 9 10 11 18 19 20 21
-ND37: Updraft scav frac :  0   all
+ND37: Updraft scav frac : 47   all
 ND38: Cld Conv scav loss: 47   all
 ND39: Wetdep scav loss  : 47   all
 ND41: Afternoon PBL ht  :  0   all
