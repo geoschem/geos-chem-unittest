@@ -38,9 +38,10 @@ TRAC_RST :=trac_rst.$(RUNID).$(END)
 #------------------------------------------------------------------------------
 # NOTE: This version of the code hardwires the soilnox restart name 
 #SOIL_RST :=soil_rst.$(RUNID).$(END)
+#PSC_RST  :=restart.psc.$(RUNID).$(END)
 #------------------------------------------------------------------------------
 SOIL_RST :=restart.soilnox.$(END)
-PSC_RST  :=restart.psc.$(RUNID).$(END)
+PSC_RST  :=restart.psc.$(END)
 
 # Validation script
 VALIDATE :=/usr/bin/perl $(PERL_DIR)/validate

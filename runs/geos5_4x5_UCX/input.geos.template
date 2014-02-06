@@ -250,18 +250,18 @@ Use Soil Absorption?    : F
 Use Ot. Natural?        : F
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
-Schedule output for JAN : 3000000000000000000000000000000
-Schedule output for FEB : 30000000000000000000000000000  
-Schedule output for MAR : 3000000000000000000000000000000
-Schedule output for APR : 300000000000000000000000000000
-Schedule output for MAY : 3000000000000000000000000000000
-Schedule output for JUN : 300000000000000000000000000000
-Schedule output for JUL : 3000000000000000000000000000000
-Schedule output for AUG : 3000000000000000000000000000000
-Schedule output for SEP : 300000000000000000000000000000
-Schedule output for OCT : 3000000000000000000000000000000
-Schedule output for NOV : 300000000000000000000000000000
-Schedule output for DEC : 3000000000000000000000000000000
+Schedule output for JAN : 3333333333333333333333333333333
+Schedule output for FEB : 33333333333333333333333333333  
+Schedule output for MAR : 3333333333333333333333333333333
+Schedule output for APR : 333333333333333333333333333333
+Schedule output for MAY : 3333333333333333333333333333333
+Schedule output for JUN : 333333333333333333333333333333
+Schedule output for JUL : 3333333333333333333333333333333
+Schedule output for AUG : 3333333333333333333333333333333
+Schedule output for SEP : 333333333333333333333333333333
+Schedule output for OCT : 3333333333333333333333333333333
+Schedule output for NOV : 333333333333333333333333333333
+Schedule output for DEC : 3333333333333333333333333333333
 ------------------------+------------------------------------------------------
 %%% GAMAP MENU %%%      :
 diaginfo.dat path       : diaginfo.dat
@@ -274,15 +274,15 @@ ND01: Rn/Pb/Be source   :  0   all
 ND02: Rn/Pb/Be decay    :  0   all             
 ND03: Hg emissions, P/L :  0   all                
 ND04: CO2 Sources       :  0   all                
-ND05: Sulfate prod/loss :  0   all               
-ND06: Dust aer source   :  0   all                
-ND07: Carbon aer source :  0   all                
-ND08: Seasalt aer source:  0   all                
+ND05: Sulfate prod/loss : 72   all               
+ND06: Dust aer source   : 72   all                
+ND07: Carbon aer source : 72   all                
+ND08: Seasalt aer source: 72   all                
 ND09: -                 :  0   all                
 ND10: -                 :  0   all                
-ND11: Acetone sources   :  0   all                 
+ND11: Acetone sources   : 72   all                 
 ND12: BL fraction       :  0   all              
-ND13: Sulfur sources    :  0   all                
+ND13: Sulfur sources    : 72   all                
 ND14: Cld conv mass flx :  0   all                
 ND15: BL mix mass flx   :  0   all                
 ND16: LS/Conv prec frac :  0   all               
@@ -296,15 +296,15 @@ ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
 ND26: U/D transpt flx   :  0   all
 ND27: Strat NOx,Ox,HNO3 :  0   1 2 7
-ND28: Biomass emissions :  0   1 4 5 9 10 11 18 19 20 21 26 30 34 35
-ND29: CO sources        :  0   all
+ND28: Biomass emissions : 72   1 4 5 9 10 11 18 19 20 21 26 30 34 35
+ND29: CO sources        : 72   all
 ND30: Land Map          :  0   all
 ND31: Surface pressure  :  0   all
-ND32: NOx sources       :  0   all
+ND32: NOx sources       : 72   all
 ND33: Column tracer     :  0   all
-ND34: Biofuel emissions :  0   1 4 5 9 10 11 18 19 20 21
+ND34: Biofuel emissions : 72   1 4 5 9 10 11 18 19 20 21
 ND35: Tracers at 500 mb :  0   all
-ND36: Anthro emissions  :  0   1 4 5 9 10 11 18 19 20 21
+ND36: Anthro emissions  : 72   1 4 5 9 10 11 18 19 20 21
 ND37: Updraft scav frac : 72   all
 ND38: Cld Conv scav loss: 72   all
 ND39: Wetdep scav loss  : 72   all
@@ -314,10 +314,10 @@ ND43: Chem OH,NO,HO2,NO2: 72   all
   ==> OH/HO2 time range :       0 24   
   ==> NO/NO2 time range :       0 24
 ND44: Drydep flx/vel    :  1   all
-ND45: Tracer Conc's     :  0   all 
+ND45: Tracer Conc's     : 72   all 
   ==> ND45 Time range   :       0 24
-ND46: Biogenic emissions:  0   all
-ND47: 24-h avg trc conc : 72   all
+ND46: Biogenic emissions: 72   all
+ND47: 24-h avg trc conc :  0   all
 ND52: GAMMA HO2         :  0   all
 ND53: -                 :  0   all
 ND54: Time in t'sphere  :  0   all
@@ -329,7 +329,7 @@ ND59: -                 :  0   all
 ND60: Wetland Frac      :  0   all
 ND61: -                 :  0   all
 ND62: Inst column maps  :  0   all
-ND64: Radiative flux    :  0   all
+ND64: Radiative flux    : 73   all
 ND66: DAO 3-D fields    :  0   all
 ND67: DAO 2-D fields    :  0   all
 ND68: Airmass/Boxheight :  0   all
