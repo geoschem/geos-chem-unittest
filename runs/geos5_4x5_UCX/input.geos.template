@@ -105,20 +105,20 @@ Tracer #78              :  78   Cl2O2  103.0
 Tracer #79              :  79   H2O     18.0
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
-Turn on Transport       : F
+Turn on Transport       : T
  => Use Flux Correction?: F
  => Fill Negative Values: T 
  => IORD, JORD, KORD    : 3  3  7
 Transport Timestep [min]: 30   
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
-Turn on Cloud Conv?     : F
-Turn on PBL Mixing?     : F
+Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
  => Use non-local PBL?  : F
 Convect Timestep (min)  : 30
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
-Turn on emissions?      : F
+Turn on emissions?      : T
 Emiss timestep (min)    : 60 
 Include anthro emiss?   : T
  => Scale to (1985-2005): -1
@@ -220,8 +220,8 @@ Perform PSC het. chem.? : T
 Calc. strat. aero. OD?  : T
 ------------------------+------------------------------------------------------
 %%% DEPOSITION MENU %%% :
-Turn on Dry Deposition? : F
-Turn on Wet Deposition? : F
+Turn on Dry Deposition? : T
+Turn on Wet Deposition? : T
 ------------------------+------------------------------------------------------
 %%% CHEMISTRY MENU %%%  : 
 Turn on Chemistry?      : T
