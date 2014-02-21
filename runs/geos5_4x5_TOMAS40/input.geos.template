@@ -625,9 +625,9 @@ ND55: Tropopause height :  0   all
 ND56: Lightning flashes :  0   all
 ND57: Potential T       :  0   all
 ND58: CH4 Emissions     :  0   all
-ND59: TOMAS diagnostic  :  0  all
+ND59: TOMAS diagnostic  : 47   all
 ND60: TOMAS diagnostic  :  0   64-383
-ND61: TOMAS diagnostic  :  0   all
+ND61: TOMAS diagnostic  : 47   all
 ND62: Inst column maps  :  0   all
 ND64: -                 :  0   all
 ND66: DAO 3-D fields    : 47   all
