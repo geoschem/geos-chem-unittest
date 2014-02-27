@@ -27,13 +27,14 @@
 #  22 Aug 2013 - R. Yantosca - Initial version
 #  03 Sep 2013 - R. Yantosca - Now do 1-hr test runs for expediency
 #  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
+!  27 Feb 2014 - R. Yantosca - Now grouped runs by simulation type
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION   : v9-02
-   CODE_DIR  : /home/bmy/GC/Code.v9-02
+   VERSION   : v9-02.public
+   CODE_DIR  : /home/bmy/GC/Code.v10-01
    DATA_ROOT : /as/data/geos
    RUN_DIR   : /home/bmy/UT/runs/{RUNDIR}
    JOB_DIR   : /home/bmy/UT/jobs
@@ -50,27 +51,38 @@
 #---------|-----------|------|------------|------------|------------|---------|
 #  MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
 #---------|-----------|------|------------|------------|------------|---------|
-#  geosfp   025x03125   na     fullchem     2013070100   2013070101   -
-#  geosfp   2x25        -      fullchem     2013070100   2013070101   -
-#  geos5    05x0666     na     fullchem     2005070100   2005070101   -
+# ======= Radon-Lead-Beryllium ===============================================
+#  geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
+#  merra    4x5         -      RnPbBe       2005070100   2005070101   -
+#  geos5    4x5         -      RnPbBe       2005070100   2005070101   -
+#  geos4    4x5         -      RnPbBe       2005070100   2005070101   -
+# ======= Mercury ============================================================
+#  geosfp   4x5         -      Hg           2013070100   2013070101   -
+#  merra    4x5         -      Hg           2005070100   2005070101   -
+#  geos5    4x5         -      Hg           2005070100   2005070101   -
+# ======= Other specialty simulations ========================================
+#  geos5    4x5         -      tagO3        2005070100   2005070101   -
+#  geos5    4x5         -      CH4          2005070100   2005070101   -
+#  geos5    2x25        -      CO2          2005070100   2005070101   -
+# ======= Fullchem ===========================================================
+   geosfp   4x5         -      fullchem     2013070100   2013070101   -
+   merra    4x5         -      fullchem     2005070100   2005070101   -
 #  geos5    2x25        -      fullchem     2005070100   2005070101   -
    geos5    4x5         -      fullchem     2005070100   2005070101   -
-#  geos5    4x5         -      RnPbBe       2005070100   2005070101   -
+   geos4    4x5         -      fullchem     2005070100   2005070101   -
+   gcap     4x5         -      fullchem     2005070100   2005070101   -
+# ===== SOA (w/ and w/o SVPOA) ===============================================
+#  geosfp   4x5         -      soa          2013070100   2013070101   -
+#  merra    4x5         -      soa          2005070100   2005070101   -
 #  geos5    4x5         -      soa          2005070100   2005070101   -
+#  geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
+#  merra    4x5         -      soa_svpoa    2005070100   2005070101   -
 #  geos5    4x5         -      soa_svpoa    2005070100   2005070101   -
-#  geos5    4x5         -      Hg           2005070100   2005070101   -
-#  geos5    4x5         -      CH4          2005070100   2005070101   -
+# ===== TOMAS aerosol microphysics ===========================================
 #  geos5    4x5         -      TOMAS40      2005070100   2005070101  TOMAS40=y
-#  geos5    4x5         -      TOMAS30      2005070100   2005070101  TOMAS30=y
-#  geos5    4x5         -      TOMAS15      2005070100   2005070101  TOMAS15=y
-#  geos5    4x5         -      TOMAS12      2005070100   2005070101  TOMAS12=y
-#  geos4    4x5         -      fullchem     2005070100   2005070101   -
-#  geos4    4x5         -      RnPbBe       2005070100   2005070101   -
-#  merra    4x5         -      fullchem     2005070100   2005070101   -
-#  merra    4x5         -      RnPbBe       2005070100   2005070101   -
-#  merra    4x5         -      tagCO        2005070100   2005070101   -
-#  merra    4x5         -      Hg           2005070100   2005070101   -
-#  gcap     4x5         -      fullchem     2005070100   2005070101   -
+# ===== UCX strat-trop chemistry =============================================
+#  geosfp   4x5         -      UCX          2005070100   2005070101  UCX=y
+#  geos5    4x5         -      UCX          2005070100   2005070101  UCX=y
   !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------
