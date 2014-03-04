@@ -84,16 +84,23 @@
   83 R4P       PHOTON    OH        HO2       RCHO          1.000 /CH3OOH/
   84 PP        PHOTON    OH        HO2       ALD2   CH2O   1.000 /CH3OOH/
   85 RP        PHOTON    OH        HO2       ALD2          1.000 /CH3OOH/
-  86 GP        PHOTON    OH        HO2       CH2O          1.000 /CH3OOH/
-  87 RIP       PHOTON    OH HO2 CH2O MVK MACR IALD         1.000 /CH3OOH/
-  88 IAP       PHOTON    OH HO2 CO H2 HAC GLYC MGLY        1.000 /CH3OOH/
-  89 ISNP      PHOTON    OH HO2 RCHO NO2                   1.000 /CH3OOH/
-  90 VRP       PHOTON    OH HO2 CH2O MCO3 GLYC MGLY        1.000 /CH3OOH/
-  91 MRP       PHOTON    OH HO2 HAC CO CH2O                1.000 /CH3OOH/
-  92 MAOP      PHOTON    OH CH2O MCO3                      1.000 /CH3OOH/
-  93 R4N2      PHOTON    NO2 ACET MEK MO2 HO2 ALD2...      1.000 /CH3NO3/
-  94 MAP       PHOTON    OH        MO2                     1.000 /CH3OOH/
-  95 SO4       PHOTON    SO2       OH        OH            1.000 /H2SO4 /
-  96 ClNO2     PHOTON    Cl        NO2                     1.000 /ClNO2 /
-  97 ClOO      PHOTON    Cl        O2                      1.000 /ClOO  /
+  86 RIP       PHOTON    OH HO2 CH2O MVK MACR IALD         1.000 /CH3OOH/
+  87 IAP       PHOTON    OH HO2 CO H2 HAC GLYC MGLY        1.000 /CH3OOH/
+  88 ISNP      PHOTON    OH HO2 RCHO NO2                   1.000 /CH3OOH/
+  89 VRP       PHOTON    OH HO2 CH2O MCO3 GLYC MGLY        1.000 /CH3OOH/
+  90 MRP       PHOTON    OH HO2 HAC CO CH2O                1.000 /CH3OOH/
+  91 MAOP      PHOTON    OH CH2O MCO3                      1.000 /CH3OOH/
+  92 MACRN     PHOTON    OH HO2 RCHO                       1.000 /ONIT1 /
+  93 MVKN      PHOTON    OH HO2 RCHO                       1.000 /ONIT1 /   
+  94 ISOPNB    PHOTON    OH HO2 RCHO                       1.000 /ONIT1 /
+  95 ISOPND    PHOTON    OH HO2 RCHO                       1.000 /ONIT1 /  
+  96 PROPNN    PHOTON    OH HO2 RCHO                       1.000 /ONIT1 /
+  97 ATOOH     PHOTON    OH HO2 RCHO                       1.000 /CH3OOH/
+  98 R4N2      PHOTON    NO2 ACET MEK MO2 HO2 ALD2...      1.000 /CH3NO3/
+  99 MAP       PHOTON    OH        MO2                     1.000 /CH3OOH/
+ 100 SO4       PHOTON    SO2       OH        OH            1.000 /H2SO4 /
+ 101 ClNO2     PHOTON    Cl        NO2                     1.000 /ClNO2 /
+ 102 ClOO      PHOTON    Cl        O2                      1.000 /ClOO  /
+ 103 MPN       PHOTON    HO2       NO3       HCHO          0.050 /MPN   /
+ 104 MPN       PHOTON    MO2       NO2                     0.950 /MPN   /
 9999

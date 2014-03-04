@@ -33,8 +33,8 @@
 #
 # !INPUTS:
 #
-   VERSION   : v9-02.public
-   CODE_DIR  : /home/bmy/GC/Code.v10-01
+   VERSION   : v10-01.UCX
+   CODE_DIR  : /home/bmy/GC/Code.UCX
    DATA_ROOT : /as/data/geos
    RUN_DIR   : /home/bmy/UT/runs/{RUNDIR}
    JOB_DIR   : /home/bmy/UT/jobs
@@ -65,12 +65,12 @@
 #  geos5    4x5         -      CH4          2005070100   2005070101   -
 #  geos5    2x25        -      CO2          2005070100   2005070101   -
 # ======= Fullchem ===========================================================
-   geosfp   4x5         -      fullchem     2013070100   2013070101   -
-   merra    4x5         -      fullchem     2005070100   2005070101   -
+#  geosfp   4x5         -      fullchem     2013070100   2013070101   -
+#  merra    4x5         -      fullchem     2005070100   2005070101   -
 #  geos5    2x25        -      fullchem     2005070100   2005070101   -
-   geos5    4x5         -      fullchem     2005070100   2005070101   -
-   geos4    4x5         -      fullchem     2005070100   2005070101   -
-   gcap     4x5         -      fullchem     2005070100   2005070101   -
+#  geos5    4x5         -      fullchem     2005070100   2005070101   -
+#  geos4    4x5         -      fullchem     2005070100   2005070101   -
+#  gcap     4x5         -      fullchem     2005070100   2005070101   -
 # ===== SOA (w/ and w/o SVPOA) ===============================================
 #  geosfp   4x5         -      soa          2013070100   2013070101   -
 #  merra    4x5         -      soa          2005070100   2005070101   -
@@ -81,8 +81,8 @@
 # ===== TOMAS aerosol microphysics ===========================================
 #  geos5    4x5         -      TOMAS40      2005070100   2005070101  TOMAS40=y
 # ===== UCX strat-trop chemistry =============================================
-#  geosfp   4x5         -      UCX          2005070100   2005070101  UCX=y
-#  geos5    4x5         -      UCX          2005070100   2005070101  UCX=y
+#  geosfp   4x5         -      UCX          2013070100   2013070101  UCX=y
+   geos5    4x5         -      UCX          2005070100   2005070101  UCX=y
   !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

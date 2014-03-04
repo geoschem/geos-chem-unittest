@@ -65,8 +65,8 @@ Tracer #38              :  38   DST1    29.0
 Tracer #39              :  39   DST2    29.0
 Tracer #40              :  40   DST3    29.0
 Tracer #41              :  41   DST4    29.0
-Tracer #42              :  42   SALA    36.0
-Tracer #43              :  43   SALC    36.0
+Tracer #42              :  42   SALA    31.4
+Tracer #43              :  43   SALC    31.4
 Tracer #44              :  44   Br2    160.0   (Br2)
 Tracer #45              :  45   Br      80.0
 Tracer #46              :  46   BrO     96.0
@@ -117,8 +117,11 @@ Include anthro emiss?   : T
  => Use RETRO emiss?    : T
  => Use AEIC emissions? : T
 Use RCP emiss (anth+bf)?: F
-    => RCP scenario?    : RCP60
-    => RCP year?        : 2000
+ => RCP scenario?       : RCP60
+ => RCP year?           : 2000
+ => Use fixed year?     : F
+ => Use RCP aircraft NOx: F
+ => Use RCP ship emiss? : F
 Use EPA/NEI99 (anth+bf)?: F
     w/ ICARTT modif.?   : F
     w/ VISTAS NOx emis? : F
@@ -141,17 +144,15 @@ Include biomass emiss?  : T
     => daily GFED3?     : F 
     => 3-hr GFED3?      : F
 Individual NOx sources  :---
- => Use RCP aircraft NOx: F
  => Use lightning NOx?  : T
     => Spat-seas constr?: T
  => Use soil NOx        : T
     => soilNOx rst file?: soil_rst.geos5_4x5_fullchem.YYYYMMDDhh
  => Use fertilizer NOx  : T
 NOx scaling             : 1
-Use ship SO2 emissions? :---
+Use ship emissions?     :---
  => global EDGAR ?      : T
  => global ICOADS ?     : T
- => global RCP ?        : F
  => EMEP over EUROPE ?  : T
  => ship SO2 Corbett ?  : F
  => ship SO2 Arctas ?   : T
@@ -163,6 +164,28 @@ Bromine switches        :---
  => Use seasalt Br2?    : T
  => 1ppt MBL BRO Sim.?  : F
  => Bromine scaling     : 1
+Switches for UCX        :---
+ => Use CH4 emissions?  : F
+ => Turn on surface BCs :---
+    => CH4?             : F
+    => OCS?             : F
+    => CFCs?            : F
+    => Cl species?      : F
+    => Br species?      : F
+    => N2O?             : F
+ => Set initial glob MRs:---
+    => strat. H2O?      : F
+    => CH4?             : F
+    => OCS?             : F
+    => CFCs?            : F
+    => Cl species?      : F
+    => strat Bry (GCCM)?: F
+    => Br species?      : F
+    => strat. Br?       : F
+    => strat. NOx/HNO3? : F
+    => N2O?             : F
+    => strat. SO4?      : F
+ => CFC emission year   : 0
 ------------------------+------------------------------------------------------
 %%% AEROSOL MENU %%%    :
 Online SULFATE AEROSOLS : T
@@ -178,6 +201,13 @@ Online SEASALT AEROSOLS : T
  -- SALA radius bin [um]: 0.01 0.5
  -- SALC radius bin [um]: 0.5  8.0
 Online dicarb. chem.    : F
+Settle strat. aerosols  : F
+Online PSC AEROSOLS     : F
+Allow homogeneous NAT?  : F
+NAT supercooling req.(K): 3.0
+Ice supersaturation req.: 1.2
+Perform PSC het. chem.? : F
+Calc. strat. aero. OD?  : F
 ------------------------+------------------------------------------------------
 %%% DEPOSITION MENU %%% :
 Turn on Dry Deposition? : T
@@ -187,10 +217,14 @@ Turn on Wet Deposition? : T
 Turn on Chemistry?      : T
 Use linear. strat. chem?: T
  => Use Linoz for O3?   : T
+Use UCX strat. chem?    : F
+Online CH4 chemistry?   : F
+Active strat. H2O?      : F
 Chemistry Timestep [min]: 60
 Read and save CSPEC_FULL: F
  => CSPEC rst filename? : spec_rst.geos5_4x5_fullchem.YYYYMMDDhh
 USE solver coded by KPP : F
+Online O3 for FAST-JX?  : T
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
@@ -234,7 +268,7 @@ ND17: Rainout fraction  :  0   all
 ND18: Washout fraction  :  0   all            
 ND19: CH4 loss          :  0   all            
 ND21: Optical depths    :  0   all            
-ND22: J-Values          : 47   64 7 8 20 99              
+ND22: J-Values          : 47   1 7 8 20 44 46 47 49 50 51 64 65 99 -1
       => JV time range  :      11 13
 ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
@@ -272,12 +306,13 @@ ND59: -                 :  0   all
 ND60: Wetland Frac      :  0   all
 ND61: -                 :  0   all
 ND62: Inst column maps  :  0   all
-ND64: -                 :  0   all
+ND64: Radiative flux    :  0   all
 ND66: DAO 3-D fields    : 47   all
 ND67: DAO 2-D fields    : 47   all
 ND68: Airmass/Boxheight : 47   all
 ND69: Surface area      :  1   all
 ND70: Debug output      :  0   all
+ND71: Hourly max ppbv   :  0   2
 ------------------------+------------------------------------------------------
 %%% PLANEFLIGHT MENU %%%:
 Turn on plane flt diag? : F
@@ -366,15 +401,15 @@ File w/ final Ox        : Ox.mass.final
 Save TPCORE BC's        : F
 Input BCs at 2x2.5?     : F
 Over North America?     : F
-TPCORE NA BC directory  : BC_2x25_NA/
+TPCORE NA BC directory  : BC_4x5_NA/
 Over Europe?            : F
-TPCORE EU BC directory  : BC_2x25_EU/
+TPCORE EU BC directory  : BC_4x5_EU/
 Over China?             : F
-TPCORE CH BC directory  : BC_2x25_CH/
+TPCORE CH BC directory  : BC_4x5_CH/
 Over SE Asia region?    : F
-TPCORE SE BC directory  : BC_2x25_SE/
+TPCORE SE BC directory  : BC_4x5_SE/
 Over Custom Region?     : F
-TPCORE BC directory     : BC_2x25/
+TPCORE BC directory     : BC_4x5/
 BC timestep [min]       : 180
 LL box of BC region     :   9  26
 UR box of BC region     :  29  41
