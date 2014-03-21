@@ -1,0 +1,285 @@
+#!/usr/bin/perl -w
+
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: gcUtMatrix
+#
+# !DESCRIPTION: This perl script is the driver for the GEOS-Chem Unit Tester,
+#  which submits several automatic debugging jobs.
+#\\
+#\\
+# !USES:
+#
+require 5.003;                       # Need this version of Perl or newer
+use English;                         # Use English language
+use Carp;                            # Get detailed error messages
+use strict;
+#
+# !PUBLIC DATA MEMBERS:
+#
+our %UNITTEST  = ();                 # Hash for unit tests & their colors
+#		
+# !PUBLIC MEMBER FUNCTIONS:
+#  &main()     : Driver routine for gcUnitTest
+#
+# !PRIVATE MEMBER FUNCTIONS:
+#  &readResult : Returns the name of the GEOS-Chem run directory
+#  &makeMatrix : Creates the unit test matrix web page
+#
+# !CALLING SEQUENCE:
+#  gcUtMatrix [ OPTIONS-FILENAME ]
+#
+# !REVISION HISTORY: 
+#  21 Mar 2014 - R. Yantosca -  
+#EOP
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: readResults
+#
+# !DESCRIPTION: Reads the results.log file and determines the color 
+#  (red, green, yellow) to display in each slot of the unit test
+#  matrix web page.
+#\\
+#\\
+# !INTERFACE:
+#
+sub readResults($) {
+#
+# !INPUT PARAMETERS:
+#
+  my ( $fileName ) = @_;  # File in which unit test options are listed
+#
+# !CALLING SEQUENCE:
+#  &doUnitTest( $fileName );
+#
+# !REVISION HISTORY:
+#  21 Mar 2014 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Scalar
+  my $bpch    = 1;
+  my $rst     = 1;
+  my $soil    = 1;
+  my $color   = "";
+  my $utName  = "";
+  my $white   = "#FFFFFF";
+  my $red     = "#FF0000";
+  my $green   = "#00FF00";
+  my $yellow  = "#FFFF00";
+  
+  # Arrays
+  my @txt     = ();
+  my @subStr  = ();
+
+  #---------------------------------------------------------------------------
+  # Initialization, set a 
+  #---------------------------------------------------------------------------
+  
+  # Initialize the UNITTEST hash w/ all possible values
+  # Set background color to white
+  @txt = qx( ls -1 ../runs/ );
+
+  # 
+  foreach $utName ( @txt ) { 
+
+    # Strip new lines
+    chomp( $utName );
+    
+    # Change name of soa_svpoa to soasvpoa to avoid problems
+    if ( $utName =~ m/soa_svpoa/ ) { $utName =~ s/soa_svpoa/svpoa/g; }
+
+    # Give each unit test the background color of white
+    $UNITTEST{ $utName } = $white;
+  }
+
+  #---------------------------------------------------------------------------
+  # Read the results.log file
+  #---------------------------------------------------------------------------
+
+  # Read entire file into an array and remove newlines
+  open( I, "<$fileName" ) or die "Cannot open $fileName!\n";
+  chomp( @txt = <I> );
+  close( I );
+
+  # Loop thru each line in the file; parse information into global variables
+  for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
+
+     # Get the name of the unit test directory
+    if ( $txt[$i] =~ m/VALIDATION OF GEOS-CHEM OUTPUT FILES/ ) {
+      @subStr = split( ':', $txt[++$i] );
+      $utName = $subStr[1];
+
+      # Strip white spaces
+      $utName =~ s/ //g;
+
+      # Change name of soa_svpoa to soasvpoa to avoid problems
+      if ( $utName =~ m/soa_svpoa/ ) { $utName =~ s/soa_svpoa/svpoa/g; }
+
+      # Initialize flags
+      $bpch   = 1;
+      $rst    = 1;
+      $soil   = 1;
+
+      # Check the results of the BPCH file    
+      for ( my $j = 0; $j < 6; $j++ ) { 
+	if ( $txt[++$i] =~ m/DIFFERENT/ ) { $bpch = -1; }
+      }
+
+      # Check the results of the RESTART file    
+      for ( my $j = 0; $j < 6; $j++ ) { 
+	if ( $txt[++$i] =~ m/DIFFERENT/ ) { $rst = -1; }
+      }
+
+      # Check the results of the SOIL RESTART file    
+      if ( $utName =~ m/fullchem/ || $utName =~ m/soa/      ||
+	   $utName =~ m/Hg/       || $utName =~ m/TOMAS/    ||
+	   $utName =~ m/UCX/                            ) {
+	for ( my $j = 0; $j < 6; $j++ ) { 
+	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $soil = -1; }
+        }
+      }
+
+      # Assign a color to the unit test output
+      # GREEN  = IDENTICAL
+      # YELLOW = RESTART FILES IDENTICAL, BUT BPCH FILES DIFFERENT
+      # RED    = RESTART FILES DIFFERENT
+      if    ( $bpch ==  1 && $rst ==  1 && $soil == 1 ) { $color = $green;  }
+      elsif ( $bpch == -1 && $rst ==  1 && $soil == 1 ) { $color = $yellow; } 
+      elsif ( $bpch == -1 && $rst == -1               ) { $color = $red;    } 
+
+      # Add the color to the UNITTEST hash
+      $UNITTEST{ $utName } = $color;
+    }	
+  }
+
+  # Return normally
+  return( $? );
+}
+#EOP
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: makeMatrix
+#
+# !DESCRIPTION: Creates a unit test matrix web page from a template file.
+#  Tokens in the template file will be replaced with the colors (red, green,
+#  or yellow) corresponding to the results of each unit test.
+#\\
+#\\
+# !INTERFACE:
+#
+sub makeMatrix($$) {
+#
+# !INPUT PARAMETERS:
+#
+  my ( $template, $webFile ) = @_;
+#
+# !CALLING SEQUENCE:
+#  &doUnitTest( $fileName );
+#
+# !REVISION HISTORY:
+#  21 Mar 2014 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Scalar
+  my $utColor = "";
+  my $utName  = "";
+  my $line    = "";
+
+  # Arrays
+  my @txt     = ();
+
+  #---------------------------------------------------------------------------
+  # makeMatrix begins here!
+  #---------------------------------------------------------------------------
+
+  # Read entire file into an array and remove newlines
+  open( I, "<$template" ) or die "Cannot open $template!\n";
+  chomp( @txt = <I> );
+  close( I );
+
+  # Open output file
+  open( O, ">$webFile" ) or die "Cannot open $webFile!\n";
+
+  # Loop over all lines in the text
+  foreach $line ( @txt ) {
+
+    # Strip newlines
+    chomp( $line );
+
+    # Text-replace the proper color for each unit test
+    while ( my ( $utName, $utColor ) = each( %UNITTEST ) ) { 
+      $line =~ s/$utName/$utColor/g;
+    }	
+
+    # Write to output file
+    print O "$line\n";
+  }
+
+  # Close output file
+  close( O );
+
+  # Return normally
+  return( $? );
+}
+#EOP
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: main
+#
+# !DESCRIPTION: Driver program for the gcUnitTest script.
+#\\
+#\\
+# !INTERFACE:
+#
+sub main(@) {
+#
+# !CALLING SEQUENCE:
+#  doUnitTest OPTIONS-FILENAME
+#
+# !REVISION HISTORY:
+#  23 May 2013 - R. Yantosca - Initial version, based on NRT-ARCTAS
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+  # If the user passes a filename from the command line, use it
+  # Otherwise, default to "UnitTest.input"
+  if ( scalar( @ARGV ) == 1 ) { &readResults( $ARGV[0]         ); }
+  else                        { exit(1);                          }
+
+  # Create the output file
+  &makeMatrix( "ut_template.html", "output.html" );
+
+  # Exit and pass status code back
+  return( $? );
+}
+#EOC
+#------------------------------------------------------------------------------
+
+# Call main program
+main();
+
+# Exit and pass status code back to Unix shell
+exit( $? );
+
+
