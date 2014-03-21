@@ -101,6 +101,7 @@
  100 SO4       PHOTON    SO2       OH        OH            1.000 /H2SO4 /
  101 ClNO2     PHOTON    Cl        NO2                     1.000 /ClNO2 /
  102 ClOO      PHOTON    Cl        O2                      1.000 /ClOO  /
- 103 MPN       PHOTON    HO2       NO3       HCHO          0.050 /MPN   /
- 104 MPN       PHOTON    MO2       NO2                     0.950 /MPN   /
+ 103 O3        PHOTON    O2        O(1D)                   1.000 /O3(1D)/
+ 104 MPN       PHOTON    HO2       NO3       HCHO          0.050 /MPN   /
+ 105 MPN       PHOTON    MO2       NO2                     0.950 /MPN   /
 9999

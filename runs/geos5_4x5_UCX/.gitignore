@@ -6,8 +6,7 @@ job.*
 log.*
 trac_avg.*
 trac_rst.*
-soil_rst*.mp
-soil_rst*.sp
+soil_rst*
 diaginfo.dat
 tracerinfo.dat
 geos.mp
