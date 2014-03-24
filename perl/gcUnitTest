@@ -48,7 +48,7 @@ our $COMPILER  = "";                 # Compiler variable for GEOS-Chem
 our $MAKE_CMD  = "";                 # Make command with debug options
 our $SUBMIT    = "";                 # Queue submit command
 our $VERSION   = "";                 # GEOS-Chem version ID
-our $DESCRIBE  = "":                 # Short description of unit tests
+our $DESCRIBE  = "";                 # Short description of unit tests
 #		
 # !PUBLIC MEMBER FUNCTIONS:
 #  &main()     : Driver routine for gcUnitTest
