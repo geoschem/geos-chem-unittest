@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -32,7 +32,7 @@ use UtUtils qw( &cleanDir
 #  28 Aug 2013 - R. Yantosca - Now reference &cleanDir from UtUtils.pm
 #EOP
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -61,6 +61,7 @@ sub getDirs($) {
 #
 # !REVISION HISTORY:
 #  26 Aug 2013 - R. Yantosca - Initial version
+#  24 Mar 2014 - R. Yantosca - Now use $RUN_ROOT to get the root run dir
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -76,13 +77,13 @@ sub getDirs($) {
 
   # Parse each line until we find the log directory
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
-    if ( $txt[$i] =~ "JOB_DIR" ) { $jobDir = &parse( $txt[$i] ); }
-    if ( $txt[$i] =~ "LOG_DIR" ) { $logDir = &parse( $txt[$i] ); }
-    if ( $txt[$i] =~ "RUN_DIR" ) { $runDir = &parse( $txt[$i] ); }
+    if ( $txt[$i] =~ "JOB_DIR"  ) { $jobDir = &parse( $txt[$i] ); }
+    if ( $txt[$i] =~ "LOG_DIR"  ) { $logDir = &parse( $txt[$i] ); }
+    if ( $txt[$i] =~ "RUN_ROOT" ) { $runDir = &parse( $txt[$i] ); }
   }
 
   # Only get the root part of the run & log directories
-  $runDir =~ s/{RUNDIR}//g;
+#  $runDir =~ s/{RUNDIR}//g;
   $logDir =~ s/\/{VERSION}//g;
 
   # Return to main program
@@ -90,7 +91,7 @@ sub getDirs($) {
 }
 #EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -111,6 +112,7 @@ sub main() {
 #  26 Aug 2013 - R. Yantosca - Initial version
 #  03 Sep 2013 - R. Yantosca - Now do a "make fileclean" in the runs directory,
 #                              which will remove files in run subdirectories
+#  24 Mar 2014 - R. Yantosca - Add better test for directories
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -124,6 +126,7 @@ sub main() {
   my $logDir  = "";
   my $optFile = "";
   my $runDir  = "";
+  my $runRoot = "";
   my $result  = "";
   
   # Arrays
@@ -134,8 +137,8 @@ sub main() {
   if ( scalar( @ARGV ) == 1 ) { $optFile = $ARGV[0];         }
   else                        { $optFile = "UnitTest.input"; }
 
-  # Get the log file directory
-  ( $jobDir, $logDir, $runDir ) = &getDirs( $optFile );
+  # Get the local directories
+  ( $jobDir, $logDir, $runRoot ) = &getDirs( $optFile );
 
   # Remove job scripts
   &cleanDir( $jobDir );
@@ -144,17 +147,30 @@ sub main() {
   &cleanDir( $logDir );
 
   # Get all of the subdirectories of $runDir
-  opendir( D, "$runDir" ) or die "$runDir is an invalid directory!\n";
+  opendir( D, "$runRoot" ) or die "$runRoot is an invalid directory!\n";
   chomp( @dirs = readdir( D ) );
   closedir( D );
 
-  # Execute "make fileclean" in each run directory
+  # Loop over all contents in the root run directory ($RUN_ROOT)
   foreach $dir ( @dirs ) {
-    if ( !( $dir =~ m/^\./ ) ) {
-      if ( !( $dir =~ m/chem_inputs/ ) ) { 
-	$cmd = "make -C $runDir/$dir fileclean";
-	chomp( $result = qx( $cmd ) );
-	print "$result\n";
+
+    # Construct full path name for subdirectory $dir
+    $runDir = "$runRoot/$dir";
+
+    # Make sure each directory is a directory and not a file
+    if ( -d $runDir ) { 
+      
+      # Also Skip over . and ..
+      if ( !( $dir =~ m/^\./ ) ) {
+
+	# Skip over chem_inputs/
+	if ( !( $dir =~ m/chem_inputs/ ) ) { 
+
+	  # Then remove files in each run directory
+	  $cmd = "make -C $runDir fileclean";
+	  chomp( $result = qx( $cmd ) );
+  	  print "$result\n";
+        }
       }
     }
   }	

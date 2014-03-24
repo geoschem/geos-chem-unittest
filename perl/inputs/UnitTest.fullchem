@@ -6,7 +6,7 @@
 # !INCLUDE: UnitTest.fullchem
 #
 # !DESCRIPTION: Input file that specifies debugging options for the 
-#  GEOS-Chem unit tester.
+#  GEOS-Chem unit tester.  Customized for full-chem simulations.
 #\\
 #\\
 # !REMARKS:  
@@ -32,22 +32,26 @@
 #  04 Nov 2013 - R. Yantosca - Added gcap_4x5_fullchem
 #  06 Nov 2013 - R. Yantosca - Added geos5_2x25_fullchem
 #  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
-#EOP
+#  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION   : v9-02.fullchem
-   CODE_DIR  : /home/bmy/GC/Code.v9-02
-   DATA_ROOT : /as/data/geos
-   RUN_DIR   : /home/bmy/UT/runs/{RUNDIR}
-   JOB_DIR   : /home/bmy/UT/jobs
-   LOG_DIR   : /home/bmy/UT/logs/{VERSION}
-   PERL_DIR  : /home/bmy/UT/perl
-   COMPILER  : ifort
-   MAKE_CMD  : make -j4 BOUNDS=n DEBUG=n FPE=y NO_ISO=y
-   SUBMIT    : submit smp4
+   VERSION     : v9-02.fullchem
+   DESCRIPTION : To test GEOS-Chem fullchem simulations
+   CODE_DIR    : /home/bmy/GC/Code.v9-02
+   DATA_ROOT   : /as/data/geos
+   RUN_ROOT    : /home/bmy/UT/runs
+   RUN_DIR     : {RUNROOT}/{RUNDIR}
+   JOB_DIR     : /home/bmy/UT/jobs
+   LOG_DIR     : /home/bmy/UT/logs/{VERSION}
+   PERL_DIR    : /home/bmy/UT/perl
+   COMPILER    : ifort
+   MAKE_CMD    : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
+   SUBMIT      : submit smp4
+   TEMPLATE    : {PERLDIR}/ut_template.html
+   WEB_GRID    : {LOGDIR}/{VERSION}.results.html
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.

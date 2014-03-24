@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -38,9 +38,10 @@ use strict;                      # Use "IMPLICIT NONE" syntax
 # !REVISION HISTORY: 
 #  27 Aug 2013 - R. Yantosca - Initial version
 #  29 Aug 2013 - R. Yantosca - Now print the directory name in the results
+#  24 Mar 2014 - R. Yantosca - Updated ProTeX headers
 #EOP
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -169,7 +170,7 @@ sub doChecks($$$$) {
 }
 #EOP
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #

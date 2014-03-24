@@ -1,0 +1,126 @@
+#!/usr/bin/perl -w
+
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: gcUtWeb
+#
+# !DESCRIPTION: This perl script creates a web page containing a table
+#  with the results of GEOS-Chem unit test simulations.
+#\\
+#\\
+# !USES:
+#
+require 5.003;		 	     # Need this version of Perl or newer
+use English;                         # Use English language
+use Carp;                            # Get detailed error messages
+use strict;
+use UtUtils qw( &readResults
+                &makeMatrix  );      # Get routines from UtUtils.pm
+#		
+# !PUBLIC MEMBER FUNCTIONS:
+#  &main()        : Driver routine for gcUnitTest
+#
+# !PRIVATE MEMBER FUNCTIONS:
+#  &createWebGrid : Returns the name of the GEOS-Chem run directory
+#
+# !CALLING SEQUENCE:
+#  gcUtWeb RUNROOT RESULTS TEMPLATE WEBFILE
+#
+# !REVISION HISTORY: 
+#  24 Mar 2014 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: createWebGrid
+#
+# !DESCRIPTION: Driver program for the gcUnitTest script.
+#\\
+#\\
+# !INTERFACE:
+#
+sub createWebGrid($$$$) {
+#
+# !INPUT PARAMETERS:
+#
+  my ( $runRoot, $results, $template, $webFile ) = @_;
+#
+# !REVISION HISTORY:
+#  24 Mar 2014 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+  # Make sure we can find the log file w/ the unit test results
+  if ( !( -f $results ) ) { 
+    print "Cannot locate the $results file...exiting!\n";
+    exit(1);
+  }
+
+  # Make sure we can find the template file
+  if ( !( -f $template ) ) { 
+    print "Cannot locate the $template file...exiting!\n";
+    exit(2);
+  }
+
+  # Read the results log file
+  my %unitTests = &readResults( $runRoot, $results );
+
+  # Create the output file
+  &makeMatrix( $template, $webFile, %unitTests );
+
+  # Exit and pass status code back
+  return( $? );
+}
+#EOC
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: main
+#
+# !DESCRIPTION: Driver program for the gcUnitTest script.
+#\\
+#\\
+# !INTERFACE:
+#
+sub main(@) {
+#
+# !CALLING SEQUENCE:
+#  gcUtWeb RUNROOT RESULTS TEMPLATE WEBFILE
+#
+# !REVISION HISTORY:
+#  24 Mar 2014 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+  # Return unless we are getting 4 arguments
+  if ( scalar( @ARGV ) != 4 ) { 
+    print "Usage: gcUtWeb RUNROOT RESULTS TEMPLATE WEBFILE\n"; 
+    exit(1);
+  }
+
+  # Create the web page with the matrix of unit test results
+  &createWebGrid( @ARGV );
+
+
+  # Exit and pass status code back
+  return( $? );
+}
+#EOC
+#------------------------------------------------------------------------------
+
+# Call main program
+main();
+
+# Exit and pass status code back to Unix shell
+exit( $? );
+
+
