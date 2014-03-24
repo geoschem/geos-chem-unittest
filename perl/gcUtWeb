@@ -16,7 +16,7 @@
 require 5.003;		 	     # Need this version of Perl or newer
 use English;                         # Use English language
 use Carp;                            # Get detailed error messages
-use strict;
+use strict;                          # Use IMPLICIT-NONE style syntax
 use UtUtils qw( &readResults
                 &makeMatrix  );      # Get routines from UtUtils.pm
 #		

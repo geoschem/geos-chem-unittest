@@ -270,20 +270,20 @@ sub doUnitTest($) {
     # Skip over lines beginning with the # comment character
     #------------------------------------------------------------------------
     if ( !( $txt[$i] =~ m/\#/ ) ) { 
-      if    ( $txt[$i] =~ "CODE_DIR"  ) { $CODE_DIR  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "COMPILER"  ) { $COMPILER  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "DATA_ROOT" ) { $DATA_ROOT = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "JOB_DIR"   ) { $JOB_DIR   = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "LOG_DIR"   ) { $LOG_DIR   = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "MAKE_CMD"  ) { $MAKE_CMD  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "PERL_DIR"  ) { $PERL_DIR  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "RUN_ROOT"  ) { $RUN_ROOT  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "RUN_DIR"   ) { $RUN_DIR   = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "SUBMIT"    ) { $SUBMIT    = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "TEMPLATE"  ) { $TEMPLATE  = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "WEB_GRID"  ) { $WEB_GRID  = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "DESCRIBE"  ) { $DESCRIBE  = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "VERSION"   ) { $VERSION   = &parse( $txt[$i] ); }
+      if    ( $txt[$i] =~ "CODE_DIR"     ) { $CODE_DIR  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "COMPILER"     ) { $COMPILER  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "DATA_ROOT"    ) { $DATA_ROOT = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "JOB_DIR"      ) { $JOB_DIR   = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "LOG_DIR"      ) { $LOG_DIR   = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "MAKE_CMD"     ) { $MAKE_CMD  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "PERL_DIR"     ) { $PERL_DIR  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "RUN_ROOT"     ) { $RUN_ROOT  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "RUN_DIR"      ) { $RUN_DIR   = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "SUBMIT"       ) { $SUBMIT    = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "TEMPLATE"     ) { $TEMPLATE  = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "WEB_GRID"     ) { $WEB_GRID  = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "DESCRIPTION"  ) { $DESCRIBE  = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "VERSION"      ) { $VERSION   = &parse( $txt[$i] ); }
     }
 
     #------------------------------------------------------------------------
@@ -420,7 +420,8 @@ EOF
 	    "$logTop\n", 
 	    @cmds,
 	     "\n\# %%% Create web page w/ unit test matrix %%%\n",
-             "$PERL_DIR/gcUtWeb $RUN_ROOT $RESULTS $TEMPLATE $WEB_GRID" );
+  	     "cd $PERL_DIR\n",
+             "gcUtWeb $RUN_ROOT $RESULTS $TEMPLATE $WEB_GRID" );
 
   # WRITE the make commands to a job file
   $jobFile = "$JOB_DIR/job.$VERSION";
