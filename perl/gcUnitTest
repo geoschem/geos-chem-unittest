@@ -42,6 +42,7 @@ our $RUN_DIR   = "";                 # Unit Test run directory subdirectory
 our $RESULTS   = "";                 # Results.log file
 our $TEMPLATE  = "";                 # Template web page
 our $WEB_GRID  = "";                 # Web page w/ unit text matrix
+our $WEB_PUSH  = "NONE";             # Remote server for web page push
 
 # Options
 our $COMPILER  = "";                 # Compiler variable for GEOS-Chem
@@ -67,6 +68,7 @@ our $DESCRIBE  = "";                 # Short description of unit tests
 #
 # !REVISION HISTORY: 
 #  22 Aug 2013 - R. Yantosca - Initial version
+#  04 Apr 2014 - R. Yantosca - Now can push the web page to a remote server
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -268,6 +270,8 @@ sub doUnitTest($) {
     #------------------------------------------------------------------------
     # Get values for global options (these precede the list of simulations)
     # Skip over lines beginning with the # comment character
+    #
+    # NOTE: VERSION has to be last, and WEB_GRID before WEB_PUSH!
     #------------------------------------------------------------------------
     if ( !( $txt[$i] =~ m/\#/ ) ) { 
       if    ( $txt[$i] =~ "CODE_DIR"     ) { $CODE_DIR  = &parse( $txt[$i] ); } 
@@ -282,6 +286,7 @@ sub doUnitTest($) {
       elsif ( $txt[$i] =~ "SUBMIT"       ) { $SUBMIT    = &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "TEMPLATE"     ) { $TEMPLATE  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "WEB_GRID"     ) { $WEB_GRID  = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "WEB_PUSH"     ) { $WEB_PUSH  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "DESCRIPTION"  ) { $DESCRIBE  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "VERSION"      ) { $VERSION   = &parse( $txt[$i] ); }
     }
@@ -302,6 +307,7 @@ sub doUnitTest($) {
       $WEB_GRID =~ s/{VERSION}/$VERSION/g;
       $WEB_GRID =~ s/{LOGDIR}/$LOG_DIR/g;
       $RUN_DIR  =~ s/{RUNROOT}/$RUN_ROOT/g;
+      $WEB_PUSH =~ s/\|/:/g;
 
       # Make sure each of these directories exist before proceeding
       &checkDir( $DATA_ROOT );
@@ -421,7 +427,7 @@ EOF
 	    @cmds,
 	     "\n\# %%% Create web page w/ unit test matrix %%%\n",
   	     "cd $PERL_DIR\n",
-             "gcUtWeb $RUN_ROOT $RESULTS $TEMPLATE $WEB_GRID" );
+  	     "gcUtWeb $RUN_ROOT $RESULTS $TEMPLATE $WEB_GRID $WEB_PUSH" );
 
   # WRITE the make commands to a job file
   $jobFile = "$JOB_DIR/job.$VERSION";
