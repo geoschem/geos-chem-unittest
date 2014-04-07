@@ -12,16 +12,20 @@
 # !REMARKS:  
 #  Customize the unit tests for your system by specifying these values:
 #  -------------------------------------------------------------------
-#  VERSION   : A tag used to identify this Unit Test (e.g. v9-02o)
-#  CODE_DIR  : Full path of the GEOS-Chem code directory
-#  DATA_ROOT : Root GEOS-Chem data directory
-#  RUN_DIR   : Unit Test run directory
-#  JOB_DIR   : Unit Test job script directory
-#  LOG_DIR   : Unit Test log file directory
-#  PERL_DIR  : Unit Test perl script directory (i.e. this directory)
-#  COMPILER  : Compiler used to build GEOS-Chem (e.g. "ifort", "pgi")
-#  MAKE_CMD  : Make command with basic debugging flags
-#  SUBMIT    : Submit command and queue name
+#  VERSION     : A tag used to identify this Unit Test (e.g. v9-02o)
+#  DESCRIPTION : A short description of what this unit test is validating
+#  CODE_DIR    : Full path of the GEOS-Chem code directory
+#  DATA_ROOT   : Root GEOS-Chem data directory
+#  RUN_DIR     : Unit Test run directory
+#  JOB_DIR     : Unit Test job script directory
+#  LOG_DIR     : Unit Test log file directory
+#  PERL_DIR    : Unit Test perl script directory (i.e. this directory)
+#  COMPILER    : Compiler used to build GEOS-Chem (e.g. "ifort", "pgi")
+#  MAKE_CMD    : Make command with basic debugging flags
+#  SUBMIT      : Submit command and queue name
+#  TEMPLATE    : Template web page for displaying grid of results
+#  WEB_GRID    : File name for web page containing unit test results
+#  WEB_PUSH    : Remote location to send web page w/ unit test results
 #
 # !REMARKS:
 #  This file specifies unit tests for offline simulations (all met types)
@@ -31,21 +35,28 @@
 #  23 Oct 2013 - R. Yantosca - Initial version
 #  06 Nov 2013 - R. Yantosca - Add geos5_4x5_tagO3
 #  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
+#  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
+#  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION   : v9-02.geosfp
-   CODE_DIR  : /home/bmy/GC/Code.v9-02
-   DATA_ROOT : /as/data/geos
-   RUN_DIR   : /home/bmy/UT/runs/{RUNDIR}
-   JOB_DIR   : /home/bmy/UT/jobs
-   LOG_DIR   : /home/bmy/UT/logs/{VERSION}
-   PERL_DIR  : /home/bmy/UT/perl
-   COMPILER  : ifort
-   MAKE_CMD  : make -j4 BOUNDS=n DEBUG=n FPE=y NO_ISO=y
-   SUBMIT    : submit smp4
+   VERSION     : v9-02.offline
+   DESCRIPTION : Tests offline simulations in GEOS-Chem
+   CODE_DIR    : /home/bmy/GC/Code.v9-02
+   DATA_ROOT   : /as/data/geos
+   RUN_ROOT    : /home/bmy/UT/runs
+   RUN_DIR     : {RUNROOT}/{RUNDIR}
+   JOB_DIR     : /home/bmy/UT/jobs
+   LOG_DIR     : /home/bmy/UT/logs/{VERSION}
+   PERL_DIR    : /home/bmy/UT/perl
+   COMPILER    : ifort
+   MAKE_CMD    : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
+   SUBMIT      : submit smp4
+   TEMPLATE    : {PERLDIR}/ut_template.html
+   WEB_GRID    : {LOGDIR}/{VERSION}.results.html
+   WEB_PUSH    : NONE
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.

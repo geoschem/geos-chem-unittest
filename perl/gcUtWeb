@@ -1,0 +1,181 @@
+#!/usr/bin/perl -w
+
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: gcUtWeb
+#
+# !DESCRIPTION: This perl script creates a web page containing a table
+#  with the results of GEOS-Chem unit test simulations.  It can also push
+#  the web page to a remote server (if necessary)
+#\\
+#\\
+# !USES:
+#
+require 5.003;		 	     # Need this version of Perl or newer
+use English;                         # Use English language
+use Carp;                            # Get detailed error messages
+use strict;                          # Use IMPLICIT-NONE style syntax
+use UtUtils qw( &readResults
+                &makeMatrix  );      # Get routines from UtUtils.pm
+#		
+# !PUBLIC MEMBER FUNCTIONS:
+#  &main()        : Driver routine for gcUnitTest
+#
+# !PRIVATE MEMBER FUNCTIONS:
+#  &createWebGrid : Returns the name of the GEOS-Chem run directory
+#  &pushToWebSite : Pushes the web page to the web site
+#
+# !CALLING SEQUENCE:
+#  gcUtWeb RUNROOT RESULTS TEMPLATE WEBFILE WEBPUSH
+#
+# !REVISION HISTORY: 
+#  24 Mar 2014 - R. Yantosca - Initial version
+#  04 Apr 2014 - R. Yantosca - Added &pushToWebSite routine
+#EOP
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: createWebGrid
+#
+# !DESCRIPTION: Program to 
+#\\
+#\\
+# !INTERFACE:
+#
+sub createWebGrid($$$$$) {
+#
+# !INPUT PARAMETERS:
+#
+  # $runRoot  : Root run directoyr
+  # $results  : Log file w/ unit test results
+  # $template : File with the web page template in HTML
+  # $webFile  : Web page with unit test results (created from $template)
+  # $webPush  : Remote web server location where $webFile will go
+  my ( $runRoot, $results, $template, $webFile, $webPush ) = @_;
+#
+# !REVISION HISTORY:
+#  24 Mar 2014 - R. Yantosca - Initial version
+#  04 Apr 2014 - R. Yantosca - Added $webPush argument
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+  # Make sure we can find the log file w/ the unit test results
+  if ( !( -f $results ) ) { 
+    print "Cannot locate the $results file...exiting!\n";
+    exit(1);
+  }
+
+  # Make sure we can find the template file
+  if ( !( -f $template ) ) { 
+    print "Cannot locate the $template file...exiting!\n";
+    exit(2);
+  }
+
+  # Read the results log file
+  my %unitTests = &readResults( $runRoot, $results );
+
+  # Create the output file
+  &makeMatrix( $template, $webFile, %unitTests );
+
+  # Upload web page to the remote server
+  if ( -f $webFile ) { &pushToWebSite( $webFile, $webPush ); }
+
+  # Exit and pass status code back
+  return( $? );
+}
+#EOP
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: pushToWebSite
+#
+# !DESCRIPTION: Pushes the web page w/ the unit test matrix to a remote
+#  server.  Exits quietly if there is no web page to push.
+#\\
+#\\
+# !INTERFACE:
+#
+sub pushToWebSite($$) {
+#
+# !INPUT PARAMETERS:
+#
+  # $webFile : Web page file containing Unit Test results
+  # $webPush : Remote server path
+  my ( $webFile, $webPush ) = @_;
+#
+# !REVISION HISTORY:
+#  24 Mar 2014 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+  # If we can't find the web page, exit quietly
+  if ( !( -f $webFile ) ) { 
+    print "Cannot locate the $webFile file...exiting!\n";
+    return( -1 );
+  }
+
+  # If a remote location is specified, then push the web page to the server
+  if ( !( $webPush =~ m/NONE/ ) ) {
+    my $cmd    = "scp $webFile $webPush";
+    my $result = qx( $cmd );
+  }
+
+  # Exit and pass status code back
+  return( $? );
+}
+#EOC
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: main
+#
+# !DESCRIPTION: Driver program for the gcUtWeb script.
+#\\
+#\\
+# !INTERFACE:
+#
+sub main(@) {
+#
+# !CALLING SEQUENCE:
+#  gcUtWeb RUNROOT RESULTS TEMPLATE WEBFILE WEBPUSH
+#
+# !REVISION HISTORY:
+#  24 Mar 2014 - R. Yantosca - Initial version
+#   4 Apr 2014 - R. Yantosca - Now accepts the WEBPUSH argument
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+  # Return unless we are getting 4 arguments
+  if ( scalar( @ARGV ) != 5 ) { 
+    print "Usage: gcUtWeb RUNROOT RESULTS TEMPLATE WEBFILE WEBPUSH\n"; 
+    exit(1);
+  }
+
+  # Create the web page with the matrix of unit test results
+  &createWebGrid( @ARGV );
+
+  # Exit and pass status code back
+  return( $? );
+}
+#EOC
+#------------------------------------------------------------------------------
+
+# Call main program
+main();
+
+# Exit and pass status code back to Unix shell
+exit( $? );
+
+

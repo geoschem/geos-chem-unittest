@@ -27,22 +27,27 @@
 #  22 Aug 2013 - R. Yantosca - Initial version
 #  03 Sep 2013 - R. Yantosca - Now do 1-hr test runs for expediency
 #  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
-!  27 Feb 2014 - R. Yantosca - Now grouped runs by simulation type
+#  27 Feb 2014 - R. Yantosca - Now grouped runs by simulation type
+#  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION   : v10-01.UCX
-   CODE_DIR  : /home/bmy/GC/Code.UCX
-   DATA_ROOT : /as/data/geos
-   RUN_DIR   : /home/bmy/UT/runs/{RUNDIR}
-   JOB_DIR   : /home/bmy/UT/jobs
-   LOG_DIR   : /home/bmy/UT/logs/{VERSION}
-   PERL_DIR  : /home/bmy/UT/perl
-   COMPILER  : ifort
-   MAKE_CMD  : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
-   SUBMIT    : submit smp4
+   VERSION     : v9-02.public
+   DESCRIPTION : To test feature XXX of GEOS-Chem
+   CODE_DIR    : /home/bmy/GC/Code.v10-01
+   DATA_ROOT   : /as/data/geos
+   RUN_ROOT    : /home/bmy/UT/runs
+   RUN_DIR     : {RUNROOT}/{RUNDIR}
+   JOB_DIR     : /home/bmy/UT/jobs
+   LOG_DIR     : /home/bmy/UT/logs/{VERSION}
+   PERL_DIR    : /home/bmy/UT/perl
+   COMPILER    : ifort
+   MAKE_CMD    : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
+   SUBMIT      : submit smp4
+   TEMPLATE    : {PERLDIR}/ut_template.html
+   WEB_GRID    : {LOGDIR}/{VERSION}.results.html
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.

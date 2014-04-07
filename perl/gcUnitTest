@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -22,7 +22,9 @@ use UtUtils qw( &baseName
                 &checkDir
                 &cleanDir
                 &makeInputGeos
-                &parse         );    # Get routines from UtUtils.pm
+                &parse         
+                &readResults       
+                &makeMatrix    );    # Get routines from UtUtils.pm
 #
 # !PUBLIC DATA MEMBERS:
 #
@@ -33,13 +35,21 @@ our $DATA_ROOT = "";                 # Root path for GEOS-Chem data directory
 our $JOB_DIR   = "";                 # Unit Test job directory
 our $LOG_DIR   = "";                 # Unit Test logs directory
 our $PERL_DIR  = "";                 # Unit Test Perl directory
-our $RUN_DIR   = "";                 # Unit Test run directory
+our $RUN_ROOT  = "";                 # Unit Test top-level run directory
+our $RUN_DIR   = "";                 # Unit Test run directory subdirectory
+
+# Files
+our $RESULTS   = "";                 # Results.log file
+our $TEMPLATE  = "";                 # Template web page
+our $WEB_GRID  = "";                 # Web page w/ unit text matrix
+our $WEB_PUSH  = "NONE";             # Remote server for web page push
 
 # Options
 our $COMPILER  = "";                 # Compiler variable for GEOS-Chem
 our $MAKE_CMD  = "";                 # Make command with debug options
 our $SUBMIT    = "";                 # Queue submit command
 our $VERSION   = "";                 # GEOS-Chem version ID
+our $DESCRIBE  = "";                 # Short description of unit tests
 #		
 # !PUBLIC MEMBER FUNCTIONS:
 #  &main()     : Driver routine for gcUnitTest
@@ -58,9 +68,10 @@ our $VERSION   = "";                 # GEOS-Chem version ID
 #
 # !REVISION HISTORY: 
 #  22 Aug 2013 - R. Yantosca - Initial version
+#  04 Apr 2014 - R. Yantosca - Now can push the web page to a remote server
 #EOP
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -118,7 +129,7 @@ sub getRunDir($$$$) {
 }
 #EOP
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -176,7 +187,7 @@ sub makeInputs($$$) {
 }
 #EOP
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -259,18 +270,25 @@ sub doUnitTest($) {
     #------------------------------------------------------------------------
     # Get values for global options (these precede the list of simulations)
     # Skip over lines beginning with the # comment character
+    #
+    # NOTE: VERSION has to be last, and WEB_GRID before WEB_PUSH!
     #------------------------------------------------------------------------
     if ( !( $txt[$i] =~ m/\#/ ) ) { 
-      if    ( $txt[$i] =~ "CODE_DIR"  ) { $CODE_DIR  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "COMPILER"  ) { $COMPILER  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "DATA_ROOT" ) { $DATA_ROOT = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "JOB_DIR"   ) { $JOB_DIR   = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "LOG_DIR"   ) { $LOG_DIR   = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "MAKE_CMD"  ) { $MAKE_CMD  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "PERL_DIR"  ) { $PERL_DIR  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "RUN_DIR"   ) { $RUN_DIR   = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "SUBMIT"    ) { $SUBMIT    = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "VERSION"   ) { $VERSION   = &parse( $txt[$i] ); }
+      if    ( $txt[$i] =~ "CODE_DIR"     ) { $CODE_DIR  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "COMPILER"     ) { $COMPILER  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "DATA_ROOT"    ) { $DATA_ROOT = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "JOB_DIR"      ) { $JOB_DIR   = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "LOG_DIR"      ) { $LOG_DIR   = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "MAKE_CMD"     ) { $MAKE_CMD  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "PERL_DIR"     ) { $PERL_DIR  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "RUN_ROOT"     ) { $RUN_ROOT  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "RUN_DIR"      ) { $RUN_DIR   = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "SUBMIT"       ) { $SUBMIT    = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "TEMPLATE"     ) { $TEMPLATE  = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "WEB_GRID"     ) { $WEB_GRID  = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "WEB_PUSH"     ) { $WEB_PUSH  = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "DESCRIPTION"  ) { $DESCRIBE  = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "VERSION"      ) { $VERSION   = &parse( $txt[$i] ); }
     }
 
     #------------------------------------------------------------------------
@@ -279,10 +297,17 @@ sub doUnitTest($) {
     #------------------------------------------------------------------------
     elsif ( $txt[$i] =~ "!RUNS"     ) {
 
-      # Also append the version tag to the log directory
+      # Append the version tag to the log directory
       # So that we can keep several log files simultaneously
       $LOG_DIR =~ s/{VERSION}/$VERSION/g;
       if ( !( -f $LOG_DIR ) ) { qx( mkdirhier $LOG_DIR ); }
+
+      # Replace directory tokens in a few more variables
+      $TEMPLATE =~ s/{PERLDIR}/$PERL_DIR/g;
+      $WEB_GRID =~ s/{VERSION}/$VERSION/g;
+      $WEB_GRID =~ s/{LOGDIR}/$LOG_DIR/g;
+      $RUN_DIR  =~ s/{RUNROOT}/$RUN_ROOT/g;
+      $WEB_PUSH =~ s/\|/:/g;
 
       # Make sure each of these directories exist before proceeding
       &checkDir( $DATA_ROOT );
@@ -290,7 +315,7 @@ sub doUnitTest($) {
       &checkDir( $JOB_DIR   );
       &checkDir( $LOG_DIR   );
       &checkDir( $PERL_DIR  );
-     
+
       # Skip over comment lines
       while ( $txt[$i] =~ m/^\#/ ) { $i++ }
 
@@ -338,9 +363,12 @@ sub doUnitTest($) {
 	  $makeCmd .= " CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR";
 	  $makeCmd .= " START=$start END=$end"; 
 
-	  # The main log file
+	  # The main log files
 	  $stdout   = "$LOG_DIR/$VERSION.stdout.log";
 	  $logRslt  = "$LOG_DIR/$VERSION.results.log";
+
+	  # Also save the result file in a global variable
+	  $RESULTS  = $logRslt;
 
 	  # If necessary, also add on the nested grid flags
 	  if ( length( $nest ) > 0  ) { $makeCmd .= " NEST=$nest"; }
@@ -378,7 +406,9 @@ sub doUnitTest($) {
 echo "$logHdr"                                                 >> $logRslt
 echo "%%%"                                                     >> $logRslt
 echo "%%%  GEOS-CHEM UNIT TEST RESULTS FOR VERSION: $VERSION"  >> $logRslt
-echo "%%%  job sent to queue at $locTime"                      >> $logRslt
+echo "%%%  job sent to queue @ $locTime"                       >> $logRslt
+echo "%%%"                                                     >> $logRslt
+echo "%%%  DESCRIPTION: $DESCRIBE"                             >> $logRslt
 echo "%%%"                                                     >> $logRslt
 echo "%%%  This is the main log file, which shows output from" >> $logRslt
 echo "%%%  each individual phase of the unit test sequence."   >> $logRslt
@@ -390,10 +420,14 @@ echo "$logHdr"                                                 >> $logRslt
 EOF
 
   # Add some more commands to the top of the job script
+  # Call gcUtWeb to generate the matrix of results as a web page
   @cmds = ( '#!/bin/bash'."\n",
             "set \-e\n", 
 	    "$logTop\n", 
-            @cmds               );
+	    @cmds,
+	     "\n\# %%% Create web page w/ unit test matrix %%%\n",
+  	     "cd $PERL_DIR\n",
+  	     "gcUtWeb $RUN_ROOT $RESULTS $TEMPLATE $WEB_GRID $WEB_PUSH" );
 
   # WRITE the make commands to a job file
   $jobFile = "$JOB_DIR/job.$VERSION";
@@ -421,7 +455,7 @@ EOF
 }
 #EOP
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -442,7 +476,7 @@ sub main(@) {
 #EOP
 #------------------------------------------------------------------------------
 #BOC
-#
+
   # If the user passes a filename from the command line, use it
   # Otherwise, default to "UnitTest.input"
   if ( scalar( @ARGV ) == 1 ) { &doUnitTest( $ARGV[0]         ); }

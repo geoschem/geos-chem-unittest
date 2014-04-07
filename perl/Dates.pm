@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -43,6 +43,7 @@ use strict;         # Force explicit variable declarations (like IMPLICIT NONE)
 #  bmy, 14 Feb 2008 - added getLocalTime, getUtcTime routines
 #  bmy, 20 Feb 2008 - Bug fix: add 1 to month in getLocalTime, getUtcTime
 #  23 May 2013 - R. Yantosca - Added ProTex headers
+#  24 Mar 2014 - R. Yantosca - Updated ProTeX headers
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -64,7 +65,7 @@ BEGIN {
 }
 #EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -159,7 +160,7 @@ sub julDay($$$) {
 }
 #EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -208,7 +209,7 @@ sub mint($) {
 }
 #EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -305,7 +306,7 @@ sub calDate($) {
 }
 #EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -382,7 +383,7 @@ sub addDate($$) {
 }
 #EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -439,7 +440,7 @@ sub getDayOfYear($) {
 }
 #EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -492,7 +493,7 @@ sub getDayOfWeek($) {
 }
 #EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -539,7 +540,7 @@ sub getLocalTime() {
 }
 #EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #

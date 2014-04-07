@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -21,7 +21,6 @@ require 5.003;      # need this version of Perl or newer
 use English;        # Use English language
 use Carp;           # Strict error checking
 use strict;         # Force explicit variable declarations (like IMPLICIT NONE)
-
 #
 # !PUBLIC MEMBER FUNCTIONS:
 #  &baseName      : Returns a directory name minus the full path
@@ -39,6 +38,9 @@ use strict;         # Force explicit variable declarations (like IMPLICIT NONE)
 #  20 Jun 2013 - R. Yantosca - Initial version, moved other routines here
 #  30 Jul 2013 - R. Yantosca - Added function &checkDir
 #  28 Aug 2013 - R. Yantosca - Added functions &cleanDir, $baseName
+#  24 Mar 2014 - R. Yantosca - Add UNITTEST hash and 1 at end of module
+#  24 Mar 2014 - R. Yantosca - Add &readResults, &makeMatrix routines
+#  24 Mar 2014 - R. Yantosca - Update ProTeX headers
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -51,19 +53,21 @@ BEGIN {
   use Exporter ();
   use vars     qw( $VERSION @ISA @EXPORT_OK );
 
-  $VERSION   = 1.00;                                   # version number
-  @ISA       = qw( Exporter       );                   # export method
+  $VERSION   = 1.00;                              # version number
+  @ISA       = qw( Exporter        );             # export method
   @EXPORT_OK = qw( &baseName
                    &checkDir
                    &cleanDir
                    &fmtStr        
-                   &makeInputGeos
+                   &makeInputGeos 
                    &parse
-                   &replaceDate   );                   # export on request
+                   &replaceDate
+                   &readResults
+                   &makeMatrix     );             # exported routines
 }
 #EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -105,7 +109,7 @@ sub baseName($) {
 }
 #EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -143,7 +147,7 @@ sub checkDir($) {
 }
 #EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -195,9 +199,9 @@ sub cleanDir($) {
     }
   }	
 }
-#EOP
+#EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -246,9 +250,9 @@ sub fmtStr($) {
   # Return to calling program
   return( $str );
 }
-#EOP
+#EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -340,7 +344,7 @@ sub makeInputGeos($$$$$$) {
 }
 #EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -380,9 +384,9 @@ sub parse($) {
   # Return to calling routine
   return( $result[1] );
 }
-#EOP
+#EOC
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -430,5 +434,268 @@ sub replaceDate($$) {
   return( $newStr );
 }
 #EOC
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: readResults
+#
+# !DESCRIPTION: Reads a results.log file from a set of unit test simulations
+#  and determines the color (red, green, yellow) that will be displayed in
+#  each slot of the unit test matrix web page.  Red = unsuccessful, 
+#  green = successful, yellow = needs further investigation.
+#\\
+#\\
+# !INTERFACE:
+#
+sub readResults($$) {
+#
+# !INPUT PARAMETERS:
+#
+  # $runRoot  : Unit test root run directory
+  # $fileName : File containing unit test results (i.e. a "*.results.log")
+  my ( $runRoot, $fileName ) = @_;  
+#
+# !RETURN VALUE:
+#
+  # Hash that matches a result color (red, yellow, green) to each unit test
+  my %unitTests             = ();
+#
+# !CALLING SEQUENCE:
+#  %unitTest = &readResults( $runDir, $fileName );
+#
+# !REVISION HISTORY:
+#  21 Mar 2014 - R. Yantosca - Initial version
+#  24 Mar 2014 - R. Yantosca - Now return the %unitTests hash
+#  24 Mar 2014 - R. Yantosca - Now get version, date, description
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Scalar
+  my $bpch     = 1;
+  my $rst      = 1;
+  my $soil     = 1;
+  my $color    = "";
+  my $utName   = "";
+  my $white    = "#FFFFFF";
+  my $red      = "#FF0000";
+  my $green    = "#00FF00";
+  my $yellow   = "#FFFF00";
+  my $version  = "";
+  my $dateRan  = "";
+  my $describe = "";
+
+  # Arrays
+  my @txt      = ();
+  my @subStr   = ();
+
+  #---------------------------------------------------------------------------
+  # Initialization
+  #---------------------------------------------------------------------------
+  
+  # Initialize the UNITTEST hash w/ all possible values
+  # Set background color to white
+  @txt = qx( ls -1 $runRoot );
+
+  # Loop over all subdirectories in the root run directory
+  foreach $utName ( @txt ) { 
+    
+    # Strip newline characters
+    chomp( $utName );
+    
+    # Change name of soa_svpoa to soasvpoa to avoid problems
+    if ( $utName =~ m/soa_svpoa/ ) { $utName =~ s/soa_svpoa/svpoa/g; }
+
+    # Give each unit test the background color of white
+    $unitTests{ $utName } = $white;
+  }
+
+  # Also add two entries for the version tag and date of submission
+  $unitTests{ "UNIT_TEST_VERSION"  } = "";
+  $unitTests{ "UNIT_TEST_DATE"     } = "";
+  $unitTests{ "UNIT_TEST_DESCRIBE" } = "";
+
+  #---------------------------------------------------------------------------
+  # Read the results.log file
+  #---------------------------------------------------------------------------
+
+  # Read entire file into an array and remove newlines
+  open( I, "<$fileName" ) or die "Cannot open $fileName!\n";
+  chomp( @txt = <I> );
+  close( I );
+
+  # Loop thru each line in the file; parse information into global variables
+  for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
+
+    #---------------------------------------------
+    # Get the version number and date submitted
+    #---------------------------------------------
+    if ( $txt[$i] =~ m/GEOS-CHEM UNIT TEST RESULTS FOR VERSION/ ) {
+
+      # Version number
+      @subStr   =  split( ':', $txt[$i] );
+      $version  =  $subStr[1];
+      $version  =~ s/^\s+//; 
+      $version  =~ s/^\s+$//;
+
+      # Version number
+      @subStr   =  split( '\@', $txt[++$i] );
+      $dateRan  =  $subStr[1];
+      $dateRan  =~ s/^\s+//; 
+      $dateRan  =~ s/^\s+$//;
+
+      # Description
+      ++$i;     
+      @subStr   =  split( '\:', $txt[++$i] );
+      $describe =  $subStr[1];
+      $describe =~ s/^\s+//; 
+      $describe =~ s/^\s+$//;
+
+      # Store in the hash
+      $unitTests{ "UNIT_TEST_VERSION"  } = $version;
+      $unitTests{ "UNIT_TEST_DATE"     } = $dateRan;
+      $unitTests{ "UNIT_TEST_DESCRIBE" } = $describe;
+    }
+    
+    #---------------------------------------------
+    # Get the name of the each unit test run directory
+    #---------------------------------------------
+    if ( $txt[$i] =~ m/VALIDATION OF GEOS-CHEM OUTPUT FILES/ ) {
+      @subStr = split( ':', $txt[++$i] );
+      $utName = $subStr[1];
+
+      # Strip white spaces
+      $utName =~ s/ //g;
+
+      # Change name of soa_svpoa to soasvpoa to avoid problems
+      if ( $utName =~ m/soa_svpoa/ ) { $utName =~ s/soa_svpoa/svpoa/g; }
+
+      # Initialize flags
+      $bpch   = 1;
+      $rst    = 1;
+      $soil   = 1;
+
+      # Check the results of the BPCH file    
+      for ( my $j = 0; $j < 6; $j++ ) { 
+	if ( $txt[++$i] =~ m/DIFFERENT/ ) { $bpch = -1; }
+      }
+
+      # Check the results of the RESTART file    
+      for ( my $j = 0; $j < 6; $j++ ) { 
+	if ( $txt[++$i] =~ m/DIFFERENT/ ) { $rst = -1; }
+      }
+
+      # Check the results of the SOIL RESTART file    
+      if ( $utName =~ m/fullchem/ || $utName =~ m/soa/      ||
+	   $utName =~ m/Hg/       || $utName =~ m/TOMAS/    ||
+	   $utName =~ m/UCX/                            ) {
+	for ( my $j = 0; $j < 6; $j++ ) { 
+	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $soil = -1; }
+        }
+      }
+
+      # Assign a color to the unit test output
+      # GREEN  = IDENTICAL
+      # YELLOW = RESTART FILES IDENTICAL, BUT BPCH FILES DIFFERENT
+      # RED    = RESTART FILES DIFFERENT
+      if    ( $bpch ==  1 && $rst ==  1 && $soil == 1 ) { $color = $green;  }
+      elsif ( $bpch == -1 && $rst ==  1 && $soil == 1 ) { $color = $yellow; } 
+      elsif ( $bpch == -1 && $rst == -1               ) { $color = $red;    } 
+
+      # Add the color to the UNITTEST hash
+      $unitTests{ $utName } = $color;
+    }	
+  }				
+
+  # Return normally
+  return( %unitTests );
+}
+#EOP
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: makeMatrix
+#
+# !DESCRIPTION: Creates a unit test matrix web page from a template file.
+#  Tokens in the template file will be replaced with the colors (red, green,
+#  or yellow) corresponding to the results of each unit test.
+#\\
+#\\
+# !INTERFACE:
+#
+sub makeMatrix($$) {
+#
+# !INPUT PARAMETERS:
+#
+  my ( $template, $webFile, %unitTests ) = @_;
+#
+# !CALLING SEQUENCE:
+#  &doUnitTest( $fileName );
+#
+# !REVISION HISTORY:
+#  21 Mar 2014 - R. Yantosca - Initial version
+#  24 Mar 2014 - R. Yantosca - Now pass %unitTests hash as an argument
+#  07 Apr 2014 - R. Yantosca - Now make $webFile chmod 664
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Scalar
+  my $utColor = "";
+  my $utName  = "";
+  my $line    = "";
+
+  # Arrays
+  my @txt     = ();
+
+  #---------------------------------------------------------------------------
+  # makeMatrix begins here!
+  #---------------------------------------------------------------------------
+
+  # Read entire file into an array and remove newlines
+  open( I, "<$template" ) or die "Cannot open $template!\n";
+  chomp( @txt = <I> );
+  close( I );
+
+  # Open output file
+  open( O, ">$webFile" ) or die "Cannot open $webFile!\n";
+
+  # Loop over all lines in the text
+  foreach $line ( @txt ) {
+
+    # Strip newlines
+    chomp( $line );
+
+    # Text-replace the proper color for each unit test
+    while ( ( $utName, $utColor ) = each( %unitTests ) ) { 
+      $line =~ s/$utName/$utColor/g;
+    }	
+
+    # Write to output file
+    print O "$line\n";
+  }
+
+  # Close output file
+  close( O );
+
+  # Make the output file chmod 666 (read/write for everyone)
+  # This may be necessary for the website upload
+  chmod( 0664, $webFile );
+
+  # Return normally
+  return( $? );
+}
+#EOC
+
+# End of module: Return true
+1;
 
 END {}
