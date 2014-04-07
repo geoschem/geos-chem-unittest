@@ -641,7 +641,7 @@ sub makeMatrix($$) {
 # !REVISION HISTORY:
 #  21 Mar 2014 - R. Yantosca - Initial version
 #  24 Mar 2014 - R. Yantosca - Now pass %unitTests hash as an argument
-#  07 Apr 2014 - R. Yantosca - Now make $webFile chmod 777
+#  07 Apr 2014 - R. Yantosca - Now make $webFile chmod 664
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -688,7 +688,7 @@ sub makeMatrix($$) {
 
   # Make the output file chmod 666 (read/write for everyone)
   # This may be necessary for the website upload
-  chmod( 0666, $webFile );
+  chmod( 0664, $webFile );
 
   # Return normally
   return( $? );
