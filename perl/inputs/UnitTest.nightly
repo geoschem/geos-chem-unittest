@@ -29,6 +29,7 @@
 #  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
 #  27 Feb 2014 - R. Yantosca - Now grouped runs by simulation type
 #  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
+#  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -48,6 +49,7 @@
    SUBMIT      : submit smp4
    TEMPLATE    : {PERLDIR}/ut_template.html
    WEB_GRID    : {LOGDIR}/{VERSION}.results.html
+   WEB_PUSH    : NONE
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.

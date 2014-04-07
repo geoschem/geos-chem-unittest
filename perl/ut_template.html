@@ -2,11 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>GEOS-Chem Unit Test Matrix</title>
+<title>GEOS-Chem Unit Test Results</title>
+<style type="text/css">
+.legend     { border-style: solid; 
+              border-width: 1px;
+              border-color: #000000; 
+              border-bottom-style: none; }
+.legendlast { border-style: solid; 
+              border-width: 1px;
+              border-color: #000000; } 
+</style>
 </head>
 <body>
 
-<h1>GEOS-Chem Unit Test Matrix</h1>
+<h1>GEOS-Chem Unit Test Results</h1>
 
 <table border="0" cellspacing="0" cellpadding="5">
   <tr>
@@ -118,6 +127,32 @@
     <td bgcolor="gcap_4x5_TOMAS40">&nbsp;</td>
   </tr>
 </table> 
+
+
+<br/>
+<h3>LEGEND</h3>
+
+<table border="0" cellspacing="0" cellpadding="10">
+  <tr>
+    <td bgcolor="#00FF00" width="25" class="legend">&nbsp;</td>
+    <td>The unit test was successful.</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFF00" class="legend">&nbsp;</td>
+    <td>Further investigation is necessary. (e.g. The restart files were
+    identical but the diagnostic output differed.)</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FF0000" class="legend">&nbsp;</td>
+    <td>The unit test failed.</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFFFFF" class="legendlast">&nbsp;</td>
+    <td>A unit test was not performed for this combination of
+    met field, horizontal grid, and simulation type.</td>
+  </tr>
+
+</table>
 
 </body>
 </html>
