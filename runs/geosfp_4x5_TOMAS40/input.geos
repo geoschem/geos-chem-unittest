@@ -558,6 +558,13 @@ Online SEASALT AEROSOLS : T
  -- SALA radius bin [um]: 0.01 0.5
  -- SALC radius bin [um]: 0.5  8.0
 Online dicarb. chem.    : F
+Settle strat. aerosols  : F
+Online PSC AEROSOLS     : F
+Allow homogeneous NAT?  : F
+NAT supercooling req.(K): 3.0
+Ice supersaturation req.: 1.2
+Perform PSC het. chem.? : F
+Calc. strat. aero. OD?  : F
 ------------------------+------------------------------------------------------
 %%% DEPOSITION MENU %%% :
 Turn on Dry Deposition? : T
@@ -567,10 +574,14 @@ Turn on Wet Deposition? : T
 Turn on Chemistry?      : T
 Use linear. strat. chem?: F
  => Use Linoz for O3?   : T
+Use UCX strat. chem?    : F
+Online CH4 chemistry?   : F
+Active strat. H2O?      : F
 Chemistry Timestep [min]: 60
 Read and save CSPEC_FULL: F
  => CSPEC rst filename? : spec_rst.geosfp_4x5_TOMAS40.YYYYMMDDhh
 USE solver coded by KPP : F
+Online O3 for FAST-JX?  : T
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
@@ -658,6 +669,7 @@ ND67: DAO 2-D fields    : 47   all
 ND68: Airmass/Boxheight : 47   all
 ND69: Surface area      :  0   all
 ND70: Debug output      :  0   all
+ND71: Hourly max ppbv   :  0   2
 ------------------------+------------------------------------------------------
 %%% PLANEFLIGHT MENU %%%:
 Turn on plane flt diag? : F
