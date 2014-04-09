@@ -54,8 +54,11 @@ Include anthro emiss?   : T
  => Use RETRO emiss?    : F
  => Use AEIC emissions? : F
 Use RCP emiss (anth+bf)?: F
-    => RCP scenario?    : RCP60
-    => RCP year?        : 2000
+ => RCP scenario?       : RCP60
+ => RCP year?           : 2000
+ => Use fixed year?     : F
+ => Use RCP aircraft NOx: F
+ => Use RCP ship emiss? : F
 Use EPA/NEI99 (anth+bf)?: F
     w/ ICARTT modif.?   : F
     w/ VISTAS NOx emis? : F
@@ -78,7 +81,6 @@ Include biomass emiss?  : T
     => daily GFED3?     : F 
     => 3-hr GFED3?      : F
 Individual NOx sources  :---
- => Use RCP aircraft NOx: F
  => Use lightning NOx?  : F
     => Spat-seas constr?: F
  => Use soil NOx        : F
@@ -88,7 +90,6 @@ NOx scaling             : 1
 Use ship SO2 emissions? :---
  => global EDGAR ?      : F
  => global ICOADS ?     : F
- => global RCP ?        : F
  => EMEP over EUROPE ?  : F
  => ship SO2 Corbett ?  : F
  => ship SO2 Arctas ?   : F
@@ -100,11 +101,33 @@ Bromine switches        :---
  => Use seasalt Br2?    : F
  => 1ppt MBL BRO Sim.?  : F
  => Bromine scaling     : 1
+Switches for UCX        :---
+ => Use CH4 emissions?  : F
+ => Turn on surface BCs :---
+    => CH4?             : F
+    => OCS?             : F
+    => CFCs?            : F
+    => Cl species?      : F
+    => Br species?      : F
+    => N2O?             : F
+ => Set initial glob MRs:---
+    => strat. H2O?      : F
+    => CH4?             : F
+    => OCS?             : F
+    => CFCs?            : F
+    => Cl species?      : F
+    => strat Bry (GCCM)?: F
+    => Br species?      : F
+    => strat. Br?       : F
+    => strat. NOx/HNO3? : F
+    => N2O?             : F
+    => strat. SO4?      : F
+ => CFC emission year   : 0
 ------------------------+------------------------------------------------------
 %%% AEROSOL MENU %%%    :
 Online SULFATE AEROSOLS : F
 Online CRYST/AQ AEROSOLS: F
-Online CARBON  AEROSOLS : F
+Online CARBON  AEROSOLS : T
 Online 2dy ORG AEROSOLS : F
  => Semivolatile POA?   : F
  => NAP emiss (TgC/yr)  : 1.0
@@ -112,9 +135,16 @@ Online 2dy ORG AEROSOLS : F
 Online DUST    AEROSOLS : F
  => Use DEAD emissions? : F
 Online SEASALT AEROSOLS : F
- -- SALA radius bin [um]: 0.01 0.5
- -- SALC radius bin [um]: 0.5  8.0
+ ==> SALA radius bin [um]: 0.01 0.5
+ ==> SALC radius bin [um]: 0.5  8.0
 Online dicarb. chem.    : F
+Settle strat. aerosols  : F
+Online PSC AEROSOLS     : F
+Allow homogeneous NAT?  : F
+NAT supercooling req.(K): 3.0
+Ice supersaturation req.: 1.2
+Perform PSC het. chem.? : F
+Calc. strat. aero. OD?  : F
 ------------------------+------------------------------------------------------
 %%% DEPOSITION MENU %%% :
 Turn on Dry Deposition? : T
@@ -124,10 +154,14 @@ Turn on Wet Deposition? : T
 Turn on Chemistry?      : T
 Use linear. strat. chem?: F
  => Use Linoz for O3?   : F
+Use UCX strat. chem?    : F
+Online CH4 chemistry?   : F
+Active strat. H2O?      : F
 Chemistry Timestep [min]: 60
 Read and save CSPEC_FULL: F
  => CSPEC rst filename? : none
 USE solver coded by KPP : F
+Online O3 for FAST-JX?  : T
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
 %%% MERCURY MENU %%%    : 
@@ -225,6 +259,7 @@ ND67: DAO 2-D fields    :  0   all
 ND68: Airmass/Boxheight : 47   all
 ND69: Surface area      :  1   all
 ND70: Debug output      :  0   all
+ND71: Hourly max ppbv   :  0   2
 ------------------------+------------------------------------------------------
 %%% PLANEFLIGHT MENU %%%:
 Turn on plane flt diag? : F
