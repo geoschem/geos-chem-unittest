@@ -135,8 +135,8 @@ Online 2dy ORG AEROSOLS : F
 Online DUST    AEROSOLS : F
  => Use DEAD emissions? : F
 Online SEASALT AEROSOLS : F
- -- SALA radius bin [um]: 0.01 0.5
- -- SALC radius bin [um]: 0.5  8.0
+ => SALA radius bin [um]: 0.01 0.5
+ => SALC radius bin [um]: 0.5  8.0
 Online dicarb. chem.    : F
 Settle strat. aerosols  : F
 Online PSC AEROSOLS     : F
