@@ -155,7 +155,7 @@ Use linear. strat. chem?: F
 Use UCX strat. chem?    : F
 Online CH4 chemistry?   : F
 Active strat. H2O?      : F
-Chemistry Timestep [min]: 60
+Chemistry Timestep [min]: 30
 Read and save CSPEC_FULL: F
  => CSPEC rst filename? : none
 USE solver coded by KPP : F
