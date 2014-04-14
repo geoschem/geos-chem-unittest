@@ -36,6 +36,7 @@
 #  03 Sep 2013 - R. Yantosca - Now do 1-hr test runs for expediency
 #  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
 #  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
+#  14 Apr 2014 - R. Yantosca - Added unit test for POPs
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -66,6 +67,7 @@
 #---------|-----------|------|------------|------------|------------|---------|
    geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
    geosfp   4x5         -      Hg           2013070100   2013070101   -
+   geosfp   4x5         -      POPs         2013070100   2013070101   -
 #  geosfp   4x5         -      fullchem     2013070100   2013070101   -
 #  geosfp   4x5         -      soa          2013070100   2013070101   -
 #  geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -

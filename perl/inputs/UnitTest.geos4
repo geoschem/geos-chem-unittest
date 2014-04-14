@@ -36,6 +36,7 @@
 #  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
 #  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
 #  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
+#  14 Apr 2014 - R. Yantosca - Added unit test for POPs
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -65,6 +66,7 @@
 #---------|-----------|------|------------|------------|------------|---------|
    geos4    4x5         -      RnPbBe       2005070100   2005070101   -
    geos4    4x5         -      Hg           2005070100   2005070101   -
+   geos4    4x5         -      POPs         2005070100   2005070101   -
    geos4    4x5         -      fullchem     2005070100   2005070101   -
 #  geos4    4x5         -      soa          2005070100   2005070101   -
 #  geos4    4x5         -      soa_svpoa    2005070100   2005070101   -
