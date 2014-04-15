@@ -2,6 +2,34 @@ jv_spec.dat: AOD optical properties @ 550 nm (clh, 01/30/10), Update sulfate, OC
 ================================================================================
 NW-SCATTER   56  ! Scattering phase fns, scale extinct @ 999 nm    (mjp 99/07)
  w(nm)    Q    r-eff  ss-alb  pi(0) pi(1) pi(2) pi(3) pi(4) pi(5) pi(6) pi(7)
+01 RAYLE  = Rayleigh phase
+  600     7.7  0.001  1.000  1.000   0.0 0.500   0.0   0.0   0.0   0.0   0.0
+02 ISOTR  = isotropic
+  600     1.0  0.001  1.000  1.000   0.0   0.0   0.0   0.0   0.0   0.0   0.0
+03 ABSRB  = fully absorbing 'soot', wavelength indep.
+  600     1.0  0.039  0.000  1.000   0.0   0.0   0.0   0.0   0.0   0.0   0.0
+04 S_Bkg = backgrnd stratospheric sulfate (n=1.46, log-norm: r=.09um/sigma=.6)
+  600  1.6454  0.221  1.000 1.000 2.076 2.377 2.023 1.608 1.177  0.846  0.599
+05 S_Vol = volcanic stratospheric sulfate (n=1.46, log-norm: r=.08um/sigma=.8)
+  600  2.2221  0.386  1.000  1.000 2.127 2.673 2.488 2.308 1.963 1.698  1.461
+06 W_H01 = water haze (H1/Deirm.) (n=1.335, gamma:  r-mode=0.1um / alpha=2)
+  600  1.4037   0.25  1.000  1.000 2.328 2.789 2.593 2.062 1.492 1.013  0.632
+07 W_H04 = water haze (H1/Deirm.) (n=1.335, gamma:  r-mode=0.4um / alpha=2)
+  600  2.6719   1.00  1.000  1.000 2.325 3.334 3.624 3.896 3.939 3.968  3.964
+08 W_C02 = water cloud (C1/Deirm.) (n=1.335, gamma:  r-mode=2.0um / alpha=6)
+  600  2.2287   3.00  1.000  1.000 2.483 3.767 4.359 4.998 5.542 6.054  6.639
+09 W_C04 = water cloud (C1/Deirm.) (n=1.335, gamma:  r-mode=4.0um / alpha=6)
+  600  2.1345   6.00  1.000  1.000 2.557 3.902 4.596 5.263 5.923 6.507  7.267
+10 W_C08 = water cloud (C1/Deirm.) (n=1.335, gamma:  r-mode=8.0um / alpha=6)
+  600  2.0883  12.00  1.000  1.000 2.589 3.965 4.712 5.394 6.121 6.744  7.599
+11 W_C13 = water cloud (C1/Deirm.) (n=1.335, gamma:  r-mode=13.3um / alpha=6)
+  600  2.0716  20.00  1.000  1.000 2.604 3.990 4.755 5.435 6.178 6.807  7.690
+12 W_L06 = water cloud (Lacis) (n=1.335, r-mode=5.5um / alpha=11/3)
+  600  2.1005  10.00  1.000  1.000 2.580 3.947 4.679 5.359 6.070 6.684  7.514
+13 Ice-H = hexagonal ice cloud (Mishchenko)
+  600  2.0000  67.00  1.000  1.000 2.435 3.712 4.756 5.960 6.908 7.865  8.954
+14 Ice-I = irregular ice cloud (Mishchenko)
+  600  2.0000  50.00  1.000 1.000 2.257 3.164 4.096 5.088 6.018  6.897  7.794
 15 Mdust 0.15 = mineral dust (R.V.Martin)
   550  1.5736  0.151  0.993 1.000 1.766 1.248 0.460 0.143 0.027  0.003  0.000
 16 Mdust 0.25 = mineral dust (R.V.Martin)
