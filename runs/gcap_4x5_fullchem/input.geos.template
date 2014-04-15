@@ -17,7 +17,7 @@ Dir w/ 1x1 emissions etc: {DATA_ROOT}/GEOS_NATIVE/
 Temporary directory     : ./
 Unzip met fields?       : F
 Wait for met fields?    : F
-Use variable tropopause?: T
+Use variable tropopause?: F
 Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% TRACER MENU %%%     : 
@@ -100,7 +100,7 @@ Transport Timestep [min]: 30
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
 Turn on PBL Mixing?     : T
- => Use non-local PBL?  : T
+ => Use non-local PBL?  : F
 Convect Timestep (min)  : 30
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
@@ -114,7 +114,7 @@ Include anthro emiss?   : T
  => Use STREETS emiss?  : T
  => Use CAC emissions?  : T
  => Use NEI2005 emiss?  : T
- => Use RETRO emiss?    : T
+ => Use RETRO emiss?    : F
  => Use AEIC emissions? : T
 Use RCP emiss (anth+bf)?: F
  => RCP scenario?       : RCP60
@@ -297,8 +297,8 @@ ND46: Biogenic emissions: 23   all
 ND23: 24-h avg trc conc :  0   all
 ND52: GAMMA HO2         : 23   all
 ND53: POPs Emissions    :  0   all
-ND54: Time in t'sphere  : 23   all
-ND55: Tropopause height : 23   all
+ND54: Time in t'sphere  :  0   all
+ND55: Tropopause height :  0   all
 ND56: Lightning flashes : 23   all
 ND57: Potential T       : 23   all
 ND58: CH4 Emissions     :  0   all
