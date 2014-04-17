@@ -65,8 +65,8 @@ Tracer #38              :  38   DST1    29.0
 Tracer #39              :  39   DST2    29.0
 Tracer #40              :  40   DST3    29.0
 Tracer #41              :  41   DST4    29.0
-Tracer #42              :  42   SALA    36.0
-Tracer #43              :  43   SALC    36.0
+Tracer #42              :  42   SALA    31.4
+Tracer #43              :  43   SALC    31.4
 Tracer #44              :  44   Br2    160.0   (Br2)
 Tracer #45              :  45   Br      80.0
 Tracer #46              :  46   BrO     96.0
@@ -132,7 +132,7 @@ Convect Timestep (min)  : 30
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
-Emiss timestep (min)    : 60 
+Emiss timestep (min)    : 60
 Include anthro emiss?   : T
  => Scale to (1985-2005): -1
  => Use EMEP emissions? : T
@@ -177,7 +177,7 @@ Individual NOx sources  :---
     => soilNOx rst file?: soil_rst.geos5_4x5_soa.YYYYMMDDhh
  => Use fertilizer NOx  : T
 NOx scaling             : 1
-Use ship SO2 emissions? :---
+Use ship emissions?     :---
  => global EDGAR ?      : T
  => global ICOADS ?     : T
  => EMEP over EUROPE ?  : T
@@ -230,11 +230,12 @@ Online 2dy ORG AEROSOLS : T
 Online DUST    AEROSOLS : T
  => Use DEAD emissions? : T
 Online SEASALT AEROSOLS : T
- -- SALA radius bin [um]: 0.01 0.5
- -- SALC radius bin [um]: 0.5  8.0
+ => SALA radius bin [um]: 0.01 0.5
+ => SALC radius bin [um]: 0.5  8.0
 Online dicarb. chem.    : F
 Settle strat. aerosols  : F
 Online PSC AEROSOLS     : F
+  => PSC rst filename?  : none
 Allow homogeneous NAT?  : F
 NAT supercooling req.(K): 3.0
 Ice supersaturation req.: 1.2
@@ -320,7 +321,7 @@ ND38: Cld Conv scav loss: 47   all
 ND39: Wetdep scav loss  : 47   all
 ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
-ND43: Chem OH,NO,HO2,NO2: 47   all
+ND43: Chem prod OH, HO2 : 47   all
   ==> OH/HO2 time range :       0 24   
 ND44: Drydep flx/vel    : 47   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 47 48 50 55 57 58 59 60 61 62 63 64 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 87 88 89 90 91 92 93 
 ND45: Tracer Conc's     : 47   all 
@@ -338,7 +339,7 @@ ND59: -                 :  0   all
 ND60: Wetland Frac      :  0   all
 ND61: -                 :  0   all
 ND62: Inst column maps  :  0   all
-ND64: -                 :  0   all
+ND64: Radiative flux    :  0   all
 ND66: DAO 3-D fields    : 47   all
 ND67: DAO 2-D fields    : 47   all
 ND68: Airmass/Boxheight : 47   all
@@ -428,15 +429,15 @@ File w/ final Ox        : Ox.mass.final
 Save TPCORE BC's        : F
 Input BCs at 2x2.5?     : F
 Over North America?     : F
-TPCORE NA BC directory  : BC_2x25_NA/
+TPCORE NA BC directory  : BC_4x5_NA/
 Over Europe?            : F
-TPCORE EU BC directory  : BC_2x25_EU/
+TPCORE EU BC directory  : BC_4x5_EU/
 Over China?             : F
-TPCORE CH BC directory  : BC_2x25_CH/
+TPCORE CH BC directory  : BC_4x5_CH/
 Over SE Asia region?    : F
-TPCORE SE BC directory  : BC_2x25_SE/
+TPCORE SE BC directory  : BC_4x5_SE/
 Over Custom Region?     : F
-TPCORE BC directory     : BC_2x25/
+TPCORE BC directory     : BC_4x5/
 BC timestep [min]       : 180
 LL box of BC region     :   9  26
 UR box of BC region     :  29  41

@@ -1,4 +1,4 @@
-GEOS-CHEM SIMULATION v9-02+: GEOS-FP TOMAS simulation w/ 40 size bins
+GEOS-CHEM UNIT TEST SIMULATION: geosfp_4x5_TOMAS40
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
@@ -8,7 +8,7 @@ Input restart file      : initial_trac_rst.geosfp_4x5_TOMAS40
 Make new restart file?  : T
 Output restart file(s)  : trac_rst.geosfp_4x5_TOMAS40.YYYYMMDDhh
 Root data directory     : {DATA_ROOT}/GEOS_4x5/
- => GCAP    subdire     : AGRID/YYYY/MM/
+ => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
  => GEOS-5  subdir      : GEOS_5/YYYY/MM/
  => GEOS-FP subdir      : GEOS_FP/YYYY/MM/
@@ -462,7 +462,7 @@ Convect Timestep (min)  : 30
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
-Emiss timestep (min)    : 60 
+Emiss timestep (min)    : 60
 Include anthro emiss?   : T
  => Scale to (1985-2005): -1
  => Use EMEP emissions? : T
@@ -507,7 +507,7 @@ Individual NOx sources  :---
     => soilNOx rst file?: soil_rst.geosfp_4x5_TOMAS40.YYYYMMDDhh
  => Use fertilizer NOx  : T
 NOx scaling             : 1
-Use ship SO2 emissions? :---
+Use ship emissions?     :---
  => global EDGAR ?      : T
  => global ICOADS ?     : T
  => EMEP over EUROPE ?  : T
@@ -555,11 +555,12 @@ Online 2dy ORG AEROSOLS : F
 Online DUST    AEROSOLS : F
  => Use DEAD emissions? : T
 Online SEASALT AEROSOLS : T
- -- SALA radius bin [um]: 0.01 0.5
- -- SALC radius bin [um]: 0.5  8.0
+ => SALA radius bin [um]: 0.01 0.5
+ => SALC radius bin [um]: 0.5  8.0
 Online dicarb. chem.    : F
 Settle strat. aerosols  : F
 Online PSC AEROSOLS     : F
+  => PSC rst filename?  : none
 Allow homogeneous NAT?  : F
 NAT supercooling req.(K): 3.0
 Ice supersaturation req.: 1.2
@@ -645,7 +646,7 @@ ND38: Cld Conv scav loss: 47   all
 ND39: Wetdep scav loss  : 47   all
 ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
-ND43: Chem OH,NO,HO2,NO2: 47   all
+ND43: Chem prod OH, HO2 : 47   all
   ==> OH/HO2 time range :       0 24   
 ND44: Drydep flx/vel    :  1   2 3 7 8 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 47 48 50 64
 ND45: Tracer Conc's     : 47   all 
@@ -663,7 +664,7 @@ ND59: TOMAS diagnostic  : 47   all
 ND60: TOMAS diagnostic  :  0   64-383
 ND61: TOMAS diagnostic  : 47   all
 ND62: Inst column maps  :  0   all
-ND64: -                 :  0   all
+ND64: Radiative flux    :  0   all
 ND66: DAO 3-D fields    : 47   all
 ND67: DAO 2-D fields    : 47   all
 ND68: Airmass/Boxheight : 47   all
@@ -694,7 +695,7 @@ LMIN, LMAX of region    :   1   1
 %%% ND50 MENU %%%       :
 Turn on ND50 diagnostic : F
 24-hr avg timeser. file : ts_24h_avg.YYYYMMDD.bpch
-Output as HDF           : F
+Output as HDF5?         : F
 Tracers to include      : 82 83 84 85 86 87
 IMIN, IMAX of region    :   1  72
 JMIN, JMAX of region    :   1  46
@@ -703,7 +704,7 @@ LMIN, LMAX of region    :   1   1
 %%% ND51 MENU %%%       :
 Turn on ND51 diagnostic : F
 LT avg timeseries file  : ts_satellite.YYYYMMDD.bpch
-Output as HDF           : F
+Output as HDF5?         : F
 Tracers to include      : 82 83 84 85 86 87
 GMT Hour for disk write :   0
 Avg Period [LT hours]   :  10  12
@@ -755,15 +756,15 @@ File w/ final Ox        : Ox.mass.final
 Save TPCORE BC's        : F
 Input BCs at 2x2.5?     : F
 Over North America?     : F
-TPCORE NA BC directory  : BC_2x25_NA/
+TPCORE NA BC directory  : BC_4x5_NA/
 Over Europe?            : F
-TPCORE EU BC directory  : BC_2x25_EU/
+TPCORE EU BC directory  : BC_4x5_EU/
 Over China?             : F
-TPCORE CH BC directory  : BC_2x25_CH/
-Over SEAC4RS region?    : F
-TPCORE SEAC4RS BC dir   : BC_2x25_SEAC4RS/
+TPCORE CH BC directory  : BC_4x5_CH/
+Over SE Asia region?    : F
+TPCORE SE BC directory  : BC_4x5_SE/
 Over Custom Region?     : F
-TPCORE BC directory     : BC_2x25/
+TPCORE BC directory     : BC_4x5/
 BC timestep [min]       : 180
 LL box of BC region     :   9  26
 UR box of BC region     :  29  41

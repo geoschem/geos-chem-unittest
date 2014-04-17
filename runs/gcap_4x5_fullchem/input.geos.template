@@ -198,11 +198,12 @@ Online 2dy ORG AEROSOLS : F
 Online DUST    AEROSOLS : T
  => Use DEAD emissions? : T
 Online SEASALT AEROSOLS : T
- -- SALA radius bin [um]: 0.01 0.5
- -- SALC radius bin [um]: 0.5  8.0
+ => SALA radius bin [um]: 0.01 0.5
+ => SALC radius bin [um]: 0.5  8.0
 Online dicarb. chem.    : F
 Settle strat. aerosols  : F
 Online PSC AEROSOLS     : F
+  => PSC rst filename?  : none
 Allow homogeneous NAT?  : F
 NAT supercooling req.(K): 3.0
 Ice supersaturation req.: 1.2
@@ -294,7 +295,7 @@ ND44: Drydep flx/vel    : 23   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 
 ND45: Tracer Conc's     : 23   all 
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions: 23   all
-ND23: 24-h avg trc conc :  0   all
+ND47: 24-h avg trc conc :  0   all
 ND52: GAMMA HO2         : 23   all
 ND53: POPs Emissions    :  0   all
 ND54: Time in t'sphere  :  0   all

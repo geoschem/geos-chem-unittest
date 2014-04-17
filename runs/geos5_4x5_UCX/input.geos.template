@@ -224,12 +224,13 @@ Online 2dy ORG AEROSOLS : F
 Online DUST    AEROSOLS : T
  => Use DEAD emissions? : T
 Online SEASALT AEROSOLS : T
- -- SALA radius bin [um]: 0.01 0.5
- -- SALC radius bin [um]: 0.5  8.0
+ => SALA radius bin [um]: 0.01 0.5
+ => SALC radius bin [um]: 0.5  8.0
 Online dicarb. chem.    : F
 Settle strat. aerosols  : T
 Online PSC AEROSOLS     : T
-Allow homogeneous  NAT? : F
+  => PSC rst filename?  : restart.psc.YYYYMMDDhh
+Allow homogeneous NAT?  : F
 NAT supercooling req.(K): 3.0
 Ice supersaturation req.: 1.2
 Perform PSC het. chem.? : T

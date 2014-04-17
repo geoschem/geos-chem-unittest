@@ -85,7 +85,7 @@ Individual NOx sources  :---
     => soilNOx rst file?: none
  => Use fertilizer NOx  : F
 NOx scaling             : 1
-Use ship SO2 emissions? :---
+Use ship emissions?     :---
  => global EDGAR ?      : F
  => global ICOADS ?     : F
  => EMEP over EUROPE ?  : F
@@ -133,11 +133,12 @@ Online 2dy ORG AEROSOLS : F
 Online DUST    AEROSOLS : F
  => Use DEAD emissions? : F
 Online SEASALT AEROSOLS : F
- -- SALA radius bin [um]: 0.01 0.5
- -- SALC radius bin [um]: 0.5  8.0
+ => SALA radius bin [um]: 0.01 0.5
+ => SALC radius bin [um]: 0.5  8.0
 Online dicarb. chem.    : F
 Settle strat. aerosols  : F
 Online PSC AEROSOLS     : F
+  => PSC rst filename?  : none
 Allow homogeneous NAT?  : F
 NAT supercooling req.(K): 3.0
 Ice supersaturation req.: 1.2
@@ -256,7 +257,7 @@ ND38: Cld Conv scav loss:  0   all
 ND39: Wetdep scav loss  :  0   all
 ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
-ND43: Chem OH,NO,HO2,NO2:  0   all
+ND43: Chem prod OH, HO2 :  0   all
   ==> OH/HO2 time range :       0 24   
 ND44: Drydep flx/vel    :  0   all
 ND45: Tracer Conc's     : 47   1
@@ -274,7 +275,7 @@ ND59: -                 :  0   all
 ND60: Wetland Frac      :  0   all
 ND61: -                 :  0   all
 ND62: Inst column maps  :  0   all
-ND64: -                 :  0   all
+ND64: Radiative flux    :  0   all
 ND66: DAO 3-D fields    :  0   all
 ND67: DAO 2-D fields    :  0   all
 ND68: Airmass/Boxheight : 47   all

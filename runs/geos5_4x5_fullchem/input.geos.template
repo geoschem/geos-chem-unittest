@@ -203,6 +203,7 @@ Online SEASALT AEROSOLS : T
 Online dicarb. chem.    : F
 Settle strat. aerosols  : F
 Online PSC AEROSOLS     : F
+  => PSC rst filename?  : none
 Allow homogeneous NAT?  : F
 NAT supercooling req.(K): 3.0
 Ice supersaturation req.: 1.2

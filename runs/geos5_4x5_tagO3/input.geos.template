@@ -1,4 +1,4 @@
-GEOS-CHEM UNIT TEST SIMULATION: geos5_4x5_tago3
+GEOS-CHEM UNIT TEST SIMULATION: geos5_4x5_tagO3
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
@@ -86,7 +86,7 @@ Individual NOx sources  :---
     => soilNOx rst file?: none
  => Use fertilizer NOx  : T
 NOx scaling             : 1
-Use ship SO2 emissions? :---
+Use ship emissions?     :---
  => global EDGAR ?      : T
  => global ICOADS ?     : T
  => EMEP over EUROPE ?  : T
@@ -134,11 +134,12 @@ Online 2dy ORG AEROSOLS : F
 Online DUST    AEROSOLS : T
  => Use DEAD emissions? : T
 Online SEASALT AEROSOLS : T
- -- SALA radius bin [um]: 0.01 0.5
- -- SALC radius bin [um]: 0.5  8.0
+ => SALA radius bin [um]: 0.01 0.5
+ => SALC radius bin [um]: 0.5  8.0
 Online dicarb. chem.    : F
 Settle strat. aerosols  : F
 Online PSC AEROSOLS     : F
+  => PSC rst filename?  : none
 Allow homogeneous NAT?  : F
 NAT supercooling req.(K): 3.0
 Ice supersaturation req.: 1.2
@@ -224,7 +225,7 @@ ND38: Cld Conv scav loss:  0   all
 ND39: Wetdep scav loss  :  0   all
 ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
-ND43: Chem OH,NO,HO2,NO2:  0   all
+ND43: Chem prod OH, HO2 :  0   all
   ==> OH/HO2 time range :       0 24   
 ND44: Drydep flx/vel    : 47   1 2
 ND45: Tracer Conc's     : 47   all 
@@ -242,7 +243,7 @@ ND59: -                 :  0   all
 ND60: Wetland Frac      :  0   all
 ND61: -                 :  0   all
 ND62: Inst column maps  :  0   all
-ND64: -                 :  0   all
+ND64: Radiative flux    :  0   all
 ND66: DAO 3-D fields    : 47   all
 ND67: DAO 2-D fields    : 47   all
 ND68: Airmass/Boxheight : 47   all
@@ -334,15 +335,15 @@ File w/ final Ox        : Ox.mass.final
 Save TPCORE BC's        : F
 Input BCs at 2x2.5?     : F
 Over North America?     : F
-TPCORE NA BC directory  : BC_2x25_NA/
+TPCORE NA BC directory  : BC_4x5_NA/
 Over Europe?            : F
-TPCORE EU BC directory  : BC_2x25_EU/
+TPCORE EU BC directory  : BC_4x5_EU/
 Over China?             : F
-TPCORE CH BC directory  : BC_2x25_CH/
+TPCORE CH BC directory  : BC_4x5_CH/
 Over SE Asia region?    : F
-TPCORE SE BC directory  : BC_2x25_SE/
+TPCORE SE BC directory  : BC_4x5_SE/
 Over Custom Region?     : F
-TPCORE BC directory     : BC_2x25/
+TPCORE BC directory     : BC_4x5/
 BC timestep [min]       : 180
 LL box of BC region     :   9  26
 UR box of BC region     :  29  41
