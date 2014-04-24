@@ -37,6 +37,7 @@
 #  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
 #  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
 #  14 Apr 2014 - R. Yantosca - Added unit test for POPs
+#  24 Apr 2014 - R. Yantosca - Added geos4_4x5_CH4, geos4_4x5_tagO3
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -61,21 +62,23 @@
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#---------|-----------|------|------------|------------|------------|---------|
-#  MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
-#---------|-----------|------|------------|------------|------------|---------|
-   geos4    4x5         -      RnPbBe       2005070100   2005070101   -
-   geos4    4x5         -      Hg           2005070100   2005070101   -
-   geos4    4x5         -      POPs         2005070100   2005070101   -
-   geos4    4x5         -      fullchem     2005070100   2005070101   -
-#  geos4    4x5         -      soa          2005070100   2005070101   -
-#  geos4    4x5         -      soa_svpoa    2005070100   2005070101   -
-#  geos4    4x5         -      tagCO        2005070100   2005070101   -
-#  geos4    4x5         -      TOMAS40      2005070100   2005070101  TOMAS40=y
-#  geos4    4x5         -      TOMAS30      2005070100   2005070101  TOMAS30=y
-#  geos4    4x5         -      TOMAS15      2005070100   2005070101  TOMAS15=y
-#  geos4    4x5         -      TOMAS12      2005070100   2005070101  TOMAS12=y
-#  geos4    2x25        -      CO2          2005070100   2005070101   -
-  !END OF RUNS:
+#--------|-----------|------|------------|------------|------------|---------|
+# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
+#--------|-----------|------|------------|------------|------------|---------|
+  geos4    4x5         -      RnPbBe       2005070100   2005070101   -
+  geos4    4x5         -      Hg           2005070100   2005070101   -
+  geos4    4x5         -      POPs         2005070100   2005070101   -
+  geos4    4x5         -      CH4          2004070100   2004070101   -
+  geos4    4x5         -      tagO3        2005070100   2005070101 TAGO3YR=2003
+  geos4    4x5         -      fullchem     2005070100   2005070101   -
+# geos4    4x5         -      soa          2005070100   2005070101   -
+# geos4    4x5         -      soa_svpoa    2005070100   2005070101   -
+# geos4    4x5         -      tagCO        2005070100   2005070101   -
+# geos4    4x5         -      TOMAS40      2005070100   2005070101  TOMAS40=y
+# geos4    4x5         -      TOMAS30      2005070100   2005070101  TOMAS30=y
+# geos4    4x5         -      TOMAS15      2005070100   2005070101  TOMAS15=y
+# geos4    4x5         -      TOMAS12      2005070100   2005070101  TOMAS12=y
+# geos4    2x25        -      CO2          2005070100   2005070101   -
+ !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

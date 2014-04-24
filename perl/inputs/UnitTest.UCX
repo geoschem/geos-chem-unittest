@@ -60,11 +60,11 @@
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#---------|-----------|------|------------|------------|------------|---------|
-#  MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
-#---------|-----------|------|------------|------------|------------|---------|
-   geosfp   4x5         -      UCX          2013070100   2013070101   UCX=y
-   geos5    4x5         -      UCX          2005070100   2005070101   UCX=y
-  !END OF RUNS:
+#--------|-----------|------|------------|------------|------------|---------|
+# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
+#--------|-----------|------|------------|------------|------------|---------|
+  geosfp   4x5         -      UCX          2013070100   2013070101   UCX=y
+  geos5    4x5         -      UCX          2005070100   2005070101   UCX=y
+ !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

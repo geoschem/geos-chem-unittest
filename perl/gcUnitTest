@@ -225,6 +225,8 @@ sub doUnitTest($) {
 #  05 Sep 2013 - R. Yantosca - Now print log directory name
 #  30 Jan 2014 - R. Yantosca - Improve informational output
 #  31 Jan 2014 - R. Yantosca - Now allow for extra Makefile flags
+#  24 Apr 2014 - R. Yantosca - Now update the web page after each unit test
+#                              so that we can have a running display
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -381,9 +383,14 @@ sub doUnitTest($) {
 	  &makeInputs( $start, $end, $runDir );
 
 	  # Save make commands to an array for use below
-	  @cmds = ( @cmds, "\n\n\# %%% $notDir %%%\n",
-		           "cd $runDir >> $stdout\n\n",
-		           "$makeCmd unittest >> $stdout\n" );
+	  @cmds = ( @cmds, 
+		    "\n\n\# %%% $notDir %%%\n",
+		    "cd $runDir >> $stdout\n\n",
+ 	            "$makeCmd unittest >> $stdout\n", #);
+                    "\n\# %%% Create web page w/ unit test matrix %%%\n",
+                    "cd $PERL_DIR >> $stdout\n",
+        "gcUtWeb $RUN_ROOT $RESULTS $TEMPLATE $WEB_GRID $WEB_PUSH >>$stdout\n"
+	          );
         }
 
 	# Increment counter
@@ -424,10 +431,7 @@ EOF
   @cmds = ( '#!/bin/bash'."\n",
             "set \-e\n", 
 	    "$logTop\n", 
-	    @cmds,
-	     "\n\# %%% Create web page w/ unit test matrix %%%\n",
-  	     "cd $PERL_DIR\n",
-  	     "gcUtWeb $RUN_ROOT $RESULTS $TEMPLATE $WEB_GRID $WEB_PUSH" );
+	    @cmds ); #,
 
   # WRITE the make commands to a job file
   $jobFile = "$JOB_DIR/job.$VERSION";
@@ -447,8 +451,8 @@ EOF
   # Submit the job.  Send the stdout stream to $logRslt
   # and the stderr stream to a file in the $LOG_DIR.
   $cmd = "cd $LOG_DIR; $SUBMIT $jobFile\n";
-  chomp( $status = qx( $cmd ) );
-  print "$status\n";
+#  chomp( $status = qx( $cmd ) );
+#  print "$status\n";
   				
   # Return normally
   return( $? );
