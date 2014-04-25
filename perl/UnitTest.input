@@ -12,16 +12,20 @@
 # !REMARKS:  
 #  Customize the unit tests for your system by specifying these values:
 #  -------------------------------------------------------------------
-#  VERSION   : A tag used to identify this Unit Test (e.g. v9-02o)
-#  CODE_DIR  : Full path of the GEOS-Chem code directory
-#  DATA_ROOT : Root GEOS-Chem data directory
-#  RUN_DIR   : Unit Test run directory
-#  JOB_DIR   : Unit Test job script directory
-#  LOG_DIR   : Unit Test log file directory
-#  PERL_DIR  : Unit Test perl script directory (i.e. this directory)
-#  COMPILER  : Compiler used to build GEOS-Chem (e.g. "ifort", "pgi")
-#  MAKE_CMD  : Make command with basic debugging flags
-#  SUBMIT    : Submit command and queue name
+#  VERSION     : A tag used to identify this Unit Test (e.g. v9-02o)
+#  DESCRIPTION : A short description of what this unit test is validating
+#  CODE_DIR    : Full path of the GEOS-Chem code directory
+#  DATA_ROOT   : Root GEOS-Chem data directory
+#  RUN_DIR     : Unit Test run directory
+#  JOB_DIR     : Unit Test job script directory
+#  LOG_DIR     : Unit Test log file directory
+#  PERL_DIR    : Unit Test perl script directory (i.e. this directory)
+#  COMPILER    : Compiler used to build GEOS-Chem (e.g. "ifort", "pgi")
+#  MAKE_CMD    : Make command with basic debugging flags
+#  SUBMIT      : Submit command and queue name
+#  TEMPLATE    : Template web page for displaying grid of results
+#  WEB_GRID    : File name for web page containing unit test results
+#  WEB_PUSH    : Remote location to send web page w/ unit test results
 #
 # !REVISION HISTORY: 
 #  22 Aug 2013 - R. Yantosca - Initial version
@@ -29,17 +33,19 @@
 #  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
 #  27 Feb 2014 - R. Yantosca - Now grouped runs by simulation type
 #  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
+#  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
+#  14 Apr 2014 - R. Yantosca - Added unit tests for POPs simulation
+#  24 Apr 2014 - R. Yantosca - Add extra GEOS-4 unit tests (Hg, tagO3, CH4)
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
    VERSION     : v9-02.public
-   DESCRIPTION : To test feature XXX of GEOS-Chem
+   DESCRIPTION : To test feature XXX in GEOS-Chem
    CODE_DIR    : /home/bmy/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos
-   RUN_ROOT    : /home/bmy/UT/runs
-   RUN_DIR     : {RUNROOT}/{RUNDIR}
+   RUN_DIR     : /home/bmy/UT/runs/{RUNDIR}
    JOB_DIR     : /home/bmy/UT/jobs
    LOG_DIR     : /home/bmy/UT/logs/{VERSION}
    PERL_DIR    : /home/bmy/UT/perl
@@ -54,42 +60,62 @@
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#---------|-----------|------|------------|------------|------------|---------|
-#  MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
-#---------|-----------|------|------------|------------|------------|---------|
+#--------|-----------|------|------------|------------|------------|---------|
+# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
+#--------|-----------|------|------------|------------|------------|---------|
 # ======= Radon-Lead-Beryllium ===============================================
-#  geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
-#  merra    4x5         -      RnPbBe       2005070100   2005070101   -
-#  geos5    4x5         -      RnPbBe       2005070100   2005070101   -
-#  geos4    4x5         -      RnPbBe       2005070100   2005070101   -
+  geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
+  merra    4x5         -      RnPbBe       2005070100   2005070101   -
+  geos5    4x5         -      RnPbBe       2005070100   2005070101   -
+  geos4    4x5         -      RnPbBe       2005070100   2005070101   -
 # ======= Mercury ============================================================
-#  geosfp   4x5         -      Hg           2013070100   2013070101   -
-#  merra    4x5         -      Hg           2005070100   2005070101   -
-#  geos5    4x5         -      Hg           2005070100   2005070101   -
-# ======= Other specialty simulations ========================================
-#  geos5    4x5         -      tagO3        2005070100   2005070101   -
-#  geos5    4x5         -      CH4          2005070100   2005070101   -
-#  geos5    2x25        -      CO2          2005070100   2005070101   -
+  geosfp   4x5         -      Hg           2013070100   2013070101   -
+  merra    4x5         -      Hg           2005070100   2005070101   -
+  geos5    4x5         -      Hg           2005070100   2005070101   -
+  geos4    4x5         -      Hg           2005070100   2005070101   -
+# ======= POPs ===============================================================
+  geosfp   4x5         -      POPs         2013070100   2013070101   -
+  merra    4x5         -      POPs         2005070100   2005070101   -
+  geos5    4x5         -      POPs         2005070100   2005070101   -
+  geos4    4x5         -      POPs         2005070100   2005070101   -
+# ======= Methane ============================================================
+  geosfp   4x5         -      CH4          2013070100   2013070101   -
+  merra    4x5         -      CH4          2005070100   2005070101   -
+  geos5    4x5         -      CH4          2005070100   2005070101   -
+  geos4    4x5         -      CH4          2004070100   2004070101   -
+# =======- Tagged O3 ==========================================================
+  geosfp   4x5         -      tagO3        2013070100   2013070101 TAGO3YR=2004
+  merra    4x5         -      tagO3        2005070100   2005070101 TAGO3YR=2004
+  geos5    4x5         -      tagO3        2005070100   2005070101 TAGO3YR=2004
+  geos4    4x5         -      tagO3        2005070100   2005070101 TAGO3YR=2003
+# ======= Tagged CO ==========================================================
+  geosfp   4x5         -      tagCO        2013070100   2013070101   -
+  merra    4x5         -      tagCO        2005070100   2005070101   -
+  geos5    4x5         -      tagCO        2005070100   2005070101   -
+# ======= Carbon Dioxide =====================================================
+# geosfp   2x25        -      CO2          2013070100   2013070101   -
+  geos5    2x25        -      CO2          2005070100   2005070101   -
 # ======= Fullchem ===========================================================
-#  geosfp   4x5         -      fullchem     2013070100   2013070101   -
-#  merra    4x5         -      fullchem     2005070100   2005070101   -
-#  geos5    05x0666     ch     fullchem     2005070100   2005070101   -
-#  geos5    2x25        -      fullchem     2005070100   2005070101   -
-#  geos5    4x5         -      fullchem     2005070100   2005070101   -
-#  geos4    4x5         -      fullchem     2005070100   2005070101   -
-#  gcap     4x5         -      fullchem     2005070100   2005070101   -
+  geosfp   4x5         -      fullchem     2013070100   2013070101   -
+  merra    4x5         -      fullchem     2005070100   2005070101   -
+  geos5    05x0666     ch     fullchem     2005070100   2005070101   -
+  geos5    2x25        -      fullchem     2005070100   2005070101   -
+  geos5    4x5         -      fullchem     2005070100   2005070101   -
+  geos4    4x5         -      fullchem     2005070100   2005070101   -
+  gcap     4x5         -      fullchem     2005070100   2005070101   -
 # ===== SOA (w/ and w/o SVPOA) ===============================================
-#  geosfp   4x5         -      soa          2013070100   2013070101   -
-#  merra    4x5         -      soa          2005070100   2005070101   -
-#  geos5    4x5         -      soa          2005070100   2005070101   -
-#  geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
-#  merra    4x5         -      soa_svpoa    2005070100   2005070101   -
-#  geos5    4x5         -      soa_svpoa    2005070100   2005070101   -
+  geosfp   4x5         -      soa          2013070100   2013070101   -
+  merra    4x5         -      soa          2005070100   2005070101   -
+  geos5    4x5         -      soa          2005070100   2005070101   -
+  geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
+  merra    4x5         -      soa_svpoa    2005070100   2005070101   -
+  geos5    4x5         -      soa_svpoa    2005070100   2005070101   -
 # ===== TOMAS aerosol microphysics ===========================================
-#  geos5    4x5         -      TOMAS40      2005070100   2005070101  TOMAS40=y
+  geosfp   4x5         -      TOMAS40      2013070100   2013070101  TOMAS40=y
+  geos5    4x5         -      TOMAS40      2005070100   2005070101  TOMAS40=y
 # ===== UCX strat-trop chemistry =============================================
-#  geosfp   4x5         -      UCX          2013070100   2013070101  UCX=y
-   geos5    4x5         -      UCX          2005070100   2005070101  UCX=y
-  !END OF RUNS:
+# geosfp   4x5         -      UCX          2013070100   2013070101  UCX=y
+# geos5    4x5         -      UCX          2005070100   2005070101  UCX=y
+ !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------
