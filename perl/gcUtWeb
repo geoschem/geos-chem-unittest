@@ -113,6 +113,7 @@ sub pushToWebSite($$) {
 #
 # !REVISION HISTORY:
 #  24 Mar 2014 - R. Yantosca - Initial version
+#  13 May 2014 - R. Yantosca - Now use scp -q for quiet mode
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -125,7 +126,7 @@ sub pushToWebSite($$) {
 
   # If a remote location is specified, then push the web page to the server
   if ( !( $webPush =~ m/NONE/ ) ) {
-    my $cmd    = "scp $webFile $webPush";
+    my $cmd    = "scp -q $webFile $webPush";
     my $result = qx( $cmd );
   }
 
