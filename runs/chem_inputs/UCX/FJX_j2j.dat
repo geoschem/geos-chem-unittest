@@ -63,17 +63,17 @@
   62 ALD2      PHOTON    CH4       CO                      1.000 /ActAlx/
   63 MVK       PHOTON    PRPE      CO                      0.600 /MeVK  /
   64 MVK       PHOTON    MCO3      CH2O      CO     HO2    0.200 /MeVK  /
-  65 MVK       PHOTON    MO2       MAO3                    0.200 /MeVK  /
-  66 MACR      PHOTON    MAO3      HO2                     0.500 /MeAcr /
-  67 MACR      PHOTON    CO        HO2       CH2O   MCO3   0.500 /MeAcr /
-  68 GLYC      PHOTON    CH2O      HO2       HO2    CO     1.000 /GlyAld/
+  65 MVK       PHOTON    MO2       RCO3                    0.200 /MeVK  /
+  66 MACR      PHOTON    CO        HO2       CH2O   MCO3   1.000 /MeAcr /
+  67 MACR      PHOTON    MAO3      HO2                     0.000 /MeAcr /
+  68 GLYC      PHOTON    CH2O   HO2   OH  CO  MOH          1.000 /GlyAld/
   69 MEK       PHOTON    MCO3      EtO2      MO2    RCO3   1.000 /MEKeto/
   70 RCHO      PHOTON    EtO2      HO2       CO            1.000 /PrAld /
   71 MGLY      PHOTON    MCO3      CO        HO2           1.000 /MGlyxl/
   72 GLYX      PHOTON    HO2 HO2 CO CO                     1.000 /Glyxla/
   73 GLYX      PHOTON    H2        CO        CO            1.000 /Glyxlb/
   74 GLYX      PHOTON    CH2O      CO                      1.000 /Glyxlc/
-  75 HAC       PHOTON    MeCO3     HCHO      HO2           1.000 /HAC   /
+  75 HAC       PHOTON    MeCO3     HCHO      HO2           0.600 /HAC   /
   76 ACET      PHOTON    MCO3      MO2                     1.000 /Acet-a/
   77 ACET      PHOTON    MO2       MO2       CO            1.000 /Acet-b/
   78 INPN      PHOTON    OH        HO2       RCHO   NO2    1.000 /CH3OOH/
