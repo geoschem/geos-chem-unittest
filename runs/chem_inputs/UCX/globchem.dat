@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  #
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -13,6 +13,13 @@
 #\\
 #\\
 # !REVISION HISTORY:
+#
+#  29 May 2014 (v10-01d)
+#  -----------------------
+#     Updates from Ploy Achakulwisut
+#     (1) Remove duplicate GLYX product from RIO2 reaction 
+#         See: http://wiki.geos-chem.org/New_isoprene_scheme
+#
 #  03 Mar 2014 (v10-01c)
 #  -----------------------
 #     Updates from S. D. Eastham:
@@ -873,7 +880,7 @@ A  999 2.70E-12  0.0E+00    350 0     0.00     0.     0.
 A  803 4.07E+08  0.0E+00  -7694 0     0.00     0.     0.         
       RIO2          +                                                   
 =2.000HO2           +1.000CH2O          +0.500MGLY          +0.500GLYC    
-+0.500GLYX          +0.500GLYX          +0.500HAC           +1.000OH      
++0.500GLYX          +0.500HAC           +1.000OH            +      
 +                   +                   +                   +
 +                   +                   +                   +
 A  999 2.70E-12  0.0E+00    350 0     0.00     0.     0.         
