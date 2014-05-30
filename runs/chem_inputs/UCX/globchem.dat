@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------
-#                  GEOS-Chem Global Chemical Transport Model                  #
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -13,7 +13,6 @@
 #\\
 #\\
 # !REVISION HISTORY:
-#
 #  29 May 2014 (v10-01d)
 #  -----------------------
 #     Updates from Ploy Achakulwisut
