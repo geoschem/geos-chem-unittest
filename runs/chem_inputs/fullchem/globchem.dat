@@ -13,6 +13,12 @@
 #\\
 #\\
 # !REVISION HISTORY: 
+#  30 May 2014 (v10-01d)
+#  -----------------------
+#     Updates from S. D. Eastham:
+#     (1) Changed photo rxn : PAN = 0.6MCO3 + 0.6NO2 + 0.4MO2 + 0.4NO3 
+#         to                : PAN = 0.7MCO3 + 0.7NO2 + 0.3MO2 + 0.3NO3       
+#
 #  29 May 2014 (v10-01d)
 #  -----------------------
 #     Updates from Ploy Achakulwisut
@@ -2661,7 +2667,7 @@ A   17 0.02E+01   0.0         0 0     0.00     0.     0.
 +                   +                   +                   +
 A   18 0.01E+01   0.0         0 0     0.00     0.     0.         
       PAN           +                                                     
-=0.600MCO3          +0.600NO2           +0.400MO2           +0.400NO3
+=0.700MCO3          +0.700NO2           +0.300MO2           +0.300NO3
 +                   +                   +                   +             
 +                   +                   +                   +             
 +                   +                   +                   +
