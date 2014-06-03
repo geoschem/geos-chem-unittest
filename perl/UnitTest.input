@@ -45,7 +45,8 @@
    DESCRIPTION : To test feature XXX in GEOS-Chem
    CODE_DIR    : /home/bmy/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos
-   RUN_DIR     : /home/bmy/UT/runs/{RUNDIR}
+   RUN_ROOT    : /home/bmy/UT/runs
+   RUN_DIR     : {RUNROOT}/{RUNDIR}
    JOB_DIR     : /home/bmy/UT/jobs
    LOG_DIR     : /home/bmy/UT/logs/{VERSION}
    PERL_DIR    : /home/bmy/UT/perl
