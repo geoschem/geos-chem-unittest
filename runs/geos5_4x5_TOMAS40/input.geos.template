@@ -463,64 +463,8 @@ Convect Timestep (min)  : 30
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
 Emiss timestep (min)    : 60
-Include anthro emiss?   : T
- => Scale to (1985-2005): -1
- => Use EMEP emissions? : T
- => Use BRAVO emissions?: T
- => Use EDGAR emissions?: T
- => Use STREETS emiss?  : T
- => Use CAC emissions?  : T
- => Use NEI2005 emiss?  : T
- => Use RETRO emiss?    : T
- => Use AEIC emissions? : T
-Use RCP emiss (anth+bf)?: F
- => RCP scenario?       : RCP60
- => RCP year?           : 2000
- => Use fixed year?     : F
- => Use RCP aircraft NOx: F
- => Use RCP ship emiss? : F
-Use EPA/NEI99 (anth+bf)?: F
-    w/ ICARTT modif.?   : F
-    w/ VISTAS NOx emis? : F
-Include biofuel emiss?  : T
-Include biogenic emiss? : T
- => Use MEGAN inventory?: T
- => Use PCEEA model?    : F
- => Use MEGAN for MONO? : T
- => Isoprene scaling    : 1
-Include biomass emiss?  : T
- => Seasonal biomass?   : T
- => Scaled to TOMSAI?   : F
- => Use GFED2 biomass?  :---
-    => monthly GFED2?   : F
-    => 8-day GFED2?     : F 
-    => 3-hr GFED2?      : F
-    => synoptic GFED2?  : F
- => Use GFED3 biomass?  :---
-    => monthly GFED3?   : T 
-    => daily GFED3?     : F 
-    => 3-hr GFED3?      : F
-Individual NOx sources  :---
- => Use lightning NOx?  : T
-    => Spat-seas constr?: T
- => Use soil NOx        : T
-    => soilNOx rst file?: soil_rst.geos5_4x5_TOMAS40.YYYYMMDDhh
- => Use fertilizer NOx  : T
-NOx scaling             : 1
-Use ship emissions?     :---
- => global EDGAR ?      : T
- => global ICOADS ?     : T
- => EMEP over EUROPE ?  : T
- => ship SO2 Corbett ?  : F
- => ship SO2 Arctas ?   : T
-Use COOKE BC/OC (N. Am.): F   
-Use historical emiss?   : F
- => What decade?        : 2000
-Bromine switches        :---
- => Use Warwick VSLS?   : T
- => Use seasalt Br2?    : T
+HEMCO Input file        : HEMCO_Config
  => 1ppt MBL BRO Sim.?  : F
- => Bromine scaling     : 1
 Switches for UCX        :---
  => Use CH4 emissions?  : F
  => Turn on surface BCs :---

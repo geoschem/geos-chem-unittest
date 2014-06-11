@@ -12,6 +12,6 @@ tracerinfo.dat
 geos.mp
 geos.sp
 input.geos
-smv2.log
+*.log
 restart.soilnox.*
 restart.psc.*

@@ -589,14 +589,19 @@ sub readResults($$) {
 	if ( $txt[++$i] =~ m/DIFFERENT/ ) { $rst = -1; }
       }
 
-      # Check the results of the SOIL RESTART file    
-      if ( $utName =~ m/fullchem/ || $utName =~ m/soa/      ||
-	   $utName =~ m/Hg/       || $utName =~ m/TOMAS/    ||
-	   $utName =~ m/UCX/                            ) {
-	for ( my $j = 0; $j < 6; $j++ ) { 
-	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $soil = -1; }
-        }
-      }
+#----------------------------------------------------------------------------
+# Prior to 6/11/14:
+# HEMCO disables the bpch-format soil restart file.  Reactivate this when
+# we figure out how to difference the new soil restart file (bmy, 6/11/14)
+#      # Check the results of the SOIL RESTART file    
+#      if ( $utName =~ m/fullchem/ || $utName =~ m/soa/      ||
+#	   $utName =~ m/Hg/       || $utName =~ m/TOMAS/    ||
+#	   $utName =~ m/UCX/                            ) {
+#	for ( my $j = 0; $j < 6; $j++ ) { 
+#	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $soil = -1; }
+#        }
+#      }
+#----------------------------------------------------------------------------
 
       # Assign a color to the unit test output
       # GREEN  = IDENTICAL
