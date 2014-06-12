@@ -15,3 +15,4 @@ input.geos
 *.log
 restart.soilnox.*
 restart.psc.*
+HEMCO_restart*

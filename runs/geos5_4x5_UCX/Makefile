@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -13,6 +13,7 @@
 #
 # !REVISION HISTORY: 
 #  03 Feb 2014 - R. Yantosca - Initial version
+#  12 Jun 2014 - R. Yantosca - Updated for HEMCO soil NOx & restart files
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -37,10 +38,10 @@ TRAC_AVG :=trac_avg.$(RUNID).$(START)
 TRAC_RST :=trac_rst.$(RUNID).$(END)
 #------------------------------------------------------------------------------
 # NOTE: This version of the code hardwires the soilnox restart name 
-#SOIL_RST :=soil_rst.$(RUNID).$(END)
+#HMCO_RST :=soil_rst.$(RUNID).$(END)
 #PSC_RST  :=restart.psc.$(RUNID).$(END)
 #------------------------------------------------------------------------------
-SOIL_RST :=restart.soilnox.$(END)
+HMCO_RST :=HEMCO_restart.$(START)00.nc
 PSC_RST  :=restart.psc.$(END)
 
 # Validation script
@@ -68,7 +69,7 @@ sp:
 	$(EXE_SP) >> $(LOG_SP)
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).sp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
-	if [ -f $(SOIL_RST) ]; then mv -f $(SOIL_RST) $(SOIL_RST).sp; fi;
+	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
 	if [ -f $(PSC_RST)  ]; then mv -f $(PSC_RST)  $(PSC_RST).sp;  fi;
 
 mp:
@@ -78,14 +79,14 @@ mp:
 	$(EXE_MP) >> $(LOG_MP)
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
-	if [ -f $(SOIL_RST) ]; then mv -f $(SOIL_RST) $(SOIL_RST).mp; fi;
+	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
 	if [ -f $(PSC_RST)  ]; then mv -f $(PSC_RST)  $(PSC_RST).mp;  fi;
 
 
 check:
 	$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
 	$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
-	$(VALIDATE) $(SOIL_RST).sp $(SOIL_RST).mp 0 0 >> $(RESULTS)
+	$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 0 >> $(RESULTS)
 	$(VALIDATE) $(PSC_RST).sp  $(PSC_RST).mp  0 1 >> $(RESULTS)
 
 clean:
@@ -96,6 +97,8 @@ fileclean:
 	rm -f diaginfo.dat tracerinfo.dat smv2.log
 	rm -f *.sp
 	rm -f *.mp
+	rm -f HEMCO.log*
+	rm -f HEMCO.restart*
 
 logclean:
 	rm -f $(LOG_SP) 
@@ -127,6 +130,6 @@ print:
 	@echo "RUNID    : $(RUNID)"
 	@echo "TRAC_AVG : $(TRAC_AVG)"
 	@echo "TRAC_RST : $(TRAC_RST)"
-	@echo "SOIL_RST : $(SOIL_RST)"
+	@echo "HMCO_RST : $(HMCO_RST)"
 	@echo "PSC_RST  : $(PSC_RST)"
 #EOC

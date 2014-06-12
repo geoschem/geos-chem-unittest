@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -14,6 +14,7 @@
 # !REVISION HISTORY: 
 #  06 Nov 2013 - R. Yantosca - Initial version
 #  30 Jan 2014 - R. Yantosca - Test if output files are present before renaming
+#  12 Jun 2014 - R. Yantosca - Updated for HEMCO soil NOx & restart files
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -36,7 +37,7 @@ LOG_MP   :=$(LOG_DIR)/$(VERSION).$(RUNID).mp
 # Output file names
 TRAC_AVG :=trac_avg.$(RUNID).$(START)
 TRAC_RST :=trac_rst.$(RUNID).$(END)
-SOIL_RST :=soil_rst.$(RUNID).$(END)
+HMCO_RST :=HEMCO_restart.$(START)00.nc
 
 # Validation script
 VALIDATE :=/usr/bin/perl $(PERL_DIR)/validate
@@ -63,7 +64,7 @@ sp:
 	$(EXE_SP) >> $(LOG_SP)
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).sp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
-	if [ -f $(SOIL_RST) ]; then mv -f $(SOIL_RST) $(SOIL_RST).sp; fi;
+	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
 
 mp:
 	rm -f $(LOG_MP)
@@ -72,12 +73,12 @@ mp:
 	$(EXE_MP) >> $(LOG_MP)
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
-	if [ -f $(SOIL_RST) ]; then mv -f $(SOIL_RST) $(SOIL_RST).mp; fi;
+	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
 
 check:
 	$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
 	$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
-	$(VALIDATE) $(SOIL_RST).sp $(SOIL_RST).mp 0 1 >> $(RESULTS)
+	$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
 
 clean:
 	@$(MAKE) -C $(CODE_DIR) clean
@@ -87,6 +88,8 @@ fileclean:
 	rm -f diaginfo.dat tracerinfo.dat smv2.log
 	rm -f *.sp
 	rm -f *.mp
+	rm -f HEMCO.log*
+	rm -f HEMCO.restart*
 
 logclean:
 	rm -f $(LOG_SP) 
@@ -116,7 +119,7 @@ print:
 	@echo "START    : $(START)"
 	@echo "END      : $(END)"
 	@echo "RUNID    : $(RUNID)"
-	@echo "BPCH     : $(BPCH)"
-	@echo "SOIL     : $(SOIL)"
-	@echo "RST      : $(RST)"
+	@echo "TRAC_AVG : $(TRAC_AVG)"
+	@echo "TRAC_RST : $(TRAC_RST)"
+	@echo "HMCO_RST : $(HMCO_RST)"
 #EOC
