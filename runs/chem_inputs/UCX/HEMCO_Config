@@ -537,10 +537,10 @@ BEGIN SECTION EXTENSION DATA
 103 LIGHTNOX_OTDLIS /home/ckeller/data/emis/LIGHTNOX/nc/OTD-LIS-Local-Redist.CTH.v5.geos5.4x5.nc OTD_LOC 2007-2009/1-12/1/0 C xy unitless NO - 1 1
 #
 # --- SOILNOX emissions (Extension 104) ---
-104 SOILNOX_PFACT   ./initial_soil_rst.nc  PFACTOR       YYYY/MM/DD/HH    E xy  unitless NO - 1 1
-104 SOILNOX_DRYPER  ./initial_soil_rst.nc  DRYPERIOD     YYYY/MM/DD/HH    E xy  unitless NO - 1 1
-104 SOILNOX_GWET    ./initial_soil_rst.nc  GWET_PREV     YYYY/MM/DD/HH    E xy  unitless NO - 1 1
-104 SOILNOX_DEPRES  ./initial_soil_rst.nc  DEP_RESERVOIR YYYY/MM/DD/HH    E xy  ngN/m2   NO - 1 1
+104 SOILNOX_PFACT   ./initial_soil_rst.nc  PFACTOR       YYYY/MM/DD/HH    C xy  unitless NO - 1 1
+104 SOILNOX_DRYPER  ./initial_soil_rst.nc  DRYPERIOD     YYYY/MM/DD/HH    C xy  unitless NO - 1 1
+104 SOILNOX_GWET    ./initial_soil_rst.nc  GWET_PREV     YYYY/MM/DD/HH    C xy  unitless NO - 1 1
+104 SOILNOX_DEPRES  ./initial_soil_rst.nc  DEP_RESERVOIR YYYY/MM/DD/HH    C xy  ngN/m2   NO - 1 1
 104 SOILNOX_FERT    /home/ckeller/data/emis/SOILNOX/soilNOx.fert_res.generic.05x05.nc   FERT         2000/1-12/1-31/0 C xy  ngN/m2   NO - 1 1
 104 SOILNOX_LANDK1  /home/ckeller/data/emis/SOILNOX/soilNOx.landtype.generic.025x025.nc LANDFRAC_K01 2000/1/1/0       C xyz unitless NO - 1 1
 104 SOILNOX_LANDK2  /home/ckeller/data/emis/SOILNOX/soilNOx.landtype.generic.025x025.nc LANDFRAC_K02 2000/1/1/0       C xyz unitless NO - 1 1
