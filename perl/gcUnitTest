@@ -21,6 +21,7 @@ use Dates   qw( &getLocalTime  );    # Get routines from Dates.pm
 use UtUtils qw( &baseName
                 &checkDir
                 &cleanDir
+                &makeHemcoCfg
                 &makeInputGeos
                 &parse         
                 &readResults       
@@ -30,26 +31,27 @@ use UtUtils qw( &baseName
 #
 
 # Directories
-our $CODE_DIR  = "";                 # GEOS-Chem Code directory 
-our $DATA_ROOT = "";                 # Root path for GEOS-Chem data directory
-our $JOB_DIR   = "";                 # Unit Test job directory
-our $LOG_DIR   = "";                 # Unit Test logs directory
-our $PERL_DIR  = "";                 # Unit Test Perl directory
-our $RUN_ROOT  = "";                 # Unit Test top-level run directory
-our $RUN_DIR   = "";                 # Unit Test run directory subdirectory
+our $CODE_DIR   = "";                # GEOS-Chem Code directory 
+our $DATA_ROOT  = "";                # Root path for GEOS-Chem data directory
+our $HEMCO_ROOT = "";                # Root path for HEMCO emissions files
+our $JOB_DIR    = "";                # Unit Test job directory
+our $LOG_DIR    = "";                # Unit Test logs directory
+our $PERL_DIR   = "";                # Unit Test Perl directory
+our $RUN_ROOT   = "";                # Unit Test top-level run directory
+our $RUN_DIR    = "";                # Unit Test run directory subdirectory
 
 # Files
-our $RESULTS   = "";                 # Results.log file
-our $TEMPLATE  = "";                 # Template web page
-our $WEB_GRID  = "";                 # Web page w/ unit text matrix
-our $WEB_PUSH  = "NONE";             # Remote server for web page push
+our $RESULTS    = "";                # Results.log file
+our $TEMPLATE   = "";                # Template web page
+our $WEB_GRID   = "";                # Web page w/ unit text matrix
+our $WEB_PUSH   = "NONE";            # Remote server for web page push
 
 # Options
-our $COMPILER  = "";                 # Compiler variable for GEOS-Chem
-our $MAKE_CMD  = "";                 # Make command with debug options
-our $SUBMIT    = "";                 # Queue submit command
-our $VERSION   = "";                 # GEOS-Chem version ID
-our $DESCRIBE  = "";                 # Short description of unit tests
+our $COMPILER   = "";                # Compiler variable for GEOS-Chem
+our $MAKE_CMD   = "";                # Make command with debug options
+our $SUBMIT     = "";                # Queue submit command
+our $VERSION    = "";                # GEOS-Chem version ID
+our $DESCRIBE   = "";                # Short description of unit tests
 #		
 # !PUBLIC MEMBER FUNCTIONS:
 #  &main()     : Driver routine for gcUnitTest
@@ -69,6 +71,7 @@ our $DESCRIBE  = "";                 # Short description of unit tests
 # !REVISION HISTORY: 
 #  22 Aug 2013 - R. Yantosca - Initial version
 #  04 Apr 2014 - R. Yantosca - Now can push the web page to a remote server
+#  27 Jun 2014 - R. Yantosca - Updated for HEMCO emissions
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -142,20 +145,21 @@ sub getRunDir($$$$) {
 #\\
 # !INTERFACE:
 #
-sub makeInputs($$$) {
+sub makeInputs($$$$$$) {
 #
 # !INPUT PARAMETERS:
 #
   # $start  : Start date of test simulation (YYYYMMDDhh)
   # $end    : End   date of test simulation (YYYYMMDDhh)
   # $runDir : Run directory
-  my ( $start, $end, $runDir ) = @_;
+  my ( $start, $end, $runDir, $met, $grid, $sim ) = @_;
 #
 # !CALLING SEQUENCE:
 #  &makeInputFiles( $start, $end, $runDir );
 #
 # !REVISION HISTORY:
 #  22 Aug 2013 - R. Yantosca - Initial version
+#  27 Jun 2014 - R. Yantosca - Updated for the HEMCO_Config.rc file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -168,19 +172,24 @@ sub makeInputs($$$) {
   my $h1      = "";
   my $inpTmpl = "$runDir/input.geos.template";
   my $inpGeos = "$runDir/input.geos";
+  my $hcoTmpl = "$runDir/HEMCO_Config.template";
+  my $hcoCfg  = "$runDir/HEMCO_Config.rc";
 
   # Get start date and hour
-  $d0       = substr( $start, 0, 8 );
-  $h0       = substr( $start, 8, 2 );
-  $h0      .= "0000";
+  $d0         = substr( $start, 0, 8 );
+  $h0         = substr( $start, 8, 2 );
+  $h0        .= "0000";
 
   # Get end date and hour
-  $d1       = substr( $end,   0, 8 );
-  $h1       = substr( $end,   8, 2 );
-  $h1      .= "0000";
+  $d1         = substr( $end,   0, 8 );
+  $h1         = substr( $end,   8, 2 );
+  $h1        .= "0000";
 
   # Make the input.geos file in the run directory
   &makeInputGeos( $d0, $h0, $d1, $h1, $DATA_ROOT, $inpTmpl, $inpGeos );
+
+  # Make the HEMCO_Config.rc file in the run directory
+  &makeHemcoCfg( $hcoTmpl, $met, $grid, $sim, $HEMCO_ROOT, $hcoCfg );
 
   # Return 
   return( $? );
@@ -273,24 +282,29 @@ sub doUnitTest($) {
     # Get values for global options (these precede the list of simulations)
     # Skip over lines beginning with the # comment character
     #
-    # NOTE: VERSION has to be last, and WEB_GRID before WEB_PUSH!
+    # NOTES:
+    # (1) VERSION   has to be listed last of all
+    # (2) DATA_ROOT has to be listed before HEMCO_ROOT
+    # (3) RUN_ROOT  has to be listed before RUN_DIR
+    # (3) WEB_GRID  has to be listed before WEB_PUSH
     #------------------------------------------------------------------------
     if ( !( $txt[$i] =~ m/\#/ ) ) { 
-      if    ( $txt[$i] =~ "CODE_DIR"     ) { $CODE_DIR  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "COMPILER"     ) { $COMPILER  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "DATA_ROOT"    ) { $DATA_ROOT = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "JOB_DIR"      ) { $JOB_DIR   = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "LOG_DIR"      ) { $LOG_DIR   = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "MAKE_CMD"     ) { $MAKE_CMD  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "PERL_DIR"     ) { $PERL_DIR  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "RUN_ROOT"     ) { $RUN_ROOT  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "RUN_DIR"      ) { $RUN_DIR   = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "SUBMIT"       ) { $SUBMIT    = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "TEMPLATE"     ) { $TEMPLATE  = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "WEB_GRID"     ) { $WEB_GRID  = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "WEB_PUSH"     ) { $WEB_PUSH  = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "DESCRIPTION"  ) { $DESCRIBE  = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "VERSION"      ) { $VERSION   = &parse( $txt[$i] ); }
+      if    ( $txt[$i] =~ "CODE_DIR"    ) { $CODE_DIR  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "COMPILER"    ) { $COMPILER  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "DATA_ROOT"   ) { $DATA_ROOT = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "HEMCO_ROOT"  ) { $HEMCO_ROOT= &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "JOB_DIR"     ) { $JOB_DIR   = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "LOG_DIR"     ) { $LOG_DIR   = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "MAKE_CMD"    ) { $MAKE_CMD  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "PERL_DIR"    ) { $PERL_DIR  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "RUN_ROOT"    ) { $RUN_ROOT  = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "RUN_DIR"     ) { $RUN_DIR   = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "SUBMIT"      ) { $SUBMIT    = &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "TEMPLATE"    ) { $TEMPLATE  = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "WEB_GRID"    ) { $WEB_GRID  = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "WEB_PUSH"    ) { $WEB_PUSH  = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "DESCRIPTION" ) { $DESCRIBE  = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "VERSION"     ) { $VERSION   = &parse( $txt[$i] ); }
     }
 
     #------------------------------------------------------------------------
@@ -305,14 +319,16 @@ sub doUnitTest($) {
       if ( !( -f $LOG_DIR ) ) { qx( mkdirhier $LOG_DIR ); }
 
       # Replace directory tokens in a few more variables
-      $TEMPLATE =~ s/{PERLDIR}/$PERL_DIR/g;
-      $WEB_GRID =~ s/{VERSION}/$VERSION/g;
-      $WEB_GRID =~ s/{LOGDIR}/$LOG_DIR/g;
-      $RUN_DIR  =~ s/{RUNROOT}/$RUN_ROOT/g;
-      $WEB_PUSH =~ s/\|/:/g;
+      $TEMPLATE   =~ s/{PERLDIR}/$PERL_DIR/g;
+      $WEB_GRID   =~ s/{VERSION}/$VERSION/g;
+      $WEB_GRID   =~ s/{LOGDIR}/$LOG_DIR/g;
+      $HEMCO_ROOT =~ s/{DATAROOT}/$DATA_ROOT/g;
+      $RUN_DIR    =~ s/{RUNROOT}/$RUN_ROOT/g;
+      $WEB_PUSH   =~ s/\|/:/g;
 
       # Make sure each of these directories exist before proceeding
       &checkDir( $DATA_ROOT );
+      &checkDir( $HEMCO_ROOT );
       &checkDir( $CODE_DIR  );
       &checkDir( $JOB_DIR   );
       &checkDir( $LOG_DIR   );
@@ -379,8 +395,8 @@ sub doUnitTest($) {
 	  # to each simulaton.  Specify these in the "EXTRA?" column.
 	  if ( length( $extra ) > 0 ) { $makeCmd .= " $extra"; }
 
-	  # Make the input.geos file in the run directory
-	  &makeInputs( $start, $end, $runDir );
+	  # Make the input.geos and HEMCO_Config.rc file in the run directory
+	  &makeInputs( $start, $end, $runDir, $met, $grid, $sim );
 
 	  # Save make commands to an array for use below
 	  @cmds = ( @cmds, 

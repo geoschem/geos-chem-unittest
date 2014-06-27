@@ -41,6 +41,7 @@ use strict;         # Force explicit variable declarations (like IMPLICIT NONE)
 #  24 Mar 2014 - R. Yantosca - Add UNITTEST hash and 1 at end of module
 #  24 Mar 2014 - R. Yantosca - Add &readResults, &makeMatrix routines
 #  24 Mar 2014 - R. Yantosca - Update ProTeX headers
+#  27 Jun 2014 - R. Yantosca - Add &makeHemcoCfg routine
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -58,7 +59,8 @@ BEGIN {
   @EXPORT_OK = qw( &baseName
                    &checkDir
                    &cleanDir
-                   &fmtStr        
+                   &fmtStr
+                   &makeHemcoCfg        
                    &makeInputGeos 
                    &parse
                    &replaceDate
@@ -328,6 +330,90 @@ sub makeInputGeos($$$$$$) {
     $line =~ s/{DATE2}/$dStr2/g; 
     $line =~ s/{TIME2}/$tStr2/g;
     $line =~ s/{DATA_ROOT}/$dataRoot/g;
+
+    # Write to output file
+    print O "$line\n";
+  }
+
+  # Close output file
+  close( O );
+
+  # Make the input.geos file chmod 644
+  chmod( 0644, $outFile );
+
+  # Exit
+  return(0);
+}
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: makeHemcoCfg
+#
+# !DESCRIPTION: Constructs the "HEMCO_Config.rc" file for GEOS-Chem.  It reads 
+#  a pre-defined template file and then just replaces tokens with the values
+#  passed via the argument list.
+#\\
+#\\
+# !INTERFACE:
+#
+sub makeHemcoCfg($$$$$$) {
+#
+# !INPUT PARAMETERS:
+#
+  # $infile  : HEMCO_Config template file w/ replaceable tokens
+  # $met     : Met field type  (passed via MET flag in G-C compilation)
+  # $grid    : Horizontal grid (passed via GRID flag in G-C compilation)
+  # $simType : Simulation type (passed via GRID flag in G-C compilation)
+  # $rootDir : Filepath to HEMCO emissions directory
+  # $outFile : HEMCO_Config.rc file w/ all tokens replaced
+  my ( $inFile, $met, $grid, $simType, $rootDir, $outFile ) = @_;
+#
+# !CALLING SEQUENCE:
+# &makeInputGeos( 20130101,             000000, 
+#                 20130102,             000000, 
+#                 "/as/data/geos/",
+#                "input.geos.template", "input.geos" );
+#
+# !REVISION HISTORY:
+#  27 Jun 2014 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  my @lines  = "";
+  my $line   = "";
+
+  #------------------------------  
+  # Read template file
+  #------------------------------ 
+
+  # Read template "input.geos" file into an array
+  open( I, "$inFile" ) or croak( "Cannot open $inFile!\n" );
+  @lines = <I>;
+  close( I );
+
+  #------------------------------  
+  # Create HEMCO_Config file
+  #------------------------------ 
+
+  # Open file
+  open( O, ">$outFile") or die "Can't open $outFile\n";
+
+  # Loop thru each line
+  foreach $line ( @lines ) {
+    
+    # Remove newline character
+    chomp( $line );
+
+    # Replace start & end dates
+    $line =~ s/{ROOT}/$rootDir/g;
+    $line =~ s/{MET}/$met/g;
+    $line =~ s/{GRID}/$grid/g;
+    $line =~ s/{SIM}/$simType/g;
 
     # Write to output file
     print O "$line\n";
