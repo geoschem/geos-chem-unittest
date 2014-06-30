@@ -13,6 +13,7 @@
 #
 # !REVISION HISTORY: 
 #  14 Apr 2014 - R. Yantosca - Initial version
+#  30 Jun 2014 - R. Yantosca - Add extrafileclean target
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -83,6 +84,10 @@ fileclean:
 	rm -f diaginfo.dat tracerinfo.dat
 	rm -f *.sp
 	rm -f *.mp
+
+extrafileclean:
+	rm -f input.geos
+	rm -f HEMCO_Config.rc
 
 logclean:
 	rm -f $(LOG_SP) 

@@ -113,6 +113,8 @@ sub main() {
 #  03 Sep 2013 - R. Yantosca - Now do a "make fileclean" in the runs directory,
 #                              which will remove files in run subdirectories
 #  24 Mar 2014 - R. Yantosca - Add better test for directories
+#  30 Jun 2014 - R. Yantosca - Now also call the extrafileclean target in the
+#                              run directory makefiles.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -166,10 +168,19 @@ sub main() {
 	# Skip over chem_inputs/
 	if ( !( $dir =~ m/chem_inputs/ ) ) { 
 
-	  # Then remove files in each run directory
+	  # Remove files in each run directory ...
 	  $cmd = "make -C $runDir fileclean";
 	  chomp( $result = qx( $cmd ) );
   	  print "$result\n";
+
+	  # ... and also remove input.geos, HEMCO_Config.rc
+          # (we don't remove these in fileclean because that 
+	  # would delete the files before they are ever used.)
+	  $cmd = "make -C $runDir extrafileclean";
+	  chomp( $result = qx( $cmd ) );
+  	  print "$result\n";
+
+
         }
       }
     }

@@ -16,6 +16,7 @@
 #  27 Aug 2013 - R. Yantosca - Now use a perl script to validate output files
 #  06 Sep 2013 - R. Yantosca - "fileclean" now removes *.sp and *.mp files
 #  30 Jan 2014 - R. Yantosca - Test if output files are present before renaming
+#  30 Jun 2014 - R. Yantosca - Add extrafileclean target
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -89,6 +90,10 @@ fileclean:
 	rm -f diaginfo.dat tracerinfo.dat smv2.log
 	rm -f *.sp
 	rm -f *.mp
+
+extrafileclean:
+	rm -f input.geos
+	rm -f HEMCO_Config.rc
 
 logclean:
 	rm -f $(LOG_SP) 

@@ -15,6 +15,7 @@
 #  06 Nov 2013 - R. Yantosca - Initial version
 #  30 Jan 2014 - R. Yantosca - Test if output files are present before renaming
 #  12 Jun 2014 - R. Yantosca - Updated for HEMCO soil NOx & restart files
+#  30 Jun 2014 - R. Yantosca - Add extrafileclean target
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -90,6 +91,10 @@ fileclean:
 	rm -f *.mp
 	rm -f HEMCO.log*
 	rm -f HEMCO.restart*
+
+extrafileclean:
+	rm -f input.geos
+	rm -f HEMCO_Config.rc
 
 logclean:
 	rm -f $(LOG_SP) 
