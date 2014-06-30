@@ -140,7 +140,7 @@ Convect Timestep (min)  : 30
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
 Emiss timestep (min)    : 60
-HEMCO Input file        : HEMCO_Config
+HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
 Switches for UCX        :---
  => Use CH4 emissions?  : F

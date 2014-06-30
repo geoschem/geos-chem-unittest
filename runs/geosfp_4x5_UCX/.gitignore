@@ -12,7 +12,8 @@ tracerinfo.dat
 geos.mp
 geos.sp
 input.geos
-*.log
 restart.soilnox.*
 restart.psc.*
+*.log
+HEMCO_Config.rc
 HEMCO_restart*

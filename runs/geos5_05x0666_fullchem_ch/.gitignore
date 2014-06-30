@@ -13,4 +13,6 @@ tracerinfo.dat
 geos.mp
 geos.sp
 input.geos
-smv2.log
+*.log
+HEMCO_Config.rc
+HEMCO_restart*
