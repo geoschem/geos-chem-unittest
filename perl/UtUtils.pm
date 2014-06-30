@@ -365,10 +365,11 @@ sub makeHemcoCfg($$$$$$) {
   # $infile  : HEMCO_Config template file w/ replaceable tokens
   # $met     : Met field type  (passed via MET flag in G-C compilation)
   # $grid    : Horizontal grid (passed via GRID flag in G-C compilation)
+  # $nest    : Nested grid suffix (i.e. CH, EU, NA, SE, etc.)
   # $simType : Simulation type (passed via GRID flag in G-C compilation)
   # $rootDir : Filepath to HEMCO emissions directory
   # $outFile : HEMCO_Config.rc file w/ all tokens replaced
-  my ( $inFile, $met, $grid, $simType, $rootDir, $outFile ) = @_;
+  my ( $inFile, $met, $grid, $nest, $simType, $rootDir, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
 # &makeInputGeos( 20130101,             000000, 
@@ -378,6 +379,7 @@ sub makeHemcoCfg($$$$$$) {
 #
 # !REVISION HISTORY:
 #  27 Jun 2014 - R. Yantosca - Initial version
+#  30 Jun 2014 - R. Yantosca - Now accept $nest via the arg list
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -413,6 +415,7 @@ sub makeHemcoCfg($$$$$$) {
     $line =~ s/{ROOT}/$rootDir/g;
     $line =~ s/{MET}/$met/g;
     $line =~ s/{GRID}/$grid/g;
+    $line =~ s/{NEST}/$nest/g;
     $line =~ s/{SIM}/$simType/g;
 
     # Write to output file

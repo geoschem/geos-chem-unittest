@@ -145,14 +145,14 @@ sub getRunDir($$$$) {
 #\\
 # !INTERFACE:
 #
-sub makeInputs($$$$$$) {
+sub makeInputs($$$$$$$) {
 #
 # !INPUT PARAMETERS:
 #
   # $start  : Start date of test simulation (YYYYMMDDhh)
   # $end    : End   date of test simulation (YYYYMMDDhh)
   # $runDir : Run directory
-  my ( $start, $end, $runDir, $met, $grid, $sim ) = @_;
+  my ( $start, $end, $runDir, $met, $grid, $nest, $sim ) = @_;
 #
 # !CALLING SEQUENCE:
 #  &makeInputFiles( $start, $end, $runDir );
@@ -160,6 +160,7 @@ sub makeInputs($$$$$$) {
 # !REVISION HISTORY:
 #  22 Aug 2013 - R. Yantosca - Initial version
 #  27 Jun 2014 - R. Yantosca - Updated for the HEMCO_Config.rc file
+#  30 Jun 2014 - R. Yantosca - Now accept $nest via the arg list
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -189,7 +190,7 @@ sub makeInputs($$$$$$) {
   &makeInputGeos( $d0, $h0, $d1, $h1, $DATA_ROOT, $inpTmpl, $inpGeos );
 
   # Make the HEMCO_Config.rc file in the run directory
-  &makeHemcoCfg( $hcoTmpl, $met, $grid, $sim, $HEMCO_ROOT, $hcoCfg );
+  &makeHemcoCfg( $hcoTmpl, $met, $grid, $nest, $sim, $HEMCO_ROOT, $hcoCfg );
 
   # Return 
   return( $? );
@@ -236,6 +237,7 @@ sub doUnitTest($) {
 #  31 Jan 2014 - R. Yantosca - Now allow for extra Makefile flags
 #  24 Apr 2014 - R. Yantosca - Now update the web page after each unit test
 #                              so that we can have a running display
+#  30 Jun 2014 - R. Yantosca - Now pass $nest to &makeInputs
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -396,7 +398,7 @@ sub doUnitTest($) {
 	  if ( length( $extra ) > 0 ) { $makeCmd .= " $extra"; }
 
 	  # Make the input.geos and HEMCO_Config.rc file in the run directory
-	  &makeInputs( $start, $end, $runDir, $met, $grid, $sim );
+	  &makeInputs( $start, $end, $runDir, $met, $grid, $nest, $sim );
 
 	  # Save make commands to an array for use below
 	  @cmds = ( @cmds, 
