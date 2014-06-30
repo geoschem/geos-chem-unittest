@@ -27,7 +27,7 @@ BEGIN SECTION BASE EMISSIONS
 #0 MACCITY_CO /home/ckeller/data/emis/MACCITY/nc/MACCity_anthro_CO_2000-2010_16080.nc  MACCity 2000/1/1/0 C xy kg/m2/s CO - 1 2 
 
 # --- GEIA ---
-#0 GEIA_NO   /home/ckeller/data/emis/GEIA/nc/GEIA_NOSO4.fullyear.geos.4x5.nc NO   1985/1-12/1/0 C xy  kg/m2/s NO   1/2/25/20    1 1 
+#0 GEIA_NO   /home/ckeller/data/emis/GEIA/nc/GEIA_NOSO4.fullyear.geos.2x25.nc NO   1985/1-12/1/0 C xy  kg/m2/s NO   1/2/25/20    1 1 
 #0 GEIA_CO   /home/ckeller/data/emis/GEIA/nc/GEIA_FOSSIL.geos.1x1.nc         CO   1985/1/1/0    C xy  kg/m2/s CO   6/7/26/21/52 1 1 
 #0 GEIA_ALK4 /home/ckeller/data/emis/GEIA/nc/GEIA_FOSSIL.geos.1x1.nc         ALK4 1985/1/1/0    C xy  kg/m2/s ALK4 918/26/22    1 1 
 #0 GEIA_ACET /home/ckeller/data/emis/GEIA/nc/GEIA_FOSSIL.geos.1x1.nc         ACET 1985/1/1/0    C xy  kg/m2/s ACET 918/26/55    1 1
@@ -37,9 +37,9 @@ BEGIN SECTION BASE EMISSIONS
 #0 GEIA_C3H8 /home/ckeller/data/emis/GEIA/nc/GEIA_FOSSIL.geos.1x1.nc         C3H8 1985/1/1/0    C xy  kg/m2/s C3H8 918/26/22    1 1
 
 # GEIA NH3 emissions: anthropogenic, biofuel and natural sources
-0 GEIA_NH3_ANTH /home/ckeller/data/emis/NH3/nc/NH3_geos.4x5.nc         NH3_ANTH    1990/1-12/1/0 C xy  kg/m2/s NH3 - 1 1 
-0 GEIA_NH3_BIOF /home/ckeller/data/emis/NH3/nc/NH3_biofuel.geos.4x5.nc NH3_BIOFUEL 1998/1-12/1/0 C xy  kg/m2/s NH3 - 2 1
-0 GEIA_NH3_NATU /home/ckeller/data/emis/NH3/nc/NH3_geos.4x5.nc         NH3_NATU    1990/1-12/1/0 C xy  kg/m2/s NH3 - 3 1
+0 GEIA_NH3_ANTH /home/ckeller/data/emis/NH3/nc/NH3_geos.2x25.nc         NH3_ANTH    1990/1-12/1/0 C xy  kg/m2/s NH3 - 1 1 
+0 GEIA_NH3_BIOF /home/ckeller/data/emis/NH3/nc/NH3_biofuel.geos.1x1.nc NH3_BIOFUEL 1998/1-12/1/0 C xy  kg/m2/s NH3 - 2 1
+0 GEIA_NH3_NATU /home/ckeller/data/emis/NH3/nc/NH3_geos.2x25.nc         NH3_NATU    1990/1-12/1/0 C xy  kg/m2/s NH3 - 3 1
 
 # --- EDGAR ---
 0 EDGAR_NO__F1  /home/ckeller/data/emis/EDGAR/nc/EDGAR.generic.1x1.nc  NO.f1000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
@@ -295,13 +295,13 @@ BEGIN SECTION BASE EMISSIONS
 ##0 COOKE_BF_OCPI   /home/ckeller/data/emis/BCOC_COOKE/nc/BCOC_Cooke_biofuel.gen.1x1.nc OCPI 1998/1-12/1/0 C xy kg/m2/s OCPI 72/1004 2 2
 #
 ## --- AEIC aircraft emissions ---
-0 AEIC_NO   /home/ckeller/data/emis/AEIC/AEIC.geos.1x1.47lev.nc NOx      2005/1-12/1/0 C xyz kg/m2/s NO   110     20 1
-0 AEIC_CO   /home/ckeller/data/emis/AEIC/AEIC.geos.1x1.47lev.nc CO       2005/1-12/1/0 C xyz kg/m2/s CO   110     20 1 
-0 AEIC_SO2  /home/ckeller/data/emis/AEIC/AEIC.geos.1x1.47lev.nc fuelBurn 2005/1-12/1/0 C xyz kg/m2/s SO2  111     20 1 
-0 AEIC_SO4  -                                                   -        -             - -   -       SO4  112     20 1 
-0 AEIC_BCPI -                                                   -        -             - -   -       BCPI 113     20 1 
-0 AEIC_OCPI -                                                   -        -             - -   -       OCPI 113     20 1 
-0 AEIC_ACET /home/ckeller/data/emis/AEIC/AEIC.geos.1x1.47lev.nc HC       2005/1-12/1/0 C xyz kg/m2/s ACET 114/101 20 1
+0 AEIC_NO   /home/ckeller/data/emis/AEIC/aeic_2005.geos.4x5.nc  NO       2005/1-12/1/0 C xyz kg/m2/s NO   110     20 1
+0 AEIC_CO   /home/ckeller/data/emis/AEIC/aeic_2005.geos.4x5.nc  CO       2005/1-12/1/0 C xyz kg/m2/s CO   110     20 1
+0 AEIC_SO2  /home/ckeller/data/emis/AEIC/aeic_2005.geos.4x5.nc  FUELBURN 2005/1-12/1/0 C xyz kg/m2/s SO2  111     20 1
+0 AEIC_SO4  -                                                   -        -             - -   -       SO4  112     20 1
+0 AEIC_BCPI -                                                   -        -             - -   -       BCPI 113     20 1
+0 AEIC_OCPI -                                                   -        -             - -   -       OCPI 113     20 1
+0 AEIC_ACET /home/ckeller/data/emis/AEIC/aeic_2005.geos.4x5.nc  HC       2005/1-12/1/0 C xyz kg/m2/s ACET 114/101 20 1
 0 AEIC_ALD2 -                                                   -        -             - -   -       ALD2 114/102 20 1
 0 AEIC_ALK4 -                                                   -        -             - -   -       ALK4 114/103 20 1
 0 AEIC_C2H6 -                                                   -        -             - -   -       C2H6 114/104 20 1
@@ -520,8 +520,8 @@ BEGIN SECTION EXTENSION DATA
 ####################################################################################
 #
 # --- Seawater concentrations for oceanic emissions (Extension 101) ---
-101 CH3I_SEAWATER   /home/ckeller/data/emis/CH3I/nc/ocean_ch3i.geos.4x5.nc       CH3I       1985/1-12/1/0 C xy kg/m3 CH3I  - 1 1
-101 DMS_SEAWATER    /home/ckeller/data/emis/DMS/nc/DMS_seawater.geos.4x5.nc      DMS_OCEAN  1985/1-12/1/0 C xy kg/m3 DMS   - 1 1
+101 CH3I_SEAWATER   /home/ckeller/data/emis/CH3I/nc/ocean_ch3i.geos.2x25.nc       CH3I       1985/1-12/1/0 C xy kg/m3 CH3I  - 1 1
+101 DMS_SEAWATER    /home/ckeller/data/emis/DMS/nc/DMS_seawater.geos.2x25.nc      DMS_OCEAN  1985/1-12/1/0 C xy kg/m3 DMS   - 1 1
 101 ACET_SEAWATER   /home/ckeller/data/emis/ACET/nc/ACET_seawater.generic.1x1.nc ACET       2005/1/1/0    C xy kg/m3 ACET - 1 1 
 #
 # --- PARANOX emissions (Extension 102) ---
@@ -534,7 +534,7 @@ BEGIN SECTION EXTENSION DATA
 #
 # --- LIGHTNOX emissions (Extension 103) ---
 # Local redistribution factors: These are model-specific and hence need to be redefined for different model/resolution simulations!!!
-103 LIGHTNOX_OTDLIS /home/ckeller/data/emis/LIGHTNOX/nc/OTD-LIS-Local-Redist.CTH.v5.geos5.4x5.nc OTD_LOC 2007-2009/1-12/1/0 C xy unitless NO - 1 1
+103 LIGHTNOX_OTDLIS /home/ckeller/data/emis/LIGHTNOX/nc/OTD-LIS-Local-Redist.CTH.v5.geos5.2x25.nc OTD_LOC 2007-2009/1-12/1/0 C xy unitless NO - 1 1
 #
 # --- SOILNOX emissions (Extension 104) ---
 104 SOILNOX_PFACT   ./initial_soil_rst.nc  PFACTOR       YYYY/MM/DD/HH    C xy  unitless NO - 1 1
@@ -570,19 +570,19 @@ BEGIN SECTION EXTENSION DATA
 104 SOILNOX_NONARID /home/ckeller/data/emis/SOILNOX/soilNOx.climate.generic.05x05.nc    NON_ARID     2000/1/1/0       C xy unitless NO - 1 1
 #
 # --- dust emissions using DEAD model (Extension 105) ---
-105 DEAD_EF_GEO   /home/ckeller/data/emis/DUST_DEAD/nc/dst_tibds.geos.4x5.nc     EF_GEO   1985/1/1/0    C xy factor   * - 1 1
-105 DEAD_LF_DRY   /home/ckeller/data/emis/DUST_DEAD/nc/dst_tibds.geos.4x5.nc     LF_DRY   1985/1/1/0    C xy factor   * - 1 1
-105 DEAD_MF_CACO3 /home/ckeller/data/emis/DUST_DEAD/nc/dst_tibds.geos.4x5.nc     MF_CaCO3 1985/1/1/0    C xy fraction * - 1 1
-105 DEAD_MF_CLY   /home/ckeller/data/emis/DUST_DEAD/nc/dst_tibds.geos.4x5.nc     MF_CLY   1985/1/1/0    C xy fraction * - 1 1
-105 DEAD_MF_SND   /home/ckeller/data/emis/DUST_DEAD/nc/dst_tibds.geos.4x5.nc     MF_SND   1985/1/1/0    C xy fraction * - 1 1
-105 DEAD_SFC_TYP  /home/ckeller/data/emis/DUST_DEAD/nc/dst_tibds.geos.4x5.nc     SFC_TYP  1985/1/1/0    C xy unitless * - 1 1
-105 DEAD_GOC_SRC  /home/ckeller/data/emis/DUST_DEAD/nc/GOCART_src_fn.geos.4x5.nc GOC_SRC  1985/1/1/0    C xy unitless * - 1 1
-105 DEAD_VAI      /home/ckeller/data/emis/DUST_DEAD/nc/dst_tvbds.geos.4x5.nc     VAI      1985/1-12/1/0 C xy unitless * - 1 1
+105 DEAD_EF_GEO   /home/ckeller/data/emis/DUST_DEAD/nc/dst_tibds.geos.2x25.nc     EF_GEO   1985/1/1/0    C xy factor   * - 1 1
+105 DEAD_LF_DRY   /home/ckeller/data/emis/DUST_DEAD/nc/dst_tibds.geos.2x25.nc     LF_DRY   1985/1/1/0    C xy factor   * - 1 1
+105 DEAD_MF_CACO3 /home/ckeller/data/emis/DUST_DEAD/nc/dst_tibds.geos.2x25.nc     MF_CaCO3 1985/1/1/0    C xy fraction * - 1 1
+105 DEAD_MF_CLY   /home/ckeller/data/emis/DUST_DEAD/nc/dst_tibds.geos.2x25.nc     MF_CLY   1985/1/1/0    C xy fraction * - 1 1
+105 DEAD_MF_SND   /home/ckeller/data/emis/DUST_DEAD/nc/dst_tibds.geos.2x25.nc     MF_SND   1985/1/1/0    C xy fraction * - 1 1
+105 DEAD_SFC_TYP  /home/ckeller/data/emis/DUST_DEAD/nc/dst_tibds.geos.2x25.nc     SFC_TYP  1985/1/1/0    C xy unitless * - 1 1
+105 DEAD_GOC_SRC  /home/ckeller/data/emis/DUST_DEAD/nc/GOCART_src_fn.geos.2x25.nc GOC_SRC  1985/1/1/0    C xy unitless * - 1 1
+105 DEAD_VAI      /home/ckeller/data/emis/DUST_DEAD/nc/dst_tvbds.geos.2x25.nc     VAI      1985/1-12/1/0 C xy unitless * - 1 1
 #
 # --- Dust emissions using Paul Ginoux's mechanism (Extension 106) 
-106 GINOUX_SAND   /home/ckeller/data/emis/DUST_GINOUX/nc/NSP.dust.geos.4x5.nc  SAND  1985/1/1/0 C xy unitless * - 1 1 
-106 GINOUX_SILT   /home/ckeller/data/emis/DUST_GINOUX/nc/NSP.dust.geos.4x5.nc  SILT  1985/1/1/0 C xy unitless * - 1 1 
-106 GINOUX_CLAY   /home/ckeller/data/emis/DUST_GINOUX/nc/NSP.dust.geos.4x5.nc  CLAY  1985/1/1/0 C xy unitless * - 1 1 
+106 GINOUX_SAND   /home/ckeller/data/emis/DUST_GINOUX/nc/NSP.dust.geos.2x25.nc  SAND  1985/1/1/0 C xy unitless * - 1 1 
+106 GINOUX_SILT   /home/ckeller/data/emis/DUST_GINOUX/nc/NSP.dust.geos.2x25.nc  SILT  1985/1/1/0 C xy unitless * - 1 1 
+106 GINOUX_CLAY   /home/ckeller/data/emis/DUST_GINOUX/nc/NSP.dust.geos.2x25.nc  CLAY  1985/1/1/0 C xy unitless * - 1 1 
 #
 # --- Sea salt emissions (Extension 107) 
 # --- No external data --- 
