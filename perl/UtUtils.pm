@@ -414,6 +414,7 @@ sub makeHemcoCfg($$$$$$) {
     # Replace start & end dates
     $line =~ s/{ROOT}/$rootDir/g;
     $line =~ s/{MET}/$met/g;
+#    $line =~ s/{MET_LNOX}/$metLNox/g;
     $line =~ s/{GRID}/$grid/g;
     $line =~ s/{NEST}/$nest/g;
     $line =~ s/{SIM}/$simType/g;
@@ -549,7 +550,7 @@ sub readResults($$) {
 # !RETURN VALUE:
 #
   # Hash that matches a result color (red, yellow, green) to each unit test
-  my %unitTests             = ();
+  my %unitTests              = ();
 #
 # !CALLING SEQUENCE:
 #  %unitTest = &readResults( $runDir, $fileName );
@@ -558,25 +559,29 @@ sub readResults($$) {
 #  21 Mar 2014 - R. Yantosca - Initial version
 #  24 Mar 2014 - R. Yantosca - Now return the %unitTests hash
 #  24 Mar 2014 - R. Yantosca - Now get version, date, description
+#  02 Jul 2014 - R. Yantosca - Improved the search method for HEMCO, UCX files
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 #
 # !LOCAL VARIABLES:
 #
-  # Scalar
+  # Scalars
   my $bpch     = 1;
   my $rst      = 1;
-  my $soil     = 1;
+  my $hemco    = 1;
+  my $psc      = 1;
   my $color    = "";
   my $utName   = "";
-  my $white    = "#FFFFFF";
-  my $red      = "#FF0000";
-  my $green    = "#00FF00";
-  my $yellow   = "#FFFF00";
   my $version  = "";
   my $dateRan  = "";
   my $describe = "";
+
+  # HTML color values
+  my $WHITE    = "#FFFFFF";
+  my $RED      = "#FF0000";
+  my $GREEN    = "#00FF00";
+  my $YELLOW   = "#FFFF00";
 
   # Arrays
   my @txt      = ();
@@ -600,7 +605,7 @@ sub readResults($$) {
     if ( $utName =~ m/soa_svpoa/ ) { $utName =~ s/soa_svpoa/svpoa/g; }
 
     # Give each unit test the background color of white
-    $unitTests{ $utName } = $white;
+    $unitTests{ $utName } = $WHITE;
   }
 
   # Also add two entries for the version tag and date of submission
@@ -620,9 +625,9 @@ sub readResults($$) {
   # Loop thru each line in the file; parse information into global variables
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
 
-    #---------------------------------------------
+    #-------------------------------------------------------------------------
     # Get the version number and date submitted
-    #---------------------------------------------
+    #-------------------------------------------------------------------------
     if ( $txt[$i] =~ m/GEOS-CHEM UNIT TEST RESULTS FOR VERSION/ ) {
 
       # Version number
@@ -650,9 +655,9 @@ sub readResults($$) {
       $unitTests{ "UNIT_TEST_DESCRIBE" } = $describe;
     }
     
-    #---------------------------------------------
+    #-------------------------------------------------------------------------
     # Get the name of the each unit test run directory
-    #---------------------------------------------
+    #-------------------------------------------------------------------------
     if ( $txt[$i] =~ m/VALIDATION OF GEOS-CHEM OUTPUT FILES/ ) {
       @subStr = split( ':', $txt[++$i] );
       $utName = $subStr[1];
@@ -666,7 +671,8 @@ sub readResults($$) {
       # Initialize flags
       $bpch   = 1;
       $rst    = 1;
-      $soil   = 1;
+      $hemco   = 1;
+      $psc    = 1;
 
       # Check the results of the BPCH file    
       for ( my $j = 0; $j < 6; $j++ ) { 
@@ -676,24 +682,35 @@ sub readResults($$) {
       # Check the results of the RESTART file    
       for ( my $j = 0; $j < 6; $j++ ) { 
 	if ( $txt[++$i] =~ m/DIFFERENT/ ) { $rst = -1; }
+
       }
 
-      # Check the results of the SOIL RESTART file    
+      # Check the results of the HEMCO RESTART file    
       if ( $utName =~ m/fullchem/ || $utName =~ m/soa/      ||
 	   $utName =~ m/Hg/       || $utName =~ m/TOMAS/    ||
 	   $utName =~ m/UCX/                            ) {
 	for ( my $j = 0; $j < 6; $j++ ) { 
-	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $soil = -1; }
+	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $hemco = -1; }
         }
       }
 
+      # Check the results of the UCX PSC RESTART file
+      if ( $utName =~ m/UCX/ ) {
+	for ( my $j = 0; $j < 6; $j++ ) { 
+	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $psc = -1; }
+        }
+      }
+
+      #-----------------------------------------------------------------------
       # Assign a color to the unit test output
       # GREEN  = IDENTICAL
       # YELLOW = RESTART FILES IDENTICAL, BUT BPCH FILES DIFFERENT
       # RED    = RESTART FILES DIFFERENT
-      if    ( $bpch ==  1 && $rst ==  1 && $soil == 1 ) { $color = $green;  }
-      elsif ( $bpch == -1 && $rst ==  1 && $soil == 1 ) { $color = $yellow; } 
-      elsif ( $bpch == -1 && $rst == -1               ) { $color = $red;    } 
+      #-----------------------------------------------------------------------
+      $color = $GREEN;
+      if ( $bpch == -1 || $hemco == -1 || $psc == -1 ) { $color = $YELLOW; }
+      if ( $rst  == -1                               ) { $color = $RED;    }
+      if ( $bpch == -1 && $rst   == -1               ) { $color = $RED;    }
 
       # Add the color to the UNITTEST hash
       $unitTests{ $utName } = $color;
