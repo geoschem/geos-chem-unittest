@@ -358,7 +358,7 @@ sub makeInputGeos($$$$$$) {
 #\\
 # !INTERFACE:
 #
-sub makeHemcoCfg($$$$$$) {
+sub makeHemcoCfg($$$$$$$) {
 #
 # !INPUT PARAMETERS:
 #
@@ -369,7 +369,8 @@ sub makeHemcoCfg($$$$$$) {
   # $simType : Simulation type (passed via GRID flag in G-C compilation)
   # $rootDir : Filepath to HEMCO emissions directory
   # $outFile : HEMCO_Config.rc file w/ all tokens replaced
-  my ( $inFile, $met, $grid, $nest, $simType, $rootDir, $outFile ) = @_;
+  my ( $inFile, $start,   $met,     $grid, 
+       $nest,   $simType, $rootDir, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
 # &makeInputGeos( 20130101,             000000, 
@@ -377,9 +378,17 @@ sub makeHemcoCfg($$$$$$) {
 #                 "/as/data/geos/",
 #                "input.geos.template", "input.geos" );
 #
+# !REMARKS:
+#  The {LNOX} token will be replaced with one of the following strings:
+#  (a) "geos5.1.0"        (for GEOS-5 met before   2008/01/01)
+#  (b) "geos5.2.0"        (for GEOS-5 met on/after 2008/01/01)
+#  (c) Same value as $met (for all other met field types     )
+#
 # !REVISION HISTORY:
 #  27 Jun 2014 - R. Yantosca - Initial version
-#  30 Jun 2014 - R. Yantosca - Now accept $nest via the arg list
+#  30 Jun 2014 - R. Yantosca - Now accept $nest via the argument list
+#  02 Jul 2014 - R. Yantosca - Now accept $start via the argument list
+#  02 Jul 2014 - R. Yantosca - Now replace the {LNOX} token
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -388,19 +397,42 @@ sub makeHemcoCfg($$$$$$) {
 #
   my @lines  = "";
   my $line   = "";
+  my $lNox   = "";
+  my $date   = 0;
 
-  #------------------------------  
+  #---------------------------------------------------  
   # Read template file
-  #------------------------------ 
+  #---------------------------------------------------
 
   # Read template "input.geos" file into an array
   open( I, "$inFile" ) or croak( "Cannot open $inFile!\n" );
   @lines = <I>;
   close( I );
 
-  #------------------------------  
+  #---------------------------------------------------
+  # Compute the value to replace the {LNOX} token
+  # in the OTD/LIS lightning NOx file names
+  #---------------------------------------------------
+  if ( $met =~ m/geos5/ ) { 
+
+    # Cast starting date from string to numeric
+    $date = $start;
+
+    # Pick the string for the OTD/LIS lightning NOx filename 
+    # For GEOS-5 the version differs depending on the date
+    if ( $date < 2008010100 ) { $lNox = "geos5.1.0"; }
+    else                      { $lNox = "geos5.2.0"; }
+
+  } else { 
+
+    # For all other met fields, use the met field name
+    $lNox = $met; 
+
+  } 
+
+  #---------------------------------------------------
   # Create HEMCO_Config file
-  #------------------------------ 
+  #---------------------------------------------------
 
   # Open file
   open( O, ">$outFile") or die "Can't open $outFile\n";
@@ -414,7 +446,7 @@ sub makeHemcoCfg($$$$$$) {
     # Replace start & end dates
     $line =~ s/{ROOT}/$rootDir/g;
     $line =~ s/{MET}/$met/g;
-#    $line =~ s/{MET_LNOX}/$metLNox/g;
+    $line =~ s/{LNOX}/$lNox/g;
     $line =~ s/{GRID}/$grid/g;
     $line =~ s/{NEST}/$nest/g;
     $line =~ s/{SIM}/$simType/g;

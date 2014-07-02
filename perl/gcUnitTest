@@ -62,7 +62,7 @@ our $DESCRIBE   = "";                # Short description of unit tests
 #  &doUnitTest : Reads user options from a file and starts the unit test
 #
 # !CALLING SEQUENCE:
-#  gcUnitTest [ OPTIONS-FILENAME ]
+#  gcUnitTest [ OPTIONS-FILENAME ] [ DRYRUN ]
 #
 # !REMARKS:
 #  If no value is passed for OPTIONS-FILENAME, then gcUnitTest will
@@ -72,6 +72,8 @@ our $DESCRIBE   = "";                # Short description of unit tests
 #  22 Aug 2013 - R. Yantosca - Initial version
 #  04 Apr 2014 - R. Yantosca - Now can push the web page to a remote server
 #  27 Jun 2014 - R. Yantosca - Updated for HEMCO emissions
+#  02 Jul 2014 - R. Yantosca - Now accepts optional DRYRUN argument, which
+#                              will set up input files but not run unit tests
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -145,7 +147,7 @@ sub getRunDir($$$$) {
 #\\
 # !INTERFACE:
 #
-sub makeInputs($$$$$$$) {
+sub makeInputs($$$$$$$$) {
 #
 # !INPUT PARAMETERS:
 #
@@ -161,6 +163,7 @@ sub makeInputs($$$$$$$) {
 #  22 Aug 2013 - R. Yantosca - Initial version
 #  27 Jun 2014 - R. Yantosca - Updated for the HEMCO_Config.rc file
 #  30 Jun 2014 - R. Yantosca - Now accept $nest via the arg list
+#  02 Jul 2014 - R. Yantosca - Now pass $start to routine &makeHemcoCfg
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -190,7 +193,8 @@ sub makeInputs($$$$$$$) {
   &makeInputGeos( $d0, $h0, $d1, $h1, $DATA_ROOT, $inpTmpl, $inpGeos );
 
   # Make the HEMCO_Config.rc file in the run directory
-  &makeHemcoCfg( $hcoTmpl, $met, $grid, $nest, $sim, $HEMCO_ROOT, $hcoCfg );
+  &makeHemcoCfg( $hcoTmpl, $start, $met,        $grid, 
+                 $nest,    $sim,   $HEMCO_ROOT, $hcoCfg );
 
   # Return 
   return( $? );
@@ -211,11 +215,13 @@ sub makeInputs($$$$$$$) {
 #\\
 # !INTERFACE:
 #
-sub doUnitTest($) {
+sub doUnitTest($$) {
 #
 # !INPUT PARAMETERS:
 #
-  my ( $fileName ) = @_;  # File in which unit test options are listed
+  # $fileName : File in which unit test options are listed
+  # $dryRun   : If =1, will set up input files, but not submit unit test job 
+  my ( $fileName, $dryRun ) = @_;
 #
 # !CALLING SEQUENCE:
 #  &doUnitTest( $fileName );
@@ -238,6 +244,8 @@ sub doUnitTest($) {
 #  24 Apr 2014 - R. Yantosca - Now update the web page after each unit test
 #                              so that we can have a running display
 #  30 Jun 2014 - R. Yantosca - Now pass $nest to &makeInputs
+#   2 Jul 2014 - R. Yantosca - Now add
+
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -468,9 +476,11 @@ EOF
 
   # Submit the job.  Send the stdout stream to $logRslt
   # and the stderr stream to a file in the $LOG_DIR.
-  $cmd = "cd $LOG_DIR; $SUBMIT $jobFile\n";
-  chomp( $status = qx( $cmd ) );
-  print "$status\n";
+  if ( ! $dryRun  ) { 
+    $cmd = "cd $LOG_DIR; $SUBMIT $jobFile\n";
+    chomp( $status = qx( $cmd ) );
+    print "$status\n";
+  }
   				
   # Return normally
   return( $? );
@@ -491,18 +501,21 @@ EOF
 sub main(@) {
 #
 # !CALLING SEQUENCE:
-#  doUnitTest OPTIONS-FILENAME
+#  doUnitTest OPTIONS-FILENAME DRYRUN
 #
 # !REVISION HISTORY:
 #  23 May 2013 - R. Yantosca - Initial version, based on NRT-ARCTAS
+#  02 Jul 2014 - R. Yantosca - Now accepts DRYRUN argument, which will set up
+#                              input files but not submit the unit test job
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 
   # If the user passes a filename from the command line, use it
   # Otherwise, default to "UnitTest.input"
-  if ( scalar( @ARGV ) == 1 ) { &doUnitTest( $ARGV[0]         ); }
-  else                        { &doUnitTest( "UnitTest.input" ); }
+  if    ( scalar( @ARGV ) == 2 ) { &doUnitTest( @ARGV               ); }
+  elsif ( scalar( @ARGV ) == 1 ) { &doUnitTest( $ARGV[0],         0 ); }
+  else                           { &doUnitTest( "UnitTest.input", 0 ); }
 
   # Exit and pass status code back
   return( $? );

@@ -15,9 +15,15 @@
 #  (2) MET  : Met field type (from G-C compilation command)
 #  (3) GRID : Horizontal grid type (from G-C compilation command)
 #  (4) SIM  : Simulation type (from G-C compilation command)
+#  (5) NEST : Nested-grid type (CH, EU, NA, SE)
+#  (6) LNOX : String for OTD/LIS lightning NOx files:
+#             (a) For GEOS-5 this is either "geos5.1.0" or "geos5.2.0".  
+#             (b) For other met fields, this is the same as MET.
 # 
 # !REVISION HISTORY: 
 #  17 Apr 2014 - R. Yantosca - Initial version
+#  02 Jul 2014 - R. Yantosca - Now use a 1 x 1 file for DMS seawater
+#  02 Jul 2014 - R. Yantosca - Now added LNOX token
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -508,7 +514,7 @@ END SECTION MASKS
 #
 # ExtNr ExtName           on/off  Species 
 100     Custom            : off   - 
-101     SeaFlux           : on    CH3I/DMS/ACET
+101     SeaFlux           : on    DMS/ACET
 102     ParaNOx           : on    NO/NO2/O3/HNO3
     --> FracNOx table     :       {ROOT}/PARANOX/v2014-07/FracNOx_binary_5hrs_20gs.dat
     --> IntOPE table      :       {ROOT}/PARANOX/v2014-07/IntOPE_binary_5hrs_20gs.dat
@@ -544,8 +550,8 @@ END SECTION EXTENSION SWITCHES
 ###############################################################################
 #
 # --- Seawater concentrations for oceanic emissions (Extension 101) ---
-101 CH3I_SEAWATER   {ROOT}/CH3I/v2014-07/ocean_ch3i.geos.4x5.nc       CH3I       1985/1-12/1/0 C xy kg/m3 CH3I  - 1 1
-101 DMS_SEAWATER    {ROOT}/DMS/v2014-07/DMS_seawater.geos.4x5.nc      DMS_OCEAN  1985/1-12/1/0 C xy kg/m3 DMS   - 1 1
+#101 CH3I_SEAWATER   {ROOT}/CH3I/v2014-07/ocean_ch3i.geos.4x5.nc       CH3I       1985/1-12/1/0 C xy kg/m3 CH3I  - 1 1
+101 DMS_SEAWATER    {ROOT}/DMS/v2014-07/DMS_seawater.geos.1x1.nc DMS_OCEAN  1985/1-12/1/0 C xy kg/m3 DMS   - 1 1
 101 ACET_SEAWATER   {ROOT}/ACET/v2014-07/ACET_seawater.generic.1x1.nc ACET       2005/1/1/0    C xy kg/m3 ACET - 1 1 
 #
 # --- PARANOX emissions (Extension 102) ---
@@ -558,7 +564,7 @@ END SECTION EXTENSION SWITCHES
 #
 # --- LIGHTNOX emissions (Extension 103) ---
 # Local redistribution factors: These are model-specific and hence need to be redefined for different model/resolution simulations!!!
-103 LIGHTNOX_OTDLIS {ROOT}/LIGHTNOX/v2014-07/OTD-LIS-Local-Redist.CTH.v5.{MET}.{GRID}.nc OTD_LOC 2012-2013/1-12/1/0 C xy unitless NO - 1 1
+103 LIGHTNOX_OTDLIS {ROOT}/LIGHTNOX/v2014-07/OTD-LIS-Local-Redist.CTH.v5.{LNOX}.{GRID}.nc OTD 2012-2013/1-12/1/0 C xy unitless NO - 1 1
 #
 # --- SOILNOX emissions (Extension 104) ---
 104 SOILNOX_PFACT   ./initial_soil_rst.{MET}_{GRID}_{SIM}.nc  PFACTOR       YYYY/MM/DD/HH    C xy  unitless NO - 1 1
