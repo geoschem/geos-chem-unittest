@@ -40,7 +40,7 @@ LOG_MP   :=$(LOG_DIR)/$(VERSION).$(RUNID).mp
 # Output file names
 TRAC_AVG :=trac_avg.$(RUNID).$(START)
 TRAC_RST :=trac_rst.$(RUNID).$(END)
-HMCO_RST  :=HEMCO_restart.$(START)00.nc
+HMCO_RST :=HEMCO_restart.$(START)00.nc
 
 # Validation script
 VALIDATE :=/usr/bin/perl $(PERL_DIR)/validate
@@ -129,4 +129,5 @@ print:
 	@echo "TRAC_AVG : $(TRAC_AVG)"
 	@echo "TRAC_RST : $(TRAC_RST)"
 	@echo "HMCO_RST : $(HMCO_RST)"
+	@echo "HMCO_END : $(HMCO_END)"
 #EOC

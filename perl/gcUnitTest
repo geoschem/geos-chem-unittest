@@ -74,6 +74,7 @@ our $DESCRIBE   = "";                # Short description of unit tests
 #  27 Jun 2014 - R. Yantosca - Updated for HEMCO emissions
 #  02 Jul 2014 - R. Yantosca - Now accepts optional DRYRUN argument, which
 #                              will set up input files but not run unit tests
+#  28 Jul 2014 - R. Yantosca - End date/time can be YYYYMMDDhh or YYYYMMDDhhmm
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -151,8 +152,8 @@ sub makeInputs($$$$$$$$) {
 #
 # !INPUT PARAMETERS:
 #
-  # $start  : Start date of test simulation (YYYYMMDDhh)
-  # $end    : End   date of test simulation (YYYYMMDDhh)
+  # $start  : Start date of test simulation (YYYYMMDDhh                )
+  # $end    : End   date of test simulation (YYYYMMDDhh or YYYYMMDDhhmm)
   # $runDir : Run directory
   my ( $start, $end, $runDir, $met, $grid, $nest, $sim ) = @_;
 #
@@ -164,6 +165,7 @@ sub makeInputs($$$$$$$$) {
 #  27 Jun 2014 - R. Yantosca - Updated for the HEMCO_Config.rc file
 #  30 Jun 2014 - R. Yantosca - Now accept $nest via the arg list
 #  02 Jul 2014 - R. Yantosca - Now pass $start to routine &makeHemcoCfg
+#  28 Jul 2014 - R. Yantosca - Now accept $end as YYYYMMDDhhmm or YYYMMDDhh
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -178,6 +180,7 @@ sub makeInputs($$$$$$$$) {
   my $inpGeos = "$runDir/input.geos";
   my $hcoTmpl = "$runDir/HEMCO_Config.template";
   my $hcoCfg  = "$runDir/HEMCO_Config.rc";
+  my $errMsg  = "makeInputs: END must be YYYYMMDDhh or YYYYMMDDhhmm!";
 
   # Get start date and hour
   $d0         = substr( $start, 0, 8 );
@@ -186,8 +189,13 @@ sub makeInputs($$$$$$$$) {
 
   # Get end date and hour
   $d1         = substr( $end,   0, 8 );
-  $h1         = substr( $end,   8, 2 );
-  $h1        .= "0000";
+
+  # If the $end string has 12 digits, then it's YYYYMMDDhhmm
+  # Otherwise it's YYYYMMDDhh
+  # Test for the length of the string
+  if    ( length( $end ) == 12 ) { $h1 = substr( $end, 8, 4 ) . "00";   }
+  elsif ( length( $end ) == 10 ) { $h1 = substr( $end, 8, 2 ) . "0000"; }
+  else                           { print "$errMsg\n"; exit(1);          }
 
   # Make the input.geos file in the run directory
   &makeInputGeos( $d0, $h0, $d1, $h1, $DATA_ROOT, $inpTmpl, $inpGeos );
@@ -244,8 +252,8 @@ sub doUnitTest($$) {
 #  24 Apr 2014 - R. Yantosca - Now update the web page after each unit test
 #                              so that we can have a running display
 #  30 Jun 2014 - R. Yantosca - Now pass $nest to &makeInputs
-#   2 Jul 2014 - R. Yantosca - Now add
-
+#  28 Jul 2014 - R. Yantosca - Improved comments.  Now call routine &makeInputs
+#                              before saving the commands for the master script
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -257,6 +265,7 @@ sub doUnitTest($$) {
   my $end     = "";
   my $extra   = "";
   my $grid    = "";
+  my $hco_end = "";
   my $jobFile = "";
   my $logHdr  = "";
   my $logRslt = "";
@@ -292,7 +301,7 @@ sub doUnitTest($$) {
     # Get values for global options (these precede the list of simulations)
     # Skip over lines beginning with the # comment character
     #
-    # NOTES:
+    # PLEASE NOTE THAT THE FOLLOWING ORDER MUST BE OBSERVED:
     # (1) VERSION   has to be listed last of all
     # (2) DATA_ROOT has to be listed before HEMCO_ROOT
     # (3) RUN_ROOT  has to be listed before RUN_DIR
@@ -318,8 +327,7 @@ sub doUnitTest($$) {
     }
 
     #------------------------------------------------------------------------
-    # Get information about requested debug simulatons
-    # and create the make commands corresponding to each simulation
+    # Get information about requested unit test simulations
     #------------------------------------------------------------------------
     elsif ( $txt[$i] =~ "!RUNS"     ) {
 
@@ -353,6 +361,11 @@ sub doUnitTest($$) {
 	# Skip lines beginning with comments
 	if ( !( $txt[$i] =~ m/^\#/ ) ) {
 
+	  #-----------------------------------------------------------------
+	  # Parse each line that specifies an individual unit test.
+	  # Remove extraneous characters wherever necessary.
+	  #-----------------------------------------------------------------
+
 	  # Parse each line into values
 	  ( $met,   $grid, $nest, $sim, 
 	    $start, $end,  $extra       ) = split( ' ', $txt[$i] );
@@ -385,11 +398,26 @@ sub doUnitTest($$) {
 	  # Get the directory name minus the full path
 	  $notDir   = &baseName( $runDir );
 
+	  #-----------------------------------------------------------------
+	  # Create the input.geos and HEMCO_Config.rc files from templates 
+	  # in the run directory for each requested unit test.  This has
+	  # to be done first, since the unit test commands will (likely)
+	  # be executed from within a computational queue system.
+	  #-----------------------------------------------------------------
+
+	  # Make the input.geos and HEMCO_Config.rc file in the run directory
+	  &makeInputs( $start, $end, $runDir, $met, $grid, $nest, $sim );
+
+	  #-----------------------------------------------------------------
+	  # Create the list of comamnds that will execute each requested
+	  # unit test.  Store these commands in the @cmds array.
+	  #-----------------------------------------------------------------
+
 	  # Construct the make command, for single & multi processor
 	  $makeCmd  = "$MAKE_CMD COMPILER=$COMPILER MET=$met GRID=$grid";
 	  $makeCmd .= " SIM=$sim VERSION=$VERSION LOG_DIR=$LOG_DIR";
 	  $makeCmd .= " CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR";
-	  $makeCmd .= " START=$start END=$end"; 
+	  $makeCmd .= " START=$start END=$end HCO_END=$hco_end"; 
 
 	  # The main log files
 	  $stdout   = "$LOG_DIR/$VERSION.stdout.log";
@@ -404,9 +432,6 @@ sub doUnitTest($$) {
 	  # If necessary, also add extra Makefile options that are specific 
 	  # to each simulaton.  Specify these in the "EXTRA?" column.
 	  if ( length( $extra ) > 0 ) { $makeCmd .= " $extra"; }
-
-	  # Make the input.geos and HEMCO_Config.rc file in the run directory
-	  &makeInputs( $start, $end, $runDir, $met, $grid, $nest, $sim );
 
 	  # Save make commands to an array for use below
 	  @cmds = ( @cmds, 
@@ -426,8 +451,9 @@ sub doUnitTest($$) {
   }
 
   #--------------------------------------------------------------------------
-  # Write a script to call Makefiles in each of the run directories
-  # that will compile and run GEOS-Chem with debugging options
+  # Write the commands archived above into the master job script.  This 
+  # script will call the Makefile in the run directory of each requested 
+  # unit test to compile and run GEOS-Chem w/ the specified options.
   #--------------------------------------------------------------------------
 
   # Get local time
@@ -466,7 +492,15 @@ EOF
   close( O );
   chmod( 0755, $jobFile );
 
-  # Print
+  #--------------------------------------------------------------------------
+  # Execute the unit test master script.  This will more than likely be
+  # done in a computational queue.  
+  #
+  # FOR DEBUGGING: If the $dryRun option is set, then just generate the 
+  # master job script but do not start the unit tests.
+  #--------------------------------------------------------------------------
+
+  # Print info about the job
   print '%%%%%%%%% GEOS-Chem UNIT TEST SIMULATION(S) %%%%%%%%%%%%%%%%%%'."\n";
   print "\%\%\% Version ID         : $VERSION\n";
   print "\%\%\% Testing code in    : $CODE_DIR\n";

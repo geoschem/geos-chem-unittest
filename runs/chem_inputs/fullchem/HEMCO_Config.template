@@ -24,6 +24,7 @@
 #  17 Apr 2014 - R. Yantosca - Initial version
 #  02 Jul 2014 - R. Yantosca - Now use a 1 x 1 file for DMS seawater
 #  02 Jul 2014 - R. Yantosca - Now added LNOX token
+#  28 Jul 2014 - R. Yantosca - Now added "Unit tolerance" setting
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -37,6 +38,7 @@ Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
 Wildcard:                    *
 Separator:                   /
+Unit tolerance:              1
 Only unitless scale factors: false
 Verbose:                     false
 Track code:                  false

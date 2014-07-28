@@ -1,5 +1,5 @@
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
@@ -16,7 +16,9 @@
 #  DESCRIPTION : A short description of what this unit test is validating
 #  CODE_DIR    : Full path of the GEOS-Chem code directory
 #  DATA_ROOT   : Root GEOS-Chem data directory
-#  RUN_DIR     : Unit Test run directory
+#  HEMCO_ROOT  : Root directory where HEMCO emissions data files are stored
+#  RUN_ROOT    : Unit test run directories are subdirectories of RUN_ROOT
+#  RUN_DIR     : Individual unit test run directory path
 #  JOB_DIR     : Unit Test job script directory
 #  LOG_DIR     : Unit Test log file directory
 #  PERL_DIR    : Unit Test perl script directory (i.e. this directory)
@@ -36,15 +38,18 @@
 #  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
 #  14 Apr 2014 - R. Yantosca - Added unit tests for POPs simulation
 #  24 Apr 2014 - R. Yantosca - Add extra GEOS-4 unit tests (Hg, tagO3, CH4)
+#  28 Jul 2014 - R. Yantosca - Add HEMCO_ROOT directory
+#  28 Jul 2014 - R. Yantosca - 2 x 2.5 runs now end after 30 mins
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION     : v9-02.public
+   VERSION     : v10-01.public
    DESCRIPTION : To test feature XXX in GEOS-Chem
    CODE_DIR    : /home/bmy/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos
+   HEMCO_ROOT  : {DATAROOT}/ExtData/HEMCO
    RUN_ROOT    : /home/bmy/UT/runs
    RUN_DIR     : {RUNROOT}/{RUNDIR}
    JOB_DIR     : /home/bmy/UT/jobs
@@ -94,13 +99,13 @@
   merra    4x5         -      tagCO        2005070100   2005070101   -
   geos5    4x5         -      tagCO        2005070100   2005070101   -
 # ======= Carbon Dioxide =====================================================
-# geosfp   2x25        -      CO2          2013070100   2013070101   -
-  geos5    2x25        -      CO2          2005070100   2005070101   -
+# geosfp   2x25        -      CO2          2013070100   201307010030 -
+  geos5    2x25        -      CO2          2005070100   200507010030 -
 # ======= Fullchem ===========================================================
   geosfp   4x5         -      fullchem     2013070100   2013070101   -
   merra    4x5         -      fullchem     2005070100   2005070101   -
-  geos5    05x0666     ch     fullchem     2005070100   2005070101   -
-  geos5    2x25        -      fullchem     2005070100   2005070101   -
+  geos5    05x0666     ch     fullchem     2005070100   200507010030 -
+  geos5    2x25        -      fullchem     2005070100   200507010030 -
   geos5    4x5         -      fullchem     2005070100   2005070101   -
   geos4    4x5         -      fullchem     2005070100   2005070101   -
   gcap     4x5         -      fullchem     2005070100   2005070101   -
