@@ -67,9 +67,10 @@ END SECTION SETTINGS
 #0 GEIA_C3H8 {ROOT}/GEIA/v2014-07/GEIA_FOSSIL.geos.1x1.nc         C3H8 1985/1/1/0    C xy  kg/m2/s C3H8 918/26/22    1 1
 
 # GEIA NH3 emissions: anthropogenic, biofuel and natural sources
-0 GEIA_NH3_ANTH  {ROOT}/NH3/v2014-07/NH3_geos.4x5.nc         NH3_ANTH    1990/1-12/1/0 C xy  kg/m2/s NH3 - 1 1 
-0 GEIA_NH3_BIOF  {ROOT}/NH3/v2014-07/NH3_biofuel.geos.4x5.nc NH3_BIOFUEL 1998/1-12/1/0 C xy  kg/m2/s NH3 - 2 1
-0 GEIA_NH3_NATU  {ROOT}/NH3/v2014-07/NH3_geos.4x5.nc         NH3_NATU    1990/1-12/1/0 C xy  kg/m2/s NH3 - 3 1
+0 GEIA_NH3_ANTH  {ROOT}/NH3/v2014-07/NH3_geos.1x1.nc         NH3_ANTH    1990/1-12/1/0 C xy  kg/m2/s NH3 - 1 1 
+0 GEIA_NH3_BIOF  {ROOT}/NH3/v2014-07/NH3_biofuel.geos.1x1.nc NH3_BIOFUEL 1998/1-12/1/0 C xy  kg/m2/s NH3 - 2 1
+0 GEIA_NH3_NATU  {ROOT}/NH3/v2014-07/NH3_geos.1x1.nc         NH3_NATU    1990/1-12/1/0 C xy  kg/m2/s NH3 - 3 1
+
 
 # --- EDGAR ---
 0 EDGAR_NO__F1   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f1000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
@@ -602,19 +603,21 @@ END SECTION EXTENSION SWITCHES
 104 SOILNOX_NONARID {ROOT}/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc    NON_ARID     2000/1/1/0       C xy unitless NO - 1 1
 #
 # --- dust emissions using DEAD model (Extension 105) ---
-105 DEAD_EF_GEO   {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc     EF_GEO   1985/1/1/0    C xy factor   * - 1 1
-105 DEAD_LF_DRY   {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc     LF_DRY   1985/1/1/0    C xy factor   * - 1 1
-105 DEAD_MF_CACO3 {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc     MF_CaCO3 1985/1/1/0    C xy fraction * - 1 1
-105 DEAD_MF_CLY   {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc     MF_CLY   1985/1/1/0    C xy fraction * - 1 1
-105 DEAD_MF_SND   {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc     MF_SND   1985/1/1/0    C xy fraction * - 1 1
-105 DEAD_SFC_TYP  {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc     SFC_TYP  1985/1/1/0    C xy unitless * - 1 1
-105 DEAD_GOC_SRC  {ROOT}/DUST_DEAD/v2014-07/GOCART_src_fn.geos.4x5.nc GOC_SRC  1985/1/1/0    C xy unitless * - 1 1
-105 DEAD_VAI      {ROOT}/DUST_DEAD/v2014-07/dst_tvbds.geos.4x5.nc     VAI      1985/1-12/1/0 C xy unitless * - 1 1
+# --- NOTE: Use 2 x 2.5 for now, we will try to get 1 x 1 data soon ---
+105 DEAD_EF_GEO   {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc     EF_GEO   1985/1/1/0    C xy factor   * - 1 1
+105 DEAD_LF_DRY   {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc     LF_DRY   1985/1/1/0    C xy factor   * - 1 1
+105 DEAD_MF_CACO3 {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc     MF_CaCO3 1985/1/1/0    C xy fraction * - 1 1
+105 DEAD_MF_CLY   {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc     MF_CLY   1985/1/1/0    C xy fraction * - 1 1
+105 DEAD_MF_SND   {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc     MF_SND   1985/1/1/0    C xy fraction * - 1 1
+105 DEAD_SFC_TYP  {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc     SFC_TYP  1985/1/1/0    C xy unitless * - 1 1
+105 DEAD_GOC_SRC  {ROOT}/DUST_DEAD/v2014-07/GOCART_src_fn.geos.2x25.nc GOC_SRC  1985/1/1/0    C xy unitless * - 1 1
+105 DEAD_VAI      {ROOT}/DUST_DEAD/v2014-07/dst_tvbds.geos.2x25.nc     VAI      1985/1-12/1/0 C xy unitless * - 1 1
 #
 # --- Dust emissions using Paul Ginoux's mechanism (Extension 106) 
-106 GINOUX_SAND   {ROOT}/DUST_GINOUX/v2014-07/NSP.dust.geos.4x5.nc  SAND  1985/1/1/0 C xy unitless * - 1 1 
-106 GINOUX_SILT   {ROOT}/DUST_GINOUX/v2014-07/NSP.dust.geos.4x5.nc  SILT  1985/1/1/0 C xy unitless * - 1 1 
-106 GINOUX_CLAY   {ROOT}/DUST_GINOUX/v2014-07/NSP.dust.geos.4x5.nc  CLAY  1985/1/1/0 C xy unitless * - 1 1 
+# --- NOTE: Use 2 x 2.5 for now, we will try to get 1 x 1 data soon ---
+106 GINOUX_SAND   {ROOT}/DUST_GINOUX/v2014-07/NSP.dust.geos.{GRID}.nc  SAND  1985/1/1/0 C xy unitless * - 1 1 
+106 GINOUX_SILT   {ROOT}/DUST_GINOUX/v2014-07/NSP.dust.geos.{GRID}.nc  SILT  1985/1/1/0 C xy unitless * - 1 1 
+106 GINOUX_CLAY   {ROOT}/DUST_GINOUX/v2014-07/NSP.dust.geos.{GRID}.nc  CLAY  1985/1/1/0 C xy unitless * - 1 1 
 #
 # --- Sea salt emissions (Extension 107) 
 # --- No external data --- 
