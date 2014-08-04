@@ -208,10 +208,8 @@ END SECTION SETTINGS
 0 NEI2005_ALK4 {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    ALK4 2005/1/1/0 C xyz kg/m2/s ALK4 212/231/1005          1 35
 #0 NEI2005_C2H6 {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    C2H6 2005/1/1/0 C xyz kg/m2/s C2H6 217/236/1005          1 35
 0 NEI2005_C3H8 {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    C3H8 2005/1/1/0 C xyz kg/m2/s C3H8 216/235/1005          1 35
-#0 NEI2005_OCPI {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    OCPI 2005/1/1/0 C xyz kg/m2/s OCPI 72/222/241/1005       1 35
-#0 NEI2005_OCPO -                                                         -    -          - -   -       OCPO 73/222/241/1005       1 35
-#0 NEI2005_BCPI {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    BCPI 2005/1/1/0 C xyz kg/m2/s BCPI 70/221/240/1005       1 35
-#0 NEI2005_BCPO -                                                         -    -          - -   -       BCPO 71/221/240/1005       1 35
+#0 NEI2005_OC   /home/ckeller/data/emis/NEI2005/nc/NEI2005.geos.1x1.nc    OCPI 2005/1/1/0 C xyz kg/m2/s OC   222/241/1005          1 35
+#0 NEI2005_BC   /home/ckeller/data/emis/NEI2005/nc/NEI2005.geos.1x1.nc    BCPI 2005/1/1/0 C xyz kg/m2/s BC   221/240/1005          1 35
 0 NEI2005_ALD2 {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    ALD2 2005/1/1/0 C xyz kg/m2/s ALD2 1005                  1 35
 0 NEI2005_CH2O {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    CH2O 2005/1/1/0 C xyz kg/m2/s CH2O 1005                  1 35
 0 NEI2005_PRPE {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    PRPE 2005/1/1/0 C xyz kg/m2/s PRPE 215/234/1005          1 35
@@ -304,33 +302,28 @@ END SECTION SETTINGS
 
 ## --- BC/OC emissions from Tami Bond ---
 # ==> don't use biomass burning emissions if GFED extension is used!
-0 BOND_ANTH_BCPI    {ROOT}/BCOC_BOND/v2014-07/Bond_fossil.nc  BCPI 2000/1-12/1/0 C xy kg/m2/s BCPI 70 1 1
-0 BOND_ANTH_BCPO    -                                                    -    -             - -  -       BCPO 71 1 1
-0 BOND_ANTH_OCPI    {ROOT}/BCOC_BOND/v2014-07/Bond_fossil.nc  OCPI 2000/1-12/1/0 C xy kg/m2/s OCPI 72 1 1
-0 BOND_ANTH_OCPO    -                                                    -    -             - -  -       OCPO 73 1 1
-0 BOND_BF_BCPI      {ROOT}/BCOC_BOND/v2014-07/Bond_biofuel.nc BCPI 2000/1-12/1/0 C xy kg/m2/s BCPI 70 2 1
-0 BOND_BF_BCPO      -                                                    -    -             - -  -       BCPO 71 2 1
-0 BOND_BF_OCPI      {ROOT}/BCOC_BOND/v2014-07/Bond_biofuel.nc OCPI 2000/1-12/1/0 C xy kg/m2/s OCPI 72 2 1
-0 BOND_BF_OCPO      -                                                    -    -             - -  -       OCPO 73 2 1
-#0 BOND_BIOMASS_BCPI {ROOT}/BCOC_BOND/v2014-07/Bond_biomass.nc BCPI 2001/1/1/0    C xy kg/m2/s BCPI 70 3 1
-#0 BOND_BIOMASS_BCPO {ROOT}/BCOC_BOND/v2014-07/Bond_biomass.nc BCPI 2001/1/1/0    C xy kg/m2/s BCPO 71 3 1
-#0 BOND_BIOMASS_OCPI {ROOT}/BCOC_BOND/v2014-07/Bond_biomass.nc OCPI 2001/1/1/0    C xy kg/m2/s OCPI 72 3 1
+0 BOND_ANTH_BC      /home/ckeller/data/emis/BCOC_BOND/nc/Bond_fossil.nc  BCPI 2000/1-12/1/0 C xy kg/m2/s BC   -  1 1
+0 BOND_ANTH_OC      /home/ckeller/data/emis/BCOC_BOND/nc/Bond_fossil.nc  OCPI 2000/1-12/1/0 C xy kg/m2/s OC   -  1 1
+0 BOND_BF_BC        /home/ckeller/data/emis/BCOC_BOND/nc/Bond_biofuel.nc BCPI 2000/1-12/1/0 C xy kg/m2/s BC   -  2 1
+0 BOND_BF_OC        /home/ckeller/data/emis/BCOC_BOND/nc/Bond_biofuel.nc OCPI 2000/1-12/1/0 C xy kg/m2/s OC   -  2 1
+#0 BOND_BIOMASS_BC   /home/ckeller/data/emis/BCOC_BOND/nc/Bond_biomass.nc BCPI 2001/1/1/0    C xy kg/m2/s BC   -  3 1
+#0 BOND_BIOMASS_OC   /home/ckeller/data/emis/BCOC_BOND/nc/Bond_biomass.nc OCPI 2001/1/1/0    C xy kg/m2/s OC   -  3 1
 #0 BOND_BIOMASS_OCPO {ROOT}/BCOC_BOND/v2014-07/Bond_biomass.nc OCPI 2001/1/1/0    C xy kg/m2/s OCPO 73 3 1
 #
 ## --- BC/OC emissions over NA from Cooke et al. (1999) ---
 ## ==> don't use in standard simulation
-##0 COOKE_ANTH_BCPI {ROOT}/BCOC_COOKE/v2014-07/BCOC_Cooke_fossil.gen.1x1.nc  BCPI 1998/1-12/1/0 C xy kg/m2/s BCPI 70/1004 1 2
-##0 COOKE_ANTH_OCPI {ROOT}/BCOC_COOKE/v2014-07/BCOC_Cooke_fossil.gen.1x1.nc  OCPI 1998/1-12/1/0 C xy kg/m2/s OCPI 72/1004 1 2
-##0 COOKE_BF_BCPI   {ROOT}/BCOC_COOKE/v2014-07/BCOC_Cooke_biofuel.gen.1x1.nc BCPI 1998/1-12/1/0 C xy kg/m2/s BCPI 70/1004 2 2
-##0 COOKE_BF_OCPI   {ROOT}/BCOC_COOKE/v2014-07/BCOC_Cooke_biofuel.gen.1x1.nc OCPI 1998/1-12/1/0 C xy kg/m2/s OCPI 72/1004 2 2
+##0 COOKE_ANTH_BC   /home/ckeller/data/emis/BCOC_COOKE/nc/BCOC_Cooke_fossil.gen.1x1.nc  BCPI 1998/1-12/1/0 C xy kg/m2/s BC      1004 1 2
+##0 COOKE_ANTH_OC   /home/ckeller/data/emis/BCOC_COOKE/nc/BCOC_Cooke_fossil.gen.1x1.nc  OCPI 1998/1-12/1/0 C xy kg/m2/s OC      1004 1 2
+##0 COOKE_BF_BC     /home/ckeller/data/emis/BCOC_COOKE/nc/BCOC_Cooke_biofuel.gen.1x1.nc BCPI 1998/1-12/1/0 C xy kg/m2/s BC      1004 2 2
+##0 COOKE_BF_OC     /home/ckeller/data/emis/BCOC_COOKE/nc/BCOC_Cooke_biofuel.gen.1x1.nc OCPI 1998/1-12/1/0 C xy kg/m2/s OC      1004 2 2
 #
 ## --- AEIC aircraft emissions ---
 0 AEIC_NO   {ROOT}/AEIC/v2014-07/aeic_2005.geos.4x5.nc  NO       2005/1-12/1/0 C xyz kg/m2/s NO   110     20 1
 0 AEIC_CO   {ROOT}/AEIC/v2014-07/aeic_2005.geos.4x5.nc  CO       2005/1-12/1/0 C xyz kg/m2/s CO   110     20 1
 0 AEIC_SO2  {ROOT}/AEIC/v2014-07/aeic_2005.geos.4x5.nc  FUELBURN 2005/1-12/1/0 C xyz kg/m2/s SO2  111     20 1
 0 AEIC_SO4  -                                           -        -             - -   -       SO4  112     20 1
-0 AEIC_BCPI -                                           -        -             - -   -       BCPI 113     20 1
-0 AEIC_OCPI -                                           -        -             - -   -       OCPI 113     20 1
+0 AEIC_BC   -                                                   -        -             - -   -       BC   113     20 1 
+0 AEIC_OC   -                                                   -        -             - -   -       OC   113     20 1 
 0 AEIC_ACET {ROOT}/AEIC/v2014-07/aeic_2005.geos.4x5.nc  HC       2005/1-12/1/0 C xyz kg/m2/s ACET 114/101 20 1
 0 AEIC_ALD2 -                                           -        -             - -   -       ALD2 114/102 20 1
 0 AEIC_ALK4 -                                           -        -             - -   -       ALK4 114/103 20 1
@@ -419,12 +412,6 @@ END SECTION BASE EMISSIONS
 64 SOX2SO4_EU     0.05  - - - xy unitless 1
 65 SO2toSO4_CAC   0.014 - - - xy unitless 1
 
-# --- Hydrophilic and hydrophobic fractions of BC/OC --- 
-70 HYDROPHIL_BC 0.2 - - - xy unitless 1
-71 HYDROPHOB_BC 0.8 - - - xy unitless 1
-72 HYDROPHIL_OC 0.5 - - - xy unitless 1
-73 HYDROPHOB_OC 0.5 - - - xy unitless 1
-
 # --- Biofuel conversion factors ---
 90 BF_COtoHAC   8.75e-3 - - - xy unitless 1
 91 BF_COtoSO2   3.43e-3 - - - xy unitless 1
@@ -459,6 +446,7 @@ END SECTION BASE EMISSIONS
 112 AEICSO4  3.600000e-5 - -  - xy unitless 1
 113 AEICBC   3.0000000-5 - -  - xy unitless 1
 114 AEICHC   1.1600000-3 - -  - xy unitless 1
+115 NO2toNO  6.5217391-1 - -  - xy unitless 1
 
 # --- NEI 2005 scale factors ---
 201 VISTAS_SEASON     {ROOT}/NEI2005/v2014-07/scaling/Vistas_season.geos.1x1.nc NOratio      2002/1-12/1/0 C xy unitless 1
@@ -539,11 +527,17 @@ END SECTION MASKS
     --> PECCA model       :       false
 109     MEGAN_Mono        : on    CO/OCPI/MONX
 110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
-111     GFED3             : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO
+111     GFED3             : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BC/OC
     --> Scale factor table:       {ROOT}/GFED3/v2014-07/GFED3_emission_factors.txt
     --> CO scale factor   :       1.05
 112     GFED3_daily       : off   -
 113     GFED3_3hourly     : off   -
+114     FINN              : off    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BC/OC/GLYC/HAC
+    --> EF ratios CO2     :       /home/ckeller/HEMCO/emis/FINN/FINN_EFratios_CO2.csv
+    --> EF rat columns    :       14
+    --> VOC speciation    :       /home/ckeller/HEMCO/emis/FINN/FINN_VOC_speciation.csv
+    --> VOC spec columns  :       49
+115     FINN_daily        : off 
 #
 END SECTION EXTENSION SWITCHES 
 
