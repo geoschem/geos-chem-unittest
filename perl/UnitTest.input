@@ -36,6 +36,7 @@
 #  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
 #  14 Apr 2014 - R. Yantosca - Added unit tests for POPs simulation
 #  24 Apr 2014 - R. Yantosca - Add extra GEOS-4 unit tests (Hg, tagO3, CH4)
+#  07 Aug 2014 - M. Sulprizio- Add GCAP unit test for POPs simulation
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -78,6 +79,7 @@
   merra    4x5         -      POPs         2005070100   2005070101   -
   geos5    4x5         -      POPs         2005070100   2005070101   -
   geos4    4x5         -      POPs         2005070100   2005070101   -
+  gcap     4x5         -      POPs         2005070100   2005070101   -
 # ======= Methane ============================================================
   geosfp   4x5         -      CH4          2013070100   2013070101   -
   merra    4x5         -      CH4          2005070100   2005070101   -
