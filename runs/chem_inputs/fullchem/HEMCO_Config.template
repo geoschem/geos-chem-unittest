@@ -25,6 +25,7 @@
 #  02 Jul 2014 - R. Yantosca - Now use a 1 x 1 file for DMS seawater
 #  02 Jul 2014 - R. Yantosca - Now added LNOX token
 #  28 Jul 2014 - R. Yantosca - Now added "Unit tolerance" setting
+#  12 Aug 2014 - R. Yantosca - Now added FINN files
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -533,10 +534,6 @@ END SECTION MASKS
 112     GFED3_daily       : off   -
 113     GFED3_3hourly     : off   -
 114     FINN              : off    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BC/OC/GLYC/HAC
-    --> EF ratios CO2     :       /home/ckeller/HEMCO/emis/FINN/FINN_EFratios_CO2.csv
-    --> EF rat columns    :       14
-    --> VOC speciation    :       /home/ckeller/HEMCO/emis/FINN/FINN_VOC_speciation.csv
-    --> VOC spec columns  :       49
 115     FINN_daily        : off 
 #
 END SECTION EXTENSION SWITCHES 
@@ -647,6 +644,20 @@ END SECTION EXTENSION SWITCHES
 111 HUMTROP          {ROOT}/GFED3/v2014-07/GFED3_humtropmap.nc   humtrop           2000/1/1/0            C xy unitless  NO - 1 1
 112 GFED3_FRAC_DAY   {ROOT}/GFED3/v2014-07/GFED3_frac_daily.nc   GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0 C xy unitless  NO - 1 1
 113 GFED3_FRAC_3HOUR {ROOT}/GFED3/v2014-07/GFED3_frac_3hourly.nc GFED3_BB__HRFRAC  2002-2011/1-12/01/*   C xy unitless  NO - 1 1
+#
+# --- FINN biomass burning emissions (Extension 114) 
+114 FINN_VEGTYP1 /home/ckeller/data/emis/FINN/FINN_monthly_05x05.nc fire_vegtype1 2007-2013/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP2 /home/ckeller/data/emis/FINN/FINN_monthly_05x05.nc fire_vegtype2 2007-2013/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP3 /home/ckeller/data/emis/FINN/FINN_monthly_05x05.nc fire_vegtype3 2007-2013/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP4 /home/ckeller/data/emis/FINN/FINN_monthly_05x05.nc fire_vegtype4 2007-2013/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP5 /home/ckeller/data/emis/FINN/FINN_monthly_05x05.nc fire_vegtype5 2007-2013/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP9 /home/ckeller/data/emis/FINN/FINN_monthly_05x05.nc fire_vegtype9 2007-2013/1-12/1/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP1 /home/ckeller/data/emis/FINN/FINN_daily_05x05.nc fire_vegtype1 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP2 /home/ckeller/data/emis/FINN/FINN_daily_05x05.nc fire_vegtype2 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP3 /home/ckeller/data/emis/FINN/FINN_daily_05x05.nc fire_vegtype3 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP4 /home/ckeller/data/emis/FINN/FINN_daily_05x05.nc fire_vegtype4 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP5 /home/ckeller/data/emis/FINN/FINN_daily_05x05.nc fire_vegtype5 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP9 /home/ckeller/data/emis/FINN/FINN_daily_05x05.nc fire_vegtype9 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
 #
 END SECTION EXTENSION DATA
  
