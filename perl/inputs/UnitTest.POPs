@@ -1,0 +1,74 @@
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !INCLUDE: UnitTest.input
+#
+# !DESCRIPTION: Input file that specifies debugging options for the 
+#  GEOS-Chem unit tester.
+#\\
+#\\
+# !REMARKS:  
+#  Customize the unit tests for your system by specifying these values:
+#  -------------------------------------------------------------------
+#  VERSION     : A tag used to identify this Unit Test (e.g. v9-02o)
+#  DESCRIPTION : A short description of what this unit test is validating
+#  CODE_DIR    : Full path of the GEOS-Chem code directory
+#  DATA_ROOT   : Root GEOS-Chem data directory
+#  RUN_DIR     : Unit Test run directory
+#  JOB_DIR     : Unit Test job script directory
+#  LOG_DIR     : Unit Test log file directory
+#  PERL_DIR    : Unit Test perl script directory (i.e. this directory)
+#  COMPILER    : Compiler used to build GEOS-Chem (e.g. "ifort", "pgi")
+#  MAKE_CMD    : Make command with basic debugging flags
+#  SUBMIT      : Submit command and queue name
+#  TEMPLATE    : Template web page for displaying grid of results
+#  WEB_GRID    : File name for web page containing unit test results
+#  WEB_PUSH    : Remote location to send web page w/ unit test results
+#
+# !REVISION HISTORY: 
+#  22 Aug 2013 - R. Yantosca - Initial version
+#  03 Sep 2013 - R. Yantosca - Now do 1-hr test runs for expediency
+#  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
+#  27 Feb 2014 - R. Yantosca - Now grouped runs by simulation type
+#  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
+#  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
+#  14 Apr 2014 - R. Yantosca - Added unit tests for POPs simulation
+#  24 Apr 2014 - R. Yantosca - Add extra GEOS-4 unit tests (Hg, tagO3, CH4)
+#  07 Aug 2014 - M. Sulprizio- Add GCAP unit test for POPs simulation
+#EOP
+#------------------------------------------------------------------------------
+#
+# !INPUTS:
+#
+   VERSION     : v10-01d.POPs
+   DESCRIPTION : To test feature XXX in GEOS-Chem
+   CODE_DIR    : /home/bmy/GC/Code.v10-01
+   DATA_ROOT   : /as/data/geos
+   RUN_DIR     : /home/bmy/UT/runs/{RUNDIR}
+   JOB_DIR     : /home/bmy/UT/jobs
+   LOG_DIR     : /home/bmy/UT/logs/{VERSION}
+   PERL_DIR    : /home/bmy/UT/perl
+   COMPILER    : ifort
+   MAKE_CMD    : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
+   SUBMIT      : submit smp4
+   TEMPLATE    : {PERLDIR}/ut_template.html
+   WEB_GRID    : {LOGDIR}/{VERSION}.results.html
+   WEB_PUSH    : NONE
+#
+# !RUNS:
+#  Specify the debugging runs that you want to perform below.
+#  You can deactivate runs by commenting them out with "#".
+#
+#--------|-----------|------|------------|------------|------------|---------|
+# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
+#--------|-----------|------|------------|------------|------------|---------|
+  geosfp   4x5         -      POPs         2013070100   2013070101   -
+  merra    4x5         -      POPs         2005070100   2005070101   -
+  geos5    4x5         -      POPs         2005070100   2005070101   -
+  geos4    4x5         -      POPs         2005070100   2005070101   -
+  gcap     4x5         -      POPs         2005070100   2005070101   -
+ !END OF RUNS:
+#EOP
+#------------------------------------------------------------------------------

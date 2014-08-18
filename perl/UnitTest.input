@@ -40,6 +40,7 @@
 #  24 Apr 2014 - R. Yantosca - Add extra GEOS-4 unit tests (Hg, tagO3, CH4)
 #  28 Jul 2014 - R. Yantosca - Add HEMCO_ROOT directory
 #  28 Jul 2014 - R. Yantosca - 2 x 2.5 runs now end after 30 mins
+#  07 Aug 2014 - M. Sulprizio- Add GCAP unit test for POPs simulation
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -84,6 +85,7 @@
   merra    4x5         -      POPs         2005070100   2005070101   -
   geos5    4x5         -      POPs         2005070100   2005070101   -
   geos4    4x5         -      POPs         2005070100   2005070101   -
+  gcap     4x5         -      POPs         2005070100   2005070101   -
 # ======= Methane ============================================================
   geosfp   4x5         -      CH4          2013070100   2013070101   -
   merra    4x5         -      CH4          2005070100   2005070101   -
