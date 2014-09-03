@@ -17,10 +17,11 @@ package UtUtils;
 #
 # !USES:
 #
-require 5.003;      # need this version of Perl or newer
-use English;        # Use English language
-use Carp;           # Strict error checking
-use strict;         # Force explicit variable declarations (like IMPLICIT NONE)
+require 5.003;                      # Need this version of Perl or newer
+use English;                        # Use English language
+use Carp;                           # Strict error checking
+use strict;                         # IMPLICIT NONE syntax
+use Dates qw( &julDay &calDate );   # Get routines from Dates.pm
 #
 # !PUBLIC MEMBER FUNCTIONS:
 #  &baseName      : Returns a directory name minus the full path
@@ -42,6 +43,7 @@ use strict;         # Force explicit variable declarations (like IMPLICIT NONE)
 #  24 Mar 2014 - R. Yantosca - Add &readResults, &makeMatrix routines
 #  24 Mar 2014 - R. Yantosca - Update ProTeX headers
 #  27 Jun 2014 - R. Yantosca - Add &makeHemcoCfg routine
+#  03 Sep 2014 - R. Yantosca - Add &getHemcoEndTime routine
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -54,8 +56,8 @@ BEGIN {
   use Exporter ();
   use vars     qw( $VERSION @ISA @EXPORT_OK );
 
-  $VERSION   = 1.00;                              # version number
-  @ISA       = qw( Exporter        );             # export method
+  $VERSION   = 1.00;                        # version number
+  @ISA       = qw( Exporter         );      # export method
   @EXPORT_OK = qw( &baseName
                    &checkDir
                    &cleanDir
@@ -65,7 +67,8 @@ BEGIN {
                    &parse
                    &replaceDate
                    &readResults
-                   &makeMatrix     );             # exported routines
+                   &makeMatrix     
+                   &getHemcoEndTime );      # exported routines
 }
 #EOC
 #------------------------------------------------------------------------------
@@ -344,6 +347,7 @@ sub makeInputGeos($$$$$$) {
   # Exit
   return(0);
 }
+#EOC
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
@@ -752,7 +756,7 @@ sub readResults($$) {
   # Return normally
   return( %unitTests );
 }
-#EOP
+#EOC
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
@@ -830,6 +834,97 @@ sub makeMatrix($$) {
 
   # Return normally
   return( $? );
+}
+#EOC
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: getHemcoEndTime
+#
+# !DESCRIPTION: Returns the date string that the HEMCO restart file is
+#  timestamped with.  This is typically the ending YYYYMMDDhhmm minus
+#  one emissions timestep.  
+#\\
+#\\
+# !INTERFACE:
+#
+sub getHemcoEndTime($$) {
+#
+# !INPUT PARAMETERS:
+#
+  # $end     : Ending time for this unit test
+  # $inpGeos : Path to the input.geos file for this unit test
+  my ( $end, $inpGeos ) = @_;
+#
+# !REMARKS:
+#  Uses Julian Day routines from Dates.pm.
+#
+# !REVISION HISTORY:
+#  03 Sep 2014 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  #--------------------------------------------------
+  # Find emission timestep in input.geos file
+  #--------------------------------------------------
+
+  # Grep for start date & time in input.geo
+  my $line             = qx( grep "Emiss timestep" $inpGeos );
+  chomp( $line );
+
+  # Split by spaces
+  my @strings          = split( ' ', $line );
+
+  my $ts_emis          = "$strings[4]";
+  my $fracAddDay       = $strings[4] / 1440;
+
+  #--------------------------------------------------
+  # Find HEMCO ending time
+  #--------------------------------------------------
+
+  # Split $end into YYYYMMDD and hhmmss values
+  my $date             = substr( $end, 0, 8  );
+  my $time             = substr( $end, 8, 12 ) . "00";
+
+  # Split YYYYMMDD into YYYY, MM, DD
+  my $y0               = int( $date / 10000 );
+  my $m0               = int( ( $date - int( $y0 * 10000 ) ) / 100 );
+  my $d0               = $date - int( $y0 * 10000 ) - int( $m0 * 100 );
+
+  # Split hhmmss into hh, mm, ss
+  my $hh0              = int( $time / 10000 );
+  my $mm0              = int( ( $time - int( $hh0 * 10000 ) ) / 100 );
+
+  # Compute the astronomical Julian day and subtract the emissions timestep
+  my $fracDay          = $d0 + ( $hh0 / 24 ) + ( $mm0 / 1440 );
+  my $jd               = &julDay( $y0, $m0, $fracDay ) - $fracAddDay;
+
+  # Convert the result from Julian Day back to calendar format
+  my ( $y1, $m1, $d1 ) = &calDate( $jd );
+
+  # Convert the new calendar date into YYYYMMDD format
+  my $hcoEndDate       = int( $y1 * 10000 ) + int( $m1 * 100 ) + int( $d1 );
+  my $hcoEndHour       = int( ( $d1 - 1 ) * 24 );
+  my $hcoEndMin        = int( ( $d1*24 - $hcoEndHour ) / 60 );
+
+  # Create strings
+  my $hcoEndHourStr    = "$hcoEndHour";
+  my $hcoEndMinStr     = "$hcoEndMin";
+
+  # Cheap algorithm to pad strings
+  if ( $hcoEndHour < 10 ) { $hcoEndHourStr = "0$hcoEndHourStr"; }
+  if ( $hcoEndMin  < 10 ) { $hcoEndMinStr  = "0$hcoEndMinStr";  }
+
+  # Return HEMCO tiemstamp: YYYYMMDDhhmm
+  my $hcoEndStr = "$hcoEndDate$hcoEndHourStr$hcoEndMinStr";
+
+  # Return to calling routine
+  return( $hcoEndStr );
 }
 #EOC
 

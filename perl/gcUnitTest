@@ -17,7 +17,7 @@ require 5.003;                       # Need this version of Perl or newer
 use English;                         # Use English language
 use Carp;                            # Get detailed error messages
 use strict;
-use Dates   qw( &getLocalTime  );    # Get routines from Dates.pm
+use Dates   qw( &getLocalTime   );   # Get routines from Dates.pm
 use UtUtils qw( &baseName
                 &checkDir
                 &cleanDir
@@ -25,7 +25,8 @@ use UtUtils qw( &baseName
                 &makeInputGeos
                 &parse         
                 &readResults       
-                &makeMatrix    );    # Get routines from UtUtils.pm
+                &makeMatrix    
+                &getHemcoEndTime );  # Get routines from UtUtils.pm
 #
 # !PUBLIC DATA MEMBERS:
 #
@@ -166,12 +167,14 @@ sub makeInputs($$$$$$$$) {
 #  30 Jun 2014 - R. Yantosca - Now accept $nest via the arg list
 #  02 Jul 2014 - R. Yantosca - Now pass $start to routine &makeHemcoCfg
 #  28 Jul 2014 - R. Yantosca - Now accept $end as YYYYMMDDhhmm or YYYMMDDhh
+#  03 Sep 2014 - R. Yantosca - Now call &getHemcoEndTime
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 #
 # !LOCAL VARIABLES:
 #
+  # Strings
   my $d0      = "";
   my $h0      = "";
   my $d1      = "";
@@ -181,6 +184,7 @@ sub makeInputs($$$$$$$$) {
   my $hcoTmpl = "$runDir/HEMCO_Config.template";
   my $hcoCfg  = "$runDir/HEMCO_Config.rc";
   my $errMsg  = "makeInputs: END must be YYYYMMDDhh or YYYYMMDDhhmm!";
+  my $hcoEnd  = ""; 
 
   # Get start date and hour
   $d0         = substr( $start, 0, 8 );
@@ -190,10 +194,9 @@ sub makeInputs($$$$$$$$) {
   # Get end date and hour
   $d1         = substr( $end,   0, 8 );
 
-  # If the $end string has 12 digits, then it's YYYYMMDDhhmm
-  # Otherwise it's YYYYMMDDhh
-  # Test for the length of the string
-  if    ( length( $end ) == 12 ) { $h1 = substr( $end, 8, 4 ) . "00";   }
+  # Compute the ending hour (hhmmss) from the ending string, 
+  # which may be in either YYYYMMDDhhmm or YYYYMMDDhh format
+  if    ( length( $end ) == 12 ) { $h1 = substr( $end, 8, 4 ) . "00";   } 
   elsif ( length( $end ) == 10 ) { $h1 = substr( $end, 8, 2 ) . "0000"; }
   else                           { print "$errMsg\n"; exit(1);          }
 
@@ -204,8 +207,11 @@ sub makeInputs($$$$$$$$) {
   &makeHemcoCfg( $hcoTmpl, $start, $met,        $grid, 
                  $nest,    $sim,   $HEMCO_ROOT, $hcoCfg );
 
+  # Get the timestamp used for the HEMCO restart file
+  $hcoEnd = &getHemcoEndTime( $end, $inpGeos );
+
   # Return 
-  return( $? );
+  return( $hcoEnd );
 }
 #EOP
 #------------------------------------------------------------------------------
@@ -254,6 +260,8 @@ sub doUnitTest($$) {
 #  30 Jun 2014 - R. Yantosca - Now pass $nest to &makeInputs
 #  28 Jul 2014 - R. Yantosca - Improved comments.  Now call routine &makeInputs
 #                              before saving the commands for the master script
+#  03 Sep 2014 - R. Yantosca - If $end is in YYYYMMDDhh format, then convert
+#                              to YYYYMMDDhhmm format by adding "00"
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -265,7 +273,7 @@ sub doUnitTest($$) {
   my $end     = "";
   my $extra   = "";
   my $grid    = "";
-  my $hco_end = "";
+  my $hcoEnd  = "";
   my $jobFile = "";
   my $logHdr  = "";
   my $logRslt = "";
@@ -405,9 +413,14 @@ sub doUnitTest($$) {
 	  # be executed from within a computational queue system.
 	  #-----------------------------------------------------------------
 
-	  # Make the input.geos and HEMCO_Config.rc file in the run directory
-	  &makeInputs( $start, $end, $runDir, $met, $grid, $nest, $sim );
+	  # If $end is in YYYYMMDDhh format, then force it to be YYYYMMDDhhmm
+	  if ( length( $end ) == 10 ) { $end .= "00"; }
 
+	  # Make the input.geos and HEMCO_Config.rc file in the run directory
+	  # Returns the timestamp for the HEMCO restart file 
+	  $hcoEnd   = &makeInputs( $start, $end,  $runDir, 
+                                   $met,   $grid, $nest,   $sim );
+   
 	  #-----------------------------------------------------------------
 	  # Create the list of comamnds that will execute each requested
 	  # unit test.  Store these commands in the @cmds array.
@@ -417,7 +430,7 @@ sub doUnitTest($$) {
 	  $makeCmd  = "$MAKE_CMD COMPILER=$COMPILER MET=$met GRID=$grid";
 	  $makeCmd .= " SIM=$sim VERSION=$VERSION LOG_DIR=$LOG_DIR";
 	  $makeCmd .= " CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR";
-	  $makeCmd .= " START=$start END=$end HCO_END=$hco_end"; 
+	  $makeCmd .= " START=$start END=$end HMCO_END=$hcoEnd"; 
 
 	  # The main log files
 	  $stdout   = "$LOG_DIR/$VERSION.stdout.log";
