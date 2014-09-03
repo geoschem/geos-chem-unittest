@@ -1,13 +1,13 @@
-GEOS-CHEM UNIT TEST SIMULATION: merra_4x5_RnPbBe
+GEOS-CHEM UNIT TEST SIMULATION: geosfp_2x25_RnPbBe
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : initial_trac_rst.merra_4x5_RnPbBe
+Input restart file      : initial_trac_rst.geosfp_2x25_RnPbBe
 Make new restart file?  : T
-Output restart file(s)  : trac_rst.merra_4x5_RnPbBe.YYYYMMDDhh
-Root data directory     : {DATA_ROOT}/GEOS_4x5/
+Output restart file(s)  : trac_rst.geosfp_2x25_RnPbBe.YYYYMMDDhh
+Root data directory     : {DATA_ROOT}/GEOS_2x2.5/
  => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
  => GEOS-5  subdir      : GEOS_5/YYYY/MM/
@@ -32,17 +32,17 @@ Tracer #3               :   3   Be7      7.0
 Turn on Transport       : T
  => Fill Negative Values: T 
  => IORD, JORD, KORD    : 3  3  7
-Transport Timestep [min]: 30   
+Transport Timestep [min]: 15  
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
 Turn on PBL Mixing?     : T
  => Use non-local PBL?  : T
-Convect Timestep (min)  : 30
+Convect Timestep (min)  : 15
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
-Emiss timestep (min)    : 60
+Emiss timestep (min)    : 30
 HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
 Switches for UCX        :---
@@ -102,7 +102,7 @@ Use linear. strat. chem?: F
 Use UCX strat. chem?    : F
 Online CH4 chemistry?   : F
 Active strat. H2O?      : F
-Chemistry Timestep [min]: 60
+Chemistry Timestep [min]: 30
 Read and save CSPEC_FULL: F
  => CSPEC rst filename? : none
 USE solver coded by KPP : F
@@ -128,7 +128,7 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% : 
-Binary punch file name  : trac_avg.merra_4x5_RnPbBe.YYYYMMDDhh
+Binary punch file name  : trac_avg.geosfp_2x25_RnPbBe.YYYYMMDDhh
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND01: Rn/Pb/Be source   : 47   all        
 ND02: Rn/Pb/Be decay    : 47   all             
@@ -170,12 +170,12 @@ ND38: Cld Conv scav loss: 47   all
 ND39: Wetdep scav loss  : 47   all
 ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
-ND43: Chem prod OH, HO2 : 47   all
+ND43: Chem prod OH, HO2 :  0   all
   ==> OH/HO2 time range :       0 24   
 ND44: Drydep flx/vel    :  1   2 3
 ND45: Tracer Conc's     : 47   all 
   ==> ND45 Time range   :       0 24
-ND46: Biogenic emissions: 47   all
+ND46: Biogenic emissions:  0   all
 ND47: 24-h avg trc conc :  0   all
 ND52: GAMMA HO2         :  0   all
 ND53: POPs Emissions    :  0   all
@@ -240,7 +240,7 @@ LMIN, LMAX of region    :   1  40
 Turn on ND51b diagnstic : F
 LT avg timeseries file  : ts_13_15.NA.YYYYMMDD.h5
 Output as HDF5?         : F
-Tracers to include      : 1 2 3
+Tracers to include      : 1 4 20 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 60 61 62 63 64 65 66 72 73 75 82 83 84 85 86 87 93 94 98 99
 GMT Hour for disk write :  1
 Avg Period [LT hours]   :  13  15
 IMIN, IMAX of region    :   1  72

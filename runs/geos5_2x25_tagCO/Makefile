@@ -5,15 +5,14 @@
 #
 # !MODULE: Makefile
 #
-# !DESCRIPTION: Makefile for G-C Unit Test rundir: gcap_4x5_POPs
+# !DESCRIPTION: Makefile for G-C Unit Test rundir: geos5_4x5_tagCO
 #\\
 #\\
 # !REMARKS:
 #  This will be called by the gcUnitTest script.
 #
 # !REVISION HISTORY: 
-#  14 Apr 2014 - R. Yantosca - Initial version
-#  02 Sep 2014 - R. Yantosca - Added extrafileclean target
+#  10 Apr 2014 - R. Yantosca - Initial version
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -67,10 +66,9 @@ sp:
 
 mp:
 	rm -f $(LOG_MP)
-	@$(MAKE) -C $(CODE_DIR) OMP=yes > $(LOG_MP)
+	@$(MAKE) -C $(CODE_DIR) OMP=yes >> $(LOG_MP)
 	cp -f $(CODE_DIR)/bin/geos geos.mp
 	$(EXE_MP) >> $(LOG_MP)
-	$(EXE_SP) >> $(LOG_SP)
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
@@ -85,7 +83,7 @@ clean:
 
 fileclean:
 	@$(MAKE) logclean
-	rm -f diaginfo.dat tracerinfo.dat
+	rm -f diaginfo.dat tracerinfo.dat smv2.log
 	rm -f *.sp
 	rm -f *.mp
 	rm -f HEMCO.log*
@@ -123,8 +121,6 @@ print:
 	@echo "START    : $(START)"
 	@echo "END      : $(END)"
 	@echo "RUNID    : $(RUNID)"
-	@echo "BPCH     : $(BPCH)"
-	@echo "RST      : $(RST)"
 	@echo "TRAC_AVG : $(TRAC_AVG)"
 	@echo "TRAC_RST : $(TRAC_RST)"
 	@echo "HMCO_RST : $(HMCO_RST)"

@@ -5,15 +5,16 @@
 #
 # !MODULE: Makefile
 #
-# !DESCRIPTION: Makefile for G-C Unit Test rundir: gcap_4x5_POPs
+# !DESCRIPTION: Makefile for G-C Unit Test rundir: geosfp_2x25_RnPbBe
 #\\
 #\\
 # !REMARKS:
 #  This will be called by the gcUnitTest script.
 #
 # !REVISION HISTORY: 
-#  14 Apr 2014 - R. Yantosca - Initial version
-#  02 Sep 2014 - R. Yantosca - Added extrafileclean target
+#  06 Sep 2013 - R. Yantosca - Initial version
+#  30 Jan 2014 - R. Yantosca - Test if output files are present before renaming
+#  30 Jun 2014 - R. Yantosca - Add extrafileclean target
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -63,17 +64,14 @@ sp:
 	$(EXE_SP) >> $(LOG_SP)
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).sp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
-	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
 
 mp:
 	rm -f $(LOG_MP)
 	@$(MAKE) -C $(CODE_DIR) OMP=yes > $(LOG_MP)
 	cp -f $(CODE_DIR)/bin/geos geos.mp
 	$(EXE_MP) >> $(LOG_MP)
-	$(EXE_SP) >> $(LOG_SP)
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
-	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
 
 check:
 	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
@@ -123,10 +121,7 @@ print:
 	@echo "START    : $(START)"
 	@echo "END      : $(END)"
 	@echo "RUNID    : $(RUNID)"
-	@echo "BPCH     : $(BPCH)"
-	@echo "RST      : $(RST)"
 	@echo "TRAC_AVG : $(TRAC_AVG)"
 	@echo "TRAC_RST : $(TRAC_RST)"
 	@echo "HMCO_RST : $(HMCO_RST)"
-	@echo "HMCO_END : $(HMCO_END)"
 #EOC

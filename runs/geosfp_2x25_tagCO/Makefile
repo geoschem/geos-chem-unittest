@@ -5,15 +5,15 @@
 #
 # !MODULE: Makefile
 #
-# !DESCRIPTION: Makefile for G-C Unit Test rundir: gcap_4x5_POPs
+# !DESCRIPTION: Makefile for G-C Unit Test rundir: geosfp_4x5_tagCO
 #\\
 #\\
 # !REMARKS:
 #  This will be called by the gcUnitTest script.
 #
-# !REVISION HISTORY: 
-#  14 Apr 2014 - R. Yantosca - Initial version
-#  02 Sep 2014 - R. Yantosca - Added extrafileclean target
+# !REVISION HISTORY:
+#  10 Apr 2014 - R. Yantosca - Initial version
+#  30 Jun 2014 - R. Yantosca - Add extrafileclean target
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -36,7 +36,6 @@ LOG_MP   :=$(LOG_DIR)/$(VERSION).$(RUNID).mp
 # Output file names
 TRAC_AVG :=trac_avg.$(RUNID).$(START)
 TRAC_RST :=trac_rst.$(RUNID).$(END)
-HMCO_RST :=HEMCO_restart.$(START)00.nc
 
 # Validation script
 VALIDATE :=/usr/bin/perl $(PERL_DIR)/validate
@@ -63,33 +62,27 @@ sp:
 	$(EXE_SP) >> $(LOG_SP)
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).sp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
-	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
 
 mp:
 	rm -f $(LOG_MP)
-	@$(MAKE) -C $(CODE_DIR) OMP=yes > $(LOG_MP)
+	@$(MAKE) -C $(CODE_DIR) OMP=yes >> $(LOG_MP)
 	cp -f $(CODE_DIR)/bin/geos geos.mp
 	$(EXE_MP) >> $(LOG_MP)
-	$(EXE_SP) >> $(LOG_SP)
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
-	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
 
 check:
-	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
-	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
-	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
+	$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
+	$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 1 >> $(RESULTS)
 
 clean:
 	@$(MAKE) -C $(CODE_DIR) clean
 
 fileclean:
 	@$(MAKE) logclean
-	rm -f diaginfo.dat tracerinfo.dat
+	rm -f diaginfo.dat tracerinfo.dat smv2.log
 	rm -f *.sp
 	rm -f *.mp
-	rm -f HEMCO.log*
-	rm -f HEMCO.restart*
 
 extrafileclean:
 	rm -f input.geos
@@ -124,9 +117,6 @@ print:
 	@echo "END      : $(END)"
 	@echo "RUNID    : $(RUNID)"
 	@echo "BPCH     : $(BPCH)"
+	@echo "SOIL     : $(SOIL)"
 	@echo "RST      : $(RST)"
-	@echo "TRAC_AVG : $(TRAC_AVG)"
-	@echo "TRAC_RST : $(TRAC_RST)"
-	@echo "HMCO_RST : $(HMCO_RST)"
-	@echo "HMCO_END : $(HMCO_END)"
 #EOC

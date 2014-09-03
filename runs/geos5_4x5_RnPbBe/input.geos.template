@@ -43,64 +43,8 @@ Convect Timestep (min)  : 30
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
 Emiss timestep (min)    : 60
-Include anthro emiss?   : F
- => Scale to (1985-2005): -1
- => Use EMEP emissions? : F
- => Use BRAVO emissions?: F
- => Use EDGAR emissions?: F
- => Use STREETS emiss?  : F
- => Use CAC emissions?  : F
- => Use NEI2005 emiss?  : F
- => Use RETRO emiss?    : F
- => Use AEIC emissions? : F
-Use RCP emiss (anth+bf)?: F
- => RCP scenario?       : RCP60
- => RCP year?           : 2000
- => Use fixed year?     : F
- => Use RCP aircraft NOx: F
- => Use RCP ship emiss? : F
-Use EPA/NEI99 (anth+bf)?: F
-    w/ ICARTT modif.?   : F
-    w/ VISTAS NOx emis? : F
-Include biofuel emiss?  : F
-Include biogenic emiss? : F
- => Use MEGAN inventory?: F
- => Use PCEEA model?    : F
- => Use MEGAN for MONO? : T
- => Isoprene scaling    : 1
-Include biomass emiss?  : F
- => Seasonal biomass?   : F
- => Scaled to TOMSAI?   : F
- => Use GFED2 biomass?  :---
-    => monthly GFED2?   : F
-    => 8-day GFED2?     : F 
-    => 3-hr GFED2?      : F
-    => synoptic GFED2?  : F
- => Use GFED3 biomass?  :---
-    => monthly GFED3?   : F 
-    => daily GFED3?     : F 
-    => 3-hr GFED3?      : F
-Individual NOx sources  :---
- => Use lightning NOx?  : F
-    => Spat-seas constr?: F
- => Use soil NOx        : F
-    => soilNOx rst file?: none
- => Use fertilizer NOx  : F
-NOx scaling             : 1
-Use ship emissions?     :---
- => global EDGAR ?      : F
- => global ICOADS ?     : F
- => EMEP over EUROPE ?  : F
- => ship SO2 Corbett ?  : F
- => ship SO2 Arctas ?   : F
-Use COOKE BC/OC (N. Am.): F   
-Use historical emiss?   : F
- => What decade?        : 2000
-Bromine switches        :---
- => Use Warwick VSLS?   : F
- => Use seasalt Br2?    : F
+HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
- => Bromine scaling     : 1
 Switches for UCX        :---
  => Use CH4 emissions?  : F
  => Turn on surface BCs :---
@@ -315,14 +259,7 @@ JMIN, JMAX of region    :  23  46
 Turn on P/L (ND65) diag?: F
 # of levels for ND65    : 47
 Save O3 P/L (ND20)?     : F
-Number of P/L families  : 7
-1st  chemical family    : POX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3 BrO HOBr BrNO2 2BrNO3 MPN
-2nd  chemical family    : LOX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3 BrO HOBr BrNO2 2BrNO3 MPN
-3rd  chemical family    : PCO: CO
-4th  chemical family    : LCO: CO
-5th  chemical family    : PBrOx: Br BrO
-6th  chemical family    : PBry: 2Br2 Br BrO HOBr HBr BrNO2 BrNO3
-7th  chemical family    : LBry: 2Br2 Br BrO HOBr HBr BrNO2 BrNO3
+Number of P/L families  : 0
 ------------------------+------------------------------------------------------
 %%% ARCHIVED OH MENU %%%: 
 Dir w/ archived OH files: {DATA_ROOT}/GEOS_MEAN/OHmerge/v5-07-08/

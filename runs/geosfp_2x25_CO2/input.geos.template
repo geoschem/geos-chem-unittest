@@ -1,13 +1,13 @@
-GEOS-CHEM UNIT TEST SIMULATION: merra_4x5_RnPbBe
+GEOS-CHEM UNIT TEST SIMULATION: geos5_2x25_CO2
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : initial_trac_rst.merra_4x5_RnPbBe
+Input restart file      :  initial_trac_rst.geos5_2x25_CO2
 Make new restart file?  : T
-Output restart file(s)  : trac_rst.merra_4x5_RnPbBe.YYYYMMDDhh
-Root data directory     : {DATA_ROOT}/GEOS_4x5/
+Output restart file(s)  : trac_rst.geos5_2x25_CO2.YYYYMMDDhh
+Root data directory     : {DATA_ROOT}/GEOS_2x2.5/
  => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
  => GEOS-5  subdir      : GEOS_5/YYYY/MM/
@@ -21,24 +21,22 @@ Use variable tropopause?: T
 Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% TRACER MENU %%%     : 
-Type of simulation      : 1
-Number of Tracers       : 3                 
+Type of simulation      : 12
+Number of Tracers       : 1                        
 Tracer Entries -------> : TR#   Name  g/mole   Tracer Members; () = emitted 
-Tracer #1               :   1   Rn     222.0  
-Tracer #2               :   2   Pb     210.0
-Tracer #3               :   3   Be7      7.0
+Tracer #1               :   1   CO2     44.0   (CO2)
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
  => Fill Negative Values: T 
  => IORD, JORD, KORD    : 3  3  7
-Transport Timestep [min]: 30   
+Transport Timestep [min]: 15
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
 Turn on PBL Mixing?     : T
- => Use non-local PBL?  : T
-Convect Timestep (min)  : 30
+ => Use non-local PBL?  : F
+Convect Timestep (min)  : 15
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
@@ -92,8 +90,8 @@ Perform PSC het. chem.? : F
 Calc. strat. aero. OD?  : F
 ------------------------+------------------------------------------------------
 %%% DEPOSITION MENU %%% :
-Turn on Dry Deposition? : T
-Turn on Wet Deposition? : T
+Turn on Dry Deposition? : F
+Turn on Wet Deposition? : F
 ------------------------+------------------------------------------------------
 %%% CHEMISTRY MENU %%%  : 
 Turn on Chemistry?      : T
@@ -102,12 +100,38 @@ Use linear. strat. chem?: F
 Use UCX strat. chem?    : F
 Online CH4 chemistry?   : F
 Active strat. H2O?      : F
-Chemistry Timestep [min]: 60
+Chemistry Timestep [min]: 30
 Read and save CSPEC_FULL: F
  => CSPEC rst filename? : none
 USE solver coded by KPP : F
 Online O3 for FAST-JX?  : F
 Gamma HO2               : 0.2
+------------------------+------------------------------------------------------
+%%% CO2 SIM MENU %%%    :
+Fossil Fuel Emissions   :--- 
+  Generic FF emissions  : F 
+  Annual FF emissions   : F 
+  Monthly FF emissions  : T 
+3-D Chemical Oxid Source: F
+Terrestrial Exchange    :---
+  CASA daily avg NEP    : F 
+  CASA diurnal cycle NEP: T 
+  Net Ter Ex original   : F 
+  Net Ter Ex climatology: T 
+Ocean Exchange          :---
+  Takahashi 1997        : F
+  Takahashi 2009 annual : F
+  Takahashi 2009 monthly: T
+Ship & Plane Emissions  :--- 
+  EDGAR ship emissions  : F 
+  ICOADS ship emissions : T 
+  Aviation emissions 3-D: F 
+Tagged CO2 runs         :---
+  Save Fossil in Bckgrnd: F 
+  Tag Bio/Ocean CO2 reg : F
+  Tag Land FF CO2 reg   : F
+  Tag Global Ship CO2   : F
+  Tag Global Plane CO2  : F
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
 Schedule output for JAN : 3333333333333333333333333333333
@@ -128,12 +152,12 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% : 
-Binary punch file name  : trac_avg.merra_4x5_RnPbBe.YYYYMMDDhh
+Binary punch file name  : trac_avg.geos5_2x25_CO2.YYYYMMDDhh
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
-ND01: Rn/Pb/Be source   : 47   all        
-ND02: Rn/Pb/Be decay    : 47   all             
+ND01: Rn/Pb/Be source   :  0   all        
+ND02: Rn/Pb/Be decay    :  0   all             
 ND03: Hg emissions, P/L :  0   all                
-ND04: CO2 Sources       :  0   all                
+ND04: CO2 Sources       : 47   1 2 3 4 5 6 7 8 9 10          
 ND05: Sulfate prod/loss :  0   all               
 ND06: Dust aer source   :  0   all                
 ND07: Carbon aer source :  0   all                
@@ -150,7 +174,7 @@ ND17: Rainout fraction  :  0   all
 ND18: Washout fraction  :  0   all            
 ND19: CH4 loss          :  0   all            
 ND21: Optical depths    :  0   all            
-ND22: J-Values          :  0   64 7 8 20 99              
+ND22: J-Values          :  0   all              
       => JV time range  :      11 13
 ND24: E/W transpt flx   : 47   all
 ND25: N/S transpt flx   : 47   all
@@ -165,19 +189,19 @@ ND33: Column tracer     :  0   all
 ND34: Biofuel emissions :  0   1 4 5 9 10 11 18 19 20 21
 ND35: Tracers at 500 mb :  0   all
 ND36: Anthro emissions  :  0   1 2 4 5 7 9 10 11 18 19 20 21
-ND37: Updraft scav frac : 47   all
-ND38: Cld Conv scav loss: 47   all
-ND39: Wetdep scav loss  : 47   all
+ND37: Updraft scav frac :  0   all
+ND38: Cld Conv scav loss:  0   all
+ND39: Wetdep scav loss  :  0   all
 ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
-ND43: Chem prod OH, HO2 : 47   all
+ND43: Chem prod OH, HO2 :  0   all
   ==> OH/HO2 time range :       0 24   
-ND44: Drydep flx/vel    :  1   2 3
-ND45: Tracer Conc's     : 47   all 
+ND44: Drydep flx/vel    :  0   all
+ND45: Tracer Conc's     : 47   1
   ==> ND45 Time range   :       0 24
-ND46: Biogenic emissions: 47   all
+ND46: Biogenic emissions:  0   all
 ND47: 24-h avg trc conc :  0   all
-ND52: GAMMA HO2         :  0   all
+ND52: GAMMA HO2         :  0    all
 ND53: POPs Emissions    :  0   all
 ND54: Time in t'sphere  : 47   all
 ND55: Tropopause height : 47   all
@@ -209,18 +233,18 @@ Number of stations      :   0
 ------------------------+------------------------------------------------------
 %%% ND49 MENU %%%       :
 Turn on ND49 diagnostic : F
-Inst 3-D timeser. file  : tsYYYYMMDD.bpch
-Tracers to include      : 94 
-Frequency [min]         : 120
-IMIN, IMAX of region    :  70  30
-JMIN, JMAX of region    :  23  46
-LMIN, LMAX of region    :   1   1
+Inst 3-D timeser. file  : timeseries/tsYYYYMMDD.bpch
+Tracers to include      : 1 
+Frequency [min]         : 360
+IMIN, IMAX of region    :   1 144
+JMIN, JMAX of region    :   1  91
+LMIN, LMAX of region    :   1  47
 -------------------------------------------------------------------------------
 %%% ND50 MENU %%%       :
 Turn on ND50 diagnostic : F
 24-hr avg timeser. file : ts_24h_avg.YYYYMMDD.bpch
 Output as HDF5?         : F
-Tracers to include      : 82 83 84 85 86 87
+Tracers to include      : 95 99 
 IMIN, IMAX of region    :   1  72
 JMIN, JMAX of region    :   1  46
 LMIN, LMAX of region    :   1   1
@@ -229,7 +253,7 @@ LMIN, LMAX of region    :   1   1
 Turn on ND51 diagnostic : F
 LT avg timeseries file  : ts_satellite.YYYYMMDD.bpch
 Output as HDF5?         : F
-Tracers to include      : 82 83 84 85 86 87
+Tracers to include      : 95 99
 GMT Hour for disk write :   0
 Avg Period [LT hours]   :  10  12
 IMIN, IMAX of region    :   1 151
@@ -239,8 +263,8 @@ LMIN, LMAX of region    :   1  40
 %%% ND51b MENU %%%      :
 Turn on ND51b diagnstic : F
 LT avg timeseries file  : ts_13_15.NA.YYYYMMDD.h5
-Output as HDF5?         : F
-Tracers to include      : 1 2 3
+Output as HDF5?         : T
+Tracers to include      : 1 4 20 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 60 61 62 63 64 65 66 72 73 75 82 83 84 85 86 87 93 94 98 99
 GMT Hour for disk write :  1
 Avg Period [LT hours]   :  13  15
 IMIN, IMAX of region    :   1  72
@@ -257,9 +281,13 @@ JMIN, JMAX of region    :  23  46
 -------------------------------------------------------------------------------
 %%% PROD & LOSS MENU %%%:
 Turn on P/L (ND65) diag?: F
-# of levels for ND65    : 47
+# of levels for ND65    : 20
 Save O3 P/L (ND20)?     : F
-Number of P/L families  : 0
+Number of P/L families  : 4   
+1st chemical family     : POX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3
+2nd chemical family     : LOX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3
+3rd chemical family     : PCO: CO
+4th chemical family     : LCO: CO
 ------------------------+------------------------------------------------------
 %%% ARCHIVED OH MENU %%%: 
 Dir w/ archived OH files: {DATA_ROOT}/GEOS_MEAN/OHmerge/v5-07-08/
@@ -267,24 +295,19 @@ Dir w/ archived OH files: {DATA_ROOT}/GEOS_MEAN/OHmerge/v5-07-08/
 %%% O3 P/L MENU %%%     : 
 Dir w/ O3 P/L rate files: {DATA_ROOT}/GEOS_MEAN/O3_PROD_LOSS/2003.v6-01-05/
 ------------------------+------------------------------------------------------
-%%% BENCHMARK MENU %%%  :  
-Save benchmark output?  : F
-File w/ initial Ox      : Ox.mass.initial
-File w/ final Ox        : Ox.mass.final
-------------------------+------------------------------------------------------
 %%% NESTED GRID MENU %%%:  
 Save TPCORE BC's        : F
 Input BCs at 2x2.5?     : F
 Over North America?     : F
-TPCORE NA BC directory  : BC_4x5_NA/
+TPCORE NA BC directory  : BC_2x25_NA/
 Over Europe?            : F
-TPCORE EU BC directory  : BC_4x5_EU/
+TPCORE EU BC directory  : BC_2x25_EU/
 Over China?             : F
-TPCORE CH BC directory  : BC_4x5_CH/
+TPCORE CH BC directory  : BC_2x25_CH/
 Over SE Asia region?    : F
-TPCORE SE BC directory  : BC_4x5_SE/
+TPCORE SE BC directory  : BC_2x25_SE/
 Over Custom Region?     : F
-TPCORE BC directory     : BC_4x5/
+TPCORE BC directory     : BC_2x25/
 BC timestep [min]       : 180
 LL box of BC region     :   9  26
 UR box of BC region     :  29  41
