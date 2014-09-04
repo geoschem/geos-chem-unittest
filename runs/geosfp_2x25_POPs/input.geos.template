@@ -275,7 +275,7 @@ Save O3 P/L (ND20)?     : F
 Number of P/L families  : 0  
 ------------------------+------------------------------------------------------
 %%% ARCHIVED OH MENU %%%: 
-Dir w/ archived OH files: {DATA_ROOT}/GEOS_4x5/mercury_201007/ 
+Dir w/ archived OH files: {DATA_ROOT}/GEOS_2x2.5/mercury_201007/ 
 ------------------------+------------------------------------------------------
 %%% O3 P/L MENU %%%     : 
 Dir w/ O3 P/L rate files: {DATA_ROOT}/GEOS_MEAN/O3_PROD_LOSS/2003.v6-01-05/
