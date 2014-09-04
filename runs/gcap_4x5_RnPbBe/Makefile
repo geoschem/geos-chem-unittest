@@ -5,17 +5,14 @@
 #
 # !MODULE: Makefile
 #
-# !DESCRIPTION: Makefile for G-C Unit Test rundir: geos4_4x5_RnPbBe
+# !DESCRIPTION: Makefile for G-C Unit Test rundir: gcap_4x5_RnPbBe
 #\\
 #\\
 # !REMARKS:
 #  This will be called by the gcUnitTest script.
 #
 # !REVISION HISTORY: 
-#  28 Oct 2013 - R. Yantosca - Initial version
-#  30 Jan 2014 - R. Yantosca - Test if output files are present before renaming
-#  30 Jun 2014 - R. Yantosca - Add extrafileclean target
-#  03 Sep 2014 - R. Yantosca - Updated for HEMCO
+#  04 Sep 2014 - R. Yantosca - Initial version, for use w/ HEMCO
 #EOP
 #------------------------------------------------------------------------------
 #BOC
