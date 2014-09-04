@@ -14,6 +14,6 @@ geos.mp
 geos.sp
 input.geos
 *.log
-HEMCO_Config.rc
-HEMCO_restart*
-HEMCO_log*
+HEMCO*Config.rc
+HEMCO*restart*
+HEMCO*log*
