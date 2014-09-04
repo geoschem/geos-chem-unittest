@@ -1,1 +1,785 @@
-../fullchem/HEMCO_Config.template
+#------------------------------------------------------------------------------
+#!                  Harvard-NASA Emissions Component (HEMCO)                   !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: HEMCO_Config
+#
+# !DESCRIPTION: Contains configuration information for HEMCO.  Define the
+#  emissions inventories and corresponding file paths here.
+#\\
+#\\
+# !REMARKS:
+#  The following tokens will be replaced:
+#  (1) ROOT : Filepath to HEMCO root directory
+#  (2) MET  : Met field type (from G-C compilation command)
+#  (3) GRID : Horizontal grid type (from G-C compilation command)
+#  (4) SIM  : Simulation type (from G-C compilation command)
+#  (5) NEST : Nested-grid type (CH, EU, NA, SE)
+#  (6) LNOX : String for OTD/LIS lightning NOx files:
+#             (a) For GEOS-5 this is either "geos5.1.0" or "geos5.2.0".  
+#             (b) For other met fields, this is the same as MET.
+# 
+# !REVISION HISTORY: 
+#  17 Apr 2014 - R. Yantosca - Initial version
+#  02 Jul 2014 - R. Yantosca - Now use a 1 x 1 file for DMS seawater
+#  02 Jul 2014 - R. Yantosca - Now added LNOX token
+#  28 Jul 2014 - R. Yantosca - Now added "Unit tolerance" setting
+#  12 Aug 2014 - R. Yantosca - Now added FINN files
+#  18 Aug 2014 - R. Yantosca - Use proper NO2 to NO conversion for AEIC
+#  18 Aug 2014 - R. Yantosca - Don't use diurnal factors for biofuel C2H6 
+#  29 Aug 2014 - R. Yantosca - Apply GEIA_TOD_FOSSIL scale factor to NEI2005
+#  04 Sep 2014 - R. Yantosca - Make sure to turn on MEGAN SOA extension
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+# =============================================================================
+
+###############################################################################
+### BEGIN SECTION SETTINGS
+###############################################################################
+#
+Logfile:                     HEMCO.log
+DiagnPrefix:                 HEMCO_diagnostics
+Wildcard:                    *
+Separator:                   /
+Unit tolerance:              1
+Only unitless scale factors: false
+Verbose:                     false
+Track code:                  false
+Show warnings:               true
+#
+END SECTION SETTINGS 
+
+###############################################################################
+### BEGIN SECTION BASE EMISSIONS 
+###############################################################################
+
+# ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
+
+#==============================================================================
+# --- MACCity ---
+#==============================================================================
+#0 MACCITY_NO {ROOT}/MACCITY/v2014-07/MACCity_anthro_NOx_2000-2010_16080.nc MACCity 2000/1/1/0 C xy kg/m2/s NO - 1 2
+#0 MACCITY_CO {ROOT}/MACCITY/v2014-07/MACCity_anthro_CO_2000-2010_16080.nc  MACCity 2000/1/1/0 C xy kg/m2/s CO - 1 2 
+
+#==============================================================================
+# --- GEIA ---
+#==============================================================================
+#0 GEIA_NO   {ROOT}/GEIA/v2014-07/GEIA_NOSO4.fullyear.geos.4x5.nc NO   1985/1-12/1/0 C xy  kg/m2/s NO   1/2/25/20    1 1 
+#0 GEIA_CO   {ROOT}/GEIA/v2014-07/GEIA_FOSSIL.geos.1x1.nc         CO   1985/1/1/0    C xy  kg/m2/s CO   6/7/26/21/52 1 1 
+#0 GEIA_ALK4 {ROOT}/GEIA/v2014-07/GEIA_FOSSIL.geos.1x1.nc         ALK4 1985/1/1/0    C xy  kg/m2/s ALK4 918/26/22    1 1 
+#0 GEIA_ACET {ROOT}/GEIA/v2014-07/GEIA_FOSSIL.geos.1x1.nc         ACET 1985/1/1/0    C xy  kg/m2/s ACET 918/26/55    1 1
+#0 GEIA_PRPE {ROOT}/GEIA/v2014-07/GEIA_FOSSIL.geos.1x1.nc         PRPE 1985/1/1/0    C xy  kg/m2/s PRPE 918/26/22    1 1
+#0 GEIA_MEK  {ROOT}/GEIA/v2014-07/GEIA_FOSSIL.geos.1x1.nc         MEK  1985/1/1/0    C xy  kg/m2/s MEK  918/26       1 1
+#0 GEIA_C2H6 {ROOT}/GEIA/v2014-07/GEIA_FOSSIL.geos.1x1.nc         C2H6 1985/1/1/0    C xy  kg/m2/s C2H6 26           1 1
+#0 GEIA_C3H8 {ROOT}/GEIA/v2014-07/GEIA_FOSSIL.geos.1x1.nc         C3H8 1985/1/1/0    C xy  kg/m2/s C3H8 918/26/22    1 1
+#
+##########################################################################
+# Comment out 1x1 GEIA NH3 files for now
+# GEIA NH3 emissions: anthropogenic, biofuel and natural sources
+#0 GEIA_NH3_ANTH  {ROOT}/NH3/v2014-07/NH3_geos.1x1.nc         NH3_ANTH    1990/1-12/1/0 C xy  kg/m2/s NH3 - 1 1 
+#0 GEIA_NH3_BIOF  {ROOT}/NH3/v2014-07/NH3_biofuel.geos.1x1.nc NH3_BIOFUEL 1998/1-12/1/0 C xy  kg/m2/s NH3 - 2 1
+#0 GEIA_NH3_NATU  {ROOT}/NH3/v2014-07/NH3_geos.1x1.nc         NH3_NATU    1990/1-12/1/0 C xy  kg/m2/s NH3 - 3 1
+##########################################################################
+#
+# GEIA NH3 emissions: anthropogenic, biofuel and natural sources
+0 GEIA_NH3_ANTH {ROOT}/NH3/v2014-07/NH3_geos.4x5.nc         NH3_ANTH    1990/1-12/1/0 C xy  kg/m2/s NH3 - 1 1 
+0 GEIA_NH3_BIOF {ROOT}/NH3/v2014-07/NH3_biofuel.geos.4x5.nc NH3_BIOFUEL 1998/1-12/1/0 C xy  kg/m2/s NH3 - 2 1
+0 GEIA_NH3_NATU {ROOT}/NH3/v2014-07/NH3_geos.4x5.nc         NH3_NATU    1990/1-12/1/0 C xy  kg/m2/s NH3 - 3 1
+
+#==============================================================================
+# --- EDGAR ---
+#
+# %%% NOTE: Use EDGAR for the global base emissions instead of GEIA %%%
+#==============================================================================
+0 EDGAR_NO__F1   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f1000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
+0 EDGAR_NO__F2   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f2000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
+0 EDGAR_NO__F3   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f3000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
+0 EDGAR_NO__F4   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f4000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
+0 EDGAR_NO__F51  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f5100  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
+0 EDGAR_NO__F54  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f5400  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
+#NO.f5700 does not seem to be used in orig. code...
+#0 EDGAR_NO__F57 {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f5700  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
+0 EDGAR_NO__F8   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f8000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
+0 EDGAR_NO__I1   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.i1000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
+0 EDGAR_NO__I3   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.i3000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
+0 EDGAR_NO__I4   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.i4000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
+0 EDGAR_NO__I5   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.i5000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
+0 EDGAR_NO__W4   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.w4000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
+0 EDGAR_CO__F1   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f1000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
+0 EDGAR_CO__F2   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f2000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
+0 EDGAR_CO__F3   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f3000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
+0 EDGAR_CO__F4   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f4000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
+0 EDGAR_CO__F51  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f5100  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
+0 EDGAR_CO__F54  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f5400  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
+0 EDGAR_CO__F57  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f5700  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
+0 EDGAR_CO__F8   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f8000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
+0 EDGAR_CO__I1   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.i1000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
+0 EDGAR_CO__I2   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.i2000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
+0 EDGAR_CO__I5   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.i5000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
+0 EDGAR_CO__W4   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.w4095  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
+0 EDGAR_SO2__F1  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f1000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F1  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__F2  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f2000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F2  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__F3  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f3000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F3  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__F4  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f4000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F4  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__F51 {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f5100 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F51 -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__F54 {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f5400 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F54 -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__F57 {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f5700 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F57 -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__F8  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f8000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F8  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__I1  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.i1000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__I1  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__I2  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.i2000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__I2  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__I3  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.i3000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__I3  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__I4  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.i4000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__I4  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__I5  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.i5000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__I5  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__W4  {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.w4000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__W4  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+
+#==============================================================================
+# --- BIOFUEL EMISSIONS (Yevich and Logan, 2003) ---
+#
+# ==> Note that this inventory does not contain emissions over the US!!
+#     Add to EDGAR emissions, i.e assign same category and hierarchy as EDGAR!
+#     Don't read VOCs that are included in RETRO!!
+#==============================================================================
+0 BIOFUEL_NO   {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_NO   1985/1/1/0 C xy kg/m2/s NO    - 1 2 
+0 BIOFUEL_CO   {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s CO   53 1 2 
+0 BIOFUEL_SO2  {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s SO2  91 1 2 
+0 BIOFUEL_GLYX {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s GLYX 92 1 2 
+0 BIOFUEL_MGLY {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s MGLY 93 1 2 
+#0 BIOFUEL_GLYC {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s GLYC 99 1 2 
+#0 BIOFUEL_HAC  {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s HAC  90 1 2 
+#0 BIOFUEL_BENZ {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s BENZ 94 1 2 
+#0 BIOFUEL_TOLU {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s TOLU 95 1 2 
+#0 BIOFUEL_XYLE {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s XYLE 96 1 2 
+#0 BIOFUEL_C2H4 {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s C2H4 97 1 2 
+#0 BIOFUEL_C2H2 {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s C2H2 98 1 2 
+#0 BIOFUEL_ALK4 {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_ALK4 1985/1/1/0 C xy kg/m2/s ALK4 -  1 1 
+#0 BIOFUEL_ACET {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_ACET 1985/1/1/0 C xy kg/m2/s ACET 56 1 1 
+#0 BIOFUEL_MEK  {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_MEK  1985/1/1/0 C xy kg/m2/s MEK  -  1 1 
+#0 BIOFUEL_ALD2 {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_ALD2 1985/1/1/0 C xy kg/m2/s ALD2 -  1 2 
+#0 BIOFUEL_PRPE {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_PRPE 1985/1/1/0 C xy kg/m2/s PRPE -  1 1
+#0 BIOFUEL_C3H8 {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_C3H8 1985/1/1/0 C xy kg/m2/s C3H8 -  1 5 
+#0 BIOFUEL_CH2O {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CH2O 1985/1/1/0 C xy kg/m2/s CH2O -  1 2 
+0 BIOFUEL_C2H6 {ROOT}/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_C2H6 1985/1/1/0 C xy kg/m2/s C2H6 -  1 1000
+#
+
+#==============================================================================
+# --- RETRO ---
+#
+# NOTE: RETRO lumps biofuel emissions in with the anthro emissions
+#==============================================================================
+0 RETRO_ALK4__A {ROOT}/RETRO/v2014-07/orig_kgC/butanes_kgC.nc  emission_flux 2000/1-12/1/0 C xy kg/m2/s ALK4 26    1 3  
+0 RETRO_ALK4__B {ROOT}/RETRO/v2014-07/orig_kgC/pentanes_kgC.nc emission_flux 2000/1-12/1/0 C xy kg/m2/s ALK4 26    1 3  
+0 RETRO_ALK4__C {ROOT}/RETRO/v2014-07/orig_kgC/hexanes_kgC.nc  emission_flux 2000/1-12/1/0 C xy kg/m2/s ALK4 26    1 3 
+0 RETRO_ACET    {ROOT}/RETRO/v2014-07/orig_kgC/ketones_kgC.nc  emission_flux 2000/1-12/1/0 C xy kg/m2/s ACET 26/51 1 3 
+0 RETRO_MEK     -                                                         -             -             - -  -       MEK  26/50 1 3
+0 RETRO_ALD2    {ROOT}/RETRO/v2014-07/orig_kgC/alkanals_kgC.nc emission_flux 2000/1-12/1/0 C xy kg/m2/s ALD2 26    1 3 
+0 RETRO_PRPE    {ROOT}/RETRO/v2014-07/orig_kgC/propene_kgC.nc  emission_flux 2000/1-12/1/0 C xy kg/m2/s PRPE 26    1 3 
+0 RETRO_C3H8    {ROOT}/RETRO/v2014-07/orig_kgC/propane_kgC.nc  emission_flux 2000/1-12/1/0 C xy kg/m2/s C3H8 26    1 3 
+0 RETRO_CH2O    {ROOT}/RETRO/v2014-07/orig_kgC/methanal.nc     emission_flux 2000/1-12/1/0 C xy kg/m2/s CH2O 26    1 3 
+0 RETRO_BENZ    {ROOT}/RETRO/v2014-07/orig_kgC/benzene_kgC.nc  emission_flux 2000/1-12/1/0 C xy kg/m2/s BENZ 26    1 3 
+0 RETRO_TOLU    {ROOT}/RETRO/v2014-07/orig_kgC/toluene_kgC.nc  emission_flux 2000/1-12/1/0 C xy kg/m2/s TOLU 26    1 3 
+0 RETRO_XYLE    {ROOT}/RETRO/v2014-07/orig_kgC/xylene_kgC.nc   emission_flux 2000/1-12/1/0 C xy kg/m2/s XYLE 26    1 3 
+0 RETRO_C2H4    {ROOT}/RETRO/v2014-07/orig_kgC/ethene_kgC.nc   emission_flux 2000/1-12/1/0 C xy kg/m2/s C2H4 26    1 3 
+0 RETRO_C2H2    {ROOT}/RETRO/v2014-07/orig_kgC/ethyne_kgC.nc   emission_flux 2000/1-12/1/0 C xy kg/m2/s C2H2 26    1 3 
+##0 RETRO_C2H6   {ROOT}/RETRO/v2014-07/orig_kgC/ethane_kgC.nc   emission_flux 2000/1-12/1/0 C xy kg/m2/s C2H6 26    1 3 
+
+#==============================================================================
+# --- Xiao et al., JGR, 2008 ---
+#
+# NOTE: Xiao et al C2H6 is used in place of RETRO C2H6
+# See: http://wiki.geos-chem.org/Implementation_of_RETRO_Anthropogenic_Emissions#RETRO_anthropogenic_ethane_emissions_are_too_low
+#==============================================================================
+0 XIAO_C2H6 {ROOT}/XIAO/v2014-07/C3H8_C2H6_ngas.geos.1x1.nc C2H6 1985/1/1/0 C xy kg/m2/s C2H6 918/26    1 1000
+#0 XIAO_C3H8 {ROOT}/XIAO/v2014-07/C3H8_C2H6_ngas.geos.1x1.nc C3H8 1985/1/1/0 C xy kg/m2/s C3H8 918/26/22 1 5
+#0 XIAO_C3H8 {ROOT}/XIAO/v2014-07/C3H8_C2H6_ngas.geos.1x1.nc C3H8 1985/1/1/0 C xy kg/m2/s C3H8 6/7/26/22 1 1000
+
+#==============================================================================
+# --- EMEP (Europe) ---
+#==============================================================================
+0 EMEP_NO   {ROOT}/EMEP/v2014-07/EMEP.update.gen.1x1.nc NO   1990-2007/1/1/0 C xy kg/m2/s NO   25/32/1000    1 10
+0 EMEP_CO   {ROOT}/EMEP/v2014-07/EMEP.update.gen.1x1.nc CO   1990-2007/1/1/0 C xy kg/m2/s CO   26/33/52/1000 1 10 
+0 EMEP_SO2  {ROOT}/EMEP/v2014-07/EMEP.update.gen.1x1.nc SO2  1990-2007/1/1/0 C xy kg/m2/s SO2  61/35/1000    1 10
+0 EMEP_SO4  -                                           -    -               - -  -       SO4  64/35/1000    1 10
+0 EMEP_ALK4 {ROOT}/EMEP/v2014-07/EMEP.geos.1x1.nc       ALK4 1980-2000/1/1/0 C xy kg/m2/s ALK4 26/1000       1 10
+0 EMEP_ALD2 {ROOT}/EMEP/v2014-07/EMEP.geos.1x1.nc       ALD2 1980-2000/1/1/0 C xy kg/m2/s ALD2 26/1000       1 10
+0 EMEP_PRPE {ROOT}/EMEP/v2014-07/EMEP.geos.1x1.nc       PRPE 1980-2000/1/1/0 C xy kg/m2/s PRPE 26/1000       1 10
+0 EMEP_MEK  {ROOT}/EMEP/v2014-07/EMEP.geos.1x1.nc       MEK  1980-2000/1/1/0 C xy kg/m2/s MEK  26/1000       1 10
+0 EMEP_NH3  {ROOT}/EMEP/v2014-07/EMEP.update.gen.1x1.nc NH3  1990-2007/1/1/0 C xy kg/m2/s NH3  34/1000       1 10
+
+#==============================================================================
+# --- BRAVO (Mexico) ---
+#==============================================================================
+0 BRAVO_NO  {ROOT}/BRAVO/v2014-07/BRAVO.generic.1x1.nc NO  1999/1/1/0 C xy kg/m2/s NO  1/3/25/1001    1 20
+0 BRAVO_CO  {ROOT}/BRAVO/v2014-07/BRAVO.generic.1x1.nc CO  1999/1/1/0 C xy kg/m2/s CO  6/8/26/52/1001 1 20
+0 BRAVO_SO2 {ROOT}/BRAVO/v2014-07/BRAVO.generic.1x1.nc SO2 1999/1/1/0 C xy kg/m2/s SO2 11/13/1001     1 20
+0 BRAVO_SO4 -                                          -   -          - -  -       SO4 11/13/65/1001  1 20
+
+#==============================================================================
+# --- CAC (Canada) ---
+#==============================================================================
+0 CAC_NO  {ROOT}/CAC/v2014-07/CAC.geos.1x1.nc    NO  2000-2008/1/1/0 C xy kg/m2/s NO  25/1002    1 30
+0 CAC_CO  {ROOT}/CAC/v2014-07/CAC.geos.1x1.nc    CO  2000-2008/1/1/0 C xy kg/m2/s CO  26/52/1002 1 30
+0 CAC_SO2 {ROOT}/CAC/v2014-07/CAC.geos.1x1.nc    SOx 2000-2008/1/1/0 C xy kg/m2/s SO2 60/1002    1 30
+0 CAC_SO4 -                                      -   -               - -  -       SO4 60/65/1002 1 30
+0 CAC_NH3 {ROOT}/CAC/v2014-07/CAC_NH3.gen.1x1.nc NH3 2008/1-12/1/0   C xy kg/m2/s NH3 1002       1 30
+
+#==============================================================================
+# --- NEI 2005 (USA) ---
+#
+# NOTE: Need to apply the GEIA_TOD_FOSSIL scale factor (#26)! 
+# done for CO, need to check others
+#==============================================================================
+0 NEI2005_NO   {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    NO   2005/1/1/0 C xyz kg/m2/s NO   1/16/201/202/210/1005 1 35
+0 NEI2005_CO   {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    CO   2005/1/1/0 C xyz kg/m2/s CO   6/26/17/211/230/1005  1 35
+0 NEI2005_SO2  {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    SO2  2005/1/1/0 C xyz kg/m2/s SO2  11/18/218/237/1005    1 35
+0 NEI2005_SO4  {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    SO4  2005/1/1/0 C xyz kg/m2/s SO4  11/18/219/238/1005    1 35
+0 NEI2005_NH3  {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    NH3  2005/1/1/0 C xyz kg/m2/s NH3  242/1005              1 35
+0 NEI2005_ACET {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    ACET 2005/1/1/0 C xyz kg/m2/s ACET 213/232/1005          1 35
+0 NEI2005_ALK4 {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    ALK4 2005/1/1/0 C xyz kg/m2/s ALK4 212/231/1005          1 35
+#0 NEI2005_C2H6 {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc   C2H6 2005/1/1/0 C xyz kg/m2/s C2H6 217/236/1005          1 35
+0 NEI2005_C3H8 {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    C3H8 2005/1/1/0 C xyz kg/m2/s C3H8 216/235/1005          1 35
+#0 NEI2005_OC  {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    OCPI 2005/1/1/0 C xyz kg/m2/s OC   222/241/1005          1 35
+#0 NEI2005_BC   {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc   BCPI 2005/1/1/0 C xyz kg/m2/s BC   221/240/1005          1 35
+0 NEI2005_ALD2 {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    ALD2 2005/1/1/0 C xyz kg/m2/s ALD2 1005                  1 35
+0 NEI2005_CH2O {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    CH2O 2005/1/1/0 C xyz kg/m2/s CH2O 1005                  1 35
+0 NEI2005_PRPE {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    PRPE 2005/1/1/0 C xyz kg/m2/s PRPE 215/234/1005          1 35
+0 NEI2005_MEK  {ROOT}/NEI2005/v2014-07/NEI2005.geos.1x1.nc    MEK  2005/1/1/0 C xyz kg/m2/s MEK  214/233/1005          1 35
+
+#==============================================================================
+# --- STREETS SE ASIA (Zhang et al., 2009) ---
+#==============================================================================
+0 ZHANG_NO__IND   {ROOT}/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc NO_ind  2006/1/1/0 C xy kg/m2/s NO   1/4/25/36/1003  1 40 
+0 ZHANG_NO__POW   {ROOT}/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc NO_pow  2006/1/1/0 C xy kg/m2/s NO   1/4/25/36/1003  1 40 
+0 ZHANG_NO__RES   {ROOT}/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc NO_res  2006/1/1/0 C xy kg/m2/s NO   1/4/25/36/1003  1 40 
+0 ZHANG_NO__TRA   {ROOT}/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc NO_tra  2006/1/1/0 C xy kg/m2/s NO   1/4/25/36/1003  1 40 
+0 ZHANG_CO__IND   {ROOT}/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_ind  2006/1/1/0 C xy kg/m2/s CO   6/9/26/37/52/1003 1 40 
+0 ZHANG_CO__POW   {ROOT}/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_pow  2006/1/1/0 C xy kg/m2/s CO   6/9/26/37/52/1003 1 40 
+0 ZHANG_CO__RES   {ROOT}/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_res  2006/1/1/0 C xy kg/m2/s CO   6/9/26/37/52/1003 1 40 
+0 ZHANG_CO__TRA   {ROOT}/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_tra  2006/1/1/0 C xy kg/m2/s CO   6/9/26/37/52/1003 1 40 
+0 ZHANG_SO2__IND  {ROOT}/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc SO2_ind 2006/1/1/0 C xy kg/m2/s SO2  11/14/1003      1 40 
+0 ZHANG_SO4__IND  -                                                                             -       -          - -  -       SO4  11/14/63/1003   1 40 
+0 ZHANG_SO2__POW  {ROOT}/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc SO2_pow 2006/1/1/0 C xy kg/m2/s SO2  11/14/1003      1 40 
+0 ZHANG_SO4__POW  -                                                                             -       -          - -  -       SO4  11/14/63/1003   1 40 
+0 ZHANG_SO2__RES  {ROOT}/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc SO2_res 2006/1/1/0 C xy kg/m2/s SO2  11/14/1003      1 40 
+0 ZHANG_SO4__RES  -                                                                             -       -          - -  -       SO4  11/14/63/1003   1 40 
+0 ZHANG_SO2__TRA  {ROOT}/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc SO2_tra 2006/1/1/0 C xy kg/m2/s SO2  11/14/1003      1 40 
+0 ZHANG_SO4__TRA  -                                                                             -       -          - -  -       SO4  11/14/63/1003   1 40 
+#0 ZHANG_C2H6 {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C2H6_dob     2006/1/1/0 C xy kg/m2/s C2H6 26/1003         1 4000 
+#0 ZHANG_C2H6 {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C2H6_dof     2006/1/1/0 C xy kg/m2/s C2H6 26/1003         1 4000
+#0 ZHANG_C2H6 {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C2H6_dop     2006/1/1/0 C xy kg/m2/s C2H6 26/1003         1 4000
+#0 ZHANG_C2H6 {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C2H6_ind     2006/1/1/0 C xy kg/m2/s C2H6 26/1003         1 4000
+#0 ZHANG_C2H6 {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C2H6_pow     2006/1/1/0 C xy kg/m2/s C2H6 26/1003         1 4000
+#0 ZHANG_C2H6 {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C2H6_tra     2006/1/1/0 C xy kg/m2/s C2H6 26/1003         1 4000
+0 ZHANG_C3H8__DOB {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C3H8_dob     2006/1/1/0 C xy kg/m2/s C3H8 26/1003         1 40 
+0 ZHANG_C3H8__DOF {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C3H8_dof     2006/1/1/0 C xy kg/m2/s C3H8 26/1003         1 40 
+0 ZHANG_C3H8__DOP {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C3H8_dop     2006/1/1/0 C xy kg/m2/s C3H8 26/1003         1 40 
+0 ZHANG_C3H8__IND {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C3H8_ind     2006/1/1/0 C xy kg/m2/s C3H8 26/1003         1 40 
+0 ZHANG_C3H8__POW {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C3H8_pow     2006/1/1/0 C xy kg/m2/s C3H8 26/1003         1 40 
+0 ZHANG_C3H8__TRA {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C3H8_tra     2006/1/1/0 C xy kg/m2/s C3H8 26/1003         1 40 
+0 ZHANG_CH2O__DOB {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc CH2O_dob     2006/1/1/0 C xy kg/m2/s CH2O 26/1003         1 40 
+0 ZHANG_CH2O__DOF {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc CH2O_dof     2006/1/1/0 C xy kg/m2/s CH2O 26/1003         1 40 
+0 ZHANG_CH2O__DOP {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc CH2O_dop     2006/1/1/0 C xy kg/m2/s CH2O 26/1003         1 40 
+0 ZHANG_CH2O__IND {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc CH2O_ind     2006/1/1/0 C xy kg/m2/s CH2O 26/1003         1 40 
+0 ZHANG_CH2O__POW {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc CH2O_pow     2006/1/1/0 C xy kg/m2/s CH2O 26/1003         1 40 
+0 ZHANG_CH2O__TRA {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc CH2O_tra     2006/1/1/0 C xy kg/m2/s CH2O 26/1003         1 40 
+0 ZHANG_ALK4__DOB {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ALK4_dob     2006/1/1/0 C xy kg/m2/s ALK4 26/1003         1 40 
+0 ZHANG_ALK4__DOF {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ALK4_dof     2006/1/1/0 C xy kg/m2/s ALK4 26/1003         1 40 
+0 ZHANG_ALK4__DOP {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ALK4_dop     2006/1/1/0 C xy kg/m2/s ALK4 26/1003         1 40 
+0 ZHANG_ALK4__IND {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ALK4_ind     2006/1/1/0 C xy kg/m2/s ALK4 26/1003         1 40 
+0 ZHANG_ALK4__POW {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ALK4_pow     2006/1/1/0 C xy kg/m2/s ALK4 26/1003         1 40 
+0 ZHANG_ALK4__TRA {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ALK4_tra     2006/1/1/0 C xy kg/m2/s ALK4 26/1003         1 40 
+0 ZHANG_ACET__DOB {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ACET_dob     2006/1/1/0 C xy kg/m2/s ACET 26/1003         1 40 
+0 ZHANG_ACET__DOF {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ACET_dof     2006/1/1/0 C xy kg/m2/s ACET 26/1003         1 40 
+0 ZHANG_ACET__DOP {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ACET_dop     2006/1/1/0 C xy kg/m2/s ACET 26/1003         1 40 
+0 ZHANG_ACET__IND {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ACET_ind     2006/1/1/0 C xy kg/m2/s ACET 26/1003         1 40 
+0 ZHANG_ACET__POW {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ACET_pow     2006/1/1/0 C xy kg/m2/s ACET 26/1003         1 40 
+0 ZHANG_ACET__TRA {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ACET_tra     2006/1/1/0 C xy kg/m2/s ACET 26/1003         1 40 
+0 ZHANG_MEK__DOB  {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc MEK_dob      2006/1/1/0 C xy kg/m2/s MEK  26/1003         1 40 
+0 ZHANG_MEK__DOF  {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc MEK_dof      2006/1/1/0 C xy kg/m2/s MEK  26/1003         1 40 
+0 ZHANG_MEK__DOP  {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc MEK_dop      2006/1/1/0 C xy kg/m2/s MEK  26/1003         1 40 
+0 ZHANG_MEK__IND  {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc MEK_ind      2006/1/1/0 C xy kg/m2/s MEK  26/1003         1 40 
+0 ZHANG_MEK__POW  {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc MEK_pow      2006/1/1/0 C xy kg/m2/s MEK  26/1003         1 40 
+0 ZHANG_MEK__TRA  {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc MEK_tra      2006/1/1/0 C xy kg/m2/s MEK  26/1003         1 40 
+0 ZHANG_ALD2__DOB {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ALD2_dob     2006/1/1/0 C xy kg/m2/s ALD2 26/1003         1 40 
+0 ZHANG_ALD2__DOF {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ALD2_dof     2006/1/1/0 C xy kg/m2/s ALD2 26/1003         1 40 
+0 ZHANG_ALD2__DOP {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ALD2_dop     2006/1/1/0 C xy kg/m2/s ALD2 26/1003         1 40 
+0 ZHANG_ALD2__IND {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ALD2_ind     2006/1/1/0 C xy kg/m2/s ALD2 26/1003         1 40 
+0 ZHANG_ALD2__POW {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ALD2_pow     2006/1/1/0 C xy kg/m2/s ALD2 26/1003         1 40 
+0 ZHANG_ALD2__TRA {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc ALD2_tra     2006/1/1/0 C xy kg/m2/s ALD2 26/1003         1 40 
+0 ZHANG_PRPE__DOB {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc PRPE_dob     2006/1/1/0 C xy kg/m2/s PRPE 26/1003         1 40 
+0 ZHANG_PRPE__DOF {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc PRPE_dof     2006/1/1/0 C xy kg/m2/s PRPE 26/1003         1 40 
+0 ZHANG_PRPE__DOP {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc PRPE_dop     2006/1/1/0 C xy kg/m2/s PRPE 26/1003         1 40 
+0 ZHANG_PRPE__IND {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc PRPE_ind     2006/1/1/0 C xy kg/m2/s PRPE 26/1003         1 40 
+0 ZHANG_PRPE__POW {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc PRPE_pow     2006/1/1/0 C xy kg/m2/s PRPE 26/1003         1 40 
+0 ZHANG_PRPE__TRA {ROOT}/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc PRPE_tra     2006/1/1/0 C xy kg/m2/s PRPE 26/1003         1 40 
+
+# --> NH3 emissions are only available for year 2000:
+0 STREETS_NH3 {ROOT}/STREETS/v2014-07/2000/Streets_2000.generic.1x1.nc NH3_tot 2000/1/1/0 C xy kg/m2/s NH3 38/1003 1 40 
+
+#==============================================================================
+# --- Bromocarbon emissions ---
+#==============================================================================
+0 LIANG_CHBR3  {ROOT}/BROMINE/Bromocarb_Liang2010.nc CHBr3_emission  2000/1/1/0 C xy kg/m2/s CHBr3  39 1 1
+0 LIANG_CH2BR2 {ROOT}/BROMINE/Bromocarb_Liang2010.nc CH2Br2_emission 2000/1/1/0 C xy kg/m2/s CH2Br2 39 1 1
+
+#==============================================================================
+# --- Ship emissions ---
+#
+# Don't list ship NO emissions here because they are used by 
+# ParaNOx extensions and hence treated separately below
+# --> In the defaults, ARCTAS SO2 has priority over ICOADS, CORBETT and EDGAR.
+# --> For CO, ICOADS has priority over EDGAR.
+#==============================================================================
+0 ARCTAS_SHIP_SO2 {ROOT}/ARCTAS_SHIP/v2014-07/ARCTAS_ship.generic.1x1.nc  SO2      2008/1/1/0      C xy kg/m2/s SO2 11          10 1
+##0 CORBETT_SHIP_SO2 {ROOT}/CORBETT_SHIP/v2014-07/CORBETT_ship.geos.1x1.nc SO2_SHIP 1985/1-12/1/0   C xy kg/m2/s SO2 -           10 3
+##0 ICOADS_SHIP_SO2 {ROOT}/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc    SO2      2002/1-12/1/0   C xy kg/m2/s SO2 11/15/60    10 5
+0 ICOADS_SHIP_CO  {ROOT}/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc    CO       2002/1-12/1/0   C xy kg/m2/s CO  6/10        10 1
+##0 EDGAR_SHIP_CO {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc             CO.f5800 2000/1/1/0      C xy kg/m2/s CO  6           10 1
+0 EMEP_SHIP_CO  {ROOT}/EMEP/v2014-07/EMEP.update.gen.1x1.nc           ShipCO   1990-2007/1/1/0 C xy kg/m2/s CO  1000        10 2
+0 EMEP_SHIP_SO2 {ROOT}/EMEP/v2014-07/EMEP.update.gen.1x1.nc           ShipSO2  1990-2007/1/1/0 C xy kg/m2/s SO2 61/1000     10 2
+
+#==============================================================================
+# --- BC/OC emissions from Tami Bond ---
+#
+# ==> don't use biomass burning emissions if GFED extension is used!
+#==============================================================================
+0 BOND_ANTH_BC       {ROOT}/BCOC_BOND/v2014-07/Bond_fossil.nc  BCPI 2000/1-12/1/0 C xy kg/m2/s BC   -  1 1
+0 BOND_ANTH_OC       {ROOT}/BCOC_BOND/v2014-07/Bond_fossil.nc  OCPI 2000/1-12/1/0 C xy kg/m2/s OC   -  1 1
+0 BOND_BF_BC         {ROOT}/BCOC_BOND/v2014-07/Bond_biofuel.nc BCPI 2000/1-12/1/0 C xy kg/m2/s BC   -  2 1
+0 BOND_BF_OC         {ROOT}/BCOC_BOND/v2014-07/Bond_biofuel.nc OCPI 2000/1-12/1/0 C xy kg/m2/s OC   -  2 1
+#0 BOND_BIOMASS_BC   {ROOT}/BCOC_BOND/v2014-07/Bond_biomass.nc BCPI 2001/1/1/0    C xy kg/m2/s BC   -  3 1
+#0 BOND_BIOMASS_OC   {ROOT}/BCOC_BOND/v2014-07/Bond_biomass.nc OCPI 2001/1/1/0    C xy kg/m2/s OC   -  3 1
+#0 BOND_BIOMASS_OCPO {ROOT}/BCOC_BOND/v2014-07/Bond_biomass.nc OCPI 2001/1/1/0    C xy kg/m2/s OCPO 73 3 1
+
+#==============================================================================
+# --- BC/OC emissions over NA from Cooke et al. (1999) ---
+#
+# ==> don't use in standard simulation
+#==============================================================================
+##0 COOKE_ANTH_BC {ROOT}/BCOC_COOKE/v2014-07/BCOC_Cooke_fossil.gen.1x1.nc  BCPI 1998/1-12/1/0 C xy kg/m2/s BC 1004 1 2
+##0 COOKE_ANTH_OC {ROOT}/BCOC_COOKE/v2014-07/BCOC_Cooke_fossil.gen.1x1.nc  OCPI 1998/1-12/1/0 C xy kg/m2/s OC 1004 1 2
+##0 COOKE_BF_BC   {ROOT}/BCOC_COOKE/v2014-07/BCOC_Cooke_biofuel.gen.1x1.nc BCPI 1998/1-12/1/0 C xy kg/m2/s BC 1004 2 2
+##0 COOKE_BF_OC   {ROOT}/BCOC_COOKE/v2014-07/BCOC_Cooke_biofuel.gen.1x1.nc OCPI 1998/1-12/1/0 C xy kg/m2/s OC 1004 2 2
+
+#==============================================================================
+# --- AEIC aircraft emissions ---
+#==============================================================================
+0 AEIC_NO   {ROOT}/AEIC/v2014-07/aeic_2005.geos.4x5.nc  NO       2005/1-12/1/0 C xyz kg/m2/s NO   110/115 20 1
+0 AEIC_CO   {ROOT}/AEIC/v2014-07/aeic_2005.geos.4x5.nc  CO       2005/1-12/1/0 C xyz kg/m2/s CO   110     20 1 
+0 AEIC_SO2  {ROOT}/AEIC/v2014-07/aeic_2005.geos.4x5.nc  FUELBURN 2005/1-12/1/0 C xyz kg/m2/s SO2  111     20 1 
+0 AEIC_SO4  -                                           -        -             - -   -       SO4  112     20 1 
+0 AEIC_BC   -                                           -        -             - -   -       BC   113     20 1 
+0 AEIC_OC   -                                           -        -             - -   -       OC   113     20 1 
+0 AEIC_ACET {ROOT}/AEIC/v2014-07/aeic_2005.geos.4x5.nc  HC       2005/1-12/1/0 C xyz kg/m2/s ACET 114/101 20 1
+0 AEIC_ALD2 -                                           -        -             - -   -       ALD2 114/102 20 1
+0 AEIC_ALK4 -                                           -        -             - -   -       ALK4 114/103 20 1
+0 AEIC_C2H6 -                                           -        -             - -   -       C2H6 114/104 20 1
+0 AEIC_C3H8 -                                           -        -             - -   -       C3H8 114/105 20 1
+0 AEIC_CH2O -                                           -        -             - -   -       CH2O 114/106 20 1
+0 AEIC_PRPE -                                           -        -             - -   -       PRPE 114/107 20 1
+0 AEIC_MACR -                                           -        -             - -   -       MACR 114/108 20 1
+0 AEIC_RCHO -                                           -        -             - -   -       RCHO 114/109 20 1
+
+#==============================================================================
+# --- Volcanic emissions ---
+#==============================================================================
+0 VOLCANO_SO2 {ROOT}/VOLCANO/v2014-07/volc_so2_gen1x1.nc SO2 1979-2009/1-12/1-31/0 C xyz kg/m2/s SO2 - 50 1
+#
+END SECTION BASE EMISSIONS 
+
+###############################################################################
+### BEGIN SECTION SCALE FACTORS 
+###############################################################################
+
+# ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
+
+#==============================================================================
+# --- annual scale factors ---
+#==============================================================================
+1  TOTFUEL_THISYR {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1985-2010/1/1/0 C xy unitless  1
+2  TOTFUEL_1985   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1985/1/1/0      C xy unitless -1
+3  TOTFUEL_1999   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1999/1/1/0      C xy unitless -1
+4  TOTFUEL_2006   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2006/1/1/0      C xy unitless -1
+5  TOTFUEL_2002   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2002/1/1/0      C xy unitless -1
+16 TOTFUEL_2005   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2005/1/1/0      C xy unitless -1
+6  LIQFUEL_THISYR {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1985-2010/1/1/0 C xy unitless  1
+7  LIQFUEL_1985   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1985/1/1/0      C xy unitless -1
+8  LIQFUEL_1999   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1999/1/1/0      C xy unitless -1
+9  LIQFUEL_2006   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2006/1/1/0      C xy unitless -1
+10 LIQFUEL_2002   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2002/1/1/0      C xy unitless -1
+17 LIQFUEL_2005   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2005/1/1/0      C xy unitless -1
+11 SOLFUEL_THISYR {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1985-2010/1/1/0 C xy unitless  1
+12 SOLFUEL_1985   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1985/1/1/0      C xy unitless -1
+13 SOLFUEL_1999   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1999/1/1/0      C xy unitless -1
+14 SOLFUEL_2006   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2006/1/1/0      C xy unitless -1
+15 SOLFUEL_2002   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2002/1/1/0      C xy unitless -1
+18 SOLFUEL_2005   {ROOT}/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2005/1/1/0      C xy unitless -1
+
+#==============================================================================
+# --- temporary scale factors for comparisons
+#==============================================================================
+919 NO_ratio {ROOT}/AnnualScalar/v2014-07/NO_ratio_2005_2002.nc NOXscalar 2005/1/1/0 C xy unitless 1
+918 CO_ratio {ROOT}/AnnualScalar/v2014-07/CO_ratio_2005_1985.nc COscalar 2005/1/1/0 C xy unitless 1
+
+#==============================================================================
+# --- day-of-week scale factors ---
+# ==> data is Sun/Mon/.../Sat 
+#==============================================================================
+20 GEIA_DOW_NOX 0.784/1.0706/1.0706/1.0706/1.0706/1.0706/0.863 - - - xy unitless 1
+21 GEIA_DOW_CO  0.683/1.1076/1.0706/1.0706/1.0706/1.0706/0.779 - - - xy unitless 1
+22 GEIA_DOW_HC  0.671/1.1102/1.1102/1.1102/1.1102/1.1102/0.768 - - - xy unitless 1 
+
+#==============================================================================
+# --- diurnal scale factors --- 
+#==============================================================================
+25 EDGAR_TODNOX {ROOT}/EDGAR/v2014-07/EDGAR_hourly_NOxScal.nc NOXscale 2000/1/1/* C xy unitless 1
+26 GEIA_TOD_FOSSIL 0.45/0.45/0.6/0.6/0.6/0.6/1.45/1.45/1.45/1.45/1.4/1.4/1.4/1.4/1.45/1.45/1.45/1.45/0.65/0.65/0.65/0.65/0.45/0.45 - - - xy unitless 1
+
+#==============================================================================
+# --- seasonal scale factors ---
+#==============================================================================
+# from GEIA:
+30 GEIA_SEASON_NOX  {ROOT}/GEIA/v2014-07/GEIA_monthscal.generic.1x1.nc NOXrat 1985/1-12/1/0 C xy unitless 1
+31 GEIA_SEASON_SO2  {ROOT}/GEIA/v2014-07/GEIA_monthscal.generic.1x1.nc SO2rat 1985/1-12/1/0 C xy unitless 1
+
+# from EMEP:
+32 EMEP_SEASON_NOX {ROOT}/EMEP/v2014-07/EMEP.Seasonal.geos.1x1.nc NOXrat 2005/1-12/1/0 C xy unitless 1
+33 EMEP_SEASON_CO  {ROOT}/EMEP/v2014-07/EMEP.Seasonal.geos.1x1.nc COrat  2005/1-12/1/0 C xy unitless 1
+34 EMEP_SEASON_NH3 {ROOT}/EMEP/v2014-07/EMEP.Seasonal.geos.1x1.nc NH3rat 2005/1-12/1/0 C xy unitless 1
+35 EMEP_SEASON_SO2 {ROOT}/EMEP/v2014-07/EMEP.Seasonal.geos.1x1.nc SO2rat 2005/1-12/1/0 C xy unitless 1
+
+# from Streets:
+36 ZHANG_SEASON_NOX   {ROOT}/STREETS/v2014-07/2006/Streets_2004_NOx_MonthFctr_total.generic.1x1.nc NOxrat    2004/1-12/1/0 C xy unitless 1
+37 ZHANG_SEASON_CO    {ROOT}/STREETS/v2014-07/2006/Streets_2001_CO_MonthFctr_total.generic.1x1.nc  ratio     2001/1-12/1/0 C xy unitless 1 
+38 STREETS_SEASON_NH3 {ROOT}/STREETS/v2014-07/2000/Streets_NH3_scale.generic.1x1.nc                NH3_scale 1995/1-12/1/0 C xy unitless 1 
+
+# for Bromocarbons:
+39 BROMOCARB_SEASON {ROOT}/BROMINE/BromoCarb_Season.nc CHXBRY_scale 2000/1-12/1/0 C xy unitless 1
+
+#==============================================================================
+# --- VOC speciations ---
+#==============================================================================
+
+50 RETRO_KET2MEK    0.25  - - - xy unitless 1
+51 RETRO_KET2ACET   0.75  - - - xy unitless 1
+52 COPROD_FOSSIL    1.02  - - - xy unitless 1
+53 COPROD_BIOFUEL   1.086 - - - xy unitless 1
+54 COPROD_BIOMASS   1.05  - - - xy unitless 1
+55 ACETSCAL_FOSSIL  0.82  - - - xy unitless 1
+56 ACETSCAL_BIOFUEL 0.82  - - - xy unitless 1
+
+#==============================================================================
+# --- SOx to SO2 conversion (Chin et al., 2000) ---
+#==============================================================================
+60 SOX2SO2_GLOBAL 0.986 - - - xy unitless 1
+61 SOX2SO2_EU     0.95  - - - xy unitless 1
+62 SULFUR2SOX     2.0   - - - xy unitless 1
+63 SO2toSO4       0.031 - - - xy unitless 1
+64 SOX2SO4_EU     0.05  - - - xy unitless 1
+65 SO2toSO4_CAC   0.014 - - - xy unitless 1
+
+#==============================================================================
+# --- Biofuel conversion factors ---
+#==============================================================================
+90 BF_COtoHAC   8.75e-3 - - - xy unitless 1
+91 BF_COtoSO2   3.43e-3 - - - xy unitless 1
+92 BF_COtoGLYX  1.37e-2 - - - xy unitless 1
+93 BF_COtoMGLY  8.92e-3 - - - xy unitless 1
+94 BF_COtoBENZ  1.04e-2 - - - xy unitless 1
+95 BF_COtoTOLU  6.03e-3 - - - xy unitless 1
+96 BF_COtoXYLE  2.81e-2 - - - xy unitless 1
+97 BF_COtoC2H4  1.35e-2 - - - xy unitless 1
+98 BF_COtoC2H2  1.63e-2 - - - xy unitless 1
+99 BF_COtoGLYC  7.84e-3 - - - xy unitless 1
+
+#==============================================================================
+# --- AEIC aircraft emissions ---
+#
+# Sulfur conversion factors are calculated as 
+#     so4 = 3 * a * b and so2 = 2 * a * (1-b)
+#
+# where 
+#     a = fraction by mass (6.0e-4) and 
+#     b = conversion efficiency (2.0e-2).
+#
+# The factors 2 and 3 come from sulfur mass conversions (96/32 and 64/32).
+# All factors are taken from AEIC_mod.F, following Seb Estham's appraoch.
+# Note that all emissions become multiplied by a factor of 1e-3 (except for 
+# the fuelburn emissions) in the original AEIC code. I'm not sure if this 
+# is because the netCDF data is in g instead of kg?
+#==============================================================================
+101 AEICACET 3.693477e-3 - -  - xy unitless 1
+102 AEICALD2 4.271822e-2 - -  - xy unitless 1
+103 AEICALK4 2.137911e-1 - -  - xy unitless 1
+104 AEICC2H6 5.214505e-3 - -  - xy unitless 1
+105 AEICC3H8 7.808710e-4 - -  - xy unitless 1
+106 AEICCH2O 1.230811e-1 - -  - xy unitless 1
+107 AEICPRPE 1.780418e-1 - -  - xy unitless 1
+108 AEICMACR 5.362609e-2 - -  - xy unitless 1
+109 AEICRCHO 3.676944e-2 - -  - xy unitless 1
+110 AEICNOCO 1.000000e-3 - -  - xy unitless 1
+111 AEICSO2  1.176000e-3 - -  - xy unitless 1
+112 AEICSO4  3.600000e-5 - -  - xy unitless 1
+113 AEICBC   3.0000000-5 - -  - xy unitless 1
+114 AEICHC   1.1600000-3 - -  - xy unitless 1
+115 NO2toNO  6.5217391-1 - -  - xy unitless 1
+
+#==============================================================================
+# --- NEI 2005 scale factors ---
+#==============================================================================
+201 VISTAS_SEASON     {ROOT}/NEI2005/v2014-07/scaling/Vistas_season.geos.1x1.nc NOratio      2002/1-12/1/0 C xy unitless 1
+202 ARP_SEASON        {ROOT}/NEI2005/v2014-07/scaling/ARP_season.geos.1x1.nc    NOxrat  1999-2007/1-12/1/0 C xy unitless 1
+210 NEI99_DOW_NOX     {ROOT}/NEI2005/v2014-07/scaling/NEI99.dow.geos.1x1.nc     NOX          1999/1-12/*/0 C xy unitless 1
+211 NEI99_DOW_CO      {ROOT}/NEI2005/v2014-07/scaling/NEI99.dow.geos.1x1.nc     CO           1999/1-12/*/0 C xy unitless 1
+212 NEI99_DOW_ALK4    {ROOT}/NEI2005/v2014-07/scaling/NEI99.dow.geos.1x1.nc     ALK4         1999/1-12/*/0 C xy unitless 1
+213 NEI99_DOW_ACET    {ROOT}/NEI2005/v2014-07/scaling/NEI99.dow.geos.1x1.nc     ACET         1999/1-12/*/0 C xy unitless 1
+214 NEI99_DOW_MEK     {ROOT}/NEI2005/v2014-07/scaling/NEI99.dow.geos.1x1.nc     MEK          1999/1-12/*/0 C xy unitless 1
+215 NEI99_DOW_PRPE    {ROOT}/NEI2005/v2014-07/scaling/NEI99.dow.geos.1x1.nc     PRPE         1999/1-12/*/0 C xy unitless 1
+216 NEI99_DOW_C3H8    {ROOT}/NEI2005/v2014-07/scaling/NEI99.dow.geos.1x1.nc     C3H8         1999/1-12/*/0 C xy unitless 1
+217 NEI99_DOW_C2H6    {ROOT}/NEI2005/v2014-07/scaling/NEI99.dow.geos.1x1.nc     C2H6         1999/1-12/*/0 C xy unitless 1
+218 NEI99_DOW_SO2     {ROOT}/NEI2005/v2014-07/scaling/NEI99.dow.geos.1x1.nc     SO2          1999/1-12/*/0 C xy unitless 1
+219 NEI99_DOW_SO4     {ROOT}/NEI2005/v2014-07/scaling/NEI99.dow.geos.1x1.nc     SO4          1999/1-12/*/0 C xy unitless 1
+220 NEI99_DOW_MSA     {ROOT}/NEI2005/v2014-07/scaling/NEI99.dow.geos.1x1.nc     MSA          1999/1-12/*/0 C xy unitless 1
+221 NEI99_DOW_BCPI    {ROOT}/NEI2005/v2014-07/scaling/NEI99.dow.geos.1x1.nc     BCPI         1999/1-12/*/0 C xy unitless 1
+222 NEI99_DOW_OCPI    {ROOT}/NEI2005/v2014-07/scaling/NEI99.dow.geos.1x1.nc     OCPI         1999/1-12/*/0 C xy unitless 1
+230 NEI99_SEASON_CO   {ROOT}/NEI2005/v2014-07/scaling/NEI99.season.geos.1x1.nc  CO           1999/1-12/1/0 C xy unitless 1
+231 NEI99_SEASON_ALK4 {ROOT}/NEI2005/v2014-07/scaling/NEI99.season.geos.1x1.nc  ALK4         1999/1-12/1/0 C xy unitless 1
+232 NEI99_SEASON_ACET {ROOT}/NEI2005/v2014-07/scaling/NEI99.season.geos.1x1.nc  ACET         1999/1-12/1/0 C xy unitless 1
+233 NEI99_SEASON_MEK  {ROOT}/NEI2005/v2014-07/scaling/NEI99.season.geos.1x1.nc  MEK          1999/1-12/1/0 C xy unitless 1
+234 NEI99_SEASON_PRPE {ROOT}/NEI2005/v2014-07/scaling/NEI99.season.geos.1x1.nc  PRPE         1999/1-12/1/0 C xy unitless 1
+235 NEI99_SEASON_C3H8 {ROOT}/NEI2005/v2014-07/scaling/NEI99.season.geos.1x1.nc  C3H8         1999/1-12/1/0 C xy unitless 1
+236 NEI99_SEASON_C2H6 {ROOT}/NEI2005/v2014-07/scaling/NEI99.season.geos.1x1.nc  C2H6         1999/1-12/1/0 C xy unitless 1
+237 NEI99_SEASON_SO2  {ROOT}/NEI2005/v2014-07/scaling/NEI99.season.geos.1x1.nc  SO2          1999/1-12/1/0 C xy unitless 1
+238 NEI99_SEASON_SO4  {ROOT}/NEI2005/v2014-07/scaling/NEI99.season.geos.1x1.nc  SO4          1999/1-12/1/0 C xy unitless 1
+239 NEI99_SEASON_MSA  {ROOT}/NEI2005/v2014-07/scaling/NEI99.season.geos.1x1.nc  MSA          1999/1-12/1/0 C xy unitless 1
+240 NEI99_SEASON_BCPI {ROOT}/NEI2005/v2014-07/scaling/NEI99.season.geos.1x1.nc  BCPI         1999/1-12/1/0 C xy unitless 1
+241 NEI99_SEASON_OCPI {ROOT}/NEI2005/v2014-07/scaling/NEI99.season.geos.1x1.nc  OCPI         1999/1-12/1/0 C xy unitless 1
+242 NEI99_SEASON_NH3  0.216/0.418/0.622/0.815/0.982/0.974/1.0/0.9/0.96/0.6/0.28/0.236      -            -             - xy unitless 1
+#
+END SECTION SCALE FACTORS 
+
+###############################################################################
+### BEGIN SECTION MASKS 
+###############################################################################
+#
+# ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
+#
+#==============================================================================
+# Country/region masks
+#==============================================================================
+1000 EMEP_MASK   {ROOT}/MASKS/v2014-07/EMEP_mask.geos.1x1.nc           MASK */*/*/* C xy unitless 1 -30/30/45/70
+1001 MEXICO_MASK {ROOT}/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc MASK */*/*/* C xy unitless 1 -118/17/-95/33
+1002 CANADA_MASK {ROOT}/MASKS/v2014-07/Canada_mask.geos.1x1.nc         MASK */*/*/* C xy unitless 1 -141/40/-52/85
+1003 SEASIA_MASK {ROOT}/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc     MASK */*/*/* C xy unitless 1  60/-12/153/55
+1004 NA_MASK     {ROOT}/MASKS/v2014-07/NA_mask.geos.1x1.nc             MASK */*/*/* C xy unitless 1 -165/10/-40/90
+1005 USA_MASK    {ROOT}/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc    MASK */*/*/* C xy unitless 1 -165/10/-40/90
+#
+END SECTION MASKS 
+
+###############################################################################
+### BEGIN SECTION EXTENSION SWITCHES
+###############################################################################
+# Make sure that the ExtNr provided here matches with the ExtNr provided in 
+# the base emissions sections. Otherwise, the listed files won't be read!
+#
+# ExtNr ExtName           on/off  Species 
+100     Custom            : off   - 
+101     SeaFlux           : on    DMS/ACET
+102     ParaNOx           : on    NO/NO2/O3/HNO3
+    --> FracNOx table     :       {ROOT}/PARANOX/v2014-07/FracNOx_binary_5hrs_20gs.dat
+    --> IntOPE table      :       {ROOT}/PARANOX/v2014-07/IntOPE_binary_5hrs_20gs.dat
+103     LightNOx          : on    NO
+    --> OTD-LIS factors   :       true
+    --> CDF table         :       {ROOT}/LIGHTNOX/v2014-07/light_dist.ott2010.dat
+104     SoilNOx           : on    NO 
+    --> Use fertilizer NOx:       true
+105     DustDead          : on    DST1/DST2/DST3/DST4 
+106     DustGinoux        : off   DST1/DST2/DST3/DST4
+107     SeaSalt           : on    SALA/SALC/Br2
+    --> SALA lower radius :       0.01 
+    --> SALA upper radius :       0.5
+    --> SALC lower radius :       0.5
+    --> SALC upper radius :       8.0
+    --> Emit Br2          :       true  
+    --> Br2 scaling       :       1.0 
+108     MEGAN             : on    ISOP/ACET/PRPE/C2H4
+    --> Isoprene scaling  :       1.0 
+    --> PECCA model       :       false
+109     MEGAN_Mono        : on    CO/OCPI/MONX
+110     MEGAN_SOA         : on    MTPA/MTPO/LIMO/SESQ
+111     GFED3             : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BC/OC
+    --> CO scale factor   :       1.05
+112     GFED3_daily       : off   -
+113     GFED3_3hourly     : off   -
+114     FINN              : off    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BC/OC/GLYC/HAC
+115     FINN_daily        : off 
+#
+END SECTION EXTENSION SWITCHES 
+
+###############################################################################
+### BEGIN SECTION EXTENSION DATA
+###############################################################################
+#
+#==============================================================================
+# --- Seawater concentrations for oceanic emissions (Extension 101) ---
+#==============================================================================
+#101 CH3I_SEAWATER  {ROOT}/CH3I/v2014-07/ocean_ch3i.geos.4x5.nc       CH3I       1985/1-12/1/0 C xy kg/m3 CH3I - 1 1
+101 DMS_SEAWATER    {ROOT}/DMS/v2014-07/DMS_seawater.geos.1x1.nc      DMS_OCEAN  1985/1-12/1/0 C xy kg/m3 DMS  - 1 1
+101 ACET_SEAWATER   {ROOT}/ACET/v2014-07/ACET_seawater.generic.1x1.nc ACET       2005/1/1/0    C xy kg/m3 ACET - 1 1 
+
+#==============================================================================
+# --- PARANOX emissions (Extension 102) ---
+#
+# List here NO ship emissions only. Ship NO emissions will be assembled from
+# all inventories listed below based upon the assigned hierarchies.
+# NOTE: With the default settings, ICOADS has priority over EDGAR.
+#==============================================================================
+102 ICOADS_SHIP_NO  {ROOT}/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc NO       2002/1-12/1/0   C xy kg/m2/s NO  1/5  1 1
+#102 EDGAR_SHIP_NO   {ROOT}/EDGAR/v2014-07/EDGAR.generic.1x1.nc    NO.f5800 2000/1/1/0      C xy kg/m2/s NO  1/30 1 2
+102 EMEP_SHIP_NO    {ROOT}/EMEP/v2014-07/EMEP.update.gen.1x1.nc   ShipNO   1990-2007/1/1/0 C xy kg/m2/s NO  1000 1 10
+
+#==============================================================================
+# --- LIGHTNOX emissions (Extension 103) ---
+#
+# Local redistribution factors: These are model-specific and hence need to be 
+# redefined for different model/resolution simulations!!!
+#==============================================================================
+103 LIGHTNOX_OTDLIS {ROOT}/LIGHTNOX/v2014-07/OTD-LIS-Local-Redist.CTH.v5.{LNOX}.{GRID}.nc OTD 2012-2013/1-12/1/0 C xy unitless NO - 1 1
+
+#==============================================================================
+# --- SOILNOX emissions (Extension 104) ---
+#==============================================================================
+104 SOILNOX_PFACT   ./initial_soil_rst.{MET}_{GRID}_{SIM}.nc  PFACTOR       YYYY/MM/DD/HH    C xy  unitless NO - 1 1
+104 SOILNOX_DRYPER  ./initial_soil_rst.{MET}_{GRID}_{SIM}.nc  DRYPERIOD     YYYY/MM/DD/HH    C xy  unitless NO - 1 1
+104 SOILNOX_GWET    ./initial_soil_rst.{MET}_{GRID}_{SIM}.nc  GWET_PREV     YYYY/MM/DD/HH    C xy  unitless NO - 1 1
+104 SOILNOX_DEPRES  ./initial_soil_rst.{MET}_{GRID}_{SIM}.nc  DEP_RESERVOIR YYYY/MM/DD/HH    C xy  ngN/m2   NO - 1 1
+104 SOILNOX_FERT    {ROOT}/SOILNOX/v2014-07/soilNOx.fert_res.generic.05x05.nc   FERT         2000/1-12/1-31/0 C xy  ngN/m2   NO - 1 1
+104 SOILNOX_LANDK1  {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K01 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK2  {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K02 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK3  {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K03 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK4  {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K04 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK5  {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K05 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK6  {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K06 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK7  {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K07 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK8  {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K08 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK9  {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K09 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK10 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K10 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK11 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K11 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK12 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K12 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK13 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K13 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK14 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K14 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK15 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K15 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK16 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K16 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK17 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K17 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK18 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K18 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK19 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K19 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK20 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K20 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK21 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K21 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK22 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K22 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK23 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K23 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_LANDK24 {ROOT}/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K24 2000/1/1/0       C xyz unitless NO - 1 1
+104 SOILNOX_ARID    {ROOT}/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc    ARID         2000/1/1/0       C xy unitless NO - 1 1
+104 SOILNOX_NONARID {ROOT}/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc    NON_ARID     2000/1/1/0       C xy unitless NO - 1 1
+
+#==============================================================================
+# --- dust emissions using DEAD model (Extension 105) ---
+#==============================================================================
+105 DEAD_EF_GEO   {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc     EF_GEO   1985/1/1/0    C xy factor   * - 1 1
+105 DEAD_LF_DRY   {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc     LF_DRY   1985/1/1/0    C xy factor   * - 1 1
+105 DEAD_MF_CACO3 {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc     MF_CaCO3 1985/1/1/0    C xy fraction * - 1 1
+105 DEAD_MF_CLY   {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc     MF_CLY   1985/1/1/0    C xy fraction * - 1 1
+105 DEAD_MF_SND   {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc     MF_SND   1985/1/1/0    C xy fraction * - 1 1
+105 DEAD_SFC_TYP  {ROOT}/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc     SFC_TYP  1985/1/1/0    C xy unitless * - 1 1
+105 DEAD_GOC_SRC  {ROOT}/DUST_DEAD/v2014-07/GOCART_src_fn.geos.4x5.nc GOC_SRC  1985/1/1/0    C xy unitless * - 1 1
+105 DEAD_VAI      {ROOT}/DUST_DEAD/v2014-07/dst_tvbds.geos.4x5.nc     VAI      1985/1-12/1/0 C xy unitless * - 1 1
+
+#==============================================================================
+# --- Dust emissions using Paul Ginoux's mechanism (Extension 106) 
+#==============================================================================
+106 GINOUX_SAND   {ROOT}/DUST_GINOUX/v2014-07/NSP.dust.geos.4x5.nc  SAND  1985/1/1/0 C xy unitless * - 1 1 
+106 GINOUX_SILT   {ROOT}/DUST_GINOUX/v2014-07/NSP.dust.geos.4x5.nc  SILT  1985/1/1/0 C xy unitless * - 1 1 
+106 GINOUX_CLAY   {ROOT}/DUST_GINOUX/v2014-07/NSP.dust.geos.4x5.nc  CLAY  1985/1/1/0 C xy unitless * - 1 1 
+
+#==============================================================================
+# --- Sea salt emissions (Extension 107) 
+#==============================================================================
+# --- No external data --- 
+
+#==============================================================================
+# --- MEGAN biogenic emissions (Extension 108)
+#
+# NOTE: These are the base emissions, which will be converted to kgC/m2/s by 
+# HEMCO. The specified species (OCPI/ISOP/ACET) are required for proper unit 
+# conversion. Since netCDF files are already in mass carbon (ug(C)), the only 
+# important thing is to specify a VOC with a specified MW of 12g/mol. 
+# This is the case for OCPI, ISOP and ACET.
+#==============================================================================
+108 MEGAN_AEF_ISOP  {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ISOPRENE      1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+108 MEGAN_AEF_ACET  {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ACETONE       1985/1/1/0    C xy kgC/m2/s ACET - 1 1 
+109 MEGAN_PFT_BT    {ROOT}/MEGAN/v2014-07/MEGAN_PFT.nc              BT                2000/1/1/0    C xy m2/m2    OCPI - 1 1
+109 MEGAN_PFT_NT    {ROOT}/MEGAN/v2014-07/MEGAN_PFT.nc              NT                2000/1/1/0    C xy m2/m2    OCPI - 1 1
+109 MEGAN_PFT_SH    {ROOT}/MEGAN/v2014-07/MEGAN_PFT.nc              SH                2000/1/1/0    C xy m2/m2    OCPI - 1 1
+109 MEGAN_PFT_GR    {ROOT}/MEGAN/v2014-07/MEGAN_PFT.nc              GR                2000/1/1/0    C xy m2/m2    OCPI - 1 1
+109 MEGAN_PFT_CR    {ROOT}/MEGAN/v2014-07/MEGAN_PFT.nc              CR                2000/1/1/0    C xy m2/m2    OCPI - 1 1
+109 MEGAN_AEF_MONOT {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MONOTERPENES  1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_MBO   {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MBO           1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_APINE {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ALPHA_PINENE  1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_BPINE {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_BETA_PINENE   1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_LIMON {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_LIMONENE      1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_SABIN {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_SABINENE      1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_MYRCN {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MYRCENE       1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_CAREN {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_CARENE        1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_OCIMN {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_OCIMENE       1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+110 MEGAN_ORVC      {ROOT}/SOA/v2014-07/NVOC.geos.1x1.nc            OCPI              1990/1-12/1/0 C xy kgC/m2/s OCPI - 1 1
+
+#==============================================================================
+# --- GFED3 biomass burning emissions (Extension 111) 
+#
+# NOTE: These are the base emissions in kgDM/m2/s.  The specified species 
+# (NO) does not matter expect that it has to be one of the GFED3 species. 
+#==============================================================================
+111 GFED3_WDL        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__WDL_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s NO - 1 1
+111 GFED3_AGW        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__AGW_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s NO - 1 1
+111 GFED3_DEF        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__DEF_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s NO - 1 1
+111 GFED3_FOR        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__FOR_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s NO - 1 1
+111 GFED3_PET        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__PET_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s NO - 1 1
+111 GFED3_SAV        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__SAV_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s NO - 1 1
+111 HUMTROP          {ROOT}/GFED3/v2014-07/GFED3_humtropmap.nc   humtrop           2000/1/1/0            C xy unitless  NO - 1 1
+112 GFED3_FRAC_DAY   {ROOT}/GFED3/v2014-07/GFED3_frac_daily.nc   GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0 C xy unitless  NO - 1 1
+113 GFED3_FRAC_3HOUR {ROOT}/GFED3/v2014-07/GFED3_frac_3hourly.nc GFED3_BB__HRFRAC  2002-2011/1-12/01/*   C xy unitless  NO - 1 1
+
+#==============================================================================
+# --- FINN biomass burning emissions (Extension 114) 
+#==============================================================================
+114 FINN_VEGTYP1       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype1 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP2       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype2 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP3       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype3 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP4       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype4 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP5       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype5 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP9       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype9 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP1 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype1 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP2 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype2 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP3 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype3 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP4 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype4 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP5 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype5 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP9 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype9 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+#
+END SECTION EXTENSION DATA
+ 
+### END OF HEMCO INPUT FILE ###
+#EOC
