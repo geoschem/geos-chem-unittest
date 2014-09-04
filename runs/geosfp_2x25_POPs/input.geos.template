@@ -1,12 +1,12 @@
-GEOS-CHEM UNIT TEST SIMULATION: geos5_2x25_POPs
+GEOS-CHEM UNIT TEST SIMULATION: geosfp_2x25_POPs
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : initial_trac_rst.geos5_2x25_POPs
+Input restart file      : initial_trac_rst.geosfp_2x25_POPs
 Make new restart file?  : T
-Output restart file(s)  : trac_rst.geos5_2x25_POPs.YYYYMMDDhhmm
+Output restart file(s)  : trac_rst.geosfp_2x25_POPs.YYYYMMDDhhmm
 Root data directory     : {DATA_ROOT}/GEOS_2x2.5/
  => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
@@ -198,7 +198,7 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% : 
-Binary punch file name  :  trac_avg.geos5_2x25_POPs.YYYYMMDDhh
+Binary punch file name  :  trac_avg.geosfp_2x25_POPs.YYYYMMDDhh
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND01: Rn/Pb/Be source   :  0   all        
 ND02: Rn/Pb/Be decay    :  0   all             
@@ -310,7 +310,7 @@ LMIN, LMAX of region    :   1  40
 Turn on ND51b diagnstic : F
 LT avg timeseries file  : ts_13_15.NA.YYYYMMDD.h5
 Output as HDF5?         : F
-Tracers to include      : 1 4 20 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 60 61 62 63 64 65 66 72 73 75 82 83 84 85 86 87 93 94 98 99
+Tracers to include      : 1 2 3
 GMT Hour for disk write :  1
 Avg Period [LT hours]   :  13  15
 IMIN, IMAX of region    :   1  72

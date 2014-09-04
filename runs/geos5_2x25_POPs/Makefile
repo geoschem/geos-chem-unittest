@@ -1,11 +1,11 @@
 #------------------------------------------------------------------------------
-#          Harvard University Atmospheric Chemistry Modeling Group            !
+#                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
 # !MODULE: Makefile
 #
-# !DESCRIPTION: Makefile for G-C Unit Test rundir: geos5_4x5_POPs
+# !DESCRIPTION: Makefile for G-C Unit Test rundir: geos5_2x25_POPs
 #\\
 #\\
 # !REMARKS:

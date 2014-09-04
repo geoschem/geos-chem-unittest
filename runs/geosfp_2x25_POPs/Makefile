@@ -5,7 +5,7 @@
 #
 # !MODULE: Makefile
 #
-# !DESCRIPTION: Makefile for G-C Unit Test rundir: geosfp_4x5_POPs
+# !DESCRIPTION: Makefile for G-C Unit Test rundir: geosfp_2x25_POPs
 #\\
 #\\
 # !REMARKS:
