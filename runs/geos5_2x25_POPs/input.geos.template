@@ -43,64 +43,8 @@ Convect Timestep (min)  : 15
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
 Emiss timestep (min)    : 30
-Include anthro emiss?   : T
- => Scale to (1985-2005): -1
- => Use EMEP emissions? : F
- => Use BRAVO emissions?: F
- => Use EDGAR emissions?: F
- => Use STREETS emiss?  : F
- => Use CAC emissions?  : F
- => Use NEI2005 emiss?  : F
- => Use RETRO emiss?    : F
- => Use AEIC emissions? : F
-Use RCP emiss (anth+bf)?: F
- => RCP scenario?       : RCP60
- => RCP year?           : 2000
- => Use fixed year?     : F
- => Use RCP aircraft NOx: F
- => Use RCP ship emiss? : F
-Use EPA/NEI99 (anth+bf)?: F
-    w/ ICARTT modif.?   : F
-    w/ VISTAS NOx emis? : F
-Include biofuel emiss?  : F
-Include biogenic emiss? : F
- => Use MEGAN inventory?: F
- => Use PCEEA model?    : F
- => Use MEGAN for MONO? : F
- => Isoprene scaling    : 1
-Include biomass emiss?  : F
- => Seasonal biomass?   : F
- => Scaled to TOMSAI?   : F
- => Use GFED2 biomass?  :---
-    => monthly GFED2?   : F 
-    => 8-day GFED2?     : F 
-    => 3-hr GFED2?      : F
-    => synoptic GFED2?  : F
- => Use GFED3 biomass?  :---
-    => monthly GFED3?   : F
-    => daily GFED3?     : F 
-    => 3-hr GFED3?      : F
-Individual NOx sources  :---
- => Use lightning NOx?  : F
-    => Spat-seas constr?: F
- => Use soil NOx        : F
-    => soilNOx rst file?: none
- => Use fertilizer NOx  : F
-NOx scaling             : 1
-Use ship SO2 emissions? :---
- => global EDGAR ?      : F
- => global ICOADS ?     : F
- => EMEP over EUROPE ?  : F
- => ship SO2 Corbett ?  : F
- => ship SO2 Arctas ?   : F
-Use COOKE BC/OC (N. Am.): F   
-Use historical emiss?   : F
- => What decade?        : 2000
-Bromine switches        :---
- => Use Warwick VSLS?   : F
- => Use seasalt Br2?    : F
+HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
- => Bromine scaling     : 1
 Switches for UCX        :---
  => Use CH4 emissions?  : F
  => Turn on surface BCs :---
@@ -123,6 +67,19 @@ Switches for UCX        :---
     => N2O?             : F
     => strat. SO4?      : F
  => CFC emission year   : 0
+------------------------+------------------------------------------------------
+%%% POPS MENU %%%       :
+POP type [PHE,PYR,BAP]  : PHE
+Chemistry proceesing on?: T
+POP_XMW                 : 178d-3
+POP_KOA                 : 4.37d7
+POP_KBC                 : 1d10
+POP_K_POPG_OH           : 2.70d-11
+POP_K_POPG_O3A          : 5d-4
+POP_K_POPG_O3B          : 2.15d15
+POP_HSTAR               : 2.35d1
+POP_DEL_H               : -74d3
+POP_DEL_Hw              : -5.65d3
 ------------------------+------------------------------------------------------
 %%% AEROSOL MENU %%%    :
 Online SULFATE AEROSOLS : F
@@ -164,20 +121,6 @@ Read and save CSPEC_FULL: F
 USE solver coded by KPP : F
 Online O3 for FAST-JX?  : T
 Gamma HO2               : 0.2
-------------------------+------------------------------------------------------
-%%% POPS MENU %%%       :
-POP type [PHE,PYR,BAP]  : PHE
-Chemistry proceesing on?: T
-POPs emiss file         : PHE_EM_1x1.bpch
-POP_XMW                 : 178d-3
-POP_KOA                 : 4.37d7
-POP_KBC                 : 1d10
-POP_K_POPG_OH           : 2.70d-11
-POP_K_POPG_O3A          : 5d-4
-POP_K_POPG_O3B          : 2.15d15
-POP_HSTAR               : 2.35d1
-POP_DEL_H               : -74d3
-POP_DEL_Hw              : -5.65d3
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
 Schedule output for JAN : 3333333333333333333333333333333
