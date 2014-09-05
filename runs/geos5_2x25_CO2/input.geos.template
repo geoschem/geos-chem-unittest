@@ -22,9 +22,9 @@ Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% TRACER MENU %%%     : 
 Type of simulation      : 12
-Number of Tracers       : 1                        
-Tracer Entries -------> : TR#   Name  g/mole   Tracer Members; () = emitted 
-Tracer #1               :   1   CO2     44.0   (CO2)
+Number of Tracers       : 1                      
+Tracer Entries -------> : TR#   Name   g/mole   Tracer Members; () = emitted 
+Tracer #1               :   1   CO2      44.0   (CO2)
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
@@ -40,7 +40,7 @@ Convect Timestep (min)  : 15
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
-Emiss timestep (min)    : 60
+Emiss timestep (min)    : 30
 HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
 Switches for UCX        :---

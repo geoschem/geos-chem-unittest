@@ -39,7 +39,7 @@ Wildcard:                    *
 Separator:                   /
 Only unitless scale factors: false
 Verbose:                     true
-Track code:                  true
+Track code:                  false
 Show warnings:               true
 #
 END SECTION SETTINGS 
