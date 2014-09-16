@@ -1,1 +1,100 @@
-../chem_inputs/specialty/HEMCO_Config.template.POPs
+#------------------------------------------------------------------------------
+#                  Harvard-NASA Emissions Component (HEMCO)                   !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: HEMCO_Config.rc
+#
+# !DESCRIPTION: Contains configuration information for HEMCO.  Define the
+#  emissions inventories and corresponding file paths here.
+#\\
+#\\
+# !REMARKS:
+#  The following tokens will be replaced:
+#  (1) ROOT : Filepath to HEMCO root directory
+#  (2) MET  : Met field type (from G-C compilation command)
+#  (3) GRID : Horizontal grid type (from G-C compilation command)
+#  (4) SIM  : Simulation type (from G-C compilation command)
+#  (5) NEST : Nested-grid type (CH, EU, NA, SE)
+#  (6) LNOX : String for OTD/LIS lightning NOx files:
+#             (a) For GEOS-5 this is either "geos5.1.0" or "geos5.2.0".  
+#             (b) For other met fields, this is the same as MET.
+# 
+# !REMARKS:
+#  Customized for the POPs simulation. 
+#
+# !REVISION HISTORY: 
+#  19 Aug 2014 - M. Sulprizio- Initial version
+#  15 Sep 2014 - M. Sulprizio- Now include global OC, BC, O3 and OH in GC_POPs
+#                              extension data list
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+###############################################################################
+### BEGIN SECTION SETTINGS
+###############################################################################
+#
+Logfile:                     HEMCO.log
+DiagnPrefix:                 HEMCO_diagnostics
+Wildcard:                    *
+Separator:                   /
+Unit tolerance:              2
+Only unitless scale factors: false
+Verbose:                     true
+Track code:                  false
+Show warnings:               true
+#
+END SECTION SETTINGS 
+
+###############################################################################
+### BEGIN SECTION BASE EMISSIONS 
+###############################################################################
+
+# ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
+#
+END SECTION BASE EMISSIONS 
+
+###############################################################################
+### BEGIN SECTION SCALE FACTORS 
+#################################q##############################################
+
+# ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
+#
+END SECTION SCALE FACTORS 
+
+###############################################################################
+### BEGIN SECTION MASKS 
+###############################################################################
+#
+# ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
+#
+END SECTION MASKS 
+
+###############################################################################
+### BEGIN SECTION EXTENSION SWITCHES
+###############################################################################
+# Make sure that the ExtNr provided here matches with the ExtNr provided in 
+# the base emissions sections. Otherwise, the listed files won't be read!
+#
+# ExtNr ExtName           on/off  Species 
+1002    GC_POPs           : on    POPG/POPPOC/POPPBC
+#
+END SECTION EXTENSION SWITCHES 
+
+###############################################################################
+### BEGIN SECTION EXTENSION DATA
+###############################################################################
+#
+# --- GEOS-Chem POPs emissions (Extension 1002) 
+1002 TOT_POP   /home/mpayer/GC/data/ExtData/HEMCO/POPs/v2014-09/PHE.generic.1x1.nc          PG_SRCE__POPG 2004/1/1/0         C xy  kg/m2/s * - 1 1
+1002 GLOBAL_OC /home/mpayer/GC/data/ExtData/HEMCO/POPs/v2014-09/OCPO.geos5.2x25.nc          OCPO          2005-2009/1-12/1/0 C xyz 1       * - 1 1
+1002 GLOBAL_BC /home/mpayer/GC/data/ExtData/HEMCO/POPs/v2014-09/BCPO.geos5.2x25.nc          BCPO          2005-2009/1-12/1/0 C xyz 1       * - 1 1
+1002 GLOBAL_O3 /home/mpayer/GC/data/ExtData/HEMCO/O3/v2014-09/O3.geos5.47L.2x25.nc          O3            1985/1-12/1/0      C xyz 1       * - 1 1
+1002 GLOBAL_OH /home/mpayer/GC/data/ExtData/HEMCO/OH/v2014-09/OH_3Dglobal.geos5.47L.2x25.nc OH            1985/1-12/1/0      C xyz kg/m3   * - 1 1
+
+#
+END SECTION EXTENSION DATA
+ 
+### END OF HEMCO INPUT FILE ###
+#EOC

@@ -119,7 +119,7 @@ Chemistry Timestep [min]: 60
 Read and save CSPEC_FULL: F
  => CSPEC rst filename? : none
 USE solver coded by KPP : F
-Online O3 for FAST-JX?  : T
+Online O3 for FAST-JX?  : F
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
@@ -145,7 +145,7 @@ Binary punch file name  :  trac_avg.geos4_4x5_POPs.YYYYMMDDhh
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND01: Rn/Pb/Be source   :  0   all        
 ND02: Rn/Pb/Be decay    :  0   all             
-ND03: Hg emissions, P/L : 30   all                
+ND03: Hg emissions, P/L :  0   all                
 ND04: CO2 Sources       :  0   all                
 ND05: Sulfate prod/loss :  0   all               
 ND06: Dust aer source   :  0   all                
@@ -163,7 +163,7 @@ ND17: Rainout fraction  :  0   all
 ND18: Washout fraction  :  0   all            
 ND19: CH4 loss          :  0   all            
 ND21: Optical depths    :  0   all            
-ND22: J-Values          :  0   64 7 8 20 99              
+ND22: J-Values          :  0   1 7 8 20 44 46 47 49 50 51 64 65 99 -1
       => JV time range  :      11 13
 ND24: E/W transpt flx   : 30   all
 ND25: N/S transpt flx   : 30   all
@@ -223,7 +223,7 @@ Number of stations      :   0
 %%% ND49 MENU %%%       :
 Turn on ND49 diagnostic : F
 Inst 3-D timeser. file  : ts/Okinawa_tsYYYYMMDD.bpch
-Tracers to include      : 1 2 3 
+Tracers to include      : 1 2 3 76 77 78 79 94 96 97 98 99 
 Frequency [min]         :  60
 IMIN, IMAX of region    :  63  63
 JMIN, JMAX of region    :  30  30
