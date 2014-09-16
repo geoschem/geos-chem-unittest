@@ -41,6 +41,7 @@
 #  28 Jul 2014 - R. Yantosca - Add HEMCO_ROOT directory
 #  28 Jul 2014 - R. Yantosca - 2 x 2.5 runs now end after 30 mins
 #  07 Aug 2014 - M. Sulprizio- Add GCAP unit test for POPs simulation
+#  16 Sep 2014 - M. Sulprizio- Add 2x2.5 unit tests for CH4 simulation
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -93,6 +94,8 @@
   merra    4x5         -      CH4          2005070100   2005070101   -
   geos5    4x5         -      CH4          2005070100   2005070101   -
   geos4    4x5         -      CH4          2004070100   2004070101   -
+  geosfp   2x25        -      CH4          2013070100   201307010030 -
+  geos5    2x25        -      CH4          2005070100   200507010030 -
 # =======- Tagged O3 ==========================================================
   geosfp   4x5         -      tagO3        2013070100   2013070101 TAGO3YR=2004
   merra    4x5         -      tagO3        2005070100   2005070101 TAGO3YR=2004

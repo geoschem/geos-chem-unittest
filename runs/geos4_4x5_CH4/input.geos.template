@@ -1,12 +1,12 @@
-GEOS-CHEM UNIT TEST SIMULATION: geos5_4x5_CH4
+GEOS-CHEM UNIT TEST SIMULATION: geos4_4x5_CH4
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : initial_trac_rst.geos5_4x5_CH4
+Input restart file      : initial_trac_rst.geos4_4x5_CH4
 Make new restart file?  : T
-Output restart file(s)  : trac_rst.geos5_4x5_CH4.YYYYMMDDhhmm
+Output restart file(s)  : trac_rst.geos4_4x5_CH4.YYYYMMDDhhmm
 Root data directory     : {DATA_ROOT}/GEOS_4x5/
  => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
@@ -41,64 +41,8 @@ Convect Timestep (min)  : 30
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
 Emiss timestep (min)    : 60
-Include anthro emiss?   : T
- => Scale to (1985-2005): -1
- => Use EMEP emissions? : F
- => Use BRAVO emissions?: F
- => Use EDGAR emissions?: F
- => Use STREETS emiss?  : F
- => Use CAC emissions?  : F
- => Use NEI2005 emiss?  : F
- => Use RETRO emiss?    : F
- => Use AEIC emissions? : F
-Use RCP emiss (anth+bf)?: F
- => RCP scenario?       : RCP60
- => RCP year?           : 2000
- => Use fixed year?     : F
- => Use RCP aircraft NOx: F
- => Use RCP ship emiss? : F
-Use EPA/NEI99 (anth+bf)?: F
-    w/ ICARTT modif.?   : F
-    w/ VISTAS NOx emis? : F
-Include biofuel emiss?  : F
-Include biogenic emiss? : F
- => Use MEGAN inventory?: F
- => Use PCEEA model?    : F
- => Use MEGAN for MONO? : F
- => Isoprene scaling    : 1
-Include biomass emiss?  : T
- => Seasonal biomass?   : F
- => Scaled to TOMSAI?   : F
- => Use GFED2 biomass?  :---
-    => monthly GFED2?   : F
-    => 8-day GFED2?     : F 
-    => 3-hr GFED2?      : F
-    => synoptic GFED2?  : F
- => Use GFED3 biomass?  :---
-    => monthly GFED3?   : T 
-    => daily GFED3?     : T 
-    => 3-hr GFED3?      : F
-Individual NOx sources  :---
- => Use lightning NOx?  : F
-    => Spat-seas constr?: F
- => Use soil NOx        : F
-    => soilNOx rst file?: none
- => Use fertilizer NOx  : F
-NOx scaling             : 1
-Use ship emissions?     :---
- => global EDGAR ?      : F
- => global ICOADS ?     : F
- => EMEP over EUROPE ?  : F
- => ship SO2 Corbett ?  : F
- => ship SO2 Arctas ?   : F
-Use COOKE BC/OC (N. Am.): F   
-Use historical emiss?   : F
- => What decade?        : 2000
-Bromine switches        :---
- => Use Warwick VSLS?   : F
- => Use seasalt Br2?    : F
+HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
- => Bromine scaling     : 1
 Switches for UCX        :---
  => Use CH4 emissions?  : F
  => Turn on surface BCs :---
@@ -196,7 +140,7 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% : 
-Binary punch file name  : trac_avg.geos5_4x5_CH4.YYYYMMDDhh
+Binary punch file name  : trac_avg.geos4_4x5_CH4.YYYYMMDDhh
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND01: Rn/Pb/Be source   :  0   all        
 ND02: Rn/Pb/Be decay    :  0   all             
