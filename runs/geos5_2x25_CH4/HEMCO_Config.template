@@ -1,22 +1,23 @@
 ### HEMCO CONFIGURATION FILE ###
 #
 # ==================================================================================
-# This is the HEMCO configuration file for a GEOS-Chem CO2 specialty simulation.
+# This is the HEMCO configuration file for a GEOS-Chem CH4 simulation.
 # ==================================================================================
 
 ####################################################################################
 BEGIN SECTION SETTINGS
 ####################################################################################
 #
-Logfile: HEMCO.log
-DiagnPrefix: HEMCO_diagnostics
-Wildcard: *
-Separator: /
-Unit tolerance: 1
-Negative values: 2
-Verbose: false 
-Track code: false 
-Show warnings: true
+Logfile:                    HEMCO.log
+DiagnPrefix:                HEMCO_diagnostics
+Wildcard:                   *
+Separator:                  /
+Unit tolerance:             1
+Negative values:            2
+nly unitless scale factors: false
+Verbose:                    false 
+Track code:                 false 
+Show warnings:              true
 #
 END SECTION SETTINGS 
 
@@ -25,36 +26,66 @@ BEGIN SECTION BASE EMISSIONS
 ####################################################################################
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
 
-# Gas and oil emissions
+#==============================================================================
+# --- EDGAR v4.2: Gas and oil emissions ---
+#==============================================================================
 0 CH4_GAS__1B2a         /home/ckeller/data/emis/CH4/v42_CH4.0.1x0.1.nc  ch4_1B2a       2004-2008/1/1/0 C xy kg/m2/s CH4 - 1 1
 0 CH4_GAS__1B2b         /home/ckeller/data/emis/CH4/v42_CH4.0.1x0.1.nc  ch4_1B2b       2004-2008/1/1/0 C xy kg/m2/s CH4 - 1 1
 
-# Coal mine emissions
+#==============================================================================
+# --- EDGAR v4.2: Coal mine emissions ---
+#==============================================================================
 0 CH4_COAL__1B1         /home/ckeller/data/emis/CH4/v42_CH4.0.1x0.1.nc  ch4_1B1        2004-2008/1/1/0 C xy kg/m2/s CH4 - 2 1
 
-# Livestock emissions 
+#==============================================================================
+# --- EDGAR v4.2: Livestock emissions  ---
+#==============================================================================
 0 CH4_LIVESTOCK__4A     /home/ckeller/data/emis/CH4/v42_CH4.0.1x0.1.nc  ch4_4A         2004-2008/1/1/0 C xy kg/m2/s CH4 - 3 1
 0 CH4_LIVESTOCK__4B     /home/ckeller/data/emis/CH4/v42_CH4.0.1x0.1.nc  ch4_4B         2004-2008/1/1/0 C xy kg/m2/s CH4 - 3 1
 
-# Waste emissions
+#==============================================================================
+# --- EDGAR v4.2: Waste emissions ---
+#==============================================================================
 0 CH4_WASTE__6A_6C      /home/ckeller/data/emis/CH4/v42_CH4.0.1x0.1.nc  ch4_6A_6C      2004-2008/1/1/0 C xy kg/m2/s CH4 - 4 1
 0 CH4_WASTE__6B         /home/ckeller/data/emis/CH4/v42_CH4.0.1x0.1.nc  ch4_6B         2004-2008/1/1/0 C xy kg/m2/s CH4 - 4 1
 
-# Biofuel (residential) emissions
+#==============================================================================
+# --- EDGAR v4.2: Biofuel (residential) emissions ---
+#==============================================================================
 0 CH4_BIOFUEL__1A4      /home/ckeller/data/emis/CH4/v42_CH4.0.1x0.1.nc  ch4_1A4        2004-2008/1/1/0 C xy kg/m2/s CH4 - 5 1
 
-# Other emissions
+#==============================================================================
+# --- EDGAR v4.2: Other emissions ---
+#==============================================================================
 0 CH4_OTHER__1A1_1A2    /home/ckeller/data/emis/CH4/v42_CH4.0.1x0.1.nc  ch4_1A1_1A2    2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
 0 CH4_OTHER__1A3a_c_d_e /home/ckeller/data/emis/CH4/v42_CH4.0.1x0.1.nc  ch4_1A3a_c_d_e 2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
 0 CH4_OTHER__1A3b       /home/ckeller/data/emis/CH4/v42_CH4.0.1x0.1.nc  ch4_1A3b       2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
 0 CH4_OTHER__2          /home/ckeller/data/emis/CH4/v42_CH4.0.1x0.1.nc  ch4_2          2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
 0 CH4_OTHER__7A         /home/ckeller/data/emis/CH4/v42_CH4.0.1x0.1.nc  ch4_7A         2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
 
-# Soil absorption (Fung et al. 1991) --> multiply by -1 to get 'negative' flux
-0 CH4_SOILABSORBTION    /home/ckeller/data/emis/CH4/2x25/soilabs.geos.2x25.nc CH4      1985/1/1/0      C xy kg/m2/s CH4 1 7 1
+#==============================================================================
+# --- Soil absorption (Fung et al. 1991) ---
+# --> multiply by -1 to get 'negative' flux
+#==============================================================================
+0 CH4_SOILABSORBTION    /home/ckeller/data/emis/CH4/2x25/soilabs.geos.2x25.nc CH4        1985/1/1/0      C xy kg/m2/s CH4 1 7 1
 
-# Termites (Fung et al. 1991)
-0 CH4_TERMITES          /home/ckeller/data/emis/CH4/2x25/termites.geos.2x25.nc CH4     1985/1/1/0      C xy kg/m2/s CH4 - 8 1
+#==============================================================================
+# --- Termites (Fung et al. 1991) ---
+#==============================================================================
+0 CH4_TERMITES          /home/ckeller/data/emis/CH4/2x25/termites.geos.2x25.nc CH4       1985/1/1/0      C xy kg/m2/s CH4 - 8 1
+
+#==============================================================================
+# --- Chemical loss rate of CH4 ---
+# (needed for chemistry, not used for emission calculation)
+#==============================================================================
+0 CH4_LOSS      /home/ckeller/data/emis/CH4/2x25/gmi.ch4loss.geos5_47L.2x25.nc CH4loss 1985/1-12/1/0 C xyz s-1 * - 1 1
+
+#==============================================================================
+# --- Global OH field ---
+# (needed for chemistry, not used for emission calculation)
+#==============================================================================
+0 GLOBAL_OH /home/mpayer/GC/data/ExtData/HEMCO/OH/v2014-09/v5-07-08/OH_3Dglobal.geos5.47L.2x25.nc OH 1985/1-12/1/0 C xyz kg/m3 * - 1 1
+
 #
 END SECTION BASE EMISSIONS 
 
@@ -98,8 +129,10 @@ END SECTION EXTENSION SWITCHES
 BEGIN SECTION EXTENSION DATA
 ####################################################################################
 #
+#==============================================================================
 # --- GFED3 biomass burning emissions (Extension 111) 
 # These are the base emissions in kgDM/m2/s. 
+#==============================================================================
 111 GFED3_WDL        /home/ckeller/data/emis/GFED3/GFED3_monthly.nc      GFED3_BB__WDL_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
 111 GFED3_AGW        /home/ckeller/data/emis/GFED3/GFED3_monthly.nc      GFED3_BB__AGW_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
 111 GFED3_DEF        /home/ckeller/data/emis/GFED3/GFED3_monthly.nc      GFED3_BB__DEF_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
@@ -110,7 +143,9 @@ BEGIN SECTION EXTENSION DATA
 112 GFED3_FRAC_DAY   /home/ckeller/data/emis/GFED3/GFED3_frac_daily.nc   GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0 C xy unitless  * - 1 1
 113 GFED3_FRAC_3HOUR /home/ckeller/data/emis/GFED3/GFED3_frac_3hourly.nc GFED3_BB__HRFRAC  2002-2011/1-12/01/*   C xy unitless  * - 1 1
 
+#==============================================================================
 # --- FINN biomass burning emissions (Extension 114) 
+#==============================================================================
 114 FINN_VEGTYP1 /home/ckeller/data/emis/FINN/FINN_monthly_05x05.nc fire_vegtype1 2007-2013/1-12/1/0 C xy kg/m2/s * - 1 1
 114 FINN_VEGTYP2 /home/ckeller/data/emis/FINN/FINN_monthly_05x05.nc fire_vegtype2 2007-2013/1-12/1/0 C xy kg/m2/s * - 1 1
 114 FINN_VEGTYP3 /home/ckeller/data/emis/FINN/FINN_monthly_05x05.nc fire_vegtype3 2007-2013/1-12/1/0 C xy kg/m2/s * - 1 1
@@ -124,7 +159,9 @@ BEGIN SECTION EXTENSION DATA
 115 FINN_DAILY_VEGTYP5 /home/ckeller/data/emis/FINN/FINN_daily_05x05.nc fire_vegtype5 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
 115 FINN_DAILY_VEGTYP9 /home/ckeller/data/emis/FINN/FINN_daily_05x05.nc fire_vegtype9 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
 
+#==============================================================================
 # --- CH4 wetland and rice emissions (Extension 121) 
+#==============================================================================
 121 CH4_RICE     /home/ckeller/data/emis/CH4/v42_CH4.0.1x0.1.nc                 ch4_4C_4D 2004-2008/1/1/0    C xy kg/m2/s  CH4 - 1 1
 121 CH4_GWET_YR  /home/ckeller/data/emis/CH4/2x25/GWETTOP.annual.geos5.2x25.nc  GWETTOP   2004-2011/1/1/0    C xy 1        *   - 1 1
 121 CH4_GWET_MT  /home/ckeller/data/emis/CH4/2x25/GWETTOP.monthly.geos5.2x25.nc GWETTOP   2004-2011/1-12/1/0 C xy 1        *   - 1 1

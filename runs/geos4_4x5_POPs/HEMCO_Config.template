@@ -40,6 +40,7 @@ DiagnPrefix:                 HEMCO_diagnostics
 Wildcard:                    *
 Separator:                   /
 Unit tolerance:              2
+Negative values:             0
 Only unitless scale factors: false
 Verbose:                     true
 Track code:                  false
@@ -52,6 +53,18 @@ END SECTION SETTINGS
 ###############################################################################
 
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
+
+#==============================================================================
+# --- Global O3 field ---
+# (needed for chemistry, not used for emission calculation)
+#==============================================================================
+0 GLOBAL_O3 /home/mpayer/GC/data/ExtData/HEMCO/O3/v2014-09/MERGE.O3.geos4.30L.4x5.nc             O3            1985/1-12/1/0      C xyz 1       * - 1 1
+
+#==============================================================================
+# --- Global OH field ---
+# (needed for chemistry, not used for emission calculation)
+#==============================================================================
+0 GLOBAL_OH /home/mpayer/GC/data/ExtData/HEMCO/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.geos4.30L.4x5.nc OH            1985/1-12/1/0      C xyz kg/m3   * - 1 1
 #
 END SECTION BASE EMISSIONS 
 
@@ -86,13 +99,12 @@ END SECTION EXTENSION SWITCHES
 ### BEGIN SECTION EXTENSION DATA
 ###############################################################################
 #
+#==============================================================================
 # --- GEOS-Chem POPs emissions (Extension 1002) 
+#==============================================================================
 1002 TOT_POP   /home/mpayer/GC/data/ExtData/HEMCO/POPs/v2014-09/PHE.generic.1x1.nc         PG_SRCE__POPG 2004/1/1/0         C xy  kg/m2/s * - 1 1
 1002 GLOBAL_OC /home/mpayer/GC/data/ExtData/HEMCO/POPs/v2014-09/OCPO.geos4.4x5.nc          OCPO          2005-2009/1-12/1/0 C xyz 1       * - 1 1
 1002 GLOBAL_BC /home/mpayer/GC/data/ExtData/HEMCO/POPs/v2014-09/BCPO.geos4.4x5.nc          BCPO          2005-2009/1-12/1/0 C xyz 1       * - 1 1
-1002 GLOBAL_O3 /home/mpayer/GC/data/ExtData/HEMCO/O3/v2014-09/O3.geos4.30L.4x5.nc          O3            1985/1-12/1/0      C xyz 1       * - 1 1
-1002 GLOBAL_OH /home/mpayer/GC/data/ExtData/HEMCO/OH/v2014-09/OH_3Dglobal.geos4.30L.4x5.nc OH            1985/1-12/1/0      C xyz kg/m3   * - 1 1
-
 #
 END SECTION EXTENSION DATA
  
