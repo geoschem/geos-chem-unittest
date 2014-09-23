@@ -38,16 +38,16 @@
 ### BEGIN SECTION SETTINGS
 ###############################################################################
 #
-Logfile:                    HEMCO.log
-DiagnPrefix:                HEMCO_diagnostics
-Wildcard:                   *
-Separator:                  /
-Unit tolerance:             1
-Negative values:            2
-nly unitless scale factors: false
-Verbose:                    false 
-Track code:                 false 
-Show warnings:              true
+Logfile:                     HEMCO.log
+DiagnPrefix:                 HEMCO_diagnostics
+Wildcard:                    *
+Separator:                   /
+Unit tolerance:              1
+Negative values:             2
+Only unitless scale factors: false
+Verbose:                     false 
+Track code:                  false 
+Show warnings:               true
 #
 END SECTION SETTINGS 
 
@@ -121,9 +121,10 @@ END SECTION MASKS
 
 ###############################################################################
 ### BEGIN SECTION EXTENSION SWITCHES
+###
+### Make sure that the ExtNr provided here matches with the ExtNr provided 
+### in the base emissions sections. Otherwise, the listed files won't be read!
 ###############################################################################
-# Make sure that the ExtNr provided here matches with the ExtNr provided in the base 
-# emissions sections. Otherwise, the listed files won't be read!
 #
 # ExtNr ExtName           on/off  Species 
 111     GFED3             : on    CH4
