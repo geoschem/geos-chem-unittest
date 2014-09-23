@@ -393,30 +393,36 @@ sub makeHemcoCfg($$$$$$$) {
 #  30 Jun 2014 - R. Yantosca - Now accept $nest via the argument list
 #  02 Jul 2014 - R. Yantosca - Now accept $start via the argument list
 #  02 Jul 2014 - R. Yantosca - Now replace the {LNOX} token
+#  23 Sep 2014 - R. Yantosca - Now replace the {LEVRED} and {LEVFULL} tokens
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 #
 # !LOCAL VARIABLES:
 #
-  my @lines  = "";
-  my $line   = "";
-  my $lNox   = "";
-  my $date   = 0;
+  # Strings
+  my @lines      = "";
+  my $line       = "";
+  my $lNox       = "";
+  my $levReduced = "";
+  my $levFull    = "";
 
-  #---------------------------------------------------  
+  # Scalars
+  my $date       = 0;
+
+  #-------------------------------------------------------------------------  
   # Read template file
-  #---------------------------------------------------
+  #-------------------------------------------------------------------------
 
   # Read template "input.geos" file into an array
   open( I, "$inFile" ) or croak( "Cannot open $inFile!\n" );
   @lines = <I>;
   close( I );
 
-  #---------------------------------------------------
+  #-------------------------------------------------------------------------
   # Compute the value to replace the {LNOX} token
   # in the OTD/LIS lightning NOx file names
-  #---------------------------------------------------
+  #-------------------------------------------------------------------------
   if ( $met =~ m/geos5/ ) { 
 
     # Cast starting date from string to numeric
@@ -434,9 +440,18 @@ sub makeHemcoCfg($$$$$$$) {
 
   } 
 
-  #---------------------------------------------------
+  #-------------------------------------------------------------------------
+  # Compute the value used to replace the {LEVRED} and {LEVFULL} tokens in 
+  # file names.  These are needed for certain specialty simulations that 
+  # read archived OH or O3 concentrations.  
+  #-------------------------------------------------------------------------
+  if    ( $met =~ m/gcap/  ) { $levReduced = "23L"; $levFull = "23L"; }
+  elsif ( $met =~ m/geos4/ ) { $levReduced = "30L"; $levFull = "55L"; }
+  else                       { $levReduced = "47L"; $levFull = "72L"; }
+
+  #-------------------------------------------------------------------------
   # Create HEMCO_Config file
-  #---------------------------------------------------
+  #-------------------------------------------------------------------------
 
   # Open file
   open( O, ">$outFile") or die "Can't open $outFile\n";
@@ -454,6 +469,8 @@ sub makeHemcoCfg($$$$$$$) {
     $line =~ s/{GRID}/$grid/g;
     $line =~ s/{NEST}/$nest/g;
     $line =~ s/{SIM}/$simType/g;
+    $line =~ s/{LEVRED}/$levReduced/g;
+    $line =~ s/{LEVFULL}/$levFull/g;
 
     # Write to output file
     print O "$line\n";
