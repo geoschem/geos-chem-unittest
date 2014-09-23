@@ -59,7 +59,7 @@ unittest:
 	@$(MAKE) check
 
 sp:
-	rm -f $(LOG_SP)
+	rm -f $(LOG_SP) 
 	@$(MAKE) -C $(CODE_DIR) OMP=no > $(LOG_SP)
 	cp -f $(CODE_DIR)/bin/geos geos.sp
 	$(EXE_SP) >> $(LOG_SP)

@@ -25,8 +25,7 @@ use UtUtils qw( &baseName
                 &makeInputGeos
                 &parse         
                 &readResults       
-                &makeMatrix    
-                &getHemcoEndTime );  # Get routines from UtUtils.pm
+                &makeMatrix     );
 #
 # !PUBLIC DATA MEMBERS:
 #
@@ -168,6 +167,8 @@ sub makeInputs($$$$$$$$) {
 #  02 Jul 2014 - R. Yantosca - Now pass $start to routine &makeHemcoCfg
 #  28 Jul 2014 - R. Yantosca - Now accept $end as YYYYMMDDhhmm or YYYMMDDhh
 #  03 Sep 2014 - R. Yantosca - Now call &getHemcoEndTime
+#  23 Sep 2014 - R. Yantosca - Remove call to &getHemcoEndTime.  The HEMCO
+#                              restart timestamp is now the same as $end.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -207,11 +208,8 @@ sub makeInputs($$$$$$$$) {
   &makeHemcoCfg( $hcoTmpl, $start, $met,        $grid, 
                  $nest,    $sim,   $HEMCO_ROOT, $hcoCfg );
 
-  # Get the timestamp used for the HEMCO restart file
-  $hcoEnd = &getHemcoEndTime( $end, $inpGeos );
-
   # Return 
-  return( $hcoEnd );
+  return( $? );
 }
 #EOP
 #------------------------------------------------------------------------------
@@ -262,6 +260,8 @@ sub doUnitTest($$) {
 #                              before saving the commands for the master script
 #  03 Sep 2014 - R. Yantosca - If $end is in YYYYMMDDhh format, then convert
 #                              to YYYYMMDDhhmm format by adding "00"
+#  23 Sep 2014 - R. Yantosca - The timestamp for the HEMCO restart file is
+#                              now the same as $end.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -418,8 +418,7 @@ sub doUnitTest($$) {
 
 	  # Make the input.geos and HEMCO_Config.rc file in the run directory
 	  # Returns the timestamp for the HEMCO restart file 
-	  $hcoEnd   = &makeInputs( $start, $end,  $runDir, 
-                                   $met,   $grid, $nest,   $sim );
+	  &makeInputs( $start, $end,  $runDir, $met, $grid, $nest, $sim );
    
 	  #-----------------------------------------------------------------
 	  # Create the list of comamnds that will execute each requested
@@ -430,7 +429,7 @@ sub doUnitTest($$) {
 	  $makeCmd  = "$MAKE_CMD COMPILER=$COMPILER MET=$met GRID=$grid";
 	  $makeCmd .= " SIM=$sim VERSION=$VERSION LOG_DIR=$LOG_DIR";
 	  $makeCmd .= " CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR";
-	  $makeCmd .= " START=$start END=$end HMCO_END=$hcoEnd"; 
+	  $makeCmd .= " START=$start END=$end HMCO_END=$end"; 
 
 	  # The main log files
 	  $stdout   = "$LOG_DIR/$VERSION.stdout.log";
