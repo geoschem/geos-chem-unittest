@@ -42,6 +42,7 @@
 #  28 Jul 2014 - R. Yantosca - 2 x 2.5 runs now end after 30 mins
 #  07 Aug 2014 - M. Sulprizio- Add GCAP unit test for POPs simulation
 #  16 Sep 2014 - M. Sulprizio- Add 2x2.5 unit tests for CH4 simulation
+#  23 Sep 2014 - M. Sulprizio- Add unit test for offline aerosol simulation
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -108,6 +109,8 @@
 # ======= Carbon Dioxide =====================================================
 # geosfp   2x25        -      CO2          2013070100   201307010030 -
   geos5    2x25        -      CO2          2005070100   200507010030 -
+# ======= Offline Aerosols ===================================================
+  geos5    4x5         -      aerosol      2005070100   200507010030 -
 # ======= Fullchem ===========================================================
   geosfp   4x5         -      fullchem     2013070100   2013070101   -
   merra    4x5         -      fullchem     2005070100   2005070101   -
