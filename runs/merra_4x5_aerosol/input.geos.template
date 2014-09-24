@@ -1,12 +1,12 @@
-GEOS-CHEM UNIT TEST SIMULATION: geos5_4x5_aerosol
+GEOS-CHEM UNIT TEST SIMULATION: merra_4x5_aerosol
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : initial_trac_rst.geos5_4x5_aerosol
+Input restart file      : initial_trac_rst.merra_4x5_aerosol
 Make new restart file?  : T
-Output restart file(s)  : trac_rst.geos5_4x5_aerosol.YYYYMMDDhhmm
+Output restart file(s)  : trac_rst.merra_4x5_aerosol.YYYYMMDDhhmm
 Root data directory     : {DATA_ROOT}/GEOS_4x5/
  => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
@@ -150,7 +150,7 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% : 
-Binary punch file name  : trac_avg.geos5_4x5_aerosol.YYYYMMDDhh
+Binary punch file name  : trac_avg.merra_4x5_aerosol.YYYYMMDDhh
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND01: Rn/Pb/Be source   :  0   all        
 ND02: Rn/Pb/Be decay    :  0   all             

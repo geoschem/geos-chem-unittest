@@ -1,5 +1,5 @@
 This directory is the run directory for the GEOS-Chem unit tester,
-for GEOS-5 met fields, 4x5 grid, and the offline aerosol simulation.
+for GEOS-5 met fields, 2x2.5 grid, and the offline aerosol simulation.
 
 Chemistry files are linked to ../chem_inputs/fullchem and the HEMCO
 configuration file is linked to HEMCO_Config.template.aerosol stored in
