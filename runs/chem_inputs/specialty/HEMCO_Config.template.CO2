@@ -40,6 +40,7 @@ Wildcard:                    *
 Separator:                   /
 Unit tolerance:              1
 Only unitless scale factors: false
+Negative values:             2
 Verbose:                     true
 Track code:                  false
 Show warnings:               true
@@ -62,8 +63,10 @@ END SECTION SETTINGS
 
 #0 FOSSILCO2_GENERIC  {ROOT}/CO2/v2014-09/FOSSIL/fossilCO2.geos.2x25.noav.nc         CO2 1985/1/1/0         C xy kg/m2/s CO2ff   - 1 1 
 #0 FOSSILCORR_GENERIC -                                                                      -   -                  - -  -       CO2corr 1 1 1
+
 #0 FOSSILCO2_ANNUAL   {ROOT}/CO2/v2014-09/FOSSIL/fossilCO2.annual.geos.2x25.noav.nc  CO2 1979-2009/1/1/0    C xy kg/m2/s CO2ff   - 1 2 
 #0 FOSSILCORR_ANNUAL  -                                                                      -   -                  - -  -       CO2corr 1 1 2 
+
 0 FOSSILCO2_MONTHLY  {ROOT}/CO2/v2014-09/FOSSIL/fossilCO2.monthly.geos.2x25.noav.nc CO2 1979-2009/1-12/1/0 C xy kg/m2/s CO2ff   - 1 3 
 0 FOSSILCORR_MONTHLY -                                                                      -   -                  - -  -       CO2corr 1 1 3 
 
@@ -85,14 +88,16 @@ END SECTION SETTINGS
 
 #===============================================================================
 # --- BALANCED BIOSPHERE EXCHANGE ---
+#
+# You can pick either diurnla or daily balanced biosphere exchange.
 #===============================================================================
-#0 BBIOCO2       {ROOT}/CO2/v2014-09/BBIO/BBIO_CO2.nc       CO2 1985/1/1/0       C xy kg/m2/s CO2bal - 1 1
-0 BBIOCO2_DAILY {ROOT}/CO2/v2014-09/BBIO/BBIO_daily_CO2.nc CO2 2000/1-12/1-31/0 C xy kg/m2/s CO2bal - 1 1
+#0 BBIOCO2       {ROOT}/CO2/v2014-09/BBIO/BBIO_DIURNAL/BBIO_diurnal.CO2.nc CO2 1985/1/1/0       C xy kg/m2/s CO2bal - 1 1
+0 BBIOCO2_DAILY {ROOT}/CO2/v2014-09/BBIO/BBIO_DAILY/BBIO_daily_CO2.nc     CO2 2000/1-12/1-31/0 C xy kg/m2/s CO2bal - 1 1
 
 #===============================================================================
 # --- BIOFUEL EMISSIONS ---
 #===============================================================================
-0 BIOFUEL_CO2   {ROOT}/CO2/v2014-09/biofuel_co2.geos.1x1-1995.nc CO2 1995/1/1/0 C xy kg/m2/s CO2bf - 1 1
+0 BIOFUEL_CO2   {ROOT}/CO2/v2014-09/biofuel_CO2.geos.1x1-1995.nc CO2 1995/1/1/0 C xy kg/m2/s CO2bf - 1 1
 
 #===============================================================================
 # --- NET TERRESTRIAL EXCHANGE ---
@@ -104,8 +109,8 @@ END SECTION SETTINGS
 #
 # --> Both inventories are scaled with EDGAR annual CO2 ship scale factors.
 #===============================================================================
-#0 CO2_SHIP_ARCTAS {ROOT}/CO2/v2014-09/ARCTAS_CO2_ship_2008.generic.1x1.nc CO2 2008/1/1/0    C xy kg/m2/s CO2se 10 1 1
-0 CO2_SHIP_ICOADS  {ROOT}/CO2/v2014-09/ICOADS_CO2_ship_2004.generic.1x1.nc CO2 2004/1-12/1/0 C xy kg/m2/s CO2se 10 1 1
+#0 CO2_SHIP_ARCTAS {ROOT}/ARCTAS_SHIP/v2014-07/ARCTAS_ship_CO2_2008.generic.1x1.nc CO2 2008/1/1/0    C xy kg/m2/s CO2se 10 1 1
+0 CO2_SHIP_ICOADS  {ROOT}/ICOADS_SHIP/v2014-07/ICOADS_ship_CO2_2004.generic.1x1.nc CO2 2004/1-12/1/0 C xy kg/m2/s CO2se 10 1 1
 
 #===============================================================================
 # --- AVIATION EMISSIONS ---
