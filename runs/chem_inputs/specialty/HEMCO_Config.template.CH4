@@ -38,6 +38,7 @@
 ### BEGIN SECTION SETTINGS
 ###############################################################################
 #
+ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
 Wildcard:                    *
@@ -61,43 +62,43 @@ END SECTION SETTINGS
 #==============================================================================
 
 ### Gas and oil ###
-0 CH4_GAS__1B2a         {ROOT}/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1B2a       2004-2008/1/1/0 C xy kg/m2/s CH4 - 1 1
-0 CH4_GAS__1B2b         {ROOT}/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1B2b       2004-2008/1/1/0 C xy kg/m2/s CH4 - 1 1
+0 CH4_GAS__1B2a         $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1B2a       2004-2008/1/1/0 C xy kg/m2/s CH4 - 1 1
+0 CH4_GAS__1B2b         $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1B2b       2004-2008/1/1/0 C xy kg/m2/s CH4 - 1 1
 
 ### Coal mines ###
-0 CH4_COAL__1B1         {ROOT}/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1B1        2004-2008/1/1/0 C xy kg/m2/s CH4 - 2 1
+0 CH4_COAL__1B1         $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1B1        2004-2008/1/1/0 C xy kg/m2/s CH4 - 2 1
 
 ### Livestock ###
-0 CH4_LIVESTOCK__4A     {ROOT}/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_4A         2004-2008/1/1/0 C xy kg/m2/s CH4 - 3 1
-0 CH4_LIVESTOCK__4B     {ROOT}/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_4B         2004-2008/1/1/0 C xy kg/m2/s CH4 - 3 1
+0 CH4_LIVESTOCK__4A     $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_4A         2004-2008/1/1/0 C xy kg/m2/s CH4 - 3 1
+0 CH4_LIVESTOCK__4B     $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_4B         2004-2008/1/1/0 C xy kg/m2/s CH4 - 3 1
 
 ### Waste ###
-0 CH4_WASTE__6A_6C      {ROOT}/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_6A_6C      2004-2008/1/1/0 C xy kg/m2/s CH4 - 4 1
-0 CH4_WASTE__6B         {ROOT}/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_6B         2004-2008/1/1/0 C xy kg/m2/s CH4 - 4 1
+0 CH4_WASTE__6A_6C      $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_6A_6C      2004-2008/1/1/0 C xy kg/m2/s CH4 - 4 1
+0 CH4_WASTE__6B         $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_6B         2004-2008/1/1/0 C xy kg/m2/s CH4 - 4 1
 
 ### Residential biofuel ###
-0 CH4_BIOFUEL__1A4      {ROOT}/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1A4        2004-2008/1/1/0 C xy kg/m2/s CH4 - 5 1
+0 CH4_BIOFUEL__1A4      $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1A4        2004-2008/1/1/0 C xy kg/m2/s CH4 - 5 1
 
 ### Other sectors ###
-0 CH4_OTHER__1A1_1A2    {ROOT}/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1A1_1A2    2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
-0 CH4_OTHER__1A3a_c_d_e {ROOT}/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1A3a_c_d_e 2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
-0 CH4_OTHER__1A3b       {ROOT}/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1A3b       2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
-0 CH4_OTHER__2          {ROOT}/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_2          2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
-0 CH4_OTHER__7A         {ROOT}/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_7A         2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
+0 CH4_OTHER__1A1_1A2    $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1A1_1A2    2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
+0 CH4_OTHER__1A3a_c_d_e $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1A3a_c_d_e 2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
+0 CH4_OTHER__1A3b       $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1A3b       2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
+0 CH4_OTHER__2          $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_2          2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
+0 CH4_OTHER__7A         $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_7A         2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
 
 #==============================================================================
 # --- Soil absorption & termites from Fung et al, 1991 ---
 #
 # NOTE: Multiply soil absorption by -1 to get a "negative" flux.
 #==============================================================================
-0 CH4_SOILABSORBTION {ROOT}/CH4/v2014-09/{GRID}/soilabs.geos.{GRID}.nc  CH4 1985/1/1/0 C xy kg/m2/s CH4 1 7 1
-0 CH4_TERMITES       {ROOT}/CH4/v2014-09/{GRID}/termites.geos.{GRID}.nc CH4 1985/1/1/0 C xy kg/m2/s CH4 - 8 1
+0 CH4_SOILABSORBTION $ROOT/CH4/v2014-09/$RES/soilabs.geos.$RES.nc  CH4 1985/1/1/0 C xy kg/m2/s CH4 1 7 1
+0 CH4_TERMITES       $ROOT/CH4/v2014-09/$RES/termites.geos.$RES.nc CH4 1985/1/1/0 C xy kg/m2/s CH4 - 8 1
 
 #==============================================================================
 # --- Quantities needed for CH4 chemistry ---
 #==============================================================================
-0 CH4_LOSS   {ROOT}/CH4/v2014-09/4x5/gmi.ch4loss.geos5_47L.4x5.nc              CH4loss 1985/1-12/1/0 C xyz s-1   * - 1 1
-0 GLOBAL_OH  {ROOT}/OH/v2014-09/v5-07-08/OH_3Dglobal.{MET}.{LEVRED}.{GRID}.nc OH      1985/1-12/1/0 C xyz kg/m3 * - 1 1
+0 CH4_LOSS   $ROOT/CH4/v2014-09/4x5/gmi.ch4loss.geos5_47L.4x5.nc              CH4loss 1985/1-12/1/0 C xyz s-1   * - 1 1
+0 GLOBAL_OH  $ROOT/OH/v2014-09/v5-07-08/OH_3Dglobal.$MET.{LEVRED}.$RES.nc OH      1985/1-12/1/0 C xyz kg/m3 * - 1 1
 
 #
 END SECTION BASE EMISSIONS 
@@ -147,42 +148,42 @@ END SECTION EXTENSION SWITCHES
 # --- GFED3 biomass burning emissions (Extension 111) 
 # These are the base emissions in kgDM/m2/s. 
 #==============================================================================
-111 GFED3_WDL        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__WDL_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_AGW        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__AGW_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_DEF        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__DEF_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_FOR        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__FOR_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_PET        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__PET_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_SAV        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__SAV_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 HUMTROP          {ROOT}/GFED3/v2014-07/GFED3_humtropmap.nc   humtrop           2000/1/1/0            C xy unitless  * - 1 1
-112 GFED3_FRAC_DAY   {ROOT}/GFED3/v2014-07/GFED3_frac_daily.nc   GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0 C xy unitless  * - 1 1
-113 GFED3_FRAC_3HOUR {ROOT}/GFED3/v2014-07/GFED3_frac_3hourly.nc GFED3_BB__HRFRAC  2002-2011/1-12/01/*   C xy unitless  * - 1 1
+111 GFED3_WDL        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__WDL_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_AGW        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__AGW_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_DEF        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__DEF_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_FOR        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__FOR_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_PET        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__PET_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_SAV        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__SAV_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 HUMTROP          $ROOT/GFED3/v2014-07/GFED3_humtropmap.nc   humtrop           2000/1/1/0            C xy unitless  * - 1 1
+112 GFED3_FRAC_DAY   $ROOT/GFED3/v2014-07/GFED3_frac_daily.nc   GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0 C xy unitless  * - 1 1
+113 GFED3_FRAC_3HOUR $ROOT/GFED3/v2014-07/GFED3_frac_3hourly.nc GFED3_BB__HRFRAC  2002-2011/1-12/01/*   C xy unitless  * - 1 1
 
 #==============================================================================
 # --- FINN biomass burning emissions (Extension 114) 
 #==============================================================================
-114 FINN_VEGTYP1       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype1 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP2       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype2 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP3       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype3 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP4       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype4 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP5       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype5 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP9       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype9 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP1 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype1 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP2 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype2 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP3 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype3 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP4 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype4 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP5 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype5 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP9 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype9 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP1       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype1 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP2       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype2 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP3       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype3 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP4       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype4 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP5       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype5 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP9       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype9 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP1 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype1 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP2 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype2 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP3 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype3 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP4 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype4 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype5 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype9 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
 
 #==============================================================================
 # --- CH4 wetland and rice emissions (Extension 121) 
 #==============================================================================
-121 CH4_RICE     {ROOT}/CH4/v2014-09/v42_CH4.0.1x0.1.nc                     ch4_4C_4D 2004-2008/1/1/0    C xy kg/m2/s  CH4 - 1 1
-121 CH4_GWET_YR  {ROOT}/CH4/v2014-09/{GRID}/GWETTOP.annual.geos5.{GRID}.nc  GWETTOP   2004-2011/1/1/0    C xy 1        *   - 1 1
-121 CH4_GWET_MT  {ROOT}/CH4/v2014-09/{GRID}/GWETTOP.monthly.geos5.{GRID}.nc GWETTOP   2004-2011/1-12/1/0 C xy 1        *   - 1 1
-121 CH4_MEAN_T   {ROOT}/CH4/v2014-09/{GRID}/TSKIN.annual.geos5.{GRID}.nc    TSKIN     2004-2011/1/1/0    C xy 1        *   - 1 1
-121 CH4_WETFRAC  {ROOT}/CH4/v2014-09/{GRID}/Wetfrac.{GRID}.nc               WETFRAC   2000/1/1/0         C xy 1        *   - 1 1
-121 CH4_LITTER_C {ROOT}/CH4/v2014-09/{GRID}/Carbon_litter.{GRID}.nc         CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
-121 CH4_SOIL_C   {ROOT}/CH4/v2014-09/{GRID}/Carbon_soil.{GRID}.nc           CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
+121 CH4_RICE     $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc                 ch4_4C_4D 2004-2008/1/1/0    C xy kg/m2/s  CH4 - 1 1
+121 CH4_GWET_YR  $ROOT/CH4/v2014-09/$RES/GWETTOP.annual.geos5.$RES.nc  GWETTOP   2004-2011/1/1/0    C xy 1        *   - 1 1
+121 CH4_GWET_MT  $ROOT/CH4/v2014-09/$RES/GWETTOP.monthly.geos5.$RES.nc GWETTOP   2004-2011/1-12/1/0 C xy 1        *   - 1 1
+121 CH4_MEAN_T   $ROOT/CH4/v2014-09/$RES/TSKIN.annual.geos5.$RES.nc    TSKIN     2004-2011/1/1/0    C xy 1        *   - 1 1
+121 CH4_WETFRAC  $ROOT/CH4/v2014-09/$RES/Wetfrac.$RES.nc               WETFRAC   2000/1/1/0         C xy 1        *   - 1 1
+121 CH4_LITTER_C $ROOT/CH4/v2014-09/$RES/Carbon_litter.$RES.nc         CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
+121 CH4_SOIL_C   $ROOT/CH4/v2014-09/$RES/Carbon_soil.$RES.nc           CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
 #
 END SECTION EXTENSION DATA
  

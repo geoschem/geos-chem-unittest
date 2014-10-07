@@ -29,6 +29,7 @@
 #
 # !REVISION HISTORY: 
 #  23 Sep 2014 - C. Keller   - Initial version
+#  07 Oct 2014 - R. Yantosca - Now use HEMCO tokens $ROOT, $MET, $RES
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -38,6 +39,7 @@
 ### BEGIN SECTION SETTINGS
 ###############################################################################
 #
+ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
 Wildcard:                    *
@@ -59,8 +61,8 @@ END SECTION SETTINGS
 #==============================================================================
 # --- O3 production and loss rates ---
 #==============================================================================
-0 O3_PROD {ROOT}/TAGGED_O3/v2014-09/O3_PRODLOSS.{MET}.4x5.nc POX 2004/1-12/1-31/0 C xyz kg/m3/s * - 1 1
-0 O3_LOSS {ROOT}/TAGGED_O3/v2014-09/O3_PRODLOSS.{MET}.4x5.nc LOX 2004/1-12/1-31/0 C xyz  1/m3/s * - 1 1
+0 O3_PROD $ROOT/TAGGED_O3/v2014-09/O3_PRODLOSS.$MET.4x5.nc POX 2004/1-12/1-31/0 C xyz kg/m3/s * - 1 1
+0 O3_LOSS $ROOT/TAGGED_O3/v2014-09/O3_PRODLOSS.$MET.4x5.nc LOX 2004/1-12/1-31/0 C xyz  1/m3/s * - 1 1
 #
 END SECTION BASE EMISSIONS 
 

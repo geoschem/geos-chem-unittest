@@ -140,7 +140,7 @@ Online 2dy ORG AEROSOLS : F
  => NAP emiss (TgC/yr)  : 1.0
  => POA emission scale  : 1.27
 Online DUST    AEROSOLS : T
- => Use DEAD emissions? : T
+ => Use DEAD emissions? : F
 Online SEASALT AEROSOLS : T
  => SALA radius bin [um]: 0.01 0.5
  => SALC radius bin [um]: 0.5  8.0

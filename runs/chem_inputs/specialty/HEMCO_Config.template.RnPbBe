@@ -27,6 +27,7 @@
 #  17 Apr 2014 - R. Yantosca - Initial version
 #  02 Jul 2014 - R. Yantosca - Now use a 1 x 1 file for DMS seawater
 #  02 Jul 2014 - R. Yantosca - Now added LNOX token
+#  07 Oct 2014 - R. Yantosca - Now use HEMCO tokens $ROOT, $MET, $RES
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -35,6 +36,7 @@
 ### BEGIN SECTION SETTINGS
 ###############################################################################
 #
+ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
 Wildcard:                    *

@@ -32,6 +32,7 @@
 #  15 Sep 2014 - M. Sulprizio- Now include global OC, BC, O3 and OH in GC_POPs
 #                              extension data list
 #  22 Sep 2014 - R. Yantosca - Add replaceable token {ROOT} in data paths
+#  07 Oct 2014 - R. Yantosca - Now use HEMCO tokens $ROOT, $MET, $RES
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -40,6 +41,7 @@
 ### BEGIN SECTION SETTINGS
 ###############################################################################
 #
+ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
 Wildcard:                    *
@@ -64,8 +66,8 @@ END SECTION SETTINGS
 #
 # (needed for chemistry, not used for emission calculation)
 #==============================================================================
-0 GLOBAL_O3 {ROOT}/O3/v2014-09/MERGE.O3.{MET}.{LEVRED}.{GRID}.nc                 O3 1985/1-12/1/0 C xyz 1     * - 1 1
-0 GLOBAL_OH {ROOT}/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.{MET}.{LEVRED}.{GRID}.nc OH 1985/1-12/1/0 C xyz kg/m3 * - 1 1
+0 GLOBAL_O3 $ROOT/O3/v2014-09/MERGE.O3.$MET.{LEVRED}.$RES.nc                 O3 1985/1-12/1/0 C xyz 1     * - 1 1
+0 GLOBAL_OH $ROOT/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.$MET.{LEVRED}.$RES.nc OH 1985/1-12/1/0 C xyz kg/m3 * - 1 1
 #
 END SECTION BASE EMISSIONS 
 
@@ -103,9 +105,9 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- GEOS-Chem POPs emissions (Extension 1002) ---
 #==============================================================================
-1002 TOT_POP   {ROOT}/POPs/v2014-09/PHE.generic.1x1.nc   PG_SRCE__POPG 2004/1/1/0         C xy  kg/m2/s * - 1 1
-1002 GLOBAL_OC {ROOT}/POPs/v2014-09/OCPO.{MET}.{GRID}.nc OCPO          2005-2009/1-12/1/0 C xyz 1       * - 1 1
-1002 GLOBAL_BC {ROOT}/POPs/v2014-09/BCPO.{MET}.{GRID}.nc BCPO          2005-2009/1-12/1/0 C xyz 1       * - 1 1
+1002 TOT_POP   $ROOT/POPs/v2014-09/PHE.generic.1x1.nc PG_SRCE__POPG 2004/1/1/0         C xy  kg/m2/s * - 1 1
+1002 GLOBAL_OC $ROOT/POPs/v2014-09/OCPO.$MET.$RES.nc  OCPO          2005-2009/1-12/1/0 C xyz 1       * - 1 1
+1002 GLOBAL_BC $ROOT/POPs/v2014-09/BCPO.$MET.$RES.nc  BCPO          2005-2009/1-12/1/0 C xyz 1       * - 1 1
 #
 END SECTION EXTENSION DATA
  

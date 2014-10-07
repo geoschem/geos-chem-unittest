@@ -19,12 +19,17 @@
 #  (6) LNOX : String for OTD/LIS lightning NOx files:
 #             (a) For GEOS-5 this is either "geos5.1.0" or "geos5.2.0".  
 #             (b) For other met fields, this is the same as MET.
+#  (7) LEVRED  : String w/ the # of levels in the reduced GEOS-Chem grid
+#                as used in some filenames (e.g. "23L", "30L", "47L")
+#  (8) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
+#                as used in some filenames (e.g. "55L", "72L")
 # 
 # !REMARKS:
 #  Customized for the CO2 specialty simulation.
 #
 # !REVISION HISTORY: 
 #  17 Apr 2014 - C. Keller   - Initial version
+#  07 Oct 2014 - R. Yantosca - Now use HEMCO tokens $ROOT, $MET, $RES
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -34,6 +39,7 @@
 ### BEGIN SECTION SETTINGS
 ################################################################################
 #
+ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
 Wildcard:                    *
@@ -61,18 +67,18 @@ END SECTION SETTINGS
 # Base emissions. These files do not contain aviation emissions!
 #===============================================================================
 
-#0 FOSSILCO2_GENERIC  {ROOT}/CO2/v2014-09/FOSSIL/fossilCO2.geos.2x25.noav.nc         CO2 1985/1/1/0         C xy kg/m2/s CO2ff   - 1 1 
+#0 FOSSILCO2_GENERIC  $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.geos.2x25.noav.nc         CO2 1985/1/1/0         C xy kg/m2/s CO2ff   - 1 1 
 #0 FOSSILCORR_GENERIC -                                                                      -   -                  - -  -       CO2corr 1 1 1
 
-#0 FOSSILCO2_ANNUAL   {ROOT}/CO2/v2014-09/FOSSIL/fossilCO2.annual.geos.2x25.noav.nc  CO2 1979-2009/1/1/0    C xy kg/m2/s CO2ff   - 1 2 
+#0 FOSSILCO2_ANNUAL   $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.annual.geos.2x25.noav.nc  CO2 1979-2009/1/1/0    C xy kg/m2/s CO2ff   - 1 2 
 #0 FOSSILCORR_ANNUAL  -                                                                      -   -                  - -  -       CO2corr 1 1 2 
 
-0 FOSSILCO2_MONTHLY  {ROOT}/CO2/v2014-09/FOSSIL/fossilCO2.monthly.geos.2x25.noav.nc CO2 1979-2009/1-12/1/0 C xy kg/m2/s CO2ff   - 1 3 
+0 FOSSILCO2_MONTHLY  $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.monthly.geos.2x25.noav.nc CO2 1979-2009/1-12/1/0 C xy kg/m2/s CO2ff   - 1 3 
 0 FOSSILCORR_MONTHLY -                                                                      -   -                  - -  -       CO2corr 1 1 3 
 
 # To add aviation to CO2ff, uncomment the appropriate inventory
-0 FOSSILCO2_GENERIC_AVIATION {ROOT}/CO2/FOSSIL/v2014-09/fossilCO2.geos.2x25.avonly.nc         CO2 1985/1/1/0         C xy kg/m2/s CO2ff - 2 1 
-0 FOSSILCO2_ANNUAL_AVIATION  {ROOT}/CO2/FOSSIL/v2014-09/fossilCO2.annual.geos.2x25.avonly.nc  CO2 1979-2009/1/1/0    C xy kg/m2/s CO2ff - 2 2 
+0 FOSSILCO2_GENERIC_AVIATION $ROOT/CO2/FOSSIL/v2014-09/fossilCO2.geos.2x25.avonly.nc         CO2 1985/1/1/0         C xy kg/m2/s CO2ff - 2 1 
+0 FOSSILCO2_ANNUAL_AVIATION  $ROOT/CO2/FOSSIL/v2014-09/fossilCO2.annual.geos.2x25.avonly.nc  CO2 1979-2009/1/1/0    C xy kg/m2/s CO2ff - 2 2 
 
 0 FOSSILCO2_MONTHLY_AVIATION /home/ckeller/data/emis/CO2/FOSSIL/fossilCO2.monthly.geos.2x25.avonly.nc CO2 1979-2009/1-12/1/0 C xy kg/m2/s CO2ff - 2 3 
 
@@ -82,35 +88,35 @@ END SECTION SETTINGS
 # CO2 ocean exchange emissions were generated from bpch-files using scripts 
 # OCEAN_bpch2nc.sh.
 #===============================================================================
-#0 OCEANCO2_GENERIC      {ROOT}/CO2/v2014-09/OCEAN/Ocean_CO2.nc            CO2 1985/1/1/0    C xy kg/m2/s CO2oc - 1 1
-#0 OCEANCO2_TAKA_ANNUAL  {ROOT}/CO2/v2014-09/OCEANTaka2009_CO2_Annual.nc  CO2 2000/1/1/0    C xy kg/m2/s CO2oc - 1 2
-0 OCEANCO2_TAKA_MONTHLY {ROOT}/CO2/v2014-09/OCEAN/Taka2009_CO2_Monthly.nc CO2 2000/1-12/1/0 C xy kg/m2/s CO2oc - 1 3
+#0 OCEANCO2_GENERIC      $ROOT/CO2/v2014-09/OCEAN/Ocean_CO2.nc            CO2 1985/1/1/0    C xy kg/m2/s CO2oc - 1 1
+#0 OCEANCO2_TAKA_ANNUAL  $ROOT/CO2/v2014-09/OCEANTaka2009_CO2_Annual.nc  CO2 2000/1/1/0    C xy kg/m2/s CO2oc - 1 2
+0 OCEANCO2_TAKA_MONTHLY $ROOT/CO2/v2014-09/OCEAN/Taka2009_CO2_Monthly.nc CO2 2000/1-12/1/0 C xy kg/m2/s CO2oc - 1 3
 
 #===============================================================================
 # --- BALANCED BIOSPHERE EXCHANGE ---
 #
 # You can pick either diurnla or daily balanced biosphere exchange.
 #===============================================================================
-#0 BBIOCO2       {ROOT}/CO2/v2014-09/BBIO/BBIO_DIURNAL/BBIO_diurnal.CO2.nc CO2 1985/1/1/0       C xy kg/m2/s CO2bal - 1 1
-0 BBIOCO2_DAILY {ROOT}/CO2/v2014-09/BBIO/BBIO_DAILY/BBIO_daily_CO2.nc     CO2 2000/1-12/1-31/0 C xy kg/m2/s CO2bal - 1 1
+#0 BBIOCO2       $ROOT/CO2/v2014-09/BBIO/BBIO_DIURNAL/BBIO_diurnal.CO2.nc CO2 1985/1/1/0       C xy kg/m2/s CO2bal - 1 1
+0 BBIOCO2_DAILY $ROOT/CO2/v2014-09/BBIO/BBIO_DAILY/BBIO_daily_CO2.nc     CO2 2000/1-12/1-31/0 C xy kg/m2/s CO2bal - 1 1
 
 #===============================================================================
 # --- BIOFUEL EMISSIONS ---
 #===============================================================================
-0 BIOFUEL_CO2   {ROOT}/CO2/v2014-09/biofuel_CO2.geos.1x1-1995.nc CO2 1995/1/1/0 C xy kg/m2/s CO2bf - 1 1
+0 BIOFUEL_CO2   $ROOT/CO2/v2014-09/biofuel_CO2.geos.1x1-1995.nc CO2 1995/1/1/0 C xy kg/m2/s CO2bf - 1 1
 
 #===============================================================================
 # --- NET TERRESTRIAL EXCHANGE ---
 #===============================================================================
-0 CO2_NET_TERRESTRIAL {ROOT}/CO2/v2014-09/Net_terrestrial_exch_5.29Pg.generic.1x1.nc CO2 2000/1/1/0 C xy kg/m2/s CO2nte - 1 1
+0 CO2_NET_TERRESTRIAL $ROOT/CO2/v2014-09/Net_terrestrial_exch_5.29Pg.generic.1x1.nc CO2 2000/1/1/0 C xy kg/m2/s CO2nte - 1 1
 
 #===============================================================================
 # --- SHIP EMISSIONS ---
 #
 # --> Both inventories are scaled with EDGAR annual CO2 ship scale factors.
 #===============================================================================
-#0 CO2_SHIP_ARCTAS {ROOT}/ARCTAS_SHIP/v2014-07/ARCTAS_ship_CO2_2008.generic.1x1.nc CO2 2008/1/1/0    C xy kg/m2/s CO2se 10 1 1
-0 CO2_SHIP_ICOADS  {ROOT}/ICOADS_SHIP/v2014-07/ICOADS_ship_CO2_2004.generic.1x1.nc CO2 2004/1-12/1/0 C xy kg/m2/s CO2se 10 1 1
+#0 CO2_SHIP_ARCTAS $ROOT/ARCTAS_SHIP/v2014-07/ARCTAS_ship_CO2_2008.generic.1x1.nc CO2 2008/1/1/0    C xy kg/m2/s CO2se 10 1 1
+0 CO2_SHIP_ICOADS  $ROOT/ICOADS_SHIP/v2014-07/ICOADS_ship_CO2_2004.generic.1x1.nc CO2 2004/1-12/1/0 C xy kg/m2/s CO2se 10 1 1
 
 #===============================================================================
 # --- AVIATION EMISSIONS ---
@@ -120,7 +126,7 @@ END SECTION SETTINGS
 #===============================================================================
 # --- CHEMICAL PRODUCTION FROM CO OXIDATION ---
 #===============================================================================
-0 CO2_COPROD {ROOT}/CO2/v2014-09/CHEM/CO2_prod_rates.geos5.2x25.47L.nc PORL_L_S__LCO 2004-2009/1-12/1/0 C xyz kg/m3/s CO2ch - 1 1
+0 CO2_COPROD $ROOT/CO2/v2014-09/CHEM/CO2_prod_rates.geos5.2x25.47L.nc PORL_L_S__LCO 2004-2009/1-12/1/0 C xyz kg/m3/s CO2ch - 1 1
 
 #===============================================================================
 # --- CO2 SURFACE CORRECTION FOR CO OXIDATION ---
@@ -130,14 +136,14 @@ END SECTION SETTINGS
 # scale factor #20. The isoprene and monoterpene emissions are converted from 
 # kgC to kg CO2 using scale factor #21.
 #===============================================================================
-0 CO2CORR_LIVESTOCK {ROOT}/CO2/v2014-09/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_004 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
-0 CO2CORR_WASTE     {ROOT}/CO2/v2014-09/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_005 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
-0 CO2CORR_RICE      {ROOT}/CO2/v2014-09/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_007 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
-0 CO2CORR_WETLANDS  {ROOT}/CO2/v2014-09/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_010 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
-0 CO2CORR_NATURAL   {ROOT}/CO2/v2014-09/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_012 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
+0 CO2CORR_LIVESTOCK $ROOT/CO2/v2014-09/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_004 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
+0 CO2CORR_WASTE     $ROOT/CO2/v2014-09/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_005 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
+0 CO2CORR_RICE      $ROOT/CO2/v2014-09/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_007 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
+0 CO2CORR_WETLANDS  $ROOT/CO2/v2014-09/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_010 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
+0 CO2CORR_NATURAL   $ROOT/CO2/v2014-09/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_012 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
 
-0 CO2CORR_ISOPRENE  {ROOT}/CO2/v2014-09/CHEM/Isoprene-2004.geos.2x25.nc    BIOGSRCE__ISOP    2004/1-12/1/0 C xy kg/m2/s CO2corr 21/30 3 1
-0 CO2CORR_MONOTERP  {ROOT}/CO2/v2014-09/CHEM/Monoterpene-2004.geos.2x25.nc BIOGSRCE__MONOT   2004/1-12/1/0 C xy kg/m2/s CO2corr 21/30 3 1
+0 CO2CORR_ISOPRENE  $ROOT/CO2/v2014-09/CHEM/Isoprene-2004.geos.2x25.nc    BIOGSRCE__ISOP    2004/1-12/1/0 C xy kg/m2/s CO2corr 21/30 3 1
+0 CO2CORR_MONOTERP  $ROOT/CO2/v2014-09/CHEM/Monoterpene-2004.geos.2x25.nc BIOGSRCE__MONOT   2004/1-12/1/0 C xy kg/m2/s CO2corr 21/30 3 1
 #
 END SECTION BASE EMISSIONS 
 
@@ -212,54 +218,54 @@ END SECTION EXTENSION SWITCHES
 # (ug(C)), the only important thing is to specify a VOC with a specified MW
 #  of 12g/mol. This is the case for OCPI, ISOP and ACET.
 #===============================================================================
-108 MEGAN_AEF_ISOP  {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ISOPRENE      1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
-108 MEGAN_AEF_ACET  {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ACETONE       1985/1/1/0    C xy kgC/m2/s ACET - 1 1 
-109 MEGAN_PFT_BT    {ROOT}/MEGAN/v2014-07/MEGAN_PFT.nc              BT                2000/1/1/0    C xy m2/m2    OC   - 1 1
-109 MEGAN_PFT_NT    {ROOT}/MEGAN/v2014-07/MEGAN_PFT.nc              NT                2000/1/1/0    C xy m2/m2    OC   - 1 1
-109 MEGAN_PFT_SH    {ROOT}/MEGAN/v2014-07/MEGAN_PFT.nc              SH                2000/1/1/0    C xy m2/m2    OC   - 1 1
-109 MEGAN_PFT_GR    {ROOT}/MEGAN/v2014-07/MEGAN_PFT.nc              GR                2000/1/1/0    C xy m2/m2    OC   - 1 1
-109 MEGAN_PFT_CR    {ROOT}/MEGAN/v2014-07/MEGAN_PFT.nc              CR                2000/1/1/0    C xy m2/m2    OC   - 1 1
-109 MEGAN_AEF_MONOT {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MONOTERPENES  1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
-109 MEGAN_AEF_MBO   {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MBO           1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
-109 MEGAN_AEF_APINE {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ALPHA_PINENE  1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
-109 MEGAN_AEF_BPINE {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_BETA_PINENE   1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
-109 MEGAN_AEF_LIMON {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_LIMONENE      1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
-109 MEGAN_AEF_SABIN {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_SABINENE      1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
-109 MEGAN_AEF_MYRCN {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MYRCENE       1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
-109 MEGAN_AEF_CAREN {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_CARENE        1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
-109 MEGAN_AEF_OCIMN {ROOT}/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_OCIMENE       1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
-110 MEGAN_ORVC      {ROOT}/SOA/v2014-07/NVOC.geos.1x1.nc            OCPI              1990/1-12/1/0 C xy kgC/m2/s OC   - 1 1
+108 MEGAN_AEF_ISOP  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ISOPRENE      1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+108 MEGAN_AEF_ACET  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ACETONE       1985/1/1/0    C xy kgC/m2/s ACET - 1 1 
+109 MEGAN_PFT_BT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              BT                2000/1/1/0    C xy m2/m2    OC   - 1 1
+109 MEGAN_PFT_NT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              NT                2000/1/1/0    C xy m2/m2    OC   - 1 1
+109 MEGAN_PFT_SH    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              SH                2000/1/1/0    C xy m2/m2    OC   - 1 1
+109 MEGAN_PFT_GR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              GR                2000/1/1/0    C xy m2/m2    OC   - 1 1
+109 MEGAN_PFT_CR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              CR                2000/1/1/0    C xy m2/m2    OC   - 1 1
+109 MEGAN_AEF_MONOT $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MONOTERPENES  1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_MBO   $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MBO           1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_APINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ALPHA_PINENE  1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_BPINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_BETA_PINENE   1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_LIMON $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_LIMONENE      1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_SABIN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_SABINENE      1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_MYRCN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MYRCENE       1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_CAREN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_CARENE        1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+109 MEGAN_AEF_OCIMN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_OCIMENE       1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
+110 MEGAN_ORVC      $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc            OCPI              1990/1-12/1/0 C xy kgC/m2/s OC   - 1 1
 
 #===============================================================================
 # --- GFED3 biomass burning emissions (Extension 111) 
 #
 # These are the base emissions in kgDM/m2/s. 
 #===============================================================================
-111 GFED3_WDL        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__WDL_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_AGW        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__AGW_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_DEF        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__DEF_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_FOR        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__FOR_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_PET        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__PET_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_SAV        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__SAV_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 HUMTROP          {ROOT}/GFED3/v2014-07/GFED3_humtropmap.nc   humtrop           2000/1/1/0            C xy unitless  * - 1 1
-112 GFED3_FRAC_DAY   {ROOT}/GFED3/v2014-07/GFED3_frac_daily.nc   GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0 C xy unitless  * - 1 1
-113 GFED3_FRAC_3HOUR {ROOT}/GFED3/v2014-07/GFED3_frac_3hourly.nc GFED3_BB__HRFRAC  2002-2011/1-12/01/*   C xy unitless  * - 1 1
+111 GFED3_WDL        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__WDL_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_AGW        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__AGW_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_DEF        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__DEF_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_FOR        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__FOR_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_PET        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__PET_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_SAV        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__SAV_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 HUMTROP          $ROOT/GFED3/v2014-07/GFED3_humtropmap.nc   humtrop           2000/1/1/0            C xy unitless  * - 1 1
+112 GFED3_FRAC_DAY   $ROOT/GFED3/v2014-07/GFED3_frac_daily.nc   GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0 C xy unitless  * - 1 1
+113 GFED3_FRAC_3HOUR $ROOT/GFED3/v2014-07/GFED3_frac_3hourly.nc GFED3_BB__HRFRAC  2002-2011/1-12/01/*   C xy unitless  * - 1 1
 
 #===============================================================================
 # --- FINN biomass burning emissions (Extension 114) 
 #===============================================================================
-114 FINN_VEGTYP1       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype1 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP2       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype2 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP3       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype3 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP4       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype4 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP5       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype5 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP9       {ROOT}/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype9 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP1 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype1 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP2 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype2 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP3 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype3 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP4 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype4 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP5 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype5 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP9 {ROOT}/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype9 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP1       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype1 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP2       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype2 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP3       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype3 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP4       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype4 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP5       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype5 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP9       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype9 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP1 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype1 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP2 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype2 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP3 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype3 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP4 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype4 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype5 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype9 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
 #
 END SECTION EXTENSION DATA
  

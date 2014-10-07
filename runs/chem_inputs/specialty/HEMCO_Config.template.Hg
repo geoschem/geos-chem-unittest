@@ -29,6 +29,7 @@
 #
 # !REVISION HISTORY: 
 #  26 Sep 2014 - C. Keller   - Initial version
+#  07 Oct 2014 - R. Yantosca - Now use HEMCO tokens $ROOT, $MET, $RES
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -37,6 +38,7 @@
 ### BEGIN SECTION SETTINGS
 ###############################################################################
 #
+ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
 Wildcard:                    *
@@ -60,39 +62,39 @@ BEGIN SECTION BASE EMISSIONS
 #
 # NOTE: HgP emissions are added to Hg2 emissions!
 #==============================================================================
-0 STREETS_HG0 {ROOT}/MERCURY/v2014-09/STREETS/GEIA_Streets_PRESENT_geos.1x1.nc Hg0 2006/1/1/0 C xy kg/m2/s Hg0 - 1 1
-0 STREETS_HG2 {ROOT}/MERCURY/v2014-09/STREETS/GEIA_Streets_PRESENT_geos.1x1.nc Hg2 2006/1/1/0 C xy kg/m2/s Hg2 - 1 1
-0 STREETS_HGP {ROOT}/MERCURY/v2014-09/STREETS/GEIA_Streets_PRESENT_geos.1x1.nc HgP 2006/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 STREETS_HG0 $ROOT/MERCURY/v2014-09/STREETS/GEIA_Streets_PRESENT_geos.1x1.nc Hg0 2006/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 STREETS_HG2 $ROOT/MERCURY/v2014-09/STREETS/GEIA_Streets_PRESENT_geos.1x1.nc Hg2 2006/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 STREETS_HGP $ROOT/MERCURY/v2014-09/STREETS/GEIA_Streets_PRESENT_geos.1x1.nc HgP 2006/1/1/0 C xy kg/m2/s Hg2 - 1 1
 
 #==============================================================================
 # --- NEI 2005 anthropogenic emissions (NA only) ---
 #
 # NOTE: HgP emissions are added to Hg2 emissions!
 #==============================================================================
-0 NEI2005_HG0 {ROOT}/MERCURY/v2014-09/NEI2005/NEI2005.geos5.4x5.nc Hg0 2005/1/1/0 C xy kg/m2/s Hg0 1004 1 2
-0 NEI2005_HG2 {ROOT}/MERCURY/v2014-09/NEI2005/NEI2005.geos5.4x5.nc Hg2 2005/1/1/0 C xy kg/m2/s Hg2 1004 1 2
-0 NEI2005_HGP {ROOT}/MERCURY/v2014-09/NEI2005/NEI2005.geos5.4x5.nc HgP 2005/1/1/0 C xy kg/m2/s Hg2 1004 1 2
+0 NEI2005_HG0 $ROOT/MERCURY/v2014-09/NEI2005/NEI2005.geos5.4x5.nc Hg0 2005/1/1/0 C xy kg/m2/s Hg0 1004 1 2
+0 NEI2005_HG2 $ROOT/MERCURY/v2014-09/NEI2005/NEI2005.geos5.4x5.nc Hg2 2005/1/1/0 C xy kg/m2/s Hg2 1004 1 2
+0 NEI2005_HGP $ROOT/MERCURY/v2014-09/NEI2005/NEI2005.geos5.4x5.nc HgP 2005/1/1/0 C xy kg/m2/s Hg2 1004 1 2
 
 #==============================================================================
 # --- Artisanal mining ---
 #==============================================================================
-0 ARTISANAL_HG0 {ROOT}/MERCURY/v2014-09/ARTISANAL/artisanal.geos.4x5.nc Hg0 1985/1/1/0 C xy kg/m2/s Hg0 1 8 1
+0 ARTISANAL_HG0 $ROOT/MERCURY/v2014-09/ARTISANAL/artisanal.geos.4x5.nc Hg0 1985/1/1/0 C xy kg/m2/s Hg0 1 8 1
 
 #==============================================================================
 # --- Natural emissions ---
 #==============================================================================
-0 NATURAL_HG0 {ROOT}/MERCURY/v2014-09/NATURAL/newnatural.geos.4x5.nc Hg0 1985/1/1/0 C xy kg/m2/s Hg0 2 3 1
+0 NATURAL_HG0 $ROOT/MERCURY/v2014-09/NATURAL/newnatural.geos.4x5.nc Hg0 1985/1/1/0 C xy kg/m2/s Hg0 2 3 1
 
 #==============================================================================
 # --- Soil distribution factor (pointer is imported in mercury_mod.F) ---
 #==============================================================================
-0 HG0_SOILDIST {ROOT}/MERCURY/v2014-09/SOIL/soilHg.merra.presentday.4x5.nc HG0_DIST 1985/1/1/0 C xy unitless * - 1 1
+0 HG0_SOILDIST $ROOT/MERCURY/v2014-09/SOIL/soilHg.merra.presentday.4x5.nc HG0_DIST 1985/1/1/0 C xy unitless * - 1 1
 
 END SECTION BASE EMISSIONS 
 
-####################################################################################
+################################################################################
 BEGIN SECTION SCALE FACTORS 
-####################################################################################
+###############################################################################
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
 
 # --- Scale factors for artisanal and soil emissions ---
@@ -102,17 +104,17 @@ BEGIN SECTION SCALE FACTORS
 #
 END SECTION SCALE FACTORS 
 
-####################################################################################
+###############################################################################
 BEGIN SECTION MASKS 
-####################################################################################
+###############################################################################
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
-1004 NA_MASK {ROOT}/MASKS/v2014-07/NA_mask.geos.1x1.nc MASK 1985/1/1/0 C xy 1 1 -165/10/-40/90
+1004 NA_MASK $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc MASK 1985/1/1/0 C xy 1 1 -165/10/-40/90
 #
 END SECTION MASKS 
 
-####################################################################################
+###############################################################################
 BEGIN SECTION EXTENSION SWITCHES
-####################################################################################
+###############################################################################
 # Make sure that the ExtNr provided here matches with the ExtNr provided in the base 
 # emissions sections. Otherwise, the listed files won't be read!
 #
@@ -124,21 +126,21 @@ BEGIN SECTION EXTENSION SWITCHES
 #
 END SECTION EXTENSION SWITCHES 
 
-####################################################################################
+###############################################################################
 BEGIN SECTION EXTENSION DATA
-####################################################################################
+###############################################################################
 #
 # --- GFED3 biomass burning emissions (Extension 111) 
 # These are the base emissions in kgDM/m2/s. 
-111 GFED3_WDL        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__WDL_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_AGW        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__AGW_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_DEF        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__DEF_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_FOR        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__FOR_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_PET        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__PET_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_SAV        {ROOT}/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__SAV_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 HUMTROP          {ROOT}/GFED3/v2014-07/GFED3_humtropmap.nc   humtrop           2000/1/1/0            C xy unitless  * - 1 1
-112 GFED3_FRAC_DAY   {ROOT}/GFED3/v2014-07/GFED3_frac_daily.nc   GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0 C xy unitless  * - 1 1
-113 GFED3_FRAC_3HOUR {ROOT}/GFED3/v2014-07/GFED3_frac_3hourly.nc GFED3_BB__HRFRAC  2002-2011/1-12/01/*   C xy unitless  * - 1 1
+111 GFED3_WDL        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__WDL_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_AGW        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__AGW_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_DEF        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__DEF_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_FOR        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__FOR_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_PET        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__PET_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 GFED3_SAV        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__SAV_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
+111 HUMTROP          $ROOT/GFED3/v2014-07/GFED3_humtropmap.nc   humtrop           2000/1/1/0            C xy unitless  * - 1 1
+112 GFED3_FRAC_DAY   $ROOT/GFED3/v2014-07/GFED3_frac_daily.nc   GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0 C xy unitless  * - 1 1
+113 GFED3_FRAC_3HOUR $ROOT/GFED3/v2014-07/GFED3_frac_3hourly.nc GFED3_BB__HRFRAC  2002-2011/1-12/01/*   C xy unitless  * - 1 1
 
 #
 END SECTION EXTENSION DATA
