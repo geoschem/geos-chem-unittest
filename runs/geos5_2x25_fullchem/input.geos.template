@@ -1,12 +1,12 @@
-GEOS-CHEM UNIT TEST SIMULATION: geos5_2x25_fullchem
+GEOS-CHEM UNIT TEST SIMULATION: geosfp_2x25_fullchem
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : initial_trac_rst.geos5_2x25_fullchem
+Input restart file      : initial_trac_rst.geosfp_2x25_fullchem
 Make new restart file?  : T
-Output restart file(s)  : trac_rst.geos5_2x25_fullchem.YYYYMMDDhhmm
+Output restart file(s)  : trac_rst.geosfp_2x25_fullchem.YYYYMMDDhhmm
 Root data directory     : {DATA_ROOT}/GEOS_2x2.5/
  => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
@@ -167,7 +167,7 @@ Online CH4 chemistry?   : F
 Active strat. H2O?      : F
 Chemistry Timestep [min]: 30
 Read and save CSPEC_FULL: F
- => CSPEC rst filename? : spec_rst.geos5_2x25_fullchem.YYYYMMDDhh
+ => CSPEC rst filename? : spec_rst.geosfp_2x25_fullchem.YYYYMMDDhh
 USE solver coded by KPP : F
 Online O3 for FAST-JX?  : T
 Gamma HO2               : 0.2
@@ -191,7 +191,7 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% : 
-Binary punch file name  : trac_avg.geos5_2x25_fullchem.YYYYMMDDhh
+Binary punch file name  : trac_avg.geosfp_2x25_fullchem.YYYYMMDDhh
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND01: Rn/Pb/Be source   :  0   all        
 ND02: Rn/Pb/Be decay    :  0   all             

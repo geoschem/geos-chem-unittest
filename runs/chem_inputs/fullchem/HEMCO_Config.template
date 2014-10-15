@@ -249,22 +249,21 @@ END SECTION SETTINGS
 # NOTE: Need to apply the GEIA_TOD_FOSSIL scale factor (#26)! 
 # done for CO, need to check others
 #==============================================================================
-0 NEI2005_NO   $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc    NO   2005/1/1/0 C xyz kg/m2/s NO   1/16/201/202/210/1005 1 35
-0 NEI2005_CO   $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc    CO   2005/1/1/0 C xyz kg/m2/s CO   6/26/17/211/230/1005  1 35
-0 NEI2005_SO2  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc    SO2  2005/1/1/0 C xyz kg/m2/s SO2  11/18/218/237/1005    1 35
-0 NEI2005_SO4  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc    SO4  2005/1/1/0 C xyz kg/m2/s SO4  11/18/219/238/1005    1 35
-0 NEI2005_NH3  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc    NH3  2005/1/1/0 C xyz kg/m2/s NH3  242/1005              1 35
-0 NEI2005_ACET $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc    ACET 2005/1/1/0 C xyz kg/m2/s ACET 213/232/1005          1 35
-0 NEI2005_ALK4 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc    ALK4 2005/1/1/0 C xyz kg/m2/s ALK4 212/231/1005          1 35
-#0 NEI2005_C2H6 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc   C2H6 2005/1/1/0 C xyz kg/m2/s C2H6 217/236/1005          1 35
-0 NEI2005_C3H8 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc    C3H8 2005/1/1/0 C xyz kg/m2/s C3H8 216/235/1005          1 35
-#0 NEI2005_OC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc    OCPI 2005/1/1/0 C xyz kg/m2/s OC   222/241/1005          1 35
-#0 NEI2005_BC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc    BCPI 2005/1/1/0 C xyz kg/m2/s BC   221/240/1005          1 35
-0 NEI2005_ALD2 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc    ALD2 2005/1/1/0 C xyz kg/m2/s ALD2 1005                  1 35
-0 NEI2005_CH2O $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc    CH2O 2005/1/1/0 C xyz kg/m2/s CH2O 1005                  1 35
-0 NEI2005_PRPE $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc    PRPE 2005/1/1/0 C xyz kg/m2/s PRPE 215/234/1005          1 35
-0 NEI2005_MEK  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.nc    MEK  2005/1/1/0 C xyz kg/m2/s MEK  214/233/1005          1 35
-
+0 NEI2005_NO   $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    NO   2005/1/1/0 C xy kg/m2/s NO   1/16/201/202/210/1005 1 35
+0 NEI2005_CO   $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    CO   2005/1/1/0 C xy kg/m2/s CO   6/26/17/211/230/1005  1 35
+0 NEI2005_SO2  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    SO2  2005/1/1/0 C xy kg/m2/s SO2  11/18/218/237/1005    1 35
+0 NEI2005_SO4  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    SO4  2005/1/1/0 C xy kg/m2/s SO4  11/18/219/238/1005    1 35
+0 NEI2005_NH3  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    NH3  2005/1/1/0 C xy kg/m2/s NH3  242/1005              1 35
+0 NEI2005_ACET $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    ACET 2005/1/1/0 C xy kg/m2/s ACET 213/232/1005          1 35
+0 NEI2005_ALK4 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    ALK4 2005/1/1/0 C xy kg/m2/s ALK4 212/231/1005          1 35
+#0 NEI2005_C2H6 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc   C2H6 2005/1/1/0 C xy kg/m2/s C2H6 217/236/1005          1 35
+0 NEI2005_C3H8 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    C3H8 2005/1/1/0 C xy kg/m2/s C3H8 216/235/1005          1 35
+#0 NEI2005_OC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    OCPI 2005/1/1/0 C xy kg/m2/s OC   222/241/1005          1 35
+#0 NEI2005_BC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    BCPI 2005/1/1/0 C xy kg/m2/s BC   221/240/1005          1 35
+0 NEI2005_ALD2 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    ALD2 2005/1/1/0 C xy kg/m2/s ALD2 1005                  1 35
+0 NEI2005_CH2O $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    CH2O 2005/1/1/0 C xy kg/m2/s CH2O 1005                  1 35
+0 NEI2005_PRPE $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    PRPE 2005/1/1/0 C xy kg/m2/s PRPE 215/234/1005          1 35
+0 NEI2005_MEK  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    MEK  2005/1/1/0 C xy kg/m2/s MEK  214/233/1005          1 35
 
 #==============================================================================
 # --- STREETS SE ASIA (Zhang et al., 2009) ---
@@ -385,13 +384,13 @@ END SECTION SETTINGS
 #==============================================================================
 # --- AEIC aircraft emissions ---
 #==============================================================================
-0 AEIC_NO   $ROOT/AEIC/v2014-07/aeic_2005.geos.1x1.47L.nc  NO       2005/1-12/1/0 C xyz kg/m2/s NO   110/115 20 1
-0 AEIC_CO   $ROOT/AEIC/v2014-07/aeic_2005.geos.1x1.47L.nc  CO       2005/1-12/1/0 C xyz kg/m2/s CO   110     20 1 
-0 AEIC_SO2  $ROOT/AEIC/v2014-07/aeic_2005.geos.1x1.47L.nc  FUELBURN 2005/1-12/1/0 C xyz kg/m2/s SO2  111     20 1 
+0 AEIC_NO   $ROOT/AEIC/v2014-10/aeic_2005.geos.1x1.47L.nc  NO       2005/1-12/1/0 C xyz kg/m2/s NO   110/115 20 1
+0 AEIC_CO   $ROOT/AEIC/v2014-10/aeic_2005.geos.1x1.47L.nc  CO       2005/1-12/1/0 C xyz kg/m2/s CO   110     20 1 
+0 AEIC_SO2  $ROOT/AEIC/v2014-10/aeic_2005.geos.1x1.47L.nc  FUELBURN 2005/1-12/1/0 C xyz kg/m2/s SO2  111     20 1 
 0 AEIC_SO4  -                                              -        -             - -   -       SO4  112     20 1 
 0 AEIC_BC   -                                              -        -             - -   -       BC   113     20 1 
 0 AEIC_OC   -                                              -        -             - -   -       OC   113     20 1 
-0 AEIC_ACET $ROOT/AEIC/v2014-07/aeic_2005.geos.1x1.47L.nc  HC       2005/1-12/1/0 C xyz kg/m2/s ACET 114/101 20 1
+0 AEIC_ACET $ROOT/AEIC/v2014-10/aeic_2005.geos.1x1.47L.nc  HC       2005/1-12/1/0 C xyz kg/m2/s ACET 114/101 20 1
 0 AEIC_ALD2 -                                              -        -             - -   -       ALD2 114/102 20 1
 0 AEIC_ALK4 -                                              -        -             - -   -       ALK4 114/103 20 1  
 0 AEIC_C2H6 -                                              -        -             - -   -       C2H6 114/104 20 1
@@ -626,7 +625,7 @@ END SECTION MASKS
 108     MEGAN             : on    ISOP/ACET/PRPE/C2H4
     --> Isoprene scaling  :       1.0 
     --> PECCA model       :       false
-109     MEGAN_Mono        : on    CO/OCPI/MONX
+109     MEGAN_Mono        : on    CO/OC/MONX
 110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
 111     GFED3             : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BC/OC
     --> CO scale factor   :       1.05
@@ -670,37 +669,40 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- SOILNOX emissions (Extension 104) ---
 #==============================================================================
-104 SOILNOX_PFACT   ./initial_soil_rst.$MET_$RES_{SIM}.nc  PFACTOR       YYYY/MM/DD/HH    C xy  unitless NO - 1 1
-104 SOILNOX_DRYPER  ./initial_soil_rst.$MET_$RES_{SIM}.nc  DRYPERIOD     YYYY/MM/DD/HH    C xy  unitless NO - 1 1
-104 SOILNOX_GWET    ./initial_soil_rst.$MET_$RES_{SIM}.nc  GWET_PREV     YYYY/MM/DD/HH    C xy  unitless NO - 1 1
-104 SOILNOX_DEPRES  ./initial_soil_rst.$MET_$RES_{SIM}.nc  DEP_RESERVOIR YYYY/MM/DD/HH    C xy  ngN/m2   NO - 1 1
-104 SOILNOX_FERT    $ROOT/SOILNOX/v2014-07/soilNOx.fert_res.generic.05x05.nc   FERT         2000/1-12/1-31/0 C xy  ngN/m2   NO - 1 1
-104 SOILNOX_LANDK1  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K01 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK2  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K02 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK3  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K03 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK4  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K04 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK5  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K05 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK6  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K06 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK7  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K07 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK8  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K08 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK9  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K09 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK10 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K10 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK11 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K11 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK12 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K12 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK13 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K13 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK14 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K14 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK15 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K15 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK16 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K16 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK17 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K17 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK18 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K18 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK19 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K19 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK20 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K20 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK21 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K21 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK22 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K22 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK23 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K23 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_LANDK24 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.nc LANDFRAC_K24 2000/1/1/0       C xyz unitless NO - 1 1
-104 SOILNOX_ARID    $ROOT/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc    ARID         2000/1/1/0       C xy unitless NO - 1 1
-104 SOILNOX_NONARID $ROOT/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc    NON_ARID     2000/1/1/0       C xy unitless NO - 1 1
+104 SOILNOX_PFACT   ./initial_soil_rst.$MET_$RES_{SIM}.nc                         PFACTOR       YYYY/MM/DD/HH    C xy unitless NO - 1 1
+104 SOILNOX_DRYPER  ./initial_soil_rst.$MET_$RES_{SIM}.nc                         DRYPERIOD     YYYY/MM/DD/HH    C xy unitless NO - 1 1
+104 SOILNOX_GWET    ./initial_soil_rst.$MET_$RES_{SIM}.nc                         GWET_PREV     YYYY/MM/DD/HH    C xy unitless NO - 1 1
+104 SOILNOX_DEPRES  ./initial_soil_rst.$MET_$RES_{SIM}.nc                         DEP_RESERVOIR YYYY/MM/DD/HH    C xy ngN/m2   NO - 1 1
+104 SOILNOX_FERT    $ROOT/SOILNOX/v2014-07/soilNOx.fert_res.generic.05x05.nc      FERT          2000/1-12/1-31/0 C xy ngN/m2   NO - 1 1
+104 SOILNOX_LANDK1  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K01  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK2  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K02  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK3  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K03  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK4  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K04  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK5  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K05  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK6  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K06  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK7  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K07  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK8  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K08  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK9  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K09  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK10 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K10  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK11 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K11  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK12 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K12  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK13 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K13  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK14 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K14  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK15 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K15  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK16 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K16  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK17 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K17  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK18 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K18  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK19 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K19  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK20 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K20  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK21 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K21  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK22 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K22  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK23 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K23  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK24 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K24  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_ARID    $ROOT/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc       ARID          2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_NONARID $ROOT/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc       NON_ARID      2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_LANDK24 $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K24  2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_ARID    $ROOT/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc       ARID          2000/1/1/0       C xy 1        NO - 1 1
+104 SOILNOX_NONARID $ROOT/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc       NON_ARID      2000/1/1/0       C xy 1        NO - 1 1
 
 #==============================================================================
 # --- dust emissions using DEAD model (Extension 105) ---
