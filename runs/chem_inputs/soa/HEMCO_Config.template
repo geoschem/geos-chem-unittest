@@ -35,6 +35,8 @@
 #  29 Aug 2014 - R. Yantosca - Apply GEIA_TOD_FOSSIL scale factor to NEI2005
 #  04 Sep 2014 - R. Yantosca - Make sure to turn on MEGAN SOA extension
 #  07 Oct 2014 - R. Yantosca - Now use HEMCO tokens $ROOT, $MET, $RES
+#  16 Oct 2014 - R. Yantosca - Remove scale factor 39 from LIANG_CH2Br2
+#  16 Oct 2014 - R. Yantosca - Now point to new CAC_NH3.geos.1x1.nc file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -238,11 +240,11 @@ END SECTION SETTINGS
 #==============================================================================
 # --- CAC (Canada) ---
 #==============================================================================
-0 CAC_NO  $ROOT/CAC/v2014-07/CAC.geos.1x1.nc    NO  2000-2008/1/1/0 C xy kg/m2/s NO  25/1002    1 30
-0 CAC_CO  $ROOT/CAC/v2014-07/CAC.geos.1x1.nc    CO  2000-2008/1/1/0 C xy kg/m2/s CO  26/52/1002 1 30
-0 CAC_SO2 $ROOT/CAC/v2014-07/CAC.geos.1x1.nc    SOx 2000-2008/1/1/0 C xy kg/m2/s SO2 60/1002    1 30
+0 CAC_NO  $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     NO  2000-2008/1/1/0 C xy kg/m2/s NO  25/1002    1 30
+0 CAC_CO  $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     CO  2000-2008/1/1/0 C xy kg/m2/s CO  26/52/1002 1 30
+0 CAC_SO2 $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     SOx 2000-2008/1/1/0 C xy kg/m2/s SO2 60/1002    1 30
 0 CAC_SO4 -                                      -   -               - -  -       SO4 60/65/1002 1 30
-0 CAC_NH3 $ROOT/CAC/v2014-07/CAC_NH3.gen.1x1.nc NH3 2008/1-12/1/0   C xy kg/m2/s NH3 1002       1 30
+0 CAC_NH3 $ROOT/CAC/v2014-07/CAC_NH3.geos.1x1.nc NH3 2008/1-12/1/0   C xy kg/m2/s NH3 1002       1 3
 
 ==============================================================================
 # --- NEI 2005 (USA) ---
@@ -341,7 +343,7 @@ END SECTION SETTINGS
 # --- Bromocarbon emissions ---
 #==============================================================================
 0 LIANG_CHBR3  $ROOT/BROMINE/Bromocarb_Liang2010.nc CHBr3_emission  2000/1/1/0 C xy kg/m2/s CHBr3  39 1 1
-0 LIANG_CH2BR2 $ROOT/BROMINE/Bromocarb_Liang2010.nc CH2Br2_emission 2000/1/1/0 C xy kg/m2/s CH2Br2 39 1 1
+0 LIANG_CH2BR2 $ROOT/BROMINE/Bromocarb_Liang2010.nc CH2Br2_emission 2000/1/1/0 C xy kg/m2/s CH2Br2 -  1 1
 
 #==============================================================================
 # --- Ship emissions ---
@@ -370,7 +372,6 @@ END SECTION SETTINGS
 0 BOND_BF_OC         $ROOT/BCOC_BOND/v2014-07/Bond_biofuel.nc OCPI 2000/1-12/1/0 C xy kg/m2/s OC   -  2 1
 #0 BOND_BIOMASS_BC   $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc BCPI 2001/1/1/0    C xy kg/m2/s BC   -  3 1
 #0 BOND_BIOMASS_OC   $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc OCPI 2001/1/1/0    C xy kg/m2/s OC   -  3 1
-#0 BOND_BIOMASS_OCPO $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc OCPI 2001/1/1/0    C xy kg/m2/s OCPO 73 3 1
 
 #==============================================================================
 # --- BC/OC emissions over NA from Cooke et al. (1999) ---
@@ -626,7 +627,7 @@ END SECTION MASKS
 108     MEGAN             : on    ISOP/ACET/PRPE/C2H4
     --> Isoprene scaling  :       1.0 
     --> PECCA model       :       false
-109     MEGAN_Mono        : on    CO/OCPI/MONX
+109     MEGAN_Mono        : on    CO/OC/MONX
 110     MEGAN_SOA         : on    MTPA/MTPO/LIMO/SESQ
 111     GFED3             : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BC/OC
     --> CO scale factor   :       1.05
@@ -673,8 +674,8 @@ END SECTION EXTENSION SWITCHES
 104 SOILNOX_PFACT   ./initial_soil_rst.$MET_$RES_{SIM}.nc                         PFACTOR       YYYY/MM/DD/HH    C xy unitless NO - 1 1
 104 SOILNOX_DRYPER  ./initial_soil_rst.$MET_$RES_{SIM}.nc                         DRYPERIOD     YYYY/MM/DD/HH    C xy unitless NO - 1 1
 104 SOILNOX_GWET    ./initial_soil_rst.$MET_$RES_{SIM}.nc                         GWET_PREV     YYYY/MM/DD/HH    C xy unitless NO - 1 1
-104 SOILNOX_DEPRES  ./initial_soil_rst.$MET_$RES_{SIM}.nc                         DEP_RESERVOIR YYYY/MM/DD/HH    C xy ngN/m2   NO - 1 1
-104 SOILNOX_FERT    $ROOT/SOILNOX/v2014-07/soilNOx.fert_res.generic.05x05.nc      FERT          2000/1-12/1-31/0 C xy ngN/m2   NO - 1 1
+104 SOILNOX_DEPRES  ./initial_soil_rst.$MET_$RES_{SIM}.nc                         DEP_RESERVOIR YYYY/MM/DD/HH    C xy  kg/m3   NO - 1 1
+104 SOILNOX_FERT    $ROOT/SOILNOX/v2014-07/soilNOx.fert_res.generic.05x05.nc      FERT          2000/1-12/1-31/0 C xy  kg/m3   NO - 1 1
 104 SOILNOX_LANDK1  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K01  2000/1/1/0       C xy 1        NO - 1 1
 104 SOILNOX_LANDK2  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K02  2000/1/1/0       C xy 1        NO - 1 1
 104 SOILNOX_LANDK3  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K03  2000/1/1/0       C xy 1        NO - 1 1
@@ -737,11 +738,11 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 108 MEGAN_AEF_ISOP  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ISOPRENE      1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
 108 MEGAN_AEF_ACET  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ACETONE       1985/1/1/0    C xy kgC/m2/s ACET - 1 1 
-109 MEGAN_PFT_BT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              BT                2000/1/1/0    C xy m2/m2    OCPI - 1 1
-109 MEGAN_PFT_NT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              NT                2000/1/1/0    C xy m2/m2    OCPI - 1 1
-109 MEGAN_PFT_SH    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              SH                2000/1/1/0    C xy m2/m2    OCPI - 1 1
-109 MEGAN_PFT_GR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              GR                2000/1/1/0    C xy m2/m2    OCPI - 1 1
-109 MEGAN_PFT_CR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              CR                2000/1/1/0    C xy m2/m2    OCPI - 1 1
+109 MEGAN_PFT_BT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              BT                2000/1/1/0    C xy m2/m2    OC   - 1 1
+109 MEGAN_PFT_NT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              NT                2000/1/1/0    C xy m2/m2    OC   - 1 1
+109 MEGAN_PFT_SH    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              SH                2000/1/1/0    C xy m2/m2    OC   - 1 1
+109 MEGAN_PFT_GR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              GR                2000/1/1/0    C xy m2/m2    OC   - 1 1
+109 MEGAN_PFT_CR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              CR                2000/1/1/0    C xy m2/m2    OC   - 1 1
 109 MEGAN_AEF_MONOT $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MONOTERPENES  1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
 109 MEGAN_AEF_MBO   $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MBO           1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
 109 MEGAN_AEF_APINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ALPHA_PINENE  1985/1/1/0    C xy kgC/m2/s ISOP - 1 1

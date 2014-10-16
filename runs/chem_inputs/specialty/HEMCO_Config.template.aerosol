@@ -37,6 +37,7 @@
 #  18 Aug 2014 - R. Yantosca - Don't use diurnal factors for biofuel C2H6 
 #  29 Aug 2014 - R. Yantosca - Apply GEIA_TOD_FOSSIL scale factor to NEI2005
 #  23 Sep 2014 - M. Sulprizio- Add oxidant fields under BASE EMISSIONS
+#  16 Oct 2014 - R. Yantosca - Now point to new CAC_NH3.geos.1x1.nc file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -240,11 +241,11 @@ END SECTION SETTINGS
 #==============================================================================
 # --- CAC (Canada) ---
 #==============================================================================
-0 CAC_NO  $ROOT/CAC/v2014-07/CAC.geos.1x1.nc    NO  2000-2008/1/1/0 C xy kg/m2/s NO  25/1002    1 30
-0 CAC_CO  $ROOT/CAC/v2014-07/CAC.geos.1x1.nc    CO  2000-2008/1/1/0 C xy kg/m2/s CO  26/52/1002 1 30
-0 CAC_SO2 $ROOT/CAC/v2014-07/CAC.geos.1x1.nc    SOx 2000-2008/1/1/0 C xy kg/m2/s SO2 60/1002    1 30
+0 CAC_NO  $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     NO  2000-2008/1/1/0 C xy kg/m2/s NO  25/1002    1 30
+0 CAC_CO  $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     CO  2000-2008/1/1/0 C xy kg/m2/s CO  26/52/1002 1 30
+0 CAC_SO2 $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     SOx 2000-2008/1/1/0 C xy kg/m2/s SO2 60/1002    1 30
 0 CAC_SO4 -                                      -   -               - -  -       SO4 60/65/1002 1 30
-0 CAC_NH3 $ROOT/CAC/v2014-07/CAC_NH3.gen.1x1.nc NH3 2008/1-12/1/0   C xy kg/m2/s NH3 1002       1 30
+0 CAC_NH3 $ROOT/CAC/v2014-07/CAC_NH3.geos.1x1.nc NH3 2008/1-12/1/0   C xy kg/m2/s NH3 1002       1 3
 
 #==============================================================================
 # --- NEI 2005 (USA) ---
