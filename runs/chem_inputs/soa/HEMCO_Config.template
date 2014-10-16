@@ -165,9 +165,9 @@ END SECTION SETTINGS
 #==============================================================================
 0 BIOFUEL_NO   $ROOT/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_NO   1985/1/1/0 C xy kg/m2/s NO    - 1 2 
 0 BIOFUEL_CO   $ROOT/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s CO   53 1 2 
-0 BIOFUEL_SO2  $ROOT/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s SO2  91 1 2 
-0 BIOFUEL_GLYX $ROOT/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s GLYX 92 1 2 
-0 BIOFUEL_MGLY $ROOT/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s MGLY 93 1 2 
+0 BIOFUEL_SO2  -                                          -            -          - -  -       SO2  91 1 2 
+0 BIOFUEL_GLYX -                                          -            -          - -  -       GLYX 92 1 2 
+0 BIOFUEL_MGLY -                                          -            -          - -  -       MGLY 93 1 2 
 #0 BIOFUEL_GLYC $ROOT/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s GLYC 99 1 2 
 #0 BIOFUEL_HAC  $ROOT/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s HAC  90 1 2 
 #0 BIOFUEL_BENZ $ROOT/BIOFUEL/v2014-07/biofuel.geos.1x1.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s BENZ 94 1 2 
@@ -212,7 +212,7 @@ END SECTION SETTINGS
 # NOTE: Xiao et al C2H6 is used in place of RETRO C2H6
 # See: http://wiki.geos-chem.org/Implementation_of_RETRO_Anthropogenic_Emissions#RETRO_anthropogenic_ethane_emissions_are_too_low
 #==============================================================================
-0 XIAO_C2H6 $ROOT/XIAO/v2014-09/C3H8_C2H6_ngas.geos.1x1.nc C2H6 1985/1/1/0 C xy kg/m2/s C2H6 918/26    1 1000
+0 XIAO_C2H6 $ROOT/XIAO/v2014-09/C3H8_C2H6_ngas.geos.1x1.nc C2H6 1985/1/1/0 C xy kg/m2/s C2H6 26    1 1000
 #0 XIAO_C3H8 $ROOT/XIAO/v2014-09/C3H8_C2H6_ngas.geos.1x1.nc C3H8 1985/1/1/0 C xy kg/m2/s C3H8 918/26/22 1 5
 #0 XIAO_C3H8 $ROOT/XIAO/v2014-09/C3H8_C2H6_ngas.geos.1x1.nc C3H8 1985/1/1/0 C xy kg/m2/s C3H8 6/7/26/22 1 1000
 
@@ -240,13 +240,13 @@ END SECTION SETTINGS
 #==============================================================================
 # --- CAC (Canada) ---
 #==============================================================================
-0 CAC_NO  $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     NO  2000-2008/1/1/0 C xy kg/m2/s NO  25/1002    1 30
-0 CAC_CO  $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     CO  2000-2008/1/1/0 C xy kg/m2/s CO  26/52/1002 1 30
-0 CAC_SO2 $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     SOx 2000-2008/1/1/0 C xy kg/m2/s SO2 60/1002    1 30
+0 CAC_NO  $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     NO  2002-2008/1/1/0 C xy kg/m2/s NO  25/1002    1 30
+0 CAC_CO  $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     CO  2002-2008/1/1/0 C xy kg/m2/s CO  26/52/1002 1 30
+0 CAC_SO2 $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     SOx 2002-2008/1/1/0 C xy kg/m2/s SO2 60/1002    1 30
 0 CAC_SO4 -                                      -   -               - -  -       SO4 60/65/1002 1 30
-0 CAC_NH3 $ROOT/CAC/v2014-07/CAC_NH3.geos.1x1.nc NH3 2008/1-12/1/0   C xy kg/m2/s NH3 1002       1 3
+0 CAC_NH3 $ROOT/CAC/v2014-07/CAC_NH3.geos.1x1.nc NH3 2008/1-12/1/0   C xy kg/m2/s NH3 1002       1 30
 
-==============================================================================
+#==============================================================================
 # --- NEI 2005 (USA) ---
 #
 # NOTE: Need to apply the GEIA_TOD_FOSSIL scale factor (#26)! 
@@ -542,9 +542,9 @@ END SECTION BASE EMISSIONS
 110 AEICNOCO 1.000000e-3 - -  - xy unitless 1
 111 AEICSO2  1.176000e-3 - -  - xy unitless 1
 112 AEICSO4  3.600000e-5 - -  - xy unitless 1
-113 AEICBC   3.0000000-5 - -  - xy unitless 1
-114 AEICHC   1.1600000-3 - -  - xy unitless 1
-115 NO2toNO  6.5217391-1 - -  - xy unitless 1
+113 AEICBC   3.000000e-5 - -  - xy unitless 1
+114 AEICHC   1.160000e-3 - -  - xy unitless 1
+115 NO2toNO  6.521739e-1 - -  - xy unitless 1
 
 #==============================================================================
 # --- NEI 2005 scale factors ---
@@ -756,19 +756,17 @@ END SECTION EXTENSION SWITCHES
 
 #==============================================================================
 # --- GFED3 biomass burning emissions (Extension 111) 
-#
-# NOTE: These are the base emissions in kgDM/m2/s.  The specified species 
-# (NO) does not matter expect that it has to be one of the GFED3 species. 
+# NOTE: These are the base emissions in kgDM/m2/s.
 #==============================================================================
-111 GFED3_WDL        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__WDL_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s NO - 1 1
-111 GFED3_AGW        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__AGW_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s NO - 1 1
-111 GFED3_DEF        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__DEF_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s NO - 1 1
-111 GFED3_FOR        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__FOR_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s NO - 1 1
-111 GFED3_PET        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__PET_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s NO - 1 1
-111 GFED3_SAV        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__SAV_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s NO - 1 1
-111 HUMTROP          $ROOT/GFED3/v2014-07/GFED3_humtropmap.nc   humtrop           2000/1/1/0            C xy unitless  NO - 1 1
-112 GFED3_FRAC_DAY   $ROOT/GFED3/v2014-07/GFED3_frac_daily.nc   GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0 C xy unitless  NO - 1 1
-113 GFED3_FRAC_3HOUR $ROOT/GFED3/v2014-07/GFED3_frac_3hourly.nc GFED3_BB__HRFRAC  2002-2011/1-12/01/*   C xy unitless  NO - 1 1
+111 GFED3_WDL        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__WDL_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_AGW        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__AGW_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_DEF        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__DEF_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_FOR        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__FOR_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_PET        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__PET_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_SAV        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__SAV_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 HUMTROP          $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy unitless  * - 1 1
+112 GFED3_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  C xy unitless  * - 1 1
+113 GFED3_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 C xy unitless  * - 1 1
 
 #==============================================================================
 # --- FINN biomass burning emissions (Extension 114) 
