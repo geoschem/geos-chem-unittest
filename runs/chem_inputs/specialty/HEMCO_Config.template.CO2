@@ -30,6 +30,7 @@
 # !REVISION HISTORY: 
 #  17 Apr 2014 - C. Keller   - Initial version
 #  07 Oct 2014 - R. Yantosca - Now use HEMCO tokens $ROOT, $MET, $RES
+!  20 Oct 2014 - R. Yantosca - Now read GFED3 data from GFED3/v2014-10
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -236,20 +237,19 @@ END SECTION EXTENSION SWITCHES
 109 MEGAN_AEF_OCIMN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_OCIMENE       1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
 110 MEGAN_ORVC      $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc            OCPI              1990/1-12/1/0 C xy kgC/m2/s OC   - 1 1
 
-#===============================================================================
+#==============================================================================
 # --- GFED3 biomass burning emissions (Extension 111) 
-#
-# These are the base emissions in kgDM/m2/s. 
-#===============================================================================
-111 GFED3_WDL        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__WDL_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_AGW        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__AGW_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_DEF        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__DEF_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_FOR        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__FOR_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_PET        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__PET_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 GFED3_SAV        $ROOT/GFED3/v2014-07/GFED3_monthly.nc      GFED3_BB__SAV_DM  1997-2011/1-12/01/0   C xy kgDM/m2/s * - 1 1
-111 HUMTROP          $ROOT/GFED3/v2014-07/GFED3_humtropmap.nc   humtrop           2000/1/1/0            C xy unitless  * - 1 1
-112 GFED3_FRAC_DAY   $ROOT/GFED3/v2014-07/GFED3_frac_daily.nc   GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0 C xy unitless  * - 1 1
-113 GFED3_FRAC_3HOUR $ROOT/GFED3/v2014-07/GFED3_frac_3hourly.nc GFED3_BB__HRFRAC  2002-2011/1-12/01/*   C xy unitless  * - 1 1
+# NOTE: These are the base emissions in kgDM/m2/s.
+#==============================================================================
+111 GFED3_WDL        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__WDL_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_AGW        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__AGW_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_DEF        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__DEF_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_FOR        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__FOR_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_PET        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__PET_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_SAV        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__SAV_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 HUMTROP          $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy unitless  * - 1 1
+112 GFED3_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  C xy unitless  * - 1 1
+113 GFED3_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 C xy unitless  * - 1 1
 
 #===============================================================================
 # --- FINN biomass burning emissions (Extension 114) 
