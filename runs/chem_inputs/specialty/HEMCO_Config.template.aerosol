@@ -38,8 +38,7 @@
 #  29 Aug 2014 - R. Yantosca - Apply GEIA_TOD_FOSSIL scale factor to NEI2005
 #  23 Sep 2014 - M. Sulprizio- Add oxidant fields under BASE EMISSIONS
 #  16 Oct 2014 - R. Yantosca - Now point to new CAC_NH3.geos.1x1.nc file
-!  20 Oct 2014 - R. Yantosca - Now read GFED3 data from GFED3/v2014-10
-
+#  20 Oct 2014 - R. Yantosca - Now read GFED3 data from GFED3/v2014-10
 #EOP
 #------------------------------------------------------------------------------
 #BOC
