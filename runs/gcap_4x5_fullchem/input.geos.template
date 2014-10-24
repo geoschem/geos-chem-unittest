@@ -167,7 +167,7 @@ Online CH4 chemistry?   : F
 Active strat. H2O?      : F
 Chemistry Timestep [min]: 60
 Read and save CSPEC_FULL: F
- => CSPEC rst filename? : spec_rst.gcap_4x5_fullchem.YYYYMMDDhh
+ => CSPEC rst filename? : spec_rst.gcap_4x5_fullchem.YYYYMMDDhhmm
 USE solver coded by KPP : F
 Online O3 for FAST-JX?  : T
 Gamma HO2               : 0.2

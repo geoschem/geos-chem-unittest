@@ -495,7 +495,7 @@ EOF
   @cmds = ( '#!/bin/bash'."\n",
             "set \-e\n", 
 	    "$logTop\n", 
-	    @cmds ); #,
+            @cmds );
 
   # WRITE the make commands to a job file
   $jobFile = "$JOB_DIR/job.$VERSION";
