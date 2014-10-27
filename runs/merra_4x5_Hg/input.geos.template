@@ -115,7 +115,7 @@ Use future emissions?   : PRESENT
 Error check tag/tot Hg? : F
 Use dynamic ocean Hg?   : T
 Preindustrial sim?      : F
-Ocean Hg restart file   : ocean_rst.merra_4x5_Hg.YYYYMMDDhh
+Ocean Hg restart file   : ocean_rst.merra_4x5_Hg.YYYYMMDDhhmm
 Use GTMM soil model?    : F
 GTMM Hg restart file    : GTM.totHg.YYYYMMDDhh
 ------------------------+------------------------------------------------------
