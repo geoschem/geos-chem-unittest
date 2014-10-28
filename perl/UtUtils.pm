@@ -736,23 +736,9 @@ sub readResults($$) {
 
       }
 
-#---------------------------------------------------------------------------
-# Prior to 9/23/14:
-# For now, assume all simulations other than Hg will be compatible with
-# HEMCO.  So we'll check for the HEMCO restart file in the results.log.
-#      # Check the results of the HEMCO RESTART file    
-#      if ( $utName =~ m/fullchem/ || $utName =~ m/soa/      ||
-#	   $utName =~ m/Hg/        || $utName =~ m/TOMAS/    ||
-#	   $utName =~ m/UCX/                            ) {
-#---------------------------------------------------------------------------
-      if ( !( $utName =~ m/Hg/ ) ) {
-	for ( my $j = 0; $j < 6; $j++ ) { 
-	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $hemco = -1; }
-        }
-      }
-
-      # Check the results of the UCX PSC RESTART file
-      if ( $utName =~ m/UCX/ ) {
+      # Check the results of the UCX PSC RESTART file 
+      # or the mercury ocean restart file
+      if ( ( $utName =~ m/UCX/ ) || ( $utName =~ m/Hg/ ) ) {
 	for ( my $j = 0; $j < 6; $j++ ) { 
 	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $psc = -1; }
         }
