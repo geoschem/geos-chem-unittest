@@ -39,6 +39,7 @@ LOG_MP   :=$(LOG_DIR)/$(VERSION).$(RUNID).mp
 TRAC_AVG :=trac_avg.$(RUNID).$(START)
 TRAC_RST :=trac_rst.$(RUNID).$(END)
 HMCO_RST :=HEMCO_restart.$(HMCO_END).nc
+LOG_HMCO :=HEMCO.log
 
 # Validation script
 VALIDATE :=/usr/bin/perl $(PERL_DIR)/validate
@@ -123,6 +124,7 @@ print:
 	@echo "CODE_DIR : $(CODE_DIR)"
 	@echo "LOG_SP   : $(LOG_SP)"
 	@echo "LOG_SP   : $(LOG_MP)"
+	@echo "LOG_HMCO : $(LOG_HMCO)"
 	@echo "START    : $(START)"
 	@echo "END      : $(END)"
 	@echo "RUNID    : $(RUNID)"
