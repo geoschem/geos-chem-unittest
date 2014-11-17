@@ -383,22 +383,10 @@ END SECTION SETTINGS
 #==============================================================================
 0 BOND_ANTH_BCPI     $ROOT/BCOC_BOND/v2014-07/Bond_fossil.nc  BC   2000/1-12/1/0 C xy kg/m2/s BCPI 70 1 1
 0 BOND_ANTH_BCPO     -                                        -    -             - -  -       BCPO 71 1 1
-0 BOND_ANTH_OCPI     $ROOT/BCOC_BOND/v2014-07/Bond_fossil.nc  OC   2000/1-12/1/0 C xy kg/m2/s OCPI 72 1 1
-0 BOND_ANTH_OCPO     -                                        -    -             - -  -       OCPO 73 1 1
-0 BOND_ANTH_POG1     -                                        -    -             - -  -       POG1 74 1 1
+0 BOND_ANTH_POG1     $ROOT/BCOC_BOND/v2014-07/Bond_fossil.nc  OC   2000/1-12/1/0 C xy kg/m2/s POG1 74 1 1
 0 BOND_BF_BCPI       $ROOT/BCOC_BOND/v2014-07/Bond_biofuel.nc BC   2000/1-12/1/0 C xy kg/m2/s BCPI 70 2 1
 0 BOND_BF_BCPO       -                                        -    -             - -  -       BCPO 71 2 1
-0 BOND_BF_OCPI       $ROOT/BCOC_BOND/v2014-07/Bond_biofuel.nc OC   2000/1-12/1/0 C xy kg/m2/s OCPI 72 2 1
-0 BOND_BF_OCPO       -                                        -    -             - -  -       OCPO 73 2 1
-0 BOND_BF_POA1       -                                        -    -             - -  -       POA1 74 2 1
-#------------------------------------------------------------------------------
-# These are generally not used; we get BC/OC biomass from GFED, FINN etc.
-# (bmy, 11/12/14)
-#0 BOND_BIOMASS_BCPI $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc BC   2001/1/1/0    C xy kg/m2/s BCPI 70 3 1
-#0 BOND_BIOMASS_BCPO -                                        -    -             - -  -       BCPO 71 2 1
-#0 BOND_BIOMASS_OCPI $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc OC   2001/1/1/0    C xy kg/m2/s OCPI 72 3 1
-#0 BOND_BIOMASS_OCPO -                                         -    -            - -  -       OCPO 73 2 1
-#------------------------------------------------------------------------------
+0 BOND_BF_POA1       $ROOT/BCOC_BOND/v2014-07/Bond_biofuel.nc OC   2000/1-12/1/0 C xy kg/m2/s POA1 74 2 1
 
 #==============================================================================
 # --- BC/OC emissions over NA from Cooke et al. (1999) ---
@@ -710,7 +698,7 @@ END SECTION MASKS
     --> PECCA model       :       false
 109     MEGAN_Mono        : on    CO/MONX
 110     MEGAN_SOA         : on    MTPA/MTPO/LIMO/SESQ
-111     GFED3             : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POA1/NAP
+111     GFED3             : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/POA1/NAP
     --> CO scale factor   :       1.05
     --> POA scale factor  :       1.27
     --> NAP scale factor  :       2.75e-4
@@ -718,7 +706,7 @@ END SECTION MASKS
     --> hydrophilic OC    :       0.5
 112     GFED3_daily       : off   -
 113     GFED3_3hourly     : off   -
-114     FINN              : off    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/GLYC/HAC
+114     FINN              : off    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/POA1/GLYC/HAC
 115     FINN_daily        : off 
 #
 END SECTION EXTENSION SWITCHES 
@@ -823,11 +811,11 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 108 MEGAN_AEF_ISOP  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ISOPRENE      1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
 108 MEGAN_AEF_ACET  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ACETONE       1985/1/1/0    C xy kgC/m2/s ACET - 1 1 
-109 MEGAN_PFT_BT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              BT                2000/1/1/0    C xy m2/m2    OCPI - 1 1
-109 MEGAN_PFT_NT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              NT                2000/1/1/0    C xy m2/m2    OCPI - 1 1
-109 MEGAN_PFT_SH    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              SH                2000/1/1/0    C xy m2/m2    OCPI - 1 1
-109 MEGAN_PFT_GR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              GR                2000/1/1/0    C xy m2/m2    OCPI - 1 1
-109 MEGAN_PFT_CR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              CR                2000/1/1/0    C xy m2/m2    OCPI - 1 1
+109 MEGAN_PFT_BT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              BT                2000/1/1/0    C xy m2/m2    POA1 - 1 1
+109 MEGAN_PFT_NT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              NT                2000/1/1/0    C xy m2/m2    POA1 - 1 1
+109 MEGAN_PFT_SH    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              SH                2000/1/1/0    C xy m2/m2    POA1 - 1 1
+109 MEGAN_PFT_GR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              GR                2000/1/1/0    C xy m2/m2    POA1 - 1 1
+109 MEGAN_PFT_CR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              CR                2000/1/1/0    C xy m2/m2    POA1 - 1 1
 109 MEGAN_AEF_MONOT $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MONOTERPENES  1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
 109 MEGAN_AEF_MBO   $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MBO           1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
 109 MEGAN_AEF_APINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ALPHA_PINENE  1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
@@ -837,7 +825,7 @@ END SECTION EXTENSION SWITCHES
 109 MEGAN_AEF_MYRCN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MYRCENE       1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
 109 MEGAN_AEF_CAREN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_CARENE        1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
 109 MEGAN_AEF_OCIMN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_OCIMENE       1985/1/1/0    C xy kgC/m2/s ISOP - 1 1
-110 MEGAN_ORVC      $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc            OCPI              1990/1-12/1/0 C xy kgC/m2/s OCPI - 1 1
+110 MEGAN_ORVC      $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc            OCPI              1990/1-12/1/0 C xy kgC/m2/s POA1 - 1 1
 
 #==============================================================================
 # --- GFED3 biomass burning emissions (Extension 111) 
