@@ -36,13 +36,17 @@
 #  18 Aug 2014 - R. Yantosca - Use proper NO2 to NO conversion for AEIC
 #  18 Aug 2014 - R. Yantosca - Don't use diurnal factors for biofuel C2H6 
 #  29 Aug 2014 - R. Yantosca - Apply GEIA_TOD_FOSSIL scale factor to NEI2005
+#  04 Sep 2014 - R. Yantosca - Make sure to turn on MEGAN SOA extension
 #  23 Sep 2014 - M. Sulprizio- Add oxidant fields under BASE EMISSIONS
+#  07 Oct 2014 - R. Yantosca - Now use HEMCO tokens $ROOT, $MET, $RES
+#  16 Oct 2014 - R. Yantosca - Remove scale factor 39 from LIANG_CH2Br2
 #  16 Oct 2014 - R. Yantosca - Now point to new CAC_NH3.geos.1x1.nc file
 #  20 Oct 2014 - R. Yantosca - Now read data from GFED3/v2014-10
 #  03 Nov 2014 - R. Yantosca - Now use proper scale factors for CAC NO, CO SO2
 #  12 Nov 2014 - R. Yantosca - Now emit BC and OC into hydrophilic tracers
 #                              BCPI & OCPI.  Apply scale factors as needed
 #                              to get hydrophobic tracers BCPO, OCPO.  
+#  17 Nov 2014 - R. Yantosca - Now should work for all fullchem simulations
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -152,8 +156,8 @@ END SECTION SETTINGS
 0 EDGAR_SO2__I5  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.i5000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
 0 EDGAR_SO4__I5  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
 0 EDGAR_SO2__W4  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.w4000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__W4  -  
-                                                  -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO4__W4  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+
 #==============================================================================
 # --- NAP ANTHROPOGENIC EMISSIONS: approximate from EDGAR BENZ --- 
 #==============================================================================
@@ -178,6 +182,7 @@ END SECTION SETTINGS
 0 BIOFUEL_SO2  -                                          -            -          - -  -       SO2  91 1 2 
 0 BIOFUEL_GLYX -                                          -            -          - -  -       GLYX 92 1 2 
 0 BIOFUEL_MGLY -                                          -            -          - -  -       MGLY 93 1 2 
+0 BIOFUEL_NAP  -                                          -            -          - -  -       NAP  80/81/83 1 2 
 0 BIOFUEL_C2H6 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_C2H6 1985/1/1/0 C xy kg/m2/s C2H6 -  1 1000
 #
 # These species are contained in RETRO, so we comment them out.
@@ -273,8 +278,8 @@ END SECTION SETTINGS
 0 NEI2005_ALK4 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    ALK4 2005/1/1/0 C xy kg/m2/s ALK4 212/231/1005          1 35
 #0 NEI2005_C2H6 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc   C2H6 2005/1/1/0 C xy kg/m2/s C2H6 217/236/1005          1 35
 0 NEI2005_C3H8 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    C3H8 2005/1/1/0 C xy kg/m2/s C3H8 216/235/1005          1 35
-#0 NEI2005_OC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    OCPI 2005/1/1/0 C xy kg/m2/s OC   222/241/1005          1 35
-#0 NEI2005_BC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    BCPI 2005/1/1/0 C xy kg/m2/s BC   221/240/1005          1 35
+#0 NEI2005_OC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    OCPI 2005/1/1/0 C xy kg/m2/s OCPI 222/241/1005          1 35
+#0 NEI2005_BC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    BCPI 2005/1/1/0 C xy kg/m2/s BCPI 221/240/1005          1 35
 0 NEI2005_ALD2 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    ALD2 2005/1/1/0 C xy kg/m2/s ALD2 1005                  1 35
 0 NEI2005_CH2O $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    CH2O 2005/1/1/0 C xy kg/m2/s CH2O 1005                  1 35
 0 NEI2005_PRPE $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    PRPE 2005/1/1/0 C xy kg/m2/s PRPE 215/234/1005          1 35
@@ -373,6 +378,7 @@ END SECTION SETTINGS
 0 EMEP_SHIP_CO  $ROOT/EMEP/v2014-07/EMEP.update.gen.1x1.nc           ShipCO   1990-2007/1/1/0 C xy kg/m2/s CO  1000        10 2
 0 EMEP_SHIP_SO2 $ROOT/EMEP/v2014-07/EMEP.update.gen.1x1.nc           ShipSO2  1990-2007/1/1/0 C xy kg/m2/s SO2 61/1000     10 2
 
+ 
 #==============================================================================
 # --- BC/OC emissions from Tami Bond ---
 #
@@ -411,7 +417,7 @@ END SECTION SETTINGS
 0 AEIC_SO2  $ROOT/AEIC/v2014-10/aeic_2005.geos.1x1.47L.nc  FUELBURN 2005/1-12/1/0 C xyz kg/m2/s SO2  111     20 1 
 0 AEIC_SO4  -                                              -        -             - -   -       SO4  112     20 1 
 0 AEIC_BCPI -                                              -        -             - -   -       BCPI 113     20 1 
-#0 AEIC_OCPI -                                              -        -             - -   -       OCPI 113     20 1 
+0 AEIC_OCPI -                                              -        -             - -   -       OCPI 113     20 1 
 0 AEIC_ACET $ROOT/AEIC/v2014-10/aeic_2005.geos.1x1.47L.nc  HC       2005/1-12/1/0 C xyz kg/m2/s ACET 114/101 20 1
 0 AEIC_ALD2 -                                              -        -             - -   -       ALD2 114/102 20 1
 0 AEIC_ALK4 -                                              -        -             - -   -       ALK4 114/103 20 1  
@@ -682,6 +688,11 @@ END SECTION MASKS
 # Make sure that the ExtNr provided here matches with the ExtNr provided in 
 # the base emissions sections. Otherwise, the listed files won't be read!
 #
+# --> The POA scale factor is the same as for the biofuel and anthro sources.
+# --> The NAP scale factor is determined as in the original simulation:
+# Obtain NAP emissions using scale factor from Hays 2002 ES&T 
+# ( 0.0253 g NAP/kg DM ) and Andreae and Merlet 2001 GBC ( 92 g CO/kg DM )
+#
 # ExtNr ExtName           on/off  Species 
 100     Custom            : off   - 
 101     SeaFlux           : on    DMS/ACET
@@ -706,16 +717,17 @@ END SECTION MASKS
 108     MEGAN             : on    ISOP/ACET/PRPE/C2H4
     --> Isoprene scaling  :       1.0 
     --> PECCA model       :       false
-109     MEGAN_Mono        : on    OCPI
-110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
+109     MEGAN_Mono        : on    CO/OCPI/MONX
+110     MEGAN_SOA         : on    MTPA/MTPO/LIMO/SESQ
 111     GFED3             : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POA1/NAP
     --> CO scale factor   :       1.05
     --> POA scale factor  :       1.27
+    --> NAP scale factor  :       2.75e-4
     --> hydrophilic BC    :       0.2
     --> hydrophilic OC    :       0.5
 112     GFED3_daily       : off   -
 113     GFED3_3hourly     : off   -
-114     FINN              : off    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/POA1/GLYC/HAC
+114     FINN              : off    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/GLYC/HAC
 115     FINN_daily        : off 
 #
 END SECTION EXTENSION SWITCHES 
@@ -817,10 +829,6 @@ END SECTION EXTENSION SWITCHES
 # conversion. Since netCDF files are already in mass carbon (ug(C)), the only 
 # important thing is to specify a VOC with a specified MW of 12g/mol. 
 # This is the case for OCPI, ISOP and ACET.
-#
-# ==> NOTE: For the offline aerosols simulation, we do not carry ISOP, ACET
-#     etc. as tracers.  Therefore, list these with an * in the column that
-#     denotes which tracer the emissions will go into (3rd-to-last column).
 #==============================================================================
 108 MEGAN_AEF_ISOP  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ISOPRENE      1985/1/1/0    C xy kgC/m2/s * - 1 1
 108 MEGAN_AEF_ACET  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ACETONE       1985/1/1/0    C xy kgC/m2/s * - 1 1 
@@ -829,6 +837,7 @@ END SECTION EXTENSION SWITCHES
 109 MEGAN_PFT_SH    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              SH                2000/1/1/0    C xy m2/m2    * - 1 1
 109 MEGAN_PFT_GR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              GR                2000/1/1/0    C xy m2/m2    * - 1 1
 109 MEGAN_PFT_CR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              CR                2000/1/1/0    C xy m2/m2    * - 1 1
+109 MEGAN_AEF_MONOT $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MONOTERPENES  1985/1/1/0    C xy kgC/m2/s * - 1 1
 109 MEGAN_AEF_MBO   $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MBO           1985/1/1/0    C xy kgC/m2/s * - 1 1
 109 MEGAN_AEF_APINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ALPHA_PINENE  1985/1/1/0    C xy kgC/m2/s * - 1 1
 109 MEGAN_AEF_BPINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_BETA_PINENE   1985/1/1/0    C xy kgC/m2/s * - 1 1
