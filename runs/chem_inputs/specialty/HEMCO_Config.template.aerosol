@@ -152,7 +152,12 @@ END SECTION SETTINGS
 0 EDGAR_SO2__I5  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.i5000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
 0 EDGAR_SO4__I5  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
 0 EDGAR_SO2__W4  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.w4000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__W4  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO4__W4  -  
+                                                  -         -          - -  -       SO4 11/31/63 1 2 
+#==============================================================================
+# --- NAP ANTHROPOGENIC EMISSIONS: approximate from EDGAR BENZ --- 
+#==============================================================================
+0 EDGAR_NAP /home/ckeller/data/emis/EDGAR/nc/EDGAR2_1985_FF_IND.1x1geos.nc BENZ 1985/1/1/0 C xy kgC/m2/s NAP 80/81/82 1 2
 
 #==============================================================================
 # --- BIOFUEL EMISSIONS (Yevich and Logan, 2003) ---
@@ -375,22 +380,16 @@ END SECTION SETTINGS
 # ==> Now emit all BC and OC as hydrophilic (tracers BCPI, OCPI).  Then we
 #     apply factors to get the hydrophobic fraction (tracers BCPO, OCPO).
 #==============================================================================
-0 BOND_ANTH_BCPI     $ROOT/BCOC_BOND/v2014-07/Bond_fossil.nc  BC   2000/1-12/1/0 C xy kg/m2/s BCPI 70 1 1
-0 BOND_ANTH_BCPO     -                                        -    -             - -  -       BCPO 71 1 1
-0 BOND_ANTH_OCPI     $ROOT/BCOC_BOND/v2014-07/Bond_fossil.nc  OC   2000/1-12/1/0 C xy kg/m2/s OCPI 72 1 1
-0 BOND_ANTH_OCPO     -                                        -    -             - -  -       OCPO 73 1 1
-0 BOND_BF_BCPI       $ROOT/BCOC_BOND/v2014-07/Bond_biofuel.nc BC   2000/1-12/1/0 C xy kg/m2/s BCPI 70 2 1
-0 BOND_BF_BCPO       -                                        -    -             - -  -       BCPO 71 2 1
-0 BOND_BF_OCPI       $ROOT/BCOC_BOND/v2014-07/Bond_biofuel.nc OC   2000/1-12/1/0 C xy kg/m2/s OCPI 72 2 1
-0 BOND_BF_OCPO       -                                        -    -             - -  -       OCPO 73 2 1
-#------------------------------------------------------------------------------
-# These are generally not used; we get BC/OC biomass from GFED, FINN etc.
-# (bmy, 11/12/14)
-#0 BOND_BIOMASS_BCPI $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc BC   2001/1/1/0    C xy kg/m2/s BCPI 70 3 1
-#0 BOND_BIOMASS_BCPO -                                        -    -             - -  -       BCPO 71 2 1
-#0 BOND_BIOMASS_OCPI $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc OC   2001/1/1/0    C xy kg/m2/s OCPI 72 3 1
-#0 BOND_BIOMASS_OCPO -                                         -    -            - -  -       OCPO 73 2 1
-#------------------------------------------------------------------------------
+0 BOND_ANTH_BCPI $ROOT/BCOC_BOND/v2014-07/Bond_fossil.nc  BC   2000/1-12/1/0 C xy kg/m2/s BCPI 70 1 1
+0 BOND_ANTH_BCPO -                                        -    -             - -  -       BCPO 71 1 1
+0 BOND_ANTH_OCPI $ROOT/BCOC_BOND/v2014-07/Bond_fossil.nc  OC   2000/1-12/1/0 C xy kg/m2/s OCPI 72 1 1
+0 BOND_ANTH_OCPO -                                        -    -             - -  -       OCPO 73 1 1
+0 BOND_ANTH_POG1 -                                        -    -             - -  -       POG1 74 1 1
+0 BOND_BF_BCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biofuel.nc BC   2000/1-12/1/0 C xy kg/m2/s BCPI 70 2 1
+0 BOND_BF_BCPO   -                                        -    -             - -  -       BCPO 71 2 1
+0 BOND_BF_OCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biofuel.nc OC   2000/1-12/1/0 C xy kg/m2/s OCPI 72 2 1
+0 BOND_BF_OCPO   -                                        -    -             - -  -       OCPO 73 2 1
+0 BOND_BF_POA1   -                                        -    -             - -  -       POA1 74 2 1
 
 #==============================================================================
 # --- BC/OC emissions over NA from Cooke et al. (1999) ---
@@ -412,7 +411,7 @@ END SECTION SETTINGS
 0 AEIC_SO2  $ROOT/AEIC/v2014-10/aeic_2005.geos.1x1.47L.nc  FUELBURN 2005/1-12/1/0 C xyz kg/m2/s SO2  111     20 1 
 0 AEIC_SO4  -                                              -        -             - -   -       SO4  112     20 1 
 0 AEIC_BCPI -                                              -        -             - -   -       BCPI 113     20 1 
-0 AEIC_OCPI -                                              -        -             - -   -       OCPI 113     20 1 
+#0 AEIC_OCPI -                                              -        -             - -   -       OCPI 113     20 1 
 0 AEIC_ACET $ROOT/AEIC/v2014-10/aeic_2005.geos.1x1.47L.nc  HC       2005/1-12/1/0 C xyz kg/m2/s ACET 114/101 20 1
 0 AEIC_ALD2 -                                              -        -             - -   -       ALD2 114/102 20 1
 0 AEIC_ALK4 -                                              -        -             - -   -       ALK4 114/103 20 1  
@@ -546,6 +545,38 @@ END SECTION BASE EMISSIONS
 71 BC2BCPO  0.8  - - - xy unitless 1
 72 OC2OCPI  0.5  - - - xy unitless 1
 73 OC2OCPO  0.5  - - - xy unitless 1
+74 POASCAL  1.27 - - - xy unitless 1
+
+#==============================================================================
+# --- NAP scale factors ---
+#
+# Get anthropogenic (FF) NAP emissions by scaling BENZ emissions with the
+# following factor. Factor is ratio of TgC NAP to TgC BENZ emissions
+# or equivalently, molec C NAP to molec C BENZ. Scaling should produce
+# about 0.09 TgC NAP/year, consistent with non-BB,BF emissions predicted
+# by Zhang and Tao 2009 Atm Env
+# Based on year 2000 1x1 inv  (hotp 11/14/09)
+#REAL*8, PARAMETER    :: NAPTOBENZSCALE = 0.06861d0
+
+# NAPTOTSCAL: factor to scale total NAP emissions to POA (hotp 7/24/09)
+#REAL*8, PARAMETER    :: NAPTOTALSCALE = 66.09027d0
+ 
+# = CO emissions * emissions ratio of mol NAP / mol CO 
+# * kg C / mol NAP * mol CO / kg CO 
+# mmol NAP / mol CO = 0.025 g NAP/ kg DM / 
+#              ( 78 g CO/ kg DM ) * 28 g CO / mol CO
+#            / ( 128 g NAP / mol NAP ) *1000 mmol/mol
+# scale emissions down if appropriate to remove the
+# effect of VOC ox on CO emission
+# EF for NAP from Andreae and Merlet 2001 Glob Biog Cyc
+# EF for CO  from Andreae and Merlet 2001 Glob Biog Cyc
+#BIOFUEL_KG(N,:,:) = BIOFUEL_KG(IDBFCO,:,:) * 0.0701d-3 
+#                  * 120d0 / 28d0 * COSCALEDOWN
+#==============================================================================
+80 NAPEMISS   1.0     - - - xy unitless 1
+81 NAPTOTSCAL 66.09   - - - xy unitless 1
+82 BENZTONAP  6.86e-2 - - - xy unitless 1 
+83 BF_COtoNAP 3.00e-4 - - - xy unitless 1
 
 #==============================================================================
 # --- Biofuel conversion factors ---
@@ -677,13 +708,14 @@ END SECTION MASKS
     --> PECCA model       :       false
 109     MEGAN_Mono        : on    OCPI
 110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
-111     GFED3             : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI
+111     GFED3             : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POA1/NAP
     --> CO scale factor   :       1.05
+    --> POA scale factor  :       1.27
     --> hydrophilic BC    :       0.2
     --> hydrophilic OC    :       0.5
 112     GFED3_daily       : off   -
 113     GFED3_3hourly     : off   -
-114     FINN              : off    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/GLYC/HAC
+114     FINN              : off    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/POA1/GLYC/HAC
 115     FINN_daily        : off 
 #
 END SECTION EXTENSION SWITCHES 
@@ -790,22 +822,22 @@ END SECTION EXTENSION SWITCHES
 #     etc. as tracers.  Therefore, list these with an * in the column that
 #     denotes which tracer the emissions will go into (3rd-to-last column).
 #==============================================================================
-108 MEGAN_AEF_ISOP  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ISOPRENE      1985/1/1/0    C xy kgC/m2/s *    - 1 1
-108 MEGAN_AEF_ACET  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ACETONE       1985/1/1/0    C xy kgC/m2/s *    - 1 1 
-109 MEGAN_PFT_BT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              BT                2000/1/1/0    C xy m2/m2    OCPI - 1 1
-109 MEGAN_PFT_NT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              NT                2000/1/1/0    C xy m2/m2    OCPI - 1 1
-109 MEGAN_PFT_SH    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              SH                2000/1/1/0    C xy m2/m2    OCPI - 1 1
-109 MEGAN_PFT_GR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              GR                2000/1/1/0    C xy m2/m2    OCPI - 1 1
-109 MEGAN_PFT_CR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              CR                2000/1/1/0    C xy m2/m2    OCPI - 1 1
-109 MEGAN_AEF_MBO   $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MBO           1985/1/1/0    C xy kgC/m2/s *    - 1 1
-109 MEGAN_AEF_APINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ALPHA_PINENE  1985/1/1/0    C xy kgC/m2/s *    - 1 1
-109 MEGAN_AEF_BPINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_BETA_PINENE   1985/1/1/0    C xy kgC/m2/s *    - 1 1
-109 MEGAN_AEF_LIMON $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_LIMONENE      1985/1/1/0    C xy kgC/m2/s *    - 1 1
-109 MEGAN_AEF_SABIN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_SABINENE      1985/1/1/0    C xy kgC/m2/s *    - 1 1
-109 MEGAN_AEF_MYRCN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MYRCENE       1985/1/1/0    C xy kgC/m2/s *    - 1 1
-109 MEGAN_AEF_CAREN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_CARENE        1985/1/1/0    C xy kgC/m2/s *    - 1 1
-109 MEGAN_AEF_OCIMN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_OCIMENE       1985/1/1/0    C xy kgC/m2/s *    - 1 1
-110 MEGAN_ORVC      $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc            OCPI              1990/1-12/1/0 C xy kgC/m2/s OCPI - 1 1
+108 MEGAN_AEF_ISOP  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ISOPRENE      1985/1/1/0    C xy kgC/m2/s * - 1 1
+108 MEGAN_AEF_ACET  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ACETONE       1985/1/1/0    C xy kgC/m2/s * - 1 1 
+109 MEGAN_PFT_BT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              BT                2000/1/1/0    C xy m2/m2    * - 1 1
+109 MEGAN_PFT_NT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              NT                2000/1/1/0    C xy m2/m2    * - 1 1
+109 MEGAN_PFT_SH    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              SH                2000/1/1/0    C xy m2/m2    * - 1 1
+109 MEGAN_PFT_GR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              GR                2000/1/1/0    C xy m2/m2    * - 1 1
+109 MEGAN_PFT_CR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              CR                2000/1/1/0    C xy m2/m2    * - 1 1
+109 MEGAN_AEF_MBO   $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MBO           1985/1/1/0    C xy kgC/m2/s * - 1 1
+109 MEGAN_AEF_APINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ALPHA_PINENE  1985/1/1/0    C xy kgC/m2/s * - 1 1
+109 MEGAN_AEF_BPINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_BETA_PINENE   1985/1/1/0    C xy kgC/m2/s * - 1 1
+109 MEGAN_AEF_LIMON $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_LIMONENE      1985/1/1/0    C xy kgC/m2/s * - 1 1
+109 MEGAN_AEF_SABIN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_SABINENE      1985/1/1/0    C xy kgC/m2/s * - 1 1
+109 MEGAN_AEF_MYRCN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MYRCENE       1985/1/1/0    C xy kgC/m2/s * - 1 1
+109 MEGAN_AEF_CAREN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_CARENE        1985/1/1/0    C xy kgC/m2/s * - 1 1
+109 MEGAN_AEF_OCIMN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_OCIMENE       1985/1/1/0    C xy kgC/m2/s * - 1 1
+110 MEGAN_ORVC      $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc            OCPI              1990/1-12/1/0 C xy kgC/m2/s * - 1 1
 
 #==============================================================================
 # --- GFED3 biomass burning emissions (Extension 111) 
