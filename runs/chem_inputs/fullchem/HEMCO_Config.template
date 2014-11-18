@@ -157,7 +157,7 @@ END SECTION SETTINGS
 #==============================================================================
 # --- NAP ANTHROPOGENIC EMISSIONS: approximate from EDGAR BENZ --- 
 #==============================================================================
-0 EDGAR_NAP /home/ckeller/data/emis/EDGAR/nc/EDGAR2_1985_FF_IND.1x1geos.nc BENZ 1985/1/1/0 C xy kgC/m2/s NAP 80/81/82 1 2
+0 EDGAR_NAP $ROOT/EDGAR/v2014-07/EDGAR2_1985_FF_IND.1x1geos.nc BENZ 1985/1/1/0 C xy kgC/m2/s NAP 80/81/82 1 2
 
 #==============================================================================
 # --- BIOFUEL EMISSIONS (Yevich and Logan, 2003) ---

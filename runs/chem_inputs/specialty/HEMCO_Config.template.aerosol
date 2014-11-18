@@ -103,65 +103,65 @@ END SECTION SETTINGS
 #
 # %%% NOTE: Use EDGAR for the global base emissions instead of GEIA %%%
 #==============================================================================
-0 EDGAR_NO__F1   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f1000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
-0 EDGAR_NO__F2   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f2000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
-0 EDGAR_NO__F3   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f3000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
-0 EDGAR_NO__F4   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f4000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
-0 EDGAR_NO__F51  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f5100  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
-0 EDGAR_NO__F54  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f5400  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
-#NO.f5700 does not seem to be used in orig. code...
-#0 EDGAR_NO__F57 $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f5700  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
-0 EDGAR_NO__F8   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f8000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
-0 EDGAR_NO__I1   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.i1000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
-0 EDGAR_NO__I3   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.i3000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
-0 EDGAR_NO__I4   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.i4000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
-0 EDGAR_NO__I5   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.i5000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
-0 EDGAR_NO__W4   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.w4000  2000/1/1/0 C xy kg/m2/s NO  1/25/30 1 2 
-0 EDGAR_CO__F1   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f1000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
-0 EDGAR_CO__F2   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f2000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
-0 EDGAR_CO__F3   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f3000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
-0 EDGAR_CO__F4   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f4000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
-0 EDGAR_CO__F51  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f5100  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
-0 EDGAR_CO__F54  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f5400  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
-0 EDGAR_CO__F57  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f5700  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
-0 EDGAR_CO__F8   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f8000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
-0 EDGAR_CO__I1   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.i1000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
-0 EDGAR_CO__I2   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.i2000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
-0 EDGAR_CO__I5   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.i5000  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
-0 EDGAR_CO__W4   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.w4095  2000/1/1/0 C xy kg/m2/s CO  6/26/52 1 2 
-0 EDGAR_SO2__F1  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f1000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__F1  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
-0 EDGAR_SO2__F2  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f2000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__F2  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
-0 EDGAR_SO2__F3  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f3000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__F3  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
-0 EDGAR_SO2__F4  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f4000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__F4  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
-0 EDGAR_SO2__F51 $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f5100 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__F51 -                                                     -         -          - -  -       SO4 11/31/63 1 2 
-0 EDGAR_SO2__F54 $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f5400 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__F54 -                                                     -         -          - -  -       SO4 11/31/63 1 2 
-0 EDGAR_SO2__F57 $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f5700 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__F57 -                                                     -         -          - -  -       SO4 11/31/63 1 2 
-0 EDGAR_SO2__F8  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.f8000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__F8  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
-0 EDGAR_SO2__I1  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.i1000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__I1  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
-0 EDGAR_SO2__I2  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.i2000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__I2  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
-0 EDGAR_SO2__I3  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.i3000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__I3  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
-0 EDGAR_SO2__I4  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.i4000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__I4  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
-0 EDGAR_SO2__I5  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.i5000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__I5  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
-0 EDGAR_SO2__W4  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc SO2.w4000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
-0 EDGAR_SO4__W4  -                                                     -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_NO__F1   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f1000  2000/1/1/0 C xy kg/m2/s NO  1/25/30  1 2 
+0 EDGAR_NO__F2   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f2000  2000/1/1/0 C xy kg/m2/s NO  1/25/30  1 2 
+0 EDGAR_NO__F3   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f3000  2000/1/1/0 C xy kg/m2/s NO  1/25/30  1 2 
+0 EDGAR_NO__F4   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f4000  2000/1/1/0 C xy kg/m2/s NO  1/25/30  1 2 
+0 EDGAR_NO__F51  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f5100  2000/1/1/0 C xy kg/m2/s NO  1/25/30  1 2 
+0 EDGAR_NO__F54  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f5400  2000/1/1/0 C xy kg/m2/s NO  1/25/30  1 2 
+#NO.f5700 does not seem to be used in orig. code...							   
+#0 EDGAR_NO__F57 $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f5700  2000/1/1/0 C xy kg/m2/s NO  1/25/30  1 2 
+0 EDGAR_NO__F8   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.f8000  2000/1/1/0 C xy kg/m2/s NO  1/25/30  1 2 
+0 EDGAR_NO__I1   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.i1000  2000/1/1/0 C xy kg/m2/s NO  1/25/30  1 2 
+0 EDGAR_NO__I3   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.i3000  2000/1/1/0 C xy kg/m2/s NO  1/25/30  1 2 
+0 EDGAR_NO__I4   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.i4000  2000/1/1/0 C xy kg/m2/s NO  1/25/30  1 2 
+0 EDGAR_NO__I5   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.i5000  2000/1/1/0 C xy kg/m2/s NO  1/25/30  1 2 
+0 EDGAR_NO__W4   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  NO.w4000  2000/1/1/0 C xy kg/m2/s NO  1/25/30  1 2 
+0 EDGAR_CO__F1   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f1000  2000/1/1/0 C xy kg/m2/s CO  6/26/52  1 2 
+0 EDGAR_CO__F2   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f2000  2000/1/1/0 C xy kg/m2/s CO  6/26/52  1 2 
+0 EDGAR_CO__F3   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f3000  2000/1/1/0 C xy kg/m2/s CO  6/26/52  1 2 
+0 EDGAR_CO__F4   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f4000  2000/1/1/0 C xy kg/m2/s CO  6/26/52  1 2 
+0 EDGAR_CO__F51  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f5100  2000/1/1/0 C xy kg/m2/s CO  6/26/52  1 2 
+0 EDGAR_CO__F54  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f5400  2000/1/1/0 C xy kg/m2/s CO  6/26/52  1 2 
+0 EDGAR_CO__F57  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f5700  2000/1/1/0 C xy kg/m2/s CO  6/26/52  1 2 
+0 EDGAR_CO__F8   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.f8000  2000/1/1/0 C xy kg/m2/s CO  6/26/52  1 2 
+0 EDGAR_CO__I1   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.i1000  2000/1/1/0 C xy kg/m2/s CO  6/26/52  1 2 
+0 EDGAR_CO__I2   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.i2000  2000/1/1/0 C xy kg/m2/s CO  6/26/52  1 2 
+0 EDGAR_CO__I5   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.i5000  2000/1/1/0 C xy kg/m2/s CO  6/26/52  1 2 
+0 EDGAR_CO__W4   $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  CO.w4095  2000/1/1/0 C xy kg/m2/s CO  6/26/52  1 2 
+0 EDGAR_SO2__F1  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  SO2.f1000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F1  -                                          -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__F2  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  SO2.f2000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F2  -                                          -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__F3  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  SO2.f3000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F3  -                                          -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__F4  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  SO2.f4000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F4  -                                          -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__F51 $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  SO2.f5100 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F51 -                                          -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__F54 $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  SO2.f5400 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F54 -                                          -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__F57 $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  SO2.f5700 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F57 -                                          -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__F8  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  SO2.f8000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__F8  -                                          -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__I1  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  SO2.i1000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__I1  -                                          -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__I2  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  SO2.i2000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__I2  -                                          -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__I3  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  SO2.i3000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__I3  -                                          -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__I4  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  SO2.i4000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__I4  -                                          -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__I5  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  SO2.i5000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__I5  -                                          -         -          - -  -       SO4 11/31/63 1 2 
+0 EDGAR_SO2__W4  $ROOT/EDGAR/v2014-07/EDGAR.generic.1x1.nc  SO2.w4000 2000/1/1/0 C xy kg/m2/s SO2 11/31    1 2 
+0 EDGAR_SO4__W4  -                                          -         -          - -  -       SO4 11/31/63 1 2 
 
 #==============================================================================
 # --- NAP ANTHROPOGENIC EMISSIONS: approximate from EDGAR BENZ --- 
 #==============================================================================
-0 EDGAR_NAP /home/ckeller/data/emis/EDGAR/nc/EDGAR2_1985_FF_IND.1x1geos.nc BENZ 1985/1/1/0 C xy kgC/m2/s NAP 80/81/82 1 2
+0 EDGAR_NAP  $ROOT/EDGAR/v2014-07/EDGAR2_1985_FF_IND.1x1geos.nc BENZ 1985/1/1/0 C xy kgC/m2/s NAP 80/81/82 1 2
 
 #==============================================================================
 # --- BIOFUEL EMISSIONS (Yevich and Logan, 2003) ---
