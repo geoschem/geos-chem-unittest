@@ -42,7 +42,7 @@
 #  12 Nov 2014 - R. Yantosca - Now emit BC and OC into hydrophilic tracers
 #                              BCPI & OCPI.  Apply scale factors as needed
 #                              to get hydrophobic tracers BCPO, OCPO.  
-#  17 Nov 2014 - R. Yantosca - Now should work for all fullchem simulations
+#  25 Nov 2014 - R. Yantosca - For Fullchem simulations: turned off MEGAN_SOA
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -702,7 +702,7 @@ END SECTION MASKS
     --> Isoprene scaling  :       1.0 
     --> PECCA model       :       false
 109     MEGAN_Mono        : on    CO/OCPI/MONX
-110     MEGAN_SOA         : on    MTPA/MTPO/LIMO/SESQ
+110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
 111     GFED3             : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POA1/NAP
     --> CO scale factor   :       1.05
     --> POA scale factor  :       1.27
