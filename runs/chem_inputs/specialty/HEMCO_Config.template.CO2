@@ -30,7 +30,8 @@
 # !REVISION HISTORY: 
 #  17 Apr 2014 - C. Keller   - Initial version
 #  07 Oct 2014 - R. Yantosca - Now use HEMCO tokens $ROOT, $MET, $RES
-!  20 Oct 2014 - R. Yantosca - Now read GFED3 data from GFED3/v2014-10
+#  20 Oct 2014 - R. Yantosca - Now read GFED3 data from GFED3/v2014-10
+#  01 Dec 2014 - R. Yantosca - Bug fix: only specify one type of aviation
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -70,18 +71,18 @@ END SECTION SETTINGS
 
 #0 FOSSILCO2_GENERIC  $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.geos.2x25.noav.nc         CO2 1985/1/1/0         C xy kg/m2/s CO2ff   - 1 1 
 #0 FOSSILCORR_GENERIC -                                                                      -   -                  - -  -       CO2corr 1 1 1
-
 #0 FOSSILCO2_ANNUAL   $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.annual.geos.2x25.noav.nc  CO2 1979-2009/1/1/0    C xy kg/m2/s CO2ff   - 1 2 
 #0 FOSSILCORR_ANNUAL  -                                                                      -   -                  - -  -       CO2corr 1 1 2 
-
 0 FOSSILCO2_MONTHLY  $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.monthly.geos.2x25.noav.nc CO2 1979-2009/1-12/1/0 C xy kg/m2/s CO2ff   - 1 3 
 0 FOSSILCORR_MONTHLY -                                                                      -   -                  - -  -       CO2corr 1 1 3 
 
-# To add aviation to CO2ff, uncomment the appropriate inventory
-0 FOSSILCO2_GENERIC_AVIATION $ROOT/CO2/FOSSIL/v2014-09/fossilCO2.geos.2x25.avonly.nc         CO2 1985/1/1/0         C xy kg/m2/s CO2ff - 2 1 
-0 FOSSILCO2_ANNUAL_AVIATION  $ROOT/CO2/FOSSIL/v2014-09/fossilCO2.annual.geos.2x25.avonly.nc  CO2 1979-2009/1/1/0    C xy kg/m2/s CO2ff - 2 2 
+#===============================================================================
+# --- AVIATION EMISSIONS ---
+#===============================================================================
 
-0 FOSSILCO2_MONTHLY_AVIATION /home/ckeller/data/emis/CO2/FOSSIL/fossilCO2.monthly.geos.2x25.avonly.nc CO2 1979-2009/1-12/1/0 C xy kg/m2/s CO2ff - 2 3 
+#0 FOSSILCO2_GENERIC_AVIATION $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.geos.2x25.avonly.nc         CO2 1985/1/1/0         C xy kg/m2/s CO2ff - 2 1 
+#0 FOSSILCO2_ANNUAL_AVIATION  $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.annual.geos.2x25.avonly.nc  CO2 1979-2009/1/1/0    C xy kg/m2/s CO2ff - 2 2 
+0 FOSSILCO2_MONTHLY_AVIATION  $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.monthly.geos.2x25.avonly.nc CO2 1979-2009/1-12/1/0 C xy kg/m2/s CO2ff - 2 3 
 
 #===============================================================================
 # --- OCEAN EXCHANGE EMISSIONS ---
@@ -122,7 +123,7 @@ END SECTION SETTINGS
 #===============================================================================
 # --- AVIATION EMISSIONS ---
 #===============================================================================
-# need to add here
+# defined above
 
 #===============================================================================
 # --- CHEMICAL PRODUCTION FROM CO OXIDATION ---
@@ -209,33 +210,6 @@ END SECTION EXTENSION SWITCHES
 #################################################################################
 ### BEGIN SECTION EXTENSION DATA
 #################################################################################
-
-#===============================================================================
-# --- MEGAN biogenic emissions (Extension 108)
-#
-# NOTE: These are the base emissions, which will be converted to kgC/m2/s 
-# by HEMCO. The specified species (OCPI/ISOP/ACET) are required
-# for proper unit conversion. Since netCDF files are already in mass carbon 
-# (ug(C)), the only important thing is to specify a VOC with a specified MW
-#  of 12g/mol. This is the case for OCPI, ISOP and ACET.
-#===============================================================================
-108 MEGAN_AEF_ISOP  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ISOPRENE      1985/1/1/0    C xy kgC/m2/s * - 1 1
-108 MEGAN_AEF_ACET  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ACETONE       1985/1/1/0    C xy kgC/m2/s * - 1 1 
-109 MEGAN_PFT_BT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              BT                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_PFT_NT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              NT                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_PFT_SH    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              SH                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_PFT_GR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              GR                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_PFT_CR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              CR                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_AEF_MONOT $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MONOTERPENES  1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_MBO   $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MBO           1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_APINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ALPHA_PINENE  1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_BPINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_BETA_PINENE   1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_LIMON $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_LIMONENE      1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_SABIN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_SABINENE      1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_MYRCN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MYRCENE       1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_CAREN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_CARENE        1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_OCIMN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_OCIMENE       1985/1/1/0    C xy kgC/m2/s * - 1 1
-110 MEGAN_ORVC      $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc            OCPI              1990/1-12/1/0 C xy kgC/m2/s * - 1 1
 
 #==============================================================================
 # --- GFED3 biomass burning emissions (Extension 111) 
