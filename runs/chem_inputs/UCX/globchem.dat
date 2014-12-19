@@ -12,7 +12,13 @@
 #  This file describes the GEOS-Chem UNIFIED chemical mechanism.
 #\\
 #\\
-# !REVISION HISTORY:
+# !REVISION HISTORY: 
+#  18 Dec 2014 (v10-01f)
+#  -----------------------
+#     Updates from J. Mao:
+#     (1) Changed photo rxn : ALD2 = MO2 + HO2 + CO
+#         to                : ALD2 = 0.88MO2 + HO2 + 0.88CO + 0.12MCO3 
+#
 #  30 May 2014 (v10-01d)
 #  -----------------------
 #     Updates from S. D. Eastham:
@@ -3363,7 +3369,7 @@ A   15 0.01E+01   0.0         0 0     0.00     0.     0.
 +                   +                   +                   +
 A   16 0.01E+01   0.0         0 0     0.00     0.     0.         
       ALD2          +                                                     
-=1.000MO2           +1.000HO2           +1.000CO            +             
+=0.880MO2           +1.000HO2           +0.880CO            +0.120MCO3
 +                   +                   +                   +             
 +                   +                   +                   +             
 +                   +                   +                   +
