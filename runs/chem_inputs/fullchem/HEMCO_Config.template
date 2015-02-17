@@ -44,6 +44,7 @@
 #                              to get hydrophobic tracers BCPO, OCPO.  
 #  25 Nov 2014 - R. Yantosca - For Fullchem simulations: turned off MEGAN_SOA
 #  05 Jan 2015 - R. Yantosca - Add GMI stratospheric Bry data
+#  12 Jan 2015 - R. Yantosca - Now move strat Bry data to base emissions
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -429,7 +430,23 @@ END SECTION SETTINGS
 # --- Volcanic emissions ---
 #==============================================================================
 0 VOLCANO_SO2 $ROOT/VOLCANO/v2014-10/$YYYY/volc_so2_gen.1x1.47L.$YYYY$MM.nc SO2 1979-2009/1-12/1-31/0 C xyz kg/m2/s SO2 - 50 1
-#
+
+#==============================================================================
+# --- Stratospheric Bry data ---
+#==============================================================================
+0 GEOSCCM_Br_DAY      $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BR     2007/$MM/1/0 C xyz pptv * - 60 1
+0 GEOSCCM_Br2_DAY     $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BRCL   2007/$MM/1/0 C xyz pptv * - 60 1
+0 GEOSCCM_BrO_DAY     $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BRO    2007/$MM/1/0 C xyz pptv * - 60 1
+0 GEOSCCM_BrNO3_DAY   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BRONO2 2007/$MM/1/0 C xyz pptv * - 60 1
+0 GEOSCCM_HBr_DAY     $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   HBR    2007/$MM/1/0 C xyz pptv * - 60 1
+0 GEOSCCM_HOBr_DAY    $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   HOBR   2007/$MM/1/0 C xyz pptv * - 60 1
+0 GEOSCCM_Br_NIGHT    $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BR     2007/$MM/1/0 C xyz pptv * - 60 1
+0 GEOSCCM_Br2_NIGHT   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BRCL   2007/$MM/1/0 C xyz pptv * - 60 1
+0 GEOSCCM_BrO_NIGHT   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BRO    2007/$MM/1/0 C xyz pptv * - 60 1
+0 GEOSCCM_BrNO3_NIGHT $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BRONO2 2007/$MM/1/0 C xyz pptv * - 60 1
+0 GEOSCCM_HBr_NIGHT   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc HBR    2007/$MM/1/0 C xyz pptv * - 60 1
+0 GEOSCCM_HOBr_NIGHT  $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc HOBR   2007/$MM/1/0 C xyz pptv * - 60 1
+
 END SECTION BASE EMISSIONS 
 
 ###############################################################################
@@ -714,7 +731,6 @@ END SECTION MASKS
 113     GFED3_3hourly     : off   -
 114     FINN              : off    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/GLYC/HAC
 115     FINN_daily        : off
-120     GMI_StratChem     : on
 #
 END SECTION EXTENSION SWITCHES 
 
@@ -864,22 +880,6 @@ END SECTION EXTENSION SWITCHES
 115 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype5 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
 115 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype9 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
 
-#==============================================================================
-# --- Stratospheric Bry data (extension 120) ---
-#==============================================================================
-120 GEOSCCM_Br_DAY      $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BR     2007/$MM/1/0 C xyz pptv * - 60 1
-120 GEOSCCM_Br2_DAY     $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BRCL   2007/$MM/1/0 C xyz pptv * - 60 1
-120 GEOSCCM_BrO_DAY     $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BRO    2007/$MM/1/0 C xyz pptv * - 60 1
-120 GEOSCCM_BrNO3_DAY   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BRONO2 2007/$MM/1/0 C xyz pptv * - 60 1
-120 GEOSCCM_HBr_DAY     $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   HBR    2007/$MM/1/0 C xyz pptv * - 60 1
-120 GEOSCCM_HOBr_DAY    $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   HOBR   2007/$MM/1/0 C xyz pptv * - 60 1
-120 GEOSCCM_Br_NIGHT    $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BR     2007/$MM/1/0 C xyz pptv * - 60 1
-120 GEOSCCM_Br2_NIGHT   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BRCL   2007/$MM/1/0 C xyz pptv * - 60 1
-120 GEOSCCM_BrO_NIGHT   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BRO    2007/$MM/1/0 C xyz pptv * - 60 1
-120 GEOSCCM_BrNO3_NIGHT $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BRONO2 2007/$MM/1/0 C xyz pptv * - 60 1
-120 GEOSCCM_HBr_NIGHT   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc HBR    2007/$MM/1/0 C xyz pptv * - 60 1
-120 GEOSCCM_HOBr_NIGHT  $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc HOBR   2007/$MM/1/0 C xyz pptv * - 60 1
-#
 END SECTION EXTENSION DATA
  
 ### END OF HEMCO INPUT FILE ###
