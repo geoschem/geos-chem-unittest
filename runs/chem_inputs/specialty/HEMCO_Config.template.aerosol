@@ -117,6 +117,7 @@ END SECTION SETTINGS
     --> AEIC              :       true
     --> BIOFUEL           :       true
     --> BOND              :       true
+    --> BOND_BIOMASS      :       false
     --> BRAVO             :       true
     --> CAC               :       true
     --> C2H6              :       true
@@ -318,12 +319,9 @@ END SECTION EXTENSION SWITCHES
 # --- Ship emissions ---
 #
 # --> In the defaults, ARCTAS SO2 has priority over ICOADS and CORBETT.
-# --> For CO and NO, ICOADS has priority.
+#     This can be ovewritten by EMEP over Europe.
 # --> Do not use ship emissions from EDGAR v4.2 since they are lumped with
 #     other non-road transportation (aircraft, rail, etc.) emissions
-# --> Ship NO emissions are used by PARANOx and the extension number must be
-#     adjusted accordingly. If PARANOx is turned off, set the ExtNr back to
-#     zero.
 #==============================================================================
 (((SHIP
 0 ARCTAS_SHIP_SO2    $ROOT/ARCTAS_SHIP/v2014-07/ARCTAS_ship.generic.1x1.nc SO2      2008/1/1/0      C xy kg/m2/s SO2 11       10 1
@@ -332,10 +330,6 @@ END SECTION EXTENSION SWITCHES
 
 (((EMEP
 0 EMEP_SHIP_SO2      $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc               ShipSO2  1990-2010/1/1/0 C xy kg/m2/s SO2 61/1000  10 2
-)))EMEP
-
-(((EMEP
-102 EMEP_SHIP_NO     $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc               ShipNO   1990-2010/1/1/0 C xy kg/m2/s NO  1000     10 10
 )))EMEP
 
 )))SHIP
@@ -358,6 +352,15 @@ END SECTION EXTENSION SWITCHES
 0 BOND_BF_OCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biofuel.nc OC   2000/1-12/1/0 C xy kg/m2/s OCPI 72 2 1
 0 BOND_BF_OCPO   -                                        -    -             - -  -       OCPO 73 2 1
 0 BOND_BF_POA1   -                                        -    -             - -  -       POA1 74 2 1
+
+(((BOND_BIOMASS
+0 BOND_BM_BCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc BC   2000/1-12/1/0 C xy kg/m2/s BCPI 70 2 1
+0 BOND_BM_BCPO   -                                        -    -             - -  -       BCPO 71 2 1
+0 BOND_BM_OCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc OC   2000/1-12/1/0 C xy kg/m2/s OCPI 72 2 1
+0 BOND_BM_OCPO   -                                        -    -             - -  -       OCPO 73 2 1
+0 BOND_BF_POA1   -                                        -    -             - -  -       POA1 74 2 1
+)))BOND_BIOMASS
+
 )))BOND
 
 #==============================================================================
