@@ -113,7 +113,7 @@ END SECTION SETTINGS
 113     GFED3_3hourly     : off   -
 114     FINN              : off   CO2bb
 115     FINN_daily        : on 
-#
+
 END SECTION EXTENSION SWITCHES
 
 

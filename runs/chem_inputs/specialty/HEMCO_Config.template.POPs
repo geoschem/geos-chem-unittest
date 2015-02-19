@@ -93,8 +93,8 @@ END SECTION SETTINGS
 ### Make sure that the ExtNr provided here matches with the ExtNr provided in 
 ### the base emissions sections. Otherwise, the listed files won't be read!
 ###############################################################################
-
 # ExtNr ExtName           on/off  Species 
+0       Base              : on    *
 1002    GC_POPs           : on    POPG/POPPOC/POPPBC
 
 END SECTION EXTENSION SWITCHES
