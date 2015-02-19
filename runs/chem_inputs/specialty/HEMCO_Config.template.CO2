@@ -32,6 +32,12 @@
 #  07 Oct 2014 - R. Yantosca - Now use HEMCO tokens $ROOT, $MET, $RES
 #  20 Oct 2014 - R. Yantosca - Now read GFED3 data from GFED3/v2014-10
 #  01 Dec 2014 - R. Yantosca - Bug fix: only specify one type of aviation
+#  16 Feb 2015 - C. Keller   - (a) Added data 'collections' (brackets).
+#                              (b) Moved section extension switches at the
+#                                  beginning.
+#                              (c) Removed section extension data. These fields
+#                                  are now listed in section base emissions.
+#                              (d) Fields can now cover multiple categories.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -55,9 +61,65 @@ Show warnings:               true
 #
 END SECTION SETTINGS 
 
-#################################################################################
+###############################################################################
+### BEGIN SECTION EXTENSION SWITCHES
+###############################################################################
+###
+### This section lists all emission extensions available to HEMCO and whether 
+### they shall be used or not. Extension 'base' must have extension number 
+### zero, all other extension numbers can be freely chosen. Data fields in 
+### section 'base emissions' will only be read if the corresponding extension 
+### (identified by ExtNr) is enabled. Similarly, fields grouped into data 
+### collections ('(((CollectionName', ')))CollectionName') are only considered
+### if the corresponding data collection is enabled in this section.
+###
+### All species to be used by HEMCO can be given explicitly in the Species 
+### section of extension 'Base'. For example,
+###
+### 0       Base              : on    NO/NO2/CO
+###
+### will only activate NO, NO2 and CO as HEMCO species. All other fields will 
+### be ignored entirely. This is even true for species only used in another 
+### extension. For instance, if the dust emission extension shall be used, 
+### the dust species must be set explicitly as base species:
+###
+### 0       Base              : on    NO/NO2/CO/DST1/DST2/DST3/DST4
+###
+### The wildcard character can be used to use all possible species (species 
+### used in  HEMCO and defined by GEOS-Chem). This is recommended:
+###
+### 0       Base              : on    *
+###
+### Make sure that the ExtNr provided here matches with the ExtNr provided in 
+### the base emissions sections. Otherwise, the listed files won't be read!
+###
+###############################################################################
+# ExtNr ExtName           on/off  Species
+0       Base              : on    *
+    --> GENERIC           :       false
+    --> ANNUAL            :       false
+    --> MONTHLY           :       true
+    --> BBIO_DIURNAL      :       false
+    --> BBIO_DAILY        :       true
+    --> BIOFUEL           :       true
+    --> NET_TERR_EXCH     :       true
+    --> SHIP              :       true
+    --> CO2CORR           :       true
+# ----------------------------------------------------------------------------
+# ExtNr ExtName           on/off  Species 
+111     GFED3             : on    CO2bb
+    --> CO scale factor   :       1.05
+112     GFED3_daily       : on    -
+113     GFED3_3hourly     : off   -
+114     FINN              : off   CO2bb
+115     FINN_daily        : on 
+#
+END SECTION EXTENSION SWITCHES
+
+
+###############################################################################
 ###BEGIN SECTION BASE EMISSIONS 
-#################################################################################
+###############################################################################
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
 
 #===============================================================================
@@ -68,21 +130,35 @@ END SECTION SETTINGS
 #
 # Base emissions. These files do not contain aviation emissions!
 #===============================================================================
+(((GENERIC
+0 FOSSILCO2_GENERIC  $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.geos.2x25.noav.nc         CO2 1985/1/1/0         C xy kg/m2/s CO2ff   - 1 1 
+0 FOSSILCORR_GENERIC -                                                                      -   -                  - -  -       CO2corr 1 1 1
+)))GENERIC
 
-#0 FOSSILCO2_GENERIC  $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.geos.2x25.noav.nc         CO2 1985/1/1/0         C xy kg/m2/s CO2ff   - 1 1 
-#0 FOSSILCORR_GENERIC -                                                                      -   -                  - -  -       CO2corr 1 1 1
-#0 FOSSILCO2_ANNUAL   $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.annual.geos.2x25.noav.nc  CO2 1979-2009/1/1/0    C xy kg/m2/s CO2ff   - 1 2 
-#0 FOSSILCORR_ANNUAL  -                                                                      -   -                  - -  -       CO2corr 1 1 2 
+(((ANNUAL
+0 FOSSILCO2_ANNUAL   $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.annual.geos.2x25.noav.nc  CO2 1979-2009/1/1/0    C xy kg/m2/s CO2ff   - 1 2 
+0 FOSSILCORR_ANNUAL  -                                                                      -   -                  - -  -       CO2corr 1 1 2 
+)))ANNUAL
+
+(((MONTHLY
 0 FOSSILCO2_MONTHLY  $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.monthly.geos.2x25.noav.nc CO2 1979-2009/1-12/1/0 C xy kg/m2/s CO2ff   - 1 3 
 0 FOSSILCORR_MONTHLY -                                                                      -   -                  - -  -       CO2corr 1 1 3 
+)))MONTHLY
 
 #===============================================================================
 # --- AVIATION EMISSIONS ---
 #===============================================================================
+(((GENERIC
+0 FOSSILCO2_GENERIC_AVIATION $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.geos.2x25.avonly.nc         CO2 1985/1/1/0         C xy kg/m2/s CO2ff - 2 1 
+)))GENERIC
 
-#0 FOSSILCO2_GENERIC_AVIATION $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.geos.2x25.avonly.nc         CO2 1985/1/1/0         C xy kg/m2/s CO2ff - 2 1 
-#0 FOSSILCO2_ANNUAL_AVIATION  $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.annual.geos.2x25.avonly.nc  CO2 1979-2009/1/1/0    C xy kg/m2/s CO2ff - 2 2 
+(((ANNUAL
+0 FOSSILCO2_ANNUAL_AVIATION  $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.annual.geos.2x25.avonly.nc  CO2 1979-2009/1/1/0    C xy kg/m2/s CO2ff - 2 2 
+)))ANNUAL
+
+(((MONTHLY
 0 FOSSILCO2_MONTHLY_AVIATION  $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.monthly.geos.2x25.avonly.nc CO2 1979-2009/1-12/1/0 C xy kg/m2/s CO2ff - 2 3 
+)))MONTHLY
 
 #===============================================================================
 # --- OCEAN EXCHANGE EMISSIONS ---
@@ -90,45 +166,59 @@ END SECTION SETTINGS
 # CO2 ocean exchange emissions were generated from bpch-files using scripts 
 # OCEAN_bpch2nc.sh.
 #===============================================================================
-#0 OCEANCO2_GENERIC      $ROOT/CO2/v2014-09/OCEAN/Ocean_CO2.nc            CO2 1985/1/1/0    C xy kg/m2/s CO2oc - 1 1
-#0 OCEANCO2_TAKA_ANNUAL  $ROOT/CO2/v2014-09/OCEANTaka2009_CO2_Annual.nc  CO2 2000/1/1/0    C xy kg/m2/s CO2oc - 1 2
+(((GENERIC
+0 OCEANCO2_GENERIC      $ROOT/CO2/v2014-09/OCEAN/Ocean_CO2.nc            CO2 1985/1/1/0    C xy kg/m2/s CO2oc - 1 1
+)))GENERIC
+
+(((ANNUAL
+0 OCEANCO2_TAKA_ANNUAL  $ROOT/CO2/v2014-09/OCEANTaka2009_CO2_Annual.nc  CO2 2000/1/1/0    C xy kg/m2/s CO2oc - 1 2
+)))ANNUAL
+
+(((MONTHLY
 0 OCEANCO2_TAKA_MONTHLY $ROOT/CO2/v2014-09/OCEAN/Taka2009_CO2_Monthly.nc CO2 2000/1-12/1/0 C xy kg/m2/s CO2oc - 1 3
+)))MONTHLY
 
 #===============================================================================
 # --- BALANCED BIOSPHERE EXCHANGE ---
 #
 # You can pick either diurnla or daily balanced biosphere exchange.
 #===============================================================================
-#0 BBIOCO2       $ROOT/CO2/v2014-09/BBIO/BBIO_diurnal.CO2.nc CO2 1985/1/1/0       C xy kg/m2/s CO2bal - 1 1
+(((BBIO_DIURNAL
+0 BBIOCO2       $ROOT/CO2/v2014-09/BBIO/BBIO_diurnal.CO2.nc CO2 1985/1/1/0       C xy kg/m2/s CO2bal - 1 1
+)))BBIO_DIURNAL
+
+(((BBIO_DAILY
 0 BBIOCO2_DAILY $ROOT/CO2/v2014-09/BBIO/BBIO_daily_CO2.nc    CO2 2000/1-12/1-31/0 C xy kg/m2/s CO2bal - 1 1
+)))BBIO_DAILY
 
 #===============================================================================
 # --- BIOFUEL EMISSIONS ---
 #===============================================================================
+(((BIOFUEL
 0 BIOFUEL_CO2   $ROOT/CO2/v2014-09/biofuel_CO2.geos.1x1-1995.nc CO2 1995/1/1/0 C xy kg/m2/s CO2bf - 1 1
+)))BIOFUEL
 
 #===============================================================================
 # --- NET TERRESTRIAL EXCHANGE ---
 #===============================================================================
+(((NET_TERR_EXCH
 0 CO2_NET_TERRESTRIAL $ROOT/CO2/v2014-09/Net_terrestrial_exch_5.29Pg.generic.1x1.nc CO2 2000/1/1/0 C xy kg/m2/s CO2nte - 1 1
+)))NET_TERR_EXCH
 
 #===============================================================================
 # --- SHIP EMISSIONS ---
 #
 # --> Both inventories are scaled with EDGAR annual CO2 ship scale factors.
 #===============================================================================
+(((SHIP
 #0 CO2_SHIP_ARCTAS $ROOT/ARCTAS_SHIP/v2014-07/ARCTAS_ship_CO2_2008.generic.1x1.nc CO2 2008/1/1/0    C xy kg/m2/s CO2se 10 1 1
 0 CO2_SHIP_ICOADS  $ROOT/ICOADS_SHIP/v2014-07/ICOADS_ship_CO2_2004.generic.1x1.nc CO2 2004/1-12/1/0 C xy kg/m2/s CO2se 10 1 1
+)))SHIP
 
 #===============================================================================
 # --- AVIATION EMISSIONS ---
 #===============================================================================
 # defined above
-
-#===============================================================================
-# --- CHEMICAL PRODUCTION FROM CO OXIDATION ---
-#===============================================================================
-0 CO2_COPROD $ROOT/CO2/v2014-09/CHEM/CO2_prod_rates.geos5.2x25.47L.nc PORL_L_S__LCO 2004-2009/1-12/1/0 C xyz kg/m3/s CO2ch - 1 1
 
 #===============================================================================
 # --- CO2 SURFACE CORRECTION FOR CO OXIDATION ---
@@ -138,6 +228,7 @@ END SECTION SETTINGS
 # scale factor #20. The isoprene and monoterpene emissions are converted from 
 # kgC to kg CO2 using scale factor #21.
 #===============================================================================
+(((CO2CORR
 0 CO2CORR_LIVESTOCK $ROOT/CO2/v2014-09/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_004 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
 0 CO2CORR_WASTE     $ROOT/CO2/v2014-09/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_005 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
 0 CO2CORR_RICE      $ROOT/CO2/v2014-09/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_007 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
@@ -146,7 +237,63 @@ END SECTION SETTINGS
 
 0 CO2CORR_ISOPRENE  $ROOT/CO2/v2014-09/CHEM/Isoprene-2004.geos.2x25.nc    BIOGSRCE__ISOP    2004/1-12/1/0 C xy kg/m2/s CO2corr 21/30 3 1
 0 CO2CORR_MONOTERP  $ROOT/CO2/v2014-09/CHEM/Monoterpene-2004.geos.2x25.nc BIOGSRCE__MONOT   2004/1-12/1/0 C xy kg/m2/s CO2corr 21/30 3 1
-#
+)))CO2CORR
+
+###############################################################################
+### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
+###
+### These fields are needed by the extensions listed above. The assigned ExtNr 
+### must match the ExtNr entry in section 'Extension switches'. These fields 
+### are only read if the extension is enabled.  The fields are imported by the
+### extensions by field name.  The name given here must match the name used 
+### in the extension's source code. 
+###############################################################################
+
+#==============================================================================
+# --- GFED3 biomass burning emissions (Extension 111) 
+# NOTE: These are the base emissions in kgDM/m2/s.
+#==============================================================================
+111 GFED3_WDL        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__WDL_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_AGW        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__AGW_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_DEF        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__DEF_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_FOR        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__FOR_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_PET        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__PET_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED3_SAV        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__SAV_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 HUMTROP          $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy unitless  * - 1 1
+112 GFED3_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  C xy unitless  * - 1 1
+113 GFED3_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 C xy unitless  * - 1 1
+
+#===============================================================================
+# --- FINN biomass burning emissions (Extension 114) 
+#===============================================================================
+114 FINN_VEGTYP1       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype1 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP2       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype2 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP3       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype3 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP4       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype4 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP5       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype5 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP9       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype9 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP1 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype1 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP2 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype2 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP3 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype3 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP4 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype4 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype5 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+115 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype9 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+
+###############################################################################
+### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
+###
+### Non-emissions data. The following fields are read through HEMCO but do 
+### not contain emissions data. The extension number is set to wildcard 
+### character denoting that these fields will not be considered for emission 
+### calculation. A given entry is only read if the assigned species name is 
+### an HEMCO species.
+###############################################################################
+
+#===============================================================================
+# --- CHEMICAL PRODUCTION FROM CO OXIDATION ---
+#===============================================================================
+0 CO2_COPROD $ROOT/CO2/v2014-09/CHEM/CO2_prod_rates.geos5.2x25.47L.nc PORL_L_S__LCO 2004-2009/1-12/1/0 C xyz kg/m3/s CO2ch - 1 1
+
 END SECTION BASE EMISSIONS 
 
 ################################################################################
@@ -190,57 +337,6 @@ END SECTION SCALE FACTORS
 # Country/region masks
 #
 END SECTION MASKS 
-
-################################################################################
-### BEGIN SECTION EXTENSION SWITCHES
-###
-### Make sure that the ExtNr provided here matches with the ExtNr provided 
-### in the base emissions sections. Otherwise, the listed files won't be read!
-################################################################################
-# ExtNr ExtName           on/off  Species 
-111     GFED3             : on    CO2bb
-    --> CO scale factor   :       1.05
-112     GFED3_daily       : on    -
-113     GFED3_3hourly     : off   -
-114     FINN              : off   CO2bb
-115     FINN_daily        : on 
-#
-END SECTION EXTENSION SWITCHES 
-
-#################################################################################
-### BEGIN SECTION EXTENSION DATA
-#################################################################################
-
-#==============================================================================
-# --- GFED3 biomass burning emissions (Extension 111) 
-# NOTE: These are the base emissions in kgDM/m2/s.
-#==============================================================================
-111 GFED3_WDL        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__WDL_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED3_AGW        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__AGW_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED3_DEF        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__DEF_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED3_FOR        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__FOR_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED3_PET        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__PET_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED3_SAV        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__SAV_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 HUMTROP          $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy unitless  * - 1 1
-112 GFED3_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  C xy unitless  * - 1 1
-113 GFED3_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 C xy unitless  * - 1 1
-
-#===============================================================================
-# --- FINN biomass burning emissions (Extension 114) 
-#===============================================================================
-114 FINN_VEGTYP1       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype1 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP2       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype2 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP3       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype3 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP4       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype4 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP5       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype5 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP9       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype9 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP1 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype1 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP2 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype2 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP3 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype3 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP4 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype4 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype5 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype9 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-#
-END SECTION EXTENSION DATA
  
 ### END OF HEMCO INPUT FILE ###
+#EOC

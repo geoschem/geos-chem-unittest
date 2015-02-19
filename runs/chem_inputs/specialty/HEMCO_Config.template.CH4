@@ -31,6 +31,14 @@
 #  19 Aug 2014 - M. Sulprizio- Initial version
 #  23 Sep 2014 - R. Yantosca - Add replaceable tokens to file paths
 #  20 Oct 2014 - R. Yantosca - Now read data from GFED3/v2014-10
+#  16 Feb 2015 - C. Keller   - (a) Added data 'collections' (brackets).
+#                              (b) Moved section extension switches at the
+#                                  beginning.
+#                              (c) Removed section extension data. These fields
+#                                  are now listed in section base emissions.
+#                              (d) Fields can now cover multiple categories.
+#  19 Feb 2015 - R. Yantosca - Added EDGAR and FUNG collections so that you
+#                              can turn those off at the top of the file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -54,6 +62,56 @@ Show warnings:               true
 END SECTION SETTINGS 
 
 ###############################################################################
+### BEGIN SECTION EXTENSION SWITCHES
+###############################################################################
+###
+### This section lists all emission extensions available to HEMCO and whether 
+### they shall be used or not. Extension 'base' must have extension number 
+### zero, all other extension numbers can be freely chosen. Data fields in 
+### section 'base emissions' will only be read if the corresponding extension 
+### (identified by ExtNr) is enabled. Similarly, fields grouped into data 
+### collections ('(((CollectionName', ')))CollectionName') are only considered
+### if the corresponding data collection is enabled in this section.
+###
+### All species to be used by HEMCO can be given explicitly in the Species 
+### section of extension 'Base'. For example,
+###
+### 0       Base              : on    NO/NO2/CO
+###
+### will only activate NO, NO2 and CO as HEMCO species. All other fields will 
+### be ignored entirely. This is even true for species only used in another 
+### extension. For instance, if the dust emission extension shall be used, 
+### the dust species must be set explicitly as base species:
+###
+### 0       Base              : on    NO/NO2/CO/DST1/DST2/DST3/DST4
+###
+### The wildcard character can be used to use all possible species (species 
+### used in  HEMCO and defined by GEOS-Chem). This is recommended:
+###
+### 0       Base              : on    *
+###
+### Make sure that the ExtNr provided here matches with the ExtNr provided in 
+### the base emissions sections. Otherwise, the listed files won't be read!
+###############################################################################
+# ExtNr ExtName           on/off  Species
+0       Base              : on    *
+    --> EDGAR             :       true
+    --> FUNG              :       true
+# ----------------------------------------------------------------------------
+# ExtNr ExtName           on/off  Species 
+111     GFED3             : on    CH4
+    --> CO scale factor   :       1.00
+112     GFED3_daily       : on    -
+113     GFED3_3hourly     : off   -
+114     FINN              : off   CH4
+115     FINN_daily        : on 
+121     CH4_WETLANDS      : on    CH4
+    --> Wetlands          :       true
+    --> Rice              :       true
+#
+END SECTION EXTENSION SWITCHES 
+
+###############################################################################
 ### BEGIN SECTION BASE EMISSIONS 
 ###############################################################################
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
@@ -61,7 +119,7 @@ END SECTION SETTINGS
 #==============================================================================
 # --- EDGAR v4.2 emissions, various sectors ---
 #==============================================================================
-
+(((EDGAR
 ### Gas and oil ###
 0 CH4_GAS__1B2a         $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1B2a       2004-2008/1/1/0 C xy kg/m2/s CH4 - 1 1
 0 CH4_GAS__1B2b         $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1B2b       2004-2008/1/1/0 C xy kg/m2/s CH4 - 1 1
@@ -86,63 +144,26 @@ END SECTION SETTINGS
 0 CH4_OTHER__1A3b       $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_1A3b       2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
 0 CH4_OTHER__2          $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_2          2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
 0 CH4_OTHER__7A         $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_7A         2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
+)))EDGAR
 
 #==============================================================================
 # --- Soil absorption & termites from Fung et al, 1991 ---
 #
 # NOTE: Multiply soil absorption by -1 to get a "negative" flux.
 #==============================================================================
+(((FUNG
 0 CH4_SOILABSORBTION $ROOT/CH4/v2014-09/$RES/soilabs.geos.$RES.nc  CH4 1985/1/1/0 C xy kg/m2/s CH4 1 7 1
 0 CH4_TERMITES       $ROOT/CH4/v2014-09/$RES/termites.geos.$RES.nc CH4 1985/1/1/0 C xy kg/m2/s CH4 - 8 1
-
-#==============================================================================
-# --- Quantities needed for CH4 chemistry ---
-#==============================================================================
-0 CH4_LOSS   $ROOT/CH4/v2014-09/4x5/gmi.ch4loss.geos5_47L.4x5.nc              CH4loss 1985/1-12/1/0 C xyz s-1   * - 1 1
-0 GLOBAL_OH  $ROOT/OH/v2014-09/v5-07-08/OH_3Dglobal.$MET.{LEVRED}.$RES.nc OH      1985/1-12/1/0 C xyz kg/m3 * - 1 1
-
-#
-END SECTION BASE EMISSIONS 
+)))FUNG
 
 ###############################################################################
-### BEGIN SECTION SCALE FACTORS 
-###############################################################################
-# ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
-1 NEGATIVE -1.0 - - - xy 1 1
-#
-END SECTION SCALE FACTORS 
-
-###############################################################################
-### BEGIN SECTION MASKS 
-###############################################################################
-# ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
-#
-# Country/region masks
-#
-END SECTION MASKS 
-
-###############################################################################
-### BEGIN SECTION EXTENSION SWITCHES
+### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
 ###
-### Make sure that the ExtNr provided here matches with the ExtNr provided 
-### in the base emissions sections. Otherwise, the listed files won't be read!
-###############################################################################
-#
-# ExtNr ExtName           on/off  Species 
-111     GFED3             : on    CH4
-    --> CO scale factor   :       1.00
-112     GFED3_daily       : on    -
-113     GFED3_3hourly     : off   -
-114     FINN              : off   CH4
-115     FINN_daily        : on 
-121     CH4_WETLANDS      : on    CH4
-    --> Wetlands          :       true
-    --> Rice              :       true
-#
-END SECTION EXTENSION SWITCHES 
-
-###############################################################################
-### BEGIN SECTION EXTENSION DATA
+### These fields are needed by the extensions listed above. The assigned ExtNr 
+### must match the ExtNr entry in section 'Extension switches'. These fields 
+### are only read if the extension is enabled.  The fields are imported by the
+### extensions by field name.  The name given here must match the name used 
+### in the extension's source code. 
 ###############################################################################
 
 #==============================================================================
@@ -185,7 +206,38 @@ END SECTION EXTENSION SWITCHES
 121 CH4_WETFRAC  $ROOT/CH4/v2014-09/$RES/Wetfrac.$RES.nc               WETFRAC   2000/1/1/0         C xy 1        *   - 1 1
 121 CH4_LITTER_C $ROOT/CH4/v2014-09/$RES/Carbon_litter.$RES.nc         CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
 121 CH4_SOIL_C   $ROOT/CH4/v2014-09/$RES/Carbon_soil.$RES.nc           CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
-#
-END SECTION EXTENSION DATA
- 
+
+###############################################################################
+### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
+###
+### Non-emissions data. The following fields are read through HEMCO but do 
+### not contain emissions data. The extension number is set to wildcard 
+### character denoting that these fields will not be considered for emission 
+### calculation. A given entry is only read if the assigned species name is 
+### an HEMCO species.
+###############################################################################
+
+#==============================================================================
+# --- Quantities needed for CH4 chemistry ---
+#==============================================================================
+0 CH4_LOSS   $ROOT/CH4/v2014-09/4x5/gmi.ch4loss.geos5_47L.4x5.nc              CH4loss 1985/1-12/1/0 C xyz s-1   * - 1 1
+0 GLOBAL_OH  $ROOT/OH/v2014-09/v5-07-08/OH_3Dglobal.$MET.{LEVRED}.$RES.nc OH      1985/1-12/1/0 C xyz kg/m3 * - 1 1
+
+END SECTION BASE EMISSIONS 
+
+###############################################################################
+### BEGIN SECTION SCALE FACTORS 
+###############################################################################
+# ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
+1 NEGATIVE -1.0 - - - xy 1 1
+
+END SECTION SCALE FACTORS 
+
+###############################################################################
+### BEGIN SECTION MASKS 
+###############################################################################
+# ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
+
+END SECTION MASKS 
+
 ### END OF HEMCO INPUT FILE ###

@@ -30,6 +30,12 @@
 # !REVISION HISTORY: 
 #  23 Sep 2014 - C. Keller   - Initial version
 #  07 Oct 2014 - R. Yantosca - Now use HEMCO tokens $ROOT, $MET, $RES
+#  16 Feb 2015 - C. Keller   - (a) Added data 'collections' (brackets).
+#                              (b) Moved section extension switches at the
+#                                  beginning.
+#                              (c) Removed section extension data. These fields
+#                                  are now listed in section base emissions.
+#                              (d) Fields can now cover multiple categories.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -54,9 +60,63 @@ Show warnings:               true
 END SECTION SETTINGS 
 
 ###############################################################################
+### BEGIN SECTION EXTENSION SWITCHES
+###############################################################################
+###
+### This section lists all emission extensions available to HEMCO and whether 
+### they shall be used or not. Extension 'base' must have extension number 
+### zero, all other extension numbers can be freely chosen. Data fields in 
+### section 'base emissions' will only be read if the corresponding extension 
+### (identified by ExtNr) is enabled. Similarly, fields grouped into data 
+### collections ('(((CollectionName', ')))CollectionName') are only considered
+### if the corresponding data collection is enabled in this section.
+###
+### All species to be used by HEMCO can be given explicitly in the Species 
+### section of extension 'Base'. For example,
+###
+### 0       Base              : on    NO/NO2/CO
+###
+### will only activate NO, NO2 and CO as HEMCO species. All other fields will 
+### be ignored entirely. This is even true for species only used in another 
+### extension. For instance, if the dust emission extension shall be used, 
+### the dust species must be set explicitly as base species:
+###
+### 0       Base              : on    NO/NO2/CO/DST1/DST2/DST3/DST4
+###
+### The wildcard character can be used to use all possible species (species 
+### used in  HEMCO and defined by GEOS-Chem). This is recommended:
+###
+### 0       Base              : on    *
+###
+### Make sure that the ExtNr provided here matches with the ExtNr provided in 
+### the base emissions sections. Otherwise, the listed files won't be read!
+###############################################################################
+END SECTION EXTENSION SWITCHES
+
+###############################################################################
 ### BEGIN SECTION BASE EMISSIONS 
 ###############################################################################
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
+
+###############################################################################
+### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
+###
+### These fields are needed by the extensions listed above. The assigned ExtNr 
+### must match the ExtNr entry in section 'Extension switches'. These fields 
+### are only read if the extension is enabled.  The fields are imported by the
+### extensions by field name.  The name given here must match the name used 
+### in the extension's source code. 
+###############################################################################
+
+###############################################################################
+### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
+###
+### Non-emissions data. The following fields are read through HEMCO but do 
+### not contain emissions data. The extension number is set to wildcard 
+### character denoting that these fields will not be considered for emission 
+### calculation. A given entry is only read if the assigned species name is 
+### an HEMCO species.
+###############################################################################
 
 #==============================================================================
 # --- O3 production and loss rates ---
@@ -78,22 +138,7 @@ END SECTION SCALE FACTORS
 ###############################################################################
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
 #
-END SECTION MASKS 
-
-###############################################################################
-### BEGIN SECTION EXTENSION SWITCHES
-###
-### Make sure that the ExtNr provided here matches with the ExtNr provided 
-### in the base emissions sections. Otherwise, the listed files won't be read!
-###############################################################################
-# ExtNr ExtName           on/off  Species 
-#
-END SECTION EXTENSION SWITCHES 
-
-###############################################################################
-### BEGIN SECTION EXTENSION DATA
-###############################################################################
-#
-END SECTION EXTENSION DATA
+END SECTION MASKS
  
 ### END OF HEMCO INPUT FILE ###
+#EOC
