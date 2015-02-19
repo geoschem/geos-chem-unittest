@@ -77,17 +77,17 @@ Show warnings:               true
 #
 END SECTION SETTINGS 
 
-####################################################################################
+###############################################################################
 ### BEGIN SECTION EXTENSION SWITCHES
-####################################################################################
+###############################################################################
 ###
 ### This section lists all emission extensions available to HEMCO and whether 
-### they shall be used or not. Extension 'base' must have extension number zero, 
+### they shall be used or not. Extension 'base' must have extension number zero,
 ### all other extension numbers can be freely chosen. Data fields in section 
-### 'base emissions' will only be read if the corresponding extension (identified 
-### by ExtNr) is enabled. Similarly, fields grouped into data collections 
-### ('(((CollectionName', ')))CollectionName') are only considered if the 
-### corresponding data collection is enabled in this section.
+### 'base emissions' will only be read if the corresponding extension
+### (identified by ExtNr) is enabled. Similarly, fields grouped into data
+### collections ('(((CollectionName', ')))CollectionName') are only considered
+### if the corresponding data collection is enabled in this section.
 ###
 ### All species to be used by HEMCO can be given explicitly in the Species 
 ### section of extension 'Base'. For example,
@@ -109,17 +109,24 @@ END SECTION SETTINGS
 ### Make sure that the ExtNr provided here matches with the ExtNr provided in 
 ### the base emissions sections. Otherwise, the listed files won't be read!
 ###
-### --> The POA scale factor is the same as for the biofuel and anthro sources.
+### NOTES:
+### --> The biomass burning POA scale factor is the same as for the biofuel and
+###    anthro sources. 
 ###
 ### --> The NAP scale factor is determined as in the original simulation:
-###     Obtain NAP emissions using scale factor from Hays 2002 ES&T 
-###     ( 0.0253 g NAP/kg DM ) and Andreae and Merlet 2001 GBC ( 92 g CO/kg DM )
-####################################################################################
+###    Obtain NAP emissions using scale factor from Hays 2002 ES&T 
+###    ( 0.0253 g NAP/kg DM ) and Andreae and Merlet 2001 GBC ( 92 g CO/kg DM )
+###
+### --> BOND_BIOMASS must be set to false if GFED3 or FINN is enabled.
+###
+### --> BASE_SHIPNO must be set to false if PARANOx is enabled.
+###############################################################################
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
     --> AEIC              :       true
     --> BIOFUEL           :       true
     --> BOND              :       true
+    --> BOND_BIOMASS      :       false
     --> BRAVO             :       true
     --> CAC               :       true
     --> C2H6              :       true
@@ -130,6 +137,7 @@ END SECTION SETTINGS
     --> NEI2005           :       true
     --> RETRO             :       true 
     --> SHIP              :       true
+    --> SHIPNO_BASE       :       false
     --> STREETS           :       true
     --> VOLCANO           :       true
 # ----------------------------------------------------------------------------
@@ -534,6 +542,16 @@ END SECTION EXTENSION SWITCHES
 102 EMEP_SHIP_NO     $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc               ShipNO   1990-2010/1/1/0 C xy kg/m2/s NO  1000     10 10
 )))EMEP
 
+# If PARANOX is not used: SHIPNO_BASE is set automatically to true if (and only if) PARANOX is turned off
+(((SHIPNO_BASE
+0 ICOADS_SHIP_NO     $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc          NO       2002/1-12/1/0   C xy kg/m2/s NO  1/5      10 1
+
+(((EMEP
+0 EMEP_SHIP_NO       $ROOT/EMEP/v2014-07/EMEP.update.gen.1x1.nc            ShipNO   1990-2007/1/1/0 C xy kg/m2/s NO  1000     10 10
+)))EMEP
+
+)))SHIPNO_BASE
+
 )))SHIP
  
 #==============================================================================
@@ -554,6 +572,15 @@ END SECTION EXTENSION SWITCHES
 0 BOND_BF_OCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biofuel.nc OC   2000/1-12/1/0 C xy kg/m2/s OCPI 72 2 1
 0 BOND_BF_OCPO   -                                        -    -             - -  -       OCPO 73 2 1
 0 BOND_BF_POA1   -                                        -    -             - -  -       POA1 74 2 1
+
+(((BOND_BIOMASS
+0 BOND_BM_BCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc BC   2000/1-12/1/0 C xy kg/m2/s BCPI 70 2 1
+0 BOND_BM_BCPO   -                                        -    -             - -  -       BCPO 71 2 1
+0 BOND_BM_OCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc OC   2000/1-12/1/0 C xy kg/m2/s OCPI 72 2 1
+0 BOND_BM_OCPO   -                                        -    -             - -  -       OCPO 73 2 1
+0 BOND_BF_POA1   -                                        -    -             - -  -       POA1 74 2 1
+)))BOND_BIOMASS
+
 )))BOND
 
 #==============================================================================
@@ -755,14 +782,13 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- Linear stratospheric chemistry fields ---
 #
-# These fields will only be read if the LinStratChem toggle is activated. 
-# LinStratChem can be set explicitly above as a setting of the base 
-# extension (--> LinStratChem: true/false).  If not defined, it will be set 
-# automatically based on the linear stratospheric chemistry toggle in 
+# These fields will only be read if the +LinStratChem+ toggle is activated.
+# +LinStratChem+ can be set explicitly above as a setting of the base
+# extension (--> +LinStratChem+: true/false). If not defined, it will be set
+# automatically based on the linear stratospheric chemistry toggle in
 # input.geos (recommended).
 #==============================================================================
-
-(((LinStratChem
+(((+LinStratChem+
 
 #------------------------------------------------------------------------------
 # --- Stratospheric Bry data from the CCM model  ---
@@ -1025,7 +1051,7 @@ END SECTION EXTENSION SWITCHES
 # Archived OH concentrations. These are always needed, so set species to wildcard (*) to make
 # sure that this entry will always be read. 
 * STRAT_OH            $ROOT/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc          species 2000/$MM/1/0 C xyz v/v   *        - 1  1
-)))LinStratChem
+)))+LinStratChem+
 
 END SECTION BASE EMISSIONS 
 
