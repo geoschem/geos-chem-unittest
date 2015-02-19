@@ -83,6 +83,8 @@ fileclean:
 	rm -f diaginfo.dat tracerinfo.dat smv2.log
 	rm -f *.sp
 	rm -f *.mp
+	rm -f HEMCO.log*
+	rm -f HEMCO*restart*
 
 extrafileclean:
 	rm -f input.geos
