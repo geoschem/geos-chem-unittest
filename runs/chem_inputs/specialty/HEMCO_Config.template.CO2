@@ -99,8 +99,8 @@ END SECTION SETTINGS
 #
 # You can pick either diurnla or daily balanced biosphere exchange.
 #===============================================================================
-#0 BBIOCO2       $ROOT/CO2/v2014-09/BBIO/BBIO_DIURNAL/BBIO_diurnal.CO2.nc CO2 1985/1/1/0       C xy kg/m2/s CO2bal - 1 1
-0 BBIOCO2_DAILY $ROOT/CO2/v2014-09/BBIO/BBIO_DAILY/BBIO_daily_CO2.nc     CO2 2000/1-12/1-31/0 C xy kg/m2/s CO2bal - 1 1
+#0 BBIOCO2       $ROOT/CO2/v2014-09/BBIO/BBIO_diurnal.CO2.nc CO2 1985/1/1/0       C xy kg/m2/s CO2bal - 1 1
+0 BBIOCO2_DAILY $ROOT/CO2/v2014-09/BBIO/BBIO_daily_CO2.nc    CO2 2000/1-12/1-31/0 C xy kg/m2/s CO2bal - 1 1
 
 #===============================================================================
 # --- BIOFUEL EMISSIONS ---
