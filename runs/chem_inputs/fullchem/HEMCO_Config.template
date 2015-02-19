@@ -54,6 +54,8 @@
 #                              (c) Removed section extension data. These fields
 #                                  are now listed in section base emissions.
 #                              (d) Fields can now cover multiple categories.
+#  19 Feb 2015 - R. Yantosca - Read EDGAR_BENZ from EDGAR/v2015-02/VOCv2
+#  19 Feb 2015 - R. Yantosca - Read EDGAR_TODNOX from EDGAR/v2015-02/NO
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -278,8 +280,12 @@ END SECTION EXTENSION SWITCHES
 
 #==============================================================================
 # --- NAP ANTHROPOGENIC EMISSIONS: approximate from EDGAR BENZ --- 
+#
+# NOTE: Although this data comes from EDGAR version 2, we are storing it
+# in the EDGARv42 data path for convenience.  That way you do not need to
+# download the older EDGAR data directory, in order to save disk space.
 #==============================================================================
-0 EDGAR_NAP $ROOT/EDGAR/v2014-07/EDGAR2_1985_FF_IND.1x1geos.nc BENZ 1985/1/1/0 C xy kgC/m2/s NAP 80/81/82 1 2
+0 EDGAR_NAP $ROOT/EDGARv42/v2015-02/VOCv2/EDGAR2_1985_FF_IND.1x1geos.nc BENZ 1985/1/1/0 C xy kgC/m2/s NAP 80/81/82 1 2
 )))EDGAR
 
 #==============================================================================
@@ -1071,7 +1077,7 @@ END SECTION BASE EMISSIONS
 #==============================================================================
 # --- diurnal scale factors --- 
 #==============================================================================
-25 EDGAR_TODNOX $ROOT/EDGAR/v2014-07/EDGAR_hourly_NOxScal.nc NOXscale 2000/1/1/HH C xy unitless 1
+25 EDGAR_TODNOX $ROOT/HEMCO/EDGARv42/v2015-02/NO/EDGAR_hourly_NOxScal.nc NOXscale 2000/1/1/HH C xy unitless 1
 26 GEIA_TOD_FOSSIL 0.45/0.45/0.6/0.6/0.6/0.6/1.45/1.45/1.45/1.45/1.4/1.4/1.4/1.4/1.45/1.45/1.45/1.45/0.65/0.65/0.65/0.65/0.45/0.45 - - - xy unitless 1
 
 #==============================================================================
