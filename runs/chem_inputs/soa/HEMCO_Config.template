@@ -777,7 +777,7 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- Time zones (offset to UTC) ---
 #==============================================================================
-* TIMEZONES /home/ckeller/data/TIMEZONES/timezones_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
+* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
  
 #==============================================================================
 # --- Linear stratospheric chemistry fields ---
@@ -1103,7 +1103,7 @@ END SECTION BASE EMISSIONS
 #==============================================================================
 # --- diurnal scale factors --- 
 #==============================================================================
-25 EDGAR_TODNOX $ROOT/HEMCO/EDGARv42/v2015-02/NO/EDGAR_hourly_NOxScal.nc NOXscale 2000/1/1/HH C xy unitless 1
+25 EDGAR_TODNOX $ROOT/EDGARv42/v2015-02/NO/EDGAR_hourly_NOxScal.nc NOXscale 2000/1/1/HH C xy unitless 1
 26 GEIA_TOD_FOSSIL 0.45/0.45/0.6/0.6/0.6/0.6/1.45/1.45/1.45/1.45/1.4/1.4/1.4/1.4/1.45/1.45/1.45/1.45/0.65/0.65/0.65/0.65/0.45/0.45 - - - xy unitless 1
 
 #==============================================================================
