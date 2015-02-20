@@ -289,10 +289,15 @@ END SECTION EXTENSION SWITCHES
 ### an HEMCO species.
 ###############################################################################
 
+#==============================================================================
+# --- Time zones (offset to UTC) ---
+#==============================================================================
+* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
+
 #===============================================================================
 # --- CHEMICAL PRODUCTION FROM CO OXIDATION ---
 #===============================================================================
-0 CO2_COPROD $ROOT/CO2/v2014-09/CHEM/CO2_prod_rates.geos5.2x25.47L.nc PORL_L_S__LCO 2004-2009/1-12/1/0 C xyz kg/m3/s CO2ch - 1 1
+* CO2_COPROD $ROOT/CO2/v2014-09/CHEM/CO2_prod_rates.geos5.2x25.47L.nc PORL_L_S__LCO 2004-2009/1-12/1/0 C xyz kg/m3/s CO2ch - 1 1
 
 END SECTION BASE EMISSIONS 
 

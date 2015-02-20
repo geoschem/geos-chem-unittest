@@ -218,10 +218,15 @@ END SECTION EXTENSION SWITCHES
 ###############################################################################
 
 #==============================================================================
+# --- Time zones (offset to UTC) ---
+#==============================================================================
+* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
+
+#==============================================================================
 # --- Quantities needed for CH4 chemistry ---
 #==============================================================================
-0 CH4_LOSS   $ROOT/CH4/v2014-09/4x5/gmi.ch4loss.geos5_47L.4x5.nc              CH4loss 1985/1-12/1/0 C xyz s-1   * - 1 1
-0 GLOBAL_OH  $ROOT/OH/v2014-09/v5-07-08/OH_3Dglobal.$MET.{LEVRED}.$RES.nc OH      1985/1-12/1/0 C xyz kg/m3 * - 1 1
+* CH4_LOSS   $ROOT/CH4/v2014-09/4x5/gmi.ch4loss.geos5_47L.4x5.nc              CH4loss 1985/1-12/1/0 C xyz s-1   * - 1 1
+* GLOBAL_OH  $ROOT/OH/v2014-09/v5-07-08/OH_3Dglobal.$MET.{LEVRED}.$RES.nc OH      1985/1-12/1/0 C xyz kg/m3 * - 1 1
 
 END SECTION BASE EMISSIONS 
 

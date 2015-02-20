@@ -122,10 +122,15 @@ END SECTION EXTENSION SWITCHES
 ###############################################################################
 
 #==============================================================================
+# --- Time zones (offset to UTC) ---
+#==============================================================================
+* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
+
+#==============================================================================
 # --- O3 production and loss rates ---
 #==============================================================================
-0 O3_PROD $ROOT/TAGGED_O3/v2014-09/O3_PRODLOSS.$MET.4x5.nc POX 2004/1-12/1-31/0 C xyz kg/m3/s * - 1 1
-0 O3_LOSS $ROOT/TAGGED_O3/v2014-09/O3_PRODLOSS.$MET.4x5.nc LOX 2004/1-12/1-31/0 C xyz  1/m3/s * - 1 1
+* O3_PROD $ROOT/TAGGED_O3/v2014-09/O3_PRODLOSS.$MET.4x5.nc POX 2004/1-12/1-31/0 C xyz kg/m3/s * - 1 1
+* O3_LOSS $ROOT/TAGGED_O3/v2014-09/O3_PRODLOSS.$MET.4x5.nc LOX 2004/1-12/1-31/0 C xyz  1/m3/s * - 1 1
 
 END SECTION BASE EMISSIONS 
 
