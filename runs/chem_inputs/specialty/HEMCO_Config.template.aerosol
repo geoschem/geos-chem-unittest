@@ -130,7 +130,7 @@ END SECTION SETTINGS
     --> VOLCANO           :       true
 # ----------------------------------------------------------------------------
 100     Custom            : off   - 
-101     SeaFlux           : on    DMS/ACET
+101     SeaFlux           : on    DMS
 105     DustDead          : on    DST1/DST2/DST3/DST4 
     --> Mass tuning factor:       7.0e-4
 107     SeaSalt           : on    SALA/SALC/Br2
@@ -145,7 +145,7 @@ END SECTION SETTINGS
     --> PECCA model       :       false
 109     MEGAN_Mono        : on    CO/OCPI/MONX
 110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
-111     GFED3             : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POA1/NAP
+111     GFED3             : on    SO2/NH3/BCPO/BCPI/OCPO/OCPI
     --> CO scale factor   :       1.05
     --> POA scale factor  :       1.27
     --> NAP scale factor  :       2.75e-4
@@ -153,7 +153,7 @@ END SECTION SETTINGS
     --> hydrophilic OC    :       0.5
 112     GFED3_daily       : off   -
 113     GFED3_3hourly     : off   -
-114     FINN              : off    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/GLYC/HAC
+114     FINN              : off   SO2/NH3/BCPI/BCPO/OCPI/OCPO
 115     FINN_daily        : off 
 #
 END SECTION EXTENSION SWITCHES 
@@ -229,16 +229,6 @@ END SECTION EXTENSION SWITCHES
 #0 EDGAR_NH3_5A_C_D_F_4E   $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_5A_C_D_F_4E.generic.01x01.nc    NH3 1970-2008/1/1/0 C xy kg/m2/s NH3 38    1 2
 
 #==============================================================================
-# --- NAP ANTHROPOGENIC EMISSIONS: approximate from EDGAR BENZ --- 
-#
-# NOTE: Although this data comes from EDGAR version 2, we are storing it
-# in the EDGARv42 data path for convenience.  That way you do not need to
-# download the older EDGAR data directory, in order to save disk space.
-#==============================================================================
-0 EDGAR_NAP $ROOT/EDGARv42/v2015-02/VOCv2/EDGAR2_1985_FF_IND.1x1geos.nc BENZ 1985/1/1/0 C xy kgC/m2/s NAP 80/81/82 1 2
-)))EDGAR
-
-#==============================================================================
 # --- BIOFUEL EMISSIONS (Yevich and Logan, 2003) ---
 #
 # ==> Note that this inventory does not contain emissions over the US!!
@@ -255,7 +245,6 @@ END SECTION EXTENSION SWITCHES
 (((BIOFUEL
 0 BIOFUEL_CO   $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s CO   53 2 1
 0 BIOFUEL_SO2  -                                          -            -          - -  -       SO2  91 2 1
-0 BIOFUEL_NAP  -                                          -            -          - -  -       NAP  80/81/83 2 1
 )))BIOFUEL
 
 #==============================================================================
@@ -651,23 +640,11 @@ END SECTION BASE EMISSIONS
 #                  * 120d0 / 28d0 * COSCALEDOWN
 #==============================================================================
 80 NAPEMISS   1.0     - - - xy unitless 1
-81 NAPTOTSCAL 66.09   - - - xy unitless 1
-82 BENZTONAP  6.86e-2 - - - xy unitless 1 
-83 BF_COtoNAP 3.00e-4 - - - xy unitless 1
 
 #==============================================================================
 # --- Biofuel conversion factors ---
 #==============================================================================
-90 BF_COtoHAC   8.75e-3 - - - xy unitless 1
 91 BF_COtoSO2   3.43e-3 - - - xy unitless 1
-92 BF_COtoGLYX  1.37e-2 - - - xy unitless 1
-93 BF_COtoMGLY  8.92e-3 - - - xy unitless 1
-94 BF_COtoBENZ  1.04e-2 - - - xy unitless 1
-95 BF_COtoTOLU  6.03e-3 - - - xy unitless 1
-96 BF_COtoXYLE  2.81e-2 - - - xy unitless 1
-97 BF_COtoC2H4  1.35e-2 - - - xy unitless 1
-98 BF_COtoC2H2  1.63e-2 - - - xy unitless 1
-99 BF_COtoGLYC  7.84e-3 - - - xy unitless 1
 
 #==============================================================================
 # --- AEIC aircraft emissions ---
@@ -685,15 +662,6 @@ END SECTION BASE EMISSIONS
 # the fuelburn emissions) in the original AEIC code. I'm not sure if this 
 # is because the netCDF data is in g instead of kg?
 #==============================================================================
-101 AEICACET 3.693477e-3 - -  - xy unitless 1
-102 AEICALD2 4.271822e-2 - -  - xy unitless 1
-103 AEICALK4 2.137911e-1 - -  - xy unitless 1
-104 AEICC2H6 5.214505e-3 - -  - xy unitless 1
-105 AEICC3H8 7.808710e-4 - -  - xy unitless 1
-106 AEICCH2O 1.230811e-1 - -  - xy unitless 1
-107 AEICPRPE 1.780418e-1 - -  - xy unitless 1
-108 AEICMACR 5.362609e-2 - -  - xy unitless 1
-109 AEICRCHO 3.676944e-2 - -  - xy unitless 1
 110 AEICNOCO 1.000000e-3 - -  - xy unitless 1
 111 AEICSO2  1.176000e-3 - -  - xy unitless 1
 112 AEICSO4  3.600000e-5 - -  - xy unitless 1
@@ -706,26 +674,11 @@ END SECTION BASE EMISSIONS
 #==============================================================================
 201 VISTAS_SEASON     $ROOT/NEI2005/v2014-09/scaling/Vistas_season.geos.1x1.nc       NOratio      2002/1-12/1/0 C xy unitless 1
 202 ARP_SEASON        $ROOT/NEI2005/v2014-09/scaling/ARP_season.geos.1x1.nc          NOxrat  1999-2007/1-12/1/0 C xy unitless 1
-210 NEI99_DOW_NOX     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           NOX          1999/1-12/*/0 C xy unitless 1
-211 NEI99_DOW_CO      $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           CO           1999/1-12/*/0 C xy unitless 1
-212 NEI99_DOW_ALK4    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           ALK4         1999/1-12/*/0 C xy unitless 1
-213 NEI99_DOW_ACET    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           ACET         1999/1-12/*/0 C xy unitless 1
-214 NEI99_DOW_MEK     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           MEK          1999/1-12/*/0 C xy unitless 1
-215 NEI99_DOW_PRPE    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           PRPE         1999/1-12/*/0 C xy unitless 1
-216 NEI99_DOW_C3H8    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           C3H8         1999/1-12/*/0 C xy unitless 1
-217 NEI99_DOW_C2H6    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           C2H6         1999/1-12/*/0 C xy unitless 1
 218 NEI99_DOW_SO2     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           SO2          1999/1-12/*/0 C xy unitless 1
 219 NEI99_DOW_SO4     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           SO4          1999/1-12/*/0 C xy unitless 1
 220 NEI99_DOW_MSA     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           MSA          1999/1-12/*/0 C xy unitless 1
 221 NEI99_DOW_BCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           BCPI         1999/1-12/*/0 C xy unitless 1
 222 NEI99_DOW_OCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           OCPI         1999/1-12/*/0 C xy unitless 1
-230 NEI99_SEASON_CO   $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        CO           1999/1-12/1/0 C xy unitless 1
-231 NEI99_SEASON_ALK4 $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        ALK4         1999/1-12/1/0 C xy unitless 1
-232 NEI99_SEASON_ACET $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        ACET         1999/1-12/1/0 C xy unitless 1
-233 NEI99_SEASON_MEK  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        MEK          1999/1-12/1/0 C xy unitless 1
-234 NEI99_SEASON_PRPE $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        PRPE         1999/1-12/1/0 C xy unitless 1
-235 NEI99_SEASON_C3H8 $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        C3H8         1999/1-12/1/0 C xy unitless 1
-236 NEI99_SEASON_C2H6 $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        C2H6         1999/1-12/1/0 C xy unitless 1
 237 NEI99_SEASON_SO2  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        SO2          1999/1-12/1/0 C xy unitless 1
 238 NEI99_SEASON_SO4  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        SO4          1999/1-12/1/0 C xy unitless 1
 239 NEI99_SEASON_MSA  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        MSA          1999/1-12/1/0 C xy unitless 1
