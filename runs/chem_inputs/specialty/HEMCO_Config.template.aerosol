@@ -47,16 +47,19 @@
 #                              BCPI & OCPI.  Apply scale factors as needed
 #                              to get hydrophobic tracers BCPO, OCPO.  
 #  17 Nov 2014 - R. Yantosca - Now should work for all fullchem simulations
+#  20 Jan 2015 - M. Sulprizio- Update EMEP emissions for 2008-2010
+#  05 Feb 2015 - M. Sulprizio- Update to EDGAR v4.2 emissions
 #  16 Feb 2015 - C. Keller   - (a) Added data 'collections' (brackets).
 #                              (b) Moved section extension switches at the
 #                                  beginning.
 #                              (c) Removed section extension data. These fields
 #                                  are now listed in section base emissions.
 #                              (d) Fields can now cover multiple categories.
+#  25 Feb 2015 - M. Sulprizio- Update MEGAN2.1 emissions according to Guenther
+#                              et al. (2012)
 #EOP
 #------------------------------------------------------------------------------
 #BOC
-#
 ###############################################################################
 ### BEGIN SECTION SETTINGS
 ###############################################################################
@@ -77,6 +80,7 @@ END SECTION SETTINGS
 
 ###############################################################################
 ### BEGIN SECTION EXTENSION SWITCHES
+###############################################################################
 ###
 ### This section lists all emission extensions available to HEMCO and whether 
 ### they shall be used or not. Extension 'base' must have extension number 
@@ -106,13 +110,17 @@ END SECTION SETTINGS
 ### Make sure that the ExtNr provided here matches with the ExtNr provided in 
 ### the base emissions sections. Otherwise, the listed files won't be read!
 ###
-### --> The POA scale factor is the same as for the biofuel and anthro sources.
+### NOTES:
+### --> The biomass burning POA scale factor is the same as for the biofuel and
+###    anthro sources. 
 ###
 ### --> The NAP scale factor is determined as in the original simulation:
 ###     Obtain NAP emissions using scale factor from Hays 2002 ES&T 
 ###     (0.0253 g NAP/kg DM) and Andreae and Merlet 2001 GBC (92 g CO/kg DM)
+###
+### --> BOND_BIOMASS must be set to false if GFED3 or FINN is enabled.
 ###############################################################################
-# ExtNr ExtName           on/off  Species 
+# ExtNr ExtName           on/off  Species
 0       Base              : on    *
     --> AEIC              :       true
     --> BIOFUEL           :       true
@@ -142,7 +150,6 @@ END SECTION SETTINGS
     --> Br2 scaling       :       1.0 
 108     MEGAN             : on    ISOP/ACET/PRPE/C2H4
     --> Isoprene scaling  :       1.0 
-    --> PECCA model       :       false
 109     MEGAN_Mono        : on    CO/OCPI/MONX
 110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
 111     GFED3             : on    SO2/NH3/BCPO/BCPI/OCPO/OCPI
@@ -172,11 +179,17 @@ END SECTION EXTENSION SWITCHES
 
 #==============================================================================
 # --- GEIA ---
+#
+# NOTE: These emissions are old and are slated to be replaced soon.
 #==============================================================================
 (((GEIA
 # GEIA NH3 emissions: anthropogenic, biofuel and natural sources
 0 GEIA_NH3_ANTH $ROOT/NH3/v2014-07/NH3_geos.4x5.nc         NH3_ANTH    1990/1-12/1/0 C xy  kg/m2/s NH3 - 1 1 
+
+(((BIOFUEL
 0 GEIA_NH3_BIOF $ROOT/NH3/v2014-07/NH3_biofuel.geos.4x5.nc NH3_BIOFUEL 1998/1-12/1/0 C xy  kg/m2/s NH3 - 2 1
+)))BIOFUEL
+
 0 GEIA_NH3_NATU $ROOT/NH3/v2014-07/NH3_geos.4x5.nc         NH3_NATU    1990/1-12/1/0 C xy  kg/m2/s NH3 - 3 1
 )))GEIA
 
@@ -429,24 +442,36 @@ END SECTION EXTENSION SWITCHES
 # conversion. Since netCDF files are already in mass carbon (ug(C)), the only 
 # important thing is to specify a VOC with a specified MW of 12g/mol. 
 # This is the case for OCPI, ISOP and ACET.
+#
+# We don't need to read EF maps for acetone, a-pinene or myrcene. We now
+# compute those values in the MEGAN extension.
 #==============================================================================
-108 MEGAN_AEF_ISOP  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ISOPRENE      1985/1/1/0    C xy kgC/m2/s * - 1 1
-108 MEGAN_AEF_ACET  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ACETONE       1985/1/1/0    C xy kgC/m2/s * - 1 1 
-109 MEGAN_PFT_BT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              BT                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_PFT_NT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              NT                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_PFT_SH    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              SH                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_PFT_GR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              GR                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_PFT_CR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              CR                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_AEF_MONOT $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MONOTERPENES  1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_MBO   $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MBO           1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_APINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ALPHA_PINENE  1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_BPINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_BETA_PINENE   1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_LIMON $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_LIMONENE      1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_SABIN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_SABINENE      1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_MYRCN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MYRCENE       1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_CAREN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_CARENE        1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_OCIMN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_OCIMENE       1985/1/1/0    C xy kgC/m2/s * - 1 1
-110 MEGAN_ORVC      $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc            OCPI              1990/1-12/1/0 C xy kgC/m2/s * - 1 1
+108  MEGAN_AEF_ISOP               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_ISOPRENE            1985/1/1/0    C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_MBOX               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_MBO                 1985/1/1/0    C xy kgC/m2/s * - 1 1
+#109 MEGAN_AEF_APIN               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_ALPHA_PINENE        1985/1/1/0    C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_BPIN               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_BETA_PINENE         1985/1/1/0    C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_CARE               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_CARENE              1985/1/1/0    C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_LIMO               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_LIMONENE            1985/1/1/0    C xy kgC/m2/s * - 1 1
+#109 MEGAN_AEF_MYRC               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_MYRCENE             1985/1/1/0    C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_OCIM               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_OCIMENE             1985/1/1/0    C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_SABI               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_SABINENE            1985/1/1/0    C xy kgC/m2/s * - 1 1
+109  CLM4_PFT_BARE                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BARE                2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_NDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_EVGN_TMPT_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_NDLF_EVGN_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_EVGN_BORL_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_NDLF_DECD_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_DECD_BORL_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_EVGN_TROP_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_TROP_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_TMPT_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_TROP_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TROP_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TMPT_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_BORL_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_EVGN_SHRB      $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_SHRB      2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_TMPT_SHRB $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TMPT_SHRB 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_BORL_SHRB $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_BORL_SHRB 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_C3_ARCT_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C3_ARCT_GRSS        2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_C3_NARC_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C3_NARC_GRSS        2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_C4_GRSS             $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C4_GRSS             2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_CROP                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_CROP                2000/1/1/0    C xy 1        * - 1 1
+110  MEGAN_ORVC                   $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc          OCPI                    1990/1-12/1/0 C xy kgC/m2/s * - 1 1
 
 #==============================================================================
 # --- GFED3 biomass burning emissions (Extension 111) 
@@ -555,7 +580,7 @@ END SECTION BASE EMISSIONS
 #==============================================================================
 # --- diurnal scale factors --- 
 #==============================================================================
-25 EDGAR_TODNOX $ROOT/EDGAR/v2014-07/EDGAR_hourly_NOxScal.nc NOXscale 2000/1/1/* C xy unitless 1
+25 EDGAR_TODNOX $ROOT/EDGARv42/v2015-02/NO/EDGAR_hourly_NOxScal.nc NOXscale 2000/1/1/HH C xy unitless 1
 26 GEIA_TOD_FOSSIL 0.45/0.45/0.6/0.6/0.6/0.6/1.45/1.45/1.45/1.45/1.4/1.4/1.4/1.4/1.45/1.45/1.45/1.45/0.65/0.65/0.65/0.65/0.45/0.45 - - - xy unitless 1
 
 #==============================================================================
@@ -566,10 +591,10 @@ END SECTION BASE EMISSIONS
 31 GEIA_SEASON_SO2  $ROOT/GEIA/v2014-07/GEIA_monthscal.generic.1x1.nc SO2rat 1985/1-12/1/0 C xy unitless 1
 
 # from EMEP:
-32 EMEP_SEASON_NOX $ROOT/EMEP/v2014-07/EMEP.Seasonal.geos.1x1.nc NOXrat 2005/1-12/1/0 C xy unitless 1
-33 EMEP_SEASON_CO  $ROOT/EMEP/v2014-07/EMEP.Seasonal.geos.1x1.nc COrat  2005/1-12/1/0 C xy unitless 1
-34 EMEP_SEASON_NH3 $ROOT/EMEP/v2014-07/EMEP.Seasonal.geos.1x1.nc NH3rat 2005/1-12/1/0 C xy unitless 1
-35 EMEP_SEASON_SO2 $ROOT/EMEP/v2014-07/EMEP.Seasonal.geos.1x1.nc SO2rat 2005/1-12/1/0 C xy unitless 1
+32 EMEP_SEASON_NOX $ROOT/EMEP/v2015-01/EMEP.Seasonal.geos.1x1.nc NOXrat 2005/1-12/1/0 C xy unitless 1
+33 EMEP_SEASON_CO  $ROOT/EMEP/v2015-01/EMEP.Seasonal.geos.1x1.nc COrat  2005/1-12/1/0 C xy unitless 1
+34 EMEP_SEASON_NH3 $ROOT/EMEP/v2015-01/EMEP.Seasonal.geos.1x1.nc NH3rat 2005/1-12/1/0 C xy unitless 1
+35 EMEP_SEASON_SO2 $ROOT/EMEP/v2015-01/EMEP.Seasonal.geos.1x1.nc SO2rat 2005/1-12/1/0 C xy unitless 1
 
 # from Streets:
 36 ZHANG_SEASON_NOX   $ROOT/STREETS/v2014-07/2006/Streets_2004_NOx_MonthFctr_total.generic.1x1.nc NOxrat    2004/1-12/1/0 C xy unitless 1
@@ -672,18 +697,18 @@ END SECTION BASE EMISSIONS
 #==============================================================================
 # --- NEI 2005 scale factors ---
 #==============================================================================
-201 VISTAS_SEASON     $ROOT/NEI2005/v2014-09/scaling/Vistas_season.geos.1x1.nc       NOratio      2002/1-12/1/0 C xy unitless 1
-202 ARP_SEASON        $ROOT/NEI2005/v2014-09/scaling/ARP_season.geos.1x1.nc          NOxrat  1999-2007/1-12/1/0 C xy unitless 1
-218 NEI99_DOW_SO2     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           SO2          1999/1-12/*/0 C xy unitless 1
-219 NEI99_DOW_SO4     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           SO4          1999/1-12/*/0 C xy unitless 1
-220 NEI99_DOW_MSA     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           MSA          1999/1-12/*/0 C xy unitless 1
-221 NEI99_DOW_BCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           BCPI         1999/1-12/*/0 C xy unitless 1
-222 NEI99_DOW_OCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           OCPI         1999/1-12/*/0 C xy unitless 1
-237 NEI99_SEASON_SO2  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        SO2          1999/1-12/1/0 C xy unitless 1
-238 NEI99_SEASON_SO4  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        SO4          1999/1-12/1/0 C xy unitless 1
-239 NEI99_SEASON_MSA  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        MSA          1999/1-12/1/0 C xy unitless 1
-240 NEI99_SEASON_BCPI $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        BCPI         1999/1-12/1/0 C xy unitless 1
-241 NEI99_SEASON_OCPI $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        OCPI         1999/1-12/1/0 C xy unitless 1
+201 VISTAS_SEASON     $ROOT/NEI2005/v2014-09/scaling/Vistas_season.geos.1x1.nc       NOratio      2002/1-12/1/0  C xy unitless 1
+202 ARP_SEASON        $ROOT/NEI2005/v2014-09/scaling/ARP_season.geos.1x1.nc          NOxrat  1999-2007/1-12/1/0  C xy unitless 1
+218 NEI99_DOW_SO2     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           SO2          1999/1-12/WD/0 C xy unitless 1
+219 NEI99_DOW_SO4     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           SO4          1999/1-12/WD/0 C xy unitless 1
+220 NEI99_DOW_MSA     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           MSA          1999/1-12/WD/0 C xy unitless 1
+221 NEI99_DOW_BCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           BCPI         1999/1-12/WD/0 C xy unitless 1
+222 NEI99_DOW_OCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           OCPI         1999/1-12/WD/0 C xy unitless 1
+237 NEI99_SEASON_SO2  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        SO2          1999/1-12/1/0  C xy unitless 1
+238 NEI99_SEASON_SO4  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        SO4          1999/1-12/1/0  C xy unitless 1
+239 NEI99_SEASON_MSA  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        MSA          1999/1-12/1/0  C xy unitless 1
+240 NEI99_SEASON_BCPI $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        BCPI         1999/1-12/1/0  C xy unitless 1
+241 NEI99_SEASON_OCPI $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        OCPI         1999/1-12/1/0  C xy unitless 1
 242 NEI99_SEASON_NH3  0.216/0.418/0.622/0.815/0.982/0.974/1.0/0.9/0.96/0.6/0.28/0.236 -            -             - xy unitless 1
 #
 END SECTION SCALE FACTORS 
@@ -697,12 +722,12 @@ END SECTION SCALE FACTORS
 #==============================================================================
 # Country/region masks
 #==============================================================================
-1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.nc           MASK */*/*/* C xy unitless 1 -30/30/45/70
-1001 MEXICO_MASK $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc MASK */*/*/* C xy unitless 1 -118/17/-95/33
-1002 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc         MASK */*/*/* C xy unitless 1 -141/40/-52/85
-1003 SEASIA_MASK $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc     MASK */*/*/* C xy unitless 1  60/-12/153/55
-1004 NA_MASK     $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc             MASK */*/*/* C xy unitless 1 -165/10/-40/90
-1005 USA_MASK    $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc    MASK */*/*/* C xy unitless 1 -165/10/-40/90
+1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.nc           MASK 2000/1/1/0 C xy unitless 1 -30/30/45/70
+1001 MEXICO_MASK $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc MASK 2000/1/1/0 C xy unitless 1 -118/17/-95/33
+1002 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc         MASK 2000/1/1/0 C xy unitless 1 -141/40/-52/85
+1003 SEASIA_MASK $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc     MASK 2000/1/1/0 C xy unitless 1  60/-12/153/55
+1004 NA_MASK     $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc             MASK 2000/1/1/0 C xy unitless 1 -165/10/-40/90
+1005 USA_MASK    $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc    MASK 2000/1/1/0 C xy unitless 1 -165/10/-40/90
 #
 END SECTION MASKS 
 

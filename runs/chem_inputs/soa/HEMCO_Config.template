@@ -56,6 +56,8 @@
 #                              (d) Fields can now cover multiple categories.
 #  19 Feb 2015 - R. Yantosca - Read EDGAR_BENZ from EDGAR/v2015-02/VOCv2
 #  19 Feb 2015 - R. Yantosca - Read EDGAR_TODNOX from EDGAR/v2015-02/NO
+#  25 Feb 2015 - M. Sulprizio- Update MEGAN2.1 emissions according to Guenther
+#                              et al. (2012)
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -163,7 +165,6 @@ END SECTION SETTINGS
     --> Br2 scaling       :       1.0 
 108     MEGAN             : on    ISOP/ACET/PRPE/C2H4
     --> Isoprene scaling  :       1.0 
-    --> PECCA model       :       false
 109     MEGAN_Mono        : on    CO/OCPI/MONX
 110     MEGAN_SOA         : on   MTPA/MTPO/LIMO/SESQ
 111     GFED3             : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POA1/NAP
@@ -507,7 +508,7 @@ END SECTION EXTENSION SWITCHES
 )))STREETS
 
 #==============================================================================
-# --- Very-shored-lived (VSL) bromocarbon emissions (cf. Qing Liang) ---
+# --- Very-short-lived (VSL) bromocarbon emissions (cf. Qing Liang) ---
 #==============================================================================
 (((LIANG_BROMOCARB
 0 LIANG_CHBR3  $ROOT/BROMINE/v2015-02/Bromocarb_Liang2010.nc CHBr3_emission  2000/1/1/0 C xy kg/m2/s CHBr3  39 1 1
@@ -716,24 +717,36 @@ END SECTION EXTENSION SWITCHES
 # conversion. Since netCDF files are already in mass carbon (ug(C)), the only 
 # important thing is to specify a VOC with a specified MW of 12g/mol. 
 # This is the case for OCPI, ISOP and ACET.
+#
+# We don't need to read EF maps for acetone, a-pinene or myrcene. We now
+# compute those values in the MEGAN extension.
 #==============================================================================
-108 MEGAN_AEF_ISOP  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ISOPRENE      1985/1/1/0    C xy kgC/m2/s * - 1 1
-108 MEGAN_AEF_ACET  $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ACETONE       1985/1/1/0    C xy kgC/m2/s * - 1 1 
-109 MEGAN_PFT_BT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              BT                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_PFT_NT    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              NT                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_PFT_SH    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              SH                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_PFT_GR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              GR                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_PFT_CR    $ROOT/MEGAN/v2014-07/MEGAN_PFT.nc              CR                2000/1/1/0    C xy m2/m2    * - 1 1
-109 MEGAN_AEF_MONOT $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MONOTERPENES  1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_MBO   $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MBO           1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_APINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_ALPHA_PINENE  1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_BPINE $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_BETA_PINENE   1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_LIMON $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_LIMONENE      1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_SABIN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_SABINENE      1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_MYRCN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_MYRCENE       1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_CAREN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_CARENE        1985/1/1/0    C xy kgC/m2/s * - 1 1
-109 MEGAN_AEF_OCIMN $ROOT/MEGAN/v2014-07/MEGANv2.1_AEF.geos.1x1.nc AEF_OCIMENE       1985/1/1/0    C xy kgC/m2/s * - 1 1
-110 MEGAN_ORVC      $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc            OCPI              1990/1-12/1/0 C xy kgC/m2/s * - 1 1
+108  MEGAN_AEF_ISOP               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_ISOPRENE            1985/1/1/0    C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_MBOX               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_MBO                 1985/1/1/0    C xy kgC/m2/s * - 1 1
+#109 MEGAN_AEF_APIN               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_ALPHA_PINENE        1985/1/1/0    C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_BPIN               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_BETA_PINENE         1985/1/1/0    C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_CARE               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_CARENE              1985/1/1/0    C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_LIMO               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_LIMONENE            1985/1/1/0    C xy kgC/m2/s * - 1 1
+#109 MEGAN_AEF_MYRC               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_MYRCENE             1985/1/1/0    C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_OCIM               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_OCIMENE             1985/1/1/0    C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_SABI               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_SABINENE            1985/1/1/0    C xy kgC/m2/s * - 1 1
+109  CLM4_PFT_BARE                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BARE                2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_NDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_EVGN_TMPT_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_NDLF_EVGN_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_EVGN_BORL_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_NDLF_DECD_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_DECD_BORL_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_EVGN_TROP_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_TROP_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_TMPT_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_TROP_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TROP_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TMPT_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_BORL_TREE 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_EVGN_SHRB      $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_SHRB      2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_TMPT_SHRB $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TMPT_SHRB 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_BORL_SHRB $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_BORL_SHRB 2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_C3_ARCT_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C3_ARCT_GRSS        2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_C3_NARC_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C3_NARC_GRSS        2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_C4_GRSS             $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C4_GRSS             2000/1/1/0    C xy 1        * - 1 1
+109  CLM4_PFT_CROP                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_CROP                2000/1/1/0    C xy 1        * - 1 1
+110  MEGAN_ORVC                   $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc          OCPI                    1990/1-12/1/0 C xy kgC/m2/s * - 1 1
 
 #==============================================================================
 # --- GFED3 biomass burning emissions (Extension 111) 
@@ -779,7 +792,7 @@ END SECTION EXTENSION SWITCHES
 # --- Time zones (offset to UTC) ---
 #==============================================================================
 * TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
- 
+
 #==============================================================================
 # --- Linear stratospheric chemistry fields ---
 #
@@ -794,18 +807,18 @@ END SECTION EXTENSION SWITCHES
 #------------------------------------------------------------------------------
 # --- Stratospheric Bry data from the CCM model  ---
 #------------------------------------------------------------------------------
-0 GEOSCCM_Br_DAY      $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BR     2007/$MM/1/0 C xyz pptv * - 60 1
-0 GEOSCCM_Br2_DAY     $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BRCL   2007/$MM/1/0 C xyz pptv * - 60 1
-0 GEOSCCM_BrO_DAY     $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BRO    2007/$MM/1/0 C xyz pptv * - 60 1
-0 GEOSCCM_BrNO3_DAY   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BRONO2 2007/$MM/1/0 C xyz pptv * - 60 1
-0 GEOSCCM_HBr_DAY     $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   HBR    2007/$MM/1/0 C xyz pptv * - 60 1
-0 GEOSCCM_HOBr_DAY    $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   HOBR   2007/$MM/1/0 C xyz pptv * - 60 1
-0 GEOSCCM_Br_NIGHT    $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BR     2007/$MM/1/0 C xyz pptv * - 60 1
-0 GEOSCCM_Br2_NIGHT   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BRCL   2007/$MM/1/0 C xyz pptv * - 60 1
-0 GEOSCCM_BrO_NIGHT   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BRO    2007/$MM/1/0 C xyz pptv * - 60 1
-0 GEOSCCM_BrNO3_NIGHT $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BRONO2 2007/$MM/1/0 C xyz pptv * - 60 1
-0 GEOSCCM_HBr_NIGHT   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc HBR    2007/$MM/1/0 C xyz pptv * - 60 1
-0 GEOSCCM_HOBr_NIGHT  $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc HOBR   2007/$MM/1/0 C xyz pptv * - 60 1
+* GEOSCCM_Br_DAY      $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BR     2007/$MM/1/0 C xyz pptv * - 60 1
+* GEOSCCM_Br2_DAY     $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BRCL   2007/$MM/1/0 C xyz pptv * - 60 1
+* GEOSCCM_BrO_DAY     $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BRO    2007/$MM/1/0 C xyz pptv * - 60 1
+* GEOSCCM_BrNO3_DAY   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   BRONO2 2007/$MM/1/0 C xyz pptv * - 60 1
+* GEOSCCM_HBr_DAY     $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   HBR    2007/$MM/1/0 C xyz pptv * - 60 1
+* GEOSCCM_HOBr_DAY    $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.day.nc   HOBR   2007/$MM/1/0 C xyz pptv * - 60 1
+* GEOSCCM_Br_NIGHT    $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BR     2007/$MM/1/0 C xyz pptv * - 60 1
+* GEOSCCM_Br2_NIGHT   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BRCL   2007/$MM/1/0 C xyz pptv * - 60 1
+* GEOSCCM_BrO_NIGHT   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BRO    2007/$MM/1/0 C xyz pptv * - 60 1
+* GEOSCCM_BrNO3_NIGHT $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc BRONO2 2007/$MM/1/0 C xyz pptv * - 60 1
+* GEOSCCM_HBr_NIGHT   $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc HBR    2007/$MM/1/0 C xyz pptv * - 60 1
+* GEOSCCM_HOBr_NIGHT  $ROOT/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007$MM.night.nc HOBR   2007/$MM/1/0 C xyz pptv * - 60 1
 
 #------------------------------------------------------------------------------
 #--- GMI chemistry: prod/loss rates (for strato-/mesosphere) ---
