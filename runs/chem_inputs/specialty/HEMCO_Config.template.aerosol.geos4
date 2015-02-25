@@ -140,6 +140,7 @@ END SECTION SETTINGS
 100     Custom            : off   - 
 101     SeaFlux           : on    DMS
 105     DustDead          : on    DST1/DST2/DST3/DST4 
+    --> Mass tuning factor:       7.0e-4
 107     SeaSalt           : on    SALA/SALC/Br2
     --> SALA lower radius :       0.01 
     --> SALA upper radius :       0.5

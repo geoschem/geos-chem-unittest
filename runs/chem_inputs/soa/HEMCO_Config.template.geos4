@@ -42,7 +42,7 @@
 #  12 Nov 2014 - R. Yantosca - Now emit BC and OC into hydrophilic tracers
 #                              BCPI & OCPI.  Apply scale factors as needed
 #                              to get hydrophobic tracers BCPO, OCPO.  
-#  25 Nov 2014 - R. Yantosca - For Fullchem simulations: turned off MEGAN_SOA
+#  25 Nov 2014 - R. Yantosca - For SOA simulations: turn on MEGAN_SOA
 #  05 Jan 2015 - R. Yantosca - Add GMI stratospheric Bry data
 #  12 Jan 2015 - R. Yantosca - Now move strat Bry data to base emissions
 #  20 Jan 2015 - M. Sulprizio- Update OTD-LIS factors through October 2014
@@ -154,6 +154,7 @@ END SECTION SETTINGS
 104     SoilNOx           : on    NO 
     --> Use fertilizer NOx:       true
 105     DustDead          : on    DST1/DST2/DST3/DST4 
+    --> Mass tuning factor:       7.0e-4
 106     DustGinoux        : off   DST1/DST2/DST3/DST4
 107     SeaSalt           : on    SALA/SALC/Br2
     --> SALA lower radius :       0.01 
@@ -165,7 +166,7 @@ END SECTION SETTINGS
 108     MEGAN             : on    ISOP/ACET/PRPE/C2H4
     --> Isoprene scaling  :       1.0 
 109     MEGAN_Mono        : on    CO/OCPI/MONX
-110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
+110     MEGAN_SOA         : on   MTPA/MTPO/LIMO/SESQ
 111     GFED3             : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POA1/NAP
     --> CO scale factor   :       1.05
     --> POA scale factor  :       1.27
