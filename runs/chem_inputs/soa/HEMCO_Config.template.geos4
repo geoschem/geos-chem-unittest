@@ -58,6 +58,7 @@
 #  19 Feb 2015 - R. Yantosca - Read EDGAR_TODNOX from EDGAR/v2015-02/NO
 #  25 Feb 2015 - M. Sulprizio- Update MEGAN2.1 emissions according to Guenther
 #                              et al. (2012)
+#  02 Mar 2015 - R. Yantosca - Add RCP and eruptive/degassing emissions info
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -141,8 +142,13 @@ END SECTION SETTINGS
     --> SHIP              :       true
     --> SHIPNO_BASE       :       false
     --> STREETS           :       true
-    --> VOLCANO           :       true
-# ----------------------------------------------------------------------------
+    --> VOLCANO_ERUPT     :       true
+    --> VOLCANO_DEGAS     :       true
+    --> RCP_3PD           :       false 
+    --> RCP_45            :       false
+    --> RCP_60            :       false
+    --> RCP_85            :       false
+# ---------------------------------------------------
 100     Custom            : off   - 
 101     SeaFlux           : on    DMS/ACET
 102     ParaNOx           : on    NO/NO2/O3/HNO3
@@ -621,9 +627,119 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- Volcanic emissions ---
 #==============================================================================
-(((VOLCANO
-0 VOLCANO_SO2 $ROOT/VOLCANO/v2014-10/$YYYY/volc_so2_gen.1x1.47L.$YYYY$MM.nc SO2 1979-2009/1-12/1-31/0 C xyz kg/m2/s SO2 - 50 1
-)))VOLCANO
+(((VOLCANO_ERUPT
+0 VOLCANO_SO2_ERUPT $ROOT/VOLCANO/v2015-02/$YYYY/volc_so2_gen.1x1.47L.$YYYY$MM.nc SO2_erupt 1979-2009/1-12/1-31/0 C xyz kg/m2/s SO2 - 51 1
+)))VOLCANO_ERUPT
+(((VOLCANO_DEGAS
+0 VOLCANO_SO2_DEGAS $ROOT/VOLCANO/v2015-02/$YYYY/volc_so2_gen.1x1.47L.$YYYY$MM.nc SO2_degas 1979-2009/1-12/1-31/0 C xyz kg/m2/s SO2 - 52 1
+)))VOLCANO_DEGAS
+
+#==============================================================================
+# --- RCP future emissions scenarios ---
+#==============================================================================
+(((RCP_3PD
+0 RCP3PD_CH4     $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_CH4_2005-2100_23474.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  CH4   -     1 1
+0 RCP3PD_NOx     $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_NOx_2005-2100_23474.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NO    -     1 1
+0 RCP3PD_CO      $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_CO_2005-2100_23474.nc                             ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  CO    -     1 1
+0 RCP3PD_BCPO    $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_BC_2005-2100_23474.nc                             ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  BCPO  -     1 1
+0 RCP3PD_OCPO    $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_OC_2005-2100_23474.nc                             ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  OCPO  -     1 1
+0 RCP3PD_SO2     $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_SO2_2005-2100_23474.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  SO2   -     1 1
+0 RCP3PD_NH3     $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_NH3_2005-2100_23474.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NH3   -     1 1
+0 RCP3PD_C2H2    $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_acetylene_2005-2100_23474_kgC.nc                  ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C2H2  -     1 1
+0 RCP3PD_CH2O    $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_formaldehyde_2005-2100_23474.nc                   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  CH2O  -     1 1
+0 RCP3PD_BENZ    $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_benzene_2005-2100_23474_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s BENZ  -     1 1
+0 RCP3PD_TOLU    $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_toluene_2005-2100_23474_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s TOLU  -     1 1
+0 RCP3PD_XYLE    $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_xylene_2005-2100_23474_kgC.nc                     ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s XYLE  -     1 1
+0 RCP3PD_ALD2    $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_other_aldehydes_2005-2100_23474_kgC.nc            ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALD2  -     1 1
+0 RCP3PD_ALK4__A $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_butanes_2005-2100_23474_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALK4  -     1 1
+0 RCP3PD_ALK4__B $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_pentanes_2005-2100_23474_kgC.nc                   ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALK4  -     1 1
+0 RCP3PD_ALK4__C $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_hexanes_and_higher_alkanes_2005-2100_23474_kgC.nc ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALK4  -     1 1
+0 RCP3PD_ACET    $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_total_ketones_2005-2100_23474_kgC.nc              ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ACET  51    1 1
+0 RCP3PD_MEK     -                                                                           -      -               - -  -        MEK   50    1 1
+0 RCP3PD_C2H6    $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_ethane_2005-2100_23474_kgC.nc                     ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C2H6  -     1 1
+0 RCP3PD_C2H4    $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_ethene_2005-2100_23474_kgC.nc                     ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C2H4  -     1 1
+0 RCP3PD_C3H8    $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_propane_2005-2100_23474_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C3H8  -     1 1
+0 RCP3PD_PRPE    $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_propene_2005-2100_23474_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s PRPE  -     1 1
+0 RCP3PD_HCOOH   $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_total_acids_2005-2100_23474.nc                    ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  HCOOH 57/58 1 1
+)))RCP_3PD
+
+(((RCP_45 
+0 RCP45_CH4     $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_CH4_2005-2100_27424.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  CH4   -     1 1
+0 RCP45_NOx     $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_NOx_2005-2100_27424.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NO    -     1 1
+0 RCP45_CO      $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_CO_2005-2100_27424.nc                             ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  CO    -     1 1
+0 RCP45_BCPO    $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_BC_2005-2100_27424.nc                             ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  BCPO  -     1 1
+0 RCP45_OCPO    $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_OC_2005-2100_27424.nc                             ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  OCPO  -     1 1
+0 RCP45_SO2     $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_SO2_2005-2100_27424.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  SO2   -     1 1
+0 RCP45_NH3     $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_NH3_2005-2100_27424.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NH3   -     1 1
+0 RCP45_C2H2    $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_acetylene_2005-2100_27424_kgC.nc                  ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C2H2  -     1 1
+0 RCP45_CH2O    $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_formaldehyde_2005-2100_27424.nc                   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  CH2O  -     1 1
+0 RCP45_BENZ    $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_benzene_2005-2100_27424_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s BENZ  -     1 1
+0 RCP45_TOLU    $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_toluene_2005-2100_27424_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s TOLU  -     1 1
+0 RCP45_XYLE    $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_xylene_2005-2100_27424_kgC.nc                     ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s XYLE  -     1 1
+0 RCP45_ALD2    $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_other_aldehydes_2005-2100_27424_kgC.nc            ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALD2  -     1 1
+0 RCP45_ALK4__A $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_butanes_2005-2100_27424_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALK4  -     1 1
+0 RCP45_ALK4__B $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_pentanes_2005-2100_27424_kgC.nc                   ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALK4  -     1 1
+0 RCP45_ALK4__C $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_hexanes_and_higher_alkanes_2005-2100_27424_kgC.nc ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALK4  -     1 1
+0 RCP45_ACET    $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_total_ketones_2005-2100_27424_kgC.nc              ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ACET  51    1 1
+0 RCP45_MEK     -                                                                                                                    -      -               - -  -        MEK   50    1 1
+0 RCP45_C2H6    $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_ethane_2005-2100_27424_kgC.nc                     ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C2H6  -     1 1
+0 RCP45_C2H4    $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_ethene_2005-2100_27424_kgC.nc                     ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C2H4  -     1 1
+0 RCP45_C3H8    $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_propane_2005-2100_27424_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C3H8  -     1 1
+0 RCP45_PRPE    $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_propene_2005-2100_27424_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s PRPE  -     1 1
+0 RCP45_HCOOH   $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_total_acids_2005-2100_27424.nc                    ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  HCOOH 57/58 1 1
+)))RCP_45
+
+(((RCP_60 
+0 RCP60_CH4     $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_CH4_2005-2100_43190.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  CH4   -     1 1
+0 RCP60_NOx     $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_NOx_2005-2100_43190.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NO    -     1 1
+0 RCP60_CO      $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_CO_2005-2100_43190.nc                             ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  CO    -     1 1
+0 RCP60_BCPO    $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_BC_2005-2100_43190.nc                             ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  BCPO  -     1 1
+0 RCP60_OCPO    $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_OC_2005-2100_43190.nc                             ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  OCPO  -     1 1
+0 RCP60_SO2     $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_SO2_2005-2100_43190.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  SO2   -     1 1
+0 RCP60_NH3     $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_NH3_2005-2100_43190.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NH3   -     1 1
+0 RCP60_C2H2    $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_acetylene_2005-2100_43190_kgC.nc                  ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C2H2  -     1 1
+0 RCP60_CH2O    $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_formaldehyde_2005-2100_43190.nc                   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  CH2O  -     1 1
+0 RCP60_BENZ    $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_benzene_2005-2100_43190_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s BENZ  -     1 1
+0 RCP60_TOLU    $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_toluene_2005-2100_43190_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s TOLU  -     1 1
+0 RCP60_XYLE    $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_xylene_2005-2100_43190_kgC.nc                     ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s XYLE  -     1 1
+0 RCP60_ALD2    $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_other_aldehydes_2005-2100_43190_kgC.nc            ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALD2  -     1 1
+0 RCP60_ALK4__A $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_butanes_2005-2100_43190_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALK4  -     1 1
+0 RCP60_ALK4__B $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_pentanes_2005-2100_43190_kgC.nc                   ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALK4  -     1 1
+0 RCP60_ALK4__C $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_hexanes_and_higher_alkanes_2005-2100_43190_kgC.nc ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALK4  -     1 1
+0 RCP60_ACET    $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_total_ketones_2005-2100_43190_kgC.nc              ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ACET  51    1 1
+0 RCP60_MEK     -                                                                                                                    -      -               - -  -        MEK   50    1 1
+0 RCP60_C2H6    $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_ethane_2005-2100_43190_kgC.nc                     ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C2H6  -     1 1
+0 RCP60_C2H4    $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_ethene_2005-2100_43190_kgC.nc                     ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C2H4  -     1 1
+0 RCP60_C3H8    $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_propane_2005-2100_43190_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C3H8  -     1 1
+0 RCP60_PRPE    $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_propene_2005-2100_43190_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s PRPE  -     1 1
+0 RCP60_HCOOH   $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_total_acids_2005-2100_43190.nc                    ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  HCOOH 57/58 1 1
+)))RCP_60
+
+(((RCP_85 
+0 RCP85_CH4     $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_CH4_2005-2100_43533.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  CH4   -     1 1
+0 RCP85_NOx     $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_NOx_2005-2100_43533.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NO    -     1 1
+0 RCP85_CO      $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_CO_2005-2100_43533.nc                             ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  CO    -     1 1
+0 RCP85_BCPO    $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_BC_2005-2100_43533.nc                             ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  BCPO  -     1 1
+0 RCP85_OCPO    $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_OC_2005-2100_43533.nc                             ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  OCPO  -     1 1
+0 RCP85_SO2     $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_SO2_2005-2100_43533.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  SO2   -     1 1
+0 RCP85_NH3     $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_NH3_2005-2100_43533.nc                            ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NH3   -     1 1
+0 RCP85_C2H2    $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_acetylene_2005-2100_43533_kgC.nc                  ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C2H2  -     1 1
+0 RCP85_CH2O    $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_formaldehyde_2005-2100_43533.nc                   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  CH2O  -     1 1
+0 RCP85_BENZ    $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_benzene_2005-2100_43533_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s BENZ  -     1 1
+0 RCP85_TOLU    $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_toluene_2005-2100_43533_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s TOLU  -     1 1
+0 RCP85_XYLE    $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_xylene_2005-2100_43533_kgC.nc                     ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s XYLE  -     1 1
+0 RCP85_ALD2    $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_other_aldehydes_2005-2100_43533_kgC.nc            ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALD2  -     1 1
+0 RCP85_ALK4__A $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_butanes_2005-2100_43533_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALK4  -     1 1
+0 RCP85_ALK4__B $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_pentanes_2005-2100_43533_kgC.nc                   ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALK4  -     1 1
+0 RCP85_ALK4__C $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_hexanes_and_higher_alkanes_2005-2100_43533_kgC.nc ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ALK4  -     1 1
+0 RCP85_ACET    $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_total_ketones_2005-2100_43533_kgC.nc              ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s ACET  51    1 1
+0 RCP85_MEK     -                                                                                                                    -      -               - -  -        MEK   50    1 1
+0 RCP85_C2H6    $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_ethane_2005-2100_43533_kgC.nc                     ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C2H6  -     1 1
+0 RCP85_C2H4    $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_ethene_2005-2100_43533_kgC.nc                     ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C2H4  -     1 1
+0 RCP85_C3H8    $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_propane_2005-2100_43533_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s C3H8  -     1 1
+0 RCP85_PRPE    $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_propene_2005-2100_43533_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s PRPE  -     1 1
+0 RCP85_HCOOH   $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_total_acids_2005-2100_43533.nc                    ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  HCOOH 57/58 1 1
+)))RCP_85
 
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
