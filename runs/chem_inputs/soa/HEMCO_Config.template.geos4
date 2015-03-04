@@ -59,6 +59,7 @@
 #  25 Feb 2015 - M. Sulprizio- Update MEGAN2.1 emissions according to Guenther
 #                              et al. (2012)
 #  02 Mar 2015 - R. Yantosca - Add RCP and eruptive/degassing emissions info
+#  04 Mar 2015 - R. Yantosca - Add UV albedoes to NON-EMISSIONS DATA section
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -148,7 +149,7 @@ END SECTION SETTINGS
     --> RCP_45            :       false
     --> RCP_60            :       false
     --> RCP_85            :       false
-# ---------------------------------------------------
+# -----------------------------------------------------------------------------
 100     Custom            : off   - 
 101     SeaFlux           : on    DMS/ACET
 102     ParaNOx           : on    NO/NO2/O3/HNO3
@@ -908,6 +909,13 @@ END SECTION EXTENSION SWITCHES
 # --- Time zones (offset to UTC) ---
 #==============================================================================
 * TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
+
+#==============================================================================
+# --- UV albedo, for photolysis (cf Hermann & Celarier, 1997) ---
+#==============================================================================
+(((+UValbedo+
+* UV_ALBEDO $ROOT/UVALBEDO/v2015-03/uvalbedo.geos.2x25.nc UVALBD 1985/1-12/1/0 C xy 1 * - 1 1
+)))+UValbedo+
 
 #==============================================================================
 # --- Linear stratospheric chemistry fields ---
