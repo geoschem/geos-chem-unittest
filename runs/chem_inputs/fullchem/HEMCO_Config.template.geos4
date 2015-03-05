@@ -170,7 +170,7 @@ END SECTION SETTINGS
     --> SALC upper radius :       8.0
     --> Emit Br2          :       true  
     --> Br2 scaling       :       1.0 
-108     MEGAN             : on    ISOP/ACET/PRPE/C2H4
+108     MEGAN             : on    ISOP/ACET/PRPE/C2H4/ALD2
     --> Isoprene scaling  :       1.0 
 109     MEGAN_Mono        : on    CO/OCPI/MONX
 110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
