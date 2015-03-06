@@ -38,6 +38,7 @@
 #  11 Apr 2014 - R. Yantosca - Add tagged CO unit tests
 #  28 Jul 2014 - R. Yantosca - Add HEMCO_ROOT directory
 #  28 Jul 2014 - R. Yantosca - 2 x 2.5 unit tests now end after 30 mins
+#  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -46,8 +47,8 @@
    VERSION     : v10-01.offline
    DESCRIPTION : Tests offline simulations in GEOS-Chem
    CODE_DIR    : /home/bmy/GC/Code.v10-01
-   DATA_ROOT   : /as/data/geos
-   HEMCO_ROOT  : {DATAROOT}/ExtData/HEMCO
+   DATA_ROOT   : /as/data/geos/ExtData
+   HEMCO_ROOT  : {DATAROOT}/HEMCO
    RUN_ROOT    : /home/bmy/UT/runs
    RUN_DIR     : {RUNROOT}/{RUNDIR}
    JOB_DIR     : /home/bmy/UT/jobs

@@ -37,17 +37,17 @@
 #  03 Feb 2014 - R. Yantosca - Initial version
 #  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
 #  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
-!  28 Jul 2014 - R. Yantosca - Added HEMCO_ROOT directory
-#EOP
+#  28 Jul 2014 - R. Yantosca - Added HEMCO_ROOT directory
+#  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData#EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
    VERSION     : v10-01.UCX
    DESCRIPTION : To test UCX strat-trop mechanism
-   CODE_DIR    : /home/bmy/GC/Code.UCX
-   DATA_ROOT   : /as/data/geos
-   HEMCO_ROOT  : {DATAROOT}/ExtData/HEMCO
+   CODE_DIR    : /home/bmy/GC/Code.v10-01
+   DATA_ROOT   : /as/data/geos/ExtData
+   HEMCO_ROOT  : {DATAROOT}/HEMCO
    RUN_ROOT    : /home/bmy/UT/runs
    RUN_DIR     : {RUNROOT}/{RUNDIR}
    JOB_DIR     : /home/bmy/UT/jobs

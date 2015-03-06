@@ -45,11 +45,11 @@
 #
 # !INPUTS:
 #
-   VERSION     : v9-02.SOA
+   VERSION     : v10-01.SOA
    DESCRIPTION : Tests SOA simulations in GEOS-Chem
    CODE_DIR    : /home/bmy/GC/Code.v10-01
-   DATA_ROOT   : /as/data/geos
-   HEMCO_ROOT  : {DATAROOT}/ExtData/HEMCO
+   DATA_ROOT   : /as/data/geos/ExtData
+   HEMCO_ROOT  : {DATAROOT}/HEMCO
    RUN_ROOT    : /home/bmy/UT/runs
    RUN_DIR     : {RUNROOT}/{RUNDIR}
    JOB_DIR     : /home/bmy/UT/jobs

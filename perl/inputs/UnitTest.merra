@@ -41,6 +41,7 @@
 #  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
 #  14 Apr 2014 - R. Yantosca - Added unit tests for POPs
 #  28 Jul 2014 - R. Yantosca - Added HEMCO_ROOT directory
+#  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -48,9 +49,9 @@
 #
    VERSION     : v10-01.merra
    DESCRIPTION : Tests MERRA simulations in GEOS-Chem
-   CODE_DIR    : /home/bmy/GC/Code.v9-02
-   DATA_ROOT   : /as/data/geos
-   HEMCO_ROOT  : {DATAROOT}/ExtData/HEMCO
+   CODE_DIR    : /home/bmy/GC/Code.v10-01
+   DATA_ROOT   : /as/data/geos/ExtData
+   HEMCO_ROOT  : {DATAROOT}/HEMCO
    RUN_ROOT    : /home/bmy/UT/runs
    RUN_DIR     : {RUNROOT}/{RUNDIR}
    JOB_DIR     : /home/bmy/UT/jobs

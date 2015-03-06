@@ -7,7 +7,7 @@ Run directory           : ./
 Input restart file      : initial_trac_rst.geosfp_4x5_fullchem
 Make new restart file?  : T
 Output restart file(s)  : trac_rst.geosfp_4x5_fullchem.YYYYMMDDhhmm
-Root data directory     : {DATA_ROOT}/GEOS_4x5/
+Root data directory     : {DATA_ROOT}
  => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
  => GEOS-5  subdir      : GEOS_5/YYYY/MM/

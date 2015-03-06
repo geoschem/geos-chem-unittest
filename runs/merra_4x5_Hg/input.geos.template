@@ -7,7 +7,7 @@ Run directory           : ./
 Input restart file      : initial_trac_rst.merra_4x5_Hg
 Make new restart file?  : T
 Output restart file(s)  : trac_rst.merra_4x5_Hg.YYYYMMDDhhmm
-Root data directory     : {DATA_ROOT}/GEOS_4x5/
+Root data directory     : {DATA_ROOT}
  => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
  => GEOS-5  subdir      : GEOS_5/YYYY/MM/
@@ -272,7 +272,7 @@ Save O3 P/L (ND20)?     : F
 Number of P/L families  : 0  
 ------------------------+------------------------------------------------------
 %%% ARCHIVED OH MENU %%%: 
-Dir w/ archived OH files: {DATA_ROOT}/GEOS_4x5/mercury_201007/ 
+Dir w/ archived OH files: {DATA_ROOT}mercury_201007/ 
 ------------------------+------------------------------------------------------
 %%% O3 P/L MENU %%%     : 
 Dir w/ O3 P/L rate files: {DATA_ROOT}/GEOS_MEAN/O3_PROD_LOSS/2003.v6-01-05/
