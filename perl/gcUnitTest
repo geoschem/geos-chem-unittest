@@ -262,6 +262,7 @@ sub doUnitTest($$) {
 #                              to YYYYMMDDhhmm format by adding "00"
 #  23 Sep 2014 - R. Yantosca - The timestamp for the HEMCO restart file is
 #                              now the same as $end.
+#  06 Mar 2015 - R. Yantosca - Skip lines that only have whitespace
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -304,6 +305,9 @@ sub doUnitTest($$) {
 
   # Loop thru each line in the file; parse information into global variables
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
+
+    # Skip if the line only has whitespace
+    while ( $txt[$i] =~ /^\s*$/ ) { $i++ };
 
     #------------------------------------------------------------------------
     # Get values for global options (these precede the list of simulations)
@@ -366,6 +370,9 @@ sub doUnitTest($$) {
       # Loop over all requested simulations
       while ( !($txt[$i] =~ m/END/ ) ) { 
 
+        # Skip if the line only has whitespace
+	while ( $txt[$i] =~ /^\s*$/ ) { $i++; }
+     
 	# Skip lines beginning with comments
 	if ( !( $txt[$i] =~ m/^\#/ ) ) {
 
