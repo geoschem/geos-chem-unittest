@@ -274,12 +274,6 @@ Turn on P/L (ND65) diag?: F
 Save O3 P/L (ND20)?     : F
 Number of P/L families  : 0  
 ------------------------+------------------------------------------------------
-%%% ARCHIVED OH MENU %%%: 
-Dir w/ archived OH files: /as/data/gcap/GCAP_4x5/POPs_201209/
-------------------------+------------------------------------------------------
-%%% O3 P/L MENU %%%     : 
-Dir w/ O3 P/L rate files: /as/data/gcap/GCAP_4x5/POPs_201209/
-------------------------+------------------------------------------------------
 %%% NESTED GRID MENU %%%:
 Save TPCORE BC's        : F
 Input BCs at 2x2.5?     : F

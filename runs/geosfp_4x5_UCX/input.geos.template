@@ -369,12 +369,6 @@ Number of P/L families  : 19
 18th chemical family    : PBC: HNO3
 19th chemical family    : LBC: HNO3
 ------------------------+------------------------------------------------------
-%%% ARCHIVED OH MENU %%%: 
-Dir w/ archived OH files: {DATA_ROOT}/GEOS_MEAN/OHmerge/v5-07-08/
-------------------------+------------------------------------------------------
-%%% O3 P/L MENU %%%     : 
-Dir w/ O3 P/L rate files: {DATA_ROOT}/GEOS_MEAN/O3_PROD_LOSS/2003.v6-01-05/
-------------------------+------------------------------------------------------
 %%% BENCHMARK MENU %%%  :  
 Save benchmark output?  : F
 File w/ initial Ox      : Ox.mass.initial
