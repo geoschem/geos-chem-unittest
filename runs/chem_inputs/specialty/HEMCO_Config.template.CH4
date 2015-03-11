@@ -40,6 +40,7 @@
 #  19 Feb 2015 - R. Yantosca - Added EDGAR and FUNG collections so that you
 #                              can turn those off at the top of the file
 #  02 Mar 2015 - R. Yantosca - Ad RCP emissions info
+#  11 Mar 2015 - M. Sulprizio- Add MIX Asian anthropogenic emissions
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -97,6 +98,7 @@ END SECTION SETTINGS
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
     --> EDGAR             :       true
+    --> MIX               :       false
     --> FUNG              :       true
     --> RCP_3PD           :       false 
     --> RCP_45            :       false
@@ -150,6 +152,17 @@ END SECTION EXTENSION SWITCHES
 0 CH4_OTHER__2          $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_2          2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
 0 CH4_OTHER__7A         $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc  ch4_7A         2004-2008/1/1/0 C xy kg/m2/s CH4 - 6 1
 )))EDGAR
+
+#==============================================================================
+# --- MIX v1.1 (Asia) ---
+#==============================================================================
+(((MIX
+0 MIX_CH4_IND $ROOT/MIX/v2015-03/MIX_Asia_CH4.generic.025x025.nc   CH4_INDUSTRY    2008/1-12/1/0 C xy kg/m2/s CH4 1003 1 45
+0 MIX_CH4_POW $ROOT/MIX/v2015-03/MIX_Asia_CH4.generic.025x025.nc   CH4_POWER       2008/1-12/1/0 C xy kg/m2/s CH4 1003 1 45
+0 MIX_CH4_RES $ROOT/MIX/v2015-03/MIX_Asia_CH4.generic.025x025.nc   CH4_RESIDENTIAL 2008/1-12/1/0 C xy kg/m2/s CH4 1003 1 45
+0 MIX_CH4_TRA $ROOT/MIX/v2015-03/MIX_Asia_CH4.generic.025x025.nc   CH4_TRANSPORT   2008/1-12/1/0 C xy kg/m2/s CH4 1003 1 45
+0 MIX_CH4_AGR $ROOT/MIX/v2015-03/MIX_Asia_CH4.generic.025x025.nc   CH4_AGRICULTURE 2008/1-12/1/0 C xy kg/m2/s CH4 1003 1 45
+)))MIX
 
 #==============================================================================
 # --- Soil absorption & termites from Fung et al, 1991 ---
@@ -266,7 +279,17 @@ END SECTION SCALE FACTORS
 ### BEGIN SECTION MASKS 
 ###############################################################################
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
-
+#
+#==============================================================================
+# Country/region masks
+#==============================================================================
+1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.nc           MASK 2000/1/1/0 C xy unitless 1 -30/30/45/70
+1001 MEXICO_MASK $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc MASK 2000/1/1/0 C xy unitless 1 -118/17/-95/33
+1002 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc         MASK 2000/1/1/0 C xy unitless 1 -141/40/-52/85
+1003 SEASIA_MASK $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc     MASK 2000/1/1/0 C xy unitless 1  60/-12/153/55
+1004 NA_MASK     $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc             MASK 2000/1/1/0 C xy unitless 1 -165/10/-40/90
+1005 USA_MASK    $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc    MASK 2000/1/1/0 C xy unitless 1 -165/10/-40/90
+#
 END SECTION MASKS 
 
 ### END OF HEMCO INPUT FILE ###

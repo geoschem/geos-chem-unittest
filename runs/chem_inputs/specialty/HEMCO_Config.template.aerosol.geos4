@@ -58,7 +58,9 @@
 #  25 Feb 2015 - M. Sulprizio- Update MEGAN2.1 emissions according to Guenther
 #                              et al. (2012)
 #  02 Mar 2015 - R. Yantosca - Add RCP and eruptive/degassing emissions info
-#  04 Mar 2015 - R. Yantosca - Add UV albedoes to NON-EMISSIONS DATA section
+#  04 Mar 2015 - R. Yantosca - Add UV albedo to the NON-EMISSIONS data section
+#  11 Mar 2015 - M. Sulprizio- Add MIX Asian anthropogenic emissions and
+#                              HTAP global anthropogenic emissions
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -132,18 +134,20 @@ END SECTION SETTINGS
     --> CAC               :       true
     --> C2H6              :       true
     --> EDGAR             :       true
+    --> HTAP              :       false
     --> EMEP              :       true
     --> GEIA              :       true
     --> NEI2005           :       true
     --> SHIP              :       true
-    --> STREETS           :       true
+    --> MIX               :       true
+    --> STREETS           :       false
     --> VOLCANO_ERUPT     :       true
     --> VOLCANO_DEGAS     :       true
     --> RCP_3PD           :       false 
     --> RCP_45            :       false
     --> RCP_60            :       false
     --> RCP_85            :       false
-# ----------------------------------------------------------------------------
+# -----------------------------------------------------------------------------
 100     Custom            : off   - 
 101     SeaFlux           : on    DMS
 105     DustDead          : on    DST1/DST2/DST3/DST4 
@@ -214,39 +218,71 @@ END SECTION EXTENSION SWITCHES
 #    GFED3 or FINN.
 #==============================================================================
 (((EDGAR
-0 EDGAR_SO2_1A1a_6C        $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A1a_6C.generic.01x01.nc        SO2 1970-2008/1/1/0 C xy kg/m2/s SO2 31    1 2
-0 EDGAR_SO4_1A1a_6C        -                                                                              -         -         - -  -       SO4 31/63 1 2 
-0 EDGAR_SO2_1A2            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A2.generic.01x01.nc            SO2 1970-2008/1/1/0 C xy kg/m2/s SO2 31    1 2
-0 EDGAR_SO4_1A2            -                                                                              -         -         - -  -       SO4 31/63 1 2 
-#0 EDGAR_SO2_1A3a_c_d_e    $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3a_c_d_e.generic.01x01.nc     SO2 1970-2008/1/1/0 C xy kg/m2/s SO2 31    1 2
-#0 EDGAR_SO4_1A3a_c_d_e    -                                                                              -         -         - -  -       SO4 31/63 1 2 
-0 EDGAR_SO2_1A3b           $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3b.generic.01x01.nc           SO2 1970-2008/1/1/0 C xy kg/m2/s SO2 31    1 2
-0 EDGAR_SO4_1A3b           -                                                                              -         -         - -  -       SO4 31/63 1 2 
-0 EDGAR_SO2_1A4            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A4.generic.01x01.nc            SO2 1970-2008/1/1/0 C xy kg/m2/s SO2 31    1 2
-0 EDGAR_SO4_1A4            -                                                                              -         -         - -  -       SO4 31/63 1 2 
-0 EDGAR_SO2_1B1_1B2_1A1b_c $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1B1_1B2_1A1b_c.generic.01x01.nc SO2 1970-2008/1/1/0 C xy kg/m2/s SO2 31    1 2
-0 EDGAR_SO4_1B1_1B2_1A1b_c -                                                                              -         -         - -  -       SO4 31/63 1 2 
-0 EDGAR_SO2_2B_2D          $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2B_2D.generic.01x01.nc          SO2 1970-2008/1/1/0 C xy kg/m2/s SO2 31    1 2
-0 EDGAR_SO4_2B_2D          -                                                                              -         -         - -  -       SO4 31/63 1 2 
-0 EDGAR_SO2_2C             $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2C.generic.01x01.nc             SO2 1970-2008/1/1/0 C xy kg/m2/s SO2 31    1 2
-0 EDGAR_SO4_2C             -                                                                              -         -         - -  -       SO4 31/63 1 2 
-#0 EDGAR_SO2_4F            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_4F.generic.01x01.nc             SO2 1970-2008/1/1/0 C xy kg/m2/s SO2 31    1 2
-#0 EDGAR_SO4_4F            -                                                                              -         -         - -  -       SO4 31/63 1 2 
-#0 EDGAR_SO2_5A_C_D_F_4E   $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_5A_C_D_F_4E.generic.01x01.nc    SO2 1970-2008/1/1/0 C xy kg/m2/s SO2 31    1 2
-#0 EDGAR_SO4_5A_C_D_F_4E   -                                                                              -         -         - -  -       SO4 31/63 1 2 
-0 EDGAR_SO2_7A             $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_7A.generic.01x01.nc             SO2 1970-2008/1/1/0 C xy kg/m2/s SO2 31    1 2
-0 EDGAR_SO4_7A             -                                                                              -         -         - -  -       SO4 31/63 1 2 
-0 EDGAR_NH3_1A1a_6         $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1a_6.generic.01x01.nc         NH3 1970-2008/1/1/0 C xy kg/m2/s NH3 38    1 2
-0 EDGAR_NH3_1A1b_c         $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1b_c.generic.01x01.nc         NH3 1970-2008/1/1/0 C xy kg/m2/s NH3 38    1 2
-0 EDGAR_NH3_1A2            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A2.generic.01x01.nc            NH3 1970-2008/1/1/0 C xy kg/m2/s NH3 38    1 2
-0 EDGAR_NH3_1A3            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A3.generic.01x01.nc            NH3 1970-2008/1/1/0 C xy kg/m2/s NH3 38    1 2
-0 EDGAR_NH3_1A4            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A4.generic.01x01.nc            NH3 1970-2008/1/1/0 C xy kg/m2/s NH3 38    1 2
-0 EDGAR_NH3_2A             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2A.generic.01x01.nc             NH3 1970-2008/1/1/0 C xy kg/m2/s NH3 38    1 2
-0 EDGAR_NH3_2B             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2B.generic.01x01.nc             NH3 1970-2008/1/1/0 C xy kg/m2/s NH3 38    1 2
-0 EDGAR_NH3_4B             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4B.generic.01x01.nc             NH3 1970-2008/1/1/0 C xy kg/m2/s NH3 38    1 2
-0 EDGAR_NH3_4C_4D          $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4C_4D.generic.01x01.nc          NH3 1970-2008/1/1/0 C xy kg/m2/s NH3 38    1 2
-#0 EDGAR_NH3_4F            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4F.generic.01x01.nc             NH3 1970-2008/1/1/0 C xy kg/m2/s NH3 38    1 2
-#0 EDGAR_NH3_5A_C_D_F_4E   $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_5A_C_D_F_4E.generic.01x01.nc    NH3 1970-2008/1/1/0 C xy kg/m2/s NH3 38    1 2
+0 EDGAR_SO2_1A1a_6C        $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A1a_6C.generic.01x01.nc        emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
+0 EDGAR_SO4_1A1a_6C        -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
+0 EDGAR_SO2_1A2            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A2.generic.01x01.nc            emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
+0 EDGAR_SO4_1A2            -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
+#0 EDGAR_SO2_1A3a_c_d_e    $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3a_c_d_e.generic.01x01.nc     emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
+#0 EDGAR_SO4_1A3a_c_d_e    -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
+0 EDGAR_SO2_1A3b           $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3b.generic.01x01.nc           emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
+0 EDGAR_SO4_1A3b           -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
+0 EDGAR_SO2_1A4            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A4.generic.01x01.nc            emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
+0 EDGAR_SO4_1A4            -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
+0 EDGAR_SO2_1B1_1B2_1A1b_c $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1B1_1B2_1A1b_c.generic.01x01.nc emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
+0 EDGAR_SO4_1B1_1B2_1A1b_c -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
+0 EDGAR_SO2_2B_2D          $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2B_2D.generic.01x01.nc          emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
+0 EDGAR_SO4_2B_2D          -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
+0 EDGAR_SO2_2C             $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2C.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
+0 EDGAR_SO4_2C             -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
+#0 EDGAR_SO2_4F            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_4F.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
+#0 EDGAR_SO4_4F            -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
+#0 EDGAR_SO2_5A_C_D_F_4E   $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_5A_C_D_F_4E.generic.01x01.nc    emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
+#0 EDGAR_SO4_5A_C_D_F_4E   -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
+0 EDGAR_SO2_7A             $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_7A.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
+0 EDGAR_SO4_7A             -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
+0 EDGAR_NH3_1A1a_6         $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1a_6.generic.01x01.nc         emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
+0 EDGAR_NH3_1A1b_c         $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1b_c.generic.01x01.nc         emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
+0 EDGAR_NH3_1A2            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A2.generic.01x01.nc            emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
+0 EDGAR_NH3_1A3            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A3.generic.01x01.nc            emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
+0 EDGAR_NH3_1A4            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A4.generic.01x01.nc            emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
+0 EDGAR_NH3_2A             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2A.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
+0 EDGAR_NH3_2B             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2B.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
+0 EDGAR_NH3_4B             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4B.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
+0 EDGAR_NH3_4C_4D          $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4C_4D.generic.01x01.nc          emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
+#0 EDGAR_NH3_4F            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4F.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
+#0 EDGAR_NH3_5A_C_D_F_4E   $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_5A_C_D_F_4E.generic.01x01.nc    emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
+)))EDGAR
+
+#==============================================================================
+# --- HTAP v2 ---
+#
+# %%% NOTE: This is an optional inventory. You may select either EDGAR or HTAP
+# for the global base emissions %%%
+#
+# ==> HTAP ship emissions are listed in the ship emissions section below
+# ==> Disable aircraft emissions and get them from AEIC instead.
+#==============================================================================
+(((HTAP
+0 HTAP_SO2_IND   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_INDUSTRY.generic.01x01.nc    emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2 11/29    1 4
+0 HTAP_SO4_IND   -                                                                   -       -                  - -  -       SO4 11/29/63 1 4
+0 HTAP_SO2_POW   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_ENERGY.generic.01x01.nc      emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2 11/29    1 4
+0 HTAP_SO4_POW   -                                                                   -       -                  - -  -       SO4 11/29/63 1 4
+0 HTAP_SO2_RES   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_RESIDENTIAL.generic.01x01.nc emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2 11/29    1 4
+0 HTAP_SO4_RES   -                                                                   -       -                  - -  -       SO4 11/29/63 1 4
+0 HTAP_SO2_TRA   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_TRANSPORT.generic.01x01.nc   emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2 11/29    1 4
+0 HTAP_SO4_TRA   -                                                                   -       -                  - -  -       SO4 11/29/63 1 4
+#0 HTAP_SO2_AIR1 $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_AIR_LTO.generic.01x01.nc     emi_so2 2008-2010/1/1/0    C xy kg/m2/s SO2 11/29    1 4
+#0 HTAP_SO4_AIR1 -                                                                   -       -                  - -  -       SO4 11/29/63 1 4
+#0 HTAP_SO2_AIR2 $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_AIR_CDS.generic.01x01.nc     emi_so2 2008-2010/1/1/0    C xy kg/m2/s SO2 11/29    1 4
+#0 HTAP_SO4_AIR2 -                                                                   -       -                  - -  -       SO4 11/29/63 1 4
+#0 HTAP_SO2_AIR3 $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_AIR_CRS.generic.01x01.nc     emi_so2 2008-2010/1/1/0    C xy kg/m2/s SO2 11/29    1 4
+#0 HTAP_SO4_AIR3 -                                                                   -       -                  - -  -       SO4 11/29/63 1 4
+0 HTAP_NH3_IND   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_INDUSTRY.generic.01x01.nc    emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1 4
+0 HTAP_NH3_POW   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_ENERGY.generic.01x01.nc      emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1 4
+0 HTAP_NH3_RES   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_RESIDENTIAL.generic.01x01.nc emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1 4
+0 HTAP_NH3_TRA   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_TRANSPORT.generic.01x01.nc   emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1 4
+0 HTAP_NH3_AGR   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_AGRICULTURE.generic.01x01.nc emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1 4
+)))HTAP
 
 #==============================================================================
 # --- BIOFUEL EMISSIONS (Yevich and Logan, 2003) ---
@@ -325,20 +361,40 @@ END SECTION EXTENSION SWITCHES
 )))STREETS
 
 #==============================================================================
+# --- MIX v1.1 (Asia) ---
+#==============================================================================
+(((MIX
+0 MIX_SO2_IND  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_INDUSTRY     2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1003    1/2 45
+0 MIX_SO4_IND  -                                                   -                -                  - -  -        SO4  11/29/63/1003 1/2 45
+0 MIX_SO2_POW  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_POWER        2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1003    1/2 45
+0 MIX_SO4_POW  -                                                   -                -                  - -  -        SO4  11/29/63/1003 1/2 45
+0 MIX_SO2_RES  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_RESIDENTIAL  2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1003    1/2 45
+0 MIX_SO4_RES  -                                                   -                -                  - -  -        SO4  11/29/63/1003 1/2 45
+0 MIX_SO2_TRA  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_TRANSPORT    2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1003    1/2 45
+0 MIX_SO4_TRA  -                                                   -                -                  - -  -        SO4  11/29/63/1003 1/2 45
+0 MIX_NH3_IND  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_INDUSTRY     2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1003          1/2 45
+0 MIX_NH3_POW  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_POWER        2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1003          1/2 45
+0 MIX_NH3_RES  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_RESIDENTIAL  2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1003          1/2 45
+0 MIX_NH3_TRA  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_TRANSPORT    2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1003          1/2 45
+0 MIX_NH3_AGR  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_AGRICULTURE  2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1003          1/2 45
+)))MIX
+
+#==============================================================================
 # --- Ship emissions ---
 #
-# --> In the defaults, ARCTAS SO2 has priority over ICOADS and CORBETT.
+# ==> In the defaults, ARCTAS SO2 has priority over ICOADS, CORBETT, and HTAP.
 #     This can be ovewritten by EMEP over Europe.
-# --> Do not use ship emissions from EDGAR v4.2 since they are lumped with
+# ==> Do not use ship emissions from EDGAR v4.2 since they are lumped with
 #     other non-road transportation (aircraft, rail, etc.) emissions
 #==============================================================================
 (((SHIP
-0 ARCTAS_SHIP_SO2    $ROOT/ARCTAS_SHIP/v2014-07/ARCTAS_ship.generic.1x1.nc SO2      2008/1/1/0      C xy kg/m2/s SO2 11       10 1
-##0 CORBETT_SHIP_SO2 $ROOT/CORBETT_SHIP/v2014-07/CORBETT_ship.geos.1x1.nc  SO2_SHIP 1985/1-12/1/0   C xy kg/m2/s SO2 -        10 3
-##0 ICOADS_SHIP_SO2  $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc          SO2      2002/1-12/1/0   C xy kg/m2/s SO2 11/15/60 10 5
+0  ARCTAS_SHIP_SO2  $ROOT/ARCTAS_SHIP/v2014-07/ARCTAS_ship.generic.1x1.nc     SO2      2008/1/1/0      C xy kg/m2/s SO2 11       10 1
+#0 CORBETT_SHIP_SO2 $ROOT/CORBETT_SHIP/v2014-07/CORBETT_ship.geos.1x1.nc      SO2_SHIP 1985/1-12/1/0   C xy kg/m2/s SO2 -        10 3
+#0 ICOADS_SHIP_SO2  $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc              SO2      2002/1-12/1/0   C xy kg/m2/s SO2 11/15/60 10 5
+#0 HTAP_SHIP_SO2    $ROOT/HTAP/v2015-03/EDGAR_HTAP_SO2_SHIPS.generic.01x01.nc emi_so2  2008-2010/1/1/0 C xy kg/m2/s SO2 11/29    10 2
 
 (((EMEP
-0 EMEP_SHIP_SO2      $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc               ShipSO2  1990-2010/1/1/0 C xy kg/m2/s SO2 61/1000  10 2
+0 EMEP_SHIP_SO2     $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc                   ShipSO2  1990-2010/1/1/0 C xy kg/m2/s SO2 61/1000  10 2
 )))EMEP
 
 )))SHIP
@@ -589,27 +645,33 @@ END SECTION BASE EMISSIONS
 #==============================================================================
 # --- annual scale factors ---
 #==============================================================================
-1  TOTFUEL_THISYR $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1985-2010/1/1/0 C xy 1  1
-2  TOTFUEL_1985   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1985/1/1/0      C xy 1 -1
-3  TOTFUEL_1999   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1999/1/1/0      C xy 1 -1
-4  TOTFUEL_2006   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2006/1/1/0      C xy 1 -1
-5  TOTFUEL_2002   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2002/1/1/0      C xy 1 -1
-16 TOTFUEL_2005   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2005/1/1/0      C xy 1 -1
-6  LIQFUEL_THISYR $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1985-2010/1/1/0 C xy 1  1
-7  LIQFUEL_1985   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1985/1/1/0      C xy 1 -1
-8  LIQFUEL_1999   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1999/1/1/0      C xy 1 -1
-9  LIQFUEL_2006   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2006/1/1/0      C xy 1 -1
-10 LIQFUEL_2002   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2002/1/1/0      C xy 1 -1
-17 LIQFUEL_2005   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2005/1/1/0      C xy 1 -1
-11 SOLFUEL_THISYR $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1985-2010/1/1/0 C xy 1  1
-12 SOLFUEL_1985   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1985/1/1/0      C xy 1 -1
-13 SOLFUEL_1999   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1999/1/1/0      C xy 1 -1
-14 SOLFUEL_2006   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2006/1/1/0      C xy 1 -1
-15 SOLFUEL_2002   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2002/1/1/0      C xy 1 -1
-18 SOLFUEL_2005   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2005/1/1/0      C xy 1 -1
-19 SOLFUEL_2008   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2008/1/1/0      C xy 1 -1
-23 LIQFUEL_2008   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2008/1/1/0      C xy 1 -1
-24 TOTFUEL_2008   $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2008/1/1/0      C xy 1 -1
+1  TOTFUEL_THISYR    $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1985-2010/1/1/0 C xy 1  1
+2  TOTFUEL_1985      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1985/1/1/0      C xy 1 -1
+3  TOTFUEL_1999      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1999/1/1/0      C xy 1 -1
+4  TOTFUEL_2006      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2006/1/1/0      C xy 1 -1
+5  TOTFUEL_2002      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2002/1/1/0      C xy 1 -1
+16 TOTFUEL_2005      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2005/1/1/0      C xy 1 -1
+27 TOTFUEL_2008_2010 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2008-2010/1/1/0 C xy 1 -1
+40 TOTFUEL_1985_2008 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1985-2008/1/1/0 C xy 1 -1
+6  LIQFUEL_THISYR    $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1985-2010/1/1/0 C xy 1  1
+7  LIQFUEL_1985      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1985/1/1/0      C xy 1 -1
+8  LIQFUEL_1999      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1999/1/1/0      C xy 1 -1
+9  LIQFUEL_2006      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2006/1/1/0      C xy 1 -1
+10 LIQFUEL_2002      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2002/1/1/0      C xy 1 -1
+17 LIQFUEL_2005      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2005/1/1/0      C xy 1 -1
+28 LIQFUEL_2008_2010 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2008-2010/1/1/0 C xy 1 -1
+41 LIQFUEL_1985_2008 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1985-2008/1/1/0 C xy 1 -1
+11 SOLFUEL_THISYR    $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1985-2010/1/1/0 C xy 1  1
+12 SOLFUEL_1985      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1985/1/1/0      C xy 1 -1
+13 SOLFUEL_1999      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1999/1/1/0      C xy 1 -1
+14 SOLFUEL_2006      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2006/1/1/0      C xy 1 -1
+15 SOLFUEL_2002      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2002/1/1/0      C xy 1 -1
+18 SOLFUEL_2005      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2005/1/1/0      C xy 1 -1
+19 SOLFUEL_2008      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2008/1/1/0      C xy 1 -1
+29 SOLFUEL_2008_2010 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2008-2010/1/1/0 C xy 1 -1
+42 SOLFUEL_1985_2008 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1985-2008/1/1/0 C xy 1 -1
+23 LIQFUEL_2008      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2008/1/1/0      C xy 1 -1
+24 TOTFUEL_2008      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2008/1/1/0      C xy 1 -1
 
 #==============================================================================
 # --- temporary scale factors for comparisons
