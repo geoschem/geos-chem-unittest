@@ -62,6 +62,13 @@
    WEB_GRID    : {LOGDIR}/{VERSION}.results.html
    WEB_PUSH    : NONE
 #
+# These attributes will be used if you are using the gcCopyRunDirs script
+# to create run directories for GEOS-Chem simulations.  They are not needed
+# to submit GEOS-Chem unit tests and will be ignored by gcUnitTest.
+#
+   COPY_CMD    : cp -rfL
+   COPY_PATH   : /as/scratch/bmy/TEST
+#
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
