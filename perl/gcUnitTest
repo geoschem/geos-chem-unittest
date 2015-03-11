@@ -263,6 +263,9 @@ sub doUnitTest($$) {
 #  23 Sep 2014 - R. Yantosca - The timestamp for the HEMCO restart file is
 #                              now the same as $end.
 #  06 Mar 2015 - R. Yantosca - Skip lines that only have whitespace
+#  11 Mar 2015 - R. Yantosca - Now do not write START, END, HMCO_END to the
+#                              job script.  We now get these values by parsing
+#                              the input.geos in each run directory.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -436,7 +439,14 @@ sub doUnitTest($$) {
 	  $makeCmd  = "$MAKE_CMD COMPILER=$COMPILER MET=$met GRID=$grid";
 	  $makeCmd .= " SIM=$sim VERSION=$VERSION LOG_DIR=$LOG_DIR";
 	  $makeCmd .= " CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR";
-	  $makeCmd .= " START=$start END=$end HMCO_END=$end"; 
+#------------------------------------------------------------------------------
+# Prior to 3/11/15:
+# We now call the getStart.pl and getEnd.pl scripts in the run directories
+# to get the start and end values by parsing the input.geos file.  This will
+# also allow the Makefiles to be used independently of the unit tester.
+# Comment out for now.  (bmy, 3/11/15)
+#	  $makeCmd .= " START=$start END=$end HMCO_END=$end"; 
+#------------------------------------------------------------------------------
 
 	  # The main log files
 	  $stdout   = "$LOG_DIR/$VERSION.stdout.log";

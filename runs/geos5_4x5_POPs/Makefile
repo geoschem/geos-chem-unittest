@@ -15,6 +15,8 @@
 #  14 Apr 2014 - R. Yantosca - Initial version
 #  02 Sep 2014 - R. Yantosca - Added extrafileclean target
 #  04 Sep 2014 - R. Yantosca - Updated for HEMCO
+#  11 Mar 2015 - R. Yantosca - Add defaults for LOG_DIR and VERSION
+#  11 Mar 2015 - R. Yantosca - Now get start and end dates via scripts
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -28,6 +30,31 @@ RUNID    :=$(notdir $(shell pwd))
 # Executables
 EXE_SP   :=geos.sp
 EXE_MP   :=geos.mp
+
+###############################################################################
+# When running in the unit tester, values for these Makefile variables will
+# passed to the make command in the unit test job script.  But now that the 
+# GEOS-Chem run directories can be generated from unit test run directories,
+# we need to add default values for these Makefile variables here.  This will
+# allow GEOS-Chem users to set up simulations independently of the unit test
+# structure. (bmy, 3/11/15)
+
+# Add default for LOG_DIR
+ifndef LOG_DIR 
+ LOG_DIR :=.
+endif
+
+# Add default for VERSION
+ifndef VERSION
+ VERSION :=GC
+endif
+###############################################################################
+
+# Get the start & end dates of the run by parsing the input.geos file
+START    :=$(shell ./getStart.pl)
+END      :=$(shell ./getEnd.pl  )
+HMCO_END :=$(END)
+
 
 # Log file names
 RESULTS  :=$(LOG_DIR)/$(VERSION).results.log
