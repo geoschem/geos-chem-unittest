@@ -13,7 +13,7 @@
 #\\
 #\\
 # !REMARKS:
-#  Designed for use with the Difference Test makefiles.
+#  Designed for use with the Unit Test and Difference Test makefiles.
 # 
 # !REVISION HISTORY: 
 #  17 Apr 2014 - R. Yantosca - Initial version
@@ -48,3 +48,4 @@ print "$start";
 
 # Return normally
 exit(0);
+#EOC
