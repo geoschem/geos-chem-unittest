@@ -98,6 +98,10 @@ END SECTION SETTINGS
     --> ARTISANAL         :       true
     --> NATURAL           :       true
     --> SOILDIST          :       true
+    --> BrOx_GC           :       true
+    --> BrOx_TOMCAT       :       false
+    --> BrOx_GMI          :       true
+    --> LRED_JNO2         :       true
 # ----------------------------------------------------------------------------
 111     GFED3             : on    Hg0
     --> CO scale factor   :       1.05
@@ -196,8 +200,46 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- Oxidant fields (O3, OH) ---
 #==============================================================================
-* GLOBAL_O3 $ROOT/O3/v2014-09/MERGE.O3.$MET.47L.$RES.nc                 O3 1985/1-12/1/0 C xyz 1     * - 1 1
-* GLOBAL_OH $ROOT/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.$MET.47L.$RES.nc OH 1985/1-12/1/0 C xyz kg/m3 * - 1 1
+* GLOBAL_O3  $ROOT/O3/v2014-09/MERGE.O3.geos5.72L.2x25.nc                 O3 1985/1-12/1/0 C xyz v/v   * - 1 1
+* GLOBAL_OH  $ROOT/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.geos5.72L.2x25.nc OH 1985/1-12/1/0 C xyz kg/m3 * - 1 1
+
+#==============================================================================
+# --- BrOx fields --
+#==============================================================================
+(((BrOx_GC
+* Br_GC      $ROOT/MERCURY/v2014-09/BrOx/BrOx.GC.geos5.2x25.nc  Br     2007/1-12/1/0 C xyz ppbv * - 1 1
+* BrO_GC     -                                                  BrO    -             - -   ppbv * - 1 1
+)))BrOx_GC
+
+(((BrOx_TOMCAT
+* Br_TOMCAT  $ROOT/MERCURY/v2014-09/BrOx/BrOx.GMI.geos5.2x25.nc LBRO2N 1985/1-12/1/0 C xyz pptv * - 1 1
+* BrO_TOMCAT -                                                  LBRO2H -             - -   pptv * - 1 1
+)))BrOx_TOMCAT
+
+(((BrOx_GMI
+* Br_GMI     $ROOT/MERCURY/v2014-09/BrOx/BrOx.GMI.geos5.2x25.nc LBRO2N 1985/1-12/1/0 C xyz pptv * - 1 1
+* BrO_GMI    -                                                  LBRO2H -             - -   pptv * - 1 1
+)))BrOx_GMI
+
+#==============================================================================
+# --- J-value fields ---
+#==============================================================================
+* JBrO $ROOT/MERCURY/v2014-09/JVALUES/jBrO.daytime.geos5.2x25.nc JBrO 2002/1-12/1/0 C xyz s-1 * - 1 1
+(((LRED_JNO2
+* JNO2 $ROOT/MERCURY/v2014-09/JVALUES/jvalues.noon.geos5.2x25.nc JNO2 2005/1-12/1/0 C xyz s-1 * - 1 1
+)))LRED_JNO2
+
+#==============================================================================
+# --- Aerosol data for Hg2 partitioning ---
+#==============================================================================
+* AERO_SO4  $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc SO4  2007/1/1/0 C xyz ppbv * - 1 1
+* AERO_NH4  -                                                                   NH4  -          - -   ppbv * - 1 1
+* AERO_NIT  -                                                                   NIT  -          - -   ppbv * - 1 1
+* AERO_BCPI -                                                                   BCPI -          - -   ppbv * - 1 1
+* AERO_BCPO -                                                                   BCPO -          - -   ppbv * - 1 1
+* AERO_OCPI -                                                                   OCPI -          - -   ppbv * - 1 1
+* AERO_OCPO -                                                                   OCPO -          - -   ppbv * - 1 1
+* AERO_DST1 -                                                                   DST1 -          - -   ppbv * - 1 1
 
 END SECTION BASE EMISSIONS 
 
