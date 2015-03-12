@@ -41,6 +41,7 @@
 #                              can turn those off at the top of the file
 #  02 Mar 2015 - R. Yantosca - Ad RCP emissions info
 #  11 Mar 2015 - M. Sulprizio- Add MIX Asian anthropogenic emissions
+#  12 Mar 2015 - R. Yantosca - Now read the 2x25 72-layer OH file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -262,8 +263,8 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- Quantities needed for CH4 chemistry ---
 #==============================================================================
-* CH4_LOSS   $ROOT/CH4/v2014-09/4x5/gmi.ch4loss.geos5_47L.4x5.nc              CH4loss 1985/1-12/1/0 C xyz s-1   * - 1 1
-* GLOBAL_OH  $ROOT/OH/v2014-09/v5-07-08/OH_3Dglobal.$MET.{LEVRED}.$RES.nc OH      1985/1-12/1/0 C xyz kg/m3 * - 1 1
+* CH4_LOSS   $ROOT/CH4/v2014-09/4x5/gmi.ch4loss.geos5_47L.4x5.nc          CH4loss 1985/1-12/1/0 C xyz s-1   * - 1 1
+* GLOBAL_OH  $ROOT/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.geos5.72L.2x25.nc OH      1985/1-12/1/0 C xyz kg/m3 * - 1 1
 
 END SECTION BASE EMISSIONS 
 

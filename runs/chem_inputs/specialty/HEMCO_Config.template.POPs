@@ -39,6 +39,7 @@
 #                              (c) Removed section extension data. These fields
 #                                  are now listed in section base emissions.
 #                              (d) Fields can now cover multiple categories.
+#  12 Mar 2015 - R. Yantosca - Now read oxidant fields on 2x25 72 level grid
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -138,12 +139,10 @@ END SECTION EXTENSION SWITCHES
 * TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
 
 #==============================================================================
-# --- Oxidant fields (O3, OH) ---
-#
-# (needed for chemistry, not used for emission calculation)
+# --- Oxidant fields (O3, OH) --
 #==============================================================================
-* GLOBAL_O3 $ROOT/O3/v2014-09/MERGE.O3.$MET.{LEVRED}.$RES.nc                 O3 1985/1-12/1/0 C xyz 1     * - 1 1
-* GLOBAL_OH $ROOT/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.$MET.{LEVRED}.$RES.nc OH 1985/1-12/1/0 C xyz kg/m3 * - 1 1
+* GLOBAL_O3  $ROOT/O3/v2014-09/MERGE.O3.geos5.72L.2x25.nc                 O3 1985/1-12/1/0 C xyz v/v   * - 1 1
+* GLOBAL_OH  $ROOT/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.geos5.72L.2x25.nc OH 1985/1-12/1/0 C xyz kg/m3 * - 1 1
 
 END SECTION BASE EMISSIONS 
 

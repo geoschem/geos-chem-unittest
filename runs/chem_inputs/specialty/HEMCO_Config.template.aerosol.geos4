@@ -61,6 +61,7 @@
 #  04 Mar 2015 - R. Yantosca - Add UV albedo to the NON-EMISSIONS data section
 #  11 Mar 2015 - M. Sulprizio- Add MIX Asian anthropogenic emissions and
 #                              HTAP global anthropogenic emissions
+#  12 Mar 2015 - R. Yantosca - Now read oxidants files at 2x25 resolution
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -627,13 +628,13 @@ END SECTION EXTENSION SWITCHES
 #
 # (needed for chemistry, not used for emission calculation)
 #==============================================================================
-* PH2O2       $ROOT/OFFLINE_AEROSOL/v2014-09/PH2O2.$MET.$RES.nc            PH2O2 1985/1-12/1/0 C xyz kg/m3/s * - 1 1
-* JH2O2       $ROOT/OFFLINE_AEROSOL/v2014-09/JH2O2.$MET.$RES.nc            JH2O2 1985/1-12/1/0 C xyz 1/s     * - 1 1
-* O3          $ROOT/OFFLINE_AEROSOL/v2014-09/O3.$MET.$RES.nc               O3    1985/1-12/1/0 C xyz v/v     * - 1 1
-* GLOBAL_NO3  $ROOT/OFFLINE_AEROSOL/v2014-09/NO3.$MET.$RES.nc              NO3   1985/1-12/1/0 C xyz v/v     * - 1 1
-* GLOBAL_HNO3 $ROOT/OFFLINE_AEROSOL/v2014-09/THNO3.$MET.$RES.nc            THNO3 1985/1-12/1/0 C xyz v/v     * - 1 1
-* GLOBAL_OH   $ROOT/OH/v2014-09/v5-07-08/OH_3Dglobal.$MET.{LEVRED}.$RES.nc OH    1985/1-12/1/0 C xyz kg/m3   * - 1 1
-#
+* PH2O2       $ROOT/OFFLINE_AEROSOL/v2014-09/PH2O2.geos5.2x25.nc       PH2O2 1985/1-12/1/0 C xyz kg/m3/s * - 1 1
+* JH2O2       $ROOT/OFFLINE_AEROSOL/v2014-09/JH2O2.geos5.2x25.nc       JH2O2 1985/1-12/1/0 C xyz 1/s     * - 1 1
+* O3          $ROOT/OFFLINE_AEROSOL/v2014-09/O3.geos5.2x25.nc          O3    1985/1-12/1/0 C xyz v/v     * - 1 1
+* GLOBAL_NO3  $ROOT/OFFLINE_AEROSOL/v2014-09/NO3.geos5.2x25.nc         NO3   1985/1-12/1/0 C xyz v/v     * - 1 1
+* GLOBAL_HNO3 $ROOT/OFFLINE_AEROSOL/v2014-09/THNO3.geos5.2x25.nc       THNO3 1985/1-12/1/0 C xyz v/v     * - 1 1
+* GLOBAL_OH   $ROOT/OH/v2014-09/v5-07-08/OH_3Dglobal.geos5.72L.2x25.nc OH    1985/1-12/1/0 C xyz kg/m3 * - 1 1
+
 END SECTION BASE EMISSIONS 
 
 ###############################################################################
