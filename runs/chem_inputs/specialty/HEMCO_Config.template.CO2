@@ -38,6 +38,7 @@
 #                              (c) Removed section extension data. These fields
 #                                  are now listed in section base emissions.
 #                              (d) Fields can now cover multiple categories.
+#  12 Mar 2015 - M. Sulprizio- Add MIX Asian anthropogenic emissions
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -99,6 +100,7 @@ END SECTION SETTINGS
     --> GENERIC           :       false
     --> ANNUAL            :       false
     --> MONTHLY           :       true
+    --> MIX               :       false
     --> BBIO_DIURNAL      :       false
     --> BBIO_DAILY        :       true
     --> BIOFUEL           :       true
@@ -132,18 +134,28 @@ END SECTION EXTENSION SWITCHES
 #===============================================================================
 (((GENERIC
 0 FOSSILCO2_GENERIC  $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.geos.2x25.noav.nc         CO2 1985/1/1/0         C xy kg/m2/s CO2ff   - 1 1 
-0 FOSSILCORR_GENERIC -                                                                      -   -                  - -  -       CO2corr 1 1 1
+0 FOSSILCORR_GENERIC -                                                             -   -                  - -  -       CO2corr 1 1 1
 )))GENERIC
 
 (((ANNUAL
 0 FOSSILCO2_ANNUAL   $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.annual.geos.2x25.noav.nc  CO2 1979-2009/1/1/0    C xy kg/m2/s CO2ff   - 1 2 
-0 FOSSILCORR_ANNUAL  -                                                                      -   -                  - -  -       CO2corr 1 1 2 
+0 FOSSILCORR_ANNUAL  -                                                             -   -                  - -  -       CO2corr 1 1 2 
 )))ANNUAL
 
 (((MONTHLY
 0 FOSSILCO2_MONTHLY  $ROOT/CO2/v2014-09/FOSSIL/fossilCO2.monthly.geos.2x25.noav.nc CO2 1979-2009/1-12/1/0 C xy kg/m2/s CO2ff   - 1 3 
-0 FOSSILCORR_MONTHLY -                                                                      -   -                  - -  -       CO2corr 1 1 3 
+0 FOSSILCORR_MONTHLY -                                                             -   -                  - -  -       CO2corr 1 1 3 
 )))MONTHLY
+
+#==============================================================================
+# --- MIX v1.1 (Asia) ---
+#==============================================================================
+(((MIX
+0 MIX_CO2_IND $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_INDUSTRY    2008-2010/1-12/1/0 C xy kg/m2/s CO2ff 1003 1 45
+0 MIX_CO2_POW $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_POWER       2008-2010/1-12/1/0 C xy kg/m2/s CO2ff 1003 1 45
+0 MIX_CO2_RES $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_RESIDENTIAL 2008-2010/1-12/1/0 C xy kg/m2/s CO2ff 1003 1 45
+0 MIX_CO2_TRA $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_TRANSPORT   2008-2010/1-12/1/0 C xy kg/m2/s CO2ff 1003 1 45
+)))MIX
 
 #===============================================================================
 # --- AVIATION EMISSIONS ---
@@ -339,7 +351,15 @@ END SECTION SCALE FACTORS
 ################################################################################
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
 #
+#==============================================================================
 # Country/region masks
+#==============================================================================
+1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.nc           MASK 2000/1/1/0 C xy unitless 1 -30/30/45/70
+1001 MEXICO_MASK $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc MASK 2000/1/1/0 C xy unitless 1 -118/17/-95/33
+1002 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc         MASK 2000/1/1/0 C xy unitless 1 -141/40/-52/85
+1003 SEASIA_MASK $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc     MASK 2000/1/1/0 C xy unitless 1  60/-12/153/55
+1004 NA_MASK     $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc             MASK 2000/1/1/0 C xy unitless 1 -165/10/-40/90
+1005 USA_MASK    $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc    MASK 2000/1/1/0 C xy unitless 1 -165/10/-40/90
 #
 END SECTION MASKS 
  
