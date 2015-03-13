@@ -18,6 +18,7 @@
 # !REVISION HISTORY: 
 #  17 Apr 2014 - R. Yantosca - Initial version
 #  31 Oct 2014 - R. Yantosca - Now returns end in YYYYMMDDhhmm format
+#  13 Mar 2015 - R. Yantosca - Skip if input.geos is not found
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -34,16 +35,20 @@ my $hco_end = 0;
 # Arrays
 my @strings = ();
 
-# Grep for start date & time in input.geos
-$line       = qx( grep "End   YYYYMMDD" ./input.geos );
-chomp( $line );
+# Make sure that an input.geos file is found; otherwise print a "";
+if ( -f "./input.geos" ) {
 
-# Split by spaces
-@strings    = split( ' ', $line );
+  # Grep for start date & time in input.geos
+  $line       = qx( grep "End   YYYYMMDD" ./input.geos );
+  chomp( $line );
 
-# Place into YYYYMMDDhhmm format
-$end        = "$strings[4]$strings[5]";
-$end        = substr( $end, 0, 12 );
+  # Split by spaces
+  @strings    = split( ' ', $line );
+
+  # Place into YYYYMMDDhhmm format
+  $end        = "$strings[4]$strings[5]";
+  $end        = substr( $end, 0, 12 );
+}
 
 # Print the result so tha the Makefile can grab it
 print "$end";
