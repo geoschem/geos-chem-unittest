@@ -37,6 +37,7 @@
 #                              (c) Removed section extension data. These fields
 #                                  are now listed in section base emissions.
 #                              (d) Fields can now cover multiple categories.
+#  13 Mar 2015 - R. Yantosca - Add more netCDF files for Hg simulation
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -102,6 +103,7 @@ END SECTION SETTINGS
     --> BrOx_TOMCAT       :       false
     --> BrOx_GMI          :       true
     --> LRED_JNO2         :       true
+    --> OCEAN_Hg          :       true
 # ----------------------------------------------------------------------------
 111     GFED3             : on    Hg0
     --> CO scale factor   :       1.05
@@ -240,6 +242,16 @@ END SECTION EXTENSION SWITCHES
 * AERO_OCPI -                                                                   OCPI -          - -   ppbv * - 1 1
 * AERO_OCPO -                                                                   OCPO -          - -   ppbv * - 1 1
 * AERO_DST1 -                                                                   DST1 -          - -   ppbv * - 1 1
+
+#==============================================================================
+# --- Data for the ocean mercury module ---
+#==============================================================================
+(((OCEAN_Hg
+* OCEAN_CHLA    $ROOT/CHLA/v2014-07/Chl_2003.geos.1x1.nc              CHLA    2003/1-12/1/0 C xy kg/m3 * - 1 1
+* OCEAN_EKMAN_V $ROOT/MERCURY/v2014-09/OCEAN/ekman_upvel.geos.2x25.nc EKMAN_V 1985/1-12/1/0 C xy m/s   * - 1 1
+* OCEAN_MLD     $ROOT/MERCURY/v2014-09/OCEAN/mld.geos.2x25.nc         MLD     1985/1-12/1/0 C xy m     * - 1 1
+* OCEAN_NPP     $ROOT/MERCURY/v2014-09/OCEAN/NPP_2003.geos.2x25.nc    NPP     2003/1-12/1/0 C xy kg/m2 * - 1 1
+)))OCEAN_Hg
 
 END SECTION BASE EMISSIONS 
 
