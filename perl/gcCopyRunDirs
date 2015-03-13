@@ -214,6 +214,7 @@ sub doCopyDirs($$) {
 #
 # !REVISION HISTORY:
 #  22 Aug 2013 - R. Yantosca - Initial version, based on gcUnitTest
+#  13 Mar 2015 - M. Sulprizio- Now get username for file paths
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -232,6 +233,7 @@ sub doCopyDirs($$) {
   my $runDir  = "";
   my $sim     = "";
   my $start   = "";
+  my $user    = "";
 
   # Arrays
   my @txt     = ();
@@ -244,6 +246,9 @@ sub doCopyDirs($$) {
   open( I, "<$fileName" ) or die "Cannot open $fileName!\n";
   chomp( @txt = <I> );
   close( I );
+
+  # Get username
+  $user= getpwuid($<);
 
   # Loop thru each line in the file; parse information into global variables
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
@@ -280,6 +285,9 @@ sub doCopyDirs($$) {
     elsif ( $txt[$i] =~ "!RUNS"     ) {
 
       # Replace tokens in a few more variables
+      $RUN_ROOT   =~ s/{USER}/$user/g;
+      $JOB_DIR    =~ s/{USER}/$user/g;
+      $LOG_DIR    =~ s/{USER}/$user/g;
       $LOG_DIR    =~ s/{VERSION}/$VERSION/g;
       $HEMCO_ROOT =~ s/{DATAROOT}/$DATA_ROOT/g;
       $RUN_DIR    =~ s/{RUNROOT}/$RUN_ROOT/g;

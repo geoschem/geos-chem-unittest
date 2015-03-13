@@ -42,6 +42,7 @@
 #  24 Apr 2014 - R. Yantosca - Added geos4_4x5_CH4, geos4_4x5_tagO3
 #  28 Jul 2014 - R. Yantosca - Added HEMCO_ROOT directory
 #  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
+#  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -49,14 +50,14 @@
 #
    VERSION     : v10-01.geos4
    DESCRIPTION : Tests GEOS-4 simulations in GEOS-Chem
-   CODE_DIR    : /home/bmy/GC/Code.v10-01
+   CODE_DIR    : /home/{USER}/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos/ExtData
    HEMCO_ROOT  : {DATAROOT}/HEMCO
-   RUN_ROOT    : /home/bmy/UT/runs
+   RUN_ROOT    : /home/{USER}/UT/runs
    RUN_DIR     : {RUNROOT}/{RUNDIR}
-   JOB_DIR     : /home/bmy/UT/jobs
-   LOG_DIR     : /home/bmy/UT/logs/{VERSION}
-   PERL_DIR    : /home/bmy/UT/perl
+   JOB_DIR     : /home/{USER}/UT/jobs
+   LOG_DIR     : /home/{USER}/UT/logs/{VERSION}
+   PERL_DIR    : /home/{USER}/UT/perl
    COMPILER    : ifort
    MAKE_CMD    : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
    SUBMIT      : submit smp4
@@ -68,7 +69,7 @@
 # to submit GEOS-Chem unit tests and will be ignored by gcUnitTest.
 #
    COPY_CMD    : cp -rfL
-   COPY_PATH   : /as/scratch/bmy/TEST
+   COPY_PATH   : /as/scratch/{USER}/TEST
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.

@@ -266,6 +266,7 @@ sub doUnitTest($$) {
 #  11 Mar 2015 - R. Yantosca - Now do not write START, END, HMCO_END to the
 #                              job script.  We now get these values by parsing
 #                              the input.geos in each run directory.
+#  13 Mar 2015 - M. Sulprizio- Now get username for file paths
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -292,6 +293,7 @@ sub doUnitTest($$) {
   my $stdout  = "";
   my $start   = "";
   my $locTime = "";
+  my $user    = "";
 
   # Arrays
   my @cmds    = ();
@@ -305,6 +307,9 @@ sub doUnitTest($$) {
   open( I, "<$fileName" ) or die "Cannot open $fileName!\n";
   chomp( @txt = <I> );
   close( I );
+
+  # Get username
+  $user= getpwuid($<);
 
   # Loop thru each line in the file; parse information into global variables
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
@@ -349,9 +354,14 @@ sub doUnitTest($$) {
       # Append the version tag to the log directory
       # So that we can keep several log files simultaneously
       $LOG_DIR =~ s/{VERSION}/$VERSION/g;
+      $LOG_DIR =~ s/{USER}/$user/g;
       if ( !( -f $LOG_DIR ) ) { qx( mkdirhier $LOG_DIR ); }
 
       # Replace directory tokens in a few more variables
+      $CODE_DIR   =~ s/{USER}/$user/g;
+      $RUN_ROOT   =~ s/{USER}/$user/g;
+      $JOB_DIR    =~ s/{USER}/$user/g;
+      $PERL_DIR   =~ s/{USER}/$user/g;
       $TEMPLATE   =~ s/{PERLDIR}/$PERL_DIR/g;
       $WEB_GRID   =~ s/{VERSION}/$VERSION/g;
       $WEB_GRID   =~ s/{LOGDIR}/$LOG_DIR/g;
