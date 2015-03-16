@@ -60,6 +60,7 @@ HMCO_END :=$(END)
 RESULTS  :=$(LOG_DIR)/$(VERSION).results.log
 LOG_SP   :=$(LOG_DIR)/$(VERSION).$(RUNID).sp
 LOG_MP   :=$(LOG_DIR)/$(VERSION).$(RUNID).mp
+LOG_HMCO :=HEMCO.log
 
 # Output file names
 TRAC_AVG :=trac_avg.$(RUNID).$(START)
@@ -92,6 +93,7 @@ sp:
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).sp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
 	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).sp;  fi;
+	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
 
 mp:
 	rm -f $(LOG_MP)
@@ -101,6 +103,7 @@ mp:
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
 	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).mp;  fi;
+	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
 
 check:
 	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
