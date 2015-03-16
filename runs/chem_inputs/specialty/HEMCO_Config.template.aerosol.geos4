@@ -62,6 +62,7 @@
 #  11 Mar 2015 - M. Sulprizio- Add MIX Asian anthropogenic emissions and
 #                              HTAP global anthropogenic emissions
 #  12 Mar 2015 - R. Yantosca - Now read oxidants files at 2x25 resolution
+#  16 Mar 2015 - M. Sulprizio- Add mask file for MIX Asia region
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -365,19 +366,19 @@ END SECTION EXTENSION SWITCHES
 # --- MIX v1.1 (Asia) ---
 #==============================================================================
 (((MIX
-0 MIX_SO2_IND  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_INDUSTRY     2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1003    1/2 45
-0 MIX_SO4_IND  -                                                   -                -                  - -  -        SO4  11/29/63/1003 1/2 45
-0 MIX_SO2_POW  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_POWER        2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1003    1/2 45
-0 MIX_SO4_POW  -                                                   -                -                  - -  -        SO4  11/29/63/1003 1/2 45
-0 MIX_SO2_RES  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_RESIDENTIAL  2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1003    1/2 45
-0 MIX_SO4_RES  -                                                   -                -                  - -  -        SO4  11/29/63/1003 1/2 45
-0 MIX_SO2_TRA  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_TRANSPORT    2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1003    1/2 45
-0 MIX_SO4_TRA  -                                                   -                -                  - -  -        SO4  11/29/63/1003 1/2 45
-0 MIX_NH3_IND  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_INDUSTRY     2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1003          1/2 45
-0 MIX_NH3_POW  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_POWER        2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1003          1/2 45
-0 MIX_NH3_RES  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_RESIDENTIAL  2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1003          1/2 45
-0 MIX_NH3_TRA  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_TRANSPORT    2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1003          1/2 45
-0 MIX_NH3_AGR  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_AGRICULTURE  2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1003          1/2 45
+0 MIX_SO2_IND  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_INDUSTRY     2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1006    1/2 45
+0 MIX_SO4_IND  -                                                   -                -                  - -  -        SO4  11/29/63/1006 1/2 45
+0 MIX_SO2_POW  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_POWER        2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1006    1/2 45
+0 MIX_SO4_POW  -                                                   -                -                  - -  -        SO4  11/29/63/1006 1/2 45
+0 MIX_SO2_RES  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_RESIDENTIAL  2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1006    1/2 45
+0 MIX_SO4_RES  -                                                   -                -                  - -  -        SO4  11/29/63/1006 1/2 45
+0 MIX_SO2_TRA  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_TRANSPORT    2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1006    1/2 45
+0 MIX_SO4_TRA  -                                                   -                -                  - -  -        SO4  11/29/63/1006 1/2 45
+0 MIX_NH3_IND  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_INDUSTRY     2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1006          1/2 45
+0 MIX_NH3_POW  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_POWER        2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1006          1/2 45
+0 MIX_NH3_RES  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_RESIDENTIAL  2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1006          1/2 45
+0 MIX_NH3_TRA  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_TRANSPORT    2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1006          1/2 45
+0 MIX_NH3_AGR  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_AGRICULTURE  2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1006          1/2 45
 )))MIX
 
 #==============================================================================
@@ -833,12 +834,13 @@ END SECTION SCALE FACTORS
 #==============================================================================
 # Country/region masks
 #==============================================================================
-1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.nc           MASK 2000/1/1/0 C xy unitless 1 -30/30/45/70
-1001 MEXICO_MASK $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc MASK 2000/1/1/0 C xy unitless 1 -118/17/-95/33
-1002 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc         MASK 2000/1/1/0 C xy unitless 1 -141/40/-52/85
-1003 SEASIA_MASK $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc     MASK 2000/1/1/0 C xy unitless 1  60/-12/153/55
-1004 NA_MASK     $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc             MASK 2000/1/1/0 C xy unitless 1 -165/10/-40/90
-1005 USA_MASK    $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc    MASK 2000/1/1/0 C xy unitless 1 -165/10/-40/90
+1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.nc            MASK 2000/1/1/0 C xy unitless 1 -30/30/45/70
+1001 MEXICO_MASK $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc  MASK 2000/1/1/0 C xy unitless 1 -118/17/-95/33
+1002 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc          MASK 2000/1/1/0 C xy unitless 1 -141/40/-52/85
+1003 SEASIA_MASK $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc      MASK 2000/1/1/0 C xy unitless 1  60/-12/153/55
+1004 NA_MASK     $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc              MASK 2000/1/1/0 C xy unitless 1 -165/10/-40/90
+1005 USA_MASK    $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc     MASK 2000/1/1/0 C xy unitless 1 -165/10/-40/90
+1006 ASIA_MASK   $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc MASK 2000/1/1/0 C xy unitless 1 46/-12/180/82
 #
 END SECTION MASKS 
 
