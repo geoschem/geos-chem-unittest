@@ -5,23 +5,27 @@
 #
 # !MODULE: HEMCO_Config.rc
 #
-# !DESCRIPTION: Contains configuration information for HEMCO.  Define the
-#  emissions inventories and corresponding file paths here.
+# !DESCRIPTION: Contains configuration information for HEMCO. Define the
+#  emissions inventories and corresponding file paths here. Entire 
+#  configuration files can be inserted into this configuration file with
+#  an '>>>include' statement, e.g. '>>>include HEMCO\_Config\_test.rc' 
+#  The settings of include-files will be ignored.
 #\\
 #\\
 # !REMARKS:
 #  The following tokens will be replaced:
 #  (1) ROOT    : Filepath to HEMCO root directory
-#  (2) MET     : Met field type (from G-C compilation command)
-#  (3) GRID    : Horizontal grid type (from G-C compilation command)
-#  (4) SIM     : Simulation type (from G-C compilation command)
-#  (5) NEST    : Nested-grid type (CH, EU, NA, SE)
-#  (6) LNOX    : String for OTD/LIS lightning NOx files:
+#  (2) CFDIR   : Filepath to directory of this configuration file. 
+#  (3) MET     : Met field type (from G-C compilation command)
+#  (4) GRID    : Horizontal grid type (from G-C compilation command)
+#  (5) SIM     : Simulation type (from G-C compilation command)
+#  (6) NEST    : Nested-grid type (CH, EU, NA, SE)
+#  (7) LNOX    : String for OTD/LIS lightning NOx files:
 #                (a) For GEOS-5 this is either "geos5.1.0" or "geos5.2.0".  
 #                (b) For other met fields, this is the same as MET.
-#  (7) LEVRED  : String w/ the # of levels in the reduced GEOS-Chem grid
+#  (8) LEVRED  : String w/ the # of levels in the reduced GEOS-Chem grid
 #                as used in some filenames (e.g. "23L", "30L", "47L")
-#  (8) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
+#  (9) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
 #                as used in some filenames (e.g. "55L", "72L")
 # 
 # !REMARKS:
@@ -37,11 +41,17 @@
 #                              (c) Removed section extension data. These fields
 #                                  are now listed in section base emissions.
 #                              (d) Fields can now cover multiple categories.
+#  11 Mar 2015 - C. Keller   - Added 'negative' bracket, e.g. data within a
+#                              bracket leading by '--' is only considered if 
+#                              this collection name is disabled.
+#  13 Mar 2015 - C. Keller   - Added option to include other configuration 
+#                              files by listing them as '>>>include CF_Name'.
+#                              Added token '$CFDIR'. 
 #  13 Mar 2015 - R. Yantosca - Add more netCDF files for Hg simulation
+#  16 Mar 2015 - M. Sulprizio- Add GFED4 entries from Christoph Keller
 #EOP
 #------------------------------------------------------------------------------
 #BOC
-#
 ###############################################################################
 ### BEGIN SECTION SETTINGS
 ###############################################################################
@@ -54,8 +64,7 @@ Separator:                   /
 Unit tolerance:              1
 Negative values:             0
 Only unitless scale factors: false
-Verbose:                     true
-Track code:                  false
+Verbose:                     3
 Show warnings:               true
 #
 END SECTION SETTINGS 
@@ -70,27 +79,20 @@ END SECTION SETTINGS
 ### section 'base emissions' will only be read if the corresponding extension 
 ### (identified by ExtNr) is enabled. Similarly, fields grouped into data 
 ### collections ('(((CollectionName', ')))CollectionName') are only considered
-### if the corresponding data collection is enabled in this section.
+### if the corresponding data collection is enabled in this section. Data
+### listed within a disabled extension are always ignored, even if they are
+### grouped in an enabled collection (e.g. GFED-4 data will never be considered
+### if the GFED extension is disabled, even if the GFED4 option is set to true).
 ###
-### All species to be used by HEMCO can be given explicitly in the Species 
-### section of extension 'Base'. For example,
+### It is possible to define collections that are only evaluated if a
+### collection name is *not* enabled. This is achieved by leading the
+### collection name with '.not.', e.g. '(((.not.FINN_daily' ...
+### '))).not.FINN_daily' for FINN monthly data (only used if daily data is
+### not being used). 
 ###
-### 0       Base              : on    NO/NO2/CO
-###
-### will only activate NO, NO2 and CO as HEMCO species. All other fields will 
-### be ignored entirely. This is even true for species only used in another 
-### extension. For instance, if the dust emission extension shall be used, 
-### the dust species must be set explicitly as base species:
-###
-### 0       Base              : on    NO/NO2/CO/DST1/DST2/DST3/DST4
-###
-### The wildcard character can be used to use all possible species (species 
-### used in HEMCO and defined by GEOS-Chem). This is recommended:
-###
-### 0       Base              : on    *
-###
-### Make sure that the ExtNr provided here matches with the ExtNr provided in 
-### the base emissions sections. Otherwise, the listed files won't be read!
+### The ExtNr provided in this section must match with the ExtNr assigned to
+### the data listed in the base emissions sections. Otherwise, the listed files
+### won't be read!
 ###############################################################################
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
@@ -106,16 +108,23 @@ END SECTION SETTINGS
     --> LRED_INPLUME      :       true
     --> OCEAN_Hg          :       true
 # ----------------------------------------------------------------------------
-111     GFED3             : on    Hg0
+111     GFED              : on    Hg0
+    --> GFED3             :       true 
+    --> GFED4             :       false
+    --> GFED_daily        :       false
+    --> GFED_3hourly      :       false
     --> CO scale factor   :       1.05
-112     GFED3_daily       : off   -
-113     GFED3_3hourly     : off   -
-#
+    --> POA scale factor  :       1.27
+    --> NAP scale factor  :       2.75e-4
+    --> hydrophilic BC    :       0.2
+    --> hydrophilic OC    :       0.5
+
 END SECTION EXTENSION SWITCHES 
 
 ###############################################################################
 ### BEGIN SECTION BASE EMISSIONS 
 ###############################################################################
+
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
 
 #==============================================================================
@@ -175,15 +184,29 @@ END SECTION EXTENSION SWITCHES
 # --- GFED3 biomass burning emissions (Extension 111) 
 # NOTE: These are the base emissions in kgDM/m2/s.
 #==============================================================================
-111 GFED3_WDL        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__WDL_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED3_AGW        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__AGW_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED3_DEF        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__DEF_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED3_FOR        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__FOR_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED3_PET        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__PET_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED3_SAV        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__SAV_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 HUMTROP          $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy unitless  * - 1 1
-112 GFED3_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  C xy unitless  * - 1 1
-113 GFED3_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 C xy unitless  * - 1 1
+111 GFED_HUMTROP    $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy unitless  * - 1 1
+(((GFED3   
+111 GFED_WDL        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__WDL_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_AGW        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__AGW_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_DEF        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__DEF_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_FOR        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__FOR_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_PET        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__PET_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_SAV        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__SAV_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
+)))GFED3  
+(((GFED4
+111 GFED_WDL        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       WDL_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
+111 GFED_AGW        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       AGW_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
+111 GFED_DEF        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       DEF_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
+111 GFED_FOR        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       FOR_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
+111 GFED_PET        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       PET_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
+111 GFED_SAV        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       SAV_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
+)))GFED4
+(((GFED_daily
+112 GFED_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  R xy unitless  * - 1 1
+)))GFED_daily
+(((GFED_3hourly
+113 GFED_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 R xy unitless  * - 1 1
+)))GFED_3hourly
 
 ###############################################################################
 ### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
@@ -263,9 +286,10 @@ END SECTION EXTENSION SWITCHES
 
 END SECTION BASE EMISSIONS 
 
-################################################################################
+###############################################################################
 ### BEGIN SECTION SCALE FACTORS 
 ###############################################################################
+
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
 
 # --- Scale factors for artisanal and soil emissions ---
@@ -277,6 +301,7 @@ END SECTION SCALE FACTORS
 ###############################################################################
 ### BEGIN SECTION MASKS 
 ###############################################################################
+
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
 
 1004 NA_MASK $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc MASK 1985/1/1/0 C xy 1 1 -165/10/-40/90
