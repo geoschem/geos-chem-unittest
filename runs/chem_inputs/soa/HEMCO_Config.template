@@ -63,6 +63,8 @@
 #  11 Mar 2015 - M. Sulprizio- Add MIX Asian anthropogenic emissions and
 #                              HTAP global anthropogenic emissions
 #  16 Mar 2015 - M. Sulprizio- Add mask file for MIX Asia region
+#  16 Mar 2015 - M. Sulprizio- Now read variables for PARANOX and MEGAN from
+#                              the HEMCO restart file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -642,33 +644,38 @@ END SECTION EXTENSION SWITCHES
 #     zero.
 #==============================================================================
 (((SHIP
-0  ARCTAS_SHIP_SO2  $ROOT/ARCTAS_SHIP/v2014-07/ARCTAS_ship.generic.1x1.nc     SO2      2008/1/1/0      C xy kg/m2/s SO2 11       10 1
-#0 CORBETT_SHIP_SO2 $ROOT/CORBETT_SHIP/v2014-07/CORBETT_ship.geos.1x1.nc      SO2_SHIP 1985/1-12/1/0   C xy kg/m2/s SO2 -        10 3
-#0 ICOADS_SHIP_SO2  $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc              SO2      2002/1-12/1/0   C xy kg/m2/s SO2 11/15/60 10 5
-#0 HTAP_SHIP_SO2    $ROOT/HTAP/v2015-03/EDGAR_HTAP_SO2_SHIPS.generic.01x01.nc emi_so2  2008-2010/1/1/0 C xy kg/m2/s SO2 11/29    10 2
-0  ICOADS_SHIP_CO   $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc              CO       2002/1-12/1/0   C xy kg/m2/s CO  6/10     10 1
-#0 HTAP_SHIP_CO     $ROOT/HTAP/v2015-03/EDGAR_HTAP_CO_SHIPS.generic.01x01.nc  emi_co   2008-2010/1/1/0 C xy kg/m2/s CO  6/28     10 2
+0  ARCTAS_SHIP_SO2  $ROOT/ARCTAS_SHIP/v2014-07/ARCTAS_ship.generic.1x1.nc     SO2             2008/1/1/0      C xy kg/m2/s SO2 11       10 1
+#0 CORBETT_SHIP_SO2 $ROOT/CORBETT_SHIP/v2014-07/CORBETT_ship.geos.1x1.nc      SO2_SHIP        1985/1-12/1/0   C xy kg/m2/s SO2 -        10 3
+#0 ICOADS_SHIP_SO2  $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc              SO2             2002/1-12/1/0   C xy kg/m2/s SO2 11/15/60 10 5
+#0 HTAP_SHIP_SO2    $ROOT/HTAP/v2015-03/EDGAR_HTAP_SO2_SHIPS.generic.01x01.nc emi_so2         2008-2010/1/1/0 C xy kg/m2/s SO2 11/29    10 2
+0  ICOADS_SHIP_CO   $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc              CO              2002/1-12/1/0   C xy kg/m2/s CO  6/10     10 1
+#0 HTAP_SHIP_CO     $ROOT/HTAP/v2015-03/EDGAR_HTAP_CO_SHIPS.generic.01x01.nc  emi_co          2008-2010/1/1/0 C xy kg/m2/s CO  6/28     10 2
 
 (((EMEP
-0 EMEP_SHIP_CO      $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc                   ShipCO   1990-2010/1/1/0 C xy kg/m2/s CO  1000     10 2
-0 EMEP_SHIP_SO2     $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc                   ShipSO2  1990-2010/1/1/0 C xy kg/m2/s SO2 61/1000  10 2
+0 EMEP_SHIP_CO      $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc                   ShipCO          1990-2010/1/1/0 C xy kg/m2/s CO  1000     10 2
+0 EMEP_SHIP_SO2     $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc                   ShipSO2         1990-2010/1/1/0 C xy kg/m2/s SO2 61/1000  10 2
 )))EMEP
 
 # For PARANOx:
-102  ICOADS_SHIP_NO $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc              NO       2002/1-12/1/0   C xy kg/m2/s NO  1/5      10 1
-#102 HTAP_SHIP_NO   $ROOT/HTAP/v2015-03/EDGAR_HTAP_NO_SHIPS.generic.01x01.nc  emi_no   2008-2010/1/1/0 C xy kg/m2/s NO  1/27     10 2
+102  PARANOX_SUNCOS1 ./initial_hemco_rst.$MET_$RES_{SIM}.nc                   PARANOX_SUNCOS1 YYYY/MM/DD/HH   C xy 1       *   -        1  1
+102  PARANOX_SUNCOS2 ./initial_hemco_rst.$MET_$RES_{SIM}.nc                   PARANOX_SUNCOS2 YYYY/MM/DD/HH   C xy 1       *   -        1  1
+102  PARANOX_SUNCOS3 ./initial_hemco_rst.$MET_$RES_{SIM}.nc                   PARANOX_SUNCOS3 YYYY/MM/DD/HH   C xy 1       *   -        1  1
+102  PARANOX_SUNCOS4 ./initial_hemco_rst.$MET_$RES_{SIM}.nc                   PARANOX_SUNCOS4 YYYY/MM/DD/HH   C xy 1       *   -        1  1
+102  PARANOX_SUNCOS5 ./initial_hemco_rst.$MET_$RES_{SIM}.nc                   PARANOX_SUNCOS5 YYYY/MM/DD/HH   C xy 1       *   -        1  1
+102  ICOADS_SHIP_NO  $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc             NO              2002/1-12/1/0   C xy kg/m2/s NO  1/5      10 1
+#102 HTAP_SHIP_NO    $ROOT/HTAP/v2015-03/EDGAR_HTAP_NO_SHIPS.generic.01x01.nc emi_no          2008-2010/1/1/0 C xy kg/m2/s NO  1/27     10 2
 
 (((EMEP
-102 EMEP_SHIP_NO    $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc                   ShipNO   1990-2010/1/1/0 C xy kg/m2/s NO  1000     10 10
+102 EMEP_SHIP_NO    $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc                   ShipNO          1990-2010/1/1/0 C xy kg/m2/s NO  1000     10 10
 )))EMEP
 
 # If PARANOX is not used: SHIPNO_BASE is set automatically to true if (and only if) PARANOX is turned off
 (((SHIPNO_BASE
-0 ICOADS_SHIP_NO    $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc              NO       2002/1-12/1/0   C xy kg/m2/s NO  1/5      10 1
-#0 HTAP_SHIP_NO     $ROOT/HTAP/v2015-03/EDGAR_HTAP_NO_SHIPS.generic.01x01.nc  emi_no   2008-2010/1/1/0 C xy kg/m2/s NO  1/27     10 2
+0 ICOADS_SHIP_NO    $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc              NO              2002/1-12/1/0   C xy kg/m2/s NO  1/5      10 1
+#0 HTAP_SHIP_NO     $ROOT/HTAP/v2015-03/EDGAR_HTAP_NO_SHIPS.generic.01x01.nc  emi_no          2008-2010/1/1/0 C xy kg/m2/s NO  1/27     10 2
 
 (((EMEP
-0 EMEP_SHIP_NO      $ROOT/EMEP/v2014-07/EMEP.update.gen.1x1.nc                ShipNO   1990-2007/1/1/0 C xy kg/m2/s NO  1000     10 10
+0 EMEP_SHIP_NO      $ROOT/EMEP/v2014-07/EMEP.update.gen.1x1.nc                ShipNO          1990-2007/1/1/0 C xy kg/m2/s NO  1000     10 10
 )))EMEP
 
 )))SHIPNO_BASE
@@ -882,10 +889,10 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- SOILNOX emissions (Extension 104) ---
 #==============================================================================
-104 SOILNOX_PFACT   ./initial_soil_rst.$MET_$RES_{SIM}.nc                         PFACTOR       YYYY/MM/DD/HH    C xy 1     NO - 1 1
-104 SOILNOX_DRYPER  ./initial_soil_rst.$MET_$RES_{SIM}.nc                         DRYPERIOD     YYYY/MM/DD/HH    C xy 1     NO - 1 1
-104 SOILNOX_GWET    ./initial_soil_rst.$MET_$RES_{SIM}.nc                         GWET_PREV     YYYY/MM/DD/HH    C xy 1     NO - 1 1
-104 SOILNOX_DEPRES  ./initial_soil_rst.$MET_$RES_{SIM}.nc                         DEP_RESERVOIR YYYY/MM/DD/HH    C xy kg/m3 NO - 1 1
+104 SOILNOX_PFACT   ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        PFACTOR       YYYY/MM/DD/HH    C xy 1     NO - 1 1
+104 SOILNOX_DRYPER  ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        DRYPERIOD     YYYY/MM/DD/HH    C xy 1     NO - 1 1
+104 SOILNOX_GWET    ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        GWET_PREV     YYYY/MM/DD/HH    C xy 1     NO - 1 1
+104 SOILNOX_DEPRES  ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        DEP_RESERVOIR YYYY/MM/DD/HH    C xy kg/m3 NO - 1 1
 104 SOILNOX_FERT    $ROOT/SOILNOX/v2014-07/soilNOx.fert_res.generic.05x05.nc      FERT          2000/1-12/1-31/0 C xy kg/m3 NO - 1 1
 104 SOILNOX_LANDK1  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K01  2000/1/1/0       C xy 1     NO - 1 1
 104 SOILNOX_LANDK2  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K02  2000/1/1/0       C xy 1     NO - 1 1
@@ -950,6 +957,11 @@ END SECTION EXTENSION SWITCHES
 # We don't need to read EF maps for acetone, a-pinene or myrcene. We now
 # compute those values in the MEGAN extension.
 #==============================================================================
+108 T_DAVG                        ./initial_hemco_rst.$MET_$RES_{SIM}.nc       T_DAVG                  YYYY/MM/DD/HH C xy K        * - 1 1
+108 T_PREVDAY                     ./initial_hemco_rst.$MET_$RES_{SIM}.nc       T_PREVDAY               YYYY/MM/DD/HH C xy K        * - 1 1
+108 LAI_PREVDAY                   ./initial_hemco_rst.$MET_$RES_{SIM}.nc       LAI_PREVDAY             YYYY/MM/DD/HH C xy 1        * - 1 1
+108 PARDR_DAVG                    ./initial_hemco_rst.$MET_$RES_{SIM}.nc       PARDR_DAVG              YYYY/MM/DD/HH C xy W/m2     * - 1 1
+108 PARDF_DAVG                    ./initial_hemco_rst.$MET_$RES_{SIM}.nc       PARDF_DAVG              YYYY/MM/DD/HH C xy W/m2     * - 1 1
 108  MEGAN_AEF_ISOP               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_ISOPRENE            1985/1/1/0    C xy kgC/m2/s * - 1 1
 109  MEGAN_AEF_MBOX               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_MBO                 1985/1/1/0    C xy kgC/m2/s * - 1 1
 #109 MEGAN_AEF_APIN               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_ALPHA_PINENE        1985/1/1/0    C xy kgC/m2/s * - 1 1
