@@ -103,6 +103,7 @@ END SECTION SETTINGS
     --> BrOx_TOMCAT       :       false
     --> BrOx_GMI          :       true
     --> LRED_JNO2         :       true
+    --> LRED_INPLUME      :       true
     --> OCEAN_Hg          :       true
 # ----------------------------------------------------------------------------
 111     GFED3             : on    Hg0
@@ -252,6 +253,13 @@ END SECTION EXTENSION SWITCHES
 * OCEAN_MLD     $ROOT/MERCURY/v2014-09/OCEAN/mld.geos.2x25.nc         MLD     1985/1-12/1/0 C xy m     * - 1 1
 * OCEAN_NPP     $ROOT/MERCURY/v2014-09/OCEAN/NPP_2003.geos.2x25.nc    NPP     2003/1-12/1/0 C xy kg/m2 * - 1 1
 )))OCEAN_Hg
+
+#==============================================================================
+# --- Data for in plume reduction ---
+#==============================================================================
+(((LRED_INPLUME
+* CFPP_NEI2005_Hg2 $ROOT/MERCURY/v2014-09/NEI2005/CFPP_NEI2005_NPRI2005_Hg2.geos5.2x25.2005.nc Hg2_an 2005/1/1/0 C xy kg/m2/s * - 1 1
+)))LRED_INPLUME
 
 END SECTION BASE EMISSIONS 
 
