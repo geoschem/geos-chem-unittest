@@ -110,8 +110,8 @@ END SECTION SETTINGS
     --> RCP_85            :       false
 # ----------------------------------------------------------------------------
 111     GFED              : on    CH4
-    --> GFED3             :       true 
-    --> GFED4             :       false
+    --> GFED3             :       false
+    --> GFED4             :       true
     --> GFED_daily        :       true
     --> GFED_3hourly      :       false
     --> CO scale factor   :       1.05

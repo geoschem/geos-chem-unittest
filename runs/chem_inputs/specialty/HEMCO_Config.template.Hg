@@ -109,8 +109,8 @@ END SECTION SETTINGS
     --> OCEAN_Hg          :       true
 # ----------------------------------------------------------------------------
 111     GFED              : on    Hg0
-    --> GFED3             :       true 
-    --> GFED4             :       false
+    --> GFED3             :       false
+    --> GFED4             :       true
     --> GFED_daily        :       false
     --> GFED_3hourly      :       false
     --> CO scale factor   :       1.05
