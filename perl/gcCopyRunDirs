@@ -297,7 +297,7 @@ sub doCopyDirs($$) {
       &checkDir( $HEMCO_ROOT );
 
        # Splash page
-      print '%%%%%%%%% GEOS-Chem COPY DIRECTORIES %%%%%%%%%%%%%%%%%%%%%%%%%'."\n"; # 
+      print '%%%%%%%%% GEOS-Chem COPY RUN DIRECTORIES %%%%%%%%%%%%%%%%%%%%%'."\n"; # 
       print "\%\%\% Version ID  : $VERSION\n";
       print "\%\%\% Description : $DESCRIBE\n";
       print "\%\%\%\n";
@@ -430,15 +430,16 @@ sub main(@) {
 #
 # !REVISION HISTORY:
 #  23 May 2013 - R. Yantosca - Initial version, based on gcUnitTest
+#  18 Mar 2015 - R. Yantosca - Now use default file "CopyRunDirs.input"
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 
   # If the user passes a filename from the command line, use it
   # Otherwise, default to "UnitTest.input"
-  if    ( scalar( @ARGV ) == 2 ) { &doCopyDirs( @ARGV               ); }
-  elsif ( scalar( @ARGV ) == 1 ) { &doCopyDirs( $ARGV[0],         0 ); }
-  else                           { &doCopyDirs( "UnitTest.input", 0 ); }
+  if    ( scalar( @ARGV ) == 2 ) { &doCopyDirs( @ARGV                  ); }
+  elsif ( scalar( @ARGV ) == 1 ) { &doCopyDirs( $ARGV[0],            0 ); }
+  else                           { &doCopyDirs( "CopyRunDirs.input", 0 ); }
 
   # Exit and pass status code back
   return( $? );
