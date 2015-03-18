@@ -665,10 +665,11 @@ END SECTION EXTENSION SWITCHES
 110  MEGAN_ORVC                   $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc          OCPI                    1990/1-12/1/0 C xy kgC/m2/s * - 1 1
 
 #==============================================================================
-# --- GFED3 biomass burning emissions (Extension 111) 
+# --- GFED biomass burning emissions (Extension 111) 
 # NOTE: These are the base emissions in kgDM/m2/s.
 #==============================================================================
-111 GFED_HUMTROP    $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy unitless  * - 1 1
+111 GFED_HUMTROP    $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy 1         * - 1 1
+
 (((GFED3   
 111 GFED_WDL        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__WDL_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
 111 GFED_AGW        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__AGW_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
@@ -677,6 +678,7 @@ END SECTION EXTENSION SWITCHES
 111 GFED_PET        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__PET_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
 111 GFED_SAV        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__SAV_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
 )))GFED3  
+
 (((GFED4
 111 GFED_WDL        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       WDL_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
 111 GFED_AGW        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       AGW_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
@@ -685,11 +687,13 @@ END SECTION EXTENSION SWITCHES
 111 GFED_PET        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       PET_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
 111 GFED_SAV        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       SAV_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
 )))GFED4
+
 (((GFED_daily
-112 GFED_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  C xy unitless  * - 1 1
+111 GFED_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  C xy 1         * - 1 1
 )))GFED_daily
+
 (((GFED_3hourly
-113 GFED_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 C xy unitless  * - 1 1
+111 GFED_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 C xy 1         * - 1 1
 )))GFED_3hourly
 
 #==============================================================================
@@ -703,13 +707,14 @@ END SECTION EXTENSION SWITCHES
 114 FINN_VEGTYP5       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype5 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
 114 FINN_VEGTYP9       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype9 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
 ))).not.FINN_daily
+
 (((FINN_daily
-115 FINN_DAILY_VEGTYP1 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype1 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP2 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype2 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP3 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype3 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP4 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype4 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype5 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype9 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP1 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype1 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP2 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype2 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP3 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype3 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP4 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype4 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype5 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype9 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
 )))FINN_daily
 
 ###############################################################################

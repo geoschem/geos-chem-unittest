@@ -102,7 +102,6 @@ END SECTION SETTINGS
     --> NATURAL           :       true
     --> SOILDIST          :       true
     --> BrOx_GC           :       true
-    --> BrOx_TOMCAT       :       false
     --> BrOx_GMI          :       true
     --> LRED_JNO2         :       true
     --> LRED_INPLUME      :       true
@@ -181,10 +180,11 @@ END SECTION EXTENSION SWITCHES
 ###############################################################################
 
 #==============================================================================
-# --- GFED3 biomass burning emissions (Extension 111) 
+# --- GFED biomass burning emissions (Extension 111) 
 # NOTE: These are the base emissions in kgDM/m2/s.
 #==============================================================================
-111 GFED_HUMTROP    $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy unitless  * - 1 1
+111 GFED_HUMTROP    $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy 1         * - 1 1
+
 (((GFED3   
 111 GFED_WDL        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__WDL_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
 111 GFED_AGW        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__AGW_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
@@ -193,6 +193,7 @@ END SECTION EXTENSION SWITCHES
 111 GFED_PET        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__PET_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
 111 GFED_SAV        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__SAV_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
 )))GFED3  
+
 (((GFED4
 111 GFED_WDL        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       WDL_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
 111 GFED_AGW        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       AGW_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
@@ -201,11 +202,13 @@ END SECTION EXTENSION SWITCHES
 111 GFED_PET        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       PET_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
 111 GFED_SAV        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       SAV_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
 )))GFED4
+
 (((GFED_daily
-112 GFED_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  C xy unitless  * - 1 1
+111 GFED_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  C xy 1         * - 1 1
 )))GFED_daily
+
 (((GFED_3hourly
-113 GFED_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 C xy unitless  * - 1 1
+111 GFED_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 C xy 1         * - 1 1
 )))GFED_3hourly
 
 ###############################################################################
@@ -237,10 +240,10 @@ END SECTION EXTENSION SWITCHES
 * BrO_GC     -                                                  BrO    -             - -   ppbv * - 1 1
 )))BrOx_GC
 
-(((BrOx_TOMCAT
+(((.not.BrOx_GC
 * Br_TOMCAT  $ROOT/MERCURY/v2014-09/BrOx/BrOx.GMI.geos5.2x25.nc LBRO2N 1985/1-12/1/0 C xyz pptv * - 1 1
 * BrO_TOMCAT -                                                  LBRO2H -             - -   pptv * - 1 1
-)))BrOx_TOMCAT
+))).not.BrOx_GC
 
 (((BrOx_GMI
 * Br_GMI     $ROOT/MERCURY/v2014-09/BrOx/BrOx.GMI.geos5.2x25.nc LBRO2N 1985/1-12/1/0 C xyz pptv * - 1 1
