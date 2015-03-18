@@ -78,6 +78,8 @@
 #  16 Mar 2015 - M. Sulprizio- Add GFED4 entries from Christoph Keller
 #  16 Mar 2015 - R. Yantosca - Add TOMS/SBUV O3 columns
 #  17 Mar 2015 - M. Sulprizio- Add NEI2011 entries from Christoph Keller
+#  18 Mar 2015 - M. Sulprizio- Now use updated 2006-2013 NEI2011 annual scale
+#                              factors from Katie Travis
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -362,62 +364,62 @@ END SECTION EXTENSION SWITCHES
 # --- NEI 2011 (USA) ---
 #==============================================================================
 # NH3
-0 NEI11_SURFACE_NH3    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          NH3      2011-2013/$MM/$DD/0-23 R xy  kg/m2/s  NH3  253/1007     1/2 50
-#0 NEI11_EGU_NH3       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      NH3      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  NH3  253/1007     1   50
-#0 NEI11_EGUPK_NH3     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    NH3      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  NH3  253/1007     1   50
-0 NEI11_OILGAS_NH3     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   NH3      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  NH3  253/1007     1   50
-0 NEI11_OTHPT_NH3      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    NH3      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  NH3  253/1007     1   50
-0 NEI11_PTNONIPM_NH3   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc NH3      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  NH3  253/1007     1   50
+0 NEI11_SURFACE_NH3    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          NH3      2006-2013/$MM/$DD/0-23 R xy  kg/m2/s  NH3  253/1007     1/2 50
+#0 NEI11_EGU_NH3       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      NH3      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  NH3  253/1007     1   50
+#0 NEI11_EGUPK_NH3     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    NH3      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  NH3  253/1007     1   50
+0 NEI11_OILGAS_NH3     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   NH3      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  NH3  253/1007     1   50
+0 NEI11_OTHPT_NH3      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    NH3      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  NH3  253/1007     1   50
+0 NEI11_PTNONIPM_NH3   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc NH3      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  NH3  253/1007     1   50
 
 # SO2 
-0 NEI11_SURFACE_SO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc           SO2      2011-2013/$MM/$DD/0-23 R xy  kg/m2/s  SO2  255/1007     1/2 50
-0 NEI11_EGU_SO2       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc       SO2      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_EGUPK_SO2     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc     SO2      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_OILGAS_SO2    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc    SO2      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_OTHPT_SO2     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc     SO2      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_PTNONIPM_SO2  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc  SO2      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
+0 NEI11_SURFACE_SO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc           SO2      2006-2013/$MM/$DD/0-23 R xy  kg/m2/s  SO2  255/1007     1/2 50
+0 NEI11_EGU_SO2       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc       SO2      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
+0 NEI11_EGUPK_SO2     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc     SO2      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
+0 NEI11_OILGAS_SO2    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc    SO2      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
+0 NEI11_OTHPT_SO2     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc     SO2      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
+0 NEI11_PTNONIPM_SO2  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc  SO2      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
 
-0 NEI11_SURFACE_SULF  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc           SULF     2011-2013/$MM/$DD/0-23 R xy  kg/m2/s  SO2  255/1007     1/2 50
-0 NEI11_EGU_SULF      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc       SULF     2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_EGUPK_SULF    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc     SULF     2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_OILGAS_SULF   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc    SULF     2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_OTHPT_SULF    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc     SULF     2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_PTNONIPM_SULF $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc  SULF     2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
+0 NEI11_SURFACE_SULF  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc           SULF     2006-2013/$MM/$DD/0-23 R xy  kg/m2/s  SO2  255/1007     1/2 50
+0 NEI11_EGU_SULF      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc       SULF     2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
+0 NEI11_EGUPK_SULF    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc     SULF     2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
+0 NEI11_OILGAS_SULF   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc    SULF     2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
+0 NEI11_OTHPT_SULF    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc     SULF     2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
+0 NEI11_PTNONIPM_SULF $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc  SULF     2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO2  255/1007     1   50
 
 # SO4 
-0 NEI11_SURFACE_SO4   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc           PSO4     2011-2013/$MM/$DD/0-23 R xy  kg/m2/s  SO4  255/1007     1/2 50
-0 NEI11_EGU_SO4       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc       PSO4     2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO4  255/1007     1   50
-0 NEI11_EGUPK_SO4     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc     PSO4     2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO4  255/1007     1   50
-0 NEI11_OILGAS_SO4    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc    PSO4     2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO4  255/1007     1   50
-0 NEI11_OTHPT_SO4     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc     PSO4     2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO4  255/1007     1   50
-0 NEI11_PTNONIPM_SO4  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc  PSO4     2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO4  255/1007     1   50
+0 NEI11_SURFACE_SO4   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc           PSO4     2006-2013/$MM/$DD/0-23 R xy  kg/m2/s  SO4  255/1007     1/2 50
+0 NEI11_EGU_SO4       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc       PSO4     2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO4  255/1007     1   50
+0 NEI11_EGUPK_SO4     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc     PSO4     2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO4  255/1007     1   50
+0 NEI11_OILGAS_SO4    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc    PSO4     2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO4  255/1007     1   50
+0 NEI11_OTHPT_SO4     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc     PSO4     2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO4  255/1007     1   50
+0 NEI11_PTNONIPM_SO4  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc  PSO4     2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  SO4  255/1007     1   50
 
 # BC
-0 NEI11_SURFACE_BCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc           PEC      2011-2013/$MM/$DD/0-23 R xy  kg/m2/s  BCPI 256/1007/265 1/2 50
+0 NEI11_SURFACE_BCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc           PEC      2006-2013/$MM/$DD/0-23 R xy  kg/m2/s  BCPI 256/1007/265 1/2 50
 0 NEI11_SURFACE_BCPO  -                                                                -        -                      - -   -        BCPO 256/1007/266 1/2 50
-0 NEI11_EGU_BCPI      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc       PEC      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  BCPI 256/1007/265 1   50
+0 NEI11_EGU_BCPI      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc       PEC      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  BCPI 256/1007/265 1   50
 0 NEI11_EGU_BCPO      -                                                                -        -                      - -   -        BCPO 256/1007/266 1   50
-0 NEI11_EGUPK_BCPI    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc     PEC      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  BCPI 256/1007/265 1   50
+0 NEI11_EGUPK_BCPI    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc     PEC      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  BCPI 256/1007/265 1   50
 0 NEI11_EGUPK_BCPO    -                                                                -        -                      - -   -        BCPO 256/1007/266 1   50
-0 NEI11_OILGAS_BCPI   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc    PEC      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  BCPI 256/1007/265 1   50
+0 NEI11_OILGAS_BCPI   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc    PEC      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  BCPI 256/1007/265 1   50
 0 NEI11_OILGAS_BCPO   -                                                                -        -                      - -   -        BCPO 256/1007/266 1   50
-0 NEI11_OTHPT_BCPI    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc     PEC      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  BCPI 256/1007/265 1   50
+0 NEI11_OTHPT_BCPI    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc     PEC      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  BCPI 256/1007/265 1   50
 0 NEI11_OTHPT_BCPO    -                                                                -        -                      - -   -        BCPO 256/1007/266 1   50
-0 NEI11_PTNONIPM_BCPI $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc  PEC      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  BCPI 256/1007/265 1   50
+0 NEI11_PTNONIPM_BCPI $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc  PEC      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  BCPI 256/1007/265 1   50
 0 NEI11_PTNONIPM_BCPO -                                                                -        -                      - -   -        BCPO 256/1007/266 1   50
 
 # OC
-0 NEI11_SURFACE_OCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc           POC      2011-2013/$MM/$DD/0-23 R xy  kg/m2/s  OCPI 257/1007/267 1/2 50
+0 NEI11_SURFACE_OCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc           POC      2006-2013/$MM/$DD/0-23 R xy  kg/m2/s  OCPI 257/1007/267 1/2 50
 0 NEI11_SURFACE_OCPO  -                                                                -        -                      - -   -        OCPO 257/1007/268 1/2 50
-0 NEI11_EGU_OCPI      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc       POC      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  OCPI 257/1007/267 1   50
+0 NEI11_EGU_OCPI      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc       POC      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  OCPI 257/1007/267 1   50
 0 NEI11_EGU_OCPO      -                                                                -        -                      - -   -        OCPO 257/1007/268 1   50
-0 NEI11_EGUPK_OCPI    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc     POC      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  OCPI 257/1007/267 1   50
+0 NEI11_EGUPK_OCPI    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc     POC      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  OCPI 257/1007/267 1   50
 0 NEI11_EGUPK_OCPO    -                                                                -        -                      - -   -        OCPO 257/1007/268 1   50
-0 NEI11_OILGAS_OCPI   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc    POC      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  OCPI 257/1007/267 1   50
+0 NEI11_OILGAS_OCPI   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc    POC      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  OCPI 257/1007/267 1   50
 0 NEI11_OILGAS_OCPO   -                                                                -        -                      - -   -        OCPO 257/1007/268 1   50
-0 NEI11_OTHPT_OCPI    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc     POC      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  OCPI 257/1007/267 1   50
+0 NEI11_OTHPT_OCPI    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc     POC      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  OCPI 257/1007/267 1   50
 0 NEI11_OTHPT_OCPO    -                                                                -        -                      - -   -        OCPO 257/1007/268 1   50
-0 NEI11_PTNONIPM_OCPI $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc  POC      2011-2013/$MM/$DD/0-23 R xyz kg/m2/s  OCPI 257/1007/267 1   50
+0 NEI11_PTNONIPM_OCPI $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc  POC      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  OCPI 257/1007/267 1   50
 0 NEI11_PTNONIPM_OCPO -                                                                -        -                      - -   -        OCPO 257/1007/268 1   50
 
 #==============================================================================
@@ -475,13 +477,13 @@ END SECTION EXTENSION SWITCHES
 )))EMEP
 
 (((NEI2011_SHIP
-#0 NEI11_C3MARINE_NH3  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NH3             2011-2013/$MM/$DD/0-23 R xy kg/m2/s  NH3  253/1007     10 50
-0 NEI11_C3MARINE_SO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc SO2             2011-2013/$MM/$DD/0-23 R xy kg/m2/s  SO2  255/1007     10 50
-0 NEI11_C3MARINE_SULF  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc SULF            2011-2013/$MM/$DD/0-23 R xy kg/m2/s  SO2  255/1007     10 50
-0 NEI11_C3MARINE_SO4   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc PSO4            2011-2013/$MM/$DD/0-23 R xy kg/m2/s  SO4  255/1007     10 50
-0 NEI11_C3MARINE_BCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc PEC             2011-2013/$MM/$DD/0-23 R xy kg/m2/s  BCPI 256/1007/265 10 50
+#0 NEI11_C3MARINE_NH3  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NH3             2006-2013/$MM/$DD/0-23 R xy kg/m2/s  NH3  253/1007     10 50
+0 NEI11_C3MARINE_SO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc SO2             2006-2013/$MM/$DD/0-23 R xy kg/m2/s  SO2  255/1007     10 50
+0 NEI11_C3MARINE_SULF  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc SULF            2006-2013/$MM/$DD/0-23 R xy kg/m2/s  SO2  255/1007     10 50
+0 NEI11_C3MARINE_SO4   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc PSO4            2006-2013/$MM/$DD/0-23 R xy kg/m2/s  SO4  255/1007     10 50
+0 NEI11_C3MARINE_BCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc PEC             2006-2013/$MM/$DD/0-23 R xy kg/m2/s  BCPI 256/1007/265 10 50
 0 NEI11_C3MARINE_BCPO  -                                                               -               -                      - -  -        BCPO 256/1007/266 10 50
-0 NEI11_C3MARINE_OCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc POC             2011-2013/$MM/$DD/0-23 R xy kg/m2/s  OCPI 257/1007/267 10 50
+0 NEI11_C3MARINE_OCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc POC             2006-2013/$MM/$DD/0-23 R xy kg/m2/s  OCPI 257/1007/267 10 50
 0 NEI11_C3MARINE_OCPO  -                                                               -               -                      - -  -        OCPO 257/1007/268 10 50
 )))NEI2011_SHIP
 
@@ -552,31 +554,31 @@ END SECTION EXTENSION SWITCHES
 # --- RCP future emissions scenarios ---
 #==============================================================================
 (((RCP_3PD
-0 RCP3PD_BCPO $ROOT/RCP_3PD/RCPs_anthro_BC_2005-2100_23474.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  BCPO - 1 1
-0 RCP3PD_OCPO $ROOT/RCP_3PD/RCPs_anthro_OC_2005-2100_23474.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  OCPO - 1 1
-0 RCP3PD_SO2  $ROOT/RCP_3PD/RCPs_anthro_SO2_2005-2100_23474.nc ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  SO2  - 1 1
-0 RCP3PD_NH3  $ROOT/RCP_3PD/RCPs_anthro_NH3_2005-2100_23474.nc ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NH3  - 1 1
+0 RCP3PD_BCPO $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_BC_2005-2100_23474.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  BCPO - 1 1
+0 RCP3PD_OCPO $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_OC_2005-2100_23474.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  OCPO - 1 1
+0 RCP3PD_SO2  $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_SO2_2005-2100_23474.nc ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  SO2  - 1 1
+0 RCP3PD_NH3  $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_NH3_2005-2100_23474.nc ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NH3  - 1 1
 )))RCP_3PD
 
 (((RCP_45 
-0 RCP45_BCPO  $ROOT/RCP_45/RCPs_anthro_BC_2005-2100_27424.nc   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  BCPO - 1 1
-0 RCP45_OCPO  $ROOT/RCP_45/RCPs_anthro_OC_2005-2100_27424.nc   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  OCPO - 1 1
-0 RCP45_SO2   $ROOT/RCP_45/RCPs_anthro_SO2_2005-2100_27424.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  SO2  - 1 1
-0 RCP45_NH3   $ROOT/RCP_45/RCPs_anthro_NH3_2005-2100_27424.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NH3  - 1 1
+0 RCP45_BCPO  $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_BC_2005-2100_27424.nc   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  BCPO - 1 1
+0 RCP45_OCPO  $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_OC_2005-2100_27424.nc   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  OCPO - 1 1
+0 RCP45_SO2   $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_SO2_2005-2100_27424.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  SO2  - 1 1
+0 RCP45_NH3   $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_NH3_2005-2100_27424.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NH3  - 1 1
 )))RCP_45
 
 (((RCP_60 
-0 RCP60_BCPO  $ROOT/RCP_60/RCPs_anthro_BC_2005-2100_43190.nc   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  BCPO - 1 1
-0 RCP60_OCPO  $ROOT/RCP_60/RCPs_anthro_OC_2005-2100_43190.nc   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  OCPO - 1 1
-0 RCP60_SO2   $ROOT/RCP_60/RCPs_anthro_SO2_2005-2100_43190.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  SO2  - 1 1
-0 RCP60_NH3   $ROOT/RCP_60/RCPs_anthro_NH3_2005-2100_43190.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NH3  - 1 1
+0 RCP60_BCPO  $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_BC_2005-2100_43190.nc   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  BCPO - 1 1
+0 RCP60_OCPO  $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_OC_2005-2100_43190.nc   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  OCPO - 1 1
+0 RCP60_SO2   $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_SO2_2005-2100_43190.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  SO2  - 1 1
+0 RCP60_NH3   $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_NH3_2005-2100_43190.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NH3  - 1 1
 )))RCP_60
 
 (((RCP_85 
-0 RCP85_BCPO  $ROOT/RCP_85/RCPs_anthro_BC_2005-2100_43533.nc   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  BCPO - 1 1
-0 RCP85_OCPO  $ROOT/RCP_85/RCPs_anthro_OC_2005-2100_43533.nc   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  OCPO - 1 1
-0 RCP85_SO2   $ROOT/RCP_85/RCPs_anthro_SO2_2005-2100_43533.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  SO2  - 1 1
-0 RCP85_NH3   $ROOT/RCP_85/RCPs_anthro_NH3_2005-2100_43533.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NH3  - 1 1
+0 RCP85_BCPO  $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_BC_2005-2100_43533.nc   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  BCPO - 1 1
+0 RCP85_OCPO  $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_OC_2005-2100_43533.nc   ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  OCPO - 1 1
+0 RCP85_SO2   $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_SO2_2005-2100_43533.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  SO2  - 1 1
+0 RCP85_NH3   $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_NH3_2005-2100_43533.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  NH3  - 1 1
 )))RCP_85
 
 ###############################################################################
@@ -714,26 +716,6 @@ END SECTION EXTENSION SWITCHES
 114 FINN_DAILY_VEGTYP4 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype4 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
 114 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype5 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
 114 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype9 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-)))FINN_daily
-
-#==============================================================================
-# --- FINN biomass burning emissions (Extension 114) 
-#==============================================================================
-(((.not.FINN_daily
-114 FINN_VEGTYP1       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype1 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP2       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype2 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP3       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype3 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP4       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype4 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP5       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype5 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP9       $ROOT/FINN/v2014-07/FINN_monthly_05x05.nc fire_vegtype9 2007-2013/1-12/1/0    C xy kg/m2/s * - 1 1
-))).not.FINN_daily
-(((FINN_daily
-115 FINN_DAILY_VEGTYP1 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype1 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP2 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype2 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP3 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype3 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP4 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype4 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype5 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
-115 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2014-07/FINN_daily_05x05.nc   fire_vegtype9 2007-2013/1-12/1-31/0 C xy kg/m2/s * - 1 1
 )))FINN_daily
 
 ###############################################################################
@@ -969,14 +951,14 @@ END SECTION BASE EMISSIONS
 #==============================================================================
 # --- NEI 20011 scale factors ---
 #==============================================================================
-253 NEI11_NH3_YRSCALE 1.0/0.999/0.998 - 2011-2013/1/1/0 C xy 1 1 
-255 NEI11_SO2_YRSCALE 1.0/0.802/0.785 - 2011-2013/1/1/0 C xy 1 1 
-256 NEI11_BC_YRSCALE  1.0/0.995/0.991 - 2011-2013/1/1/0 C xy 1 1 
-257 NEI11_OC_YRSCALE  1.0/0.995/0.991 - 2011-2013/1/1/0 C xy 1 1 
-265 NEI11_BC2BCPI     0.2             - -               - xy 1 1
-266 NEI11_BC2BCPO     0.8             - -               - xy 1 1
-267 NEI11_OC2OCPI     0.5             - -               - xy 1 1
-268 NEI11_OC2OCPO     0.5             - -               - xy 1 1
+253 NEI11_NH3_YRSCALE 0.966/1.002/1.019/1.015/1.010/1.0/0.999/0.998 - 2006-2013/1/1/0 C xy 1 1 
+255 NEI11_SO2_YRSCALE 2.038/1.813/1.600/1.408/1.200/1.0/0.800/0.738 - 2006-2013/1/1/0 C xy 1 1 
+256 NEI11_BC_YRSCALE  1.006/1.034/0.996/0.995/0.993/1.0/0.995/0.991 - 2006-2013/1/1/0 C xy 1 1 
+257 NEI11_OC_YRSCALE  1.006/1.034/0.996/0.995/0.993/1.0/0.995/0.991 - 2006-2013/1/1/0 C xy 1 1 
+265 NEI11_BC2BCPI     0.2                                           - -               - xy 1 1
+266 NEI11_BC2BCPO     0.8                                           - -               - xy 1 1
+267 NEI11_OC2OCPI     0.5                                           - -               - xy 1 1
+268 NEI11_OC2OCPO     0.5                                           - -               - xy 1 1
 
 END SECTION SCALE FACTORS 
 
