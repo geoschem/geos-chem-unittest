@@ -43,6 +43,8 @@
 #  28 Jul 2014 - R. Yantosca - Added HEMCO_ROOT directory
 #  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
 #  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
+#  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
+#                              MERRA, and GCAP, so as to use NEI2011
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -78,20 +80,20 @@
 #--------|-----------|------|------------|------------|------------|---------|
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
 #--------|-----------|------|------------|------------|------------|---------|
-  geos4    4x5         -      RnPbBe       2005070100   2005070101   -
-  geos4    4x5         -      Hg           2005070100   2005070101   -
-  geos4    4x5         -      POPs         2005070100   2005070101   -
+  geos4    4x5         -      RnPbBe       2006070100   2006070101   -
+  geos4    4x5         -      Hg           2006070100   2006070101   -
+  geos4    4x5         -      POPs         2006070100   2006070101   -
   geos4    4x5         -      CH4          2004070100   2004070101   -
-  geos4    4x5         -      tagO3        2005070100   2005070101 TAGO3YR=2003
-  geos4    4x5         -      fullchem     2005070100   2005070101   -
-# geos4    4x5         -      soa          2005070100   2005070101   -
-# geos4    4x5         -      soa_svpoa    2005070100   2005070101   -
-# geos4    4x5         -      tagCO        2005070100   2005070101   -
-# geos4    4x5         -      TOMAS40      2005070100   2005070101  TOMAS40=y
-# geos4    4x5         -      TOMAS30      2005070100   2005070101  TOMAS30=y
-# geos4    4x5         -      TOMAS15      2005070100   2005070101  TOMAS15=y
-# geos4    4x5         -      TOMAS12      2005070100   2005070101  TOMAS12=y
-# geos4    2x25        -      CO2          2005070100   2005070101   -
+  geos4    4x5         -      tagO3        2006070100   2006070101 TAGO3YR=2003
+  geos4    4x5         -      fullchem     2006070100   2006070101   -
+# geos4    4x5         -      soa          2006070100   2006070101   -
+# geos4    4x5         -      soa_svpoa    2006070100   2006070101   -
+# geos4    4x5         -      tagCO        2006070100   2006070101   -
+# geos4    4x5         -      TOMAS40      2006070100   2006070101  TOMAS40=y
+# geos4    4x5         -      TOMAS30      2006070100   2006070101  TOMAS30=y
+# geos4    4x5         -      TOMAS15      2006070100   2006070101  TOMAS15=y
+# geos4    4x5         -      TOMAS12      2006070100   2006070101  TOMAS12=y
+# geos4    2x25        -      CO2          2006070100   2006070101   -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

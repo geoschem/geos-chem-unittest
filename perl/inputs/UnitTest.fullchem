@@ -44,6 +44,8 @@
 #  28 Jul 2014 - R. Yantosca - 2 x 2.5 runs now end after 30 mins
 #  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
 #  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
+#  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
+#                              MERRA, and GCAP, so as to use NEI2011
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -87,11 +89,11 @@
   geos5    05x0666     ch     fullchem     2005070100   2005070101   -
   merra    4x5         -      fullchem     2005070100   2005070101   -
   geosfp   4x5         -      fullchem     2013070100   2013070101   -
-  geos5    4x5         -      soa          2005070100   2005070101   -
-  merra    4x5         -      soa          2005070100   2005070101   -
+  geos5    4x5         -      soa          2005070100   2006070101   -
+  merra    4x5         -      soa          2006070100   2006070101   -
   geosfp   4x5         -      soa          2013070100   2013070101   -
-  geos5    4x5         -      soa_svpoa    2005070100   2005070101   -
-  merra    4x5         -      soa_svpoa    2005070100   2005070101   -
+  geos5    4x5         -      soa_svpoa    2006070100   2006070101   -
+  merra    4x5         -      soa_svpoa    2006070100   2006070101   -
   geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
  !END OF RUNS:
 #EOP

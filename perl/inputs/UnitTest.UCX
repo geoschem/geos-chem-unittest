@@ -38,8 +38,10 @@
 #  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
 #  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
 #  28 Jul 2014 - R. Yantosca - Added HEMCO_ROOT directory
-#  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData#EOP
+#  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
 #  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
+#  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
+#                              MERRA, and GCAP, so as to use NEI2011
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -77,7 +79,7 @@
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
 #--------|-----------|------|------------|------------|------------|---------|
   geosfp   4x5         -      UCX          2013070100   2013070101   UCX=y
-  geos5    4x5         -      UCX          2005070100   2005070101   UCX=y
+  geos5    4x5         -      UCX          2006070100   2006070101   UCX=y
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

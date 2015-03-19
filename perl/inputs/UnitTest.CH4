@@ -44,6 +44,8 @@
 #  16 Sep 2014 - M. Sulprizio- Add 2x2.5 unit tests for CH4 simulation
 #  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
 #  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
+#  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2006 for GEOS-4, GEOS-5
+#                              MERRA, and GCAP, so as to use NEI2011
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -81,11 +83,11 @@
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE    | EXTRA?  |
 #--------|-----------|------|------------|------------|-------------|---------|
   geosfp   4x5         -      CH4          2013070100   2013070101    -
-  merra    4x5         -      CH4          2005070100   2005070101    -
-  geos5    4x5         -      CH4          2005070100   2005070101    -
+  merra    4x5         -      CH4          2006070100   2006070101    -
+  geos5    4x5         -      CH4          2006070100   2006070101    -
   geos4    4x5         -      CH4          2004070100   2004070101    -
   geosfp   2x25        -      CH4          2013070100   201307010030  -
-  geos5    2x25        -      CH4          2005070100   200507010030  -
+  geos5    2x25        -      CH4          2006070100   200607010030  -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------
