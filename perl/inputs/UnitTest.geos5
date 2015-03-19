@@ -49,7 +49,7 @@
 #  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
 #  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
 #  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
-#                              MERRA, and GCAP, so as to use NEI2011
+#                              MERRA, so as to use NEI2011
 #EOP
 #------------------------------------------------------------------------------
 #

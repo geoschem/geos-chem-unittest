@@ -41,29 +41,29 @@
 #  28 Jul 2014 - R. Yantosca - Added HEMCO_ROOT directory
 #  28 Jul 2014 - R. Yantosca - 2 x 2.5 runs now end after 30 mins
 #  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
-#  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
-
+#  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
+#                              MERRA, so as to use NEI2011
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION     : v10-01.nightly
-   DESCRIPTION : Tests feature XXX of GEOS-Chem
-   CODE_DIR    : /home/{USER}/GC/Code.v10-01
+   VERSION     : v10-01h
+   DESCRIPTION : Tests v10-01h + NEI2011 + scale factors
+   CODE_DIR    : /home/bmy/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos/ExtData
    HEMCO_ROOT  : {DATAROOT}/HEMCO
-   RUN_ROOT    : /home/{USER}/UT/runs
+   RUN_ROOT    : /home/bmy/UT/runs
    RUN_DIR     : {RUNROOT}/{RUNDIR}
-   JOB_DIR     : /home/{USER}/UT/jobs
-   LOG_DIR     : /home/{USER}/UT/logs/{VERSION}
-   PERL_DIR    : /home/{USER}/UT/perl
+   JOB_DIR     : /home/bmy/UT/jobs
+   LOG_DIR     : /home/bmy/UT/logs/{VERSION}
+   PERL_DIR    : /home/bmy/UT/perl
    COMPILER    : ifort
    MAKE_CMD    : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
    SUBMIT      : submit smp4
    TEMPLATE    : {PERLDIR}/ut_template.html
    WEB_GRID    : {LOGDIR}/{VERSION}.results.html
-   WEB_PUSH    : NONE
+   WEB_PUSH    : geoschem@fas.harvard.edu|public_html/ut/
 #
 # These attributes will be used if you are using the gcCopyRunDirs script
 # to create run directories for GEOS-Chem simulations.  They are not needed
@@ -79,82 +79,80 @@
 #--------|-----------|------|------------|------------|------------|---------|
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
 #--------|-----------|------|------------|------------|------------|---------|
-# ======= Fullchem ===========================================================
-  geosfp   4x5         -      fullchem     2013070100   2013070101   -
-  merra    4x5         -      fullchem     2005070100   2005070101   -
-  geos5    4x5         -      fullchem     2005070100   2005070101   -
-  geos4    4x5         -      fullchem     2005070100   2005070101   -
-# gcap     4x5         -      fullchem     2005070100   2005070101   -
-# ===== SOA (w/ and w/o SVPOA) ===============================================
-  geosfp   4x5         -      soa          2013070100   2013070101   -
-  merra    4x5         -      soa          2005070100   2005070101   -
-  geos5    4x5         -      soa          2005070100   2005070101   -
-  geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
-  merra    4x5         -      soa_svpoa    2005070100   2005070101   -
-  geos5    4x5         -      soa_svpoa    2005070100   2005070101   -
-# ===== TOMAS aerosol microphysics ===========================================
-# geosfp   4x5         -      TOMAS40      2013070100   2013070101  TOMAS40=y
-# geos5    4x5         -      TOMAS40      2005070100   2005070101  TOMAS40=y
-# ===== UCX strat-trop chemistry =============================================
-  geosfp   4x5         -      UCX          2013070100   2013070101  UCX=y
-  geos5    4x5         -      UCX          2005070100   2005070101  UCX=y
-# ======= Other 2x25 runs =====================================================
-  geosfp   2x25        -      fullchem     2013070100   201307010030 -
-  geos5    2x25        -      fullchem     2005070100   200507010030 -
-# ===== Nested model runs =====================================================
-# geos5    05x0666     ch     fullchem     2005070100   200507010030 -
 # ======= Radon-Lead-Beryllium ===============================================
-  geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
-  merra    4x5         -      RnPbBe       2005070100   2005070101   -
-  geos5    4x5         -      RnPbBe       2005070100   2005070101   -
-  geos4    4x5         -      RnPbBe       2005070100   2005070101   -
-  geos4    4x5         -      RnPbBe       2005070100   2005070101   -
+# geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
+# merra    4x5         -      RnPbBe       2006070100   2006070101   -
+# geos5    4x5         -      RnPbBe       2006070100   2006070101   -
+# geos4    4x5         -      RnPbBe       2006070100   2006070101   -
   gcap     4x5         -      RnPbBe       2005070100   2005070101   -
   geosfp   2x25        -      RnPbBe       2013070100   201307010030 -
-  geos5    2x25        -      RnPbBe       2005070100   200507010030 -
+  geos5    2x25        -      RnPbBe       2006070100   200607010030 -
 # ======= Mercury ============================================================
   geosfp   4x5         -      Hg           2013070100   2013070101   -
-  geos5    4x5         -      Hg           2005070100   2005070101   -
-  geos4    4x5         -      Hg           2005070100   2005070101   -
-  merra    4x5         -      Hg           2005070100   2005070101   -
-##%%%%%  NOTE: 2x25 Hg unit tests fail, investigate later on %%%%%%%%%%%%%%%%%%
-# geosfp   2x25        -      Hg           2013070100   201307010030 -
-# geos5    2x25        -      Hg           2005070100   200507010030 -
+  merra    4x5         -      Hg           2006070100   2006070101   -
+  geos5    4x5         -      Hg           2006070100   2006070101   -
+  geos4    4x5         -      Hg           2006070100   2006070101   -
+  geosfp   2x25        -      Hg           2013070100   201307010030 -
+  geos5    2x25        -      Hg           2006070100   200607010030 -
 # ======= POPs ===============================================================
   geosfp   4x5         -      POPs         2013070100   2013070101   -
-  merra    4x5         -      POPs         2005070100   2005070101   -
-  geos5    4x5         -      POPs         2005070100   2005070101   -
-  geos4    4x5         -      POPs         2005070100   2005070101   -
+  merra    4x5         -      POPs         2006070100   2006070101   -
+  geos5    4x5         -      POPs         2006070100   2006070101   -
+  geos4    4x5         -      POPs         2006070100   2006070101   -
   gcap     4x5         -      POPs         2005070100   2005070101   -
   geosfp   2x25        -      POPs         2013070100   201307010030 -
-  geos5    2x25        -      POPs         2005070100   200507010030 -
+  geos5    2x25        -      POPs         2006070100   200607010030 -
 # ======= Methane ============================================================
   geosfp   4x5         -      CH4          2013070100   2013070101   -
-  merra    4x5         -      CH4          2005070100   2005070101   -
-  geos5    4x5         -      CH4          2005070100   2005070101   -
+  merra    4x5         -      CH4          2006070100   2006070101   -
+  geos5    4x5         -      CH4          2006070100   2006070101   -
+  geos4    4x5         -      CH4          2006070100   2006070101   -
   geosfp   2x25        -      CH4          2013070100   201307010030 -
-  geos5    2x25        -      CH4          2005070100   200507010030 -
+  geos5    2x25        -      CH4          2006070100   200607010030 -
 # ======= Tagged O3 ==========================================================
   geosfp   4x5         -      tagO3        2013070100   2013070101   -
-  merra    4x5         -      tagO3        2005070100   2005070101   -
-  geos5    4x5         -      tagO3        2005070100   2005070101   -
-  geos4    4x5         -      tagO3        2005070100   2005070101   -
+  merra    4x5         -      tagO3        2006070100   2006070101   -
+  geos5    4x5         -      tagO3        2006070100   2006070101   -
+  geos4    4x5         -      tagO3        2006070100   2006070101   -
   geosfp   2x25        -      tagO3        2013070100   201307010030 -
-  geos5    2x25        -      tagO3        2005070100   200507010030 -
-# ======= Tagged CO ==========================================================
-  geosfp   4x5         -      tagCO        2013070100   2013070101   -
-  merra    4x5         -      tagCO        2005070100   2005070101   -
-  geos5    4x5         -      tagCO        2005070100   2005070101   -
+  geos5    2x25        -      tagO3        2006070100   200607010030 -
+##======= Tagged CO ==========================================================
+#  geosfp   4x5         -      tagCO        2013070100   2013070101   -
+#  merra    4x5         -      tagCO        2006070100   2006070101   -
+#  geos5    4x5         -      tagCO        2006070100   2006070101   -
 # ======= Carbon Dioxide =====================================================
   geosfp   2x25        -      CO2          2013070100   201307010030 -
-  geos5    2x25        -      CO2          2005070100   200507010030 -
+  geos5    2x25        -      CO2          2006070100   200607010030 -
 # ======= Offline Aerosols ===================================================
   geosfp   4x5         -      aerosol      2013070100   2013070101   - 
-  merra    4x5         -      aerosol      2005070100   2005070101   -
-  geos5    4x5         -      aerosol      2005070100   2005070101   -
+  merra    4x5         -      aerosol      2006070100   2006070101   -
+  geos5    4x5         -      aerosol      2006070100   2006070101   -
   geos4    4x5         -      aerosol      2004070100   2004070101   -
   geosfp   2x25        -      aerosol      2013070100   201307010030 -
-  geos5    2x25        -      aerosol      2005070100   200507010030 -
+  geos5    2x25        -      aerosol      2006070100   200607010030 -
+# ======= Fullchem ===========================================================
+  geosfp   4x5         -      fullchem     2013070100   2013070101   -
+  merra    4x5         -      fullchem     2006070100   2006070101   -
+  geos5    4x5         -      fullchem     2006070100   2006070101   -
+  geos4    4x5         -      fullchem     2006070100   2006070101   -
+# ===== SOA (w/ and w/o SVPOA) ===============================================
+  geosfp   4x5         -      soa          2013070100   2013070101   -
+  merra    4x5         -      soa          2006070100   2006070101   -
+  geos5    4x5         -      soa          2006070100   2006070101   -
+  geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
+  merra    4x5         -      soa_svpoa    2006070100   2006070101   -
+  geos5    4x5         -      soa_svpoa    2006070100   2006070101   -
+## ===== TOMAS aerosol microphysics ===========================================
+#  geosfp   4x5         -      TOMAS40      2013070100   2013070101  TOMAS40=y
+#  geos5    4x5         -      TOMAS40      2006070100   2006070101  TOMAS40=y
+# ===== UCX strat-trop chemistry =============================================
+  geosfp   4x5         -      UCX          2013070100   2013070101  UCX=y
+  geos5    4x5         -      UCX          2006070100   2006070101  UCX=y
+# ======= Other 2x25 runs =====================================================
+  geosfp   2x25        -      fullchem     2013070100   201307010030 -
+  geos5    2x25        -      fullchem     2006070100   200607010030 -
+## ===== Nested model runs =====================================================
+#  geos5    05x0666     ch     fullchem     2006070100   200607010030 -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------
