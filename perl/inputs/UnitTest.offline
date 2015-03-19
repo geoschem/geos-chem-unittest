@@ -3,10 +3,10 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !INCLUDE: UnitTest.offline
+# !INCLUDE: UnitTest.nightly
 #
 # !DESCRIPTION: Input file that specifies debugging options for the 
-#  GEOS-Chem unit tester.  Customized for offline simulations
+#  GEOS-Chem unit tester.  Customized for nightly unit tests.
 #\\
 #\\
 # !REMARKS:  
@@ -34,29 +34,31 @@
 #  03 Sep 2013 - R. Yantosca - Now do 1-hr test runs for expediency
 #  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
 #  27 Feb 2014 - R. Yantosca - Now grouped runs by simulation type
-#  04 Apr 2014 - R. Yantosca - Now add the WEB_PATH to specify upload location
-#  11 Apr 2014 - R. Yantosca - Add tagged CO unit tests
-#  28 Jul 2014 - R. Yantosca - Add HEMCO_ROOT directory
-#  28 Jul 2014 - R. Yantosca - 2 x 2.5 unit tests now end after 30 mins
+#  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
+#  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
+#  14 Apr 2014 - R. Yantosca - Added unit tests for POPs simulation
+#  24 Apr 2014 - R. Yantosca - Add extra GEOS-4 unit tests (Hg, tagO3, CH4)
+#  28 Jul 2014 - R. Yantosca - Added HEMCO_ROOT directory
+#  28 Jul 2014 - R. Yantosca - 2 x 2.5 runs now end after 30 mins
 #  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
-#  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
 #  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
 #                              MERRA, so as to use NEI2011
+#  19 Mar 2015 - R. Yantosca - Hg simulations should use 2005 (except GEOS-FP)
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION     : v10-01.offline
-   DESCRIPTION : Tests offline simulations in GEOS-Chem
-   CODE_DIR    : /home/{USER}/GC/Code.v10-01
+   VERSION     : v10-01h
+   DESCRIPTION : Tests v10-01h + NEI2011 + scale factors
+   CODE_DIR    : /home/bmy/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos/ExtData
    HEMCO_ROOT  : {DATAROOT}/HEMCO
-   RUN_ROOT    : /home/{USER}/UT/runs
+   RUN_ROOT    : /home/bmy/UT/runs
    RUN_DIR     : {RUNROOT}/{RUNDIR}
-   JOB_DIR     : /home/{USER}/UT/jobs
-   LOG_DIR     : /home/{USER}/UT/logs/{VERSION}
-   PERL_DIR    : /home/{USER}/UT/perl
+   JOB_DIR     : /home/bmy/UT/jobs
+   LOG_DIR     : /home/bmy/UT/logs/{VERSION}
+   PERL_DIR    : /home/bmy/UT/perl
    COMPILER    : ifort
    MAKE_CMD    : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
    SUBMIT      : submit smp4
@@ -115,17 +117,18 @@
   geos4    4x5         -      tagO3        2006070100   2006070101   -
   geosfp   2x25        -      tagO3        2013070100   201307010030 -
   geos5    2x25        -      tagO3        2006070100   200607010030 -
-# ======= Tagged CO ==========================================================
-  geosfp   4x5         -      tagCO        2013070100   2013070101   -
-  merra    4x5         -      tagCO        2006070100   2006070101   -
-  geos5    4x5         -      tagCO        2006070100   2006070101   -
+##======= Tagged CO ==========================================================
+#  geosfp   4x5         -      tagCO        2013070100   2013070101   -
+#  merra    4x5         -      tagCO        2006070100   2006070101   -
+#  geos5    4x5         -      tagCO        2006070100   2006070101   -
 # ======= Carbon Dioxide =====================================================
+  geosfp   2x25        -      CO2          2013070100   201307010030 -
   geos5    2x25        -      CO2          2006070100   200607010030 -
 # ======= Offline Aerosols ===================================================
-  geosfp   4x5         -      aerosol      2013070100   2013070101   -
+  geosfp   4x5         -      aerosol      2013070100   2013070101   - 
   merra    4x5         -      aerosol      2006070100   2006070101   -
   geos5    4x5         -      aerosol      2006070100   2006070101   -
-  geos4    4x5         -      aerosol      2006070100   2006070101   -
+  geos4    4x5         -      aerosol      2004070100   2004070101   -
   geosfp   2x25        -      aerosol      2013070100   201307010030 -
   geos5    2x25        -      aerosol      2006070100   200607010030 -
  !END OF RUNS:
