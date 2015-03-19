@@ -43,6 +43,7 @@
 #  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
 #  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
 #                              MERRA, so as to use NEI2011
+#  19 Mar 2015 - R. Yantosca - Hg simulations should use 2005 (except GEOS-FP)
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -80,10 +81,10 @@
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
 #--------|-----------|------|------------|------------|------------|---------|
 # ======= Radon-Lead-Beryllium ===============================================
-# geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
-# merra    4x5         -      RnPbBe       2006070100   2006070101   -
-# geos5    4x5         -      RnPbBe       2006070100   2006070101   -
-# geos4    4x5         -      RnPbBe       2006070100   2006070101   -
+  geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
+  merra    4x5         -      RnPbBe       2006070100   2006070101   -
+  geos5    4x5         -      RnPbBe       2006070100   2006070101   -
+  geos4    4x5         -      RnPbBe       2006070100   2006070101   -
   gcap     4x5         -      RnPbBe       2005070100   2005070101   -
   geosfp   2x25        -      RnPbBe       2013070100   201307010030 -
   geos5    2x25        -      RnPbBe       2006070100   200607010030 -
