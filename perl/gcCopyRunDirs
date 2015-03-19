@@ -215,6 +215,7 @@ sub doCopyDirs($$) {
 # !REVISION HISTORY:
 #  22 Aug 2013 - R. Yantosca - Initial version, based on gcUnitTest
 #  13 Mar 2015 - M. Sulprizio- Now get username for file paths
+#  19 Mar 2015 - R. Yantosca - Now delete template files in the copied rundir
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -392,10 +393,15 @@ sub doCopyDirs($$) {
 	    #----------------------------------------
 
 	    # Execute the copy command
-	    qx( $cmd );
+	    qx/$cmd/;
 
 	    # Make the input.geos and HEMCO_Config.rc file from templates
 	    &makeInputs( $start, $end,  $copyDir, $met, $grid, $nest, $sim );
+
+	    # Remove the template files in the copied diretory
+	    $cmd =  "rm -f $copyDir/input.geos.template";
+	    $cmd .= " $copyDir/HEMCO_Config.template";
+	    qx/$cmd/;
           }
         }
 
