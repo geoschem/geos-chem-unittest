@@ -364,6 +364,7 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- NEI 2011 (USA) ---
 #==============================================================================
+(((NEI2011
 # NH3
 0 NEI11_SURFACE_NH3    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          NH3      2006-2013/$MM/$DD/0-23 R xy  kg/m2/s  NH3  253/1007     1/2 50
 #0 NEI11_EGU_NH3       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      NH3      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  NH3  253/1007     1   50
@@ -422,6 +423,7 @@ END SECTION EXTENSION SWITCHES
 0 NEI11_OTHPT_OCPO    -                                                                -        -                      - -   -        OCPO 257/1007/268 1   50
 0 NEI11_PTNONIPM_OCPI $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc  POC      2006-2013/$MM/$DD/0-23 R xyz kg/m2/s  OCPI 257/1007/267 1   50
 0 NEI11_PTNONIPM_OCPO -                                                                -        -                      - -   -        OCPO 257/1007/268 1   50
+)))NEI2011
 
 #==============================================================================
 # --- STREETS SE ASIA (Zhang et al., 2009) ---
