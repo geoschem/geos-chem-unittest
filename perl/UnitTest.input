@@ -43,7 +43,7 @@
 #  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
 #  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
 #  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
-#                              MERRA, and GCAP, so as to use NEI2011
+#                              MERRA, so as to use NEI2011
 #  19 Mar 2015 - M. Sulprizio- Added unit tests for RRTMG simulation
 #EOP
 #------------------------------------------------------------------------------
@@ -86,8 +86,7 @@
   merra    4x5         -      RnPbBe       2006070100   2006070101   -
   geos5    4x5         -      RnPbBe       2006070100   2006070101   -
   geos4    4x5         -      RnPbBe       2006070100   2006070101   -
-  geos4    4x5         -      RnPbBe       2006070100   2006070101   -
-  gcap     4x5         -      RnPbBe       2006070100   2006070101   -
+  gcap     4x5         -      RnPbBe       2005070100   2005070101   -
   geosfp   2x25        -      RnPbBe       2013070100   201307010030 -
   geos5    2x25        -      RnPbBe       2006070100   200607010030 -
 # ======= Mercury ============================================================
@@ -95,12 +94,14 @@
   merra    4x5         -      Hg           2006070100   2006070101   -
   geos5    4x5         -      Hg           2006070100   2006070101   -
   geos4    4x5         -      Hg           2006070100   2006070101   -
+  geosfp   2x25        -      Hg           2013070100   201307010030 -
+  geos5    2x25        -      Hg           2006070100   200607010030 -
 # ======= POPs ===============================================================
   geosfp   4x5         -      POPs         2013070100   2013070101   -
   merra    4x5         -      POPs         2006070100   2006070101   -
   geos5    4x5         -      POPs         2006070100   2006070101   -
   geos4    4x5         -      POPs         2006070100   2006070101   -
-  gcap     4x5         -      POPs         2006070100   2006070101   -
+  gcap     4x5         -      POPs         2005070100   2005070101   -
   geosfp   2x25        -      POPs         2013070100   201307010030 -
   geos5    2x25        -      POPs         2006070100   200607010030 -
 # ======= Methane ============================================================
