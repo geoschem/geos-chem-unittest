@@ -38,12 +38,13 @@
 #  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
 #  14 Apr 2014 - R. Yantosca - Added unit tests for POPs simulation
 #  24 Apr 2014 - R. Yantosca - Add extra GEOS-4 unit tests (Hg, tagO3, CH4)
-#  28 Jul 2014 - R. Yantosca - Add HEMCO_ROOT directory
+#  28 Jul 2014 - R. Yantosca - Added HEMCO_ROOT directory
 #  28 Jul 2014 - R. Yantosca - 2 x 2.5 runs now end after 30 mins
 #  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
 #  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
 #  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
 #                              MERRA, and GCAP, so as to use NEI2011
+#  19 Mar 2015 - M. Sulprizio- Added unit tests for RRTMG simulation
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -72,7 +73,7 @@
 #
    COPY_CMD    : cp -rfL
    COPY_PATH   : /as/scratch/{USER}/TEST
-##
+#
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
@@ -85,6 +86,10 @@
   merra    4x5         -      RnPbBe       2006070100   2006070101   -
   geos5    4x5         -      RnPbBe       2006070100   2006070101   -
   geos4    4x5         -      RnPbBe       2006070100   2006070101   -
+  geos4    4x5         -      RnPbBe       2006070100   2006070101   -
+  gcap     4x5         -      RnPbBe       2006070100   2006070101   -
+  geosfp   2x25        -      RnPbBe       2013070100   201307010030 -
+  geos5    2x25        -      RnPbBe       2006070100   200607010030 -
 # ======= Mercury ============================================================
   geosfp   4x5         -      Hg           2013070100   2013070101   -
   merra    4x5         -      Hg           2006070100   2006070101   -
@@ -102,36 +107,36 @@
   geosfp   4x5         -      CH4          2013070100   2013070101   -
   merra    4x5         -      CH4          2006070100   2006070101   -
   geos5    4x5         -      CH4          2006070100   2006070101   -
-  geos4    4x5         -      CH4          2004070100   2004070101   -
+  geos4    4x5         -      CH4          2006070100   2006070101   -
   geosfp   2x25        -      CH4          2013070100   201307010030 -
   geos5    2x25        -      CH4          2006070100   200607010030 -
 # ======= Tagged O3 ==========================================================
-  geosfp   4x5         -      tagO3        2013070100   2013070101 TAGO3YR=2004
-  merra    4x5         -      tagO3        2006070100   2006070101 TAGO3YR=2004
-  geos5    4x5         -      tagO3        2006070100   2006070101 TAGO3YR=2004
-  geos4    4x5         -      tagO3        2006070100   2006070101 TAGO3YR=2003
+  geosfp   4x5         -      tagO3        2013070100   2013070101   -
+  merra    4x5         -      tagO3        2006070100   2006070101   -
+  geos5    4x5         -      tagO3        2006070100   2006070101   -
+  geos4    4x5         -      tagO3        2006070100   2006070101   -
+  geosfp   2x25        -      tagO3        2013070100   201307010030 -
+  geos5    2x25        -      tagO3        2006070100   200607010030 -
 # ======= Tagged CO ==========================================================
   geosfp   4x5         -      tagCO        2013070100   2013070101   -
   merra    4x5         -      tagCO        2006070100   2006070101   -
   geos5    4x5         -      tagCO        2006070100   2006070101   -
 # ======= Carbon Dioxide =====================================================
-# geosfp   2x25        -      CO2          2013070100   201307010030 -
+  geosfp   2x25        -      CO2          2013070100   201307010030 -
   geos5    2x25        -      CO2          2006070100   200607010030 -
 # ======= Offline Aerosols ===================================================
-  geosfp   4x5         -      aerosol      2013070100   2013070101   -
+  geosfp   4x5         -      aerosol      2013070100   2013070101   - 
   merra    4x5         -      aerosol      2006070100   2006070101   -
   geos5    4x5         -      aerosol      2006070100   2006070101   -
-# geos4    4x5         -      aerosol      2004070100   2004070101   -
+  geos4    4x5         -      aerosol      2004070100   2004070101   -
   geosfp   2x25        -      aerosol      2013070100   201307010030 -
   geos5    2x25        -      aerosol      2006070100   200607010030 -
 # ======= Fullchem ===========================================================
   geosfp   4x5         -      fullchem     2013070100   2013070101   -
   merra    4x5         -      fullchem     2006070100   2006070101   -
-# geos5    05x0666     ch     fullchem     2006070100   200607010030 -
-# geos5    2x25        -      fullchem     2006070100   200607010030 -
   geos5    4x5         -      fullchem     2006070100   2006070101   -
   geos4    4x5         -      fullchem     2006070100   2006070101   -
-  gcap     4x5         -      fullchem     2006070100   2006070101   -
+# gcap     4x5         -      fullchem     2005070100   2005070101   -
 # ===== SOA (w/ and w/o SVPOA) ===============================================
   geosfp   4x5         -      soa          2013070100   2013070101   -
   merra    4x5         -      soa          2006070100   2006070101   -
@@ -143,8 +148,19 @@
   geosfp   4x5         -      TOMAS40      2013070100   2013070101  TOMAS40=y
   geos5    4x5         -      TOMAS40      2006070100   2006070101  TOMAS40=y
 # ===== UCX strat-trop chemistry =============================================
-# geosfp   4x5         -      UCX          2013070100   2013070101  UCX=y
-# geos5    4x5         -      UCX          2006070100   2006070101  UCX=y
+  geosfp   4x5         -      UCX          2013070100   2013070101  UCX=y
+  geos5    4x5         -      UCX          2006070100   2006070101  UCX=y
+# ===== RRTMG online radiative transfer ======================================
+  geosfp   4x5         -      RRTMG        2013070100   2013070101  RRTMG=y
+  merra    4x5         -      RRTMG        2013070100   2006070101  RRTMG=y
+  geos5    4x5         -      RRTMG        2006070100   2006070101  RRTMG=y
+# ======= Other 2x25 runs ====================================================
+  geosfp   2x25        -      fullchem     2013070100   201307010030 -
+  geosfp   2x25        -      RRTMG        2013070100   201307010030 RRTMG=y
+  geos5    2x25        -      fullchem     2006070100   200607010030 -
+  geos5    2x25        -      RRTMG        2006070100   200607010030 RRTMG=y
+# ===== Nested model runs ====================================================
+  geos5    05x0666     ch     fullchem     2006070100   200607010030 -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

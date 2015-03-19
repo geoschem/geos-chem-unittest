@@ -44,13 +44,14 @@
 #  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
 #  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
 #                              MERRA, and GCAP, so as to use NEI2011
+#  19 Mar 2015 - M. Sulprizio- Added unit tests for RRTMG simulation
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION     : v10-01h
-   DESCRIPTION : Tests v10-01h + reading data via ExtData
+   VERSION     : v10-01i
+   DESCRIPTION : Tests v10-01i
    CODE_DIR    : /home/{USER}/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos/ExtData
    HEMCO_ROOT  : {DATAROOT}/HEMCO
@@ -135,6 +136,7 @@
   merra    4x5         -      fullchem     2006070100   2006070101   -
   geos5    4x5         -      fullchem     2006070100   2006070101   -
   geos4    4x5         -      fullchem     2006070100   2006070101   -
+# gcap     4x5         -      fullchem     2005070100   2005070101   -
 # ===== SOA (w/ and w/o SVPOA) ===============================================
   geosfp   4x5         -      soa          2013070100   2013070101   -
   merra    4x5         -      soa          2006070100   2006070101   -
@@ -148,10 +150,16 @@
 # ===== UCX strat-trop chemistry =============================================
   geosfp   4x5         -      UCX          2013070100   2013070101  UCX=y
   geos5    4x5         -      UCX          2006070100   2006070101  UCX=y
-# ======= Other 2x25 runs =====================================================
+# ===== RRTMG online radiative transfer ======================================
+  geosfp   4x5         -      RRTMG        2013070100   2013070101  RRTMG=y
+  merra    4x5         -      RRTMG        2013070100   2006070101  RRTMG=y
+  geos5    4x5         -      RRTMG        2006070100   2006070101  RRTMG=y
+# ======= Other 2x25 runs ====================================================
   geosfp   2x25        -      fullchem     2013070100   201307010030 -
+  geosfp   2x25        -      RRTMG        2013070100   201307010030 RRTMG=y
   geos5    2x25        -      fullchem     2006070100   200607010030 -
-# ===== Nested model runs =====================================================
+  geos5    2x25        -      RRTMG        2006070100   200607010030 RRTMG=y
+# ===== Nested model runs ====================================================
   geos5    05x0666     ch     fullchem     2006070100   200607010030 -
  !END OF RUNS:
 #EOP
