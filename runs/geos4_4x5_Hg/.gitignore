@@ -13,6 +13,8 @@ geos.mp
 geos.sp
 input.geos
 *.log
+*.mp
+*.sp
 HEMCO*Config.rc
 HEMCO*restart*
 HEMCO*log*

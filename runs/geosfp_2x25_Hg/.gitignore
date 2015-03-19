@@ -12,6 +12,8 @@ diaginfo.dat
 tracerinfo.dat
 geos.mp
 geos.sp
+*.mp
+*.sp
 input.geos
 *.log
 HEMCO*Config.rc
