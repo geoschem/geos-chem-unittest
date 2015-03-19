@@ -285,6 +285,7 @@ sub doCopyDirs($$) {
     elsif ( $txt[$i] =~ "!RUNS"     ) {
 
       # Replace tokens in a few more variables
+      $COPY_PATH  =~ s/{USER}/$user/g;
       $RUN_ROOT   =~ s/{USER}/$user/g;
       $JOB_DIR    =~ s/{USER}/$user/g;
       $LOG_DIR    =~ s/{USER}/$user/g;
