@@ -107,6 +107,17 @@ USE solver coded by KPP : F
 Online O3 for FAST-JX?  : F
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
+%%% RADIATION MENU %%%  :
+AOD Wavelength (nm)     : 550
+Turn on RRTMG?          : F
+Calculate LW fluxes?    : F
+Calculate SW fluxes?    : F
+Clear-sky flux?         : F
+All-sky flux?           : F
+Radiation Timestep [min]: 180
+Species fluxes          : 0 0 0 0 0 0 0 0 0 1
+ ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM]
+------------------------+------------------------------------------------------
 %%% CO2 SIM MENU %%%    :
 Fossil Fuel Emissions   :--- 
   Generic FF emissions  : F 
@@ -174,21 +185,21 @@ ND17: Rainout fraction  :  0   all
 ND18: Washout fraction  :  0   all            
 ND19: CH4 loss          :  0   all            
 ND21: Optical depths    :  0   all            
-ND22: J-Values          :  0   all              
+ND22: J-Values          :  0   all
       => JV time range  :      11 13
 ND24: E/W transpt flx   : 47   all
 ND25: N/S transpt flx   : 47   all
 ND26: U/D transpt flx   : 47   all
-ND27: Strat NOx,Ox,HNO3 :  0   1 2 7
-ND28: Biomass emissions :  0   1 4 5 9 10 11 18 19 20 21 26 30 34 35
+ND27: Strat NOx,Ox,HNO3 :  0   all
+ND28: Biomass emissions :  0   all
 ND29: CO sources        :  0   all
 ND30: Land Map          :  0   all
 ND31: Surface pressure  :  0   all
 ND32: NOx sources       :  0   all
 ND33: Column tracer     :  0   all
-ND34: Biofuel emissions :  0   1 4 5 9 10 11 18 19 20 21
+ND34: Biofuel emissions :  0   all
 ND35: Tracers at 500 mb :  0   all
-ND36: Anthro emissions  :  0   1 2 4 5 7 9 10 11 18 19 20 21
+ND36: Anthro emissions  :  0   all
 ND37: Updraft scav frac :  0   all
 ND38: Cld Conv scav loss:  0   all
 ND39: Wetdep scav loss  :  0   all
@@ -201,16 +212,16 @@ ND45: Tracer Conc's     : 47   1
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions:  0   all
 ND47: 24-h avg trc conc :  0   all
-ND52: GAMMA HO2         :  0    all
+ND52: GAMMA HO2         :  0   all
 ND53: POPs Emissions    :  0   all
 ND54: Time in t'sphere  : 47   all
 ND55: Tropopause height : 47   all
 ND56: Lightning flashes :  0   all
 ND57: Potential T       :  0   all
 ND58: CH4 Emissions     :  0   all
-ND59: -                 :  0   all
+ND59: TOMAS aerosol emis:  0   all
 ND60: Wetland Frac      :  0   all
-ND61: -                 :  0   all
+ND61: TOMAS 3D rate     :  0   all
 ND62: Inst column maps  :  0   all
 ND64: Radiative flux    :  0   all
 ND66: DAO 3-D fields    :  0   all
@@ -218,7 +229,8 @@ ND67: DAO 2-D fields    :  0   all
 ND68: Airmass/Boxheight : 47   all
 ND69: Surface area      :  1   all
 ND70: Debug output      :  0   all
-ND71: Hourly max ppbv   :  0   2
+ND71: Hourly max ppbv   :  0   all
+ND72: Radiative output  :  0   all
 ------------------------+------------------------------------------------------
 %%% PLANEFLIGHT MENU %%%:
 Turn on plane flt diag? : F
@@ -263,7 +275,7 @@ LMIN, LMAX of region    :   1  40
 %%% ND51b MENU %%%      :
 Turn on ND51b diagnstic : F
 LT avg timeseries file  : ts_13_15.NA.YYYYMMDD.h5
-Output as HDF5?         : T
+Output as HDF5?         : F
 Tracers to include      : 1 4 20 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 60 61 62 63 64 65 66 72 73 75 82 83 84 85 86 87 93 94 98 99
 GMT Hour for disk write :  1
 Avg Period [LT hours]   :  13  15
