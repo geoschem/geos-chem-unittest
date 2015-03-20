@@ -148,8 +148,8 @@ END SECTION SETTINGS
     --> HTAP              :       false
     --> EMEP              :       true
     --> GEIA              :       true
-    --> NEI2005           :       false
-    --> NEI2011           :       true
+    --> NEI2005           :       true
+    --> NEI2011           :       false
     --> NEI2011_SHIP      :       false
     --> SHIP              :       true
     --> MIX               :       true

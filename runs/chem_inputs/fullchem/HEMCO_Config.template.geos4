@@ -151,8 +151,8 @@ END SECTION SETTINGS
     --> EMEP              :       true
     --> GEIA              :       true
     --> LIANG_BROMOCARB   :       true
-    --> NEI2005           :       false
-    --> NEI2011           :       true
+    --> NEI2005           :       true
+    --> NEI2011           :       false
     --> NEI2011_SHIP      :       false
     --> RETRO             :       true 
     --> SHIP              :       true
