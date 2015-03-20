@@ -206,7 +206,7 @@ Calculate SW fluxes?    : F
 Clear-sky flux?         : F
 All-sky flux?           : F
 Radiation Timestep [min]: 180
-Species fluxes          : 0 0 0 0 0 0 0 0 0 1
+Species fluxes          : 0 0 0 0 0 0 0 0 0 0 1
  ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM]
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
@@ -250,7 +250,7 @@ ND17: Rainout fraction  :  0   all
 ND18: Washout fraction  :  0   all            
 ND19: CH4 loss          :  0   all            
 ND21: Optical depths    : 72   all            
-ND22: J-Values          : 72   1 2 7 8 9 11 13 14 20 44 46 47 49 50 51 58 59 64 65
+ND22: J-Values          : 72   1 2 7 8 9 11 13 14 20 44 46 47 49 50 51 58 59 64 65 67 72 73 77 78 -1
       => JV time range  :      11 13
 ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
