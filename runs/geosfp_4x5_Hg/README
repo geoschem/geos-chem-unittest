@@ -1,15 +1,19 @@
 This directory is the run directory for the GEOS-Chem unit tester,
-for GEOS-5 met fields, 4x5 grid, and standard mercury mechanism.
+for GEOS-FP met fields, 4x5 grid, and the mercury simulation.
 
 The tracer and ocean restart files are linked to the files in the
 ../geos5_4x5_Hg directory.  GEOS-FP uses the same vertical grid as the
 GEOS-5 (aka GEOS-5.2.0) and MERRA met field products, so the restart
 files are interchangeable.
 
+The HEMCO configuration file is linked to HEMCO_Config.template.Hg stored
+in ../chem_inputs/specialty.  This allows us to keep a single set of these
+files in one location, for convenience.
+
 A new input.geos file will be created from the input.geos.template file
 each time the unit tester is run.  This allows the location of the data
 files to be customized for each user.
 
-06 Sep 2013
+20 March 2015
 GEOS-Chem Support Team
 geos-chem-support@as.harvard.edu
