@@ -1143,10 +1143,10 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- SOILNOX emissions (Extension 104) ---
 #==============================================================================
-104 SOILNOX_PFACT   ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        PFACTOR       $YYYY/$MM/$DD/$HH C xy 1     NO - 1 1
-104 SOILNOX_DRYPER  ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        DRYPERIOD     $YYYY/$MM/$DD/$HH C xy 1     NO - 1 1
-104 SOILNOX_GWET    ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        GWET_PREV     $YYYY/$MM/$DD/$HH C xy 1     NO - 1 1
-104 SOILNOX_DEPRES  ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        DEP_RESERVOIR $YYYY/$MM/$DD/$HH C xy kg/m3 NO - 1 1
+104 PFACTOR         ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        PFACTOR       $YYYY/$MM/$DD/$HH C xy 1     NO - 1 1
+104 DRYPERIOD       ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        DRYPERIOD     $YYYY/$MM/$DD/$HH C xy 1     NO - 1 1
+104 GWET_PREV       ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        GWET_PREV     $YYYY/$MM/$DD/$HH C xy 1     NO - 1 1
+104 DEP_RESERVOIR   ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        DEP_RESERVOIR $YYYY/$MM/$DD/$HH C xy kg/m3 NO - 1 1
 104 SOILNOX_FERT    $ROOT/SOILNOX/v2014-07/soilNOx.fert_res.generic.05x05.nc      FERT          2000/1-12/1-31/0  C xy kg/m3 NO - 1 1
 104 SOILNOX_LANDK1  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K01  2000/1/1/0        C xy 1     NO - 1 1
 104 SOILNOX_LANDK2  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K02  2000/1/1/0        C xy 1     NO - 1 1
