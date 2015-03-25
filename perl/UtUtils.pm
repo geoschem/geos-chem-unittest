@@ -611,6 +611,7 @@ sub readResults($$) {
 #  24 Mar 2014 - R. Yantosca - Now return the %unitTests hash
 #  24 Mar 2014 - R. Yantosca - Now get version, date, description
 #  02 Jul 2014 - R. Yantosca - Improved the search method for HEMCO, UCX files
+#  25 Mar 2015 - R. Yantosca - Now always validate the HEMCO restart files
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -736,9 +737,20 @@ sub readResults($$) {
 
       }
 
+      # Check the results of the HEMCO restart file    
+      for ( my $j = 0; $j < 6; $j++ ) { 
+	if ( $txt[++$i] =~ m/DIFFERENT/ ) { $hemco = -1; }
+
+      }
+
       # Check the results of the UCX PSC RESTART file 
       # or the mercury ocean restart file
-      if ( ( $utName =~ m/UCX/ ) || ( $utName =~ m/Hg/ ) ) {
+#------------------------------------------------------------------------------
+# Prior to 3/25/15:
+# We now read the UCX restart quantities from HEMCO (bmy, 3/25/15)
+#      if ( ( $utName =~ m/UCX/ ) || ( $utName =~ m/Hg/ ) ) {
+#------------------------------------------------------------------------------
+      if ( $utName =~ m/Hg/ ) {
 	for ( my $j = 0; $j < 6; $j++ ) { 
 	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $psc = -1; }
         }

@@ -18,6 +18,7 @@
 #  04 Sep 2014 - R. Yantosca - More updates for HEMCO
 #  11 Mar 2015 - R. Yantosca - Add defaults for LOG_DIR and VERSION
 #  11 Mar 2015 - R. Yantosca - Now get start and end dates via scripts
+#  25 Mar 2015 - R. Yantosca - Remove PSC restart file (that's now via HEMCO)
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -66,7 +67,6 @@ LOG_HMCO :=HEMCO.log
 TRAC_AVG :=trac_avg.$(RUNID).$(START)
 TRAC_RST :=trac_rst.$(RUNID).$(END)
 HMCO_RST :=HEMCO_restart.$(HMCO_END).nc
-PSC_RST  :=restart.psc.$(END)
 
 # Validation script
 VALIDATE :=/usr/bin/perl $(PERL_DIR)/validate
@@ -95,7 +95,6 @@ sp:
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
-	if [ -f $(PSC_RST)  ]; then mv -f $(PSC_RST)  $(PSC_RST).sp;  fi;
 
 mp:
 	rm -f $(LOG_MP)
@@ -106,13 +105,11 @@ mp:
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
-	if [ -f $(PSC_RST)  ]; then mv -f $(PSC_RST)  $(PSC_RST).mp;  fi;
 
 check:
 	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
 	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
-	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 0 >> $(RESULTS)
-	@$(VALIDATE) $(PSC_RST).sp  $(PSC_RST).mp  0 1 >> $(RESULTS)
+	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
 
 clean:
 	@$(MAKE) -C $(CODE_DIR) clean
