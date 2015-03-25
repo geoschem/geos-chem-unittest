@@ -18,6 +18,7 @@
 #  30 Jun 2014 - R. Yantosca - Add extrafileclean target
 #  11 Mar 2015 - R. Yantosca - Add defaults for LOG_DIR and VERSION
 #  11 Mar 2015 - R. Yantosca - Now get start and end dates via scripts
+#  25 Mar 2015 - R. Yantosca - Now validate the HEMCO_restart files
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -66,6 +67,7 @@ LOG_HMCO :=HEMCO.log
 TRAC_AVG :=trac_avg.$(RUNID).$(START)
 TRAC_RST :=trac_rst.$(RUNID).$(END)
 OCN_RST  :=ocean_rst.$(RUNID).$(END)
+HMCO_RST :=HEMCO_restart.$(HMCO_END).nc
 
 # Validation script
 VALIDATE :=/usr/bin/perl $(PERL_DIR)/validate
@@ -92,6 +94,7 @@ sp:
 	$(EXE_SP) >> $(LOG_SP)
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).sp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
+	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
 	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).sp;  fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
 
@@ -102,12 +105,14 @@ mp:
 	$(EXE_MP) >> $(LOG_MP)
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
+	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
 	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).mp;  fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
 
 check:
 	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
 	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
+	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 0 >> $(RESULTS)
 	@$(VALIDATE) $(OCN_RST).sp  $(OCN_RST).mp  0 1 >> $(RESULTS)
 
 clean:
@@ -117,7 +122,7 @@ fileclean:
 	@$(MAKE) logclean
 	rm -f diaginfo.dat tracerinfo.dat
 	rm -f *.sp
-	rm -f *.mp 
+	rm -f *.mp
 	rm -f HEMCO.log*
 	rm -f HEMCO*restart*
 
