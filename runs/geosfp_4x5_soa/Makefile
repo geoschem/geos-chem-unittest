@@ -70,7 +70,7 @@ TRAC_RST :=trac_rst.$(RUNID).$(END)
 HMCO_RST :=HEMCO_restart.$(HMCO_END).nc
 
 # Validation script
-VALIDATE :=/usr/bin/perl $(PERL_DIR)/validate
+VALIDATE :=/usr/bin/perl ./validate
 
 #=============================================================================
 # Makefile targets: type "make help" for a complete list!
