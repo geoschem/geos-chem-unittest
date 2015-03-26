@@ -1396,8 +1396,8 @@ END SECTION EXTENSION SWITCHES
 #* GMI_PROD_H1202     $ROOT/GMI/v2015-02/gmi.clim.CF2Br2.geos5.2x25.nc      prod    2000/$MM/1/0 C xyz v/v/s H1202    - 1  1
 * GMI_LOSS_CFC12      $ROOT/GMI/v2015-02/gmi.clim.CF2Cl2.geos5.2x25.nc      loss    2000/$MM/1/0 C xyz s-1   CFC12    - 1  1
 * GMI_PROD_CFC12      $ROOT/GMI/v2015-02/gmi.clim.CF2Cl2.geos5.2x25.nc      prod    2000/$MM/1/0 C xyz v/v/s CFC12    - 1  1
-#* GMI_LOSS_H1211     $ROOT/GMI/v2015-02/gmi.clim.CF2ClBr.geos5.2x25.nc     loss    2000/$MM/1/0 C xyz s-1   H1211    - 1  1
-#* GMI_PROD_H1211     $ROOT/GMI/v2015-02/gmi.clim.CF2ClBr.geos5.2x25.nc     prod    2000/$MM/1/0 C xyz v/v/s H1211    - 1  1
+* GMI_LOSS_H1211      $ROOT/GMI/v2015-02/gmi.clim.CF2ClBr.geos5.2x25.nc     loss    2000/$MM/1/0 C xyz s-1   H1211    - 1  1
+* GMI_PROD_H1211      $ROOT/GMI/v2015-02/gmi.clim.CF2ClBr.geos5.2x25.nc     prod    2000/$MM/1/0 C xyz v/v/s H1211    - 1  1
 #* GMI_LOSS_H1311     $ROOT/GMI/v2015-02/gmi.clim.CF3Br.geos5.2x25.nc       loss    2000/$MM/1/0 C xyz s-1   H1311    - 1  1
 #* GMI_PROD_H1311     $ROOT/GMI/v2015-02/gmi.clim.CF3Br.geos5.2x25.nc       prod    2000/$MM/1/0 C xyz v/v/s H1311    - 1  1
 * GMI_LOSS_CFC113     $ROOT/GMI/v2015-02/gmi.clim.CFC113.geos5.2x25.nc      loss    2000/$MM/1/0 C xyz s-1   CFC113   - 1  1
