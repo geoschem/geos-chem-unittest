@@ -68,7 +68,7 @@ TRAC_RST :=trac_rst.$(RUNID).$(END)
 SOIL_RST :=soil_rst.$(RUNID).$(END)
 
 # Validation script
-VALIDATE :=/usr/bin/perl $(PERL_DIR)/validate
+VALIDATE :=/usr/bin/perl ./validate
 
 #=============================================================================
 # Makefile targets: type "make help" for a complete list!
