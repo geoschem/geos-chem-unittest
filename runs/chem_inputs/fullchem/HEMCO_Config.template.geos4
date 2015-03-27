@@ -82,6 +82,8 @@
 #                              factors from Katie Travis
 #  24 Mar 2015 - M. Sulprizio- Reorder NEI2011 files so that we read all species
 #                              for each sector before closing each netCDF file
+#  26 Mar 2015 - M. Sulprizio- Add entry for STATE_PSC from Christoph Keller
+#  27 Mar 2015 - M. Sulprizio- Revert to EMEP emissions in EMEP/v2014-07/
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -454,15 +456,15 @@ END SECTION EXTENSION SWITCHES
 # --- EMEP (Europe) ---
 #==============================================================================
 (((EMEP
-0 EMEP_NO   $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc NO   1990-2010/1/1/0 C xy kg/m2/s NO   25/32/1000    1/2 10
-0 EMEP_CO   $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc CO   1990-2010/1/1/0 C xy kg/m2/s CO   26/33/52/1000 1/2 10 
-0 EMEP_SO2  $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc SO2  1990-2010/1/1/0 C xy kg/m2/s SO2  61/35/1000    1/2 10
-0 EMEP_SO4  -                                       -    -               - -  -       SO4  64/35/1000    1/2 10
-0 EMEP_ALK4 $ROOT/EMEP/v2015-01/EMEP.geos.1x1.nc    ALK4 1980-2000/1/1/0 C xy kg/m2/s ALK4 26/1000       1/2 10
-0 EMEP_ALD2 $ROOT/EMEP/v2015-01/EMEP.geos.1x1.nc    ALD2 1980-2000/1/1/0 C xy kg/m2/s ALD2 26/1000       1/2 10
-0 EMEP_PRPE $ROOT/EMEP/v2015-01/EMEP.geos.1x1.nc    PRPE 1980-2000/1/1/0 C xy kg/m2/s PRPE 26/1000       1/2 10
-0 EMEP_MEK  $ROOT/EMEP/v2015-01/EMEP.geos.1x1.nc    MEK  1980-2000/1/1/0 C xy kg/m2/s MEK  26/1000       1/2 10
-0 EMEP_NH3  $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc NH3  1990-2010/1/1/0 C xy kg/m2/s NH3  34/1000       1/2 10
+0 EMEP_NO   $ROOT/EMEP/v2014-07/EMEP.update.gen.1x1.nc NO   1990-2007/1/1/0 C xy kg/m2/s NO   25/32/1000    1/2 10
+0 EMEP_CO   $ROOT/EMEP/v2014-07/EMEP.update.gen.1x1.nc CO   1990-2007/1/1/0 C xy kg/m2/s CO   26/33/52/1000 1/2 10 
+0 EMEP_SO2  $ROOT/EMEP/v2014-07/EMEP.update.gen.1x1.nc SO2  1990-2007/1/1/0 C xy kg/m2/s SO2  61/35/1000    1/2 10
+0 EMEP_SO4  -                                          -    -               - -  -       SO4  64/35/1000    1/2 10
+0 EMEP_ALK4 $ROOT/EMEP/v2014-07/EMEP.geos.1x1.nc       ALK4 1980-2000/1/1/0 C xy kg/m2/s ALK4 26/1000       1/2 10
+0 EMEP_ALD2 $ROOT/EMEP/v2014-07/EMEP.geos.1x1.nc       ALD2 1980-2000/1/1/0 C xy kg/m2/s ALD2 26/1000       1/2 10
+0 EMEP_PRPE $ROOT/EMEP/v2014-07/EMEP.geos.1x1.nc       PRPE 1980-2000/1/1/0 C xy kg/m2/s PRPE 26/1000       1/2 10
+0 EMEP_MEK  $ROOT/EMEP/v2014-07/EMEP.geos.1x1.nc       MEK  1980-2000/1/1/0 C xy kg/m2/s MEK  26/1000       1/2 10
+0 EMEP_NH3  $ROOT/EMEP/v2014-07/EMEP.update.gen.1x1.nc NH3  1990-2007/1/1/0 C xy kg/m2/s NH3  34/1000       1/2 10
 )))EMEP
 
 #==============================================================================
@@ -845,6 +847,7 @@ END SECTION EXTENSION SWITCHES
 # --- Ship emissions ---
 #
 # ==> In the defaults, ARCTAS SO2 has priority over ICOADS, CORBETT, and HTAP.
+#     This can be ovewritten by EMEP over Europe.
 # ==> For CO and NO, ICOADS has priority.
 # ==> Do not use ship emissions from EDGAR v4.2 since they are lumped with
 #     other non-road transportation (aircraft, rail, etc.) emissions
@@ -861,8 +864,8 @@ END SECTION EXTENSION SWITCHES
 #0 HTAP_SHIP_CO        $ROOT/HTAP/v2015-03/EDGAR_HTAP_CO_SHIPS.generic.01x01.nc        emi_co          2008-2010/1/1/0        C xy kg/m2/s  CO   6/28         10 2
 
 (((EMEP
-0 EMEP_SHIP_CO         $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc                         ShipCO          1990-2010/1/1/0        C xy kg/m2/s  CO   1000         10 2
-0 EMEP_SHIP_SO2        $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc                         ShipSO2         1990-2010/1/1/0        C xy kg/m2/s  SO2  61/1000      10 2
+0 EMEP_SHIP_CO         $ROOT/EMEP/v2014-07/EMEP.update.gen.1x1.nc                      ShipCO          1990-2007/1/1/0        C xy kg/m2/s  CO   1000         10 2
+0 EMEP_SHIP_SO2        $ROOT/EMEP/v2014-07/EMEP.update.gen.1x1.nc                      ShipSO2         1990-2007/1/1/0        C xy kg/m2/s  SO2  61/1000      10 2
 )))EMEP
 
 (((NEI2011_SHIP
@@ -907,7 +910,7 @@ END SECTION EXTENSION SWITCHES
 #102 HTAP_SHIP_NO      $ROOT/HTAP/v2015-03/EDGAR_HTAP_NO_SHIPS.generic.01x01.nc        emi_no          2008-2010/1/1/0        C xy kg/m2/s  NO   1/27         10 2
 
 (((EMEP
-102 EMEP_SHIP_NO       $ROOT/EMEP/v2015-01/EMEP.generic.1x1.nc                         ShipNO          1990-2010/1/1/0        C xy kg/m2/s  NO   1000         10 10
+102 EMEP_SHIP_NO       $ROOT/EMEP/v2014-07/EMEP.update.gen.1x1.nc                      ShipNO          1990-2007/1/1/0        C xy kg/m2/s  NO   1000         10 10
 )))EMEP
 
 (((NEI2011_SHIP
@@ -1328,6 +1331,13 @@ END SECTION EXTENSION SWITCHES
 )))+TOMS_SBUV_O3+
 
 #==============================================================================
+# --- PSC state, only needed for UCX ---
+#==============================================================================
+(((+STATE_PSC+
+* STATE_PSC ./HEMCO_restart.$YYYY$MM$DD$HH00.nc STATE_PSC $YYYY/$MM/$DD/$HH C xyz 1 * - 1 1
+)))+STATE_PSC+
+
+#==============================================================================
 # --- Linear stratospheric chemistry fields ---
 #
 # These fields will only be read if the +LinStratChem+ toggle is activated.
@@ -1389,8 +1399,8 @@ END SECTION EXTENSION SWITCHES
 #* GMI_PROD_H1202     $ROOT/GMI/v2015-02/gmi.clim.CF2Br2.geos5.2x25.nc      prod    2000/$MM/1/0 C xyz v/v/s H1202    - 1  1
 * GMI_LOSS_CFC12      $ROOT/GMI/v2015-02/gmi.clim.CF2Cl2.geos5.2x25.nc      loss    2000/$MM/1/0 C xyz s-1   CFC12    - 1  1
 * GMI_PROD_CFC12      $ROOT/GMI/v2015-02/gmi.clim.CF2Cl2.geos5.2x25.nc      prod    2000/$MM/1/0 C xyz v/v/s CFC12    - 1  1
-#* GMI_LOSS_H1211     $ROOT/GMI/v2015-02/gmi.clim.CF2ClBr.geos5.2x25.nc     loss    2000/$MM/1/0 C xyz s-1   H1211    - 1  1
-#* GMI_PROD_H1211     $ROOT/GMI/v2015-02/gmi.clim.CF2ClBr.geos5.2x25.nc     prod    2000/$MM/1/0 C xyz v/v/s H1211    - 1  1
+* GMI_LOSS_H1211      $ROOT/GMI/v2015-02/gmi.clim.CF2ClBr.geos5.2x25.nc     loss    2000/$MM/1/0 C xyz s-1   H1211    - 1  1
+* GMI_PROD_H1211      $ROOT/GMI/v2015-02/gmi.clim.CF2ClBr.geos5.2x25.nc     prod    2000/$MM/1/0 C xyz v/v/s H1211    - 1  1
 #* GMI_LOSS_H1311     $ROOT/GMI/v2015-02/gmi.clim.CF3Br.geos5.2x25.nc       loss    2000/$MM/1/0 C xyz s-1   H1311    - 1  1
 #* GMI_PROD_H1311     $ROOT/GMI/v2015-02/gmi.clim.CF3Br.geos5.2x25.nc       prod    2000/$MM/1/0 C xyz v/v/s H1311    - 1  1
 * GMI_LOSS_CFC113     $ROOT/GMI/v2015-02/gmi.clim.CFC113.geos5.2x25.nc      loss    2000/$MM/1/0 C xyz s-1   CFC113   - 1  1
@@ -1668,10 +1678,10 @@ END SECTION BASE EMISSIONS
 31 GEIA_SEASON_SO2  $ROOT/GEIA/v2014-07/GEIA_monthscal.generic.1x1.nc SO2rat 1985/1-12/1/0 C xy unitless 1
 
 # from EMEP:
-32 EMEP_SEASON_NOX $ROOT/EMEP/v2015-01/EMEP.Seasonal.geos.1x1.nc NOXrat 2005/1-12/1/0 C xy unitless 1
-33 EMEP_SEASON_CO  $ROOT/EMEP/v2015-01/EMEP.Seasonal.geos.1x1.nc COrat  2005/1-12/1/0 C xy unitless 1
-34 EMEP_SEASON_NH3 $ROOT/EMEP/v2015-01/EMEP.Seasonal.geos.1x1.nc NH3rat 2005/1-12/1/0 C xy unitless 1
-35 EMEP_SEASON_SO2 $ROOT/EMEP/v2015-01/EMEP.Seasonal.geos.1x1.nc SO2rat 2005/1-12/1/0 C xy unitless 1
+32 EMEP_SEASON_NOX $ROOT/EMEP/v2014-07/EMEP.Seasonal.geos.1x1.nc NOXrat 2005/1-12/1/0 C xy unitless 1
+33 EMEP_SEASON_CO  $ROOT/EMEP/v2014-07/EMEP.Seasonal.geos.1x1.nc COrat  2005/1-12/1/0 C xy unitless 1
+34 EMEP_SEASON_NH3 $ROOT/EMEP/v2014-07/EMEP.Seasonal.geos.1x1.nc NH3rat 2005/1-12/1/0 C xy unitless 1
+35 EMEP_SEASON_SO2 $ROOT/EMEP/v2014-07/EMEP.Seasonal.geos.1x1.nc SO2rat 2005/1-12/1/0 C xy unitless 1
 
 # from Streets:
 36 ZHANG_SEASON_NOX   $ROOT/STREETS/v2014-07/2006/Streets_2004_NOx_MonthFctr_total.generic.1x1.nc NOxrat    2004/1-12/1/0 C xy unitless 1
