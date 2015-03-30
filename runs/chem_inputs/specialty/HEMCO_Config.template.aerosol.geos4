@@ -84,6 +84,7 @@
 #                              for each sector before closing each netCDF file
 #  26 Mar 2015 - M. Sulprizio- Add entry for STATE_PSC from Christoph Keller
 #  27 Mar 2015 - M. Sulprizio- Revert to EMEP emissions in EMEP/v2014-07/
+#  27 Mar 2015 - C. Keller   - Warnings are now 0-3
 #  30 Mar 2015 - R. Yantosca - Turn off seasalt Br2; Br2 is not a species
 #EOP
 #------------------------------------------------------------------------------
@@ -101,7 +102,7 @@ Unit tolerance:              1
 Negative values:             0
 Only unitless scale factors: false
 Verbose:                     3
-Show warnings:               true
+Warnings:                    3
 #
 END SECTION SETTINGS 
 
@@ -677,7 +678,7 @@ END SECTION EXTENSION SWITCHES
 # --- GFED biomass burning emissions (Extension 111) 
 # NOTE: These are the base emissions in kgDM/m2/s.
 #==============================================================================
-111 GFED_HUMTROP    $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy 1         * - 1 1
+111 GFED_HUMTROP    $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy unitless  * - 1 1
 
 (((GFED3   
 111 GFED_WDL        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__WDL_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
@@ -698,11 +699,11 @@ END SECTION EXTENSION SWITCHES
 )))GFED4
 
 (((GFED_daily
-111 GFED_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  C xy 1         * - 1 1
+111 GFED_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  R xy unitless  * - 1 1
 )))GFED_daily
 
 (((GFED_3hourly
-111 GFED_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 C xy 1         * - 1 1
+111 GFED_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 R xy unitless  * - 1 1
 )))GFED_3hourly
 
 #==============================================================================
