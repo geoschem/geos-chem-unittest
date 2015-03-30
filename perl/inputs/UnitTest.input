@@ -45,6 +45,7 @@
 #  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
 #                              MERRA, so as to use NEI2011
 #  19 Mar 2015 - M. Sulprizio- Added unit tests for RRTMG simulation
+#  30 Mar 2015 - M. Sulprizio- Add 2x2.5 unit tests for soa, soa_svpoa, and UCX
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -78,9 +79,9 @@
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#--------|-----------|------|------------|------------|------------|---------|
-# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
-#--------|-----------|------|------------|------------|------------|---------|
+#--------|-----------|------|------------|------------|-------------|--------|
+# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE    | EXTRA? |
+#--------|-----------|------|------------|------------|-------------|--------|
 # ======= Radon-Lead-Beryllium ===============================================
   geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
   merra    4x5         -      RnPbBe       2006070100   2006070101   -
@@ -91,11 +92,11 @@
   geos5    2x25        -      RnPbBe       2006070100   200607010030 -
 # ======= Mercury ============================================================
   geosfp   4x5         -      Hg           2013070100   2013070101   -
-  merra    4x5         -      Hg           2006070100   2006070101   -
-  geos5    4x5         -      Hg           2006070100   2006070101   -
-  geos4    4x5         -      Hg           2006070100   2006070101   -
+  merra    4x5         -      Hg           2005070100   2005070101   -
+  geos5    4x5         -      Hg           2005070100   2005070101   -
+  geos4    4x5         -      Hg           2005070100   2005070101   -
   geosfp   2x25        -      Hg           2013070100   201307010030 -
-  geos5    2x25        -      Hg           2006070100   200607010030 -
+  geos5    2x25        -      Hg           2005070100   200507010030 -
 # ======= POPs ===============================================================
   geosfp   4x5         -      POPs         2013070100   2013070101   -
   merra    4x5         -      POPs         2006070100   2006070101   -
@@ -138,30 +139,36 @@
   geos5    4x5         -      fullchem     2006070100   2006070101   -
   geos4    4x5         -      fullchem     2006070100   2006070101   -
 # gcap     4x5         -      fullchem     2005070100   2005070101   -
-# ===== SOA (w/ and w/o SVPOA) ===============================================
+  geosfp   2x25        -      fullchem     2013070100   201307010030 -
+  geos5    2x25        -      fullchem     2006070100   200607010030 -
+# ======= SOA (w/o SVPOA) ====================================================
   geosfp   4x5         -      soa          2013070100   2013070101   -
   merra    4x5         -      soa          2006070100   2006070101   -
   geos5    4x5         -      soa          2006070100   2006070101   -
+  geosfp   2x25        -      soa          2013070100   201307010030 -
+  geos5    2x25        -      soa          2006070100   200607010030 -
+# ======= SOA (w/ SVPOA) =====================================================
   geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
   merra    4x5         -      soa_svpoa    2006070100   2006070101   -
   geos5    4x5         -      soa_svpoa    2006070100   2006070101   -
-# ===== TOMAS aerosol microphysics ===========================================
-  geosfp   4x5         -      TOMAS40      2013070100   2013070101  TOMAS40=y
-  geos5    4x5         -      TOMAS40      2006070100   2006070101  TOMAS40=y
-# ===== UCX strat-trop chemistry =============================================
-  geosfp   4x5         -      UCX          2013070100   2013070101  UCX=y
-  geos5    4x5         -      UCX          2006070100   2006070101  UCX=y
-# ===== RRTMG online radiative transfer ======================================
-  geosfp   4x5         -      RRTMG        2013070100   2013070101  RRTMG=y
-  merra    4x5         -      RRTMG        2013070100   2006070101  RRTMG=y
-  geos5    4x5         -      RRTMG        2006070100   2006070101  RRTMG=y
-# ======= Other 2x25 runs ====================================================
-  geosfp   2x25        -      fullchem     2013070100   201307010030 -
+  geosfp   2x25        -      soa_svpoa    2013070100   201307010030 -
+  geos5    2x25        -      soa_svpoa    2006070100   200607010030 -
+# ======= TOMAS aerosol microphysics =========================================
+  geosfp   4x5         -      TOMAS40      2013070100   2013070101   TOMAS40=y
+  geos5    4x5         -      TOMAS40      2006070100   2006070101   TOMAS40=y
+# ======= UCX strat-trop chemistry ===========================================
+  geosfp   4x5         -      UCX          2013070100   2013070101   UCX=y
+  geos5    4x5         -      UCX          2006070100   2006070101   UCX=y
+  geosfp   2x25        -      UCX          2013070100   201307010030 UCX=y
+  geos5    2x25        -      UCX          2006070100   200607010030 UCX=y
+# ======= RRTMG online radiative transfer ====================================
+  geosfp   4x5         -      RRTMG        2013070100   2013070101   RRTMG=y
+  merra    4x5         -      RRTMG        2013070100   2006070101   RRTMG=y
+  geos5    4x5         -      RRTMG        2006070100   2006070101   RRTMG=y
   geosfp   2x25        -      RRTMG        2013070100   201307010030 RRTMG=y
-  geos5    2x25        -      fullchem     2006070100   200607010030 -
   geos5    2x25        -      RRTMG        2006070100   200607010030 RRTMG=y
-# ===== Nested model runs ====================================================
-  geos5    05x0666     ch     fullchem     2006070100   200607010030 -
+# ======= Nested model runs ==================================================
+  geos5    05x0666     ch     fullchem     2006070100   200607010020 -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------
