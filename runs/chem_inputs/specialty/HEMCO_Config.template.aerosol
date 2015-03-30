@@ -86,7 +86,7 @@
 #  27 Mar 2015 - M. Sulprizio- Revert to EMEP emissions in EMEP/v2014-07/
 #  27 Mar 2015 - C. Keller   - Warnings are now 0-3
 #  30 Mar 2015 - R. Yantosca - Turn off seasalt Br2; Br2 is not a species
-#EOP
+#EOP#EOP
 #------------------------------------------------------------------------------
 #BOC
 ###############################################################################
