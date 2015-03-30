@@ -106,7 +106,6 @@ END SECTION SETTINGS
     --> BrOx_GMI          :       true
     --> LRED_JNO2         :       true
     --> LRED_INPLUME      :       true
-    --> OCEAN_Hg          :       true
 # ----------------------------------------------------------------------------
 111     GFED              : on    Hg0
     --> GFED3             :       false
@@ -263,23 +262,23 @@ END SECTION EXTENSION SWITCHES
 # --- Aerosol data for Hg2 partitioning ---
 #==============================================================================
 * AERO_SO4  $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc SO4  2007/1/1/0 C xyz ppbv * - 1 1
-* AERO_NH4  -                                                                   NH4  -          - -   ppbv * - 1 1
-* AERO_NIT  -                                                                   NIT  -          - -   ppbv * - 1 1
-* AERO_BCPI -                                                                   BCPI -          - -   ppbv * - 1 1
-* AERO_BCPO -                                                                   BCPO -          - -   ppbv * - 1 1
-* AERO_OCPI -                                                                   OCPI -          - -   ppbv * - 1 1
-* AERO_OCPO -                                                                   OCPO -          - -   ppbv * - 1 1
-* AERO_DST1 -                                                                   DST1 -          - -   ppbv * - 1 1
+* AERO_NH4  $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc NH4  2007/1/1/0 C xyz ppbv * - 1 1
+* AERO_NIT  $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc NIT  2007/1/1/0 C xyz ppbv * - 1 1
+* AERO_BCPI $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc BCPI 2007/1/1/0 C xyz ppbv * - 1 1
+* AERO_BCPO $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc BCPO 2007/1/1/0 C xyz ppbv * - 1 1
+* AERO_OCPI $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc OCPI 2007/1/1/0 C xyz ppbv * - 1 1
+* AERO_OCPO $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc OCPO 2007/1/1/0 C xyz ppbv * - 1 1
+* AERO_DST1 $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc DST1 2007/1/1/0 C xyz ppbv * - 1 1
 
 #==============================================================================
 # --- Data for the ocean mercury module ---
 #==============================================================================
-(((OCEAN_Hg
+(((+OCEAN_Hg+
 * OCEAN_CHLA    $ROOT/CHLA/v2014-07/Chl_2003.geos.1x1.nc              CHLA    2003/1-12/1/0 C xy kg/m3 * - 1 1
 * OCEAN_EKMAN_V $ROOT/MERCURY/v2014-09/OCEAN/ekman_upvel.geos.2x25.nc EKMAN_V 1985/1-12/1/0 C xy m/s   * - 1 1
 * OCEAN_MLD     $ROOT/MERCURY/v2014-09/OCEAN/mld.geos.2x25.nc         MLD     1985/1-12/1/0 C xy m     * - 1 1
 * OCEAN_NPP     $ROOT/MERCURY/v2014-09/OCEAN/NPP_2003.geos.2x25.nc    NPP     2003/1-12/1/0 C xy kg/m2 * - 1 1
-)))OCEAN_Hg
+)))+OCEAN_Hg+
 
 #==============================================================================
 # --- Data for in plume reduction ---
