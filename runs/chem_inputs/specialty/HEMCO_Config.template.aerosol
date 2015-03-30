@@ -84,6 +84,7 @@
 #                              for each sector before closing each netCDF file
 #  26 Mar 2015 - M. Sulprizio- Add entry for STATE_PSC from Christoph Keller
 #  27 Mar 2015 - M. Sulprizio- Revert to EMEP emissions in EMEP/v2014-07/
+#  30 Mar 2015 - R. Yantosca - Turn off seasalt Br2; Br2 is not a species
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -173,7 +174,7 @@ END SECTION SETTINGS
     --> SALA upper radius :       0.5
     --> SALC lower radius :       0.5
     --> SALC upper radius :       8.0
-    --> Emit Br2          :       true  
+    --> Emit Br2          :       false  
     --> Br2 scaling       :       1.0 
 108     MEGAN             : on    ISOP/ACET/PRPE/C2H4/ALD2
     --> Isoprene scaling  :       1.0 
