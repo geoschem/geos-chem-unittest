@@ -497,21 +497,21 @@ END SECTION EXTENSION SWITCHES
 # done for CO, need to check others
 #==============================================================================
 (((NEI2005
-0 NEI2005_NO   $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    NO   2005/1/1/0 C xy kg/m2/s  NO   1/16/201/202/210/1005 1/2 35
-0 NEI2005_CO   $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    CO   2005/1/1/0 C xy kg/m2/s  CO   6/26/17/211/230/1005  1/2 35
-0 NEI2005_SO2  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    SO2  2005/1/1/0 C xy kg/m2/s  SO2  11/18/218/237/1005    1/2 35
-0 NEI2005_SO4  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    SO4  2005/1/1/0 C xy kg/m2/s  SO4  11/18/219/238/1005    1/2 35
-0 NEI2005_NH3  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    NH3  2005/1/1/0 C xy kg/m2/s  NH3  242/1005              1/2 35
-0 NEI2005_ACET $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    ACET 2005/1/1/0 C xy kgC/m2/s ACET 213/232/1005          1/2 35
-0 NEI2005_ALK4 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    ALK4 2005/1/1/0 C xy kgC/m2/s ALK4 212/231/1005          1/2 35
-#0 NEI2005_C2H6 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc   C2H6 2005/1/1/0 C xy kgC/m2/s C2H6 217/236/1005          1/2 35
-0 NEI2005_C3H8 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    C3H8 2005/1/1/0 C xy kgC/m2/s C3H8 216/235/1005          1/2 35
-#0 NEI2005_OC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    OCPI 2005/1/1/0 C xy kg/m2/s  OCPI 222/241/1005          1/2 35
-#0 NEI2005_BC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    BCPI 2005/1/1/0 C xy kg/m2/s  BCPI 221/240/1005          1/2 35
-0 NEI2005_ALD2 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    ALD2 2005/1/1/0 C xy kgC/m2/s ALD2 1005                  1/2 35
-0 NEI2005_CH2O $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    CH2O 2005/1/1/0 C xy kg/m2/s  CH2O 1005                  1/2 35
-0 NEI2005_PRPE $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    PRPE 2005/1/1/0 C xy kgC/m2/s PRPE 215/234/1005          1/2 35
-0 NEI2005_MEK  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    MEK  2005/1/1/0 C xy kgC/m2/s MEK  214/233/1005          1/2 35
+0 NEI2005_NO   $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    NO   2005/1/1/0 C xy kg/m2/s  NO   1/16/201/202/210/1005 1 35
+0 NEI2005_CO   $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    CO   2005/1/1/0 C xy kg/m2/s  CO   6/26/17/211/230/1005  1 35
+0 NEI2005_SO2  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    SO2  2005/1/1/0 C xy kg/m2/s  SO2  11/18/218/237/1005    1 35
+0 NEI2005_SO4  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    SO4  2005/1/1/0 C xy kg/m2/s  SO4  11/18/219/238/1005    1 35
+0 NEI2005_NH3  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    NH3  2005/1/1/0 C xy kg/m2/s  NH3  242/1005              1 35
+0 NEI2005_ACET $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    ACET 2005/1/1/0 C xy kgC/m2/s ACET 213/232/1005          1 35
+0 NEI2005_ALK4 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    ALK4 2005/1/1/0 C xy kgC/m2/s ALK4 212/231/1005          1 35
+#0 NEI2005_C2H6 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc   C2H6 2005/1/1/0 C xy kgC/m2/s C2H6 217/236/1005          1 35
+0 NEI2005_C3H8 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    C3H8 2005/1/1/0 C xy kgC/m2/s C3H8 216/235/1005          1 35
+#0 NEI2005_OC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    OCPI 2005/1/1/0 C xy kg/m2/s  OCPI 222/241/1005          1 35
+#0 NEI2005_BC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    BCPI 2005/1/1/0 C xy kg/m2/s  BCPI 221/240/1005          1 35
+0 NEI2005_ALD2 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    ALD2 2005/1/1/0 C xy kgC/m2/s ALD2 1005                  1 35
+0 NEI2005_CH2O $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    CH2O 2005/1/1/0 C xy kg/m2/s  CH2O 1005                  1 35
+0 NEI2005_PRPE $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    PRPE 2005/1/1/0 C xy kgC/m2/s PRPE 215/234/1005          1 35
+0 NEI2005_MEK  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    MEK  2005/1/1/0 C xy kgC/m2/s MEK  214/233/1005          1 35
 )))NEI2005
 
 #==============================================================================
@@ -1146,7 +1146,7 @@ END SECTION EXTENSION SWITCHES
 # Local redistribution factors: These are model-specific and hence need to be 
 # redefined for different model/resolution simulations!!!
 #==============================================================================
-103 LIGHTNOX_OTDLIS $ROOT/LIGHTNOX/v2014-07/OTD-LIS-Local-Redist.CTH.v5.{LNOX}.$RES.nc OTD 2012-2014/1-12/1/0 C xy unitless NO - 1 1
+103 LIGHTNOX_OTDLIS $ROOT/LIGHTNOX/v2014-07/OTD-LIS-Local-Redist.CTH.v5.{LNOX}.$RES.nc OTD $YYYY/1-12/1/0 C xy unitless NO - 1 1
 
 #==============================================================================
 # --- SOILNOX emissions (Extension 104) ---
@@ -1339,7 +1339,7 @@ END SECTION EXTENSION SWITCHES
 # --- PSC state, only needed for UCX ---
 #==============================================================================
 (((+STATE_PSC+
-* STATE_PSC ./HEMCO_restart.$YYYY$MM$DD$HH00.nc STATE_PSC $YYYY/$MM/$DD/$HH C xyz 1 * - 1 1
+* STATE_PSC  ./initial_hemco_rst.$MET_$RES_{SIM}.nc STATE_PSC $YYYY/$MM/$DD/$HH C xyz 1 * - 1 1
 )))+STATE_PSC+
 
 #==============================================================================
