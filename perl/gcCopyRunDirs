@@ -375,6 +375,14 @@ sub doCopyDirs($$) {
 	  # Splash page output
 	  print "\%\%\% Copying $notDir to $copyDir\n";
 
+	  # Error check, make sure that the $copyDir does not already exist
+	  if ( -d $copyDir ) {
+	    print "\%\%\% ERROR!  $copyDir already exists!\n";
+	    print "\%\%\% Delete or move $copyDir before proceeding!\n";
+            print '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'."\n";
+	    exit(1);
+  	  }
+
 	  # Copy command
 	  $cmd = "$COPY_CMD $runDir $copyDir";
 
