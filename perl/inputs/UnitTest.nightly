@@ -45,8 +45,10 @@
 #  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
 #                              MERRA, so as to use NEI2011
 #  19 Mar 2015 - M. Sulprizio- Added unit tests for RRTMG simulation
+#                              MERRA, and GCAP, so as to use NEI2011
 #  19 Mar 2015 - R. Yantosca - Hg simulations should use 2005 (except GEOS-FP)
 #  30 Mar 2015 - M. Sulprizio- Add 2x2.5 unit tests for soa, soa_svpoa, and UCX
+#  03 Apr 2015 - M. Sulprizio- Add 0.25x0.3125 nested grid unit tests
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -170,6 +172,9 @@
   geos5    2x25        -      RRTMG        2006070100   200607010030 RRTMG=y
 ## ======= Nested model runs ==================================================
 #  geos5    05x0666     ch     fullchem     2006070100   200607010020 -
+#  geos5    05x0666     na     fullchem     2006070100   200607010020 -
+#  geosfp   025x03125   ch     fullchem     2013070100   201307010010 -
+#  geosfp   025x03125   na     fullchem     2013070100   201307010010 -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

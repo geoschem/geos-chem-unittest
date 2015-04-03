@@ -3,7 +3,7 @@ for GEOS-5 met fields, 0.5x0.666 nested CH grid, and standard "fullchem"
 mechanism.
 
 Chemistry files are linked to ../chem_inputs/fullchem and the HEMCO
-configuration file is linked to HEMCO_Config.template stored in
+configuration file is linked to HEMCO_Config.template.ch stored in
 ../chem_inputs/fullchem/.  This allows us to keep a single set of these
 files in one location, for convenience.
 
@@ -11,6 +11,6 @@ A new input.geos file will be created from the input.geos.template file
 each time the unit tester is run.  This allows the location of the data
 files to be customized for each user.
 
-20 March 2015
+02 Apr 2015
 GEOS-Chem Support Team
 geos-chem-support@as.harvard.edu
