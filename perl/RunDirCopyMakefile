@@ -1,0 +1,276 @@
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: Makefile
+#
+# !DESCRIPTION: Makefile for use with G-C run directories copied from UnitTest
+#\\
+#\\
+# !REMARKS:
+#  (1) There are two processing modes available: sp and mp. sp uses a single
+#      processor while mp uses multiple processors. All output files
+#      have a .sp or .mp suffix depending on what processing mode was run.
+#
+#  (2) MET and GRID are automatically read from input.geos and passed to 
+#      the make command based on input.geos. There is only one possible
+#      combination of MET and GRID per run directory.
+#
+#  (3) Users may configure tokens CODE_DIR, VERSION, and LOG_DIR to 
+#      automatically pass the source code location, file prefix, and 
+#      log directory path to the make command. Default values are
+#      defined in this Makefile.
+#
+#  (4) GEOS-Chem log files, with the exception of HEMCO, include datetime 
+#      in the filename to distinguish log files for different runs. 
+#  
+#  (5) Date files generated using the same processing mode will be 
+#      overwritten between runs unless renamed.
+#
+#  (6) Targets that are commonly included when using make for testing include:
+#         BOUNDS=y
+#         TRACEBACK=y
+#         FPE=y
+#         DEBUG=y
+#
+#  (7) Example terminal commands:
+#        make -j4 mpbuild                    # build with default tokens
+#        make -j4 CODE_DIR=~/mycode mpbuild  # manually specify code path
+#        make -j4 TRACEBACK=y mpbuild        # build with optional settings
+#        make -j4 mprun                      # run GEOS-Chem
+#        make -j4 mp                         # build and run GEOS-Chem
+#        make print                          # print makefile settings
+#        make mplogclean                     # remove .mp log files
+#        make mpdataclean                    # remove .mp output data files
+#        make mpexeclean                     # remove geos.mp executable
+#	 make mpclean                        # do the previous 3 commands
+# 
+# !REVISION HISTORY: 
+#  02 Apr 2015 - E. Lundgren - Initial version modeled on UnitTest Makefile
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+# Unix shell
+SHELL    :=/bin/bash
+
+# Run directory ID
+RUNID    :=$(notdir $(shell pwd))
+
+# Executables
+EXE_SP   :=geos.sp
+EXE_MP   :=geos.mp
+
+###############################################################################
+
+#   %%%%%%%%%%%%%%%%%%%%%%%%%
+#   %  CONFIGURABLE TOKENS  %	
+#   %%%%%%%%%%%%%%%%%%%%%%%%%
+
+# Path where source code is located
+ifndef CODE_DIR
+ CODE_DIR :=/home/elundgren/GC/Code.Dev
+endif
+
+# Path at which log files will be saved. Default is the run directory. 
+ifndef LOG_DIR 
+ LOG_DIR :=.
+endif
+
+# Prefix for output files 
+ifndef VERSION
+ VERSION :=GC
+endif
+
+###############################################################################
+
+# Get the start & end dates, met fields, and grid resolutions of the run 
+# by parsing the input.geos file
+START    :=$(shell ./getStart.pl)
+END      :=$(shell ./getEnd.pl  )
+HMCO_END :=$(END)
+MET      :=$(shell ./getMet.pl  )
+GRID     :=$(shell ./getGrid.pl )
+SIM      :=$(shell ./getSim.pl )
+
+# Log file names
+TIMESTAMP := $(shell date +"%m%d%H%M")	
+LOG_SP       :="$(LOG_DIR)/$(VERSION).$(RUNID).$(strip $(TIMESTAMP)).sp"
+LOG_MP       :="$(LOG_DIR)/$(VERSION).$(RUNID).$(strip $(TIMESTAMP)).mp"
+LOG_HMCO :=HEMCO.log
+
+# Output file names
+TRAC_AVG :=trac_avg.$(RUNID).$(START)
+TRAC_RST :=trac_rst.$(RUNID).$(END)
+HMCO_RST :=HEMCO_restart.$(HMCO_END).nc
+
+# Validation script
+VALIDATE :=/usr/bin/perl ./validate
+
+#=============================================================================
+# Makefile targets: type "make help" for a complete list!
+#=============================================================================
+
+.PHONY: dataclean logclean fileclean spclean mpclean
+.PHONY: spexeclean mpexeclean superclean
+
+#%%%%%%%%%%%%%%%%%%
+#  Build and Run  %
+#%%%%%%%%%%%%%%%%%%
+
+sp:
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) OMP=no > $(LOG_SP)
+	cp -f $(CODE_DIR)/bin/geos geos.sp
+	$(EXE_SP) >> $(LOG_SP)
+	@$(MAKE) print
+	@$(MAKE) addsuffixmp
+
+mp:
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) OMP=yes > $(LOG_MP)
+	cp -f $(CODE_DIR)/bin/geos geos.mp
+	$(EXE_MP) >> $(LOG_MP)
+	@$(MAKE) print
+	@$(MAKE) addsuffixmp
+
+#%%%%%%%%%%%%%%%
+#  Build Only  %
+#%%%%%%%%%%%%%%%
+
+spbuild:
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) OMP=no
+	cp -f $(CODE_DIR)/bin/geos geos.sp
+	@$(MAKE) print
+
+mpbuild:
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) OMP=yes
+	cp -f $(CODE_DIR)/bin/geos geos.mp
+	@$(MAKE) print
+
+#%%%%%%%%%%%%%
+#  Run Only  %
+#%%%%%%%%%%%%%
+
+sprun:
+	$(EXE_SP) >> $(LOG_SP)
+	@$(MAKE) addsuffixmp
+
+mprun:
+	$(EXE_MP) >> $(LOG_MP)
+	@$(MAKE) addsuffixmp
+
+#%%%%%%%%%%%%%%%%%%%%%%%
+#  Remove Output Data  %
+#%%%%%%%%%%%%%%%%%%%%%%%
+
+dataclean: spfileclean mpfileclean
+
+spdataclean:
+	rm -f $(TRAC_AVG)*.sp
+	rm -f $(TRAC_RST)*.sp
+	rm -f $(HMCO_RST)*.sp
+	rm -f diaginfo.dat tracerinfo.dat
+
+mpdataclean:
+	rm -f $(TRAC_AVG)*.mp
+	rm -f $(TRAC_RST)*.mp
+	rm -f $(HMCO_RST)*.mp
+	rm -f diaginfo.dat tracerinfo.dat
+
+#%%%%%%%%%%%%%%%%
+#  Remove Logs  %
+#%%%%%%%%%%%%%%%%
+
+logclean: splogclean mplogclean
+
+splogclean:
+	rm -f $(LOG_DIR)/$(VERSION).$(RUNID).*.sp
+	rm -f $(LOG_HMCO)*.sp
+
+mplogclean:
+	rm -f $(LOG_DIR)/$(VERSION).$(RUNID).*.mp
+	rm -f $(LOG_HMCO)*.mp
+
+#%%%%%%%%%%%%%%%%%%%%%%%
+#  Remove Executables  %
+#%%%%%%%%%%%%%%%%%%%%%%%
+
+execlean: spexeclean mpexeclean
+
+spexeclean:
+	rm -f $(EXE_SP)
+
+mpexeclean:
+	rm -f $(EXE_MP)
+
+
+#%%%%%%%%%%%%%%%
+#  Remove All  %
+#%%%%%%%%%%%%%%%
+
+fileclean: dataclean logclean execlean
+
+spclean: spdataclean splogclean spexeclean
+
+mpclean: mpdataclean mplogclean mpexeclean
+
+#%%%%%%%%%%%%%%%%%
+#  Clean Source  % 
+#%%%%%%%%%%%%%%%%%
+
+clean:
+	@$(MAKE) -C $(CODE_DIR) clean
+
+realclean:
+	@$(MAKE) -C $(CODE_DIR) realclean
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%
+#  Clean and Remove All  %
+#%%%%%%%%%%%%%%%%%%%%%%%%%
+
+superclean: fileclean realclean
+
+#%%%%%%%%%%
+#  Print  %
+#%%%%%%%%%%
+
+print:
+	@echo "BOUNDS   : $(BOUNDS)"
+	@echo "DEBUG    : $(DEBUG)"
+	@echo "FPE      : $(FPE)"
+	@echo "COMPILER : $(COMPILER)"
+	@echo "MET      : $(MET)"
+	@echo "GRID     : $(GRID)"
+	@echo "SIM      : $(SIM)"
+	@echo "NEST     : $(NEST)"
+	@echo "VERSION  : $(VERSION)"
+	@echo "CODE_DIR : $(CODE_DIR)"
+	@echo "START    : $(START)"
+	@echo "END      : $(END)"
+	@echo "RUNID    : $(RUNID)"
+	@echo "TRAC_AVG : $(TRAC_AVG)"
+	@echo "TRAC_RST : $(TRAC_RST)"
+	@echo "HMCO_RST : $(HMCO_RST)"
+	@echo "HMCO_END : $(HMCO_END)"
+	@echo "LOG_HMCO : $(LOG_HMCO)"
+	@echo "LOG_DIR  : $(LOG_DIR)"
+	@echo "LOG format : $(VERSION).$(RUNID).{timestamp}"
+
+
+#%%%%%%%%%%%%%%
+#  Utilities  %
+#%%%%%%%%%%%%%%
+
+addsuffixsp:
+	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).sp; fi;
+	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
+	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
+	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
+
+addsuffixmp:
+	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
+	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
+	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
+	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
+
+#EOC
