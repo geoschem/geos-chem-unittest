@@ -43,6 +43,7 @@
 #  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
 #  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
 #                              MERRA, and GCAP, so as to use NEI2011
+#  30 Mar 2015 - M. Sulprizio- Added 2x2.5 unit tests for soa and soa_svpoa
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -82,9 +83,13 @@
   geos5    4x5         -      soa          2006070100   2006070101   -
   merra    4x5         -      soa          2010570100   2006070101   -
   geosfp   4x5         -      soa          2013070100   2013070101   -
+  geosfp   2x25        -      soa          2013070100   201307010030 -
+  geos5    2x25        -      soa          2006070100   200607010030 -
   geos5    4x5         -      soa_svpoa    2006070100   2006070101   -
   merra    4x5         -      soa_svpoa    2010570100   2006070101   -
   geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
+  geosfp   2x25        -      soa_svpoa    2013070100   201307010030 -
+  geos5    2x25        -      soa_svpoa    2006070100   200607010030 -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

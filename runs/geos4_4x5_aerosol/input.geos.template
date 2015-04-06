@@ -85,11 +85,6 @@ Switches for UCX        :---
     => strat. SO4?      : F
  => CFC emission year   : 0
 ------------------------+------------------------------------------------------
-%%% FUTURE MENU %%%     :
-Use future emissions?   : F
-Which IPCC future year  : 2050
-Which IPCC scenario     : A1
-------------------------+------------------------------------------------------
 %%% AEROSOL MENU %%%    :
 Online SULFATE AEROSOLS : T
 Online CRYST/AQ AEROSOLS: F
@@ -131,6 +126,17 @@ USE solver coded by KPP : F
 Online O3 for FAST-JX?  : F
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
+%%% RADIATION MENU %%%  :
+AOD Wavelength (nm)     : 550
+Turn on RRTMG?          : F
+Calculate LW fluxes?    : F
+Calculate SW fluxes?    : F
+Clear-sky flux?         : F
+All-sky flux?           : F
+Radiation Timestep [min]: 180
+Species fluxes          : 0 0 0 0 0 0 0 0 0 1
+ ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM]
+------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
 Schedule output for JAN : 3333333333333333333333333333333
 Schedule output for FEB : 33333333333333333333333333333
@@ -157,36 +163,36 @@ ND02: Rn/Pb/Be decay    :  0   all
 ND03: Hg emissions, P/L :  0   all                
 ND04: CO2 Sources       :  0   all                
 ND05: Sulfate prod/loss : 30   all               
-ND06: Dust aer source   : 30   all                
+ND06: Dust aer source   :  1   all                
 ND07: Carbon aer source : 30   all                
-ND08: Seasalt aer source: 30   all                
+ND08: Seasalt aer source:  1   all                
 ND09: -                 :  0   all                
 ND10: -                 :  0   all                
 ND11: Acetone sources   :  0   all                 
 ND12: BL fraction       :  0   all              
-ND13: Sulfur sources    :  0   all                
+ND13: Sulfur sources    : 47   all                
 ND14: Cld conv mass flx :  0   all                
 ND15: BL mix mass flx   :  0   all                
 ND16: LS/Conv prec frac :  0   all               
-ND17: Rainout fraction  :  0   1            
-ND18: Washout fraction  :  0   1            
+ND17: Rainout fraction  :  0   all            
+ND18: Washout fraction  :  0   all            
 ND19: CH4 loss          :  0   all            
 ND21: Optical depths    :  0   all            
-ND22: J-Values          :  0   64 7 8 20 99              
+ND22: J-Values          :  0   1 2 7 8 9 11 13 14 20 44 46 47 49 50 51 58 59 64 65
       => JV time range  :      11 13
 ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
 ND26: U/D transpt flx   :  0   all
 ND27: Strat NOx,Ox,HNO3 :  0   1 2 7
-ND28: Biomass emissions : 30   2 6 11 12
+ND28: Biomass emissions :  1   2 6 11 12
 ND29: CO sources        :  0   all
 ND30: Land Map          :  0   all
 ND31: Surface pressure  :  0   all
 ND32: NOx sources       :  0   all
 ND33: Column tracer     :  0   all
-ND34: Biofuel emissions : 30   2 6
+ND34: Biofuel emissions :  1   2 6
 ND35: Tracers at 500 mb :  0   all
-ND36: Anthro emissions  :  0   all
+ND36: Anthro emissions  :  1   2 6
 ND37: Updraft scav frac : 30   all
 ND38: Cld Conv scav loss: 30   all
 ND39: Wetdep scav loss  : 30   all
@@ -194,10 +200,10 @@ ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 :  0   all
   ==> OH/HO2 time range :       0 24   
-ND44: Drydep flx/vel    : 30   2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+ND44: Drydep flx/vel    :  1   2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
 ND45: Tracer Conc's     : 30   all 
   ==> ND45 Time range   :       0 24
-ND46: Biogenic emissions: 0    all
+ND46: Biogenic emissions:  1   all
 ND47: 24-h avg trc conc :  0   all
 ND52: GAMMA HO2         :  0   all
 ND53: POPs Emissions    :  0   all
@@ -206,9 +212,9 @@ ND55: Tropopause height : 30   all
 ND56: Lightning flashes :  0   all
 ND57: Potential T       :  0   all
 ND58: CH4 Emissions     :  0   all
-ND59: -                 :  0   all
+ND59: TOMAS aerosol emis:  0   all
 ND60: Wetland Frac      :  0   all
-ND61: -                 :  0   all
+ND61: TOMAS 3D rate     :  0   all
 ND62: Inst column maps  :  0   all
 ND64: Radiative flux    :  0   all
 ND66: DAO 3-D fields    : 30   all
@@ -217,6 +223,7 @@ ND68: Airmass/Boxheight : 30   all
 ND69: Surface area      :  1   all
 ND70: Debug output      :  0   all
 ND71: Hourly max ppbv   :  0   2
+ND72: Radiative output  :  0   all
 ------------------------+------------------------------------------------------
 %%% PLANEFLIGHT MENU %%%:
 Turn on plane flt diag? : F

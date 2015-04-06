@@ -28,7 +28,7 @@
 #
 # !INPUTS:
 #
-   VERSION     : v10-01h
+   VERSION     : v10-01
    DESCRIPTION : Create run directory from UnitTest
    COPY_PATH   : /home/{USER}/GC/rundirs
    DATA_ROOT   : /as/data/geos/ExtData
@@ -39,19 +39,29 @@
    COPY_CMD    : cp -rfL
 #
 # !RUNS:
-#  Specify the debugging runs that you want to perform below.
-#  You can deactivate runs by commenting them out with "#".
+#  Specify the runs directories that you want to copy below.
+#  Here we provide a few examples, but you may copy additional entries from
+#  UnitTest.input and modify the dates as needed. You can deactivate copying
+#  run certain directories by commenting them out with "#".
 #
 #--------|-----------|------|------------|------------|------------|---------|
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
 #--------|-----------|------|------------|------------|------------|---------|
-#  geosfp   2x25        -      Hg           2013070100   2013070101   -
-# geos5    2x25        -      Hg           2005070100   2005070101   -
-# geosfp   4x5         -      fullchem     2013070100   2013070101   -
- geos4    4x5         -      Hg           2005070100   2005070101   -
-# geos4    4x5         -      CH4          2005070100   2005070101   -
-# geosfp   4x5         -      Hg           2013070100   2013070101   -
-# geosfp   4x5         -      POPs         2013070100   2013070101   -
+  geosfp   4x5         -      fullchem     2013070100   2013070101   -
+  geosfp   4x5         -      soa          2013070100   2013070101   -
+  geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
+  geosfp   4x5         -      UCX          2013070100   2013070101   UCX=y
+  geosfp   4x5         -      RRTMG        2013070100   2013070101   RRTMG=y
+  geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
+  geosfp   4x5         -      Hg           2013070100   2013070101   -
+  geosfp   4x5         -      POPs         2013070100   2013070101   -
+  geosfp   4x5         -      CH4          2013070100   2013070101   -
+  geosfp   4x5         -      tagO3        2013070100   2013070101   -
+  geosfp   4x5         -      tagCO        2013070100   2013070101   -
+  geosfp   2x25        -      CO2          2013070100   201307010030 -
+  geosfp   4x5         -      aerosol      2013070100   2013070101   - 
+  geosfp   025x03125   ch     fullchem     2013070100   201307010010 -
+  geosfp   025x03125   na     fullchem     2013070100   201307010010 -
 !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

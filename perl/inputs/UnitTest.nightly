@@ -41,9 +41,14 @@
 #  28 Jul 2014 - R. Yantosca - Added HEMCO_ROOT directory
 #  28 Jul 2014 - R. Yantosca - 2 x 2.5 runs now end after 30 mins
 #  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
+#  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
 #  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
 #                              MERRA, so as to use NEI2011
+#  19 Mar 2015 - M. Sulprizio- Added unit tests for RRTMG simulation
+#                              MERRA, and GCAP, so as to use NEI2011
 #  19 Mar 2015 - R. Yantosca - Hg simulations should use 2005 (except GEOS-FP)
+#  30 Mar 2015 - M. Sulprizio- Add 2x2.5 unit tests for soa, soa_svpoa, and UCX
+#  03 Apr 2015 - M. Sulprizio- Add 0.25x0.3125 nested grid unit tests
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -51,14 +56,14 @@
 #
    VERSION     : v10-01h
    DESCRIPTION : Tests v10-01h + NEI2011 + scale factors
-   CODE_DIR    : /home/bmy/GC/Code.v10-01
+   CODE_DIR    : /home/{USER}/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos/ExtData
    HEMCO_ROOT  : {DATAROOT}/HEMCO
-   RUN_ROOT    : /home/bmy/UT/runs
+   RUN_ROOT    : /home/{USER}/UT/runs
    RUN_DIR     : {RUNROOT}/{RUNDIR}
-   JOB_DIR     : /home/bmy/UT/jobs
-   LOG_DIR     : /home/bmy/UT/logs/{VERSION}
-   PERL_DIR    : /home/bmy/UT/perl
+   JOB_DIR     : /home/{USER}/UT/jobs
+   LOG_DIR     : /home/{USER}/UT/logs/{VERSION}
+   PERL_DIR    : /home/{USER}/UT/perl
    COMPILER    : ifort
    MAKE_CMD    : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
    SUBMIT      : submit smp4
@@ -77,9 +82,9 @@
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#--------|-----------|------|------------|------------|------------|---------|
-# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
-#--------|-----------|------|------------|------------|------------|---------|
+#--------|-----------|------|------------|------------|-------------|--------|
+# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE    | EXTRA? |
+#--------|-----------|------|------------|------------|-------------|--------|
 # ======= Radon-Lead-Beryllium ===============================================
   geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
   merra    4x5         -      RnPbBe       2006070100   2006070101   -
@@ -90,11 +95,11 @@
   geos5    2x25        -      RnPbBe       2006070100   200607010030 -
 # ======= Mercury ============================================================
   geosfp   4x5         -      Hg           2013070100   2013070101   -
-  merra    4x5         -      Hg           2006070100   2006070101   -
-  geos5    4x5         -      Hg           2006070100   2006070101   -
-  geos4    4x5         -      Hg           2006070100   2006070101   -
+  merra    4x5         -      Hg           2005070100   2005070101   -
+  geos5    4x5         -      Hg           2005070100   2005070101   -
+  geos4    4x5         -      Hg           2005070100   2005070101   -
   geosfp   2x25        -      Hg           2013070100   201307010030 -
-  geos5    2x25        -      Hg           2006070100   200607010030 -
+  geos5    2x25        -      Hg           2005070100   200507010030 -
 # ======= POPs ===============================================================
   geosfp   4x5         -      POPs         2013070100   2013070101   -
   merra    4x5         -      POPs         2006070100   2006070101   -
@@ -136,24 +141,40 @@
   merra    4x5         -      fullchem     2006070100   2006070101   -
   geos5    4x5         -      fullchem     2006070100   2006070101   -
   geos4    4x5         -      fullchem     2006070100   2006070101   -
-# ===== SOA (w/ and w/o SVPOA) ===============================================
+# gcap     4x5         -      fullchem     2005070100   2005070101   -
+  geosfp   2x25        -      fullchem     2013070100   201307010030 -
+  geos5    2x25        -      fullchem     2006070100   200607010030 -
+# ======= SOA (w/o SVPOA) ====================================================
   geosfp   4x5         -      soa          2013070100   2013070101   -
   merra    4x5         -      soa          2006070100   2006070101   -
   geos5    4x5         -      soa          2006070100   2006070101   -
+  geosfp   2x25        -      soa          2013070100   201307010030 -
+  geos5    2x25        -      soa          2006070100   200607010030 -
+# ======= SOA (w/ SVPOA) =====================================================
   geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
   merra    4x5         -      soa_svpoa    2006070100   2006070101   -
   geos5    4x5         -      soa_svpoa    2006070100   2006070101   -
-## ===== TOMAS aerosol microphysics ===========================================
-#  geosfp   4x5         -      TOMAS40      2013070100   2013070101  TOMAS40=y
-#  geos5    4x5         -      TOMAS40      2006070100   2006070101  TOMAS40=y
-# ===== UCX strat-trop chemistry =============================================
-  geosfp   4x5         -      UCX          2013070100   2013070101  UCX=y
-  geos5    4x5         -      UCX          2006070100   2006070101  UCX=y
-# ======= Other 2x25 runs =====================================================
-  geosfp   2x25        -      fullchem     2013070100   201307010030 -
-  geos5    2x25        -      fullchem     2006070100   200607010030 -
-## ===== Nested model runs =====================================================
-#  geos5    05x0666     ch     fullchem     2006070100   200607010030 -
+  geosfp   2x25        -      soa_svpoa    2013070100   201307010030 -
+  geos5    2x25        -      soa_svpoa    2006070100   200607010030 -
+# ======= TOMAS aerosol microphysics =========================================
+#  geosfp   4x5         -      TOMAS40      2013070100   2013070101   TOMAS40=y
+#  geos5    4x5         -      TOMAS40      2006070100   2006070101   TOMAS40=y
+# ======= UCX strat-trop chemistry ===========================================
+  geosfp   4x5         -      UCX          2013070100   2013070101   UCX=y
+  geos5    4x5         -      UCX          2006070100   2006070101   UCX=y
+  geosfp   2x25        -      UCX          2013070100   201307010030 UCX=y
+  geos5    2x25        -      UCX          2006070100   200607010030 UCX=y
+# ======= RRTMG online radiative transfer ====================================
+  geosfp   4x5         -      RRTMG        2013070100   2013070101   RRTMG=y
+  merra    4x5         -      RRTMG        2013070100   2006070101   RRTMG=y
+  geos5    4x5         -      RRTMG        2006070100   2006070101   RRTMG=y
+  geosfp   2x25        -      RRTMG        2013070100   201307010030 RRTMG=y
+  geos5    2x25        -      RRTMG        2006070100   200607010030 RRTMG=y
+## ======= Nested model runs ==================================================
+#  geos5    05x0666     ch     fullchem     2006070100   200607010020 -
+#  geos5    05x0666     na     fullchem     2006070100   200607010020 -
+#  geosfp   025x03125   ch     fullchem     2013070100   201307010010 -
+#  geosfp   025x03125   na     fullchem     2013070100   201307010010 -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

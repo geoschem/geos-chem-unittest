@@ -106,8 +106,19 @@ Chemistry Timestep [min]: 30
 Read and save CSPEC_FULL: F
  => CSPEC rst filename? : none
 USE solver coded by KPP : F
-Online O3 for FAST-JX?  : T
+Online O3 for FAST-JX?  : F
 Gamma HO2               : 0.2
+------------------------+------------------------------------------------------
+%%% RADIATION MENU %%%  :
+AOD Wavelength (nm)     : 550
+Turn on RRTMG?          : F
+Calculate LW fluxes?    : F
+Calculate SW fluxes?    : F
+Clear-sky flux?         : F
+All-sky flux?           : F
+Radiation Timestep [min]: 180
+Species fluxes          : 0 0 0 0 0 0 0 0 0 1
+ ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM]
 ------------------------+------------------------------------------------------
 %%% MERCURY MENU %%%    : 
 Use anthro Hg emiss for : 2006
@@ -160,21 +171,21 @@ ND17: Rainout fraction  :  0   all
 ND18: Washout fraction  :  0   all            
 ND19: CH4 loss          :  0   all            
 ND21: Optical depths    :  0   all            
-ND22: J-Values          :  0   64 7 8 20 99              
+ND22: J-Values          :  0   all
       => JV time range  :      11 13
 ND24: E/W transpt flx   : 47   all
 ND25: N/S transpt flx   : 47   all
 ND26: U/D transpt flx   : 47   all
-ND27: Strat NOx,Ox,HNO3 :  0   1 2 7
-ND28: Biomass emissions :  0   1 4 5 9 10 11 18 19 20 21 26 30 34 35
+ND27: Strat NOx,Ox,HNO3 :  0   all
+ND28: Biomass emissions :  0   all
 ND29: CO sources        :  0   all
 ND30: Land Map          :  0   all
-ND31: Surface pressure  : 48   all
+ND31: Surface pressure  :  0   all
 ND32: NOx sources       :  0   all
 ND33: Column tracer     :  0   all
-ND34: Biofuel emissions :  0   1 4 5 9 10 11 18 19 20 21
+ND34: Biofuel emissions :  0   all
 ND35: Tracers at 500 mb :  0   all
-ND36: Anthro emissions  :  0   1 2 4 5 7 9 10 11 18 19 20 21
+ND36: Anthro emissions  :  0   all
 ND37: Updraft scav frac : 47   all
 ND38: Cld Conv scav loss: 47   2 3
 ND39: Wetdep scav loss  : 47   2 3
@@ -194,9 +205,9 @@ ND55: Tropopause height : 47   all
 ND56: Lightning flashes :  0   all
 ND57: Potential T       :  0   all
 ND58: CH4 Emissions     :  0   all
-ND59: -                 :  0   all
+ND59: TOMAS aerosol emis:  0   all
 ND60: Wetland Frac      :  0   all
-ND61: -                 :  0   all
+ND61: TOMAS 3D rate     :  0   all
 ND62: Inst column maps  :  0   all
 ND64: Radiative flux    :  0   all
 ND66: DAO 3-D fields    :  0   all
@@ -204,7 +215,8 @@ ND67: DAO 2-D fields    :  0   all
 ND68: Airmass/Boxheight : 47   all
 ND69: Surface area      :  1   all
 ND70: Debug output      :  0   all
-ND71: Hourly max ppbv   :  0   2
+ND71: Hourly max ppbv   :  0   all
+ND72: Radiative output  :  0   all
 ------------------------+------------------------------------------------------
 %%% PLANEFLIGHT MENU %%%:
 Turn on plane flt diag? : F
@@ -271,7 +283,12 @@ Turn on P/L (ND65) diag?: F
 Save O3 P/L (ND20)?     : F
 Number of P/L families  : 0  
 ------------------------+------------------------------------------------------
-%%% NESTED GRID MENU %%%:
+%%% BENCHMARK MENU %%%  :  
+Save benchmark output?  : F
+File w/ initial Ox      : Ox.mass.initial
+File w/ final Ox        : Ox.mass.final
+------------------------+------------------------------------------------------
+%%% NESTED GRID MENU %%%:  
 Save TPCORE BC's        : F
 Input BCs at 2x2.5?     : F
 Over North America?     : F

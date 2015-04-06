@@ -54,6 +54,7 @@
 #                              Added token '$CFDIR'. 
 #  16 Mar 2015 - M. Sulprizio- Add mask file for MIX Asia region
 #  16 Mar 2015 - M. Sulprizio- Add GFED4 entries from Christoph Keller
+#  27 Mar 2015 - C. Keller   - Warnings are now 0-3
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -70,7 +71,7 @@ Unit tolerance:              1
 Negative values:             2
 Only unitless scale factors: false
 Verbose:                     3
-Show warnings:               true
+Warnings:                    3
 #
 END SECTION SETTINGS 
 

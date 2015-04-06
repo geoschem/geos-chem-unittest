@@ -50,6 +50,7 @@
 #  13 Mar 2015 - C. Keller   - Added option to include other configuration 
 #                              files by listing them as '>>>include CF_Name'.
 #                              Added token '$CFDIR'. 
+#  27 Mar 2015 - C. Keller   - Warnings are now 0-3
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -66,7 +67,7 @@ Unit tolerance:              2
 Negative values:             0
 Only unitless scale factors: false
 Verbose:                     3
-Show warnings:               true
+Warnings:                    3 
 #
 END SECTION SETTINGS 
 

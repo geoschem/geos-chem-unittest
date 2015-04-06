@@ -4,7 +4,7 @@ GEOS-CHEM UNIT TEST SIMULATION: geos5_05x0666_fullchem_ch
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : initial_trac_rst.geos5_05x0666_fullchem_ch.YYYYMMDDhh
+Input restart file      : initial_trac_rst.geos5_05x0666_fullchem_ch
 Make new restart file?  : T
 Output restart file(s)  : trac_rst.geos5_05x0666_fullchem_ch.YYYYMMDDhhmm
 Root data directory     : {DATA_ROOT}
@@ -106,64 +106,8 @@ Convect Timestep (min)  : 10
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
 Emiss timestep (min)    : 20
-Include anthro emiss?   : T
- => Scale to (1985-2005): -1
- => Use EMEP emissions? : F
- => Use BRAVO emissions?: F
- => Use EDGAR emissions?: T
- => Use STREETS emiss?  : T
- => Use CAC emissions?  : F
- => Use NEI2005 emiss?  : F
- => Use RETRO emiss?    : T
- => Use AEIC emissions? : T
-Use RCP emiss (anth+bf)?: F
- => RCP scenario?       : RCP60
- => RCP year?           : 2000
- => Use fixed year?     : F
- => Use RCP aircraft NOx: F
- => Use RCP ship emiss? : F
-Use EPA/NEI99 (anth+bf)?: F
-    w/ ICARTT modif.?   : F
-    w/ VISTAS NOx emis? : F
-Include biofuel emiss?  : T
-Include biogenic emiss? : T
- => Use MEGAN inventory?: T
- => Use PCEEA model?    : F
- => Use MEGAN for MONO? : T
- => Isoprene scaling    : 1
-Include biomass emiss?  : T
- => Seasonal biomass?   : T
- => Scaled to TOMSAI?   : F
- => Use GFED2 biomass?  :---
-    => monthly GFED2?   : F
-    => 8-day GFED2?     : F 
-    => 3-hr GFED2?      : F
-    => synoptic GFED2?  : F
- => Use GFED3 biomass?  :---
-    => monthly GFED3?   : T 
-    => daily GFED3?     : F 
-    => 3-hr GFED3?      : F
-Individual NOx sources  :---
- => Use lightning NOx?  : T
-    => Spat-seas constr?: T
- => Use soil NOx        : T
-    => soilNOx rst file?: soil_rst.geos5_05x0666_fullchem_ch.YYYYMMDDhh
- => Use fertilizer NOx  : T
-NOx scaling             : 1
-Use ship emissions?     :---
- => global EDGAR ?      : T
- => global ICOADS ?     : T
- => EMEP over EUROPE ?  : T
- => ship SO2 Corbett ?  : F
- => ship SO2 Arctas ?   : T
-Use COOKE BC/OC (N. Am.): F   
-Use historical emiss?   : F
- => What decade?        : 2000
-Bromine switches        :---
- => Use Warwick VSLS?   : T
- => Use seasalt Br2?    : T
+HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
- => Bromine scaling     : 1
 Switches for UCX        :---
  => Use CH4 emissions?  : F
  => Turn on surface BCs :---
@@ -228,6 +172,17 @@ USE solver coded by KPP : F
 Online O3 for FAST-JX?  : T
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
+%%% RADIATION MENU %%%  :
+AOD Wavelength (nm)     : 550
+Turn on RRTMG?          : F
+Calculate LW fluxes?    : F
+Calculate SW fluxes?    : F
+Clear-sky flux?         : F
+All-sky flux?           : F
+Radiation Timestep [min]: 180
+Species fluxes          : 0 0 0 0 0 0 0 0 0 1
+ ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM]
+------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
 Schedule output for JAN : 3333333333333333333333333333333
 Schedule output for FEB : 33333333333333333333333333333
@@ -254,36 +209,36 @@ ND02: Rn/Pb/Be decay    :  0   all
 ND03: Hg emissions, P/L :  0   all                
 ND04: CO2 Sources       :  0   all                
 ND05: Sulfate prod/loss : 47   all               
-ND06: Dust aer source   : 47   all                
+ND06: Dust aer source   :  1   all                
 ND07: Carbon aer source : 47   all                
-ND08: Seasalt aer source: 47   all                
+ND08: Seasalt aer source:  1   all                
 ND09: -                 :  0   all                
 ND10: -                 :  0   all                
-ND11: Acetone sources   : 47   all                 
+ND11: Acetone sources   :  1   all                 
 ND12: BL fraction       :  0   all              
-ND13: Sulfur sources    :  0   all                
+ND13: Sulfur sources    : 47   all                
 ND14: Cld conv mass flx :  0   all                
 ND15: BL mix mass flx   :  0   all                
 ND16: LS/Conv prec frac :  0   all               
 ND17: Rainout fraction  :  0   all            
 ND18: Washout fraction  :  0   all            
 ND19: CH4 loss          :  0   all            
-ND21: Optical depths    :  0   all            
-ND22: J-Values          : 47   1 7 8 20 44 46 47 49 50 51 64 65 99 -1
+ND21: Optical depths    : 47   all            
+ND22: J-Values          : 47   1 2 7 8 9 11 13 14 20 44 46 47 49 50 51 58 59 64 65
       => JV time range  :      11 13
 ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
 ND26: U/D transpt flx   :  0   all
 ND27: Strat NOx,Ox,HNO3 :  0   1 2 7
-ND28: Biomass emissions : 47   1 4 5 9 10 11 18 19 20 21 26 30 34 35
-ND29: CO sources        :  0   all
+ND28: Biomass emissions :  1   1 4 5 9 10 11 18 19 20 21 26 30 34 35
+ND29: CO sources        :  1   all
 ND30: Land Map          :  0   all
 ND31: Surface pressure  :  0   all
-ND32: NOx sources       : 47   all
+ND32: NOx sources       :  1   all
 ND33: Column tracer     :  0   all
-ND34: Biofuel emissions : 47   1 4 5 9 10 11 18 19 20 21
+ND34: Biofuel emissions :  1   1 4 5 9 10 11 18 19 20 21
 ND35: Tracers at 500 mb :  0   all
-ND36: Anthro emissions  : 47   1 2 4 5 7 9 10 11 18 19 20 21
+ND36: Anthro emissions  :  1   1 2 4 5 7 9 10 11 18 19 20 21
 ND37: Updraft scav frac : 47   all
 ND38: Cld Conv scav loss: 47   all
 ND39: Wetdep scav loss  : 47   all
@@ -291,21 +246,21 @@ ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 : 47   all
   ==> OH/HO2 time range :       0 24   
-ND44: Drydep flx/vel    : 47   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 47 48 50 55 57 58 59 60 61 62 63 64
+ND44: Drydep flx/vel    :  1   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 47 48 50 55 57 58 59 60 61 62 63 64
 ND45: Tracer Conc's     : 47   all 
   ==> ND45 Time range   :       0 24
-ND46: Biogenic emissions: 47   all
+ND46: Biogenic emissions:  1   all
 ND47: 24-h avg trc conc :  0   all
-ND52: GAMMA HO2         : 47   all
+ND52: GAMMA HO2         :  0   all
 ND53: POPs Emissions    :  0   all
 ND54: Time in t'sphere  : 47   all
 ND55: Tropopause height : 47   all
 ND56: Lightning flashes : 47   all
 ND57: Potential T       : 47   all
 ND58: CH4 Emissions     :  0   all
-ND59: -                 :  0   all
+ND59: TOMAS aerosol emis:  0   all
 ND60: Wetland Frac      :  0   all
-ND61: -                 :  0   all
+ND61: TOMAS 3D rate     :  0   all
 ND62: Inst column maps  :  0   all
 ND64: Radiative flux    :  0   all
 ND66: DAO 3-D fields    : 47   all
@@ -314,6 +269,7 @@ ND68: Airmass/Boxheight : 47   all
 ND69: Surface area      :  1   all
 ND70: Debug output      :  0   all
 ND71: Hourly max ppbv   :  0   2
+ND72: Radiative output  :  0   all
 ------------------------+------------------------------------------------------
 %%% PLANEFLIGHT MENU %%%:
 Turn on plane flt diag? : F
@@ -387,12 +343,6 @@ Number of P/L families  : 7
 6th  chemical family    : PBry: 2Br2 Br BrO HOBr HBr BrNO2 BrNO3
 7th  chemical family    : LBry: 2Br2 Br BrO HOBr HBr BrNO2 BrNO3
 ------------------------+------------------------------------------------------
-%%% ARCHIVED OH MENU %%%: 
-Dir w/ archived OH files: {DATA_ROOT}/GEOS_MEAN/OHmerge/v5-07-08/
-------------------------+------------------------------------------------------
-%%% O3 P/L MENU %%%     : 
-Dir w/ O3 P/L rate files: {DATA_ROOT}/GEOS_MEAN/O3_PROD_LOSS/2003.v6-01-05/
-------------------------+------------------------------------------------------
 %%% BENCHMARK MENU %%%  :  
 Save benchmark output?  : F
 File w/ initial Ox      : Ox.mass.initial
@@ -405,7 +355,7 @@ Over North America?     : F
 TPCORE NA BC directory  : BC_4x5_NA/
 Over Europe?            : F
 TPCORE EU BC directory  : BC_4x5_EU/
-Over China?             : F
+Over China?             : T
 TPCORE CH BC directory  : BC_4x5_CH/
 Over SE Asia region?    : F
 TPCORE SE BC directory  : BC_4x5_SE/
