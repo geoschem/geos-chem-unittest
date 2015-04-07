@@ -123,14 +123,18 @@ sp:
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) OMP=no > $(LOG_SP)
 	cp -f $(CODE_DIR)/bin/geos geos.sp
 	$(EXE_SP) >> $(LOG_SP)
-	@$(MAKE) print
+	@$(MAKE) printruninfo
+	@$(MAKE) printcompileinfo
+	@$(MAKE) printfileinfo
 	@$(MAKE) addsuffixmp
 
 mp:
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) OMP=yes > $(LOG_MP)
 	cp -f $(CODE_DIR)/bin/geos geos.mp
 	$(EXE_MP) >> $(LOG_MP)
-	@$(MAKE) print
+	@$(MAKE) printruninfo
+	@$(MAKE) printcompileinfo
+	@$(MAKE) printfileinfo
 	@$(MAKE) addsuffixmp
 
 #%%%%%%%%%%%%%%%
@@ -140,12 +144,14 @@ mp:
 spbuild:
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) OMP=no
 	cp -f $(CODE_DIR)/bin/geos geos.sp
-	@$(MAKE) print
+	@$(MAKE) printruninfo
+	@$(MAKE) printcompileinfo
 
 mpbuild:
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) OMP=yes
 	cp -f $(CODE_DIR)/bin/geos geos.mp
-	@$(MAKE) print
+	@$(MAKE) printruninfo
+	@$(MAKE) printcompileinfo
 
 #%%%%%%%%%%%%%
 #  Run Only  %
@@ -153,10 +159,14 @@ mpbuild:
 
 sprun:
 	$(EXE_SP) >> $(LOG_SP)
+	@$(MAKE) printruninfo
+	@$(MAKE) printfileinfo
 	@$(MAKE) addsuffixmp
 
 mprun:
 	$(EXE_MP) >> $(LOG_MP)
+	@$(MAKE) printruninfo
+	@$(MAKE) printfileinfo
 	@$(MAKE) addsuffixmp
 
 #%%%%%%%%%%%%%%%%%%%%%%%
@@ -234,17 +244,23 @@ superclean: fileclean realclean
 #  Print  %
 #%%%%%%%%%%
 
-print:
-	@echo "BOUNDS   : $(BOUNDS)"
-	@echo "DEBUG    : $(DEBUG)"
-	@echo "FPE      : $(FPE)"
-	@echo "COMPILER : $(COMPILER)"
+printruninfo:
+	@echo "CODE_DIR : $(CODE_DIR)"
+	@echo "VERSION  : $(VERSION)"
 	@echo "MET      : $(MET)"
 	@echo "GRID     : $(GRID)"
 	@echo "SIM      : $(SIM)"
 	@echo "NEST     : $(NEST)"
-	@echo "VERSION  : $(VERSION)"
-	@echo "CODE_DIR : $(CODE_DIR)"
+
+printcompileinfo:
+	@echo "TRACEBACK : $(TRACEBACK)"
+	@echo "BOUNDS   : $(BOUNDS)"
+	@echo "DEBUG    : $(DEBUG)"
+	@echo "FPE      : $(FPE)"
+	@echo "NO_ISO   : $(NO_ISO)"
+	@echo "COMPILER : $(COMPILER)"
+
+printfileinfo:
 	@echo "START    : $(START)"
 	@echo "END      : $(END)"
 	@echo "RUNID    : $(RUNID)"
@@ -255,7 +271,6 @@ print:
 	@echo "LOG_HMCO : $(LOG_HMCO)"
 	@echo "LOG_DIR  : $(LOG_DIR)"
 	@echo "LOG format : $(VERSION).$(RUNID).{timestamp}"
-
 
 #%%%%%%%%%%%%%%
 #  Utilities  %
