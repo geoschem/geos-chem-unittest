@@ -96,9 +96,11 @@ sub getInfo($) {
       # Split by spaces
       @linestrings    = split( ' ', $line );
   
-      # Place into YYYYMMDDhhmm format
+      # Place into YYYYMMDDhhmm format if end time (for rst file),
+      # YYYMMDDhh format is start time (for avg file)
       $runinfo        = "$linestrings[4]$linestrings[5]";
-      $runinfo        = substr( $runinfo, 0, 12 );
+      if ($index == 4 ) { $runinfo = substr( $runinfo, 0, 10 ); }
+      if ($index == 5 ) { $runinfo = substr( $runinfo, 0, 12 ); }
   
      } else {
  
@@ -121,7 +123,7 @@ sub getInfo($) {
       if ( $index < 0+@runinfoarray ) {
          $runinfo = "$runinfoarray[$index]";
       } else {
-         $runinfo = "n";
+         $runinfo = " ";
       }
     }				
   }
@@ -162,7 +164,7 @@ sub main() {
   # If there is the proper # of args, validate the GEOS-Chem files
   # Otherwise exit with an error message
   if ( scalar( @ARGV ) >= 0 && scalar( @ARGV ) <= 5 ) {
-    &getInfo( @ARGV       ); 
+    &getInfo( @ARGV ); 
   } else { 
     print "$msg"; 
     exit(1);    
