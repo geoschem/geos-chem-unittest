@@ -408,13 +408,13 @@ sub doCopyDirs($$) {
 	    # Make the input.geos and HEMCO_Config.rc file from templates
 	    &makeInputs( $start, $end,  $copyDir, $met, $grid, $nest, $sim );
 
-	    # Remove the template files and the Makefile in the copied 
-	    # directory
+	    # Remove the several unnecessary files from the copied run dir
 	    $cmd =  "rm -f $copyDir/input.geos.template";
 	    $cmd .= " $copyDir/HEMCO_Config.template";
 	    $cmd .= " $copyDir/Makefile";
 	    $cmd .= " $copyDir/getEnd.pl";
 	    $cmd .= " $copyDir/getStart.pl";
+	    $cmd .= " $copyDir/README";
       	    qx/$cmd/;
           }
         }
@@ -425,12 +425,16 @@ sub doCopyDirs($$) {
     }	
   }
 
-  # Copy cpRunDirMakefile within UT/perl and rename as Makefile
+  # Copy RunDirCopyMakefile and rename Makefile
   $cmd = "cp RunDirCopyMakefile  $copyDir/Makefile";
   qx/$cmd/;
 
   # Copy getRunInfo perl script for use with Makefile
   $cmd = "cp getRunInfo $copyDir/getRunInfo"; 
+  qx/$cmd/;
+
+  # Copy RunDirCopyREADME and rename README
+  $cmd = "cp RunDirCopyREADME $copyDir/README"; 
   qx/$cmd/;
 
   # End splash page

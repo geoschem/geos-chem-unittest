@@ -135,7 +135,8 @@ unittest:
 	@$(MAKE) check
 
 sp:
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=no
+	@$(MAKE) spclean
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=no > $(LOG_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	cp -f $(CODE_DIR)/bin/geos geos.sp
 	$(EXE_SP) > $(LOG_SP)
@@ -144,7 +145,8 @@ sp:
 	@$(MAKE) printallinfosp
 
 mp:
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=yes
+	@$(MAKE) mpclean
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=yes > $(LOG_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	cp -f $(CODE_DIR)/bin/geos geos.mp
 	$(EXE_MP) > $(LOG_MP)
@@ -177,12 +179,14 @@ mpbuild:
 #%%%%%%%%%%%%%
 
 sprun:
+	@$(MAKE) spdataclean
 	$(EXE_SP) > $(LOG_SP)
 	@$(MAKE) addsuffixsp
 	@$(MAKE) printruninfosp >> $(LOG_SP)
 	@$(MAKE) printruninfosp
 
 mprun:
+	@$(MAKE) mpdataclean
 	$(EXE_MP) > $(LOG_MP)
 	@$(MAKE) addsuffixmp
 	@$(MAKE) printruninfomp >> $(LOG_MP)
@@ -214,11 +218,11 @@ logclean: splogclean mplogclean
 
 splogclean:
 	rm -f $(LOG_SP)
-	rm -f $(LOG_HMCO)
+	rm -f $(LOG_HMCO).sp
 
 mplogclean:
 	rm -f $(LOG_MP)
-	rm -f $(LOG_HMCO)
+	rm -f $(LOG_HMCO).mp
 
 #%%%%%%%%%%%%%%%%%%%%%%%
 #  Remove Executables  %
@@ -283,7 +287,7 @@ printruninfosp:
 	@echo "  Tracer Restart File : $(TRAC_RST).sp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).sp"
 	@echo "  GC Run Log File     : $(LOG_SP)"
-	@echo "  HEMCO Log File      : $(LOG_HMCO)"
+	@echo "  HEMCO Log File      : $(LOG_HMCO).sp"
 
 printruninfomp:
 	@echo "RUN SETTINGS:"
@@ -296,7 +300,7 @@ printruninfomp:
 	@echo "  Tracer Restart File : $(TRAC_RST).mp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).mp"
 	@echo "  GC Run Log File     : $(LOG_SP)"
-	@echo "  HEMCO Log File      : $(LOG_HMCO)"
+	@echo "  HEMCO Log File      : $(LOG_HMCO).mp"
 
 printbuildinfo:
 	@echo "BUILD INFORMATION:"
@@ -333,11 +337,13 @@ addsuffixsp:
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).sp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
+	if [ -f $(HMCO_LOG) ]; then mv -f $(HMCO_LOG) $(HMCO_LOG).sp; fi;
 
 addsuffixmp:
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
+	if [ -f $(HMCO_LOG) ]; then mv -f $(HMCO_LOG) $(HMCO_LOG).mp; fi;
 
 check:
 	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)

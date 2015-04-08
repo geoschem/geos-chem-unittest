@@ -1,0 +1,19 @@
+README for run directory copied from GEOS-Chem UnitTest
+
+This directory contains the following files or sets of files:
+     (1) Makefile
+     (2) input.geos configuration file
+     (2) initial tracer restart file
+     (3) etc.
+
+The Makefile enables simple build and run functionality from the prompt.
+Prior to use, open Makefile in a text editor and set the source code location,
+CODE_DIR, and optionally the log path, LOG_DIR, and log file prefix, VERSION.
+Read the heading within Makefile for information about compiling and running
+within this directory.
+
+For information about input.geos, go to...
+
+For information about etc.
+
+
