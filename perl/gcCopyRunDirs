@@ -413,7 +413,9 @@ sub doCopyDirs($$) {
 	    $cmd =  "rm -f $copyDir/input.geos.template";
 	    $cmd .= " $copyDir/HEMCO_Config.template";
 	    $cmd .= " $copyDir/Makefile";
-	    qx/$cmd/;
+	    $cmd .= " $copyDir/getEnd.pl";
+	    $cmd .= " $copyDir/getStart.pl";
+      	    qx/$cmd/;
           }
         }
 
@@ -427,13 +429,8 @@ sub doCopyDirs($$) {
   $cmd = "cp RunDirCopyMakefile  $copyDir/Makefile";
   qx/$cmd/;
 
-  $cmd = "cp getMet.pl $copyDir/getMet.pl"; 
-  qx/$cmd/;
-
-  $cmd = "cp getGrid.pl  $copyDir/getGrid.pl";
-  qx/$cmd/;
-
-  $cmd = "cp getSim.pl  $copyDir/getSim.pl";
+  # Copy getRunInfo perl script for use with Makefile
+  $cmd = "cp getRunInfo $copyDir/getRunInfo"; 
   qx/$cmd/;
 
   # End splash page

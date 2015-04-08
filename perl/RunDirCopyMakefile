@@ -5,49 +5,52 @@
 #
 # !MODULE: Makefile
 #
-# !DESCRIPTION: Makefile for use with G-C run directories copied from UnitTest
+# !DESCRIPTION: Makefile for use with UnitTest and GEOS-Chem run directories 
+#  copied from UnitTest.
 #\\
 #\\
 # !REMARKS:
-#  (1) There are two processing modes available: sp and mp. sp uses a single
-#      processor while mp uses multiple processors. All output files
-#      have a .sp or .mp suffix depending on what processing mode was run.
-#
-#  (2) MET and GRID are automatically read from input.geos and passed to 
-#      the make command based on input.geos. There is only one possible
-#      combination of MET and GRID per run directory.
-#
-#  (3) Users may configure tokens CODE_DIR, VERSION, and LOG_DIR to 
-#      automatically pass the source code location, file prefix, and 
+#  (1) Users may configure CODE_DIR, VERSION, and LOG_DIR to automatically
+#      the pass the source code location, output file prefix, and 
 #      log directory path to the make command. Default values are
 #      defined in this Makefile.
 #
-#  (4) GEOS-Chem log files, with the exception of HEMCO, include datetime 
-#      in the filename to distinguish log files for different runs. 
-#  
-#  (5) Date files generated using the same processing mode will be 
-#      overwritten between runs unless renamed.
+#  (2) There are two processing modes available: sp and mp. sp uses a single
+#      processor while mp uses multiple processors. All output files
+#      have a .sp or .mp suffix depending on what processing mode was run.
 #
-#  (6) Targets that are commonly included when using make for testing include:
-#         BOUNDS=y
-#         TRACEBACK=y
-#         FPE=y
-#         DEBUG=y
+#  (3) MET, GRID, and NEST are automatically read from input.geos and passed 
+#      to the make command. There is only one possible combination of MET, 
+#      GRID, and NEST per run directory. Simulation information is in 
+#      the input.geos configuration file.
 #
-#  (7) Example terminal commands:
-#        make -j4 mpbuild                    # build with default tokens
-#        make -j4 CODE_DIR=~/mycode mpbuild  # manually specify code path
+#  (3) Users may configure tokens CODE_DIR, VERSION, and LOG_DIR to 
+#      automatically pass the source code location, output file prefix, and 
+#      log directory path to the make command. Default values are
+#      defined in this Makefile.
+#
+#  (4) All output files generated using the same processing mode will be 
+#      overwritten between runs unless renamed or moved.
+#
+#  (5) Most recent build settings, including compile date, are output to a 
+#      file called LastBuildInfo. Compile settings useful for debugging
+#      include: BOUNDS=y, TRACEBACK=y, FPE=y, DEBUG=y.
+#
+#  (6) Example make commands:
+#        make -j4 mpbuild                    # build with default settings
+#        make -j4 CODE_DIR=~/mycode mpbuild  # manually specify code to build
 #        make -j4 TRACEBACK=y mpbuild        # build with optional settings
 #        make -j4 mprun                      # run GEOS-Chem
 #        make -j4 mp                         # build and run GEOS-Chem
-#        make print                          # print makefile settings
 #        make mplogclean                     # remove .mp log files
 #        make mpdataclean                    # remove .mp output data files
 #        make mpexeclean                     # remove geos.mp executable
 #	 make mpclean                        # do the previous 3 commands
+#        make superclean                     # Remove all output files
+#                                              make code dir realclean
 # 
 # !REVISION HISTORY: 
-#  02 Apr 2015 - E. Lundgren - Initial version modeled on UnitTest Makefile
+#  02 Apr 2015 - E. Lundgren - Initial version
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -68,112 +71,127 @@ EXE_MP   :=geos.mp
 #   %  CONFIGURABLE TOKENS  %	
 #   %%%%%%%%%%%%%%%%%%%%%%%%%
 
-# Path where source code is located
+# Define source code location
 ifndef CODE_DIR
  CODE_DIR :=/home/elundgren/GC/Code.Dev
 endif
 
-# Path at which log files will be saved. Default is the run directory. 
+# Define output log file destination (default is run directory) 
 ifndef LOG_DIR 
  LOG_DIR :=.
 endif
 
-# Prefix for output files 
+# Define filename prefix for GEOS-Chem run log
 ifndef VERSION
- VERSION :=GC
+ VERSION :=v10-01h
 endif
 
 ###############################################################################
 
-# Get the start & end dates, met fields, and grid resolutions of the run 
-# by parsing the input.geos file
-START    :=$(shell ./getStart.pl)
-END      :=$(shell ./getEnd.pl  )
+# Get the start & end dates, met source, grid resolution, and nested grid
+# information for the run by parsing the input.geos configuration file
+MET      :=$(shell ./getRunInfo 0 )
+GRID     :=$(shell ./getRunInfo 1 )
+SIM      :=$(shell ./getRunInfo 2 )
+NEST     :=$(shell ./getRunInfo 3 )
+START    :=$(shell ./getRunInfo 4 )
+END      :=$(shell ./getRunInfo 5 )
 HMCO_END :=$(END)
-MET      :=$(shell ./getMet.pl  )
-GRID     :=$(shell ./getGrid.pl )
-SIM      :=$(shell ./getSim.pl )
 
-# Log file names
-TIMESTAMP := $(shell date +"%m%d%H%M")	
-LOG_SP       :="$(LOG_DIR)/$(VERSION).$(RUNID).$(strip $(TIMESTAMP)).sp"
-LOG_MP       :="$(LOG_DIR)/$(VERSION).$(RUNID).$(strip $(TIMESTAMP)).mp"
-LOG_HMCO :=HEMCO.log
+# Define log file names and information
+TIMESTAMP    := $(shell date +"%Y/%m/%d %H:%M")	
+LOG_COMP     :="$(LOG_DIR)/LastBuildInfo"
+LOG_RUN      :="$(LOG_DIR)/$(VERSION).$(RUNID).Run"
+LOG_HMCO     :="$(LOG_DIR)/$(VERSION).$(RUNID).HEMCO"
 
-# Output file names
+# Define output data file names
 TRAC_AVG :=trac_avg.$(RUNID).$(START)
 TRAC_RST :=trac_rst.$(RUNID).$(END)
 HMCO_RST :=HEMCO_restart.$(HMCO_END).nc
 
-# Validation script
+# Unit test validation script and output file
 VALIDATE :=/usr/bin/perl ./validate
+RESULTS  :=$(LOG_DIR)/$(VERSION).results.log
 
 #=============================================================================
 # Makefile targets: type "make help" for a complete list!
 #=============================================================================
 
-.PHONY: dataclean logclean fileclean spclean mpclean
-.PHONY: spexeclean mpexeclean superclean
+.PHONY: all dataclean logclean fileclean spclean mpclean
+.PHONY: spexeclean mpexeclean superclean printallinfo
 
 #%%%%%%%%%%%%%%%%%%
 #  Build and Run  %
 #%%%%%%%%%%%%%%%%%%
 
+all: unittest
+
+unittest:
+	@$(MAKE) superclean
+	@$(MAKE) sp
+	@$(MAKE) realclean
+	@$(MAKE) mp
+	@$(MAKE) check
+
 sp:
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) OMP=no > $(LOG_SP)
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=no
 	cp -f $(CODE_DIR)/bin/geos geos.sp
-	$(EXE_SP) >> $(LOG_SP)
-	@$(MAKE) printruninfo
-	@$(MAKE) printcompileinfo
-	@$(MAKE) printfileinfo
-	@$(MAKE) addsuffixmp
+	$(EXE_SP) > $(LOG_RUN)
+	@$(MAKE) printruninfo >> $(LOG_RUN)
+	@$(MAKE) printbuildinfo > $(LOG_COMP)
+	@$(MAKE) addsuffixsp
+	@$(MAKE) printallinfo
 
 mp:
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) OMP=yes > $(LOG_MP)
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=yes
 	cp -f $(CODE_DIR)/bin/geos geos.mp
-	$(EXE_MP) >> $(LOG_MP)
-	@$(MAKE) printruninfo
-	@$(MAKE) printcompileinfo
-	@$(MAKE) printfileinfo
+	$(EXE_MP) > $(LOG_RUN)
+	@$(MAKE) printruninfo >> $(LOG_RUN)
+	@$(MAKE) printbuildinfo > $(LOG_COMP)
 	@$(MAKE) addsuffixmp
+	@$(MAKE) printallinfo
 
 #%%%%%%%%%%%%%%%
 #  Build Only  %
 #%%%%%%%%%%%%%%%
 
 spbuild:
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) OMP=no
+	@$(MAKE) splogclean
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=no
 	cp -f $(CODE_DIR)/bin/geos geos.sp
-	@$(MAKE) printruninfo
-	@$(MAKE) printcompileinfo
+	@$(MAKE) printbuildinfo > $(LOG_COMP)
+	@$(MAKE) addsuffixsp
+	@$(MAKE) printbuildinfo
 
 mpbuild:
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) OMP=yes
+	@$(MAKE) mplogclean
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=yes
 	cp -f $(CODE_DIR)/bin/geos geos.mp
-	@$(MAKE) printruninfo
-	@$(MAKE) printcompileinfo
+	@$(MAKE) printbuildinfo > $(LOG_COMP)
+	@$(MAKE) addsuffixmp
+	@$(MAKE) printbuildinfo
 
 #%%%%%%%%%%%%%
 #  Run Only  %
 #%%%%%%%%%%%%%
 
 sprun:
-	$(EXE_SP) >> $(LOG_SP)
+	$(EXE_SP) > $(LOG_RUN)
+	@$(MAKE) printruninfo >> $(LOG_RUN)
+	@$(MAKE) addsuffixsp
 	@$(MAKE) printruninfo
-	@$(MAKE) printfileinfo
-	@$(MAKE) addsuffixmp
 
 mprun:
-	$(EXE_MP) >> $(LOG_MP)
-	@$(MAKE) printruninfo
-	@$(MAKE) printfileinfo
+	$(EXE_MP) > $(LOG_RUN)
+	@$(MAKE) printruninfo >> $(LOG_RUN)
 	@$(MAKE) addsuffixmp
+	@$(MAKE) printruninfo
 
 #%%%%%%%%%%%%%%%%%%%%%%%
 #  Remove Output Data  %
 #%%%%%%%%%%%%%%%%%%%%%%%
 
-dataclean: spfileclean mpfileclean
+dataclean: spdataclean mpdataclean
 
 spdataclean:
 	rm -f $(TRAC_AVG)*.sp
@@ -195,11 +213,9 @@ logclean: splogclean mplogclean
 
 splogclean:
 	rm -f $(LOG_DIR)/$(VERSION).$(RUNID).*.sp
-	rm -f $(LOG_HMCO)*.sp
 
 mplogclean:
 	rm -f $(LOG_DIR)/$(VERSION).$(RUNID).*.mp
-	rm -f $(LOG_HMCO)*.mp
 
 #%%%%%%%%%%%%%%%%%%%%%%%
 #  Remove Executables  %
@@ -224,6 +240,14 @@ spclean: spdataclean splogclean spexeclean
 
 mpclean: mpdataclean mplogclean mpexeclean
 
+#%%%%%%%%%%%%%%%%%%%%%%%%
+#  Remove Config Files  %
+#%%%%%%%%%%%%%%%%%%%%%%%%
+
+extrafileclean:
+	rm -f input.geos
+	rm -f HEMCO_Config.rc
+
 #%%%%%%%%%%%%%%%%%
 #  Clean Source  % 
 #%%%%%%%%%%%%%%%%%
@@ -245,32 +269,38 @@ superclean: fileclean realclean
 #%%%%%%%%%%
 
 printruninfo:
-	@echo "CODE_DIR : $(CODE_DIR)"
-	@echo "VERSION  : $(VERSION)"
-	@echo "MET      : $(MET)"
-	@echo "GRID     : $(GRID)"
-	@echo "SIM      : $(SIM)"
-	@echo "NEST     : $(NEST)"
+	@echo "RUN SETTINGS:"
+	@echo "  START    : $(START)"
+	@echo "  END      : $(END)"
+	@echo "  RUNID    : $(RUNID)"
+	@echo "  VERSION  : $(VERSION)"
+	@echo "  TRAC_AVG : $(TRAC_AVG)"
+	@echo "  TRAC_RST : $(TRAC_RST)"
+	@echo "  HMCO_RST : $(HMCO_RST)"
+	@echo "  HMCO_END : $(HMCO_END)"
+	@echo "  LOG_DIR  : $(LOG_DIR)"
+	@echo "  LOG_RUN  : $(LOG_RUN)"
+	@echo "  LOG_HMCO : $(LOG_HMCO)"
 
-printcompileinfo:
-	@echo "TRACEBACK : $(TRACEBACK)"
-	@echo "BOUNDS   : $(BOUNDS)"
-	@echo "DEBUG    : $(DEBUG)"
-	@echo "FPE      : $(FPE)"
-	@echo "NO_ISO   : $(NO_ISO)"
-	@echo "COMPILER : $(COMPILER)"
+printbuildinfo:
+	@echo "BUILD INFORMATION:"
+	@echo "  CODE_DIR : $(CODE_DIR)"
+	@echo "  VERSION  : $(VERSION)"
+	@echo "  MET      : $(MET)"
+	@echo "  GRID     : $(GRID)"
+	@echo "  SIM      : $(SIM)"
+	@echo "  NEST     : $(NEST)"
+	@echo "  TRACEBACK : $(TRACEBACK)"
+	@echo "  BOUNDS   : $(BOUNDS)"
+	@echo "  DEBUG    : $(DEBUG)"
+	@echo "  FPE      : $(FPE)"
+	@echo "  NO_ISO   : $(NO_ISO)"
+	@echo "  COMPILER : $(COMPILER)"
+	@echo "  TIMESTAMP: $(TIMESTAMP)"
 
-printfileinfo:
-	@echo "START    : $(START)"
-	@echo "END      : $(END)"
-	@echo "RUNID    : $(RUNID)"
-	@echo "TRAC_AVG : $(TRAC_AVG)"
-	@echo "TRAC_RST : $(TRAC_RST)"
-	@echo "HMCO_RST : $(HMCO_RST)"
-	@echo "HMCO_END : $(HMCO_END)"
-	@echo "LOG_HMCO : $(LOG_HMCO)"
-	@echo "LOG_DIR  : $(LOG_DIR)"
-	@echo "LOG format : $(VERSION).$(RUNID).{timestamp}"
+printallinfo: 
+	@$(MAKE) printruninfo
+	@$(MAKE) printbuildinfo
 
 #%%%%%%%%%%%%%%
 #  Utilities  %
@@ -280,12 +310,22 @@ addsuffixsp:
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).sp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
+	if [ -f $(LOG_RUN)  ]; then mv -f $(LOG_RUN) $(LOG_RUN).sp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
+	if [ -f $(LOG_COMP) ]; then mv -f $(LOG_COMP) $(LOG_COMP).sp; fi;
+
 
 addsuffixmp:
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
-	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
+	if [ -f $(LOG_RUN)  ]; then mv -f $(LOG_RUN) $(LOG_RUN).mp; fi;
+	if [ -f $(LOG_COMP) ]; then mv -f $(LOG_COMP) $(LOG_COMP).mp; fi;
+	if [ -f $(LOG_COMP) ]; then mv -f $(LOG_COMP) $(LOG_COMP).mp; fi;
+
+check:
+	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
+	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
+	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
 
 #EOC
