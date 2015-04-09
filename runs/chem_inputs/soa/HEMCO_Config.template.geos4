@@ -87,6 +87,7 @@
 #  27 Mar 2015 - C. Keller   - Warnings are now 0-3
 #  31 Mar 2015 - M. Sulprizio- Now use EMEP file from Aaron van Donkelaar with
 #                              updated emissions for 2008-2012
+#   8 Apr 2015 - R. Yantosca - Set units of STATE_PSC to "count"
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -1340,7 +1341,7 @@ END SECTION EXTENSION SWITCHES
 # --- PSC state, only needed for UCX ---
 #==============================================================================
 (((+STATE_PSC+
-* STATE_PSC  ./initial_hemco_rst.$MET_$RES_{SIM}.nc STATE_PSC $YYYY/$MM/$DD/$HH C xyz 1 * - 1 1
+* STATE_PSC  ./initial_hemco_rst.$MET_$RES_{SIM}.nc STATE_PSC $YYYY/$MM/$DD/$HH C xyz count * - 1 1
 )))+STATE_PSC+
 
 #==============================================================================
