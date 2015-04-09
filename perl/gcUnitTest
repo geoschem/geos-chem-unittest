@@ -446,7 +446,8 @@ sub doUnitTest($$) {
 	  #-----------------------------------------------------------------
 
 	  # Construct the make command, for single & multi processor
-	  $makeCmd  = "$MAKE_CMD COMPILER=$COMPILER MET=$met GRID=$grid";
+#	  $makeCmd  = "$MAKE_CMD COMPILER=$COMPILER MET=$met GRID=$grid";
+	  $makeCmd  = "$MAKE_CMD COMPILER=$COMPILER RUN_DIR=$runDir";
 	  $makeCmd .= " SIM=$sim VERSION=$VERSION LOG_DIR=$LOG_DIR";
 	  $makeCmd .= " CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR";
 #------------------------------------------------------------------------------
@@ -456,6 +457,11 @@ sub doUnitTest($$) {
 # also allow the Makefiles to be used independently of the unit tester.
 # Comment out for now.  (bmy, 3/11/15)
 #	  $makeCmd .= " START=$start END=$end HMCO_END=$end"; 
+#
+# 4/8/15 (ewl):
+# MET, GRID, START and END are all retrieved within RunDirCopyMakefile using
+# getRunInfo perl script, currently located in /UT/perl. We can move that
+# file to UT/perl/Makefile and use it for all run dirs for the unit test. 
 #------------------------------------------------------------------------------
 
 	  # The main log files
@@ -475,9 +481,11 @@ sub doUnitTest($$) {
 	  # Save make commands to an array for use below
 	  @cmds = ( @cmds, 
 		    "\n\n\# %%% $notDir %%%\n",
+		    "cp $PERL_DIR/Makefile $runDir\n",
 		    "cd $runDir >> $stdout\n\n",
  	            "$makeCmd unittest >> $stdout\n", #);
                     "\n\# %%% Create web page w/ unit test matrix %%%\n",
+		    "rm Makefile",
                     "cd $PERL_DIR >> $stdout\n",
         "gcUtWeb $RUN_ROOT $RESULTS $TEMPLATE $WEB_GRID $WEB_PUSH >>$stdout\n"
 	          );
@@ -493,6 +501,13 @@ sub doUnitTest($$) {
   # Write the commands archived above into the master job script.  This 
   # script will call the Makefile in the run directory of each requested 
   # unit test to compile and run GEOS-Chem w/ the specified options.
+  #
+  # 4/8/2015 (ewl):
+  # Want to change this to call the Makefile within UT/perl. To do this,
+  # simply remove cd $runDir from @cmds above? This would result in 
+  # placing data output within UT/perl. Instead, want data output in
+  # the run directory. Perhaps edit UnitTest.input file to tell make where 
+  # the executable is located?
   #--------------------------------------------------------------------------
 
   # Get local time

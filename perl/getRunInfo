@@ -50,12 +50,13 @@ use strict;                      # Use "IMPLICIT NONE" syntax
 #\\
 # !INTERFACE:
 #
-sub getInfo($) {
+sub getInfo($$) {
 #
 # !INPUT PARAMETERS:
 #
+  # $rundir  : Run directory containing input.geos
   # $index  : Index of run information within run directory name
-  my ( $index ) = @_;
+  my ( $rundir, $index ) = @_;
 #
 # !CALLING SEQUENCE:
 #  &getInfo( $index );
@@ -81,7 +82,7 @@ sub getInfo($) {
   my @runinfoarray = ();
 
   # Make sure that an input.geos file is found; otherwise print a "";
-  if ( -f "./input.geos" ) {
+  if ( -f "$rundir/input.geos" ) {
   
     # get start run time if $index is 4, end run time is $index is 5
     if ( $index == 4 || $index == 5) {
@@ -90,7 +91,7 @@ sub getInfo($) {
       if ($index == 5) { $runstr = "End" }
    
       # Grep for date & time in input.geos
-      $line       = qx( grep "$runstr.*YYYYMMDD" ./input.geos );
+      $line       = qx( grep "$runstr.*YYYYMMDD" $rundir/input.geos );
       chomp( $line );
   
       # Split by spaces
@@ -105,7 +106,7 @@ sub getInfo($) {
      } else {
  
       # Grep for input.geos header
-      $line = qx( grep "GEOS-CHEM UNIT TEST SIMULATION" ./input.geos );
+      $line = qx( grep "GEOS-CHEM UNIT TEST SIMULATION" $rundir/input.geos );
       chomp( $line );
       
       # Split by spaces
@@ -163,7 +164,7 @@ sub main() {
 
   # If there is the proper # of args, validate the GEOS-Chem files
   # Otherwise exit with an error message
-  if ( scalar( @ARGV ) >= 0 && scalar( @ARGV ) <= 5 ) {
+  if ( scalar( $ARGV[1] ) >= 0 && scalar( $ARGV[1] ) <= 5 ) {
     &getInfo( @ARGV ); 
   } else { 
     print "$msg"; 

@@ -58,13 +58,6 @@
 # Unix shell
 SHELL    :=/bin/bash
 
-# Run directory ID
-RUNID    :=$(notdir $(shell pwd))
-
-# Executables
-EXE_SP   :=geos.sp
-EXE_MP   :=geos.mp
-
 ###############################################################################
 
 #   %%%%%%%%%%%%%%%%%%%%%%%%%
@@ -73,7 +66,7 @@ EXE_MP   :=geos.mp
 
 # Define source code location
 ifndef CODE_DIR
- CODE_DIR :=/home/user/GC/Code.Dev
+ CODE_DIR :=/home/elundgren/GC/Code.Dev
 endif
 
 # Define output log file destination (default is run directory) 
@@ -88,22 +81,37 @@ endif
 
 ###############################################################################
 
+# Run directory ID
+RUNID    :=$(notdir $(shell pwd))
+
+# Run directory path
+RUN_DIR :=$(shell pwd)
+
+# Specify getRunInfo perl script location (default is run directory) 
+ifndef PERL_DIR
+ PERL_DIR :=$(RUN_DIR)
+endif
+
 # Get the start & end dates, met source, grid resolution, and nested grid
 # information for the run by parsing the input.geos configuration file
-MET      :=$(shell ./getRunInfo 0 )
-GRID     :=$(shell ./getRunInfo 1 )
-SIM      :=$(shell ./getRunInfo 2 )
-NEST     :=$(shell ./getRunInfo 3 )
-START    :=$(shell ./getRunInfo 4 )
-END      :=$(shell ./getRunInfo 5 )
+MET      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 0 )
+GRID     :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 1 )
+SIM      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 2 )
+NEST     :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 3 )
+START    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 4 )
+END      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 5 )
 HMCO_END :=$(END)
 
 # Define log file names and information
 TIMESTAMP    := $(shell date +"%Y/%m/%d %H:%M")	
-LOG_COMP     :="$(LOG_DIR)/lastbuild"
+LOG_COMP     :="$(RUN_DIR)/lastbuild"
 LOG_SP       :="$(LOG_DIR)/$(VERSION).$(RUNID).Run.sp"
 LOG_MP       :="$(LOG_DIR)/$(VERSION).$(RUNID).Run.mp"
 LOG_HMCO     :="$(LOG_DIR)/HEMCO.log"
+
+# Define executables
+EXE_SP   :=geos.sp
+EXE_MP   :=geos.mp
 
 # Define output data file names
 TRAC_AVG :=trac_avg.$(RUNID).$(START)
@@ -138,7 +146,7 @@ sp:
 	@$(MAKE) spclean
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=no > $(LOG_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
-	cp -f $(CODE_DIR)/bin/geos geos.sp
+	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	$(EXE_SP) > $(LOG_SP)
 	@$(MAKE) addsuffixsp
 	@$(MAKE) printruninfosp >> $(LOG_SP)
@@ -148,7 +156,7 @@ mp:
 	@$(MAKE) mpclean
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=yes > $(LOG_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
-	cp -f $(CODE_DIR)/bin/geos geos.mp
+	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	$(EXE_MP) > $(LOG_MP)
 	@$(MAKE) addsuffixmp
 	@$(MAKE) printruninfomp >> $(LOG_MP)
@@ -162,7 +170,7 @@ spbuild:
 	@$(MAKE) spexeclean
 	@$(MAKE) splogclean
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=no
-	cp -f $(CODE_DIR)/bin/geos geos.sp
+	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	@$(MAKE) printbuildinfo
 
@@ -170,7 +178,7 @@ mpbuild:
 	@$(MAKE) mpexeclean
 	@$(MAKE) mplogclean
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=yes
-	cp -f $(CODE_DIR)/bin/geos geos.mp
+	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	@$(MAKE) printbuildinfo
 
@@ -196,7 +204,12 @@ mprun:
 #  Remove Output Data  %
 #%%%%%%%%%%%%%%%%%%%%%%%
 
-dataclean: spdataclean mpdataclean
+dataclean: 
+	@$(MAKE) spdataclean 
+	@$(MAKE) mpdataclean
+	rm -f $(TRAC_AVG)
+	rm -f $(TRAC_RST)
+	rm -f $(HMCO_RST)
 
 spdataclean:
 	rm -f $(TRAC_AVG)*.sp
@@ -214,7 +227,10 @@ mpdataclean:
 #  Remove Logs  %
 #%%%%%%%%%%%%%%%%
 
-logclean: splogclean mplogclean
+logclean: 
+	@$(MAKE) splogclean 
+	@$(MAKE) mplogclean
+	rm -f $(LOG_HMCO)
 
 splogclean:
 	rm -f $(LOG_SP)
@@ -228,7 +244,10 @@ mplogclean:
 #  Remove Executables  %
 #%%%%%%%%%%%%%%%%%%%%%%%
 
-execlean: spexeclean mpexeclean
+execlean: 
+	@$(MAKE) spexeclean 
+	@$(MAKE) mpexeclean
+	rm -f geos
 
 spexeclean:
 	rm -f $(EXE_SP)
@@ -278,6 +297,7 @@ superclean: fileclean realclean
 
 printruninfosp:
 	@echo "RUN SETTINGS:"
+	@echo "  Run directory       : $(RUN_DIR)"
 	@echo "  Simulation Start    : $(START)"
 	@echo "  Simulation End      : $(END)"
 	@echo "  HEMCO End           : $(HMCO_END)"
@@ -291,6 +311,7 @@ printruninfosp:
 
 printruninfomp:
 	@echo "RUN SETTINGS:"
+	@echo "  Run directory       : $(RUN_DIR)"
 	@echo "  Simulation Start    : $(START)"
 	@echo "  Simulation End      : $(END)"
 	@echo "  HEMCO End           : $(HMCO_END)"
@@ -337,13 +358,13 @@ addsuffixsp:
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).sp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
-	if [ -f $(HMCO_LOG) ]; then mv -f $(HMCO_LOG) $(HMCO_LOG).sp; fi;
+	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
 
 addsuffixmp:
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
-	if [ -f $(HMCO_LOG) ]; then mv -f $(HMCO_LOG) $(HMCO_LOG).mp; fi;
+	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
 
 check:
 	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)

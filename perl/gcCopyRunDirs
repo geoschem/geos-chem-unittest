@@ -216,8 +216,7 @@ sub doCopyDirs($$) {
 #  22 Aug 2013 - R. Yantosca - Initial version, based on gcUnitTest
 #  13 Mar 2015 - M. Sulprizio- Now get username for file paths
 #  19 Mar 2015 - R. Yantosca - Now delete template files in the copied rundir
-#  03 Apr 2015 - E. Lundgren - Copy RunDirCopyMakefile rather than
-#                              makefile within UT run dir
+#  03 Apr 2015 - E. Lundgren - Copy Makefile in UT/perl instead of in run dir
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -412,8 +411,8 @@ sub doCopyDirs($$) {
 	    $cmd =  "rm -f $copyDir/input.geos.template";
 	    $cmd .= " $copyDir/HEMCO_Config.template";
 	    $cmd .= " $copyDir/Makefile";
-	    $cmd .= " $copyDir/getEnd.pl";
-	    $cmd .= " $copyDir/getStart.pl";
+#	    $cmd .= " $copyDir/getEnd.pl";
+#	    $cmd .= " $copyDir/getStart.pl";
 	    $cmd .= " $copyDir/README";
       	    qx/$cmd/;
           }
@@ -425,8 +424,8 @@ sub doCopyDirs($$) {
     }	
   }
 
-  # Copy RunDirCopyMakefile and rename Makefile
-  $cmd = "cp RunDirCopyMakefile  $copyDir/Makefile";
+  # Copy Makefile from UT/perl
+  $cmd = "cp Makefile $copyDir/Makefile";
   qx/$cmd/;
 
   # Copy getRunInfo perl script for use with Makefile
