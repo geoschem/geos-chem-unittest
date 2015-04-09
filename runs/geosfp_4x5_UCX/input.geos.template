@@ -163,17 +163,13 @@ Online CRYST/AQ AEROSOLS: F
 Online CARBON  AEROSOLS : T
 Online 2dy ORG AEROSOLS : F
  => Semivolatile POA?   : F
- => NAP emiss (TgC/yr)  : 1.0
- => POA emission scale  : 1.27
 Online DUST    AEROSOLS : T
- => Use DEAD emissions? : T
 Online SEASALT AEROSOLS : T
  => SALA radius bin [um]: 0.01 0.5
  => SALC radius bin [um]: 0.5  8.0
 Online dicarb. chem.    : F
 Settle strat. aerosols  : T
 Online PSC AEROSOLS     : T
-  => PSC rst filename?  : psc_rst.geosfp_4x5_UCX.YYYYMMDDhh
 Allow homogeneous NAT?  : F
 NAT supercooling req.(K): 3.0
 Ice supersaturation req.: 1.2
