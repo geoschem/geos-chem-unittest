@@ -267,6 +267,8 @@ sub doUnitTest($$) {
 #                              job script.  We now get these values by parsing
 #                              the input.geos in each run directory.
 #  13 Mar 2015 - M. Sulprizio- Now get username for file paths
+#  10 Apr 2015 - E. Lundgren - Remove MET and GRID from make command and
+#                              now use UT/perl/Makefile for unit testing.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -445,24 +447,12 @@ sub doUnitTest($$) {
 	  # unit test.  Store these commands in the @cmds array.
 	  #-----------------------------------------------------------------
 
-	  # Construct the make command, for single & multi processor
-#	  $makeCmd  = "$MAKE_CMD COMPILER=$COMPILER MET=$met GRID=$grid";
+	  # Construct the make command, for single & multi processor.
+	  # MET, GRID, NEST, START, and END are retrieved from
+	  # within Makefile using getRunInfo (ewl, 4/10/15) 
 	  $makeCmd  = "$MAKE_CMD COMPILER=$COMPILER RUN_DIR=$runDir";
 	  $makeCmd .= " SIM=$sim VERSION=$VERSION LOG_DIR=$LOG_DIR";
 	  $makeCmd .= " CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR";
-#------------------------------------------------------------------------------
-# Prior to 3/11/15:
-# We now call the getStart.pl and getEnd.pl scripts in the run directories
-# to get the start and end values by parsing the input.geos file.  This will
-# also allow the Makefiles to be used independently of the unit tester.
-# Comment out for now.  (bmy, 3/11/15)
-#	  $makeCmd .= " START=$start END=$end HMCO_END=$end"; 
-#
-# 4/8/15 (ewl):
-# MET, GRID, START and END are all retrieved within RunDirCopyMakefile using
-# getRunInfo perl script, currently located in /UT/perl. We can move that
-# file to UT/perl/Makefile and use it for all run dirs for the unit test. 
-#------------------------------------------------------------------------------
 
 	  # The main log files
 	  $stdout   = "$LOG_DIR/$VERSION.stdout.log";
@@ -478,7 +468,8 @@ sub doUnitTest($$) {
 	  # to each simulaton.  Specify these in the "EXTRA?" column.
 	  if ( length( $extra ) > 0 ) { $makeCmd .= " $extra"; }
 
-	  # Save make commands to an array for use below
+	  # Save make commands to an array for use below.
+	  # Temporarily copy Makefile to run dir for unit test (ewl, 4/10/15)
 	  @cmds = ( @cmds, 
 		    "\n\n\# %%% $notDir %%%\n",
 		    "cp $PERL_DIR/Makefile $runDir\n",
@@ -499,15 +490,8 @@ sub doUnitTest($$) {
 
   #--------------------------------------------------------------------------
   # Write the commands archived above into the master job script.  This 
-  # script will call the Makefile in the run directory of each requested 
+  # script will copy UT/perl/Makefile to the run directory of each requested 
   # unit test to compile and run GEOS-Chem w/ the specified options.
-  #
-  # 4/8/2015 (ewl):
-  # Want to change this to call the Makefile within UT/perl. To do this,
-  # simply remove cd $runDir from @cmds above? This would result in 
-  # placing data output within UT/perl. Instead, want data output in
-  # the run directory. Perhaps edit UnitTest.input file to tell make where 
-  # the executable is located?
   #--------------------------------------------------------------------------
 
   # Get local time

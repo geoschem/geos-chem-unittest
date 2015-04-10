@@ -8,10 +8,11 @@
 #
 # !MODULE: getRunInfo.pl
 #
-# !DESCRIPTION: Extracts information from the input.geos file
-#  and passes the result to the root-level Makefile. Input argument
-#  indicates index of information within a split string or is an identifier
-#  for what information to return.
+# !DESCRIPTION: This script extracts information from the input.geos file
+#  and prints the result. The input arguments are (1) the location of file
+#  input.geos, and (2) the ID of run information to be extracted. Mapping 
+#  between ID and input.geos information are is as follows: 0:MET, 1:GRID,
+#  2:SIM, 3:NEST, 4:START, and 5:END.
 #\\
 #\\
 # !USES:
@@ -25,13 +26,13 @@ use strict;                      # Use "IMPLICIT NONE" syntax
 #  &getRunInfo
 # 
 # !CALLING SEQUENCE:
-#  getRunInfo index
-#    where index is the 0-based index of the run information within
-#    the run directory name after splitting by '_'
+#  getRunInfo RUNDIR ID
+#    where RUNDIR is the path location of input.geos and ID is the 
+#    ID of the run information to retrieve
 #
 # !REMARKS:
-#  Designed for use with the root-level Makefile in a run directory copied
-#  using gcCopyRunDirs in UnitTest/perl.
+#  Designed for use with the root-level Makefile in a run directory when
+#  using the unit test or a run directory copied from UnitTest.
 # 
 # !REVISION HISTORY: 
 #  06 Apr 2015 - E. Lundgren - Initial version
@@ -44,8 +45,7 @@ use strict;                      # Use "IMPLICIT NONE" syntax
 #
 # !IROUTINE: getRunInfo
 #
-# !DESCRIPTION: Extracts the run information from the run directory
-#  name in input.geos.
+# !DESCRIPTION: Extracts run information from input.geos.
 #\\
 #\\
 # !INTERFACE:
@@ -54,12 +54,10 @@ sub getInfo($$) {
 #
 # !INPUT PARAMETERS:
 #
-  # $rundir  : Run directory containing input.geos
-  # $index  : Index of run information within run directory name
-  my ( $rundir, $index ) = @_;
+  my ( $rundir, $id ) = @_;
 #
 # !CALLING SEQUENCE:
-#  &getInfo( $index );
+#  &getInfo( $rundir, $id );
 #
 # !REMARKS:
 
@@ -84,24 +82,24 @@ sub getInfo($$) {
   # Make sure that an input.geos file is found; otherwise print a "";
   if ( -f "$rundir/input.geos" ) {
   
-    # get start run time if $index is 4, end run time is $index is 5
-    if ( $index == 4 || $index == 5) {
+    # get start run time if $id is 4, end run time is $id is 5
+    if ( $id == 4 || $id == 5) {
         
-      if ($index == 4) { $runstr = "Start" }
-      if ($index == 5) { $runstr = "End" }
+      if ($id == 4) { $runstr = "Start" }
+      if ($id == 5) { $runstr = "End" }
    
       # Grep for date & time in input.geos
-      $line       = qx( grep "$runstr.*YYYYMMDD" $rundir/input.geos );
+      $line = qx( grep "$runstr.*YYYYMMDD" $rundir/input.geos );
       chomp( $line );
   
       # Split by spaces
-      @linestrings    = split( ' ', $line );
+      @linestrings = split( ' ', $line );
   
-      # Place into YYYYMMDDhhmm format if end time (for rst file),
-      # YYYMMDDhh format is start time (for avg file)
-      $runinfo        = "$linestrings[4]$linestrings[5]";
-      if ($index == 4 ) { $runinfo = substr( $runinfo, 0, 10 ); }
-      if ($index == 5 ) { $runinfo = substr( $runinfo, 0, 12 ); }
+      # Place into YYYYMMDDhhmm format if end time and YYYYMMDDhh
+      # format if start time
+      $runinfo = "$linestrings[4]$linestrings[5]";
+      if ($id == 4 ) { $runinfo = substr( $runinfo, 0, 10 ); }
+      if ($id == 5 ) { $runinfo = substr( $runinfo, 0, 12 ); }
   
      } else {
  
@@ -118,11 +116,11 @@ sub getInfo($$) {
       # Split by '_' delimiter
       @runinfoarray  = split( '_', $runstr );
       
-      # If the index is less than the # of rundirstrings,
+      # If the id is less than the # of rundirstrings,
       # extract the run information from the rundir name.
       # Else, set runinfo to 'n' (used as NEST for non-nested grid runs)
-      if ( $index < 0+@runinfoarray ) {
-         $runinfo = "$runinfoarray[$index]";
+      if ( $id < 0+@runinfoarray ) {
+         $runinfo = "$runinfoarray[$id]";
       } else {
          $runinfo = " ";
       }
@@ -150,7 +148,7 @@ sub getInfo($$) {
 sub main() {
 #
 # !CALLING SEQUENCE:
-#  getRunInfo INDEX
+#  getRunInfo DIR ID
 #
 # !REVISION HISTORY:
 #  07 Apr 2015 - E. Lundgren - Initial version
@@ -162,16 +160,13 @@ sub main() {
 #
   my $msg = "Out of bounds error within getRunInfo";
 
-  # If there is the proper # of args, validate the GEOS-Chem files
-  # Otherwise exit with an error message
+  # Exist with an error message if the ID argument is not within valid range
   if ( scalar( $ARGV[1] ) >= 0 && scalar( $ARGV[1] ) <= 5 ) {
     &getInfo( @ARGV ); 
   } else { 
     print "$msg"; 
     exit(1);    
   }
-
-  # Always return 0 so we don't halt the make process
   return ( 0 );
 }
 
@@ -179,7 +174,6 @@ sub main() {
 
 # Call the main program
 main();
-
 
 # Return normally
 exit(0);

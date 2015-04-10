@@ -5,40 +5,31 @@
 #
 # !MODULE: Makefile
 #
-# !DESCRIPTION: Makefile for use with UnitTest and GEOS-Chem run directories 
+# !DESCRIPTION: Makefile for unit testing and GEOS-Chem run directories 
 #  copied from UnitTest.
 #\\
 #\\
 # !REMARKS:
-#  (1) Users may configure CODE_DIR, VERSION, and LOG_DIR to automatically
-#      the pass the source code location, output file prefix, and 
-#      log directory path to the make command. Default values are
-#      defined in this Makefile.
+#  (1) CODE_DIR (source code location), VERSION (output log prefix), and 
+#      LOG_DIR (output log path) are automatically passed to the make 
+#      command and should be edited within this file after copying a 
+#      run directory. 
 #
-#  (2) There are two processing modes available: sp and mp. sp uses a single
-#      processor while mp uses multiple processors. All output files
-#      have a .sp or .mp suffix depending on what processing mode was run.
+#  (2) MET, GRID, and NEST are read from input.geos using perl script
+#      getRunInfo and are automatically passed to the make command.
 #
-#  (3) MET, GRID, and NEST are automatically read from input.geos and passed 
-#      to the make command. There is only one possible combination of MET, 
-#      GRID, and NEST per run directory. Simulation information is in 
-#      the input.geos configuration file.
+#  (3) There are two processing modes available: sp and mp. sp uses a single
+#      processor and mp uses multiple processors. Output files 
+#      have .sp or .mp suffix depending on what processing mode is used.
 #
-#  (3) Users may configure tokens CODE_DIR, VERSION, and LOG_DIR to 
-#      automatically pass the source code location, output file prefix, and 
-#      log directory path to the make command. Default values are
-#      defined in this Makefile.
+#  (4) All output files will be overwritten between runs unless renamed or
+#      moved.
 #
-#  (4) All output files generated using the same processing mode will be 
-#      overwritten between runs unless renamed or moved.
+#  (4) Most recent build settings are output to a file called lastbuildinfo.
 #
-#  (5) Most recent build settings, including compile date, are output to a 
-#      file called LastBuildInfo. Compile settings useful for debugging
-#      include: BOUNDS=y, TRACEBACK=y, FPE=y, DEBUG=y.
-#
-#  (6) Example make commands:
+#  (5) Example make commands:	
 #        make -j4 mpbuild                    # build with default settings
-#        make -j4 CODE_DIR=~/mycode mpbuild  # manually specify code to build
+#        make -j4 CODE_DIR=~/mycode mpbuild  # manually specify code path
 #        make -j4 TRACEBACK=y mpbuild        # build with optional settings
 #        make mprun                          # run GEOS-Chem
 #        make -j4 mp                         # build and run GEOS-Chem
@@ -64,17 +55,17 @@ SHELL    :=/bin/bash
 #   %  CONFIGURABLE TOKENS  %	
 #   %%%%%%%%%%%%%%%%%%%%%%%%%
 
-# Define source code location
+# Source code location
 ifndef CODE_DIR
  CODE_DIR :=/home/elundgren/GC/Code.Dev
 endif
 
-# Define output log file destination (default is run directory) 
+# Output log file destination (default is run directory) 
 ifndef LOG_DIR 
  LOG_DIR :=.
 endif
 
-# Define filename prefix for GEOS-Chem run log
+# GEOS-Chem run log filename prefix
 ifndef VERSION
  VERSION :=v10-01i
 endif
@@ -87,13 +78,12 @@ RUNID    :=$(notdir $(shell pwd))
 # Run directory path
 RUN_DIR :=$(shell pwd)
 
-# Specify getRunInfo perl script location (default is run directory) 
+# getRunInfo perl script location (default is run directory) 
 ifndef PERL_DIR
  PERL_DIR :=$(RUN_DIR)
 endif
 
-# Get the start & end dates, met source, grid resolution, and nested grid
-# information for the run by parsing the input.geos configuration file
+# Get start & end dates, met source, grid resolution, and nested grid region
 MET      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 0 )
 GRID     :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 1 )
 SIM      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 2 )
@@ -102,23 +92,23 @@ START    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 4 )
 END      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 5 )
 HMCO_END :=$(END)
 
-# Define log file names and information
+# Log files and information
 TIMESTAMP    := $(shell date +"%Y/%m/%d %H:%M")	
 LOG_COMP     :="$(RUN_DIR)/lastbuild"
 LOG_SP       :="$(LOG_DIR)/$(VERSION).$(RUNID).Run.sp"
 LOG_MP       :="$(LOG_DIR)/$(VERSION).$(RUNID).Run.mp"
 LOG_HMCO     :="$(LOG_DIR)/HEMCO.log"
 
-# Define executables
+# Executables
 EXE_SP   :=geos.sp
 EXE_MP   :=geos.mp
 
-# Define output data file names
+# Output data files
 TRAC_AVG :=trac_avg.$(RUNID).$(START)
 TRAC_RST :=trac_rst.$(RUNID).$(END)
 HMCO_RST :=HEMCO_restart.$(HMCO_END).nc
 
-# Unit test validation script and output file
+# Unit test validation script and results file
 VALIDATE :=/usr/bin/perl ./validate
 RESULTS  :=$(LOG_DIR)/$(VERSION).results.log
 
