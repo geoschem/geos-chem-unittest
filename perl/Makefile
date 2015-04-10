@@ -343,12 +343,12 @@ printbuildinfo:
 	@echo "  Datetime  : $(TIMESTAMP)"
 
 printallinfosp: 
-	@$(MAKE) printruninfosp
 	@$(MAKE) printbuildinfo
+	@$(MAKE) printruninfosp
 
 printallinfomp: 
-	@$(MAKE) printruninfomp
 	@$(MAKE) printbuildinfo
+	@$(MAKE) printruninfomp
 
 #%%%%%%%%%%%%%%
 #  Utilities  %
