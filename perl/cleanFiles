@@ -125,6 +125,7 @@ sub main() {
 #  24 Mar 2014 - R. Yantosca - Add better test for directories
 #  30 Jun 2014 - R. Yantosca - Now also call the extrafileclean target in the
 #                              run directory makefiles.
+#  14 Apr 2015 - R. Yantosca - Now removes files independently of the Makefile
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -179,18 +180,12 @@ sub main() {
 	if ( !( $dir =~ m/chem_inputs/ ) ) { 
 
 	  # Remove files in each run directory ...
-	  $cmd = "make -C $runDir fileclean";
-	  chomp( $result = qx( $cmd ) );
-  	  print "$result\n";
-
-	  # ... and also remove input.geos, HEMCO_Config.rc
-          # (we don't remove these in fileclean because that 
-	  # would delete the files before they are ever used.)
-	  $cmd = "make -C $runDir extrafileclean";
-	  chomp( $result = qx( $cmd ) );
-  	  print "$result\n";
-
-
+	  print "==> Removing files in $runDir\n";
+	  $cmd  = "cd $runDir; ";
+	  $cmd .= "rm -f input.geos HEMCO_Config.rc *.sp *.mp *info.dat; ";
+	  $cmd .= "cd ..";
+          #print "$cmd\n";
+	  qx/$cmd/;
         }
       }
     }
