@@ -12,8 +12,9 @@
 # !REMARKS:
 #  (1) CODE_DIR (source code location), VERSION (output log prefix), and 
 #      LOG_DIR (output log path) are automatically passed to the make 
-#      command and should be edited within this file after copying a 
-#      run directory. 
+#      command using the default values defined in this file.
+#      Alternatively, they can be defined for single use at the terminal 
+#      within the make call (e.g. make -4 VERSION=v10-01i mp).
 #
 #  (2) MET, GRID, and NEST are read from input.geos using perl script
 #      getRunInfo and are automatically passed to the make command.
@@ -23,7 +24,8 @@
 #      have .sp or .mp suffix depending on what processing mode is used.
 #
 #  (4) All output files will be overwritten between runs unless renamed or
-#      moved.
+#      moved. Unique run log filenames can be generated between runs
+#      by specifying different VERSION definitions in the make calls.
 #
 #  (4) Most recent build settings are output to a file called lastbuildinfo.
 #

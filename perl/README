@@ -1,5 +1,5 @@
 README -- GEOS-Chem Unit Tester: perl/ subdirectory 
-04 Nov 2013
+14 Apr 2015
 GEOS-Chem Support Team
 geos-chem-support@as.harvard.edu
 
@@ -14,15 +14,23 @@ UtUtils.pm     : Module w/ common routines for the GEOS-Chem Unit Tester
 Perl Modules:
 -------------
 gcUnitTest     : Main driver script for the GEOS-Chem Unit Tester
+gcCopyRunDirs  : Main driver script copying run directories from Unit Tester
 cleanFiles     : Script to clean old files from logs & jobs subdirectories
 validate       : Script to difference GEOS-Chem output files
+getRunInfo     : Script to extract simulation information from input.geos
 
 
 Input Files:
 -------------
-UnitTest.input : Input file for gcUntiTest.  You can create as many other
-                 such input files as you need by copying & pasting.
+UnitTest.input   : Default input file for gcUnitTest.
+CopyRunDir.input : Default input file for gcCopyRunDirs
 
-Also many other "template" versions of UnitTest.input (specifying different
+NOTE: many other "template" versions of UnitTest.input (specifying different
 options) may be found in the inputs/ subdirectory.
+
                  
+Other Files:
+-------------
+Makefile         : Makefile used for Unit Tester run directories and run
+                   directories copied from the Unit Tester
+RunDirCopyREADME : Readme file for run directories copied from Unit Tester
