@@ -219,6 +219,8 @@ sub doCopyDirs($$) {
 #  03 Apr 2015 - E. Lundgren - Modifications to use UT/perl/Makefile and
 #                              UT/perl/getRunInfo for all unit test and
 #                              copied run directories.
+#  14 Apr 2015 - R. Yantosca - Also copy the perl/validate script to the 
+#                              copied run directories.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -414,12 +416,16 @@ sub doCopyDirs($$) {
 	    $cmd .= " $copyDir/HEMCO_Config.template";
       	    qx/$cmd/;
 
-            # Copy UT/perl/Makefile to copied run directory
+            # Copy perl/Makefile to copied run directory
             $cmd = "cp ./Makefile $copyDir/Makefile";
             qx/$cmd/;
           
             # Copy UT/perl/getRunInfo to copied run directory
             $cmd = "cp ./getRunInfo $copyDir/getRunInfo"; 
+            qx/$cmd/;
+
+	    # Copy perl/validate to copied run directory 
+            $cmd = "cp ./validate $copyDir/validate"; 
             qx/$cmd/;
           
             # Copy RunDirCopyREADMEN to copied run directory

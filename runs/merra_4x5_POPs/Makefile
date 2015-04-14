@@ -45,8 +45,6 @@
 # !REVISION HISTORY: 
 #  02 Apr 2015 - E. Lundgren - Initial version
 #  14 Apr 2015 - R. Yantosca - Now user $(USER) in default CODE_DIR
-#  14 Apr 2015 - R. Yantosca - Now look for ocean_rst file for Hg simulatons
-#  14 Apr 2015 - R. Yantosca - Also now use $(PERL_DIR)/validate directly
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -89,12 +87,12 @@ ifndef PERL_DIR
 endif
 
 # Get start & end dates, met source, grid resolution, and nested grid region
-MET      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 0)
-GRID     :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 1)
-SIM      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 2)
-NEST     :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 3)
-START    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 4)
-END      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 5)
+MET      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 0 )
+GRID     :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 1 )
+SIM      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 2 )
+NEST     :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 3 )
+START    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 4 )
+END      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 5 )
 HMCO_END :=$(END)
 
 # Log files and information
@@ -112,12 +110,9 @@ EXE_MP   :=geos.mp
 TRAC_AVG :=trac_avg.$(RUNID).$(START)
 TRAC_RST :=trac_rst.$(RUNID).$(END)
 HMCO_RST :=HEMCO_restart.$(HMCO_END).nc
-ifeq ($(SIM),Hg)
- OCN_RST :=ocean_rst.$(RUNID).$(END)
-endif
 
 # Unit test validation script and results file
-VALIDATE :=/usr/bin/perl $(PERL_DIR)/validate
+VALIDATE :=/usr/bin/perl ./validate
 RESULTS  :=$(LOG_DIR)/$(VERSION).results.log
 
 #=============================================================================
@@ -367,11 +362,6 @@ addsuffixmp:
 check:
 	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
 	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
-ifeq ($(SIM),Hg)
-	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 0 >> $(RESULTS)
-	@$(VALIDATE) $(OCN_RST).sp  $(OCN_RST).mp  0 1 >> $(RESULTS)
-else
 	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
-endif
 
 #EOC

@@ -744,13 +744,6 @@ sub readResults($$) {
 
       }
 
-#------------------------------------------------------------------------------
-# Prior to 3/25/15:
-# We now read the UCX restart quantities from HEMCO (bmy, 3/25/15)
-#      # Check the results of the UCX PSC RESTART file 
-#      # or the mercury ocean restart file
-#      if ( ( $utName =~ m/UCX/ ) || ( $utName =~ m/Hg/ ) ) {
-#------------------------------------------------------------------------------
       # Check the results fo the Hg ocean restart file
       if ( $utName =~ m/Hg/ ) {
 	for ( my $j = 0; $j < 6; $j++ ) { 
