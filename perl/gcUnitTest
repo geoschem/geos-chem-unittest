@@ -472,11 +472,11 @@ sub doUnitTest($$) {
 	  # Temporarily copy Makefile to run dir for unit test (ewl, 4/10/15)
 	  @cmds = ( @cmds, 
 		    "\n\n\# %%% $notDir %%%\n",
-		    "cp $PERL_DIR/Makefile $runDir\n",
+		    "cp -f $PERL_DIR/Makefile $runDir\n",
 		    "cd $runDir >> $stdout\n\n",
  	            "$makeCmd unittest >> $stdout\n", #);
+		    "rm -f Makefile\n",
                     "\n\# %%% Create web page w/ unit test matrix %%%\n",
-		    "rm Makefile",
                     "cd $PERL_DIR >> $stdout\n",
         "gcUtWeb $RUN_ROOT $RESULTS $TEMPLATE $WEB_GRID $WEB_PUSH >>$stdout\n"
 	          );
