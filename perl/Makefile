@@ -44,6 +44,7 @@
 # 
 # !REVISION HISTORY: 
 #  02 Apr 2015 - E. Lundgren - Initial version
+#  14 Apr 2015 - R. Yantosca - Now user $(USER) in default CODE_DIR
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -59,7 +60,7 @@ SHELL    :=/bin/bash
 
 # Source code location
 ifndef CODE_DIR
- CODE_DIR :=/home/elundgren/GC/Code.Dev
+ CODE_DIR :=/home/$(USER)/GC/Code.Dev
 endif
 
 # Output log file destination (default is run directory) 
