@@ -47,6 +47,7 @@
 #  14 Apr 2015 - R. Yantosca - Now user $(USER) in default CODE_DIR
 #  14 Apr 2015 - R. Yantosca - Now look for ocean_rst file for Hg simulatons
 #  14 Apr 2015 - R. Yantosca - Also now use $(PERL_DIR)/validate directly
+#  14 Apr 2015 - R. Yantosca - Also rename the ocean restart files to .sp, .mp
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -357,20 +358,28 @@ addsuffixsp:
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
+ifeq ($(SIM),Hg)
+	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).mp;  fi;
+endif
 
 addsuffixmp:
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
+ifeq ($(SIM),Hg)
+	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).sp;  fi;
+endif
 
 check:
+ifeq ($(SIM),Hg)
 	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
 	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
-ifeq ($(SIM),Hg)
 	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 0 >> $(RESULTS)
 	@$(VALIDATE) $(OCN_RST).sp  $(OCN_RST).mp  0 1 >> $(RESULTS)
 else
+	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
+	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
 	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
 endif
 
