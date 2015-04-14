@@ -182,7 +182,7 @@ sub main() {
 	  # Remove files in each run directory ...
 	  print "==> Removing files in $runDir\n";
 	  $cmd  = "cd $runDir; ";
-	  $cmd .= "rm -f input.geos HEMCO_Config.rc *.sp *.mp *info.dat; ";
+	  $cmd .= "rm -f input.geos HEMCO_Config.rc HEMCO.log *.sp *.mp *info.dat; ";
 	  $cmd .= "cd ..";
           #print "$cmd\n";
 	  qx/$cmd/;
