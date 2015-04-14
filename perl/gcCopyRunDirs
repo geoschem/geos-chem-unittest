@@ -412,9 +412,20 @@ sub doCopyDirs($$) {
 	    # Remove the several unnecessary files from the copied run dir
 	    $cmd =  "rm -f $copyDir/input.geos.template";
 	    $cmd .= " $copyDir/HEMCO_Config.template";
-	    $cmd .= " $copyDir/Makefile";
-	    $cmd .= " $copyDir/README";
       	    qx/$cmd/;
+
+            # Copy UT/perl/Makefile to copied run directory
+            $cmd = "cp ./Makefile $copyDir/Makefile";
+            qx/$cmd/;
+          
+            # Copy UT/perl/getRunInfo to copied run directory
+            $cmd = "cp ./getRunInfo $copyDir/getRunInfo"; 
+            qx/$cmd/;
+          
+            # Copy RunDirCopyREADMEN to copied run directory
+            $cmd = "cp ./RunDirCopyREADME $copyDir/README"; 
+            qx/$cmd/;
+
           }
         }
 
@@ -422,19 +433,8 @@ sub doCopyDirs($$) {
 	$i++;
       }
     }	
+
   }
-
-  # Copy UT/perl/Makefile to copied run directory
-  $cmd = "cp Makefile $copyDir/Makefile";
-  qx/$cmd/;
-
-  # Copy UT/perl/getRunInfo to copied run directory
-  $cmd = "cp getRunInfo $copyDir/getRunInfo"; 
-  qx/$cmd/;
-
-  # Copy RunDirCopyREADMEN to copied run directory
-  $cmd = "cp RunDirCopyREADME $copyDir/README"; 
-  qx/$cmd/;
 
   # End splash page
   print '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'."\n";
