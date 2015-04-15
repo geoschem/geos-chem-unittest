@@ -91,6 +91,8 @@
 #  27 Mar 2015 - C. Keller   - Warnings are now 0-3
 #  31 Mar 2015 - M. Sulprizio- Now use EMEP file from Aaron van Donkelaar with
 #                              updated emissions for 2008-2012
+#  08 Apr 2015 - R. Yantosca - Set units of STATE_PSC to "count"
+#  15 Apr 2015 - R. Yantosca - Added _{NEST} token to HEMCO restart file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -907,11 +909,11 @@ END SECTION EXTENSION SWITCHES
 #------------------------------------------------------------------------------
 # For PARANOx:
 #------------------------------------------------------------------------------
-102  PARANOX_SUNCOS1   ./initial_hemco_rst.$MET_$RES_{SIM}.nc                          PARANOX_SUNCOS1 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
-102  PARANOX_SUNCOS2   ./initial_hemco_rst.$MET_$RES_{SIM}.nc                          PARANOX_SUNCOS2 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
-102  PARANOX_SUNCOS3   ./initial_hemco_rst.$MET_$RES_{SIM}.nc                          PARANOX_SUNCOS3 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
-102  PARANOX_SUNCOS4   ./initial_hemco_rst.$MET_$RES_{SIM}.nc                          PARANOX_SUNCOS4 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
-102  PARANOX_SUNCOS5   ./initial_hemco_rst.$MET_$RES_{SIM}.nc                          PARANOX_SUNCOS5 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
+102  PARANOX_SUNCOS1   ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc                   PARANOX_SUNCOS1 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
+102  PARANOX_SUNCOS2   ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc                   PARANOX_SUNCOS2 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
+102  PARANOX_SUNCOS3   ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc                   PARANOX_SUNCOS3 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
+102  PARANOX_SUNCOS4   ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc                   PARANOX_SUNCOS4 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
+102  PARANOX_SUNCOS5   ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc                   PARANOX_SUNCOS5 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
 102  ICOADS_SHIP_NO    $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc                    NO              2002/1-12/1/0          C xy kg/m2/s  NO   1/5          10 1
 #102 HTAP_SHIP_NO      $ROOT/HTAP/v2015-03/EDGAR_HTAP_NO_SHIPS.generic.01x01.nc        emi_no          2008-2010/1/1/0        C xy kg/m2/s  NO   1/27         10 2
 
@@ -1155,10 +1157,10 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- SOILNOX emissions (Extension 104) ---
 #==============================================================================
-104 PFACTOR         ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        PFACTOR       $YYYY/$MM/$DD/$HH C xy 1     NO - 1 1
-104 DRYPERIOD       ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        DRYPERIOD     $YYYY/$MM/$DD/$HH C xy 1     NO - 1 1
-104 GWET_PREV       ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        GWET_PREV     $YYYY/$MM/$DD/$HH C xy 1     NO - 1 1
-104 DEP_RESERVOIR   ./initial_hemco_rst.$MET_$RES_{SIM}.nc                        DEP_RESERVOIR $YYYY/$MM/$DD/$HH C xy kg/m3 NO - 1 1
+104 PFACTOR         ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc                 PFACTOR       $YYYY/$MM/$DD/$HH C xy 1     NO - 1 1
+104 DRYPERIOD       ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc                 DRYPERIOD     $YYYY/$MM/$DD/$HH C xy 1     NO - 1 1
+104 GWET_PREV       ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc                 GWET_PREV     $YYYY/$MM/$DD/$HH C xy 1     NO - 1 1
+104 DEP_RESERVOIR   ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc                 DEP_RESERVOIR $YYYY/$MM/$DD/$HH C xy kg/m3 NO - 1 1
 104 SOILNOX_FERT    $ROOT/SOILNOX/v2014-07/soilNOx.fert_res.generic.05x05.nc      FERT          2000/1-12/1-31/0  C xy kg/m3 NO - 1 1
 104 SOILNOX_LANDK1  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K01  2000/1/1/0        C xy 1     NO - 1 1
 104 SOILNOX_LANDK2  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K02  2000/1/1/0        C xy 1     NO - 1 1
@@ -1223,37 +1225,37 @@ END SECTION EXTENSION SWITCHES
 # We don't need to read EF maps for acetone, a-pinene or myrcene. We now
 # compute those values in the MEGAN extension.
 #==============================================================================
-108  T_DAVG                       ./initial_hemco_rst.$MET_$RES_{SIM}.nc       T_DAVG                  $YYYY/$MM/$DD/$HH C xy K        * - 1 1
-108  T_PREVDAY                    ./initial_hemco_rst.$MET_$RES_{SIM}.nc       T_PREVDAY               $YYYY/$MM/$DD/$HH C xy K        * - 1 1
-108  LAI_PREVDAY                  ./initial_hemco_rst.$MET_$RES_{SIM}.nc       LAI_PREVDAY             $YYYY/$MM/$DD/$HH C xy 1        * - 1 1
-108  PARDR_DAVG                   ./initial_hemco_rst.$MET_$RES_{SIM}.nc       PARDR_DAVG              $YYYY/$MM/$DD/$HH C xy W/m2     * - 1 1
-108  PARDF_DAVG                   ./initial_hemco_rst.$MET_$RES_{SIM}.nc       PARDF_DAVG              $YYYY/$MM/$DD/$HH C xy W/m2     * - 1 1
-108  MEGAN_AEF_ISOP               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_ISOPRENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_MBOX               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_MBO                 1985/1/1/0        C xy kgC/m2/s * - 1 1
-#109 MEGAN_AEF_APIN               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_ALPHA_PINENE        1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_BPIN               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_BETA_PINENE         1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_CARE               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_CARENE              1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_LIMO               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_LIMONENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
-#109 MEGAN_AEF_MYRC               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_MYRCENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_OCIM               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_OCIMENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_SABI               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_SABINENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  CLM4_PFT_BARE                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BARE                2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_NDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_EVGN_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_NDLF_EVGN_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_EVGN_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_NDLF_DECD_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_DECD_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_EVGN_TROP_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_TROP_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_DECD_TROP_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TROP_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_DECD_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_DECD_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_EVGN_SHRB      $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_SHRB      2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_DECD_TMPT_SHRB $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TMPT_SHRB 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_DECD_BORL_SHRB $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_BORL_SHRB 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_C3_ARCT_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C3_ARCT_GRSS        2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_C3_NARC_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C3_NARC_GRSS        2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_C4_GRSS             $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C4_GRSS             2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_CROP                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_CROP                2000/1/1/0        C xy 1        * - 1 1
-110  MEGAN_ORVC                   $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc          OCPI                    1990/1-12/1/0     C xy kgC/m2/s * - 1 1
+108  T_DAVG                       ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc T_DAVG                  $YYYY/$MM/$DD/$HH C xy K        * - 1 1
+108  T_PREVDAY                    ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc T_PREVDAY               $YYYY/$MM/$DD/$HH C xy K        * - 1 1
+108  LAI_PREVDAY                  ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc LAI_PREVDAY             $YYYY/$MM/$DD/$HH C xy 1        * - 1 1
+108  PARDR_DAVG                   ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc PARDR_DAVG              $YYYY/$MM/$DD/$HH C xy W/m2     * - 1 1
+108  PARDF_DAVG                   ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc PARDF_DAVG              $YYYY/$MM/$DD/$HH C xy W/m2     * - 1 1
+108  MEGAN_AEF_ISOP               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc  AEF_ISOPRENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_MBOX               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc  AEF_MBO                 1985/1/1/0        C xy kgC/m2/s * - 1 1
+#109 MEGAN_AEF_APIN               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc  AEF_ALPHA_PINENE        1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_BPIN               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc  AEF_BETA_PINENE         1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_CARE               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc  AEF_CARENE              1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_LIMO               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc  AEF_LIMONENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
+#109 MEGAN_AEF_MYRC               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc  AEF_MYRCENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_OCIM               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc  AEF_OCIMENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_SABI               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc  AEF_SABINENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  CLM4_PFT_BARE                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_BARE                2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_NDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_NDLF_EVGN_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_NDLF_EVGN_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_NDLF_EVGN_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_NDLF_DECD_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_NDLF_DECD_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_EVGN_TROP_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_BDLF_EVGN_TROP_TREE 2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_BDLF_EVGN_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_TROP_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_BDLF_DECD_TROP_TREE 2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_BDLF_DECD_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_BDLF_DECD_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_EVGN_SHRB      $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_BDLF_EVGN_SHRB      2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_TMPT_SHRB $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_BDLF_DECD_TMPT_SHRB 2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_BDLF_DECD_BORL_SHRB $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_BDLF_DECD_BORL_SHRB 2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_C3_ARCT_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_C3_ARCT_GRSS        2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_C3_NARC_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_C3_NARC_GRSS        2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_C4_GRSS             $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_C4_GRSS             2000/1/1/0        C xy 1        * - 1 1
+109  CLM4_PFT_CROP                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     PFT_CROP                2000/1/1/0        C xy 1        * - 1 1
+110  MEGAN_ORVC                   $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc           OCPI                    1990/1-12/1/0     C xy kgC/m2/s * - 1 1
 
 #==============================================================================
 # --- GFED biomass burning emissions (Extension 111) 
@@ -1343,7 +1345,7 @@ END SECTION EXTENSION SWITCHES
 # --- PSC state, only needed for UCX ---
 #==============================================================================
 (((+STATE_PSC+
-* STATE_PSC  ./initial_hemco_rst.$MET_$RES_{SIM}.nc STATE_PSC $YYYY/$MM/$DD/$HH C xyz 1 * - 1 1
+* STATE_PSC  ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc STATE_PSC $YYYY/$MM/$DD/$HH C xyz count * - 1 1
 )))+STATE_PSC+
 
 #==============================================================================
