@@ -1152,7 +1152,7 @@ END SECTION EXTENSION SWITCHES
 # Local redistribution factors: These are model-specific and hence need to be 
 # redefined for different model/resolution simulations!!!
 #==============================================================================
-103 LIGHTNOX_OTDLIS $ROOT/LIGHTNOX/v2014-07/OTD-LIS-Local-Redist.CTH.v5.{LNOX}.$RES.CH.v20141210.nc OTD $YYYY/1-12/1/0 C xy unitless NO - 1 1
+103 LIGHTNOX_OTDLIS $ROOT/LIGHTNOX/v2014-07/OTD-LIS-Local-Redist.CTH.v5.{LNOX}.$RES.CH.nc OTD $YYYY/1-12/1/0 C xy unitless NO - 1 1
 
 #==============================================================================
 # --- SOILNOX emissions (Extension 104) ---
