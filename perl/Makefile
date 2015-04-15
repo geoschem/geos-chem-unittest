@@ -146,7 +146,7 @@ sp:
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=no > $(LOG_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
-	$(EXE_SP) > $(LOG_SP)
+	$(EXE_SP) >> $(LOG_SP)
 	@$(MAKE) addsuffixsp
 	@$(MAKE) printruninfosp >> $(LOG_SP)
 	@$(MAKE) printallinfosp
@@ -156,7 +156,7 @@ mp:
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=yes > $(LOG_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
-	$(EXE_MP) > $(LOG_MP)
+	$(EXE_MP) >> $(LOG_MP)
 	@$(MAKE) addsuffixmp
 	@$(MAKE) printruninfomp >> $(LOG_MP)
 	@$(MAKE) printallinfomp
