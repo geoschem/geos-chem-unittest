@@ -18,3 +18,4 @@ HEMCO_Config.rc
 HEMCO_restart*
 HEMCO_log*
 lastbuild.*
+Makefile
