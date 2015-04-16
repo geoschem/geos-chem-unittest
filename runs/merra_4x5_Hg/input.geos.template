@@ -300,7 +300,7 @@ TPCORE BC directory     : BC_4x5/
 BC timestep [min]       : 180
 LL box of BC region     :   9  26
 UR box of BC region     :  29  41
-1x1 offsets I0_W, J0_W  :   3   3
+I0_W, J0_W, I0_E, J0_E  :   3   3   3   3
 ------------------------+------------------------------------------------------
 %%% UNIX CMDS MENU %%%  : 
 Background symbol       : & 
