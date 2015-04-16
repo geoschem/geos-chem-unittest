@@ -115,24 +115,13 @@ Species fluxes          : 0 0 0 0 0 0 0 0 0 1
  ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM]
 ------------------------+------------------------------------------------------
 %%% CO2 SIM MENU %%%    :
-Fossil Fuel Emissions   :--- 
-  Generic FF emissions  : F 
-  Annual FF emissions   : F 
-  Monthly FF emissions  : T 
-3-D Chemical Oxid Source: F
-Terrestrial Exchange    :---
-  CASA daily avg NEP    : F 
-  CASA diurnal cycle NEP: T 
-  Net Ter Ex original   : F 
-  Net Ter Ex climatology: T 
-Ocean Exchange          :---
-  Takahashi 1997        : F
-  Takahashi 2009 annual : F
-  Takahashi 2009 monthly: T
-Ship & Plane Emissions  :--- 
-  EDGAR ship emissions  : F 
-  ICOADS ship emissions : T 
-  Aviation emissions 3-D: F 
+Fossil Fuel Emissions   : T 
+Ocean Exchange          : T
+Balanced Biosphere Exch : T
+Net Terrestrial Exch    : T
+Ship emissions          : T 
+Aviation emissions 3-D  : T
+3-D Chemical Oxid Source: T
 Tagged CO2 runs         :---
   Save Fossil in Bckgrnd: F 
   Tag Bio/Ocean CO2 reg : F
