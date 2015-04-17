@@ -101,10 +101,13 @@ END SECTION SETTINGS
 ###############################################################################
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
-    --> FOSSIL            :       true
+    --> FOSSIL_ODIAC      :       true
+    --> FOSSIL_CDIAC      :       false
     --> MIX               :       false
-    --> OCEAN_EXCH        :       true
-    --> BBIO_DIURNAL      :       true
+    --> OCEAN_EXCH_TAKA09 :       false
+    --> OCEAN_EXCH_SCALED :       true
+    --> BBIO_DIURNAL      :       false
+    --> BBIO_SIB3         :       true
     --> BIOFUEL           :       true
     --> NET_TERR_EXCH     :       true
     --> SHIP              :       true
@@ -145,12 +148,15 @@ END SECTION EXTENSION SWITCHES
 # Open-source Data Inventory of Anthropogenic CO2 (ODIAC) 1x1 national emissions
 # (Oda & Maksyutov, 2011)
 #
-# ---> Recommended option: ODIAC
+# ---> Recommended option: ODIAC (set FOSSIL_ODIAC = true)
 #==============================================================================
-(((FOSSIL
-#0 FOSSILCO2_MONTHLY  $ROOT/CO2/v2015-04/FOSSIL/CDIAC_v2014.monthly.generic.1x1.nc CO2 1980-2014/1-12/1/0 C xy kg/m2/s CO2ff   40/41/80 1 1
-0 FOSSILCO2_MONTHLY  $ROOT/CO2/v2015-04/FOSSIL/ODIAC_CO2.monthly.generic.1x1.nc CO2 2000-2014/1-12/1/0 C xy kg/m2/s CO2ff   40/41/80 1 2
-)))FOSSIL
+(((FOSSIL_CDIAC
+0 FOSSILCO2_MONTHLY $ROOT/CO2/v2014-09/FOSSIL/CDIAC_v2014.monthly.generic.1x1.nc CO2 1980-2014/1-12/1/0 C xy kg/m2/s CO2ff 40/41/80 1 1
+)))FOSSIL_CDIAC
+
+(((FOSSIL_ODIAC
+0 FOSSILCO2_MONTHLY $ROOT/CO2/v2015-04/FOSSIL/ODIAC_CO2.monthly.generic.1x1.nc   CO2 2000-2014/1-12/1/0 C xy kg/m2/s CO2ff 40/41/80 1 2
+)))FOSSIL_ODIAC
 
 #==============================================================================
 # --- MIX v1.1 (Asia) ---
@@ -169,30 +175,36 @@ END SECTION EXTENSION SWITCHES
 # Climatological exchange for 2000 (-1.4 PgC/yr) or scaled ocean exchange, which
 # accounts for changing atmospheric CO2 (as in the paper) are now available.
 #
-# ---> Recommended option: scaled ocean exchange
+# ---> Recommended option: scaled ocean exchange (set OCEAN_EXCH_SCALED = true)
 #==============================================================================
-(((OCEAN_EXCH
-#0 OCEANCO2_TAKA_ANNUAL  $ROOT/CO2/v2015-04/OCEAN/Taka2009_CO2_Annual.nc   CO2 2000/1/1/0    C xy kg/m2/s CO2oc - 1 1
-#0 OCEANCO2_TAKA_MONTHLY $ROOT/CO2/v2015-04/OCEAN/Taka2009_CO2_Monthly.nc CO2 2000/1-12/1/0 C xy kg/m2/s CO2oc - 1 2
+(((OCEAN_EXCH_TAKA09
+0 OCEANCO2_TAKA_ANNUAL  $ROOT/CO2/v2014-09/OCEAN/Taka2009_CO2_Annual.nc        CO2 2000/1/1/0         C xy kg/m2/s CO2oc - 1 1
+0 OCEANCO2_TAKA_MONTHLY $ROOT/CO2/v2014-09/OCEAN/Taka2009_CO2_Monthly.nc       CO2 2000/1-12/1/0      C xy kg/m2/s CO2oc - 1 2
+)))OCEAN_EXCH_TAKA09
+
+(((OCEAN_EXCH_SCALED
 0 OCEANCO2_SCALED_MONTHLY $ROOT/CO2/v2015-04/OCEAN/Scaled_Ocean_CO2_monthly.nc CO2 2000-2013/1-12/1/0 C xy kg/m2/s CO2oc - 1 3
-)))OCEAN_EXCH
+)))OCEAN_EXCH_SCALED
 
 #==============================================================================
 # --- BALANCED BIOSPHERE EXCHANGE ---
 #
-# These emissions have a seasonal cycle of uptake/emission but have a net annual
-# uptake of close to zero (balanced).
+# These emissions have a seasonal cycle of uptake/emission but have a net 
+# annual uptake of close to zero (balanced).
 # CASA model daily emissions for a single year at coarse resolution have a 
 # diurnal cycle imposed (Olsen & Randerson, 2004)
 # SiB3 emissions are from Nick Parazoo (Messerschmidt et al., 2011) for
 # 2006-2010.
 #
-# ---> Recommended option: SiB3
+# ---> Recommended option: SiB3 (set BBIO_SIB3 = true)
 #==============================================================================
 (((BBIO_DIURNAL
-#0 BBIOCO2_DIURNAL $ROOT/CO2/v2015-04/BIO/CASA_DIURNAL/BBIO_diurnal_CO2.nc CO2 1985/1-12/1-31/0-23 C xy kg/m2/s CO2bal - 1 1
-0 SIB_BBIO_CO2 $ROOT/CO2/v2015-04/BIO/SiB3_3hr_NEP.nc     CO2 2006-2010/1-12/1-31/0-23 C xy kg/m2/s CO2bal - 1 1
+0 BBIOCO2_DIURNAL $ROOT/CO2/v2014-09/BBIO/BBIO_diurnal_CO2.nc CO2 1985/1-12/1-31/0-23 C xy kg/m2/s CO2bal - 1 1
 )))BBIO_DIURNAL
+
+(((BBIO_SIB3
+0 SIB_BBIO_CO2 $ROOT/CO2/v2015-04/BIO/SiB3_3hr_NEP.nc CO2 2006-2010/1-12/1-31/0-23 C xy kg/m2/s CO2bal - 1 1
+)))BBIO_SIB3
 
 #==============================================================================
 # --- BIOFUEL EMISSIONS ---
@@ -200,7 +212,7 @@ END SECTION EXTENSION SWITCHES
 # From Yevich and Logan (2001)
 #==============================================================================
 (((BIOFUEL
-0 BIOFUEL_CO2   $ROOT/CO2/v2015-04/biofuel_CO2.geos.1x1-1995.nc CO2 1995/1/1/0 C xy kg/m2/s CO2bf - 1 1
+0 BIOFUEL_CO2 $ROOT/CO2/v2015-04/biofuel_CO2.geos.1x1-1995.nc CO2 1995/1/1/0 C xy kg/m2/s CO2bf - 1 1
 )))BIOFUEL
 
 #==============================================================================
@@ -242,7 +254,7 @@ END SECTION EXTENSION SWITCHES
 #      inversion/assimilation
 #==============================================================================
 (((COPROD
-0 CO2_COPROD $ROOT/CO2/v2015-04/CHEM/CO2_prod_rates.GEOS5.2x25.47L.nc PORL_L_S__LCO 2004-2009/1-12/1/0 C xyz kg/m3/s CO2ch - 1 1
+0 CO2_COPROD $ROOT/CO2/v2015-04/CHEM/CO2_prod_rates.GEOS5.2x25.47L.nc LCO 2004-2009/1-12/1/0 C xyz kg/m3/s CO2ch - 1 1
 )))COPROD
 
 #==============================================================================
@@ -257,15 +269,15 @@ END SECTION EXTENSION SWITCHES
 # ---> Recommended for use if chemical production (above) is turned on
 ===============================================================================
 (((CO2CORR
-0 FOSSILCO2_MONTHLY $ROOT/CO2/v2015-04/FOSSIL/ODIAC_CO2.monthly.generic.1x1.nc CO2 2000-2014/1-12/1/0 E xy kg/m2/s CO2corr   10/40/41/80 1 1
+0 FOSSILCO2_MONTHLY $ROOT/CO2/v2015-04/FOSSIL/ODIAC_CO2.monthly.generic.1x1.nc CO2     2000-2014/1-12/1/0 E xy kg/m2/s CO2corr 10/40/41/80 1 1
 
-0 CO2CORR_LIVESTOCK $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_004 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
-0 CO2CORR_WASTE     $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_005 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
-0 CO2CORR_RICE      $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_007 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
-0 CO2CORR_WETLANDS  $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_010 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
-0 CO2CORR_NATURAL   $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc       CH4_EMIS__CH4_012 2004/1-12/1/0 C xy kg/m2/s CO2corr 20 2 1
-0 CO2CORR_ISOPRENE  $ROOT/CO2/v2015-04/CHEM/Isoprene-2004.geos.2x25.nc    BIOGSRCE__ISOP    2004/1-12/1/0 C xy kg/m2/s CO2corr 21/30 3 1
-0 CO2CORR_MONOTERP  $ROOT/CO2/v2015-04/CHEM/Monoterpene-2004.geos.2x25.nc BIOGSRCE__MONOT   2004/1-12/1/0 C xy kg/m2/s CO2corr 21/30 3 1
+0 CO2CORR_LIVESTOCK $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_004 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
+0 CO2CORR_WASTE     $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_005 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
+0 CO2CORR_RICE      $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_007 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
+0 CO2CORR_WETLANDS  $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_010 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
+0 CO2CORR_NATURAL   $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_012 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
+0 CO2CORR_ISOPRENE  $ROOT/CO2/v2015-04/CHEM/Isoprene-2004.geos.2x25.nc         ISOP    2004/1-12/1/0      C xy kg/m2/s CO2corr 21/30       3 1
+0 CO2CORR_MONOTERP  $ROOT/CO2/v2015-04/CHEM/Monoterpene-2004.geos.2x25.nc      MONOT   2004/1-12/1/0      C xy kg/m2/s CO2corr 21/30       3 1
 )))CO2CORR
 
 ###############################################################################
