@@ -101,8 +101,8 @@ RUNID        :=$(MET)_$(GRID)_$(SIM)
 
 # Log files
 LOG_COMP     :="$(RUN_DIR)/lastbuild"
-LOG_SP       :="$(LOG_DIR)/$(VERSION).$(RUNID).Run.sp"
-LOG_MP       :="$(LOG_DIR)/$(VERSION).$(RUNID).Run.mp"
+LOG_SP       :="$(LOG_DIR)/$(VERSION).$(RUNID).log.sp"
+LOG_MP       :="$(LOG_DIR)/$(VERSION).$(RUNID).log.mp"
 LOG_HMCO     :="$(LOG_DIR)/HEMCO.log"
 
 # Executables
@@ -302,7 +302,7 @@ printruninfosp:
 	@echo "  Simulation End      : $(END)"
 	@echo "  HEMCO End           : $(HMCO_END)"
 	@echo "  Version             : $(VERSION)"
-	@echo "  Tracer Output File  : $(TRAC_AVG).sp"
+	@echo "  Tracer Data File    : $(TRAC_AVG).sp"
 	@echo "  Tracer Restart File : $(TRAC_RST).sp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).sp"
 	@echo "  GC Run Log File     : $(LOG_SP)"
@@ -316,10 +316,10 @@ printruninfomp:
 	@echo "  Simulation End      : $(END)"
 	@echo "  HEMCO End           : $(HMCO_END)"
 	@echo "  Version             : $(VERSION)"
-	@echo "  Tracer Output File  : $(TRAC_AVG).mp"
+	@echo "  Tracer Data File    : $(TRAC_AVG).mp"
 	@echo "  Tracer Restart File : $(TRAC_RST).mp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).mp"
-	@echo "  GC Run Log File     : $(LOG_SP)"
+	@echo "  GC Run Log File     : $(LOG_MP)"
 	@echo "  HEMCO Log File      : $(LOG_HMCO).mp"
 
 printbuildinfo:
@@ -359,7 +359,7 @@ addsuffixsp:
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
 ifeq ($(SIM),Hg)
-	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).mp;  fi;
+	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).sp;  fi;
 endif
 
 addsuffixmp:
@@ -368,7 +368,7 @@ addsuffixmp:
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
 ifeq ($(SIM),Hg)
-	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).sp;  fi;
+	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).mp;  fi;
 endif
 
 check:
