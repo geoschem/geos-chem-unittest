@@ -88,6 +88,7 @@
 #  30 Mar 2015 - R. Yantosca - Turn off seasalt Br2; Br2 is not a species
 #  31 Mar 2015 - M. Sulprizio- Now use EMEP file from Aaron van Donkelaar with
 #                              updated emissions for 2008-2012
+#  17 Apr 2015 - M. Sulprizio- Now read corrected AEIC file in AEIC/v2015-01/
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -546,10 +547,10 @@ END SECTION EXTENSION SWITCHES
 # ==> Now emit aircraft BC and OC into hydrophilic tracers BCPI and OCPI.
 #==============================================================================
 (((AEIC
-0 AEIC_SO2  $ROOT/AEIC/v2014-10/aeic_2005.geos.1x1.47L.nc  FUELBURN 2005/1-12/1/0 C xyz kg/m2/s SO2  111     20 1 
-0 AEIC_SO4  -                                              -        -             - -   -       SO4  112     20 1 
-0 AEIC_BCPI -                                              -        -             - -   -       BCPI 113     20 1 
-0 AEIC_OCPI -                                              -        -             - -   -       OCPI 113     20 1 
+0 AEIC_SO2  $ROOT/AEIC/v2015-01/AEIC.47L.gen.1x1.nc  FUELBURN 2005/1-12/1/0 C xyz kg/m2/s SO2  111     20 1 
+0 AEIC_SO4  -                                        -        -             - -   -       SO4  112     20 1 
+0 AEIC_BCPI -                                        -        -             - -   -       BCPI 113     20 1 
+0 AEIC_OCPI -                                        -        -             - -   -       OCPI 113     20 1 
 )))AEIC
 
 #==============================================================================
