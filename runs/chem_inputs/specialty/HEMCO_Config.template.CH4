@@ -29,7 +29,7 @@
 #                as used in some filenames (e.g. "55L", "72L")
 # 
 # !REMARKS:
-#  Customized for the POPs simulation. 
+#  Customized for the CH4 simulation. 
 #
 # !REVISION HISTORY: 
 #  19 Aug 2014 - M. Sulprizio- Initial version
@@ -65,6 +65,7 @@
 ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
+DiagnFreq:                   End
 Wildcard:                    *
 Separator:                   /
 Unit tolerance:              1
