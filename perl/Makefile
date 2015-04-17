@@ -35,10 +35,10 @@
 #        make -j4 TRACEBACK=y mpbuild        # build with optional settings
 #        make mprun                          # run GEOS-Chem
 #        make -j4 mp                         # build and run GEOS-Chem
-#        make mplogclean                     # remove .mp log files
-#        make mpdataclean                    # remove .mp output data files
-#        make mpexeclean                     # remove geos.mp executable
-#	 make mpclean                        # do the previous 3 commands
+#        make logclean                       # remove log files
+#        make dataclean                      # remove output data files
+#        make execlean                       # remove executables
+#	 make fileclean                      # do the previous 3 commands
 #        make superclean                     # Remove all output files
 #                                              make code dir realclean
 # 
@@ -78,9 +78,6 @@ endif
 
 ###############################################################################
 
-# Run directory ID
-RUNID    :=$(notdir $(shell pwd))
-
 # Run directory path
 RUN_DIR :=$(shell pwd)
 
@@ -98,11 +95,14 @@ START    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 4)
 END      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 5)
 HMCO_END :=$(END)
 
-# Log files and information
+# General run information
 TIMESTAMP    := $(shell date +"%Y/%m/%d %H:%M")	
+RUNID        :=$(MET)_$(GRID)_$(SIM)
+
+# Log files
 LOG_COMP     :="$(RUN_DIR)/lastbuild"
-LOG_SP       :="$(LOG_DIR)/$(VERSION).$(RUNID).Run.sp"
-LOG_MP       :="$(LOG_DIR)/$(VERSION).$(RUNID).Run.mp"
+LOG_SP       :="$(LOG_DIR)/$(VERSION).$(RUNID).log.sp"
+LOG_MP       :="$(LOG_DIR)/$(VERSION).$(RUNID).log.mp"
 LOG_HMCO     :="$(LOG_DIR)/HEMCO.log"
 
 # Executables
@@ -204,11 +204,11 @@ mprun:
 #%%%%%%%%%%%%%%%%%%%%%%%
 
 dataclean: 
-	@$(MAKE) spdataclean 
-	@$(MAKE) mpdataclean
-	rm -f $(TRAC_AVG)
-	rm -f $(TRAC_RST)
-	rm -f $(HMCO_RST)
+	rm -f HEMCO_diagnostics*
+	rm -f HEMCO_restart*
+	rm -f trac_rst*
+	rm -f trac_avg*
+	rm -f diaginfo.dat tracerinfo.dat
 
 spdataclean:
 	rm -f $(TRAC_AVG)*.sp
@@ -297,12 +297,12 @@ superclean: fileclean realclean
 printruninfosp:
 	@echo "RUN SETTINGS:"
 	@echo "  Run directory       : $(RUN_DIR)"
+	@echo "  Run ID              : $(RUNID)"
 	@echo "  Simulation Start    : $(START)"
 	@echo "  Simulation End      : $(END)"
 	@echo "  HEMCO End           : $(HMCO_END)"
-	@echo "  MET/GRID/SIM        : $(RUNID)"
 	@echo "  Version             : $(VERSION)"
-	@echo "  Tracer Output File  : $(TRAC_AVG).sp"
+	@echo "  Tracer Data File    : $(TRAC_AVG).sp"
 	@echo "  Tracer Restart File : $(TRAC_RST).sp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).sp"
 	@echo "  GC Run Log File     : $(LOG_SP)"
@@ -310,16 +310,16 @@ printruninfosp:
 
 printruninfomp:
 	@echo "RUN SETTINGS:"
+	@echo "  Run ID              : $(RUNID)"
 	@echo "  Run directory       : $(RUN_DIR)"
 	@echo "  Simulation Start    : $(START)"
 	@echo "  Simulation End      : $(END)"
 	@echo "  HEMCO End           : $(HMCO_END)"
-	@echo "  MET/GRID/SIM        : $(RUNID)"
 	@echo "  Version             : $(VERSION)"
-	@echo "  Tracer Output File  : $(TRAC_AVG).mp"
+	@echo "  Tracer Data File    : $(TRAC_AVG).mp"
 	@echo "  Tracer Restart File : $(TRAC_RST).mp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).mp"
-	@echo "  GC Run Log File     : $(LOG_SP)"
+	@echo "  GC Run Log File     : $(LOG_MP)"
 	@echo "  HEMCO Log File      : $(LOG_HMCO).mp"
 
 printbuildinfo:
@@ -359,7 +359,7 @@ addsuffixsp:
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
 ifeq ($(SIM),Hg)
-	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).mp;  fi;
+	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).sp;  fi;
 endif
 
 addsuffixmp:
@@ -368,7 +368,7 @@ addsuffixmp:
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
 ifeq ($(SIM),Hg)
-	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).sp;  fi;
+	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).mp;  fi;
 endif
 
 check:
