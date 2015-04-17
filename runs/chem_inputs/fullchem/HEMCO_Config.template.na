@@ -103,6 +103,7 @@
 ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
+DiagnFreq:                   End
 Wildcard:                    *
 Separator:                   /
 Unit tolerance:              1

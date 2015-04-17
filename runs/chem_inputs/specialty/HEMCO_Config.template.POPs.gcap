@@ -61,13 +61,14 @@
 ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
+DiagnFreq:                   End
 Wildcard:                    *
 Separator:                   /
 Unit tolerance:              2
 Negative values:             0
 Only unitless scale factors: false
 Verbose:                     3
-Warnings:                    3 
+Warnings:                    3
 #
 END SECTION SETTINGS 
 
