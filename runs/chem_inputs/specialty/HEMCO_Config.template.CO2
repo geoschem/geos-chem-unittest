@@ -114,7 +114,6 @@ END SECTION SETTINGS
     --> SHIP              :       true
     --> AVIATION          :       true
     --> CO2CORR           :       true
-    --> COPROD            :       true
 # ----------------------------------------------------------------------------
 111     GFED              : on    CO2bb
     --> GFED3             :       false
@@ -355,9 +354,7 @@ END SECTION EXTENSION SWITCHES
 # ---> Recommended for use in forward modelling, optional for
 #      inversion/assimilation
 #==============================================================================
-(((COPROD
 * CO2_COPROD $ROOT/CO2/v2015-04/CHEM/CO2_prod_rates.GEOS5.2x25.47L.nc LCO 2004-2009/1-12/1/0 C xyz kg/m3/s CO2ch - 1 1
-)))COPROD
 
 END SECTION BASE EMISSIONS
 

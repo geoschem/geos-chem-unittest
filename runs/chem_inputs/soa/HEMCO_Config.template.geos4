@@ -22,7 +22,7 @@
 #  (6) NEST    : Nested-grid type (CH, EU, NA, SE)
 #  (7) LNOX    : String for OTD/LIS lightning NOx files:
 #                (a) For GEOS-5 this is either "geos5.1.0" or "geos5.2.0".  
-#                (b) For other met fields, this is the same as MET.
+ #                (b) For other met fields, this is the same as MET.
 #  (8) LEVRED  : String w/ the # of levels in the reduced GEOS-Chem grid
 #                as used in some filenames (e.g. "23L", "30L", "47L")
 #  (9) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
@@ -161,16 +161,15 @@ END SECTION SETTINGS
     --> EMEP              :       true
     --> GEIA              :       true
     --> LIANG_BROMOCARB   :       true
-    --> NEI2005           :       true
-    --> NEI2011           :       false
-    --> NEI2011_SHIP      :       false
+    --> NEI2005           :       false
+    --> NEI2011           :       true
     --> RETRO             :       true 
     --> SHIP              :       true
     --> SHIPNO_BASE       :       false
+    --> NEI2011_SHIP      :       false
     --> MIX               :       true
     --> STREETS           :       false
-    --> VOLCANO_ERUPT     :       true
-    --> VOLCANO_DEGAS     :       true
+    --> VOLCANO           :       true
     --> RCP_3PD           :       false 
     --> RCP_45            :       false
     --> RCP_60            :       false
@@ -184,8 +183,7 @@ END SECTION SETTINGS
 103     LightNOx          : on    NO
     --> OTD-LIS factors   :       true
     --> CDF table         :       $ROOT/LIGHTNOX/v2014-07/light_dist.ott2010.dat
-104     SoilNOx           : on    NO 
-    --> Use fertilizer NOx:       true
+104     SoilNOx           : on    NO     --> Use fertilizer NOx:       true
 105     DustDead          : on    DST1/DST2/DST3/DST4 
     --> Mass tuning factor:       7.0e-4
 106     DustGinoux        : off   DST1/DST2/DST3/DST4
@@ -1013,12 +1011,10 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- Volcanic emissions ---
 #==============================================================================
-(((VOLCANO_ERUPT
+(((VOLCANO
 0 VOLCANO_SO2_ERUPT $ROOT/VOLCANO/v2015-02/$YYYY/volc_so2_gen.1x1.47L.$YYYY$MM.nc SO2_erupt 1979-2009/1-12/1-31/0 C xyz kg/m2/s SO2 - 51 1
-)))VOLCANO_ERUPT
-(((VOLCANO_DEGAS
 0 VOLCANO_SO2_DEGAS $ROOT/VOLCANO/v2015-02/$YYYY/volc_so2_gen.1x1.47L.$YYYY$MM.nc SO2_degas 1979-2009/1-12/1-31/0 C xyz kg/m2/s SO2 - 52 1
-)))VOLCANO_DEGAS
+)))VOLCANO
 
 #==============================================================================
 # --- RCP future emissions scenarios ---

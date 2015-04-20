@@ -168,14 +168,13 @@ END SECTION SETTINGS
     --> LIANG_BROMOCARB   :       true
     --> NEI2005           :       false
     --> NEI2011           :       true
-    --> NEI2011_SHIP      :       false
     --> RETRO             :       true 
     --> SHIP              :       true
     --> SHIPNO_BASE       :       false
+    --> NEI2011_SHIP      :       false
     --> MIX               :       false
     --> STREETS           :       false
-    --> VOLCANO_ERUPT     :       true
-    --> VOLCANO_DEGAS     :       true
+    --> VOLCANO           :       true
     --> RCP_3PD           :       false 
     --> RCP_45            :       false
     --> RCP_60            :       false
@@ -1017,12 +1016,10 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- Volcanic emissions ---
 #==============================================================================
-(((VOLCANO_ERUPT
+(((VOLCANO
 0 VOLCANO_SO2_ERUPT $ROOT/VOLCANO/v2015-02/$YYYY/volc_so2_gen.1x1.47L.$YYYY$MM.nc SO2_erupt 1979-2009/1-12/1-31/0 C xyz kg/m2/s SO2 - 51 1
-)))VOLCANO_ERUPT
-(((VOLCANO_DEGAS
 0 VOLCANO_SO2_DEGAS $ROOT/VOLCANO/v2015-02/$YYYY/volc_so2_gen.1x1.47L.$YYYY$MM.nc SO2_degas 1979-2009/1-12/1-31/0 C xyz kg/m2/s SO2 - 52 1
-)))VOLCANO_DEGAS
+)))VOLCANO
 
 #==============================================================================
 # --- RCP future emissions scenarios ---
