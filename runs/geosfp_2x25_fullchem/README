@@ -8,11 +8,13 @@ files in one location, for convenience.
 
 Because GEOS-FP uses the same vertical grid as GEOS-5, we have created a 
 symbolic link to the restart files in the ../geos5_2x25_fullchem directory.
+The HEMCO restart file has been spun up for one month at 4x5. HEMCO will
+handle regridding the restart variables to model resolution.
 
 A new input.geos file will be created from the input.geos.template file
 each time the unit tester is run.  This allows the location of the data
 files to be customized for each user.
 
-20 March 2015
+20 April 2015
 GEOS-Chem Support Team
 geos-chem-support@as.harvard.edu

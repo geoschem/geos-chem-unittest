@@ -6,10 +6,13 @@ configuration file is linked to HEMCO_Config.template stored in
 ../chem_inputs/UCX.  This allows us to keep a single set of these
 files in one location, for convenience.
 
+The HEMCO restart file is symbolically linked to the ../geos5_4x5_fullchem
+directory, which has been spun up for one month at 4x5.
+
 A new input.geos file will be created from the input.geos.template file
 each time the unit tester is run.  This allows the location of the data
 files to be customized for each user.
 
-20 March 2015
+20 April 2015
 GEOS-Chem Support Team
 geos-chem-support@as.harvard.edu
