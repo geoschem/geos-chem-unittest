@@ -54,13 +54,15 @@
 #  27 Mar 2015 - C. Keller   - Warnings are now 0-3
 #  08 Apr 2015 - R. Nassar   - Multiple new emission fields, scale factors and
 #                              references for v10-01 release
+#  21 Apr 2015 - R. Yantosca - Now can use extension names as switches
+#  21 Apr 2015 - R. Yantosca - Now make section endings more visible
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 ###############################################################################
 ### BEGIN SECTION SETTINGS
 ###############################################################################
-#
+
 ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
@@ -72,8 +74,8 @@ Negative values:             2
 Only unitless scale factors: false
 Verbose:                     3
 Warnings:                    3
-#
-END SECTION SETTINGS 
+
+### END SECTION SETTINGS ###
 
 ###############################################################################
 ### BEGIN SECTION EXTENSION SWITCHES
@@ -347,7 +349,6 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 * TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
 
-
 #==============================================================================
 # --- CHEMICAL PRODUCTION FROM CO OXIDATION ---
 #
@@ -356,7 +357,7 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 * CO2_COPROD $ROOT/CO2/v2015-04/CHEM/CO2_prod_rates.GEOS5.2x25.47L.nc LCO 2004-2009/1-12/1/0 C xyz kg/m3/s CO2ch - 1 1
 
-END SECTION BASE EMISSIONS
+### END SECTION BASE EMISSIONS ###
 
 ###############################################################################
 ### BEGIN SECTION SCALE FACTORS 
@@ -388,7 +389,6 @@ END SECTION BASE EMISSIONS
 
 # All scale factors for years 2000-2013 lumped into a single entry
 10 CO2_FOSSFUEL_CORR 0.041495/0.040525/0.040125/0.037853/0.035957/0.034686/0.033538/0.032771/0.031961/0.032118/0.030622/0.029674/0.029029/0.028355 - 2000-2013/1/1/0 C xy 1 1
-
 
 #==============================================================================
 # --- CO2 CONVERSION FACTORS ---
@@ -435,7 +435,7 @@ END SECTION BASE EMISSIONS
 #==============================================================================
 80 AVIATION_SURF_CORR $ROOT/CO2/v2015-04/FOSSIL/Aviation_SurfCorr_SclFac.1x1.nc CO2 2004/1/1/0 C xy 1 1
 
-END SECTION SCALE FACTORS 
+### END SECTION SCALE FACTORS ###
 
 ###############################################################################
 ### BEGIN SECTION MASKS 
@@ -454,7 +454,7 @@ END SECTION SCALE FACTORS
 1005 USA_MASK    $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc     MASK 2000/1/1/0 C xy unitless 1 -165/10/-40/90
 1006 ASIA_MASK   $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc MASK 2000/1/1/0 C xy unitless 1 46/-12/180/82
 
-END SECTION MASKS 
+### END SECTION MASKS ###
  
 ###############################################################################
 ### REFERNCES

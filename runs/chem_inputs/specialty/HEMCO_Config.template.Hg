@@ -50,13 +50,15 @@
 #  13 Mar 2015 - R. Yantosca - Add more netCDF files for Hg simulation
 #  16 Mar 2015 - M. Sulprizio- Add GFED4 entries from Christoph Keller
 #  27 Mar 2015 - C. Keller   - Warnings are now 0-3
+#  21 Apr 2015 - R. Yantosca - Now can use extension names as switches
+#  21 Apr 2015 - R. Yantosca - Now make section endings more visible
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 ###############################################################################
 ### BEGIN SECTION SETTINGS
 ###############################################################################
-#
+
 ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
@@ -68,8 +70,8 @@ Negative values:             0
 Only unitless scale factors: false
 Verbose:                     3
 Warnings:                    3
-#
-END SECTION SETTINGS 
+
+### END SECTION SETTINGS ###
 
 ###############################################################################
 ### BEGIN SECTION EXTENSION SWITCHES
@@ -119,7 +121,7 @@ END SECTION SETTINGS
     --> hydrophilic BC    :       0.2
     --> hydrophilic OC    :       0.5
 
-END SECTION EXTENSION SWITCHES 
+### END SECTION EXTENSION SWITCHES ###
 
 ###############################################################################
 ### BEGIN SECTION BASE EMISSIONS 
@@ -288,7 +290,7 @@ END SECTION EXTENSION SWITCHES
 * CFPP_NEI2005_Hg2 $ROOT/MERCURY/v2014-09/NEI2005/CFPP_NEI2005_NPRI2005_Hg2.geos5.2x25.2005.nc Hg2_an 2005/1/1/0 C xy kg/m2/s * - 1 1
 )))LRED_INPLUME
 
-END SECTION BASE EMISSIONS 
+### END SECTION BASE EMISSIONS ###
 
 ###############################################################################
 ### BEGIN SECTION SCALE FACTORS 
@@ -300,7 +302,7 @@ END SECTION BASE EMISSIONS
 1 ARTISANALSCALE 0.75 - - - xy 1 1
 2 SOILSCALE      0.5  - - - xy 1 1
 
-END SECTION SCALE FACTORS 
+### END SECTION SCALE FACTORS ###
 
 ###############################################################################
 ### BEGIN SECTION MASKS 
@@ -310,7 +312,7 @@ END SECTION SCALE FACTORS
 
 1004 NA_MASK $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc MASK 1985/1/1/0 C xy 1 1 -165/10/-40/90
 
-END SECTION MASKS 
+### END SECTION MASKS ###
  
 ### END OF HEMCO INPUT FILE ###
 #EOC

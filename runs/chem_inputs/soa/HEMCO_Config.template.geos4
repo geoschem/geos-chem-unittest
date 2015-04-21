@@ -87,15 +87,17 @@
 #  27 Mar 2015 - C. Keller   - Warnings are now 0-3
 #  31 Mar 2015 - M. Sulprizio- Now use EMEP file from Aaron van Donkelaar with
 #                              updated emissions for 2008-2012
-#   8 Apr 2015 - R. Yantosca - Set units of STATE_PSC to "count"
+#  08 Apr 2015 - R. Yantosca - Set units of STATE_PSC to "count"
 #  17 Apr 2015 - M. Sulprizio- Now read corrected AEIC file in AEIC/v2015-01/
+#  21 Apr 2015 - R. Yantosca - Now can use extension names as switches
+#  21 Apr 2015 - R. Yantosca - Now make section endings more visible
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 ###############################################################################
 ### BEGIN SECTION SETTINGS
 ###############################################################################
-#
+
 ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
@@ -107,8 +109,8 @@ Negative values:             0
 Only unitless scale factors: false
 Verbose:                     3
 Warnings:                    3
-#
-END SECTION SETTINGS 
+
+### END SECTION SETTINGS ###
 
 ###############################################################################
 ### BEGIN SECTION EXTENSION SWITCHES
@@ -152,7 +154,6 @@ END SECTION SETTINGS
     --> AEIC              :       true
     --> BIOFUEL           :       true
     --> BOND              :       true
-    --> BOND_BIOMASS      :       false
     --> BRAVO             :       true
     --> CAC               :       true
     --> C2H6              :       true
@@ -165,7 +166,6 @@ END SECTION SETTINGS
     --> NEI2011           :       true
     --> RETRO             :       true 
     --> SHIP              :       true
-    --> SHIPNO_BASE       :       false
     --> NEI2011_SHIP      :       false
     --> MIX               :       true
     --> STREETS           :       false
@@ -214,7 +214,7 @@ END SECTION SETTINGS
     --> hydrophilic BC    :       0.2
     --> hydrophilic OC    :       0.5
 
-END SECTION EXTENSION SWITCHES 
+### END SECTION EXTENSION SWITCHES ###
 
 ###############################################################################
 ### BEGIN SECTION BASE EMISSIONS 
@@ -903,7 +903,12 @@ END SECTION EXTENSION SWITCHES
 )))NEI2011_SHIP
 
 #------------------------------------------------------------------------------
-# For PARANOx:
+# ### IF THE PARANOX EXTENSION IS TURNED ON ###
+#
+# Cosine(SZA) will be read from the restart file.  Use the PARANOX extension 
+# number (# 102) to specify these quantities and the EMEP and NEI emissions.  
+# This will make sure everything will be passed to the HEMCO PARANOX extension 
+# rather than sending them into the base emissions.
 #------------------------------------------------------------------------------
 102  PARANOX_SUNCOS1   ./initial_hemco_rst.$MET_$RES_{SIM}.nc                          PARANOX_SUNCOS1 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
 102  PARANOX_SUNCOS2   ./initial_hemco_rst.$MET_$RES_{SIM}.nc                          PARANOX_SUNCOS2 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
@@ -923,10 +928,12 @@ END SECTION EXTENSION SWITCHES
 )))NEI2011_SHIP
 
 #------------------------------------------------------------------------------
-# If PARANOX is not used: SHIPNO_BASE is set automatically to true if (and only
-# if) PARANOX is turned off
+# ### IF THE PARANOX EXTENSION IS TURNED OFF ###
+#
+# Use extension # 0 to specify these emissions.  This will put them
+# into the base emissions rather than sending them through PARANOX.
 #------------------------------------------------------------------------------
-(((SHIPNO_BASE
+(((.not.ParaNOx
 0 ICOADS_SHIP_NO       $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc                    NO              2002/1-12/1/0          C xy kg/m2/s  NO    1/5         10 1
 #0 HTAP_SHIP_NO        $ROOT/HTAP/v2015-03/EDGAR_HTAP_NO_SHIPS.generic.01x01.nc        emi_no          2008-2010/1/1/0        C xy kg/m2/s  NO    1/27        10 2
 
@@ -939,7 +946,7 @@ END SECTION EXTENSION SWITCHES
 0 NEI11_C3MARINE_NO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NO2             2006-2013/$MM/$DD/0-23 R xy kg/m2/s  NO2   251/1007    10 50
 )))NEI2011_SHIP
 
-)))SHIPNO_BASE
+))).not.ParaNOx
 
 )))SHIP
  
@@ -962,13 +969,13 @@ END SECTION EXTENSION SWITCHES
 0 BOND_BF_OCPO   -                                        -    -             - -  -       OCPO 73 2 1
 0 BOND_BF_POA1   -                                        -    -             - -  -       POA1 74 2 1
 
-(((BOND_BIOMASS
+(((.not.GFED.or.FINN
 0 BOND_BM_BCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc BC   2000/1-12/1/0 C xy kg/m2/s BCPI 70 2 1
 0 BOND_BM_BCPO   -                                        -    -             - -  -       BCPO 71 2 1
 0 BOND_BM_OCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc OC   2000/1-12/1/0 C xy kg/m2/s OCPI 72 2 1
 0 BOND_BM_OCPO   -                                        -    -             - -  -       OCPO 73 2 1
 0 BOND_BF_POA1   -                                        -    -             - -  -       POA1 74 2 1
-)))BOND_BIOMASS
+))).not.GFED.or.FINN
 
 )))BOND
 
@@ -1616,7 +1623,7 @@ END SECTION EXTENSION SWITCHES
 * STRAT_OH            $ROOT/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc          species 2000/$MM/1/0 C xyz v/v   *        - 1  1
 )))+LinStratChem+
 
-END SECTION BASE EMISSIONS 
+### END SECTION BASE EMISSIONS ###
 
 ###############################################################################
 ### BEGIN SECTION SCALE FACTORS 
@@ -1859,7 +1866,7 @@ END SECTION BASE EMISSIONS
 267 NEI11_OC2OCPI     0.5                                           - -               - xy 1 1
 268 NEI11_OC2OCPO     0.5                                           - -               - xy 1 1
 
-END SECTION SCALE FACTORS 
+### END SECTION SCALE FACTORS ###
 
 ###############################################################################
 ### BEGIN SECTION MASKS 
@@ -1879,7 +1886,7 @@ END SECTION SCALE FACTORS
 1006 ASIA_MASK   $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc MASK     2000/1/1/0 C xy unitless 1 46/-12/180/82
 1007 NEI11_MASK  $ROOT/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.nc  LANDMASK 2000/1/1/0 C xy 1        1 -140/20/-50/60
 
-END SECTION MASKS 
- 
+### END SECTION MASKS ###
+
 ### END OF HEMCO INPUT FILE ###
 #EOC

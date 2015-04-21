@@ -51,13 +51,15 @@
 #                              files by listing them as '>>>include CF_Name'.
 #                              Added token '$CFDIR'. 
 #  27 Mar 2015 - C. Keller   - Warnings are now 0-3
+#  21 Apr 2015 - R. Yantosca - Now can use extension names as switches
+#  21 Apr 2015 - R. Yantosca - Now make section endings more visible
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 ###############################################################################
 ### BEGIN SECTION SETTINGS
 ###############################################################################
-#
+
 ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
@@ -69,8 +71,8 @@ Negative values:             0
 Only unitless scale factors: false
 Verbose:                     3
 Warnings:                    3
-#
-END SECTION SETTINGS 
+
+### END SECTION SETTINGS ###
 
 ###############################################################################
 ### BEGIN SECTION EXTENSION SWITCHES
@@ -99,9 +101,10 @@ END SECTION SETTINGS
 ###############################################################################
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
+#------------------------------------------------------------------------------
 1002    GC_POPs           : on    POPG/POPPOC/POPPBC
 
-END SECTION EXTENSION SWITCHES 
+### END SECTION EXTENSION SWITCHES ###
 
 ###############################################################################
 ### BEGIN SECTION BASE EMISSIONS 
@@ -147,7 +150,7 @@ END SECTION EXTENSION SWITCHES
 * GLOBAL_O3  $ROOT/O3/v2014-09/MERGE.O3.geos5.72L.2x25.nc                 O3 1985/1-12/1/0 C xyz v/v   * - 1 1
 * GLOBAL_OH  $ROOT/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.geos5.72L.2x25.nc OH 1985/1-12/1/0 C xyz kg/m3 * - 1 1
 
-END SECTION BASE EMISSIONS 
+### END SECTION BASE EMISSIONS ###
 
 ###############################################################################
 ### BEGIN SECTION SCALE FACTORS 
@@ -155,7 +158,7 @@ END SECTION BASE EMISSIONS
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
 
-END SECTION SCALE FACTORS 
+### END SECTION SCALE FACTORS ###
 
 ###############################################################################
 ### BEGIN SECTION MASKS 
@@ -163,7 +166,7 @@ END SECTION SCALE FACTORS
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
 
-END SECTION MASKS 
+### END SECTION MASKS ###
  
 ### END OF HEMCO INPUT FILE ###
 #EOC

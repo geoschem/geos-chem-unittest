@@ -89,13 +89,17 @@
 #  31 Mar 2015 - M. Sulprizio- Now use EMEP file from Aaron van Donkelaar with
 #                              updated emissions for 2008-2012
 #  17 Apr 2015 - M. Sulprizio- Now read corrected AEIC file in AEIC/v2015-01/
+#  21 Apr 2015 - R. Yantosca - Now can use extension names as switches
+#  21 Apr 2015 - R. Yantosca - Now make section endings more visible 
+#  21 Apr 2015 - R. Yantosca - Now retire the e BOND_BIOMASS collection; 
+#                              use .not.GFED.or.FINN instead
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 ###############################################################################
 ### BEGIN SECTION SETTINGS
 ###############################################################################
-#
+
 ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
@@ -107,8 +111,8 @@ Negative values:             0
 Only unitless scale factors: false
 Verbose:                     3
 Warnings:                    3
-#
-END SECTION SETTINGS 
+
+### END SECTION SETTINGS ###
 
 ###############################################################################
 ### BEGIN SECTION EXTENSION SWITCHES
@@ -150,7 +154,6 @@ END SECTION SETTINGS
     --> AEIC              :       true
     --> BIOFUEL           :       true
     --> BOND              :       true
-    --> BOND_BIOMASS      :       false
     --> BRAVO             :       true
     --> CAC               :       true
     --> C2H6              :       true
@@ -200,7 +203,7 @@ END SECTION SETTINGS
     --> hydrophilic BC    :       0.2
     --> hydrophilic OC    :       0.5
 
-END SECTION EXTENSION SWITCHES 
+### END SECTION EXTENSION SWITCHES ###
 
 ###############################################################################
 ### BEGIN SECTION BASE EMISSIONS 
@@ -519,13 +522,13 @@ END SECTION EXTENSION SWITCHES
 0 BOND_BF_OCPO   -                                        -    -             - -  -       OCPO 73 2 1
 0 BOND_BF_POA1   -                                        -    -             - -  -       POA1 74 2 1
 
-(((BOND_BIOMASS
+(((.not.GFED.or.FINN
 0 BOND_BM_BCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc BC   2000/1-12/1/0 C xy kg/m2/s BCPI 70 2 1
 0 BOND_BM_BCPO   -                                        -    -             - -  -       BCPO 71 2 1
 0 BOND_BM_OCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc OC   2000/1-12/1/0 C xy kg/m2/s OCPI 72 2 1
 0 BOND_BM_OCPO   -                                        -    -             - -  -       OCPO 73 2 1
 0 BOND_BF_POA1   -                                        -    -             - -  -       POA1 74 2 1
-)))BOND_BIOMASS
+))).not.GFED.or.FINN
 
 )))BOND
 
@@ -770,7 +773,7 @@ END SECTION EXTENSION SWITCHES
 * GLOBAL_HNO3 $ROOT/OFFLINE_AEROSOL/v2014-09/THNO3.geos5.2x25.nc       THNO3 1985/1-12/1/0 C xyz v/v     * - 1 1
 * GLOBAL_OH   $ROOT/OH/v2014-09/v5-07-08/OH_3Dglobal.geos5.72L.2x25.nc OH    1985/1-12/1/0 C xyz kg/m3 * - 1 1
 
-END SECTION BASE EMISSIONS 
+### END SECTION BASE EMISSIONS ###
 
 ###############################################################################
 ### BEGIN SECTION SCALE FACTORS 
@@ -969,7 +972,7 @@ END SECTION BASE EMISSIONS
 267 NEI11_OC2OCPI     0.5                                           - -               - xy 1 1
 268 NEI11_OC2OCPO     0.5                                           - -               - xy 1 1
 
-END SECTION SCALE FACTORS 
+### END SECTION SCALE FACTORS ###
 
 ###############################################################################
 ### BEGIN SECTION MASKS 
@@ -989,7 +992,7 @@ END SECTION SCALE FACTORS
 1006 ASIA_MASK   $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc MASK     2000/1/1/0 C xy unitless 1 46/-12/180/82
 1007 NEI11_MASK  $ROOT/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.nc  LANDMASK 2000/1/1/0 C xy 1        1 -140/20/-50/60
 
-END SECTION MASKS 
+### END SECTION MASKS ###
  
 ### END OF HEMCO INPUT FILE ###
 #EOC
