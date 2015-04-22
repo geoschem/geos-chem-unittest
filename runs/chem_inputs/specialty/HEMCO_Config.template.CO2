@@ -56,6 +56,7 @@
 #                              references for v10-01 release
 #  21 Apr 2015 - R. Yantosca - Now can use extension names as switches
 #  21 Apr 2015 - R. Yantosca - Now make section endings more visible
+#  22 Apr 2015 - R. Yantosca - Now read biofuel file from BIOFUEL subdir
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -214,7 +215,7 @@ END SECTION EXTENSION SWITCHES
 # From Yevich and Logan (2001)
 #==============================================================================
 (((BIOFUEL
-0 BIOFUEL_CO2 $ROOT/CO2/v2015-04/biofuel_CO2.geos.1x1-1995.nc CO2 1995/1/1/0 C xy kg/m2/s CO2bf - 1 1
+0 BIOFUEL_CO2 $ROOT/CO2/v2015-04/BIOFUEL/biofuel_CO2.geos.1x1-1995.nc CO2 1995/1/1/0 C xy kg/m2/s CO2bf - 1 1
 )))BIOFUEL
 
 #==============================================================================
