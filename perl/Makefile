@@ -16,8 +16,10 @@
 #      Alternatively, they can be defined for single use at the terminal 
 #      within the make call (e.g. make -4 VERSION=v10-01i mp).
 #
-#  (2) MET, GRID, and NEST are read from input.geos using perl script
-#      getRunInfo and are automatically passed to the make command.
+#  (2) MET and GRID are read from input.geos using perl script
+#      getRunInfo and are automatically passed to the make command. 
+#      Simulation-dependent optional flags NEST, TOMAS40, UCX, and RRTMG
+#      are also automatically passed. 
 #
 #  (3) There are two processing modes available: sp and mp. sp uses a single
 #      processor and mp uses multiple processors. Output files 
@@ -76,6 +78,76 @@ ifndef VERSION
  VERSION :=v10-01i
 endif
 
+
+#   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#   %  DEFAULT COMPILE OPTIONS  %	
+#   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# NEST
+ifndef NEST
+ NEST :=n
+endif
+
+# TRACEBACK
+ifndef TRACEBACK 
+ TRACEBACK :=n
+endif
+
+# BOUNDS
+ifndef BOUNDS
+ BOUNDS :=n
+endif
+
+# DEBUG
+ifndef 
+ DEBUG :=n
+endif
+
+# FPE
+ifndef 
+ FPE :=n
+endif
+
+# NO_ISO
+ifndef 
+ NO_ISO :=n
+endif
+
+# COMPILER
+ifndef 
+ COMPILER :=ifort
+endif
+
+# NO_REDUCED
+ifndef 
+ NO_REDUCED :=n
+endif
+
+# TOMAS12
+ifndef 
+  TOMAS12:=n
+endif
+
+# TOMAS15
+ifndef 
+  TOMAS15:=n
+endif
+
+# TOMAS40
+ifndef 
+  TOMAS40:=n
+endif
+
+# UCX
+ifndef 
+  UCX:=n
+endif
+
+# RRTMG
+ifndef 
+  RRTMG:=n
+endif
+
 ###############################################################################
 
 # Run directory path
@@ -94,6 +166,23 @@ NEST     :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 3)
 START    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 4)
 END      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 5)
 HMCO_END :=$(END)
+
+# Set default UCX, TOMAS40 and RRTGM to n unless doing that simulation
+ifeq ($(SIM),TOMAS12)
+ TOMAS12 :=y
+endif
+ifeq ($(SIM),TOMAS15)
+ TOMAS15 :=y
+endif
+ifeq ($(SIM),TOMAS40)
+ TOMAS40 :=y
+endif
+ifeq ($(SIM),UCX)
+ UCX :=y
+endif
+ifeq ($(SIM),RRTMG)
+ RRTMG :=y
+endif
 
 # General run information
 TIMESTAMP    := $(shell date +"%Y/%m/%d %H:%M")	
@@ -143,7 +232,10 @@ unittest:
 
 sp:
 	@$(MAKE) spclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=no > $(LOG_SP)
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) \
+                    UCX=$(UCX) TOMAS40=$(TOMAS40) RRTMG=$(RRTMG)     \
+                    TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15)            \
+                    OMP=no > $(LOG_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	$(EXE_SP) >> $(LOG_SP)
@@ -153,7 +245,10 @@ sp:
 
 mp:
 	@$(MAKE) mpclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=yes > $(LOG_MP)
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) \
+                    UCX=$(UCX) TOMAS40=$(TOMAS40) RRTMG=$(RRTMG)     \
+                    TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15)            \
+                    OMP=yes > $(LOG_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	$(EXE_MP) >> $(LOG_MP)
@@ -168,7 +263,10 @@ mp:
 spbuild:
 	@$(MAKE) spexeclean
 	@$(MAKE) splogclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=no
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) \
+                    UCX=$(UCX) TOMAS40=$(TOMAS40) RRTMG=$(RRTMG)     \
+                    TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15)            \
+                    OMP=no
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	@$(MAKE) printbuildinfo
@@ -176,7 +274,10 @@ spbuild:
 mpbuild:
 	@$(MAKE) mpexeclean
 	@$(MAKE) mplogclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) OMP=yes
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) \
+                    UCX=$(UCX) TOMAS40=$(TOMAS40) RRTMG=$(RRTMG)     \
+                    TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15)            \
+                    OMP=yes
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	@$(MAKE) printbuildinfo
@@ -323,7 +424,7 @@ printruninfomp:
 	@echo "  HEMCO Log File      : $(LOG_HMCO).mp"
 
 printbuildinfo:
-	@echo "BUILD INFORMATION:"
+	@echo "LAST BUILD INFORMATION:"
 	@echo "  CODE_DIR  : $(CODE_DIR)"
 	@echo "  VERSION   : $(VERSION)"
 	@echo "  MET       : $(MET)"
@@ -334,8 +435,11 @@ printbuildinfo:
 	@echo "  BOUNDS    : $(BOUNDS)"
 	@echo "  DEBUG     : $(DEBUG)"
 	@echo "  FPE       : $(FPE)"
-	@echo "  NO_ISO    : $(NO_ISO)"
+	@echo "  NO_ISO    : $(NO_ISO)"	
+	@echo "  NO_REDUCED: $(NO_ISO)"
 	@echo "  UCX       : $(UCX)"
+	@echo "  TOMAS12   : $(TOMAS12)"	
+	@echo "  TOMAS15   : $(TOMAS15)"
 	@echo "  TOMAS40   : $(TOMAS40)"
 	@echo "  RRTMG     : $(RRTMG)"
 	@echo "  COMPILER  : $(COMPILER)"

@@ -122,7 +122,7 @@ sub getInfo($$) {
       if ( $id < 0+@runinfoarray ) {
          $runinfo = "$runinfoarray[$id]";
       } else {
-         $runinfo = " ";
+         $runinfo = "n";
       }
     }				
   }
