@@ -660,22 +660,22 @@ Warnings:                    3
 #109 MEGAN_AEF_MYRC               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_MYRCENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
 109  MEGAN_AEF_OCIM               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_OCIMENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
 109  MEGAN_AEF_SABI               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_SABINENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  CLM4_PFT_BARE                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BARE                2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_NDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_EVGN_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_NDLF_EVGN_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_EVGN_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_NDLF_DECD_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_DECD_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_EVGN_TROP_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_TROP_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_DECD_TROP_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TROP_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_DECD_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_DECD_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_EVGN_SHRB      $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_SHRB      2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_DECD_TMPT_SHRB $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TMPT_SHRB 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_BDLF_DECD_BORL_SHRB $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_BORL_SHRB 2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_C3_ARCT_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C3_ARCT_GRSS        2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_C3_NARC_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C3_NARC_GRSS        2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_C4_GRSS             $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C4_GRSS             2000/1/1/0        C xy 1        * - 1 1
-109  CLM4_PFT_CROP                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_CROP                2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BARE                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BARE                2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_NDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_EVGN_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_NDLF_EVGN_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_EVGN_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_NDLF_DECD_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_DECD_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_EVGN_TROP_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_TROP_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_DECD_TROP_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TROP_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_DECD_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_DECD_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_EVGN_SHRB      $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_SHRB      2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_DECD_TMPT_SHRB $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TMPT_SHRB 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_DECD_BORL_SHRB $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_BORL_SHRB 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_C3_ARCT_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C3_ARCT_GRSS        2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_C3_NARC_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C3_NARC_GRSS        2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_C4_GRSS             $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C4_GRSS             2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_CROP                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_CROP                2000/1/1/0        C xy 1        * - 1 1
 110  MEGAN_ORVC                   $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc          OCPI                    1990/1-12/1/0     C xy kgC/m2/s * - 1 1
 
 #==============================================================================
@@ -994,6 +994,6 @@ Warnings:                    3
 1007 NEI11_MASK  $ROOT/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.nc  LANDMASK 2000/1/1/0 C xy 1        1 -140/20/-50/60
 
 ### END SECTION MASKS ###
- 
+
 ### END OF HEMCO INPUT FILE ###
 #EOC
