@@ -96,6 +96,7 @@
 #  17 Apr 2015 - M. Sulprizio- Now read corrected AEIC file in AEIC/v2015-01/
 #  21 Apr 2015 - R. Yantosca - Now can use extension names as switches
 #  21 Apr 2015 - R. Yantosca - Now make section endings more visible
+#  30 Apr 2015 - M. Sulprizio- Restore Streets as the default Asian inventory
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -172,8 +173,8 @@ Warnings:                    3
     --> RETRO             :       true 
     --> SHIP              :       true
     --> NEI2011_SHIP      :       false
-    --> MIX               :       true
-    --> STREETS           :       false
+    --> MIX               :       false
+    --> STREETS           :       true
     --> VOLCANO           :       true
     --> RCP_3PD           :       false 
     --> RCP_45            :       false
