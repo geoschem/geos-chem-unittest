@@ -152,7 +152,7 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% : 
-Binary punch file name  : trac_avg.geosfp_4x5_aerosol.YYYYMMDDhh
+Binary punch file name  : trac_avg.geosfp_4x5_aerosol.YYYYMMDDhhmm
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND01: Rn/Pb/Be source   :  0   all        
 ND02: Rn/Pb/Be decay    :  0   all             

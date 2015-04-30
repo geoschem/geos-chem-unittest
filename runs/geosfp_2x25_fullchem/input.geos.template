@@ -198,7 +198,7 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% : 
-Binary punch file name  : trac_avg.geosfp_2x25_fullchem.YYYYMMDDhh
+Binary punch file name  : trac_avg.geosfp_2x25_fullchem.YYYYMMDDhhmm
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND01: Rn/Pb/Be source   :  0   all        
 ND02: Rn/Pb/Be decay    :  0   all             

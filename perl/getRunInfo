@@ -38,7 +38,6 @@ use strict;                      # Use "IMPLICIT NONE" syntax
 #  06 Apr 2015 - E. Lundgren - Initial version
 #EOP
 #------------------------------------------------------------------------------
-#------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
@@ -64,6 +63,7 @@ sub getInfo($$) {
 #
 # !REVISION HISTORY:
 #  06 Apr 2015 - E. Lundgren - Initial version
+#  27 Apr 2015 - M. Sulprizio- Now use YYYYMMDDhhmm format for start/end time
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -95,10 +95,9 @@ sub getInfo($$) {
       # Split by spaces
       @linestrings = split( ' ', $line );
   
-      # Place into YYYYMMDDhhmm format if end time and YYYYMMDDhh
-      # format if start time
+      # Place start and end times into YYYYMMDDhhmm format
       $runinfo = "$linestrings[4]$linestrings[5]";
-      if ($id == 4 ) { $runinfo = substr( $runinfo, 0, 10 ); }
+      if ($id == 4 ) { $runinfo = substr( $runinfo, 0, 12 ); }
       if ($id == 5 ) { $runinfo = substr( $runinfo, 0, 12 ); }
   
      } else {
