@@ -41,18 +41,19 @@
 #  28 Jul 2014 - R. Yantosca - Add HEMCO_ROOT directory
 #  28 Jul 2014 - R. Yantosca - 2 x 2.5 runs now end after 30 mins
 #  07 Aug 2014 - M. Sulprizio- Add GCAP unit test for POPs simulation
-#  16 Sep 2014 - M. Sulprizio- Add 2x2.5 unit tests for CH4 simulation
 #  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
 #  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
-#  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2006 for GEOS-4, GEOS-5
-#                              MERRA, so as to use NEI2011
+#  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
+#                              MERRA, and GCAP, so as to use NEI2011
+#  19 Mar 2015 - R. Yantosca - Hg simulations should use 2005 (except GEOS-FP)
+#  27 Apr 2015 - M. Sulprizio- Add GEOS-5 nested NA unit test for Hg
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION     : v10-01.CH4
-   DESCRIPTION : To test CH4 simulation in GEOS-Chem
+   VERSION     : v10-01.Hg
+   DESCRIPTION : To test Hg simulation in GEOS-Chem
    CODE_DIR    : /home/{USER}/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos/ExtData
    HEMCO_ROOT  : {DATAROOT}/HEMCO
@@ -79,16 +80,15 @@
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#--------|-----------|------|------------|------------|-------------|---------|
-# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE    | EXTRA?  |
-#--------|-----------|------|------------|------------|-------------|---------|
-  geosfp   4x5         -      CH4          2013070100   2013070101    -
-  merra    4x5         -      CH4          2006070100   2006070101    -
-  geos5    4x5         -      CH4          2006070100   2006070101    -
-  geos4    4x5         -      CH4          2004070100   2004070101    -
-  geosfp   2x25        -      CH4          2013070100   201307010030  -
-  geos5    2x25        -      CH4          2006070100   200607010030  -
-  geos5    05x0666     na     CH4          2006070100   200607010020 -
- !END OF RUNS:
+#--------|-----------|------|------------|------------|------------|---------|
+# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
+#--------|-----------|------|------------|------------|------------|---------|
+  geosfp   4x5         -      Hg           2013070100   2013070101   -
+  merra    4x5         -      Hg           2005070100   2005070101   -
+  geos5    4x5         -      Hg           2005070100   2005070101   -
+  geos4    4x5         -      Hg           2005070100   2005070101   -
+  geosfp   2x25        -      Hg           2013070100   201307010030 -
+  geos5    2x25        -      Hg           2005070100   200507010030 -
+  geos5    05x0666     na     Hg           2008010100   200801010020 -
 #EOP
 #------------------------------------------------------------------------------
