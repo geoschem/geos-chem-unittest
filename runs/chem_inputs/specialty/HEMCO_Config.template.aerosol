@@ -93,7 +93,6 @@
 #  21 Apr 2015 - R. Yantosca - Now make section endings more visible 
 #  21 Apr 2015 - R. Yantosca - Now retire the e BOND_BIOMASS collection; 
 #                              use .not.GFED.or.FINN instead
-#  30 Apr 2015 - M. Sulprizio- Restore Streets as the default Asian inventory
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -166,8 +165,8 @@ Warnings:                    3
     --> NEI2011           :       true
     --> SHIP              :       true
     --> NEI2011_SHIP      :       false
-    --> MIX               :       false
-    --> STREETS           :       true
+    --> MIX               :       true
+    --> STREETS           :       false
     --> VOLCANO           :       true
     --> RCP_3PD           :       false 
     --> RCP_45            :       false
