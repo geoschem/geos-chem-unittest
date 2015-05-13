@@ -96,6 +96,7 @@
 #  17 Apr 2015 - M. Sulprizio- Now read corrected AEIC file in AEIC/v2015-01/
 #  21 Apr 2015 - R. Yantosca - Now can use extension names as switches
 #  21 Apr 2015 - R. Yantosca - Now make section endings more visible
+#  13 May 2015 - R. Yantosca - Fixed path of bromocarb scale factors               
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -1706,7 +1707,7 @@ Warnings:                    3
 38 STREETS_SEASON_NH3 $ROOT/STREETS/v2014-07/2000/Streets_NH3_scale.generic.1x1.nc                NH3_scale 1995/1-12/1/0 C xy unitless 1 
 
 # for Bromocarbons:
-39 BROMOCARB_SEASON $ROOT/BROMINE/BromoCarb_Season.nc CHXBRY_scale 2000/1-12/1/0 C xy unitless 1
+39 BROMOCARB_SEASON $ROOT/BROMINE/v2015-02/BromoCarb_Season.nc CHXBRY_scale 2000/1-12/1/0 C xy unitless 1
 
 #==============================================================================
 # --- VOC speciations ---
