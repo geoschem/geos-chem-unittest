@@ -3,10 +3,10 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !INCLUDE: UnitTest.input
+# !INCLUDE: UnitTest.POPs
 #
 # !DESCRIPTION: Input file that specifies debugging options for the 
-#  GEOS-Chem unit tester.
+#  GEOS-Chem unit tester.  Customized for POPs simulations.
 #\\
 #\\
 # !REMARKS:  
@@ -28,6 +28,10 @@
 #  TEMPLATE    : Template web page for displaying grid of results
 #  WEB_GRID    : File name for web page containing unit test results
 #  WEB_PUSH    : Remote location to send web page w/ unit test results
+#
+# !REMARKS:
+#  This file specifies unit tests for Hg simulations (all met types).
+#  To omit individual unit tests, place a # in the first column.
 #
 # !REVISION HISTORY: 
 #  22 Aug 2013 - R. Yantosca - Initial version
@@ -89,5 +93,6 @@
   gcap     4x5         -      POPs         2005070100   2005070101   -
   geosfp   2x25        -      POPs         2013070100   201307010030 -
   geos5    2x25        -      POPs         2006070100   200607010030 -
+ !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

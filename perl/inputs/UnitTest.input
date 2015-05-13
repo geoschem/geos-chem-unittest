@@ -49,13 +49,15 @@
 #  19 Mar 2015 - R. Yantosca - Hg simulations should use 2005 (except GEOS-FP)
 #  30 Mar 2015 - M. Sulprizio- Add 2x2.5 unit tests for soa, soa_svpoa, and UCX
 #  03 Apr 2015 - M. Sulprizio- Add 0.25x0.3125 nested grid unit tests
+#  13 May 2015 - M. Sulprizio- Comment out geos5_05x0666_Hg_NA unit test until
+#                              OOB error in tpcore_geos5_window_mod is resolved
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION     : v10-01.public
-   DESCRIPTION : To test feature XXX in GEOS-Chem
+   VERSION     : v10-01
+   DESCRIPTION : Tests v10-01
    CODE_DIR    : /home/{USER}/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos/ExtData
    HEMCO_ROOT  : {DATAROOT}/HEMCO
@@ -100,6 +102,7 @@
   geos4    4x5         -      Hg           2005070100   2005070101   -
   geosfp   2x25        -      Hg           2013070100   201307010030 -
   geos5    2x25        -      Hg           2005070100   200507010030 -
+# geos5    05x0666     na     Hg           2008010100   200801010020 -
 # ======= POPs ===============================================================
   geosfp   4x5         -      POPs         2013070100   2013070101   -
   merra    4x5         -      POPs         2006070100   2006070101   -
@@ -115,6 +118,7 @@
   geos4    4x5         -      CH4          2006070100   2006070101   -
   geosfp   2x25        -      CH4          2013070100   201307010030 -
   geos5    2x25        -      CH4          2006070100   200607010030 -
+  geos5    05x0666     na     CH4          2008010100   200801010020 -
 # ======= Tagged O3 ==========================================================
   geosfp   4x5         -      tagO3        2013070100   2013070101   -
   merra    4x5         -      tagO3        2006070100   2006070101   -

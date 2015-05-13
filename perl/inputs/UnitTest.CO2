@@ -3,10 +3,10 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !INCLUDE: UnitTest.input
+# !INCLUDE: UnitTest.CO2
 #
 # !DESCRIPTION: Input file that specifies debugging options for the 
-#  GEOS-Chem unit tester.
+#  GEOS-Chem unit tester.  Customized for CO2 simulations.
 #\\
 #\\
 # !REMARKS:  
@@ -29,6 +29,10 @@
 #  WEB_GRID    : File name for web page containing unit test results
 #  WEB_PUSH    : Remote location to send web page w/ unit test results
 #
+# !REMARKS:
+#  This file specifies unit tests for CO2 simulations (all met types).
+#  To omit individual unit tests, place a # in the first column.
+#
 # !REVISION HISTORY: 
 #  16 Apr 2015 - M. Sulprizio- Initial version
 #EOP
@@ -36,7 +40,7 @@
 #
 # !INPUTS:
 #
-   VERSION     : v10-01i.CO2
+   VERSION     : v10-01.CO2
    DESCRIPTION : To test CO2 simulation in GEOS-Chem
    CODE_DIR    : /home/{USER}/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos/ExtData
