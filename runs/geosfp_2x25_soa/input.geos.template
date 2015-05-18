@@ -122,17 +122,17 @@ Tracer #93              :  93   ASOA3   150.0
 Turn on Transport       : T
  => Fill Negative Values: T 
  => IORD, JORD, KORD    : 3  3  7
-Transport Timestep [min]: 30   
+Transport Timestep [min]: 15
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
 Turn on PBL Mixing?     : T
  => Use non-local PBL?  : T
-Convect Timestep (min)  : 30
+Convect Timestep (min)  : 15
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
-Emiss timestep (min)    : 60
+Emiss timestep (min)    : 30
 HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
 Switches for UCX        :---
@@ -188,7 +188,7 @@ Use linear. strat. chem?: T
 Use UCX strat. chem?    : F
 Online CH4 chemistry?   : F
 Active strat. H2O?      : F
-Chemistry Timestep [min]: 60
+Chemistry Timestep [min]: 30
 Read and save CSPEC_FULL: F
  => CSPEC rst filename? : spec_rst.geosfp_2x25_soa.YYYYMMDDhh
 USE solver coded by KPP : F
