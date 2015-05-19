@@ -169,11 +169,11 @@
   geosfp   2x25        -      UCX          2013070100   201307010030 UCX=y
   geos5    2x25        -      UCX          2006070100   200607010030 UCX=y
 # ======= RRTMG online radiative transfer ====================================
-  geosfp   4x5         -      RRTMG        2013070100   2013070101   RRTMG=y
-  merra    4x5         -      RRTMG        2006070100   2006070101   RRTMG=y
-  geos5    4x5         -      RRTMG        2006070100   2006070101   RRTMG=y
-  geosfp   2x25        -      RRTMG        2013070100   201307010030 RRTMG=y
-  geos5    2x25        -      RRTMG        2006070100   200607010030 RRTMG=y
+  geosfp   4x5         -      RRTMG        2013070100   2013070102   RRTMG=y
+  merra    4x5         -      RRTMG        2006070100   2006070102   RRTMG=y
+  geos5    4x5         -      RRTMG        2006070100   2006070102   RRTMG=y
+# geosfp   2x25        -      RRTMG        2013070100   2013070102   RRTMG=y
+# geos5    2x25        -      RRTMG        2006070100   2006070102   RRTMG=y
 # ======= Nested model runs ==================================================
   geos5    05x0666     ch     fullchem     2006070100   200607010020 -
   geos5    05x0666     na     fullchem     2006070100   200607010020 -

@@ -96,7 +96,9 @@
 #  17 Apr 2015 - M. Sulprizio- Now read corrected AEIC file in AEIC/v2015-01/
 #  21 Apr 2015 - R. Yantosca - Now can use extension names as switches
 #  21 Apr 2015 - R. Yantosca - Now make section endings more visible
-#  13 May 2015 - R. Yantosca - Fixed path of bromocarb scale factors               
+#  13 May 2015 - R. Yantosca - Fixed path of bromocarb scale factors
+#  19 May 2015 - R. Yantosca - ICOADS_SHIP names now use "generic", not "gen"  
+#  19 May 2015 - R. Yantosca - Add a note to only pick one biomass option             
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -140,20 +142,20 @@ Warnings:                    3
 ### not being used). 
 ###
 ### The ExtNr provided in this section must match with the ExtNr assigned to
-### the data listed in the base emissions sections. Otherwise, the listed files
-### won't be read!
+### the data listed in the base emissions sections. Otherwise, the listed 
+### files won't be read!
 ###
 ### NOTES:
-### --> The biomass burning POA scale factor is the same as for the biofuel and
-###    anthro sources. 
+### --> You can only select one biomass burning option (GFED, QFED, FINN).
+###
+### --> BOND_BIOMASS must be set to false if GFED, QFED, or FINN is enabled.
+###
+### --> The biomass burning POA scale factor is the same as for the biofuel 
+###     and anthro sources. 
 ###
 ### --> The NAP scale factor is determined as in the original simulation:
 ###     Obtain NAP emissions using scale factor from Hays 2002 ES&T 
 ###     (0.0253 g NAP/kg DM) and Andreae and Merlet 2001 GBC (92 g CO/kg DM)
-###
-### --> BOND_BIOMASS must be set to false if GFED3 or FINN is enabled.
-###
-### --> BASE_SHIPNO must be set to false if PARANOx is enabled.
 ###############################################################################
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
@@ -868,9 +870,9 @@ Warnings:                    3
 (((SHIP
 0  ARCTAS_SHIP_SO2     $ROOT/ARCTAS_SHIP/v2014-07/ARCTAS_ship.generic.1x1.nc           SO2             2008/1/1/0             C xy kg/m2/s  SO2  11           10 1
 #0 CORBETT_SHIP_SO2    $ROOT/CORBETT_SHIP/v2014-07/CORBETT_ship.geos.1x1.nc            SO2_SHIP        1985/1-12/1/0          C xy kg/m2/s  SO2  -            10 3
-#0 ICOADS_SHIP_SO2     $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc                    SO2             2002/1-12/1/0          C xy kg/m2/s  SO2  11/15/60     10 5
+#0 ICOADS_SHIP_SO2     $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                SO2             2002/1-12/1/0          C xy kg/m2/s  SO2  11/15/60     10 5
 #0 HTAP_SHIP_SO2       $ROOT/HTAP/v2015-03/EDGAR_HTAP_SO2_SHIPS.generic.01x01.nc       emi_so2         2008-2010/1/1/0        C xy kg/m2/s  SO2  11/29        10 2
-0  ICOADS_SHIP_CO      $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc                    CO              2002/1-12/1/0          C xy kg/m2/s  CO   6/10         10 1
+0  ICOADS_SHIP_CO      $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                CO              2002/1-12/1/0          C xy kg/m2/s  CO   6/10         10 1
 #0 HTAP_SHIP_CO        $ROOT/HTAP/v2015-03/EDGAR_HTAP_CO_SHIPS.generic.01x01.nc        emi_co          2008-2010/1/1/0        C xy kg/m2/s  CO   6/28         10 2
 
 (((EMEP
@@ -921,7 +923,7 @@ Warnings:                    3
 102  PARANOX_SUNCOS3   ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc                   PARANOX_SUNCOS3 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
 102  PARANOX_SUNCOS4   ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc                   PARANOX_SUNCOS4 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
 102  PARANOX_SUNCOS5   ./initial_hemco_rst.$MET_$RES_{SIM}_{NEST}.nc                   PARANOX_SUNCOS5 $YYYY/$MM/$DD/$HH      C xy 1        *    -            1  1
-102  ICOADS_SHIP_NO    $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc                    NO              2002/1-12/1/0          C xy kg/m2/s  NO   1/5          10 1
+102  ICOADS_SHIP_NO    $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                NO              2002/1-12/1/0          C xy kg/m2/s  NO   1/5          10 1
 #102 HTAP_SHIP_NO      $ROOT/HTAP/v2015-03/EDGAR_HTAP_NO_SHIPS.generic.01x01.nc        emi_no          2008-2010/1/1/0        C xy kg/m2/s  NO   1/27         10 2
 
 (((EMEP
@@ -940,7 +942,7 @@ Warnings:                    3
 # into the base emissions rather than sending them through PARANOX.
 #------------------------------------------------------------------------------
 (((.not.ParaNOx
-0 ICOADS_SHIP_NO       $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc                    NO              2002/1-12/1/0          C xy kg/m2/s  NO    1/5         10 1
+0 ICOADS_SHIP_NO       $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                NO              2002/1-12/1/0          C xy kg/m2/s  NO    1/5         10 1
 #0 HTAP_SHIP_NO        $ROOT/HTAP/v2015-03/EDGAR_HTAP_NO_SHIPS.generic.01x01.nc        emi_no          2008-2010/1/1/0        C xy kg/m2/s  NO    1/27        10 2
 
 (((EMEP
@@ -1157,7 +1159,7 @@ Warnings:                    3
 # --- LIGHTNOX emissions (Extension 103) ---
 #
 # Local redistribution factors: These are model-specific and hence need to be 
-# redefined for different model/resolution simulations!!!
+# redefined for different model/res}olution simulations!!!
 #==============================================================================
 103 LIGHTNOX_OTDLIS $ROOT/LIGHTNOX/v2014-07/OTD-LIS-Local-Redist.CTH.v5.{LNOX}.$RES.NA.nc OTD $YYYY/1-12/1/0 C xy unitless NO - 1 1
 

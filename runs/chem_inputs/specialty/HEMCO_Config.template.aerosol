@@ -94,6 +94,8 @@
 #  21 Apr 2015 - R. Yantosca - Now retire the e BOND_BIOMASS collection; 
 #                              use .not.GFED.or.FINN instead
 #  13 May 2015 - R. Yantosca - Fixed path of bromocarb scale factors
+#  19 May 2015 - R. Yantosca - ICOADS_SHIP names now use "generic", not "gen"  
+#  19 May 2015 - R. Yantosca - Add a note to only pick one biomass option 
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -141,14 +143,16 @@ Warnings:                    3
 ### won't be read!
 ###
 ### NOTES:
-### --> The biomass burning POA scale factor is the same as for the biofuel and
-###    anthro sources. 
+### --> You can only select one biomass burning option (GFED, QFED, FINN).
+###
+### --> BOND_BIOMASS must be set to false if GFED, QFED, or FINN is enabled.
+###
+### --> The biomass burning POA scale factor is the same as for the biofuel 
+###     and anthro sources. 
 ###
 ### --> The NAP scale factor is determined as in the original simulation:
 ###     Obtain NAP emissions using scale factor from Hays 2002 ES&T 
 ###     (0.0253 g NAP/kg DM) and Andreae and Merlet 2001 GBC (92 g CO/kg DM)
-###
-### --> BOND_BIOMASS must be set to false if GFED3 or FINN is enabled.
 ###############################################################################
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
@@ -484,7 +488,7 @@ Warnings:                    3
 (((SHIP
 0  ARCTAS_SHIP_SO2     $ROOT/ARCTAS_SHIP/v2014-07/ARCTAS_ship.generic.1x1.nc           SO2             2008/1/1/0             C xy kg/m2/s  SO2  11           10 1
 #0 CORBETT_SHIP_SO2    $ROOT/CORBETT_SHIP/v2014-07/CORBETT_ship.geos.1x1.nc            SO2_SHIP        1985/1-12/1/0          C xy kg/m2/s  SO2  -            10 3
-#0 ICOADS_SHIP_SO2     $ROOT/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc                    SO2             2002/1-12/1/0          C xy kg/m2/s  SO2  11/15/60     10 5
+#0 ICOADS_SHIP_SO2     $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                SO2             2002/1-12/1/0          C xy kg/m2/s  SO2  11/15/60     10 5
 #0 HTAP_SHIP_SO2       $ROOT/HTAP/v2015-03/EDGAR_HTAP_SO2_SHIPS.generic.01x01.nc       emi_so2         2008-2010/1/1/0        C xy kg/m2/s  SO2  11/29        10 2
 
 (((EMEP
