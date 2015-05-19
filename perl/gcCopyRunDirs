@@ -39,6 +39,8 @@ our $RUN_DIR    = "";                # Unit Test run directory subdirectory
 our $WEB_GRID   = "";                # Web page w/ unit text matrix
 our $WEB_PUSH   = "";                # Remote server for web page push
 our $VERSION    = "";                # GEOS-Chem version ID
+our $VERBOSE    = "0";               # Verbose setting (0-3)
+our $WARNINGS   = "1";               # Warnings setting (0-3) 
 
 #		
 # !PUBLIC MEMBER FUNCTIONS:
@@ -57,7 +59,8 @@ our $VERSION    = "";                # GEOS-Chem version ID
 #  read user options from the input file: "UnitTest.input".
 #
 # !REVISION HISTORY: 
-#   6 Mar 2015 - R. Yantosca - Initial version, based on gcUnitTest
+#  06 Mar 2015 - R. Yantosca - Initial version, based on gcUnitTest
+#  19 May 2015 - R. Yantosca - Now add VERBOSE and WARNINGS global variables
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -143,6 +146,7 @@ sub makeInputs($$$$$$$$) {
 #
 # !REVISION HISTORY:
 #  06 Mar 2015 - R. Yantosca - Initial version, based on gcUnitTest
+#  19 May 2015 - R. Yantosca - Pass $VERBOSE, $WARNINGS to &makeHemcoCfg
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -179,8 +183,8 @@ sub makeInputs($$$$$$$$) {
   &makeInputGeos( $d0, $h0, $d1, $h1, $DATA_ROOT, $inpTmpl, $inpGeos );
 
   # Make the HEMCO_Config.rc file in the run directory
-  &makeHemcoCfg( $hcoTmpl, $start, $met,        $grid, 
-                 $nest,    $sim,   $HEMCO_ROOT, $hcoCfg );
+  &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
+                 $sim,     $VERBOSE, $WARNINGS, $HEMCO_ROOT, $hcoCfg );
 
   # Return 
   return( $? );
@@ -221,6 +225,7 @@ sub doCopyDirs($$) {
 #                              copied run directories.
 #  14 Apr 2015 - R. Yantosca - Also copy the perl/validate script to the 
 #                              copied run directories.
+#  19 May 2015 - R. Yantosca - Now look for VERBOSE, WARNINGS in input file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -281,6 +286,8 @@ sub doCopyDirs($$) {
       elsif ( $txt[$i] =~ "WEB_PUSH"    ) { $WEB_PUSH  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "COPY_CMD"    ) { $COPY_CMD  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "COPY_PATH"   ) { $COPY_PATH = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "VERBOSE"     ) { $VERBOSE   = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "WARNINGS"    ) { $WARNINGS  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "DESCRIPTION" ) { $DESCRIBE  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "VERSION"     ) { $VERSION   = &parse( $txt[$i] ); }
     }

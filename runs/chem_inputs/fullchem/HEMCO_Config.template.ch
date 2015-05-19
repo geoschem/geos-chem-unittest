@@ -98,7 +98,8 @@
 #  21 Apr 2015 - R. Yantosca - Now make section endings more visible
 #  13 May 2015 - R. Yantosca - Fixed path of bromocarb scale factors
 #  19 May 2015 - R. Yantosca - ICOADS_SHIP names now use "generic", not "gen"  
-#  19 May 2015 - R. Yantosca - Add a note to only pick one biomass option             
+#  19 May 2015 - R. Yantosca - Add a note to only pick one biomass option 
+#  19 May 2015 - R. Yantosca - Now use tokens for VERBOSE, WARNINGS            
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -115,8 +116,8 @@ Separator:                   /
 Unit tolerance:              1
 Negative values:             0
 Only unitless scale factors: false
-Verbose:                     3
-Warnings:                    3
+Verbose:                     {VERBOSE}
+Warnings:                    {WARNINGS}
 
 ### END SECTION SETTINGS ###
 

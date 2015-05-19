@@ -23,6 +23,7 @@
 # !REVISION HISTORY: 
 #  18 Mar 2015 - R. Yantosca - Initial version
 #  19 Mar 2015 - E. Lundgren - Simplify content for only copying run dirs
+#  19 May 2015 - R. Yantosca - Now can specify VERBOSE and WARNINGS options
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -37,6 +38,8 @@
    RUN_DIR     : {RUNROOT}/{RUNDIR}
    PERL_DIR    : /home/{USER}/UT/perl
    COPY_CMD    : cp -rfL
+   VERBOSE     : 0
+   WARNINGS    : 1
 #
 # !RUNS:
 #  Specify the runs directories that you want to copy below.

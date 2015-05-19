@@ -53,6 +53,7 @@
 #  27 Mar 2015 - C. Keller   - Warnings are now 0-3
 #  21 Apr 2015 - R. Yantosca - Now can use extension names as switches
 #  21 Apr 2015 - R. Yantosca - Now make section endings more visible
+#  19 May 2015 - R. Yantosca - Now use tokens for VERBOSE, WARNINGS
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -69,8 +70,8 @@ Separator:                   /
 Unit tolerance:              2
 Negative values:             0
 Only unitless scale factors: false
-Verbose:                     3
-Warnings:                    3
+Verbose:                     {VERBOSE}
+Warnings:                    {WARNINGS}
 
 ### END SECTION SETTINGS ###
 

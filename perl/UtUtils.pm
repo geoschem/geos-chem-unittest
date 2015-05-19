@@ -364,21 +364,24 @@ sub makeHemcoCfg($$$$$$$) {
 #
 # !INPUT PARAMETERS:
 #
-  # $infile  : HEMCO_Config template file w/ replaceable tokens
-  # $met     : Met field type  (passed via MET flag in G-C compilation)
-  # $grid    : Horizontal grid (passed via GRID flag in G-C compilation)
-  # $nest    : Nested grid suffix (i.e. CH, EU, NA, SE, etc.)
-  # $simType : Simulation type (passed via GRID flag in G-C compilation)
-  # $rootDir : Filepath to HEMCO emissions directory
-  # $outFile : HEMCO_Config.rc file w/ all tokens replaced
-  my ( $inFile, $start,   $met,     $grid, 
-       $nest,   $simType, $rootDir, $outFile ) = @_;
+  # $infile   : HEMCO_Config template file w/ replaceable tokens
+  # $met      : Met field type  (passed via MET flag in G-C compilation)
+  # $grid     : Horizontal grid (passed via GRID flag in G-C compilation)
+  # $nest     : Nested grid suffix (i.e. CH, EU, NA, SE, etc.)
+  # $simType  : Simulation type (passed via GRID flag in G-C compilation)
+  # $verbose  : HEMCO verbose setting (0=no verbose, 3=most verbose)
+  # $warnings : HEMCO warnings setting (0=no warnings, 3=most warnings)
+  # $rootDir  : Filepath to HEMCO emissions directory
+  # $outFile  : HEMCO_Config.rc file w/ all tokens replaced
+  my ( $inFile,  $start,   $met,      $grid,    $nest,   
+       $simType, $verbose, $warnings, $rootDir, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
-# &makeInputGeos( 20130101,             000000, 
-#                 20130102,             000000, 
-#                 "/as/data/geos/",
-#                "input.geos.template", "input.geos" );
+# &makeHemcoCfg( "HEMCO_Config.template", 20130101, 000000,     
+#                "geosfp",                "4x5",    "-",      
+#                 "fullchem",             "3",      "3",  
+#                 "HEMCO_Config.rc" )
+#                 
 #
 # !REMARKS:
 #  The {LNOX} token will be replaced with one of the following strings:
@@ -392,6 +395,8 @@ sub makeHemcoCfg($$$$$$$) {
 #  02 Jul 2014 - R. Yantosca - Now accept $start via the argument list
 #  02 Jul 2014 - R. Yantosca - Now replace the {LNOX} token
 #  23 Sep 2014 - R. Yantosca - Now replace the {LEVRED} and {LEVFULL} tokens
+#  19 May 2015 - R. Yantosca - Add $verbose, $warnings as arguments so that
+#                              we can replace {VERBOSE} and {WARNINGS} tokens
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -469,6 +474,8 @@ sub makeHemcoCfg($$$$$$$) {
     $line =~ s/{SIM}/$simType/g;
     $line =~ s/{LEVRED}/$levReduced/g;
     $line =~ s/{LEVFULL}/$levFull/g;
+    $line =~ s/{VERBOSE}/$verbose/g;
+    $line =~ s/{WARNINGS}/$warnings/g;
 
     # Write to output file
     print O "$line\n";

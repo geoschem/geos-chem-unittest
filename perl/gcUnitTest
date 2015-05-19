@@ -52,6 +52,8 @@ our $MAKE_CMD   = "";                # Make command with debug options
 our $SUBMIT     = "";                # Queue submit command
 our $VERSION    = "";                # GEOS-Chem version ID
 our $DESCRIBE   = "";                # Short description of unit tests
+our $VERBOSE    = "3";               # HEMCO verbose setting (0-3) 
+our $WARNINGS   = "3";               # HEMCO warnings setting (0-3)
 #		
 # !PUBLIC MEMBER FUNCTIONS:
 #  &main()     : Driver routine for gcUnitTest
@@ -75,6 +77,7 @@ our $DESCRIBE   = "";                # Short description of unit tests
 #  02 Jul 2014 - R. Yantosca - Now accepts optional DRYRUN argument, which
 #                              will set up input files but not run unit tests
 #  28 Jul 2014 - R. Yantosca - End date/time can be YYYYMMDDhh or YYYYMMDDhhmm
+#  19 May 2015 - R. Yantosca - Now add VERBOSE and WARNINGS global variables
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -169,6 +172,7 @@ sub makeInputs($$$$$$$$) {
 #  03 Sep 2014 - R. Yantosca - Now call &getHemcoEndTime
 #  23 Sep 2014 - R. Yantosca - Remove call to &getHemcoEndTime.  The HEMCO
 #                              restart timestamp is now the same as $end.
+#  19 May 2015 - R. Yantosca - Pass $VERBOSE, $WARNINGS to &makeHemcoCfg
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -205,8 +209,8 @@ sub makeInputs($$$$$$$$) {
   &makeInputGeos( $d0, $h0, $d1, $h1, $DATA_ROOT, $inpTmpl, $inpGeos );
 
   # Make the HEMCO_Config.rc file in the run directory
-  &makeHemcoCfg( $hcoTmpl, $start, $met,        $grid, 
-                 $nest,    $sim,   $HEMCO_ROOT, $hcoCfg );
+  &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
+                 $sim,     $VERBOSE, $WARNINGS, $HEMCO_ROOT, $hcoCfg );
 
   # Return 
   return( $? );
@@ -269,6 +273,7 @@ sub doUnitTest($$) {
 #  13 Mar 2015 - M. Sulprizio- Now get username for file paths
 #  10 Apr 2015 - E. Lundgren - Remove MET and GRID from make command and
 #                              now use UT/perl/Makefile for unit testing.
+#  19 May 2015 - R. Yantosca - Now look for VERBOSE, WARNINGS in input file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -344,6 +349,8 @@ sub doUnitTest($$) {
       elsif ( $txt[$i] =~ "TEMPLATE"    ) { $TEMPLATE  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "WEB_GRID"    ) { $WEB_GRID  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "WEB_PUSH"    ) { $WEB_PUSH  = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "VERBOSE"     ) { $VERBOSE   = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "WARNINGS"    ) { $WARNINGS  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "DESCRIPTION" ) { $DESCRIBE  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "VERSION"     ) { $VERSION   = &parse( $txt[$i] ); }
     }
