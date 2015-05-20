@@ -78,7 +78,7 @@ endif
 
 # GEOS-Chem run log filename prefix
 ifndef VERSION
- VERSION     :=v10-01i
+ VERSION     :=v10-01
 endif
 
 ###############################################################################
@@ -315,7 +315,9 @@ mprun:
 
 dataclean: 
 	rm -f HEMCO_diagnostics*
-	rm -f HEMCO_restart*
+	rm -f $(HMCO_RST)
+	rm -f HEMCO_restart*.sp
+	rm -f HEMCO_restart*.mp
 	rm -f trac_rst*
 	rm -f trac_avg*
 	rm -f diaginfo.dat tracerinfo.dat
@@ -323,13 +325,13 @@ dataclean:
 spdataclean:
 	rm -f $(TRAC_AVG)*.sp
 	rm -f $(TRAC_RST)*.sp
-	rm -f $(HMCO_RST)*.sp
+	rm -f HEMCO_restart*.sp
 	rm -f diaginfo.dat tracerinfo.dat
 
 mpdataclean:
 	rm -f $(TRAC_AVG)*.mp
 	rm -f $(TRAC_RST)*.mp
-	rm -f $(HMCO_RST)*.mp
+	rm -f HEMCO_restart.*.mp
 	rm -f diaginfo.dat tracerinfo.dat
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
