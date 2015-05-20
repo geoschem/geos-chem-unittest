@@ -95,6 +95,8 @@
 #  19 May 2015 - R. Yantosca - ICOADS_SHIP names now use "generic", not "gen"  
 #  19 May 2015 - R. Yantosca - Add a note to only pick one biomass option 
 #  19 May 2015 - R. Yantosca - Now use tokens for VERBOSE, WARNINGS            
+#  20 May 2015 - M. Sulprizio- Change HTAP category from 1 to 1/2 since it
+#                              includes anthro+biofuel emissions
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -349,39 +351,39 @@ Warnings:                    {WARNINGS}
 # ==> Disable aircraft emissions and get them from AEIC instead.
 #==============================================================================
 (((HTAP
-0 HTAP_NO_IND    $ROOT/HTAP/v2015-03/NO/EDGAR_HTAP_NO_INDUSTRY.generic.01x01.nc      emi_no  2008-2010/1-12/1/0 C xy kg/m2/s NO  1/27/25  1 4
-0 HTAP_NO_POW    $ROOT/HTAP/v2015-03/NO/EDGAR_HTAP_NO_ENERGY.generic.01x01.nc        emi_no  2008-2010/1-12/1/0 C xy kg/m2/s NO  1/27/25  1 4
-0 HTAP_NO_RES    $ROOT/HTAP/v2015-03/NO/EDGAR_HTAP_NO_RESIDENTIAL.generic.01x01.nc   emi_no  2008-2010/1-12/1/0 C xy kg/m2/s NO  1/27/25  1 4
-0 HTAP_NO_TRA    $ROOT/HTAP/v2015-03/NO/EDGAR_HTAP_NO_TRANSPORT.generic.01x01.nc     emi_no  2008-2010/1-12/1/0 C xy kg/m2/s NO  1/27/25  1 4
-#0 HTAP_NO_AIR1  $ROOT/HTAP/v2015-03/NO/EDGAR_HTAP_NO_AIR_LTO.generic.01x01.nc       emi_no  2008-2010/1/1/0    C xy kg/m2/s NO  1/27/25  1 4
-#0 HTAP_NO_AIR2  $ROOT/HTAP/v2015-03/NO/EDGAR_HTAP_NO_AIR_CDS.generic.01x01.nc       emi_no  2008-2010/1/1/0    C xy kg/m2/s NO  1/27/25  1 4
-#0 HTAP_NO_AIR3  $ROOT/HTAP/v2015-03/NO/EDGAR_HTAP_NO_AIR_CRS.generic.01x01.nc       emi_no  2008-2010/1/1/0    C xy kg/m2/s NO  1/27/25  1 4
-0 HTAP_CO_IND    $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_INDUSTRY.generic.01x01.nc      emi_co  2008-2010/1-12/1/0 C xy kg/m2/s CO  6/28/26  1 4
-0 HTAP_CO_POW    $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_ENERGY.generic.01x01.nc        emi_co  2008-2010/1-12/1/0 C xy kg/m2/s CO  6/28/26  1 4
-0 HTAP_CO_RES    $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_RESIDENTIAL.generic.01x01.nc   emi_co  2008-2010/1-12/1/0 C xy kg/m2/s CO  6/28/26  1 4
-0 HTAP_CO_TRA    $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_TRANSPORT.generic.01x01.nc     emi_co  2008-2010/1-12/1/0 C xy kg/m2/s CO  6/28/26  1 4
-#0 HTAP_CO_AIR1  $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_LTO.generic.01x01.nc       emi_co  2008-2010/1/1/0    C xy kg/m2/s CO  6/28/26  1 4
-#0 HTAP_CO_AIR2  $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_CDS.generic.01x01.nc       emi_co  2008-2010/1/1/0    C xy kg/m2/s CO  6/28/26  1 4
-#0 HTAP_CO_AIR3  $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_CRS.generic.01x01.nc       emi_co  2008-2010/1/1/0    C xy kg/m2/s CO  6/28/26  1 4
-0 HTAP_SO2_IND   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_INDUSTRY.generic.01x01.nc    emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2 11/29    1 4
-0 HTAP_SO4_IND   -                                                                   -       -                  - -  -       SO4 11/29/63 1 4
-0 HTAP_SO2_POW   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_ENERGY.generic.01x01.nc      emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2 11/29    1 4
-0 HTAP_SO4_POW   -                                                                   -       -                  - -  -       SO4 11/29/63 1 4
-0 HTAP_SO2_RES   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_RESIDENTIAL.generic.01x01.nc emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2 11/29    1 4
-0 HTAP_SO4_RES   -                                                                   -       -                  - -  -       SO4 11/29/63 1 4
-0 HTAP_SO2_TRA   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_TRANSPORT.generic.01x01.nc   emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2 11/29    1 4
-0 HTAP_SO4_TRA   -                                                                   -       -                  - -  -       SO4 11/29/63 1 4
-#0 HTAP_SO2_AIR1 $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_AIR_LTO.generic.01x01.nc     emi_so2 2008-2010/1/1/0    C xy kg/m2/s SO2 11/29    1 4
-#0 HTAP_SO4_AIR1 -                                                                   -       -                  - -  -       SO4 11/29/63 1 4
-#0 HTAP_SO2_AIR2 $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_AIR_CDS.generic.01x01.nc     emi_so2 2008-2010/1/1/0    C xy kg/m2/s SO2 11/29    1 4
-#0 HTAP_SO4_AIR2 -                                                                   -       -                  - -  -       SO4 11/29/63 1 4
-#0 HTAP_SO2_AIR3 $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_AIR_CRS.generic.01x01.nc     emi_so2 2008-2010/1/1/0    C xy kg/m2/s SO2 11/29    1 4
-#0 HTAP_SO4_AIR3 -                                                                   -       -                  - -  -       SO4 11/29/63 1 4
-0 HTAP_NH3_IND   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_INDUSTRY.generic.01x01.nc    emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1 4
-0 HTAP_NH3_POW   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_ENERGY.generic.01x01.nc      emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1 4
-0 HTAP_NH3_RES   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_RESIDENTIAL.generic.01x01.nc emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1 4
-0 HTAP_NH3_TRA   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_TRANSPORT.generic.01x01.nc   emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1 4
-0 HTAP_NH3_AGR   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_AGRICULTURE.generic.01x01.nc emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1 4
+0 HTAP_NO_IND    $ROOT/HTAP/v2015-03/NO/EDGAR_HTAP_NO_INDUSTRY.generic.01x01.nc      emi_no  2008-2010/1-12/1/0 C xy kg/m2/s NO  1/27/25  1/2 4
+0 HTAP_NO_POW    $ROOT/HTAP/v2015-03/NO/EDGAR_HTAP_NO_ENERGY.generic.01x01.nc        emi_no  2008-2010/1-12/1/0 C xy kg/m2/s NO  1/27/25  1/2 4
+0 HTAP_NO_RES    $ROOT/HTAP/v2015-03/NO/EDGAR_HTAP_NO_RESIDENTIAL.generic.01x01.nc   emi_no  2008-2010/1-12/1/0 C xy kg/m2/s NO  1/27/25  1/2 4
+0 HTAP_NO_TRA    $ROOT/HTAP/v2015-03/NO/EDGAR_HTAP_NO_TRANSPORT.generic.01x01.nc     emi_no  2008-2010/1-12/1/0 C xy kg/m2/s NO  1/27/25  1/2 4
+#0 HTAP_NO_AIR1  $ROOT/HTAP/v2015-03/NO/EDGAR_HTAP_NO_AIR_LTO.generic.01x01.nc       emi_no  2008-2010/1/1/0    C xy kg/m2/s NO  1/27/25  1/2 4
+#0 HTAP_NO_AIR2  $ROOT/HTAP/v2015-03/NO/EDGAR_HTAP_NO_AIR_CDS.generic.01x01.nc       emi_no  2008-2010/1/1/0    C xy kg/m2/s NO  1/27/25  1/2 4
+#0 HTAP_NO_AIR3  $ROOT/HTAP/v2015-03/NO/EDGAR_HTAP_NO_AIR_CRS.generic.01x01.nc       emi_no  2008-2010/1/1/0    C xy kg/m2/s NO  1/27/25  1/2 4
+0 HTAP_CO_IND    $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_INDUSTRY.generic.01x01.nc      emi_co  2008-2010/1-12/1/0 C xy kg/m2/s CO  6/28/26  1/2 4
+0 HTAP_CO_POW    $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_ENERGY.generic.01x01.nc        emi_co  2008-2010/1-12/1/0 C xy kg/m2/s CO  6/28/26  1/2 4
+0 HTAP_CO_RES    $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_RESIDENTIAL.generic.01x01.nc   emi_co  2008-2010/1-12/1/0 C xy kg/m2/s CO  6/28/26  1/2 4
+0 HTAP_CO_TRA    $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_TRANSPORT.generic.01x01.nc     emi_co  2008-2010/1-12/1/0 C xy kg/m2/s CO  6/28/26  1/2 4
+#0 HTAP_CO_AIR1  $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_LTO.generic.01x01.nc       emi_co  2008-2010/1/1/0    C xy kg/m2/s CO  6/28/26  1/2 4
+#0 HTAP_CO_AIR2  $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_CDS.generic.01x01.nc       emi_co  2008-2010/1/1/0    C xy kg/m2/s CO  6/28/26  1/2 4
+#0 HTAP_CO_AIR3  $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_CRS.generic.01x01.nc       emi_co  2008-2010/1/1/0    C xy kg/m2/s CO  6/28/26  1/2 4
+0 HTAP_SO2_IND   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_INDUSTRY.generic.01x01.nc    emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2 11/29    1/2 4
+0 HTAP_SO4_IND   -                                                                   -       -                  - -  -       SO4 11/29/63 1/2 4
+0 HTAP_SO2_POW   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_ENERGY.generic.01x01.nc      emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2 11/29    1/2 4
+0 HTAP_SO4_POW   -                                                                   -       -                  - -  -       SO4 11/29/63 1/2 4
+0 HTAP_SO2_RES   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_RESIDENTIAL.generic.01x01.nc emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2 11/29    1/2 4
+0 HTAP_SO4_RES   -                                                                   -       -                  - -  -       SO4 11/29/63 1/2 4
+0 HTAP_SO2_TRA   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_TRANSPORT.generic.01x01.nc   emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2 11/29    1/2 4
+0 HTAP_SO4_TRA   -                                                                   -       -                  - -  -       SO4 11/29/63 1/2 4
+#0 HTAP_SO2_AIR1 $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_AIR_LTO.generic.01x01.nc     emi_so2 2008-2010/1/1/0    C xy kg/m2/s SO2 11/29    1/2 4
+#0 HTAP_SO4_AIR1 -                                                                   -       -                  - -  -       SO4 11/29/63 1/2 4
+#0 HTAP_SO2_AIR2 $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_AIR_CDS.generic.01x01.nc     emi_so2 2008-2010/1/1/0    C xy kg/m2/s SO2 11/29    1/2 4
+#0 HTAP_SO4_AIR2 -                                                                   -       -                  - -  -       SO4 11/29/63 1/2 4
+#0 HTAP_SO2_AIR3 $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_AIR_CRS.generic.01x01.nc     emi_so2 2008-2010/1/1/0    C xy kg/m2/s SO2 11/29    1/2 4
+#0 HTAP_SO4_AIR3 -                                                                   -       -                  - -  -       SO4 11/29/63 1/2 4
+0 HTAP_NH3_IND   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_INDUSTRY.generic.01x01.nc    emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1/2 4
+0 HTAP_NH3_POW   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_ENERGY.generic.01x01.nc      emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1/2 4
+0 HTAP_NH3_RES   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_RESIDENTIAL.generic.01x01.nc emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1/2 4
+0 HTAP_NH3_TRA   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_TRANSPORT.generic.01x01.nc   emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1/2 4
+0 HTAP_NH3_AGR   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_AGRICULTURE.generic.01x01.nc emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3 -        1/2 4
 )))HTAP
 
 #==============================================================================
