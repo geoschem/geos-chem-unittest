@@ -99,6 +99,7 @@
 #  19 May 2015 - R. Yantosca - Now use tokens for VERBOSE, WARNINGS            
 #  20 May 2015 - M. Sulprizio- Change HTAP category from 1 to 1/2 since it
 #                              includes anthro+biofuel emissions
+#  20 May 2015 - R. Yantosca - Updated name of HEMCO restart file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -654,11 +655,11 @@ Warnings:                    {WARNINGS}
 # We don't need to read EF maps for acetone, a-pinene or myrcene. We now
 # compute those values in the MEGAN extension.
 #==============================================================================
-108  T_DAVG                       ./initial_hemco_rst.$MET_$RES_{SIM}.nc       T_DAVG                  $YYYY/$MM/$DD/$HH C xy K        * - 1 1
-108  T_PREVDAY                    ./initial_hemco_rst.$MET_$RES_{SIM}.nc       T_PREVDAY               $YYYY/$MM/$DD/$HH C xy K        * - 1 1
-108  LAI_PREVDAY                  ./initial_hemco_rst.$MET_$RES_{SIM}.nc       LAI_PREVDAY             $YYYY/$MM/$DD/$HH C xy 1        * - 1 1
-108  PARDR_DAVG                   ./initial_hemco_rst.$MET_$RES_{SIM}.nc       PARDR_DAVG              $YYYY/$MM/$DD/$HH C xy W/m2     * - 1 1
-108  PARDF_DAVG                   ./initial_hemco_rst.$MET_$RES_{SIM}.nc       PARDF_DAVG              $YYYY/$MM/$DD/$HH C xy W/m2     * - 1 1
+108  T_DAVG                       ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          T_DAVG                  $YYYY/$MM/$DD/$HH E xy K        * - 1 1
+108  T_PREVDAY                    ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          T_PREVDAY               $YYYY/$MM/$DD/$HH E xy K        * - 1 1
+108  LAI_PREVDAY                  ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          LAI_PREVDAY             $YYYY/$MM/$DD/$HH E xy 1        * - 1 1
+108  PARDR_DAVG                   ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          PARDR_DAVG              $YYYY/$MM/$DD/$HH E xy W/m2     * - 1 1
+108  PARDF_DAVG                   ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          PARDF_DAVG              $YYYY/$MM/$DD/$HH E xy W/m2     * - 1 1
 108  MEGAN_AEF_ISOP               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_ISOPRENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
 109  MEGAN_AEF_MBOX               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_MBO                 1985/1/1/0        C xy kgC/m2/s * - 1 1
 #109 MEGAN_AEF_APIN               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_ALPHA_PINENE        1985/1/1/0        C xy kgC/m2/s * - 1 1
