@@ -22,6 +22,8 @@
 #  JOB_DIR     : Unit Test job script directory
 #  LOG_DIR     : Unit Test log file directory
 #  PERL_DIR    : Unit Test perl script directory (i.e. this directory)
+#  VERBOSE     : HEMCO debug output level (0=no output, 3=max output)
+#  WARNINGS    : HEMCO warnings output level (0=no warnings, 3=max warnings)
 #  COMPILER    : Compiler used to build GEOS-Chem (e.g. "ifort", "pgi")
 #  MAKE_CMD    : Make command with basic debugging flags
 #  SUBMIT      : Submit command and queue name
@@ -46,6 +48,8 @@
 #  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
 #                              MERRA, and GCAP, so as to use NEI2011
 #  19 Mar 2015 - R. Yantosca - Hg simulations should use 2005 (except GEOS-FP)
+#  21 May 2015 - R. Yantosca - Added VERBOSE and WARNINGS.  These default to
+#                              3, 3, respectively if not specified
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -61,18 +65,13 @@
    JOB_DIR     : /home/{USER}/UT/jobs
    LOG_DIR     : /home/{USER}/UT/logs/{VERSION}
    PERL_DIR    : /home/{USER}/UT/perl
+   VERBOSE     : 3
+   WARNINGS    : 3
    COMPILER    : ifort
    MAKE_CMD    : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
    SUBMIT      : submit smp4
    TEMPLATE    : {PERLDIR}/ut_template.html
    WEB_GRID    : {LOGDIR}/{VERSION}.results.html
-#
-# These attributes will be used if you are using the gcCopyRunDirs script
-# to create run directories for GEOS-Chem simulations.  They are not needed
-# to submit GEOS-Chem unit tests and will be ignored by gcUnitTest.
-#
-   COPY_CMD    : cp -rfL
-   COPY_PATH   : /as/scratch/{USER}/TEST
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.
