@@ -55,6 +55,8 @@
 #                              OOB error in tpcore_geos5_window_mod is resolved
 #  21 May 2015 - R. Yantosca - Added VERBOSE and WARNINGS.  These default to
 #                              3, 3, respectively if not specified
+#  22 May 2015 - M. Sulprizio- Added unit test for GEOS-FP 4x5 benchmark
+#                              simulation
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -76,7 +78,7 @@
    MAKE_CMD    : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
    SUBMIT      : submit smp4
    TEMPLATE    : {PERLDIR}/ut_template.html
-   WEB_GRID    : {LOGyDIR}/{VERSION}.results.html
+   WEB_GRID    : {LOGDIR}/{VERSION}.results.html
    WEB_PUSH    : NONE
 #
 # !RUNS:
@@ -140,6 +142,7 @@
   geosfp   2x25        -      aerosol      2013070100   201307010030 -
   geos5    2x25        -      aerosol      2006070100   200607010030 -
 # ======= Fullchem ===========================================================
+  geosfp   4x5         -      benchmark    2013070100   2013070101   UCX=y
   geosfp   4x5         -      fullchem     2013070100   2013070101   -
   merra    4x5         -      fullchem     2006070100   2006070101   -
   geos5    4x5         -      fullchem     2006070100   2006070101   -
