@@ -100,6 +100,8 @@
 #  20 May 2015 - R. Yantosca - Updated name of HEMCO restart file
 #  21 May 2015 - R. Yantosca - Now use correct filenames for FINNv1
 #  26 May 2015 - R. Yantosca - Remove entries for PARANOX suncos variables
+#  26 May 2015 - M. Sulprizio- Add QFED2 entries from Christoph Keller and
+#                              QFED2 diurnal scale factors from Katie Travis
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -183,6 +185,7 @@ Warnings:                    {WARNINGS}
     --> RCP_45            :       false
     --> RCP_60            :       false
     --> RCP_85            :       false
+    --> QFED2             :       false
 # -----------------------------------------------------------------------------
 100     Custom            : off   - 
 101     SeaFlux           : on    DMS/ACET
@@ -940,7 +943,7 @@ Warnings:                    {WARNINGS}
 (((.not.ParaNOx
 0 ICOADS_SHIP_NO       $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                NO     2002/1-12/1/0          C xy kg/m2/s  NO   1/5      10 1
 #0 HTAP_SHIP_NO        $ROOT/HTAP/v2015-03/EDGAR_HTAP_NO_SHIPS.generic.01x01.nc        emi_no 2008-2010/1/1/0        C xy kg/m2/s  NO   1/27     10 2
-																		 
+
 (((EMEP
 0 EMEP_SHIP_NO         $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipNO 1990-2012/1/1/0        C xy kg/m2/s  NO   1000     10 10
 )))EMEP
@@ -1133,6 +1136,30 @@ Warnings:                    {WARNINGS}
 0 RCP85_PRPE    $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_propene_2005-2100_43533_kgC.nc                    ACCMIP 2005-2100/1/1/0 I xy kgC/m2/s PRPE  -     1 1
 0 RCP85_HCOOH   $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_total_acids_2005-2100_43533.nc                    ACCMIP 2005-2100/1/1/0 I xy kg/m2/s  HCOOH 57/58 1 1
 )))RCP_85
+
+#==============================================================================
+# --- QFED2 biomass burning ---
+#==============================================================================
+(((QFED2
+0 QFED_ACET  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_acet.005.$YYYY$MM$DD.nc4 biomass $YYYY/$MM/$DD/0 C xy kg/m2/s ACET 75    3 2 
+0 QFED_ALD2  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_ald2.005.$YYYY$MM$DD.nc4 biomass $YYYY/$MM/$DD/0 C xy kg/m2/s ALD2 75    3 2 
+0 QFED_ALK4  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_alk4.005.$YYYY$MM$DD.nc4 biomass $YYYY/$MM/$DD/0 C xy kg/m2/s ALK4 75    3 2 
+0 QFED_BCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_bc.005.$YYYY$MM$DD.nc4   biomass $YYYY/$MM/$DD/0 C xy kg/m2/s BCPI 70/75 3 2 
+0 QFED_BCPO  -                                                                 -       -               - -  -       BCPO 71/75 3 2 
+0 QFED_OCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_oc.005.$YYYY$MM$DD.nc4   biomass $YYYY/$MM/$DD/0 C xy kg/m2/s OCPI 72/75 3 2 
+0 QFED_OCPO  -                                                                 -       -               - -  -       OCPO 73/75 3 2 
+0 QFED_C2H6  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_c2h6.005.$YYYY$MM$DD.nc4 biomass $YYYY/$MM/$DD/0 C xy kg/m2/s C2H6 75    3 2 
+0 QFED_C3H8  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_c3h8.005.$YYYY$MM$DD.nc4 biomass $YYYY/$MM/$DD/0 C xy kg/m2/s C3H8 75    3 2 
+0 QFED_CH2O  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_ch2o.005.$YYYY$MM$DD.nc4 biomass $YYYY/$MM/$DD/0 C xy kg/m2/s CH2O 75    3 2 
+0 QFED_CH4   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_ch4.005.$YYYY$MM$DD.nc4  biomass $YYYY/$MM/$DD/0 C xy kg/m2/s CH4  75    3 2 
+0 QFED_CO    $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_co.005.$YYYY$MM$DD.nc4   biomass $YYYY/$MM/$DD/0 C xy kg/m2/s CO   54/75 3 2 
+0 QFED_CO2   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_co2.005.$YYYY$MM$DD.nc4  biomass $YYYY/$MM/$DD/0 C xy kg/m2/s CO2  75    3 2 
+0 QFED_MEK   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_mek.005.$YYYY$MM$DD.nc4  biomass $YYYY/$MM/$DD/0 C xy kg/m2/s MEK  75    3 2 
+0 QFED_NH3   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_nh3.005.$YYYY$MM$DD.nc4  biomass $YYYY/$MM/$DD/0 C xy kg/m2/s NH3  75    3 2 
+0 QFED_NO    $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_no.005.$YYYY$MM$DD.nc4   biomass $YYYY/$MM/$DD/0 C xy kg/m2/s NO   75    3 2 
+0 QFED_SO2   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_so2.005.$YYYY$MM$DD.nc4  biomass $YYYY/$MM/$DD/0 C xy kg/m2/s SO2  75    3 2 
+0 QFED_C3H6  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_c3h6.005.$YYYY$MM$DD.nc4 biomass $YYYY/$MM/$DD/0 C xy kg/m2/s PRPE 75    3 2 
+)))QFED2
 
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
@@ -1740,6 +1767,14 @@ Warnings:                    {WARNINGS}
 72 OC2OCPI  0.5  - - - xy unitless 1
 73 OC2OCPO  0.5  - - - xy unitless 1
 74 POASCAL  1.27 - - - xy unitless 1
+
+#==============================================================================
+# --- QFED2 diurnal scale factors ---
+#
+# Fire diurnal scaling factors (% per hour) from WRAP Report to Project
+# No. 178-6, July 2005
+#==============================================================================
+75 QFED2_TOD 0.1392/0.1392/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.48/0.96/1.68/2.4/3.12/3.84/4.08/2.88/1.68/0.96/0.1368/0.1368/0.1368/0.1368/0.1368 - - - xy unitless 1
 
 #==============================================================================
 # --- NAP scale factors ---
