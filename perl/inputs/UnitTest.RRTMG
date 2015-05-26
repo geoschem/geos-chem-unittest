@@ -75,13 +75,13 @@
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#--------|-----------|------|------------|------------|------------|---------|
-# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
-#--------|-----------|------|------------|------------|------------|---------|
-  geosfp   4x5         -      RRTMG        2013070100   2013070101   RRTMG=y
-  geos5    4x5         -      RRTMG        2006070100   2006070101   RRTMG=y
-  geosfp   2x25        -      RRTMG        2013070100   201307010030 RRTMG=y
-  geos5    2x25        -      RRTMG        2006070100   200607010030 RRTMG=y
+#--------|-----------|------|------------|------------|-------------|---------|
+# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE    | EXTRA?  |
+#--------|-----------|------|------------|------------|-------------|---------|
+  geosfp   4x5         -      RRTMG        2013070100   2013070101    -
+  geos5    4x5         -      RRTMG        2006070100   2006070101    -
+  geosfp   2x25        -      RRTMG        2013070100   201307010030  -
+  geos5    2x25        -      RRTMG        2006070100   200607010030  -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

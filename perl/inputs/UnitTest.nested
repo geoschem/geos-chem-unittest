@@ -67,9 +67,9 @@
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#--------|-----------|------|------------|------------|------------|---------|
-# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
-#--------|-----------|------|------------|------------|------------|---------|
+#--------|-----------|------|------------|------------|--------------|--------|
+# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE     | EXTRA? |
+#--------|-----------|------|------------|------------|--------------|--------|
   geos5    05x0666     ch     fullchem     2005070100   200507010120 -
   geos5    05x0666     na     fullchem     2006070100   200607010020 -
   geosfp   025x03125   ch     fullchem     2013070100   201307010010 -

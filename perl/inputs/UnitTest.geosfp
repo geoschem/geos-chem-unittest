@@ -74,19 +74,19 @@
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#--------|-----------|------|------------|------------|------------|---------|
-# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
-#--------|-----------|------|------------|------------|------------|---------|
-  geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
-  geosfp   4x5         -      Hg           2013070100   2013070101   -
-  geosfp   4x5         -      POPs         2013070100   2013070101   -
-# geosfp   4x5         -      fullchem     2013070100   2013070101   -
-# geosfp   4x5         -      soa          2013070100   2013070101   -
-# geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
-# geosfp   4x5         -      CH4          2013070100   2013070101   -
-# geosfp   4x5         -      tagCO        2013070100   2013070101   -
-# geosfp   4x5         -      TOMAS40      2013070100   2013070101  TOMAS40=y
-# geosfp   4x5         -      UCX          2013070100   2013070101  UCX=y
+#--------|-----------|------|------------|------------|--------------|--------|
+# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE     | EXTRA? |
+#--------|-----------|------|------------|------------|--------------|--------|
+  geosfp   4x5         -      RnPbBe       2013070100   2013070101     -
+  geosfp   4x5         -      Hg           2013070100   2013070101     -
+  geosfp   4x5         -      POPs         2013070100   2013070101     -
+# geosfp   4x5         -      fullchem     2013070100   2013070101     -
+# geosfp   4x5         -      soa          2013070100   2013070101     -
+# geosfp   4x5         -      soa_svpoa    2013070100   2013070101     -
+# geosfp   4x5         -      CH4          2013070100   2013070101     -
+# geosfp   4x5         -      tagCO        2013070100   2013070101     -
+# geosfp   4x5         -      TOMAS40      2013070100   2013070101     -
+# geosfp   4x5         -      UCX          2013070100   2013070101     -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------
