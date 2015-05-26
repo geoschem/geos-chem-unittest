@@ -941,11 +941,11 @@ Warnings:                    {WARNINGS}
 0 ICOADS_SHIP_NO       $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                NO     2002/1-12/1/0          C xy kg/m2/s  NO   1/5      10 1
 #0 HTAP_SHIP_NO        $ROOT/HTAP/v2015-03/EDGAR_HTAP_NO_SHIPS.generic.01x01.nc        emi_no 2008-2010/1/1/0        C xy kg/m2/s  NO   1/27     10 2
 																		 
-(((EMEP																		 
+(((EMEP
 0 EMEP_SHIP_NO         $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipNO 1990-2012/1/1/0        C xy kg/m2/s  NO   1000     10 10
-)))EMEP																		 
-																		 
-(((NEI2011_SHIP																	 
+)))EMEP
+
+(((NEI2011_SHIP
 0 NEI11_C3MARINE_NO    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NO     2006-2013/$MM/$DD/0-23 R xy kg/m2/s  NO   251/1007 10 50
 0 NEI11_C3MARINE_NO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NO2    2006-2013/$MM/$DD/0-23 R xy kg/m2/s  NO2  251/1007 10 50
 )))NEI2011_SHIP
