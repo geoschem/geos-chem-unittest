@@ -53,6 +53,10 @@
 #  22 Apr 2015 - E. Lundgren - Now define defaults for Makefile variables
 #  22 Apr 2015 - R. Yantosca - Bug fix: write LOG_HMCO to the run directory
 #  22 Apr 2015 - R. Yantosca - Cosmetic changes, updated comments
+#  26 May 2015 - R. Yantosca - Now define the default setting for CHEM
+#  26 May 2015 - R. Yantosca - Add ./ to executable to avoid bash errors
+#  26 May 2015 - R. Yantosca - Now define CHEM based on the simulation type
+#                              and pass it explicitly in build sequence
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -120,23 +124,27 @@ ifndef NO_REDUCED
 endif
 
 ifndef TOMAS12
-  TOMAS12    :=n
+ TOMAS12     :=n
 endif
 
 ifndef TOMAS15
-  TOMAS15    :=n
+ TOMAS15     :=n
 endif
 
 ifndef TOMAS40
-  TOMAS40    :=n
+ TOMAS40     :=n
 endif
 
 ifndef UCX
-  UCX        :=n
+ UCX         :=n
 endif
 
 ifndef RRTMG
-  RRTMG      :=n
+ RRTMG       :=n
+endif
+
+ifndef CHEM
+ CHEM        :=benchmark
 endif
 
 ###############################################################################
@@ -166,6 +174,7 @@ HMCO_END     :=$(END)
 
 # By default, UCX, TOMAS40 and RRTMG are all set to "n".  But if we are doing
 # one of thess simulations, reset the corresponding makefile variable to "y".
+# Also define the proper setting for CHEM, which picks the correct KPP files.
 ifeq ($(SIM),TOMAS12)
  TOMAS12     :=y
 endif
@@ -178,12 +187,34 @@ ifeq ($(SIM),TOMAS40)
  TOMAS40     :=y
 endif
 
-ifeq ($(SIM),UCX)
- UCX         :=y
-endif
-
 ifeq ($(SIM),RRTMG)
  RRTMG       :=y
+endif
+
+ifeq ($(SIM),UCX)
+ UCX         :=y
+ CHEM        :=UCX
+endif
+
+ifeq ($(SIM),benchmark)
+ UCX         :=y
+ CHEM        :=benchmark
+endif
+
+ifeq ($(SIM),soa)
+ CHEM        :=SOA
+endif
+
+ifeq ($(SIM),soa_svpoa)
+ CHEM        :=SOA
+endif
+
+ifeq ($(SIM),fullchem)
+ CHEM        :=NOx_Ox_HC_Br
+endif
+
+ifeq ($(SIM),NOx_Ox_HC_Br)
+ CHEM        :=NOx_Ox_HC_Br
 endif
 
 # General run information
@@ -241,26 +272,30 @@ unittest:
 
 sp:
 	@$(MAKE) spclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) \
-                    UCX=$(UCX) TOMAS40=$(TOMAS40) RRTMG=$(RRTMG)     \
-                    TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15)            \
-                    OMP=no > $(LOG_SP)
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET)         GRID=$(GRID)       \
+                                NEST=$(NEST)       UCX=$(UCX)         \
+                                CHEM=$(CHEM)       RRTMG=$(RRTMG)     \
+                                TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15) \
+                                TOMAS30=$(TOMAS30) TOMAS40=$(TOMAS40) \
+                                OMP=no > $(LOG_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
-	$(EXE_SP) >> $(LOG_SP)
+	./$(EXE_SP) >> $(LOG_SP)
 	@$(MAKE) addsuffixsp
 	@$(MAKE) printruninfosp >> $(LOG_SP)
 	@$(MAKE) printallinfosp
 
 mp:
 	@$(MAKE) mpclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) \
-                    UCX=$(UCX) TOMAS40=$(TOMAS40) RRTMG=$(RRTMG)     \
-                    TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15)            \
-                    OMP=yes > $(LOG_MP)
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET)         GRID=$(GRID)       \
+                                NEST=$(NEST)       UCX=$(UCX)         \
+                                CHEM=$(CHEM)       RRTMG=$(RRTMG)     \
+                                TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15) \
+                                TOMAS30=$(TOMAS30) TOMAS40=$(TOMAS40) \
+                                OMP=yes > $(LOG_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
-	$(EXE_MP) >> $(LOG_MP)
+	./$(EXE_MP) >> $(LOG_MP)
 	@$(MAKE) addsuffixmp
 	@$(MAKE) printruninfomp >> $(LOG_MP)
 	@$(MAKE) printallinfomp
@@ -272,10 +307,12 @@ mp:
 spbuild:
 	@$(MAKE) spexeclean
 	@$(MAKE) splogclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) \
-                    UCX=$(UCX) TOMAS40=$(TOMAS40) RRTMG=$(RRTMG)     \
-                    TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15)            \
-                    OMP=no
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET)         GRID=$(GRID)       \
+                                NEST=$(NEST)       UCX=$(UCX)         \
+                                CHEM=$(CHEM)       RRTMG=$(RRTMG)     \
+                                TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15) \
+                                TOMAS30=$(TOMAS30) TOMAS40=$(TOMAS40) \
+                                OMP=no
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	@$(MAKE) printbuildinfo
@@ -283,10 +320,12 @@ spbuild:
 mpbuild:
 	@$(MAKE) mpexeclean
 	@$(MAKE) mplogclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET) GRID=$(GRID) NEST=$(NEST) \
-                    UCX=$(UCX) TOMAS40=$(TOMAS40) RRTMG=$(RRTMG)     \
-                    TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15)            \
-                    OMP=yes
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET)         GRID=$(GRID)       \
+                                NEST=$(NEST)       UCX=$(UCX)         \
+                                CHEM=$(CHEM)       RRTMG=$(RRTMG)     \
+                                TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15) \
+                                TOMAS30=$(TOMAS30) TOMAS40=$(TOMAS40) \
+                                OMP=yes
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	@$(MAKE) printbuildinfo
@@ -297,14 +336,14 @@ mpbuild:
 
 sprun:
 	@$(MAKE) spdataclean
-	$(EXE_SP) > $(LOG_SP)
+	./$(EXE_SP) > $(LOG_SP)
 	@$(MAKE) addsuffixsp
 	@$(MAKE) printruninfosp >> $(LOG_SP)
 	@$(MAKE) printruninfosp
 
 mprun:
 	@$(MAKE) mpdataclean
-	$(EXE_MP) > $(LOG_MP)
+	./$(EXE_MP) > $(LOG_MP)
 	@$(MAKE) addsuffixmp
 	@$(MAKE) printruninfomp >> $(LOG_MP)
 	@$(MAKE) printruninfomp
@@ -448,6 +487,7 @@ printbuildinfo:
 	@echo "  FPE       : $(FPE)"
 	@echo "  NO_ISO    : $(NO_ISO)"	
 	@echo "  NO_REDUCED: $(NO_ISO)"
+	@echo "  CHEM      : $(CHEM)"
 	@echo "  UCX       : $(UCX)"
 	@echo "  TOMAS12   : $(TOMAS12)"	
 	@echo "  TOMAS15   : $(TOMAS15)"
