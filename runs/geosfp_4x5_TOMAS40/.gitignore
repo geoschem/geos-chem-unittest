@@ -14,7 +14,9 @@ geos.mp
 geos.sp
 input.geos
 *.log
-HEMCO_Config.rc
-HEMCO_restart*
+HEMCO*Config.rc
+HEMCO*restart*sp
+HEMCO*restart*mp
+HEMCO*log*
 lastbuild.*
 Makefile
