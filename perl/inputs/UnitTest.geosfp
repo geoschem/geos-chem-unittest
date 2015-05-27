@@ -52,7 +52,7 @@
 # !INPUTS:
 #
    VERSION     : v10-01.geosfp
-   DESCRIPTION : Tests GEOS-FP simulatiosn in GEOS-Chem
+   DESCRIPTION : Tests GEOS-FP simulations in GEOS-Chem
    CODE_DIR    : /home/{USER}/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos/ExtData
    HEMCO_ROOT  : {DATAROOT}/HEMCO
@@ -80,7 +80,7 @@
   geosfp   4x5         -      RnPbBe       2013070100   2013070101     -
   geosfp   4x5         -      Hg           2013070100   2013070101     -
   geosfp   4x5         -      POPs         2013070100   2013070101     -
-# geosfp   4x5         -      fullchem     2013070100   2013070101     -
+# geosfp   4x5         -      tropchem     2013070100   2013070101     -
 # geosfp   4x5         -      soa          2013070100   2013070101     -
 # geosfp   4x5         -      soa_svpoa    2013070100   2013070101     -
 # geosfp   4x5         -      CH4          2013070100   2013070101     -

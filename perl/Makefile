@@ -209,12 +209,16 @@ ifeq ($(SIM),soa_svpoa)
  CHEM        :=SOA
 endif
 
-ifeq ($(SIM),fullchem)
- CHEM        :=NOx_Ox_HC_Br
+ifeq ($(SIM),tropchem)
+ CHEM        :=NOx_Ox_HC_Aer_Br
 endif
 
-ifeq ($(SIM),NOx_Ox_HC_Br)
- CHEM        :=NOx_Ox_HC_Br
+ifeq ($(SIM),fullchem)
+ CHEM        :=NOx_Ox_HC_Aer_Br
+endif
+
+ifeq ($(SIM),NOx_Ox_HC_Aer_Br)
+ CHEM        :=NOx_Ox_HC_Aer_Br
 endif
 
 # General run information

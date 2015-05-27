@@ -1,0 +1,11 @@
+This directory contains the chemistry input files for the standard
+NOx-Ox-HC-Aer-Br tropospheric chemistry mechanism. We keep the files here
+so that they can be symbolically linked to other directories.
+
+For more information about this chemistry mechanism see:
+
+  http://wiki.seas.harvard.edu/geos-chem/index.php/NOx-Ox-HC-aerosol
+
+16 May 2013
+GEOS-Chem Support Team
+geos-chem-support@as.harvard.edu
