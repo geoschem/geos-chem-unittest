@@ -1,6 +1,10 @@
-This file contains the chemistry input files for the UCX stratospheric-
-tropospheric chemistry simulation.  We keep them here so that they can be 
+This directory contains the chemistry input files for the UCX stratospheric-
+tropospheric chemistry simulation.  We keep the files here so that they can be 
 symbolically linked to other directories.
+
+For more information about this chemistry mechanism see: 
+
+  http://wiki.seas.harvard.edu/geos-chem/index.php/UCX_chemistry_mechanism
 
 29 May 2014
 GEOS-Chem Support Team

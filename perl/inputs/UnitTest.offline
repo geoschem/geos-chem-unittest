@@ -6,7 +6,7 @@
 # !INCLUDE: UnitTest.nightly
 #
 # !DESCRIPTION: Input file that specifies debugging options for the 
-#  GEOS-Chem unit tester.  Customized for nightly unit tests.
+#  GEOS-Chem unit tester. Customized for specialty (aka "offline") simulations.
 #\\
 #\\
 # !REMARKS:  
@@ -53,8 +53,8 @@
 #
 # !INPUTS:
 #
-   VERSION     : v10-01h
-   DESCRIPTION : Tests v10-01h + NEI2011 + scale factors
+   VERSION     : v10-01.offline
+   DESCRIPTION : Tests GEOS-Chem specialty simulations
    CODE_DIR    : /home/bmy/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos/ExtData
    HEMCO_ROOT  : {DATAROOT}/HEMCO

@@ -1,1 +1,1 @@
-../geos5_4x5_fullchem/HEMCO_restart.200607010000.nc
+../geos5_4x5_tropchem/HEMCO_restart.200607010000.nc

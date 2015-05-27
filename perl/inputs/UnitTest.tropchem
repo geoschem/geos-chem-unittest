@@ -1,0 +1,101 @@
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !INCLUDE: UnitTest.tropchem
+#
+# !DESCRIPTION: Input file that specifies debugging options for the 
+#  GEOS-Chem unit tester.  Customized for NOx-Ox-HC-Aer-Br tropospheric
+#  chemistry simulations.
+#\\
+#\\
+# !REMARKS:  
+#  Customize the unit tests for your system by specifying these values:
+#  -------------------------------------------------------------------
+#  VERSION     : A tag used to identify this Unit Test (e.g. v9-02o)
+#  DESCRIPTION : A short description of what this unit test is validating
+#  CODE_DIR    : Full path of the GEOS-Chem code directory
+#  DATA_ROOT   : Root GEOS-Chem data directory
+#  HEMCO_ROOT  : Root directory where HEMCO emissions data files are stored
+#  RUN_ROOT    : Unit test run directories are subdirectories of RUN_ROOT
+#  RUN_DIR     : Individual unit test run directory path
+#  JOB_DIR     : Unit Test job script directory
+#  LOG_DIR     : Unit Test log file directory
+#  PERL_DIR    : Unit Test perl script directory (i.e. this directory)
+#  VERBOSE     : HEMCO debug output level (0=no output, 3=max output)
+#  WARNINGS    : HEMCO warnings output level (0=no warnings, 3=max warnings)
+#  COMPILER    : Compiler used to build GEOS-Chem (e.g. "ifort", "pgi")
+#  MAKE_CMD    : Make command with basic debugging flags
+#  SUBMIT      : Submit command and queue name
+#  TEMPLATE    : Template web page for displaying grid of results
+#  WEB_GRID    : File name for web page containing unit test results
+#  WEB_PUSH    : Remote location to send web page w/ unit test results
+#
+# !REMARKS:
+#  This file specifies unit tests for tropchem simulations (all met types).
+#  To omit individual unit tests, place a # in the first column.
+#
+# !REVISION HISTORY: 
+#  23 Oct 2013 - R. Yantosca - Initial version
+#  04 Nov 2013 - R. Yantosca - Added gcap_4x5_fullchem
+#  06 Nov 2013 - R. Yantosca - Added geos5_2x25_fullchem
+#  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
+#  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
+#  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
+#  28 Jul 2014 - R. Yantosca - Added HEMCO_ROOT directory
+#  28 Jul 2014 - R. Yantosca - 2 x 2.5 runs now end after 30 mins
+#  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
+#  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
+#  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
+#                              MERRA, and GCAP, so as to use NEI2011
+#  30 Mar 2015 - M. Sulprizio- Removed soa unit tests. These are included in the
+#                              UnitTest.soa_svpoa file.
+#  03 Apr 2015 - M. Sulprizio- Add 0.25x0.3125 nested grid unit tests
+#  21 May 2015 - R. Yantosca - Added VERBOSE and WARNINGS.  These default to
+#                              3, 3, respectively if not specified
+#  27 May 2015 - M. Sulprizio- Renamed fullchem to tropchem
+#EOP
+#------------------------------------------------------------------------------
+#
+# !INPUTS:
+#
+   VERSION     : v10-01.tropchem
+   DESCRIPTION : To test GEOS-Chem tropchem simulations
+   CODE_DIR    : /home/{USER}/GC/Code.v10-01
+   DATA_ROOT   : /as/data/geos/ExtData
+   HEMCO_ROOT  : {DATAROOT}/HEMCO
+   RUN_ROOT    : /home/{USER}/UT/runs
+   RUN_DIR     : {RUNROOT}/{RUNDIR}
+   JOB_DIR     : /home/{USER}/UT/jobs
+   LOG_DIR     : /home/{USER}/UT/logs/{VERSION}
+   PERL_DIR    : /home/{USER}/UT/perl
+   VERBOSE     : 3
+   WARNINGS    : 3
+   COMPILER    : ifort
+   MAKE_CMD    : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
+   SUBMIT      : submit smp4
+   TEMPLATE    : {PERLDIR}/ut_template.html
+   WEB_GRID    : {LOGDIR}/{VERSION}.results.html
+   WEB_PUSH    : NONE
+#
+# !RUNS:
+#  Specify the debugging runs that you want to perform below.
+#  You can deactivate runs by commenting them out with "#".
+#
+#--------|-----------|------|------------|------------|--------------|--------|
+# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE     | EXTRA? |
+#--------|-----------|------|------------|------------|--------------|--------|
+  gcap     4x5         -      tropchem     2005070100   2005070101     -
+  geos4    4x5         -      tropchem     2005070100   2005070101     -
+  geos5    4x5         -      tropchem     2005070100   2005070101     -
+  geos5    2x25        -      tropchem     2005070100   200507010030   -
+  geos5    05x0666     ch     tropchem     2005070100   200507010120   -
+  geos5    05x0666     na     tropchem     2006070100   200607010020   -
+  geosfp   4x5         -      tropchem     2013070100   2013070101     -
+  geosfp   025x03125   ch     tropchem     2013070100   201307010010   -
+  geosfp   025x03125   na     tropchem     2013070100   201307010010   -
+  merra    4x5         -      tropchem     2005070100   2005070101     -
+ !END OF RUNS:
+#EOP
+#------------------------------------------------------------------------------

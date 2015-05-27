@@ -379,7 +379,7 @@ sub makeHemcoCfg($$$$$$$) {
 # !CALLING SEQUENCE:
 # &makeHemcoCfg( "HEMCO_Config.template", 20130101, 000000,     
 #                "geosfp",                "4x5",    "-",      
-#                 "fullchem",             "3",      "3",  
+#                 "tropchem",             "3",      "3",  
 #                 "HEMCO_Config.rc" )
 #                 
 #
