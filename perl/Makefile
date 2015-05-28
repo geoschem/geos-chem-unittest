@@ -57,6 +57,7 @@
 #  26 May 2015 - R. Yantosca - Add ./ to executable to avoid bash errors
 #  26 May 2015 - R. Yantosca - Now define CHEM based on the simulation type
 #                              and pass it explicitly in build sequence
+#  28 May 2015 - R. Yantosca - Fixed bug in RUNID for nested grid simulations
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -224,6 +225,9 @@ endif
 # General run information
 TIMESTAMP    := $(shell date +"%Y/%m/%d %H:%M")	
 RUNID        :=$(MET)_$(GRID)_$(SIM)
+ifneq ($(NEST),n) 
+ RUNID       :=$(RUNID)_$(NEST)
+endif
 
 # Log files that will be written to the log directory
 LOG_COMP     :="$(RUN_DIR)/lastbuild"
