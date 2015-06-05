@@ -103,6 +103,7 @@
 #  21 May 2015 - R. Yantosca - Now use correct filenames for FINNv1
 #  26 May 2015 - M. Sulprizio- Add QFED2 entries from Christoph Keller and
 #                              QFED2 diurnal scale factors from Katie Travis
+#  05 Jun 2015 - R. Yantosca - Updated for the official GFED4 release data
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -719,12 +720,12 @@ Warnings:                    {WARNINGS}
 )))GFED3  
 
 (((GFED4
-111 GFED_WDL        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       WDL_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
-111 GFED_AGW        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       AGW_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
-111 GFED_DEF        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       DEF_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
-111 GFED_FOR        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       FOR_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
-111 GFED_PET        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       PET_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
-111 GFED_SAV        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       SAV_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
+111 GFED_TEMP       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_TEMP           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_AGRI       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_AGRI           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_DEFO       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_DEFO           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_BORF       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_BORF           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_PEAT       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_PEAT           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_SAVA       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_SAVA           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
 )))GFED4
 
 (((GFED_daily
