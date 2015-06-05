@@ -58,6 +58,7 @@
 #  26 May 2015 - R. Yantosca - Now define CHEM based on the simulation type
 #                              and pass it explicitly in build sequence
 #  28 May 2015 - R. Yantosca - Fixed bug in RUNID for nested grid simulations
+#  05 Jun 2015 - R. Yantosca - Quick fix; set NEST=n if SIM=soa_svpoa.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -208,6 +209,7 @@ endif
 
 ifeq ($(SIM),soa_svpoa)
  CHEM        :=SOA
+ NEST        :=n
 endif
 
 ifeq ($(SIM),tropchem)
