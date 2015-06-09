@@ -366,7 +366,7 @@ mprun:
 dataclean: 
 	rm -f HEMCO_diagnostics*
 	rm -f $(HMCO_RST)
-	rm -f HEMCO_restart.*
+	rm HEMCO_restart.*
 	rm -f trac_rst*
 	rm -f trac_avg*
 	rm -f diaginfo.dat tracerinfo.dat
@@ -395,12 +395,12 @@ logclean:
 splogclean:
 	rm -f $(LOG_SP)
 	rm -f $(LOG_HMCO).sp
-        rm -f geos.sp.*
+	rm -f geos.sp.*
 
 mplogclean:
 	rm -f $(LOG_MP)
 	rm -f $(LOG_HMCO).mp
-        rm -f geos.mp.*
+	rm -f geos.mp.*
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Remove Executables     %
