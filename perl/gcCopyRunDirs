@@ -447,7 +447,7 @@ sub doCopyDirs($$) {
 
 	    # Set permissions for HEMCO restart file to read-only
             # to prevent deletion when cleaning up directory
-	    $cmd = "chmod 444 $copyDir/HEMCO_restart.*";
+	    $cmd = "[ -f HEMCO_restart* ] && chmod 444 $copyDir/HEMCO_restart.*";
 	    qx/$cmd/;
 
           }
