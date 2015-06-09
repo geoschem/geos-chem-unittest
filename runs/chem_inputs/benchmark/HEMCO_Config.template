@@ -102,6 +102,7 @@
 #  26 May 2015 - R. Yantosca - Remove entries for PARANOX suncos variables
 #  26 May 2015 - M. Sulprizio- Add QFED2 entries from Christoph Keller and
 #                              QFED2 diurnal scale factors from Katie Travis
+#  05 Jun 2015 - R. Yantosca - Updated for the official GFED4 release data
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -1141,24 +1142,24 @@ Warnings:                    {WARNINGS}
 # --- QFED2 biomass burning ---
 #==============================================================================
 (((QFED2
-0 QFED_ACET  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_acet.005.$YYYY$MM$DD.nc4 biomass $YYYY/$MM/$DD/0 C xy kg/m2/s ACET 75    3 2 
-0 QFED_ALD2  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_ald2.005.$YYYY$MM$DD.nc4 biomass $YYYY/$MM/$DD/0 C xy kg/m2/s ALD2 75    3 2 
-0 QFED_ALK4  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_alk4.005.$YYYY$MM$DD.nc4 biomass $YYYY/$MM/$DD/0 C xy kg/m2/s ALK4 75    3 2 
-0 QFED_BCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_bc.005.$YYYY$MM$DD.nc4   biomass $YYYY/$MM/$DD/0 C xy kg/m2/s BCPI 70/75 3 2 
-0 QFED_BCPO  -                                                                 -       -               - -  -       BCPO 71/75 3 2 
-0 QFED_OCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_oc.005.$YYYY$MM$DD.nc4   biomass $YYYY/$MM/$DD/0 C xy kg/m2/s OCPI 72/75 3 2 
-0 QFED_OCPO  -                                                                 -       -               - -  -       OCPO 73/75 3 2 
-0 QFED_C2H6  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_c2h6.005.$YYYY$MM$DD.nc4 biomass $YYYY/$MM/$DD/0 C xy kg/m2/s C2H6 75    3 2 
-0 QFED_C3H8  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_c3h8.005.$YYYY$MM$DD.nc4 biomass $YYYY/$MM/$DD/0 C xy kg/m2/s C3H8 75    3 2 
-0 QFED_CH2O  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_ch2o.005.$YYYY$MM$DD.nc4 biomass $YYYY/$MM/$DD/0 C xy kg/m2/s CH2O 75    3 2 
-0 QFED_CH4   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_ch4.005.$YYYY$MM$DD.nc4  biomass $YYYY/$MM/$DD/0 C xy kg/m2/s CH4  75    3 2 
-0 QFED_CO    $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_co.005.$YYYY$MM$DD.nc4   biomass $YYYY/$MM/$DD/0 C xy kg/m2/s CO   54/75 3 2 
-0 QFED_CO2   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_co2.005.$YYYY$MM$DD.nc4  biomass $YYYY/$MM/$DD/0 C xy kg/m2/s CO2  75    3 2 
-0 QFED_MEK   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_mek.005.$YYYY$MM$DD.nc4  biomass $YYYY/$MM/$DD/0 C xy kg/m2/s MEK  75    3 2 
-0 QFED_NH3   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_nh3.005.$YYYY$MM$DD.nc4  biomass $YYYY/$MM/$DD/0 C xy kg/m2/s NH3  75    3 2 
-0 QFED_NO    $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_no.005.$YYYY$MM$DD.nc4   biomass $YYYY/$MM/$DD/0 C xy kg/m2/s NO   75    3 2 
-0 QFED_SO2   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_so2.005.$YYYY$MM$DD.nc4  biomass $YYYY/$MM/$DD/0 C xy kg/m2/s SO2  75    3 2 
-0 QFED_C3H6  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_c3h6.005.$YYYY$MM$DD.nc4 biomass $YYYY/$MM/$DD/0 C xy kg/m2/s PRPE 75    3 2 
+0 QFED_ACET  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_acet.005.$YYYY$MM$DD.nc4 biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s ACET 75    3 2 
+0 QFED_ALD2  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_ald2.005.$YYYY$MM$DD.nc4 biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s ALD2 75    3 2 
+0 QFED_ALK4  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_alk4.005.$YYYY$MM$DD.nc4 biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s ALK4 75    3 2 
+0 QFED_BCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_bc.005.$YYYY$MM$DD.nc4   biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s BCPI 70/75 3 2 
+0 QFED_BCPO  -                                                                 -       -                     - -  -       BCPO 71/75 3 2 
+0 QFED_OCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_oc.005.$YYYY$MM$DD.nc4   biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s OCPI 72/75 3 2 
+0 QFED_OCPO  -                                                                 -       -                     - -  -       OCPO 73/75 3 2 
+0 QFED_C2H6  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_c2h6.005.$YYYY$MM$DD.nc4 biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s C2H6 75    3 2 
+0 QFED_C3H8  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_c3h8.005.$YYYY$MM$DD.nc4 biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s C3H8 75    3 2 
+0 QFED_CH2O  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_ch2o.005.$YYYY$MM$DD.nc4 biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s CH2O 75    3 2 
+0 QFED_CH4   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_ch4.005.$YYYY$MM$DD.nc4  biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s CH4  75    3 2 
+0 QFED_CO    $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_co.005.$YYYY$MM$DD.nc4   biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s CO   54/75 3 2 
+0 QFED_CO2   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_co2.005.$YYYY$MM$DD.nc4  biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s CO2  75    3 2 
+0 QFED_MEK   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_mek.005.$YYYY$MM$DD.nc4  biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s MEK  75    3 2 
+0 QFED_NH3   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_nh3.005.$YYYY$MM$DD.nc4  biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s NH3  75    3 2 
+0 QFED_NO    $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_no.005.$YYYY$MM$DD.nc4   biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s NO   75    3 2 
+0 QFED_SO2   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_so2.005.$YYYY$MM$DD.nc4  biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s SO2  75    3 2 
+0 QFED_C3H6  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_c3h6.005.$YYYY$MM$DD.nc4 biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s PRPE 75    3 2 
 )))QFED2
 
 ###############################################################################
@@ -1305,12 +1306,12 @@ Warnings:                    {WARNINGS}
 )))GFED3  
 
 (((GFED4
-111 GFED_WDL        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       WDL_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
-111 GFED_AGW        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       AGW_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
-111 GFED_DEF        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       DEF_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
-111 GFED_FOR        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       FOR_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
-111 GFED_PET        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       PET_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
-111 GFED_SAV        $ROOT/GFED4/v2015-03/GFED4_gen.025x025.$YYYY.nc       SAV_DM            2000-2013/1-12/01/0    C xy kg/m2/s   * - 1 1
+111 GFED_TEMP       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_TEMP           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_AGRI       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_AGRI           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_DEFO       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_DEFO           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_BORF       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_BORF           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_PEAT       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_PEAT           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_SAVA       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_SAVA           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
 )))GFED4
 
 (((GFED_daily
