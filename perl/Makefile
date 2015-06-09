@@ -59,6 +59,7 @@
 #                              and pass it explicitly in build sequence
 #  28 May 2015 - R. Yantosca - Fixed bug in RUNID for nested grid simulations
 #  05 Jun 2015 - R. Yantosca - Quick fix; set NEST=n if SIM=soa_svpoa.
+#  09 Jun 2015 - E. Lundgren - Include HEMCO_restart* and geos.mp.* in cleans
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -365,8 +366,7 @@ mprun:
 dataclean: 
 	rm -f HEMCO_diagnostics*
 	rm -f $(HMCO_RST)
-	rm -f HEMCO_restart*.sp
-	rm -f HEMCO_restart*.mp
+	rm -f HEMCO_restart.*
 	rm -f trac_rst*
 	rm -f trac_avg*
 	rm -f diaginfo.dat tracerinfo.dat
@@ -395,10 +395,12 @@ logclean:
 splogclean:
 	rm -f $(LOG_SP)
 	rm -f $(LOG_HMCO).sp
+        rm -f geos.sp.*
 
 mplogclean:
 	rm -f $(LOG_MP)
 	rm -f $(LOG_HMCO).mp
+        rm -f geos.mp.*
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Remove Executables     %
