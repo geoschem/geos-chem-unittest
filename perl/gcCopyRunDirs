@@ -425,7 +425,7 @@ sub doCopyDirs($$) {
 	    $cmd .= " $copyDir/HEMCO_Config.template";
 	    $cmd .= " $copyDir/trac_avg.*";
 	    $cmd .= " $copyDir/trac_rst.*";
-	    $cmd .= " $copyDir/HEMCO_RESTART.*";
+	    $cmd .= " $copyDir/lastbuild*";
 	    $cmd .= " $copyDir/geos.*";
       	    qx/$cmd/;
 
