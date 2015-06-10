@@ -54,6 +54,7 @@
 #  21 Apr 2015 - R. Yantosca - Now make section endings more visible
 #  19 May 2015 - R. Yantosca - Now use tokens for VERBOSE, WARNINGS
 #  05 Jun 2015 - R. Yantosca - Updated for the official GFED4 release data
+#  10 Jun 2015 - R. Yantosca - Bug fix: add Streets HgP into HgP tracer
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -139,7 +140,7 @@ Warnings:                    {WARNINGS}
 (((STREETS
 0 STREETS_HG0 $ROOT/MERCURY/v2014-09/STREETS/GEIA_Streets_PRESENT_geos.1x1.nc Hg0 2006/1/1/0 C xy kg/m2/s Hg0 - 1 1
 0 STREETS_HG2 $ROOT/MERCURY/v2014-09/STREETS/GEIA_Streets_PRESENT_geos.1x1.nc Hg2 2006/1/1/0 C xy kg/m2/s Hg2 - 1 1
-0 STREETS_HGP $ROOT/MERCURY/v2014-09/STREETS/GEIA_Streets_PRESENT_geos.1x1.nc HgP 2006/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 STREETS_HGP $ROOT/MERCURY/v2014-09/STREETS/GEIA_Streets_PRESENT_geos.1x1.nc HgP 2006/1/1/0 C xy kg/m2/s HgP - 1 1
 )))STREETS
 
 #==============================================================================
@@ -150,7 +151,7 @@ Warnings:                    {WARNINGS}
 (((NEI2005
 0 NEI2005_HG0 $ROOT/MERCURY/v2014-09/NEI2005/NEI2005.geos5.4x5.nc Hg0 2005/1/1/0 C xy kg/m2/s Hg0 1004 1 2
 0 NEI2005_HG2 $ROOT/MERCURY/v2014-09/NEI2005/NEI2005.geos5.4x5.nc Hg2 2005/1/1/0 C xy kg/m2/s Hg2 1004 1 2
-0 NEI2005_HGP $ROOT/MERCURY/v2014-09/NEI2005/NEI2005.geos5.4x5.nc HgP 2005/1/1/0 C xy kg/m2/s Hg2 1004 1 2
+0 NEI2005_HGP $ROOT/MERCURY/v2014-09/NEI2005/NEI2005.geos5.4x5.nc HgP 2005/1/1/0 C xy kg/m2/s HgP 1004 1 2
 )))NEI2005
 
 #==============================================================================
