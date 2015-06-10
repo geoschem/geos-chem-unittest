@@ -365,8 +365,9 @@ mprun:
 
 dataclean: 
 	rm -f HEMCO_diagnostics*
-	rm -f $(HMCO_RST)
-	rm HEMCO_restart.*
+	if [ -f HEMCO_restart.$(START).nc ]; then mv -f HEMCO_restart.$(START).nc HC.nc; fi;
+	rm -f HEMCO_restart.*;
+	if [ -f HC.nc ]; then mv -f HC.nc HEMCO_restart.$(START).nc; fi;
 	rm -f trac_rst*
 	rm -f trac_avg*
 	rm -f diaginfo.dat tracerinfo.dat
@@ -380,7 +381,7 @@ spdataclean:
 mpdataclean:
 	rm -f $(TRAC_AVG)*.mp
 	rm -f $(TRAC_RST)*.mp
-	rm -f HEMCO_restart.*.mp
+	rm -f HEMCO_restart*.mp
 	rm -f diaginfo.dat tracerinfo.dat
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
