@@ -427,6 +427,8 @@ sub doCopyDirs($$) {
 	    $cmd .= " $copyDir/trac_rst.*";
 	    $cmd .= " $copyDir/lastbuild*";
 	    $cmd .= " $copyDir/geos.*";
+            $cmd .= " $copyDir/smv2.log";
+	    $cmd .= " $copyDir/ox.mass.*";
       	    qx/$cmd/;
 
             # Copy perl/Makefile to copied run directory
