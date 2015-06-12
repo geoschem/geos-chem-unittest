@@ -370,6 +370,7 @@ dataclean:
 	if [ -f HC.nc ]; then mv -f HC.nc HEMCO_restart.$(START).nc; fi;
 	rm -f trac_rst*
 	rm -f trac_avg*
+	rm -f os.mass.*
 	rm -f diaginfo.dat tracerinfo.dat
 
 spdataclean:
@@ -392,15 +393,18 @@ logclean:
 	@$(MAKE) splogclean 
 	@$(MAKE) mplogclean
 	rm -f $(LOG_HMCO)
+	rm -f *.log
 
 splogclean:
 	rm -f $(LOG_SP)
 	rm -f $(LOG_HMCO).sp
+	rm -f smv2.log
 	rm -f geos.sp.*
 
 mplogclean:
 	rm -f $(LOG_MP)
 	rm -f $(LOG_HMCO).mp
+	rm -f smv2.log
 	rm -f geos.mp.*
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
