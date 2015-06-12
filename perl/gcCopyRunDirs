@@ -420,15 +420,17 @@ sub doCopyDirs($$) {
 	    # Make the input.geos and HEMCO_Config.rc file from templates
 	    &makeInputs( $start, $end,  $copyDir, $met, $grid, $nest, $sim );
 
-	    # Remove the several unnecessary files from the copied run dir
+	    # Remove the output files from the copied run dir
 	    $cmd =  "rm -f $copyDir/input.geos.template";
 	    $cmd .= " $copyDir/HEMCO_Config.template";
 	    $cmd .= " $copyDir/trac_avg.*";
 	    $cmd .= " $copyDir/trac_rst.*";
 	    $cmd .= " $copyDir/lastbuild*";
 	    $cmd .= " $copyDir/geos.*";
-            $cmd .= " $copyDir/smv2.log";
 	    $cmd .= " $copyDir/ox.mass.*";
+            $cmd .= " $copyDir/*.log";
+	    $cmd .= " $copyDir/*.mp";
+	    $cmd .= " $copyDir/*.sp";
       	    qx/$cmd/;
 
             # Copy perl/Makefile to copied run directory
