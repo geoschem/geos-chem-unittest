@@ -109,6 +109,7 @@
 #                              QFED2 diurnal scale factors from Katie Travis
 #  05 Jun 2015 - R. Yantosca - Updated for the official GFED4 release data
 #  16 Jun 2015 - M. Sulprizio- Add logical switch for HEMCO restart file
+#  16 Jun 2015 - R. Yantosca - Change units of UV albedo to "percent"
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -1373,7 +1374,7 @@ Warnings:                    {WARNINGS}
 # --- UV albedo, for photolysis (cf Hermann & Celarier, 1997) ---
 #==============================================================================
 (((+UValbedo+
-* UV_ALBEDO $ROOT/UVALBEDO/v2015-03/uvalbedo.geos.2x25.nc UVALBD 1985/1-12/1/0 C xy 1 * - 1 1
+* UV_ALBEDO $ROOT/UVALBEDO/v2015-03/uvalbedo.geos.2x25.nc UVALBD 1985/1-12/1/0 C xy percent * - 1 1
 )))+UValbedo+
 
 #==============================================================================
