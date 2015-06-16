@@ -427,7 +427,7 @@ sub doCopyDirs($$) {
 	    $cmd .= " $copyDir/trac_rst.*";
 	    $cmd .= " $copyDir/lastbuild*";
 	    $cmd .= " $copyDir/geos.*";
-	    $cmd .= " $copyDir/ox.mass.*";
+	    $cmd .= " $copyDir/Ox.mass.*";
             $cmd .= " $copyDir/*.log";
 	    $cmd .= " $copyDir/*.mp";
 	    $cmd .= " $copyDir/*.sp";

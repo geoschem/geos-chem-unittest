@@ -103,6 +103,7 @@
 #  26 May 2015 - M. Sulprizio- Add QFED2 entries from Christoph Keller and
 #                              QFED2 diurnal scale factors from Katie Travis
 #  05 Jun 2015 - R. Yantosca - Updated for the official GFED4 release data
+#  16 Jun 2015 - M. Sulprizio- Add logical switch for HEMCO restart file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -163,6 +164,7 @@ Warnings:                    {WARNINGS}
 ###############################################################################
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
+    --> HEMCO_RESTART     :       true
     --> AEIC              :       true
     --> BIOFUEL           :       true
     --> BOND              :       true
@@ -1190,10 +1192,12 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- SOILNOX emissions (Extension 104) ---
 #==============================================================================
+(((HEMCO_RESTART
 104 PFACTOR         ./HEMCO_restart.$YYYY$MM$DD$HH00.nc                           PFACTOR       $YYYY/$MM/$DD/$HH E xy 1     NO - 1 1
 104 DRYPERIOD       ./HEMCO_restart.$YYYY$MM$DD$HH00.nc                           DRYPERIOD     $YYYY/$MM/$DD/$HH E xy 1     NO - 1 1
 104 GWET_PREV       ./HEMCO_restart.$YYYY$MM$DD$HH00.nc                           GWET_PREV     $YYYY/$MM/$DD/$HH E xy 1     NO - 1 1
 104 DEP_RESERVOIR   ./HEMCO_restart.$YYYY$MM$DD$HH00.nc                           DEP_RESERVOIR $YYYY/$MM/$DD/$HH E xy kg/m3 NO - 1 1
+)))HEMCO_RESTART
 104 SOILNOX_FERT    $ROOT/SOILNOX/v2014-07/soilNOx.fert_res.generic.05x05.nc      FERT          2000/1-12/1-31/0  C xy kg/m3 NO - 1 1
 104 SOILNOX_LANDK1  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K01  2000/1/1/0        C xy 1     NO - 1 1
 104 SOILNOX_LANDK2  $ROOT/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc LANDFRAC_K02  2000/1/1/0        C xy 1     NO - 1 1
@@ -1258,11 +1262,13 @@ Warnings:                    {WARNINGS}
 # We don't need to read EF maps for acetone, a-pinene or myrcene. We now
 # compute those values in the MEGAN extension.
 #==============================================================================
+(((HEMCO_RESTART
 108  T_DAVG                       ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          T_DAVG                  $YYYY/$MM/$DD/$HH E xy K        * - 1 1
 108  T_PREVDAY                    ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          T_PREVDAY               $YYYY/$MM/$DD/$HH E xy K        * - 1 1
 108  LAI_PREVDAY                  ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          LAI_PREVDAY             $YYYY/$MM/$DD/$HH E xy 1        * - 1 1
 108  PARDR_DAVG                   ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          PARDR_DAVG              $YYYY/$MM/$DD/$HH E xy W/m2     * - 1 1
 108  PARDF_DAVG                   ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          PARDF_DAVG              $YYYY/$MM/$DD/$HH E xy W/m2     * - 1 1
+)))HEMCO_RESTART
 108  MEGAN_AEF_ISOP               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_ISOPRENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
 109  MEGAN_AEF_MBOX               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_MBO                 1985/1/1/0        C xy kgC/m2/s * - 1 1
 #109 MEGAN_AEF_APIN               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_ALPHA_PINENE        1985/1/1/0        C xy kgC/m2/s * - 1 1
@@ -1378,7 +1384,9 @@ Warnings:                    {WARNINGS}
 # --- PSC state, only needed for UCX ---
 #==============================================================================
 (((+STATE_PSC+
+(((HEMCO_RESTART
 * STATE_PSC  ./HEMCO_restart.$YYYY$MM$DD$HH00.nc STATE_PSC $YYYY/$MM/$DD/$HH E xyz count * - 1 1
+)))HEMCO_RESTART
 )))+STATE_PSC+
 
 #==============================================================================
