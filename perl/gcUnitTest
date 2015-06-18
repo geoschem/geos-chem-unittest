@@ -275,6 +275,7 @@ sub doUnitTest($$) {
 #                              now use UT/perl/Makefile for unit testing.
 #  19 May 2015 - R. Yantosca - Now look for VERBOSE, WARNINGS in input file
 #  18 Jun 2015 - M. Sulprizio- Now use home directory for file paths
+#  18 Jun 2015 - R. Yantosca - Use mkdir -p instead of mkdirhier
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -365,7 +366,12 @@ sub doUnitTest($$) {
       # So that we can keep several log files simultaneously
       $LOG_DIR =~ s/{VERSION}/$VERSION/g;
       $LOG_DIR =~ s/{HOME}/$home/g;
-      if ( !( -f $LOG_DIR ) ) { qx( mkdirhier $LOG_DIR ); }
+#-----------------------------------------------------------------------------
+# Prior to 6/18/15:
+# On some systems, mkdirhier doesn't exist; use mkdir -p instead (bmy, 6/18/15)
+#      if ( !( -f $LOG_DIR ) ) { qx( mkdirhier $LOG_DIR ); }
+#-----------------------------------------------------------------------------
+      if ( !( -f $LOG_DIR ) ) { qx( mkdir -p $LOG_DIR ); }
 
       # Replace directory tokens in a few more variables
       $CODE_DIR   =~ s/{HOME}/$home/g;

@@ -229,6 +229,7 @@ sub doCopyDirs($$) {
 #  09 Jun 2015 - E. Lundgren - Now copy HEMCO restart file as read-only to
 #                              avoid deletion when calling make dataclean
 #  18 Jun 2015 - M. Sulprizio- Now use home directory for file paths
+#  18 Jun 2015 - R. Yantosca - Use mkdir -p instead of mkdirhier
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -322,7 +323,13 @@ sub doCopyDirs($$) {
       # Create $COPY_PATH if it doesn't exist
       if ( !( -d $COPY_PATH ) ) { 
 	print "\%\%\% Creating $COPY_PATH\n";
-        qx( mkdirhier $COPY_PATH ); 
+#-----------------------------------------------------------------------------
+# Prior to 6/18/15:
+# On some systems mkdirhier doesn't exist; use mkdir -p instead. (bmy, 6/18/15)
+#        qx( mkdirhier $COPY_PATH ); 
+#-----------------------------------------------------------------------------
+        qx( mkdir -p $COPY_PATH ); 
+
       }
 
       # Skip over comment lines
