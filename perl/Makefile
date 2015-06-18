@@ -73,19 +73,19 @@ SHELL        :=/bin/bash
 #####                                                                     #####
 ###############################################################################
 
+# GEOS-Chem run log filename prefix
+ifndef VERSION
+ VERSION     :=v11-01
+endif
+
 # Source code location
 ifndef CODE_DIR
- CODE_DIR    :=$(HOME)/GC/Code.v10-01
+ CODE_DIR    :=$(HOME)/GC/Code.$(VERSION)
 endif
 
 # Output log file destination (default is run directory) 
 ifndef LOG_DIR 
  LOG_DIR     :=.
-endif
-
-# GEOS-Chem run log filename prefix
-ifndef VERSION
- VERSION     :=v10-01
 endif
 
 ###############################################################################
