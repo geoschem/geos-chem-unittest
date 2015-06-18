@@ -31,12 +31,12 @@
 #
    VERSION     : v10-01
    DESCRIPTION : Create run directory from UnitTest
-   COPY_PATH   : /home/{USER}/GC/rundirs
+   COPY_PATH   : {HOME}/GC/rundirs
    DATA_ROOT   : /as/data/geos/ExtData
    HEMCO_ROOT  : {DATAROOT}/HEMCO
-   RUN_ROOT    : /home/{USER}/UT/runs
+   RUN_ROOT    : {HOME}/UT/runs
    RUN_DIR     : {RUNROOT}/{RUNDIR}
-   PERL_DIR    : /home/{USER}/UT/perl
+   PERL_DIR    : {HOME}/UT/perl
    COPY_CMD    : cp -rfL
    VERBOSE     : 0
    WARNINGS    : 1

@@ -39,6 +39,7 @@
 #  16 Apr 2015 - M. Sulprizio- Initial version
 #  21 May 2015 - R. Yantosca - Added VERBOSE and WARNINGS.  These default to
 #                              3, 3, respectively if not specified
+#  18 Jun 2015 - M. Sulprizio- Now use HOME token to specify file paths
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -46,14 +47,14 @@
 #
    VERSION     : v10-01.CO2
    DESCRIPTION : To test CO2 simulation in GEOS-Chem
-   CODE_DIR    : /home/{USER}/GC/Code.v10-01
+   CODE_DIR    : {HOME}/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos/ExtData
    HEMCO_ROOT  : {DATAROOT}/HEMCO
-   RUN_ROOT    : /home/{USER}/UT/runs
+   RUN_ROOT    : {HOME}/UT/runs
    RUN_DIR     : {RUNROOT}/{RUNDIR}
-   JOB_DIR     : /home/{USER}/UT/jobs
-   LOG_DIR     : /home/{USER}/UT/logs/{VERSION}
-   PERL_DIR    : /home/{USER}/UT/perl
+   JOB_DIR     : {HOME}/UT/jobs
+   LOG_DIR     : {HOME}/UT/logs/{VERSION}
+   PERL_DIR    : {HOME}/UT/perl
    VERBOSE     : 3
    WARNINGS    : 3
    COMPILER    : ifort

@@ -75,7 +75,7 @@ SHELL        :=/bin/bash
 
 # Source code location
 ifndef CODE_DIR
- CODE_DIR    :=/home/$(USER)/GC/Code.v10-01
+ CODE_DIR    :=$(HOME)/GC/Code.v10-01
 endif
 
 # Output log file destination (default is run directory) 

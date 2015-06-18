@@ -50,6 +50,7 @@
 #  19 Mar 2015 - R. Yantosca - Hg simulations should use 2005 (except GEOS-FP)
 #  21 May 2015 - R. Yantosca - Added VERBOSE and WARNINGS.  These default to
 #                              3, 3, respectively if not specified
+#  18 Jun 2015 - M. Sulprizio- Now use HOME token to specify file paths
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -57,14 +58,14 @@
 #
    VERSION     : v10-01.merra
    DESCRIPTION : Tests MERRA simulations in GEOS-Chem
-   CODE_DIR    : /home/{USER}/GC/Code.v10-01
+   CODE_DIR    : {HOME}/GC/Code.v10-01
    DATA_ROOT   : /as/data/geos/ExtData
    HEMCO_ROOT  : {DATAROOT}/HEMCO
-   RUN_ROOT    : /home/{USER}/UT/runs
+   RUN_ROOT    : {HOME}/UT/runs
    RUN_DIR     : {RUNROOT}/{RUNDIR}
-   JOB_DIR     : /home/{USER}/UT/jobs
-   LOG_DIR     : /home/{USER}/UT/logs/{VERSION}
-   PERL_DIR    : /home/{USER}/UT/perl
+   JOB_DIR     : {HOME}/UT/jobs
+   LOG_DIR     : {HOME}/UT/logs/{VERSION}
+   PERL_DIR    : {HOME}/UT/perl
    VERBOSE     : 3
    WARNINGS    : 3
    COMPILER    : ifort
@@ -73,13 +74,6 @@
    TEMPLATE    : {PERLDIR}/ut_template.html
    WEB_GRID    : {LOGDIR}/{VERSION}.results.html
    WEB_PUSH    : NONE
-#
-# These attributes will be used if you are using the gcCopyRunDirs script
-# to create run directories for GEOS-Chem simulations.  They are not needed
-# to submit GEOS-Chem unit tests and will be ignored by gcUnitTest.
-#
-   COPY_CMD    : cp -rfL
-   COPY_PATH   : /as/scratch/{USER}/TEST
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.

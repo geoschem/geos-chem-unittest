@@ -63,13 +63,14 @@ sub getDirs($) {
 #  26 Aug 2013 - R. Yantosca - Initial version
 #  24 Mar 2014 - R. Yantosca - Now use $RUN_ROOT to get the root run dir
 #  13 Mar 2015 - M. Sulprizio- Now get username for file paths
+#  18 Jun 2015 - M. Sulprizio- Now use home directory for file paths
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 #
 # !LOCAL VARIABLES:
 #
-  my $user = "";
+  my $home = "";
   my @txt  = ();
 
   # Read data from input file
@@ -77,8 +78,8 @@ sub getDirs($) {
   chomp( @txt = <I> );
   close( I );
 
-  # Get username
-  $user= getpwuid($<);
+  # Get home directory
+  $home = $ENV{"HOME"};
 
   # Parse each line until we find the log directory
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
@@ -88,9 +89,9 @@ sub getDirs($) {
   }
 
   # Replace directory tokens
-  $jobDir =~ s/{USER}/$user/g;
-  $logDir =~ s/{USER}/$user/g;
-  $runDir =~ s/{USER}/$user/g;
+  $jobDir =~ s/{HOME}/$home/g;
+  $logDir =~ s/{HOME}/$home/g;
+  $runDir =~ s/{HOME}/$home/g;
 
   # Only get the root part of the run & log directories
 #  $runDir =~ s/{RUNDIR}//g;

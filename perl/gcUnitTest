@@ -274,6 +274,7 @@ sub doUnitTest($$) {
 #  10 Apr 2015 - E. Lundgren - Remove MET and GRID from make command and
 #                              now use UT/perl/Makefile for unit testing.
 #  19 May 2015 - R. Yantosca - Now look for VERBOSE, WARNINGS in input file
+#  18 Jun 2015 - M. Sulprizio- Now use home directory for file paths
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -300,7 +301,7 @@ sub doUnitTest($$) {
   my $stdout  = "";
   my $start   = "";
   my $locTime = "";
-  my $user    = "";
+  my $home    = "";
 
   # Arrays
   my @cmds    = ();
@@ -315,8 +316,8 @@ sub doUnitTest($$) {
   chomp( @txt = <I> );
   close( I );
 
-  # Get username
-  $user= getpwuid($<);
+  # Get home directory
+  $home = $ENV{"HOME"};
 
   # Loop thru each line in the file; parse information into global variables
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
@@ -363,14 +364,14 @@ sub doUnitTest($$) {
       # Append the version tag to the log directory
       # So that we can keep several log files simultaneously
       $LOG_DIR =~ s/{VERSION}/$VERSION/g;
-      $LOG_DIR =~ s/{USER}/$user/g;
+      $LOG_DIR =~ s/{HOME}/$home/g;
       if ( !( -f $LOG_DIR ) ) { qx( mkdirhier $LOG_DIR ); }
 
       # Replace directory tokens in a few more variables
-      $CODE_DIR   =~ s/{USER}/$user/g;
-      $RUN_ROOT   =~ s/{USER}/$user/g;
-      $JOB_DIR    =~ s/{USER}/$user/g;
-      $PERL_DIR   =~ s/{USER}/$user/g;
+      $CODE_DIR   =~ s/{HOME}/$home/g;
+      $RUN_ROOT   =~ s/{HOME}/$home/g;
+      $JOB_DIR    =~ s/{HOME}/$home/g;
+      $PERL_DIR   =~ s/{HOME}/$home/g;
       $TEMPLATE   =~ s/{PERLDIR}/$PERL_DIR/g;
       $WEB_GRID   =~ s/{VERSION}/$VERSION/g;
       $WEB_GRID   =~ s/{LOGDIR}/$LOG_DIR/g;

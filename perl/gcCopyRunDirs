@@ -228,6 +228,7 @@ sub doCopyDirs($$) {
 #  19 May 2015 - R. Yantosca - Now look for VERBOSE, WARNINGS in input file
 #  09 Jun 2015 - E. Lundgren - Now copy HEMCO restart file as read-only to
 #                              avoid deletion when calling make dataclean
+#  18 Jun 2015 - M. Sulprizio- Now use home directory for file paths
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -246,7 +247,7 @@ sub doCopyDirs($$) {
   my $runDir  = "";
   my $sim     = "";
   my $start   = "";
-  my $user    = "";
+  my $home    = "";
 
   # Arrays
   my @txt     = ();
@@ -260,8 +261,8 @@ sub doCopyDirs($$) {
   chomp( @txt = <I> );
   close( I );
 
-  # Get username
-  $user= getpwuid($<);
+  # Get home directory
+  $home = $ENV{"HOME"};
 
   # Loop thru each line in the file; parse information into global variables
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
@@ -300,10 +301,10 @@ sub doCopyDirs($$) {
     elsif ( $txt[$i] =~ "!RUNS"     ) {
 
       # Replace tokens in a few more variables
-      $COPY_PATH  =~ s/{USER}/$user/g;
-      $RUN_ROOT   =~ s/{USER}/$user/g;
-      $JOB_DIR    =~ s/{USER}/$user/g;
-      $LOG_DIR    =~ s/{USER}/$user/g;
+      $COPY_PATH  =~ s/{HOME}/$home/g;
+      $RUN_ROOT   =~ s/{HOME}/$home/g;
+      $JOB_DIR    =~ s/{HOME}/$home/g;
+      $LOG_DIR    =~ s/{HOME}/$home/g;
       $LOG_DIR    =~ s/{VERSION}/$VERSION/g;
       $HEMCO_ROOT =~ s/{DATAROOT}/$DATA_ROOT/g;
       $RUN_DIR    =~ s/{RUNROOT}/$RUN_ROOT/g;
