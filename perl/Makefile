@@ -370,7 +370,7 @@ dataclean:
 	if [ -f HC.nc ]; then mv -f HC.nc HEMCO_restart.$(START).nc; fi;
 	rm -f trac_rst*
 	rm -f trac_avg*
-	rm -f os.mass.*
+	rm -f Ox.mass.*
 	rm -f diaginfo.dat tracerinfo.dat
 
 spdataclean:
