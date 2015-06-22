@@ -28,10 +28,14 @@ use Dates qw( &julDay &calDate );   # Get routines from Dates.pm
 #  &checkDir      : Ensures that a directory exists
 #  &cleanDir      : Removes files from a directory
 #  &fmtStr        : Pads a date string w/ leading zeroes if necessary
-#  &makeInputGeos : Creates a new input.geos file for each day of simulation
+#  &makeInputGeos : Creates a new input.geos file from a template file
 #  &parse         : Parses a line separated by ":" and returns the 2nd value
 #  &replaceDate   : Replaces YYYY, MM, DD tokens in a string w/ date values
-#
+#  &makeHemcoCfg  : Creates a new HEMCO_Config.rc from a template file
+#  &readResults   : Reads unit test results into a Perl hash
+#  &makeTxtMatrix : Summarizes unit test results into an text file
+#  &makeMatrix    : Summarizes unit test results into an HTML file
+# 
 # !CALLING SEQUENCE:
 #  use UtUtils qw( function-name1, function-name2, ... );
 #
@@ -43,6 +47,7 @@ use Dates qw( &julDay &calDate );   # Get routines from Dates.pm
 #  24 Mar 2014 - R. Yantosca - Add &readResults, &makeMatrix routines
 #  24 Mar 2014 - R. Yantosca - Update ProTeX headers
 #  27 Jun 2014 - R. Yantosca - Add &makeHemcoCfg routine
+#  22 Jun 2015 - R. Yantosca - Add &makeTxtMatrix routine; updated comments
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -66,7 +71,8 @@ BEGIN {
                    &parse
                    &replaceDate
                    &readResults
-                   &makeMatrix      ); 
+                   &makeMatrix      
+                   &makeTxtMatrix   ); 
 }
 #EOC
 #------------------------------------------------------------------------------
@@ -601,8 +607,8 @@ sub replaceDate($$) {
 #
 # !DESCRIPTION: Reads a results.log file from a set of unit test simulations
 #  and determines the color (red, green, yellow) that will be displayed in
-#  each slot of the unit test matrix web page.  Red = unsuccessful, 
-#  green = successful, yellow = needs further investigation.
+#  each slot of the unit test matrix web and text pages.  RED = unsuccessful, 
+#  GREEN = successful, YELLOW = needs further investigation.
 #\\
 #\\
 # !INTERFACE:
@@ -802,14 +808,17 @@ sub readResults($$) {
 #\\
 # !INTERFACE:
 #
-sub makeMatrix($$) {
+sub makeMatrix($$%) {
 #
 # !INPUT PARAMETERS:
 #
+  # $template  : Template HTML page for the unit test results matrix
+  # $webFile   : Output HTML page for unit test results that will be created 
+  # %unitTests : Hash contaning the unit test results (from &readResults)
   my ( $template, $webFile, %unitTests ) = @_;
 #
 # !CALLING SEQUENCE:
-#  &doUnitTest( $fileName );
+#  &makeMatrix( $template, $webFile, %unitTests );
 #
 # !REVISION HISTORY:
 #  21 Mar 2014 - R. Yantosca - Initial version
@@ -866,8 +875,92 @@ sub makeMatrix($$) {
   # Return normally
   return( $? );
 }
+#EOC
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: makeTxtMatrix
+#
+# !DESCRIPTION: Prints out a simple text file with the results of the
+#  unit tests as contained in the log file.  This can be useful if you are
+#  running the GEOS-Chem unit tests on a computational cluster where
+#  you cannot send the HTML file w/ results to a web server.
+#\\
+#\\
+# !INTERFACE:
+#
+sub makeTxtMatrix($%) {
+#
+# !INPUT PARAMETERS:
+#
+  # $txtFile   : Text file to contain summary of unit test results
+  # %unitTests : Hash contaning the unit test results (from &readResults)
+  my ( $txtFile, %unitTests ) = @_;
+#
+# !CALLING SEQUENCE:
+#  &makeMatrix( $txtFile, %unitTests );
+#
+# !REVISION HISTORY:
+#  21 Mar 2014 - R. Yantosca - Initial version, based on &makeMatrix
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Strings
+  my $utColor = "";
+  my $utName  = "";
 
+  # Scalars
+  my $padSpc  = 0;
 
+  #---------------------------------------------------------------------------
+  # makeMatrix begins here!
+  #---------------------------------------------------------------------------
+
+  # Open output file
+  open( O, ">$txtFile" ) or die "Cannot open $txtFile!\n";
+
+  # Write header line
+  print O "GEOS-Chem Unit Test             : RESULT\n"; # 
+  print O '-'x42 . "\n";
+
+  # Print out the results from each unit test
+  while ( ( $utName, $utColor ) = each( %unitTests ) ) { 
+
+    # Skip unit tests that weren't done
+    if ( !( $utName =~ m/UNIT_TEST/ ) ) { 
+      if ( !( $utColor =~ m/#FFFFFF/ ) ) {
+
+        # Replace HTML colors with descriptive names
+	$utColor =~ s/#FF0000/RED/g;
+	$utColor =~ s/#FFFF00/YELLOW/g;
+	$utColor =~ s/#00FF00/GREEN/g;
+
+	# Pad so that all results line up
+	$padSpc = 32 - length( $utName );
+
+	# Print the results to the text file
+	print O "$utName". ' 'x$padSpc, ": $utColor\n";
+      }
+    }
+  }	
+
+  # Close output file
+  close( O );
+
+  # Make the output file chmod 666 (read/write for everyone)
+  # This may be necessary for the website upload
+  chmod( 0664, $txtFile );
+
+  # Return normally
+  return( $? );
+}
+#EOC
+#------------------------------------------------------------------------------
 
 # End of module: Return true
 1;

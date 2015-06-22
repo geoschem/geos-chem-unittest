@@ -7,9 +7,9 @@
 #
 # !MODULE: gcUtWeb
 #
-# !DESCRIPTION: This perl script creates a web page containing a table
-#  with the results of GEOS-Chem unit test simulations.  It can also push
-#  the web page to a remote server (if necessary)
+# !DESCRIPTION: This perl script saves a table with the results of GEOS-Chem
+#  unit test simulations to a HTML file and/or a text file.  It can also push
+#  the HTML and/or text file to a web server if desired.
 #\\
 #\\
 # !USES:
@@ -19,7 +19,8 @@ use English;                         # Use English language
 use Carp;                            # Get detailed error messages
 use strict;                          # Use IMPLICIT-NONE style syntax
 use UtUtils qw( &readResults
-                &makeMatrix  );      # Get routines from UtUtils.pm
+                &makeTxtMatrix
+                &makeMatrix    );    # Get routines from UtUtils.pm
 #		
 # !PUBLIC MEMBER FUNCTIONS:
 #  &main()        : Driver routine for gcUnitTest
@@ -29,7 +30,7 @@ use UtUtils qw( &readResults
 #  &pushToWebSite : Pushes the web page to the web site
 #
 # !CALLING SEQUENCE:
-#  gcUtWeb RUNROOT RESULTS TEMPLATE WEBFILE WEBPUSH
+#  gcUtWeb RUNROOT RESULTS TXTFILE TEMPLATE WEBFILE WEBPUSH
 #
 # !REVISION HISTORY: 
 #  24 Mar 2014 - R. Yantosca - Initial version
@@ -42,25 +43,38 @@ use UtUtils qw( &readResults
 #
 # !IROUTINE: createWebGrid
 #
-# !DESCRIPTION: Program to 
+# !DESCRIPTION: Program to create the HTML page w/ unit test results from 
+#  the from the *.results.log file.  This lets us display results from 
+#  GEOS-Chem unit test simulations in a user-friendly graphical format.
+#                                                                             .
+#  An easy-to-read summary of unit test results will also be sent to a text 
+#  file, in case your computer system does not let you push to a web server.
 #\\
 #\\
 # !INTERFACE:
 #
-sub createWebGrid($$$$$) {
+sub createWebGrid($$$$$$) {
 #
 # !INPUT PARAMETERS:
 #
-  # $runRoot  : Root run directoyr
+  # $runRoot  : Root run directory
   # $results  : Log file w/ unit test results
-  # $template : File with the web page template in HTML
-  # $webFile  : Web page with unit test results (created from $template)
-  # $webPush  : Remote web server location where $webFile will go
-  my ( $runRoot, $results, $template, $webFile, $webPush ) = @_;
+  # $txtFile  : Text file to contain the summary of unit test results
+  # $template : HTML template file with replaceable tokens
+  # $webFile  : HTML file to contain the summary of unit test results
+  # $webPush  : Remote web server location where $txtFile, $webFile will go
+  my ( $runRoot, $results, $txtFile, $template, $webFile, $webPush ) = @_;
 #
 # !REVISION HISTORY:
 #  24 Mar 2014 - R. Yantosca - Initial version
 #  04 Apr 2014 - R. Yantosca - Added $webPush argument
+#  22 Jun 2015 - R. Yantosca - Added $txtFile argument
+#  22 Jun 2015 - R. Yantosca - Now also create a text-only summary of results
+#  22 Jun 2015 - R. Yantosca - We no longer die w/ error if the $template file
+#                              isn't found.  This will let you just create the
+#                              text only file.
+#  22 Jun 2015 - R. Yantosca - Skip creating the $txtFile or $webFile if these
+#                              are equal to NONE (or None or none etc.)
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -71,20 +85,24 @@ sub createWebGrid($$$$$) {
     exit(1);
   }
 
-  # Make sure we can find the template file
-  if ( !( -f $template ) ) { 
-    print "Cannot locate the $template file...exiting!\n";
-    exit(2);
-  }
-
-  # Read the results log file
+  # Read the results.log file and put the results in a hash
   my %unitTests = &readResults( $runRoot, $results );
 
-  # Create the output file
-  &makeMatrix( $template, $webFile, %unitTests );
+  # Create the text file thats ummarizes unit test results
+  # amd upload it to the remote server (if necessary)
+  if ( !( $txtFile =~ /^[Nn][Oo][Nn][Ee]/ ) ) {
+    &makeTxtMatrix( $txtFile, %unitTests );
+    if ( -f $txtFile ) { &pushToWebSite( $txtFile, $webPush ); }
+  }
 
-  # Upload web page to the remote server
-  if ( -f $webFile ) { &pushToWebSite( $webFile, $webPush ); }
+  # Create the HTML file that summarizes unit test output
+  # and upload it to the remote server (if necessary)
+  if ( !( $webFile =~ /^[Nn][Oo][Nn][Ee]/ ) ) {
+    if ( -f $template ) {
+      &makeMatrix( $template, $webFile, %unitTests );
+      if ( -f $webFile ) { &pushToWebSite( $webFile, $webPush ); }
+    }
+  }
 
   # Exit and pass status code back
   return( $? );
@@ -97,8 +115,9 @@ sub createWebGrid($$$$$) {
 #
 # !IROUTINE: pushToWebSite
 #
-# !DESCRIPTION: Pushes the web page w/ the unit test matrix to a remote
-#  server.  Exits quietly if there is no web page to push.
+# !DESCRIPTION: Pushes the HTML and/or text file containing the summary of
+#  unit test results to a remote server.  Exits quietly if there are no
+#  files to push.
 #\\
 #\\
 # !INTERFACE:
@@ -114,6 +133,7 @@ sub pushToWebSite($$) {
 # !REVISION HISTORY:
 #  24 Mar 2014 - R. Yantosca - Initial version
 #  13 May 2014 - R. Yantosca - Now use scp -q for quiet mode
+#  22 Jun 2015 - R. Yantosca - Now use regexp to test if we should web push
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -125,7 +145,7 @@ sub pushToWebSite($$) {
   }
 
   # If a remote location is specified, then push the web page to the server
-  if ( !( $webPush =~ m/NONE/ ) ) {
+  if ( !( $webPush =~ /^[Nn][Oo][Nn][Ee]/ ) ) {
     my $cmd    = "scp -q $webFile $webPush";
     my $result = qx( $cmd );
   }
@@ -153,14 +173,15 @@ sub main(@) {
 #
 # !REVISION HISTORY:
 #  24 Mar 2014 - R. Yantosca - Initial version
-#   4 Apr 2014 - R. Yantosca - Now accepts the WEBPUSH argument
+#  04 Apr 2014 - R. Yantosca - Now accepts the WEBPUSH argument
+#  22 Jun 2015 - R. Yantosca - Updated comments
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 
   # Return unless we are getting 4 arguments
-  if ( scalar( @ARGV ) != 5 ) { 
-    print "Usage: gcUtWeb RUNROOT RESULTS TEMPLATE WEBFILE WEBPUSH\n"; 
+  if ( scalar( @ARGV ) != 6 ) { 
+    print "Usage: gcUtWeb RUNROOT RESULTS TXTFILE TEMPLATE WEBFILE WEBPUSH\n"; 
     exit(1);
   }
 

@@ -23,8 +23,8 @@ use UtUtils qw( &baseName
                 &cleanDir
                 &makeHemcoCfg
                 &makeInputGeos
-                &parse         
-                &readResults       
+                &parse
+                &readResults
                 &makeMatrix     );
 #
 # !PUBLIC DATA MEMBERS:
@@ -43,7 +43,8 @@ our $RUN_DIR         = "";         # Unit Test run directory subdirectory
 # Files
 our $RESULTS         = "";         # Results.log file
 our $TEMPLATE        = "";         # Template web page
-our $WEB_GRID        = "";         # Web page w/ unit text matrix
+our $TXT_GRID        = "";         # Text file w/ unit test matrix
+our $WEB_GRID        = "";         # Web page w/ unit test matrix
 our $WEB_PUSH        = "NONE";     # Remote server for web page push
 
 # Options
@@ -64,7 +65,7 @@ our $SLURM_MEMPERCPU = "";         # SLURM: Memory per CPU (MB)
 our $SLURM_PARTITION = "";         # SLURM: Partition (aka queue) name
 our $SLURM_STDOUT    = "";         # SLURM: Stdout stream
 our $SLURM_STDERR    = "";         # SLURM: Stderr stream
-our $SLURM_MAILUSER  = "";         # SLURM: Email to send reports to
+our $SLURM_MAILUSER  = "";         # SLURM: Email address for updates
 #		
 # !PUBLIC MEMBER FUNCTIONS:
 #  &main()     : Driver routine for gcUnitTest
@@ -90,6 +91,8 @@ our $SLURM_MAILUSER  = "";         # SLURM: Email to send reports to
 #  28 Jul 2014 - R. Yantosca - End date/time can be YYYYMMDDhh or YYYYMMDDhhmm
 #  19 May 2015 - R. Yantosca - Now add VERBOSE and WARNINGS global variables
 #  19 Jun 2015 - R. Yantosca - Added optional SLURM tags
+#  22 Jun 2015 - R. Yantosca - Now write out unit test results to a text file
+#                              in case a web push is disallowed
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -449,27 +452,29 @@ sub doUnitTest($$) {
 						  &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "HEMCO_ROOT"      ) { $HEMCO_ROOT = 
 						  &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "JOB_DIR"         ) { $JOB_DIR   = 
+      elsif ( $txt[$i] =~ "JOB_DIR"         ) { $JOB_DIR = 
 						  &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "LOG_DIR"         ) { $LOG_DIR   = 
+      elsif ( $txt[$i] =~ "LOG_DIR"         ) { $LOG_DIR = 
 						  &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "MAKE_CMD"        ) { $MAKE_CMD  = 
+      elsif ( $txt[$i] =~ "MAKE_CMD"        ) { $MAKE_CMD = 
 						  &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "PERL_DIR"        ) { $PERL_DIR  = 
+      elsif ( $txt[$i] =~ "PERL_DIR"        ) { $PERL_DIR = 
 						  &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "RUN_ROOT"        ) { $RUN_ROOT  = 
+      elsif ( $txt[$i] =~ "RUN_ROOT"        ) { $RUN_ROOT = 
 						  &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "RUN_DIR"         ) { $RUN_DIR   = 
+      elsif ( $txt[$i] =~ "RUN_DIR"         ) { $RUN_DIR = 
 						  &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "SUBMIT"          ) { $SUBMIT    = 
+      elsif ( $txt[$i] =~ "SUBMIT"          ) { $SUBMIT = 
 						  &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "TEMPLATE"        ) { $TEMPLATE  = 
+      elsif ( $txt[$i] =~ "TEMPLATE"        ) { $TEMPLATE = 
 						  &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "WEB_GRID"        ) { $WEB_GRID  = 
+      elsif ( $txt[$i] =~ "TXT_GRID"        ) { $TXT_GRID = 
 						  &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "WEB_PUSH"        ) { $WEB_PUSH  = 
+      elsif ( $txt[$i] =~ "WEB_GRID"        ) { $WEB_GRID = 
 						  &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "VERBOSE"         ) { $VERBOSE   = 
+      elsif ( $txt[$i] =~ "WEB_PUSH"        ) { $WEB_PUSH = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "VERBOSE"         ) { $VERBOSE = 
 						  &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "WARNINGS"        ) { $WARNINGS  = 
 						  &parse( $txt[$i] ); }
@@ -485,15 +490,15 @@ sub doUnitTest($$) {
 						  &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "SLURM_PARTITION" ) { $SLURM_PARTITION = 
 						  &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "SLURM_MAILUSER"  ) { $SLURM_MAILUSER = 
+      elsif ( $txt[$i] =~ "SLURM_MAILUSER"  ) { $SLURM_MAILUSER  = 
 						  &parse( $txt[$i] ); }     
-      elsif ( $txt[$i] =~ "SLURM_STDOUT"    ) { $SLURM_STDOUT = 
+      elsif ( $txt[$i] =~ "SLURM_STDOUT"    ) { $SLURM_STDOUT    = 
 						  &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "SLURM_STDERR"    ) { $SLURM_STDERR = 
 						  &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "DESCRIPTION"     ) { $DESCRIBE  = 
+      elsif ( $txt[$i] =~ "DESCRIPTION"     ) { $DESCRIBE = 
 						  &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "VERSION"         ) { $VERSION   = 
+      elsif ( $txt[$i] =~ "VERSION"         ) { $VERSION = 
 						  &parse( $txt[$i] ); }
     }
 
@@ -514,6 +519,8 @@ sub doUnitTest($$) {
       $JOB_DIR      =~ s/{HOME}/$home/g;
       $PERL_DIR     =~ s/{HOME}/$home/g;
       $TEMPLATE     =~ s/{PERLDIR}/$PERL_DIR/g;
+      $TXT_GRID     =~ s/{VERSION}/$VERSION/g;
+      $TXT_GRID     =~ s/{LOGDIR}/$LOG_DIR/g;
       $WEB_GRID     =~ s/{VERSION}/$VERSION/g;
       $WEB_GRID     =~ s/{LOGDIR}/$LOG_DIR/g;
       $HEMCO_ROOT   =~ s/{DATAROOT}/$DATA_ROOT/g;
@@ -633,7 +640,7 @@ sub doUnitTest($$) {
 		    "rm -f Makefile\n",
                     "\n\# %%% Create web page w/ unit test matrix %%%\n",
                     "cd $PERL_DIR >> $stdout\n",
-        "./gcUtWeb $RUN_ROOT $RESULTS $TEMPLATE $WEB_GRID $WEB_PUSH >>$stdout\n"
+                    "./gcUtWeb $RUN_ROOT $RESULTS $TXT_GRID $TEMPLATE $WEB_GRID $WEB_PUSH >>$stdout\n"
 	          );
         }
 
