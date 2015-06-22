@@ -31,29 +31,40 @@ use UtUtils qw( &baseName
 #
 
 # Directories
-our $CODE_DIR   = "";                # GEOS-Chem Code directory 
-our $DATA_ROOT  = "";                # Root path for GEOS-Chem data directory
-our $HEMCO_ROOT = "";                # Root path for HEMCO emissions files
-our $JOB_DIR    = "";                # Unit Test job directory
-our $LOG_DIR    = "";                # Unit Test logs directory
-our $PERL_DIR   = "";                # Unit Test Perl directory
-our $RUN_ROOT   = "";                # Unit Test top-level run directory
-our $RUN_DIR    = "";                # Unit Test run directory subdirectory
+our $CODE_DIR        = "";         # GEOS-Chem Code directory
+our $DATA_ROOT       = "";         # Root path for GEOS-Chem data directory
+our $HEMCO_ROOT      = "";         # Root path for HEMCO emissions files
+our $JOB_DIR         = "";         # Unit Test job directory
+our $LOG_DIR         = "";         # Unit Test logs directory
+our $PERL_DIR        = "";         # Unit Test Perl directory
+our $RUN_ROOT        = "";         # Unit Test top-level run directory
+our $RUN_DIR         = "";         # Unit Test run directory subdirectory
 
 # Files
-our $RESULTS    = "";                # Results.log file
-our $TEMPLATE   = "";                # Template web page
-our $WEB_GRID   = "";                # Web page w/ unit text matrix
-our $WEB_PUSH   = "NONE";            # Remote server for web page push
+our $RESULTS         = "";         # Results.log file
+our $TEMPLATE        = "";         # Template web page
+our $WEB_GRID        = "";         # Web page w/ unit text matrix
+our $WEB_PUSH        = "NONE";     # Remote server for web page push
 
 # Options
-our $COMPILER   = "";                # Compiler variable for GEOS-Chem
-our $MAKE_CMD   = "";                # Make command with debug options
-our $SUBMIT     = "";                # Queue submit command
-our $VERSION    = "";                # GEOS-Chem version ID
-our $DESCRIBE   = "";                # Short description of unit tests
-our $VERBOSE    = "3";               # HEMCO verbose setting (0-3) 
-our $WARNINGS   = "3";               # HEMCO warnings setting (0-3)
+our $COMPILER        = "";         # Compiler variable for GEOS-Chem
+our $MAKE_CMD        = "";         # Make command with debug options
+our $SUBMIT          = "";         # Queue submit command
+our $VERSION         = "";         # GEOS-Chem version ID
+our $DESCRIBE        = "";         # Short description of unit tests
+our $VERBOSE         = "3";        # HEMCO verbose setting (0-3)
+our $WARNINGS        = "3";        # HEMCO warnings setting (0-3)
+
+# SLURM parameters (optional)
+our $SLURM_CPUS      = "";         # SLURM: Number of CPUs (-n)
+our $SLURM_NODES     = "";         # SLURM: Number of nodes (-N)
+our $SLURM_TIME      = "";         # SLURM: Run time (-t D-hh:mm)
+our $SLURM_MEM       = "";         # SLURM: Memory per node (MB)
+our $SLURM_MEMPERCPU = "";         # SLURM: Memory per CPU (MB)
+our $SLURM_PARTITION = "";         # SLURM: Partition (aka queue) name
+our $SLURM_STDOUT    = "";         # SLURM: Stdout stream
+our $SLURM_STDERR    = "";         # SLURM: Stderr stream
+our $SLURM_MAILUSER  = "";         # SLURM: Email to send reports to
 #		
 # !PUBLIC MEMBER FUNCTIONS:
 #  &main()     : Driver routine for gcUnitTest
@@ -78,6 +89,7 @@ our $WARNINGS   = "3";               # HEMCO warnings setting (0-3)
 #                              will set up input files but not run unit tests
 #  28 Jul 2014 - R. Yantosca - End date/time can be YYYYMMDDhh or YYYYMMDDhhmm
 #  19 May 2015 - R. Yantosca - Now add VERBOSE and WARNINGS global variables
+#  19 Jun 2015 - R. Yantosca - Added optional SLURM tags
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -215,6 +227,96 @@ sub makeInputs($$$$$$$$) {
   # Return 
   return( $? );
 }
+#EOC
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: makeSlurmTags
+#
+# !DESCRIPTION: Creates the #SBATCH tags that are needed to submit the unit 
+#  test job to a computer system that uses the SLURM scheduler.
+#\\
+#\\
+# !INTERFACE:
+#
+sub makeSlurmTags() {
+#
+#
+# !CALLING SEQUENCE:
+#  @slurmTags = &makeSlurmTags();
+#
+# !REVISION HISTORY:
+#  21 Mar 2014 - R. Yantosca - Initial version
+#  24 Mar 2014 - R. Yantosca - Now pass %unitTests hash as an argument
+#  07 Apr 2014 - R. Yantosca - Now make $webFile chmod 664
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  my @slurm = ();
+
+  # Number of CPUs
+  if ( length( $SLURM_CPUS ) > 0 ) {  
+    @slurm = ( @slurm, "\n\# === SLURM: Number of CPUs ===\n",
+                       "\#SBATCH -n $SLURM_CPUS\n",
+                       "export OMP_NUM_THREADS=$SLURM_CPUS\n" ); 
+  }
+
+  # Number of nodes
+  if ( length( $SLURM_NODES ) > 0 ) { 
+    @slurm = ( @slurm, "\n\# === SLURM: Number of nodes ===\n", 
+                       "\#SBATCH -N $SLURM_NODES\n" );
+  }
+
+  # Time requested
+  if ( length( $SLURM_TIME ) > 0 ) { 
+    @slurm = ( @slurm,  "\n\# === SLURM: Time requested ===\n",
+                        "\#SBATCH -t $SLURM_TIME\n" );  
+  }
+
+  # Mem per node
+  if ( length( $SLURM_MEM ) > 0 ) {
+    @slurm = ( @slurm, "\n\# === SLURM: Memory per node ===\n",
+                       "\#SBATCH --mem-per-cpu=$SLURM_MEM\n" ); 
+  }
+  
+  # Mem per CPU
+  if ( length( $SLURM_MEMPERCPU ) > 0 ) {
+    @slurm = ( @slurm, "\n\# === SLURM: Memory per CPU ===\n",
+                       "\#SBATCH --mem-per-cpu=$SLURM_MEMPERCPU\n" ); 
+  }
+
+  # Partition
+  if ( length( $SLURM_PARTITION ) > 0 ) {
+    @slurm = ( @slurm, "\n\# === SLURM: Partition (aka queue) ===\n",
+                       "\#SBATCH -p $SLURM_PARTITION\n" ); 
+  }
+
+  # Email
+  if ( length( $SLURM_MAILUSER ) > 0 ) {
+    @slurm = ( @slurm, "\n\# === SLURM: User email address ===\n",
+                       "\#SBATCH --mail-user=$SLURM_MAILUSER\n" ); 
+  }
+
+  # Stdout stream
+  if ( length( $SLURM_STDOUT ) > 0 ) {
+    @slurm = ( @slurm, "\n\# === SLURM: Unix stdout stream ===\n",
+                       "\#SBATCH -o $SLURM_STDOUT\n" ); 
+  }
+
+  # Stderr stream
+  if ( length( $SLURM_STDERR ) > 0 ) {
+    @slurm = ( @slurm, "\n\# === SLURM: Unix stderr stream ===\n",
+                       "\#SBATCH -e $SLURM_STDERR\n" ); 
+  }
+
+  # Return list of SLURM tags
+  return( @slurm );
+}
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -276,13 +378,14 @@ sub doUnitTest($$) {
 #  19 May 2015 - R. Yantosca - Now look for VERBOSE, WARNINGS in input file
 #  18 Jun 2015 - M. Sulprizio- Now use home directory for file paths
 #  18 Jun 2015 - R. Yantosca - Use mkdir -p instead of mkdirhier
+#  22 Jun 2015 - R. Yantosca - Now append SLURM #SBATCH tags to job file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 #
 # !LOCAL VARIABLES:
 #
-  # Scalar
+  # Scalars
   my $cmd     = "";
   my $end     = "";
   my $extra   = "";
@@ -302,11 +405,15 @@ sub doUnitTest($$) {
   my $stdout  = "";
   my $start   = "";
   my $locTime = "";
-  my $home    = "";
 
   # Arrays
   my @cmds    = ();
+  my @slurm   = ();
   my @txt     = ();
+
+  # Unix environment settings
+  my $home    = $ENV{"HOME"};
+  my $user    = $ENV{"USER"};
 
   #---------------------------------------------------------------------------
   # Read options from the input file
@@ -316,9 +423,6 @@ sub doUnitTest($$) {
   open( I, "<$fileName" ) or die "Cannot open $fileName!\n";
   chomp( @txt = <I> );
   close( I );
-
-  # Get home directory
-  $home = $ENV{"HOME"};
 
   # Loop thru each line in the file; parse information into global variables
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
@@ -337,24 +441,60 @@ sub doUnitTest($$) {
     # (3) WEB_GRID  has to be listed before WEB_PUSH
     #------------------------------------------------------------------------
     if ( !( $txt[$i] =~ m/\#/ ) ) { 
-      if    ( $txt[$i] =~ "CODE_DIR"    ) { $CODE_DIR  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "COMPILER"    ) { $COMPILER  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "DATA_ROOT"   ) { $DATA_ROOT = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "HEMCO_ROOT"  ) { $HEMCO_ROOT= &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "JOB_DIR"     ) { $JOB_DIR   = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "LOG_DIR"     ) { $LOG_DIR   = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "MAKE_CMD"    ) { $MAKE_CMD  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "PERL_DIR"    ) { $PERL_DIR  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "RUN_ROOT"    ) { $RUN_ROOT  = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "RUN_DIR"     ) { $RUN_DIR   = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "SUBMIT"      ) { $SUBMIT    = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "TEMPLATE"    ) { $TEMPLATE  = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "WEB_GRID"    ) { $WEB_GRID  = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "WEB_PUSH"    ) { $WEB_PUSH  = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "VERBOSE"     ) { $VERBOSE   = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "WARNINGS"    ) { $WARNINGS  = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "DESCRIPTION" ) { $DESCRIBE  = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "VERSION"     ) { $VERSION   = &parse( $txt[$i] ); }
+      if    ( $txt[$i] =~ "CODE_DIR"        ) { $CODE_DIR = 
+						  &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "COMPILER"        ) { $COMPILER = 
+						  &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "DATA_ROOT"       ) { $DATA_ROOT = 
+						  &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "HEMCO_ROOT"      ) { $HEMCO_ROOT = 
+						  &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "JOB_DIR"         ) { $JOB_DIR   = 
+						  &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "LOG_DIR"         ) { $LOG_DIR   = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "MAKE_CMD"        ) { $MAKE_CMD  = 
+						  &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "PERL_DIR"        ) { $PERL_DIR  = 
+						  &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "RUN_ROOT"        ) { $RUN_ROOT  = 
+						  &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "RUN_DIR"         ) { $RUN_DIR   = 
+						  &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "SUBMIT"          ) { $SUBMIT    = 
+						  &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "TEMPLATE"        ) { $TEMPLATE  = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "WEB_GRID"        ) { $WEB_GRID  = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "WEB_PUSH"        ) { $WEB_PUSH  = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "VERBOSE"         ) { $VERBOSE   = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "WARNINGS"        ) { $WARNINGS  = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "SLURM_CPUS"      ) { $SLURM_CPUS = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "SLURM_NODES"     ) { $SLURM_NODES = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "SLURM_TIME"      ) { $SLURM_TIME = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "SLURM_MEM"       ) { $SLURM_MEM = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "SLURM_MEMPERCPU" ) { $SLURM_MEMPERCPU = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "SLURM_PARTITION" ) { $SLURM_PARTITION = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "SLURM_MAILUSER"  ) { $SLURM_MAILUSER = 
+						  &parse( $txt[$i] ); }     
+      elsif ( $txt[$i] =~ "SLURM_STDOUT"    ) { $SLURM_STDOUT = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "SLURM_STDERR"    ) { $SLURM_STDERR = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "DESCRIPTION"     ) { $DESCRIBE  = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "VERSION"         ) { $VERSION   = 
+						  &parse( $txt[$i] ); }
     }
 
     #------------------------------------------------------------------------
@@ -366,32 +506,31 @@ sub doUnitTest($$) {
       # So that we can keep several log files simultaneously
       $LOG_DIR =~ s/{VERSION}/$VERSION/g;
       $LOG_DIR =~ s/{HOME}/$home/g;
-#-----------------------------------------------------------------------------
-# Prior to 6/18/15:
-# On some systems, mkdirhier doesn't exist; use mkdir -p instead (bmy, 6/18/15)
-#      if ( !( -f $LOG_DIR ) ) { qx( mkdirhier $LOG_DIR ); }
-#-----------------------------------------------------------------------------
       if ( !( -f $LOG_DIR ) ) { qx( mkdir -p $LOG_DIR ); }
 
       # Replace directory tokens in a few more variables
-      $CODE_DIR   =~ s/{HOME}/$home/g;
-      $RUN_ROOT   =~ s/{HOME}/$home/g;
-      $JOB_DIR    =~ s/{HOME}/$home/g;
-      $PERL_DIR   =~ s/{HOME}/$home/g;
-      $TEMPLATE   =~ s/{PERLDIR}/$PERL_DIR/g;
-      $WEB_GRID   =~ s/{VERSION}/$VERSION/g;
-      $WEB_GRID   =~ s/{LOGDIR}/$LOG_DIR/g;
-      $HEMCO_ROOT =~ s/{DATAROOT}/$DATA_ROOT/g;
-      $RUN_DIR    =~ s/{RUNROOT}/$RUN_ROOT/g;
-      $WEB_PUSH   =~ s/\|/:/g;
+      $CODE_DIR     =~ s/{HOME}/$home/g;
+      $RUN_ROOT     =~ s/{HOME}/$home/g;
+      $JOB_DIR      =~ s/{HOME}/$home/g;
+      $PERL_DIR     =~ s/{HOME}/$home/g;
+      $TEMPLATE     =~ s/{PERLDIR}/$PERL_DIR/g;
+      $WEB_GRID     =~ s/{VERSION}/$VERSION/g;
+      $WEB_GRID     =~ s/{LOGDIR}/$LOG_DIR/g;
+      $HEMCO_ROOT   =~ s/{DATAROOT}/$DATA_ROOT/g;
+      $RUN_DIR      =~ s/{RUNROOT}/$RUN_ROOT/g;
+      $WEB_PUSH     =~ s/\|/:/g;
+      $SLURM_STDOUT =~ s/{LOGDIR}/$LOG_DIR/g;
+      $SLURM_STDOUT =~ s/{VERSION}/$VERSION/g;
+      $SLURM_STDERR =~ s/{LOGDIR}/$LOG_DIR/g;
+      $SLURM_STDERR =~ s/{VERSION}/$VERSION/g;
 
       # Make sure each of these directories exist before proceeding
-      &checkDir( $DATA_ROOT );
+      &checkDir( $DATA_ROOT  );
       &checkDir( $HEMCO_ROOT );
-      &checkDir( $CODE_DIR  );
-      &checkDir( $JOB_DIR   );
-      &checkDir( $LOG_DIR   );
-      &checkDir( $PERL_DIR  );
+      &checkDir( $CODE_DIR   );
+      &checkDir( $JOB_DIR    );
+      &checkDir( $LOG_DIR    );
+      &checkDir( $PERL_DIR   );
 
       # Skip over comment lines
       while ( $txt[$i] =~ m/^\#/ ) { $i++ }
@@ -467,12 +606,14 @@ sub doUnitTest($$) {
 	  $makeCmd  = "$MAKE_CMD COMPILER=$COMPILER RUN_DIR=$runDir";
 	  $makeCmd .= " SIM=$sim VERSION=$VERSION LOG_DIR=$LOG_DIR";
 	  $makeCmd .= " CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR";
-
-	  # The main log files
+ 
+	  # Stdout log file.  If we are using the SLURM scheduler, then
+	  # set the $stdout variable to the value in $SLURM_STDOUT.
 	  $stdout   = "$LOG_DIR/$VERSION.stdout.log";
-	  $logRslt  = "$LOG_DIR/$VERSION.results.log";
+	  if ( length( $SLURM_STDOUT ) > 0 ) { $stdout = $SLURM_STDOUT; }
 
-	  # Also save the result file in a global variable
+	  # The main log file
+	  $logRslt  = "$LOG_DIR/$VERSION.results.log";
 	  $RESULTS  = $logRslt;
 
 	  # If necessary, also add on the nested grid flags
@@ -492,7 +633,7 @@ sub doUnitTest($$) {
 		    "rm -f Makefile\n",
                     "\n\# %%% Create web page w/ unit test matrix %%%\n",
                     "cd $PERL_DIR >> $stdout\n",
-        "gcUtWeb $RUN_ROOT $RESULTS $TEMPLATE $WEB_GRID $WEB_PUSH >>$stdout\n"
+        "./gcUtWeb $RUN_ROOT $RESULTS $TEMPLATE $WEB_GRID $WEB_PUSH >>$stdout\n"
 	          );
         }
 
@@ -507,6 +648,9 @@ sub doUnitTest($$) {
   # script will copy UT/perl/Makefile to the run directory of each requested 
   # unit test to compile and run GEOS-Chem w/ the specified options.
   #--------------------------------------------------------------------------
+
+  # Make the 
+  @slurm = &makeSlurmTags();
 
   # Get local time
   $locTime = &getLocalTime();
@@ -532,8 +676,12 @@ EOF
 
   # Add some more commands to the top of the job script
   # Call gcUtWeb to generate the matrix of results as a web page
-  @cmds = ( '#!/bin/bash'."\n",
-            "set \-e\n", 
+  @cmds = ( '#!/bin/bash'."\n\n",
+            "\#"x79,
+            "\n\# Job script for unit test: $VERSION\n\# $DESCRIBE\n",
+            "\#"x79,"\n",
+            @slurm,
+            "\nset \-e\n", 
 	    "$logTop\n", 
             @cmds );
 

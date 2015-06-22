@@ -516,6 +516,8 @@ sub parse($) {
 #
 # !REVISION HISTORY:
 #  30 Jul 2013 - R. Yantosca - Initial version
+#  22 Jun 2015 - R. Yantosca - Now can correctly handle strings with
+#                              more than one : character
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -523,6 +525,14 @@ sub parse($) {
   # Take the text following the colon
   my @result = split( ':', $str );
   
+  # If there are more than 2 substrings, then lump the other
+  # substrings into the second substring, and preserve the colon
+  if ( scalar( @result ) > 2 ) {
+    for ( my $i=2; $i < scalar( @result ); $i++ ) {
+      $result[1] .= ":$result[$i]";
+    }
+  }
+
   # Strip leading spaces
   $result[1] =~ s/^\s+//; 
 
@@ -856,7 +866,8 @@ sub makeMatrix($$) {
   # Return normally
   return( $? );
 }
-#EOC
+
+
 
 # End of module: Return true
 1;
