@@ -57,7 +57,7 @@ cp -rf emission_differences        $dirq
 cp -rf emission_ratios             $dirq
 
 # Copy ouptut files from model
-cp -f ../ctm.bpch.$version         $dirq
+cp -f ../trav_avg.$version         $dirq
 cp -f ../Ox.mass*                  $dirq  
 cp -f ../*info.dat                 $dirq
 cp -f ../$version.log              $dirq
