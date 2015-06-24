@@ -60,6 +60,7 @@
 #  28 May 2015 - R. Yantosca - Fixed bug in RUNID for nested grid simulations
 #  05 Jun 2015 - R. Yantosca - Quick fix; set NEST=n if SIM=soa_svpoa.
 #  09 Jun 2015 - E. Lundgren - Include HEMCO_restart* and geos.mp.* in cleans
+#  24 Jun 2015 - R. Yantosca - Now set options for mass conservation test
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -150,6 +151,10 @@ ifndef CHEM
  CHEM        :=benchmark
 endif
 
+ifndef MASSCONS 
+ MASSCONS    :=n
+endif
+
 ###############################################################################
 #####                                                                     #####
 #####  RUN OPTIONS: Get various settings from the run directory name,     #####
@@ -225,6 +230,10 @@ ifeq ($(SIM),NOx_Ox_HC_Aer_Br)
  CHEM        :=NOx_Ox_HC_Aer_Br
 endif
 
+ifeq ($(SIM),masscons)
+ MASSCONS    :=y
+endif
+
 # General run information
 TIMESTAMP    := $(shell date +"%Y/%m/%d %H:%M")	
 RUNID        :=$(MET)_$(GRID)_$(SIM)
@@ -283,12 +292,12 @@ unittest:
 
 sp:
 	@$(MAKE) spclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET)         GRID=$(GRID)       \
-                                NEST=$(NEST)       UCX=$(UCX)         \
-                                CHEM=$(CHEM)       RRTMG=$(RRTMG)     \
-                                TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15) \
-                                TOMAS30=$(TOMAS30) TOMAS40=$(TOMAS40) \
-                                OMP=no > $(LOG_SP)
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET)           GRID=$(GRID)       \
+                                NEST=$(NEST)         UCX=$(UCX)         \
+                                CHEM=$(CHEM)         RRTMG=$(RRTMG)     \
+                                TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15) \
+                                TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40) \
+                                MASSCONS=$(MASSCONS) OMP=no > $(LOG_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	./$(EXE_SP) >> $(LOG_SP)
@@ -298,12 +307,12 @@ sp:
 
 mp:
 	@$(MAKE) mpclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET)         GRID=$(GRID)       \
-                                NEST=$(NEST)       UCX=$(UCX)         \
-                                CHEM=$(CHEM)       RRTMG=$(RRTMG)     \
-                                TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15) \
-                                TOMAS30=$(TOMAS30) TOMAS40=$(TOMAS40) \
-                                OMP=yes > $(LOG_MP)
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET)           GRID=$(GRID)       \
+                                NEST=$(NEST)         UCX=$(UCX)         \
+                                CHEM=$(CHEM)         RRTMG=$(RRTMG)     \
+                                TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15) \
+                                TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40) \
+                                MASSCONS=$(MASSCONS) OMP=yes > $(LOG_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	./$(EXE_MP) >> $(LOG_MP)
@@ -318,12 +327,12 @@ mp:
 spbuild:
 	@$(MAKE) spexeclean
 	@$(MAKE) splogclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET)         GRID=$(GRID)       \
-                                NEST=$(NEST)       UCX=$(UCX)         \
-                                CHEM=$(CHEM)       RRTMG=$(RRTMG)     \
-                                TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15) \
-                                TOMAS30=$(TOMAS30) TOMAS40=$(TOMAS40) \
-                                OMP=no
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET)           GRID=$(GRID)       \
+                                NEST=$(NEST)         UCX=$(UCX)         \
+                                CHEM=$(CHEM)         RRTMG=$(RRTMG)     \
+                                TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15) \
+                                TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40) \
+                                MASSCONS=$(MASSCONS) OMP=no
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	@$(MAKE) printbuildinfo
@@ -331,12 +340,12 @@ spbuild:
 mpbuild:
 	@$(MAKE) mpexeclean
 	@$(MAKE) mplogclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET)         GRID=$(GRID)       \
-                                NEST=$(NEST)       UCX=$(UCX)         \
-                                CHEM=$(CHEM)       RRTMG=$(RRTMG)     \
-                                TOMAS12=$(TOMAS12) TOMAS15=$(TOMAS15) \
-                                TOMAS30=$(TOMAS30) TOMAS40=$(TOMAS40) \
-                                OMP=yes
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET)           GRID=$(GRID)       \
+                                NEST=$(NEST)         UCX=$(UCX)         \
+                                CHEM=$(CHEM)         RRTMG=$(RRTMG)     \
+                                TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15) \
+                                TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40) \
+                                MASSCONS=$(MASSCONS) OMP=yes
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	@$(MAKE) printbuildinfo
@@ -372,6 +381,7 @@ dataclean:
 	rm -f trac_avg*
 	rm -f Ox.mass.*
 	rm -f diaginfo.dat tracerinfo.dat
+	rm -f tracer_mass*.dat
 
 spdataclean:
 	rm -f $(TRAC_AVG)*.sp
@@ -510,6 +520,7 @@ printbuildinfo:
 	@echo "  TOMAS15   : $(TOMAS15)"
 	@echo "  TOMAS40   : $(TOMAS40)"
 	@echo "  RRTMG     : $(RRTMG)"
+	@echo "  MASSCONS  : $(MASSCONS)"
 	@echo "  COMPILER  : $(COMPILER)"
 	@echo "  Datetime  : $(TIMESTAMP)"
 
