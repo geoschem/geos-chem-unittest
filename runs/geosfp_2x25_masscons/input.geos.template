@@ -230,7 +230,7 @@ Number of stations      :   0
 ------------------------+------------------------------------------------------
 %%% ND49 MENU %%%       :
 Turn on ND49 diagnostic : T
-Inst 3-D timeser. file  : timeseries/tsYYYYMMDD.bpch
+Inst 3-D timeser. file  : tracer_mass_kg.dat
 Tracers to include      : 1 
 Frequency [min]         : 360
 IMIN, IMAX of region    :   1 144
