@@ -135,6 +135,7 @@ Switches for UCX        :---
 Online SULFATE AEROSOLS : T
 Online CRYST/AQ AEROSOLS: F
 Online CARBON  AEROSOLS : T
+ => Use Brown Carbon?   : F
 Online 2dy ORG AEROSOLS : F
  => Semivolatile POA?   : F
 Online DUST    AEROSOLS : T
