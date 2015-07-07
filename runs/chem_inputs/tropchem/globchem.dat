@@ -13,6 +13,12 @@
 #\\
 #\\
 # !REVISION HISTORY: 
+#   2015 (v11-01b)
+#  -----------------------
+#     Updates from D. Millet:
+#     (1) Changed reaction  : PMN + O3 = 1.0NO2  + 0.6CH2O + 1.0HO2
+#         to                : PMN + O3 = 1.0CH2O + 1.0MCO3 + 1.0NO3
+#
 #  18 Dec 2014 (v10-01f)
 #  -----------------------
 #     Updates from J. Mao:
