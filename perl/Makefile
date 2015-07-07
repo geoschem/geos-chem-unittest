@@ -214,7 +214,7 @@ ifeq ($(SIM),soa)
 endif
 
 ifeq ($(SIM),soa_svpoa)
- CHEM        :=SOA
+ CHEM        :=SOA_SVPOA
  NEST        :=n
 endif
 
