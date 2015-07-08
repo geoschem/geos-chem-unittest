@@ -59,7 +59,8 @@
 #                              simulation
 #  27 May 2015 - M. Sulprizio- Renamed fullchem to tropchem
 #  18 Jun 2015 - M. Sulprizio- Now use HOME token to specify file paths
-#  22 Jun 2015 - R. Yantosca - Add optional SLURM tags
+#  22 Jun 2015 - R. Yantosca - Add optional commands for SLURM scheduler
+#  08 Jul 2015 - M. Sulprizio- Add unit tests for acid uptake on dust option
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -81,8 +82,8 @@
    MAKE_CMD        : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
    SUBMIT          : submit smp4
    TEMPLATE        : {PERLDIR}/ut_template.html
-   WEB_GRID        : {LOGDIR}/{VERSION}.results.html
    TXT_GRID        : {LOGDIR}/{VERSION}.results.txt
+   WEB_GRID        : {LOGDIR}/{VERSION}.results.html
    WEB_PUSH        : NONE
 #
 #  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -187,6 +188,9 @@
   geos5    4x5         -      soa_svpoa    2006070100   2006070101     -
   geosfp   2x25        -      soa_svpoa    2013070100   201307010030   -
   geos5    2x25        -      soa_svpoa    2006070100   200607010030   -
+# ======= Acid uptake on dust ================================================
+  geosfp   4x5         -      aciduptake   2013070100   2013070101     -
+  geosfp   2x25        -      aciduptake   2013070100   2013070101     -
 # ======= TOMAS aerosol microphysics =========================================
   geosfp   4x5         -      TOMAS40      2013070100   2013070101     -
   geos5    4x5         -      TOMAS40      2006070100   2006070101     -

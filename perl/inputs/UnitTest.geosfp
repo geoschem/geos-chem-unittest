@@ -48,6 +48,7 @@
 #                              3, 3, respectively if not specified
 #  18 Jun 2015 - M. Sulprizio- Now use HOME token to specify file paths
 #  19 Jun 2015 - R. Yantosca - Add optional SLURM tags
+#  08 Jul 2015 - M. Sulprizio- Add unit tests for acid uptake on dust option
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -100,16 +101,18 @@
 #--------|-----------|------|------------|------------|--------------|--------|
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE     | EXTRA? |
 #--------|-----------|------|------------|------------|--------------|--------|
+  geosfp   4x5         -      benchmark    2013070100   2013070101     -
   geosfp   4x5         -      RnPbBe       2013070100   2013070101     -
   geosfp   4x5         -      Hg           2013070100   2013070101     -
   geosfp   4x5         -      POPs         2013070100   2013070101     -
-# geosfp   4x5         -      tropchem     2013070100   2013070101     -
-# geosfp   4x5         -      soa          2013070100   2013070101     -
-# geosfp   4x5         -      soa_svpoa    2013070100   2013070101     -
-# geosfp   4x5         -      CH4          2013070100   2013070101     -
-# geosfp   4x5         -      tagCO        2013070100   2013070101     -
-# geosfp   4x5         -      TOMAS40      2013070100   2013070101     -
-# geosfp   4x5         -      UCX          2013070100   2013070101     -
+  geosfp   4x5         -      tropchem     2013070100   2013070101     -
+  geosfp   4x5         -      soa          2013070100   2013070101     -
+  geosfp   4x5         -      soa_svpoa    2013070100   2013070101     -
+  geosfp   4x5         -      aciduptake   2013070100   2013070101     -
+  geosfp   4x5         -      CH4          2013070100   2013070101     -
+  geosfp   4x5         -      tagCO        2013070100   2013070101     -
+  geosfp   4x5         -      TOMAS40      2013070100   2013070101     -
+  geosfp   4x5         -      UCX          2013070100   2013070101     -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------
