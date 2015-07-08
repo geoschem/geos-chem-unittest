@@ -202,11 +202,13 @@ endif
 ifeq ($(SIM),UCX)
  UCX         :=y
  CHEM        :=UCX
+ NO_REDUCED  :=y
 endif
 
 ifeq ($(SIM),benchmark)
  UCX         :=y
  CHEM        :=benchmark
+ NO_REDUCED  :=y
 endif
 
 ifeq ($(SIM),soa)
@@ -513,7 +515,7 @@ printbuildinfo:
 	@echo "  DEBUG     : $(DEBUG)"
 	@echo "  FPE       : $(FPE)"
 	@echo "  NO_ISO    : $(NO_ISO)"	
-	@echo "  NO_REDUCED: $(NO_ISO)"
+	@echo "  NO_REDUCED: $(NO_REDUCED)"
 	@echo "  CHEM      : $(CHEM)"
 	@echo "  UCX       : $(UCX)"
 	@echo "  TOMAS12   : $(TOMAS12)"	
