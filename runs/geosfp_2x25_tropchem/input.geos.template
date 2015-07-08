@@ -139,6 +139,7 @@ Online CARBON  AEROSOLS : T
 Online 2dy ORG AEROSOLS : F
  => Semivolatile POA?   : F
 Online DUST    AEROSOLS : T
+ => Acidic uptake ?     : F
 Online SEASALT AEROSOLS : T
  => SALA radius bin [um]: 0.01 0.5
  => SALC radius bin [um]: 0.5  8.0

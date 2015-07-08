@@ -109,7 +109,8 @@
 #                              QFED2 diurnal scale factors from Katie Travis
 #  05 Jun 2015 - R. Yantosca - Updated for the official GFED4 release data
 #  16 Jun 2015 - M. Sulprizio- Add logical switch for HEMCO restart file
-#  16 Jun 2015 - R. Yantosca - Change units of UV albedo to "percent" 
+#  16 Jun 2015 - R. Yantosca - Change units of UV albedo to "percent"
+#  08 Jul 2015 - M. Sulprizio- Add option for dust alkalinity to extensions
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -208,6 +209,7 @@ Warnings:                    {WARNINGS}
     --> Use fertilizer NOx:       true
 105     DustDead          : on    DST1/DST2/DST3/DST4 
 106     DustGinoux        : off   DST1/DST2/DST3/DST4
+115     DustAlk           : off   DSTAL1/DSTAL2/DSTAL3/DSTAL4
 107     SeaSalt           : on    SALA/SALC/Br2
     --> SALA lower radius :       0.01 
     --> SALA upper radius :       0.5
