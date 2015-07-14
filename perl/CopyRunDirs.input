@@ -29,7 +29,7 @@
 #
 # !INPUTS:
 #
-   VERSION     : v10-01
+   VERSION     : v11-01
    DESCRIPTION : Create run directory from UnitTest
    COPY_PATH   : {HOME}/GC/rundirs
    DATA_ROOT   : /as/data/geos/ExtData
