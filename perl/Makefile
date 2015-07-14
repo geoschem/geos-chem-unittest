@@ -217,6 +217,11 @@ ifeq ($(SIM),aciduptake)
  NO_REDUCED  :=y
 endif
 
+ifeq ($(SIM),marinePOA)
+ UCX         :=y
+ CHEM        :=benchmark
+ NO_REDUCED  :=y
+endif
 
 ifeq ($(SIM),soa)
  CHEM        :=SOA
