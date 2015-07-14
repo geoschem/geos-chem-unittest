@@ -22,7 +22,7 @@ Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% TRACER MENU %%%     : 
 Type of simulation      : 3
-Number of Tracers       : 119
+Number of Tracers       : 121
 Tracer Entries -------> : TR#   Name   g/mole   Tracer Members; () = emitted 
 Tracer #1               :   1   NO       30.0   (NO)
 Tracer #2               :   2   O3       48.0   (O3)
@@ -410,7 +410,7 @@ Number of P/L families  : 19
 19th chemical family    : LBC: HNO3
 ------------------------+------------------------------------------------------
 %%% BENCHMARK MENU %%%  :  
-Save benchmark output?  : T
+Save benchmark output?  : F
 File w/ initial Ox      : Ox.mass.initial
 File w/ final Ox        : Ox.mass.final
 ------------------------+------------------------------------------------------

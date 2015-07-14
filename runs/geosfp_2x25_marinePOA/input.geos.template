@@ -22,7 +22,7 @@ Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% TRACER MENU %%%     : 
 Type of simulation      : 3
-Number of Tracers       : 131
+Number of Tracers       : 121
 Tracer Entries -------> : TR#   Name   g/mole   Tracer Members; () = emitted 
 Tracer #1               :   1   NO       30.0   (NO)
 Tracer #2               :   2   O3       48.0   (O3)
