@@ -61,6 +61,7 @@
 #  18 Jun 2015 - M. Sulprizio- Now use HOME token to specify file paths
 #  22 Jun 2015 - R. Yantosca - Add optional commands for SLURM scheduler
 #  08 Jul 2015 - M. Sulprizio- Add unit tests for acid uptake on dust option
+#  16 Jul 2015 - E. Lundgren - Add marine primary organic aerosol unit tests
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -191,6 +192,9 @@
 # ======= Acid uptake on dust ================================================
   geosfp   4x5         -      aciduptake   2013070100   2013070101     -
   geosfp   2x25        -      aciduptake   2013070100   2013070101     -
+# ======= Marine POA =========================================================
+  geosfp   4x5         -      marinePOA    2013070100   2013070101     -
+  geosfp   2x25        -      marinePOA    2013070100   2013070101     -
 # ======= TOMAS aerosol microphysics =========================================
   geosfp   4x5         -      TOMAS40      2013070100   2013070101     -
   geos5    4x5         -      TOMAS40      2006070100   2006070101     -

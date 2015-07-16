@@ -29,7 +29,7 @@ Version_1   : v10-01-public-release-Run1
 Model_1     : GEOSFP
 Date_1      : 20130701
 N_Tracers_1 : 119
-RunDir_1    : /home/{USER}/SR/%VERSION_1%
+RunDir_1    : /home/{your username}/SR/%VERSION_1%
 File_1      : %RUNDIR_1%/trac_avg.%VERSION_1%
 
 ##### Parameters for Model #2 #####
@@ -37,7 +37,7 @@ Version_2   : v11-01a
 Model_2     : GEOSFP
 Date_2      : 20130701
 N_Tracers_2 : 119
-RunDir_2    : /home/{USER}/SR/%VERSION_2%
+RunDir_2    : /home/{your username}/SR/%VERSION_2%
 File_2      : %RUNDIR_2%/trac_avg.%VERSION_2%
 InitFile_2  : %RUNDIR_2%/Ox.mass.initial
 FinalFile_2 : %RUNDIR_2%/Ox.mass.final
