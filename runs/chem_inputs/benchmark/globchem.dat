@@ -9,7 +9,7 @@
 #  the species and reactions that are used by the SMVGEAR II or KPP solvers.
 #\\
 #\\
-#  This file describes the GEOS-Chem UNIFIED chemical mechanism.
+#  This file describes the GEOS-Chem BENCHMARK chemical mechanism.
 #\\
 #\\
 # !REVISION HISTORY: 
