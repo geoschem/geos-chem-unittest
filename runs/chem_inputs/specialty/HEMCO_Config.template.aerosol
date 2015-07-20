@@ -105,6 +105,7 @@
 #                              QFED2 diurnal scale factors from Katie Travis
 #  05 Jun 2015 - R. Yantosca - Updated for the official GFED4 release data
 #  08 Jul 2015 - M. Sulprizio- Add option for dust alkalinity to extensions
+#  13 Jul 2015 - E. Lundgren - Add option for marine POA to extensions
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -200,6 +201,7 @@ Warnings:                    {WARNINGS}
     --> SALC upper radius :       8.0
     --> Emit Br2          :       false  
     --> Br2 scaling       :       1.0 
+116     MarinePOA         : off   MOPO/MOPI 
 108     MEGAN             : on    ISOP/ACET/PRPE/C2H4/ALD2
     --> Isoprene scaling  :       1.0 
 109     MEGAN_Mono        : on    CO/OCPI/MONX

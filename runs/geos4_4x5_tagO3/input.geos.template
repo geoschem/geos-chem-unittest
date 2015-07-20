@@ -79,6 +79,7 @@ Online DUST    AEROSOLS : T
 Online SEASALT AEROSOLS : T
  => SALA radius bin [um]: 0.01 0.5
  => SALC radius bin [um]: 0.5  8.0
+ => MARINE ORG AEROSOLS : F
 Online dicarb. chem.    : F
 Settle strat. aerosols  : F
 Online PSC AEROSOLS     : F

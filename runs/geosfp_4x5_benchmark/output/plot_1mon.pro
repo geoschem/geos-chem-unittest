@@ -114,4 +114,10 @@ pro Plot_1mon, InFile, _EXTRA=e
    Spawn, 'mv -v *_emission_maps.pdf ./emission_maps/'
    Spawn, 'mv -v *_emission_ratios.pdf ./emission_ratios/'
 
+   ; To generate only budget
+   ;Benchmark_1Mon, InFile, /No_Profiles, /NO_EMISSIONS, $
+   ;    /NO_FREQ_DIST, /NO_DIFFS, /NO_JVALUES, /NO_RATIOS,  /NO_ZONALDiff, $
+   ;    /No_2D_Met, /No_3D_Met, /NO_JVDIFFS, /No_AOD_Diffs, /No_AOD_Maps, $
+   ;    /No_JVMaps, /No_Conc_Maps, /NO_ZONALCONC, _EXTRA=e
+
 end
