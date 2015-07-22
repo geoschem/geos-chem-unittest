@@ -106,6 +106,7 @@
 #  05 Jun 2015 - R. Yantosca - Updated for the official GFED4 release data
 #  08 Jul 2015 - M. Sulprizio- Add option for dust alkalinity to extensions
 #  13 Jul 2015 - E. Lundgren - Add option for marine POA to extensions
+#  21 Jul 2015 - E. Lundgren - Now use Lana 2011 DMS climatology
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -638,7 +639,7 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- Seawater concentrations for oceanic emissions (Extension 101) ---
 #==============================================================================
-101 DMS_SEAWATER    $ROOT/DMS/v2014-07/DMS_seawater.geos.1x1.nc      DMS_OCEAN  1985/1-12/1/0 C xy kg/m3 DMS  - 1 1
+101 DMS_SEAWATER    $ROOT/DMS/v2015-07/DMS_lana.geos.1x1.nc          DMS_OCEAN  1985/1-12/1/0 C xy kg/m3 DMS  - 1 1
 101 ACET_SEAWATER   $ROOT/ACET/v2014-07/ACET_seawater.generic.1x1.nc ACET       2005/1/1/0    C xy kg/m3 ACET - 1 1 
 
 #==============================================================================
