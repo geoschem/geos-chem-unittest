@@ -390,10 +390,6 @@ sub makeHemcoCfg($$$$$$$) {
 #                 
 #
 # !REMARKS:
-#  The {LNOX} token will be replaced with one of the following strings:
-#  (a) "geos5.1.0"        (for GEOS-5 met before   2008/01/01)
-#  (b) "geos5.2.0"        (for GEOS-5 met on/after 2008/01/01)
-#  (c) Same value as $met (for all other met field types     )
 #
 # !REVISION HISTORY:
 #  27 Jun 2014 - R. Yantosca - Initial version
@@ -403,6 +399,7 @@ sub makeHemcoCfg($$$$$$$) {
 #  23 Sep 2014 - R. Yantosca - Now replace the {LEVRED} and {LEVFULL} tokens
 #  19 May 2015 - R. Yantosca - Add $verbose, $warnings as arguments so that
 #                              we can replace {VERBOSE} and {WARNINGS} tokens
+#  03 Aug 2015 - M. Sulprizio- Remove LNOX token since it is no longer needed.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -412,7 +409,6 @@ sub makeHemcoCfg($$$$$$$) {
   # Strings
   my @lines      = "";
   my $line       = "";
-  my $lNox       = "";
   my $levReduced = "";
   my $levFull    = "";
 
@@ -427,27 +423,6 @@ sub makeHemcoCfg($$$$$$$) {
   open( I, "$inFile" ) or croak( "Cannot open $inFile!\n" );
   @lines = <I>;
   close( I );
-
-  #-------------------------------------------------------------------------
-  # Compute the value to replace the {LNOX} token
-  # in the OTD/LIS lightning NOx file names
-  #-------------------------------------------------------------------------
-  if ( $met =~ m/geos5/ ) { 
-
-    # Cast starting date from string to numeric
-    $date = $start;
-
-    # Pick the string for the OTD/LIS lightning NOx filename 
-    # For GEOS-5 the version differs depending on the date
-    if ( $date < 2008010100 ) { $lNox = "geos5.1.0"; }
-    else                      { $lNox = "geos5.2.0"; }
-
-  } else { 
-
-    # For all other met fields, use the met field name
-    $lNox = $met; 
-
-  } 
 
   #-------------------------------------------------------------------------
   # Compute the value used to replace the {LEVRED} and {LEVFULL} tokens in 
@@ -474,7 +449,6 @@ sub makeHemcoCfg($$$$$$$) {
     # Replace start & end dates
     $line =~ s/{ROOT}/$rootDir/g;
     $line =~ s/{MET}/$met/g;
-    $line =~ s/{LNOX}/$lNox/g;
     $line =~ s/{GRID}/$grid/g;
     $line =~ s/{NEST}/$nest/g;
     $line =~ s/{SIM}/$simType/g;

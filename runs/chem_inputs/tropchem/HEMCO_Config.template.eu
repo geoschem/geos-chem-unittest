@@ -20,12 +20,9 @@
 #  (4) GRID    : Horizontal grid type (from G-C compilation command)
 #  (5) SIM     : Simulation type (from G-C compilation command)
 #  (6) NEST    : Nested-grid type (CH, EU, NA, SE)
-#  (7) LNOX    : String for OTD/LIS lightning NOx files:
-#                (a) For GEOS-5 this is either "geos5.1.0" or "geos5.2.0".  
-#                (b) For other met fields, this is the same as MET.
-#  (8) LEVRED  : String w/ the # of levels in the reduced GEOS-Chem grid
+#  (7) LEVRED  : String w/ the # of levels in the reduced GEOS-Chem grid
 #                as used in some filenames (e.g. "23L", "30L", "47L")
-#  (9) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
+#  (8) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
 #                as used in some filenames (e.g. "55L", "72L")
 # 
 # !REMARKS:
@@ -1198,7 +1195,7 @@ Warnings:                    {WARNINGS}
 # Local redistribution factors: These are model-specific and hence need to be 
 # redefined for different model/resolution simulations!!!
 #==============================================================================
-103 LIGHTNOX_OTDLIS $ROOT/LIGHTNOX/v2014-07/OTD-LIS-Local-Redist.CTH.v5.{LNOX}.$RES.EU.nc OTD $YYYY/1-12/1/0 C xy unitless NO - 1 1
+103 LIGHTNOX_OTDLIS $ROOT/LIGHTNOX/v2014-07/OTD-LIS-Local-Redist.CTH.v5.$MET.$RES.EU.nc OTD $YYYY/1-12/1/0 C xy unitless NO - 1 1
 
 #==============================================================================
 # --- SOILNOX emissions (Extension 104) ---

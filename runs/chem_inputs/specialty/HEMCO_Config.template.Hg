@@ -20,12 +20,9 @@
 #  (4) GRID    : Horizontal grid type (from G-C compilation command)
 #  (5) SIM     : Simulation type (from G-C compilation command)
 #  (6) NEST    : Nested-grid type (CH, EU, NA, SE)
-#  (7) LNOX    : String for OTD/LIS lightning NOx files:
-#                (a) For GEOS-5 this is either "geos5.1.0" or "geos5.2.0".  
-#                (b) For other met fields, this is the same as MET.
-#  (8) LEVRED  : String w/ the # of levels in the reduced GEOS-Chem grid
+#  (7) LEVRED  : String w/ the # of levels in the reduced GEOS-Chem grid
 #                as used in some filenames (e.g. "23L", "30L", "47L")
-#  (9) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
+#  (8) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
 #                as used in some filenames (e.g. "55L", "72L")
 # 
 # !REMARKS:
