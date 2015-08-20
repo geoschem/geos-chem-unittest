@@ -52,6 +52,9 @@
 #  19 May 2015 - R. Yantosca - Now use tokens for VERBOSE, WARNINGS
 #  05 Jun 2015 - R. Yantosca - Updated for the official GFED4 release data
 #  10 Jun 2015 - R. Yantosca - Bug fix: add Streets HgP into HgP tracer
+#  20 Aug 2015 - M. Sulprizio- Applied updates from Amanda Giang:
+#                              (a) Now read MLD from MLD_DReqDT.geos.2x25
+#                              (b) Introduced dMLD files for MLD tendency
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -277,10 +280,12 @@ Warnings:                    {WARNINGS}
 # --- Data for the ocean mercury module ---
 #==============================================================================
 (((+OCEAN_Hg+
-* OCEAN_CHLA    $ROOT/CHLA/v2014-07/Chl_2003.geos.1x1.nc              CHLA    2003/1-12/1/0 C xy kg/m3 * - 1 1
-* OCEAN_EKMAN_V $ROOT/MERCURY/v2014-09/OCEAN/ekman_upvel.geos.2x25.nc EKMAN_V 1985/1-12/1/0 C xy m/s   * - 1 1
-* OCEAN_MLD     $ROOT/MERCURY/v2014-09/OCEAN/mld.geos.2x25.nc         MLD     1985/1-12/1/0 C xy m     * - 1 1
-* OCEAN_NPP     $ROOT/MERCURY/v2014-09/OCEAN/NPP_2003.geos.2x25.nc    NPP     2003/1-12/1/0 C xy kg/m2 * - 1 1
+* OCEAN_CHLA    $ROOT/CHLA/v2014-07/Chl_2003.geos.1x1.nc               CHLA    2003/1-12/1/0 C xy kg/m3 * - 1 1
+* OCEAN_EKMAN_V $ROOT/MERCURY/v2014-09/OCEAN/ekman_upvel.geos.2x25.nc  EKMAN_V 1985/1-12/1/0 C xy m/s   * - 1 1
+* OCEAN_MLD     $ROOT/MERCURY/v2014-09/OCEAN/MLD_DReqDT.geos.2x25.nc   MLD     1985/1-12/1/0 C xy m     * - 1 1
+* OCEAN_NPP     $ROOT/MERCURY/v2014-09/OCEAN/NPP_2003.geos.2x25.nc     NPP     2003/1-12/1/0 C xy kg/m2 * - 1 1
+* OCEAN_dMLD1   $ROOT/MERCURY/v2014-09/OCEAN/dMLD1_DreqDT.geos.2x25.nc dMLD1   1985/1-12/1/0 C xy cm/s  * - 1 1
+* OCEAN_dMLD2   $ROOT/MERCURY/v2014-09/OCEAN/dMLD2_DreqDT.geos.2x25.nc dMLD2   1985/1-12/1/0 C xy cm/s  * - 1 1 
 )))+OCEAN_Hg+
 
 #==============================================================================
