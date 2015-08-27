@@ -26,7 +26,7 @@
 #                as used in some filenames (e.g. "55L", "72L")
 # 
 # !REMARKS:
-#  Customized for the POPs simulation w/ GCAP met fields.
+#  Customized for the POPs simulation for PHE w/ GCAP met fields.
 #
 # !REVISION HISTORY: 
 #  19 Aug 2014 - M. Sulprizio- Initial version
@@ -51,6 +51,14 @@
 #  21 Apr 2015 - R. Yantosca - Now can use extension names as switches
 #  21 Apr 2015 - R. Yantosca - Now make section endings more visible
 #  19 May 2015 - R. Yantosca - Now use tokens for VERBOSE, WARNINGS
+#  27 Aug 2015 - M. Sulprizio- Added updates from Carey Friedman for v11-01c:
+#                              (a) Use updated POPs emission file that 
+#                                  considers wildfire distributions
+#                              (b) Add SURF_POP and SOIL_CARBON entries for
+#                                  calculation of secondary emissions from
+#                                  soil, lakes, and vegetation.
+#                              (c) Add option to use OH, O3, OC, and BC from
+#                                  four different GCAP scenarios.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -96,11 +104,22 @@ Warnings:                    {WARNINGS}
 ### The ExtNr provided in this section must match with the ExtNr assigned to
 ### the data listed in the base emissions sections. Otherwise, the listed files
 ### won't be read!
+###
+### NOTES:
+### --> You must turn on one of the four GCAP scenarios:
+###     PCPE: 2000 "present" climate and 2000 emissions
+###     PCFE: 2000 climate and 2050 "future" emissions
+###     FCPE: 2050 climate and 2000 emissions
+###     FCFE: 2050 climate and 2050 emissions
 ###############################################################################
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
+    --> GCAP_PCPE         :       true
+    --> GCAP_PCFE         :       false
+    --> GCAP_FCPE         :       false
+    --> GCAP_FCFE         :       false
 #------------------------------------------------------------------------------
-1002    GC_POPs           : on    POPG/POPPOC/POPPBC
+1002    GC_POPs           : on    POPG/POPPOCPO/POPPBCPO
 
 ### END SECTION EXTENSION SWITCHES ###
 
@@ -123,9 +142,25 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- GEOS-Chem POPs emissions (Extension 1002) ---
 #==============================================================================
-1002 TOT_POP   $ROOT/POPs/v2014-09/PHE.generic.1x1.nc PG_SRCE__POPG 2004/1/1/0         C xy  kg/m2/s * - 1 1
-1002 GLOBAL_OC $ROOT/POPs/v2014-09/OCPO.$MET.$RES.nc  OCPO          2005-2009/1-12/1/0 C xyz 1       * - 1 1
-1002 GLOBAL_BC $ROOT/POPs/v2014-09/BCPO.$MET.$RES.nc  BCPO          2005-2009/1-12/1/0 C xyz 1       * - 1 1
+1002 TOT_POP     $ROOT/POPs/v2015-08/PHE_wildfredist.generic.1x1.nc PG_SRCE__POPG  2004/1/1/0         C xy  kg/m2/s * - 1 1
+1002 SURF_POP    $ROOT/POPs/v2015-08/PHE_soil_conc.gcap.4x5.nc      IJ_AVG_S__POPG 2009/1/1/0 C xy 1    * - 1 1
+1002 SOIL_CARBON $ROOT/POPs/v2015-08/GTMM_carbon.generic.1x1.nc     SOIL_CARBON    1985/1/1/0 C xy 1    * - 1 1
+(((GCAP_PCPE
+1002 GLOBAL_OC   $ROOT/POPs/v2015-08/OCPO_PCPE.$MET.$RES.nc         OCPO           1997-2003/1-12/1/0 C xyz 1       * - 1 1
+1002 GLOBAL_BC   $ROOT/POPs/v2015-08/BCPO_PCPE.$MET.$RES.nc         BCPO           1997-2003/1-12/1/0 C xyz 1       * - 1 1
+)))GCAP_PCPE
+(((GCAP_PCFE
+1002 GLOBAL_OC   $ROOT/POPs/v2015-08/OCPO_PCFE.$MET.$RES.nc         OCPO           1997-2003/1-12/1/0 C xyz 1       * - 1 1
+1002 GLOBAL_BC   $ROOT/POPs/v2015-08/BCPO_PCFE.$MET.$RES.nc         BCPO           1997-2003/1-12/1/0 C xyz 1       * - 1 1
+)))GCAP_PCFE
+(((GCAP_FCPE
+1002 GLOBAL_OC   $ROOT/POPs/v2015-08/OCPO_FCPE.$MET.$RES.nc         OCPO           2047-2053/1-12/1/0 C xyz 1       * - 1 1
+1002 GLOBAL_BC   $ROOT/POPs/v2015-08/BCPO_FCPE.$MET.$RES.nc         BCPO           2047-2053/1-12/1/0 C xyz 1       * - 1 1
+)))GCAP_FCPE
+(((GCAP_FCFE
+1002 GLOBAL_OC   $ROOT/POPs/v2015-08/OCPO_FCFE.$MET.$RES.nc         OCPO           2047-2053/1-12/1/0 C xyz 1       * - 1 1
+1002 GLOBAL_BC   $ROOT/POPs/v2015-08/BCPO_FCFE.$MET.$RES.nc         BCPO           2047-2053/1-12/1/0 C xyz 1       * - 1 1
+)))GCAP_FCFE
 
 ###############################################################################
 ### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
@@ -145,8 +180,22 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- Oxidant fields (O3, OH) --
 #==============================================================================
-* GLOBAL_O3  $ROOT/O3/v2014-09/MERGE.O3.gcap.23L.4x5.nc                 O3 1985/1-12/1/0 C xyz v/v   * - 1 1
-* GLOBAL_OH  $ROOT/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.gcap.23L.4x5.nc OH 1985/1-12/1/0 C xyz kg/m3 * - 1 1
+(((GCAP_PCPE
+* GLOBAL_O3  $ROOT/POPs/v2015-08/O3_PCPE.gcap.4x5.nc O3 1997-2003/1-12/1/0 C xyz v/v   * - 1 1
+* GLOBAL_OH  $ROOT/POPs/v2015-08/OH_PCPE.gcap.4x5.nc OH 1997-2003/1-12/1/0 C xyz kg/m3 * - 1 1
+)))GCAP_PCPE
+(((GCAP_PCFE
+* GLOBAL_O3  $ROOT/POPs/v2015-08/O3_PCFE.gcap.4x5.nc O3 1997-2003/1-12/1/0 C xyz v/v   * - 1 1
+* GLOBAL_OH  $ROOT/POPs/v2015-08/OH_PCFE.gcap.4x5.nc OH 1997-2003/1-12/1/0 C xyz kg/m3 * - 1 1
+)))GCAP_PCFE
+(((GCAP_FCPE
+* GLOBAL_O3  $ROOT/POPs/v2015-08/O3_FCPE.gcap.4x5.nc O3 2047-2053/1-12/1/0 C xyz v/v   * - 1 1
+* GLOBAL_OH  $ROOT/POPs/v2015-08/OH_FCPE.gcap.4x5.nc OH 2047-2053/1-12/1/0 C xyz kg/m3 * - 1 1
+)))GCAP_FCPE
+(((GCAP_FCFE
+* GLOBAL_O3  $ROOT/POPs/v2015-08/O3_FCFE.gcap.4x5.nc O3 2047-2053/1-12/1/0 C xyz v/v   * - 1 1
+* GLOBAL_OH  $ROOT/POPs/v2015-08/OH_FCFE.gcap.4x5.nc OH 2047-2053/1-12/1/0 C xyz kg/m3 * - 1 1
+)))GCAP_FCFE
 
 ### END SECTION BASE EMISSIONS ###
 
