@@ -57,6 +57,8 @@
 #                              (b) Introduced dMLD files for MLD tendency
 #                              (c) Add AMAP/UNEP2010 emissions with adjustments
 #                                  for in-plume reduction
+#  26 Aug 2015 - E. Lundgren - Applied updates from Jenny Fisher to read 
+#                              present-day and long-term TOMS O3 data sets
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -293,16 +295,27 @@ Warnings:                    {WARNINGS}
 * AERO_DST1 $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc DST1 2007/1/1/0 C xyz ppbv * - 1 1
 
 #==============================================================================
-# --- Data for the ocean mercury module ---
+# --- Data for the ocean mercury module --- 
 #==============================================================================
 (((+OCEAN_Hg+
 * OCEAN_CHLA    $ROOT/CHLA/v2014-07/Chl_2003.geos.1x1.nc               CHLA    2003/1-12/1/0 C xy kg/m3 * - 1 1
+* OCEAN_CHLA_A  $ROOT/MERCURY/v2014-09/OCEAN/CHL_ocn_2009.geos.2x25.nc CHLA_A  2009/1-12/1/0 C xy 1 * - 1 1
 * OCEAN_EKMAN_V $ROOT/MERCURY/v2014-09/OCEAN/ekman_upvel.geos.2x25.nc  EKMAN_V 1985/1-12/1/0 C xy m/s   * - 1 1
 * OCEAN_MLD     $ROOT/MERCURY/v2014-09/OCEAN/MLD_DReqDT.geos.2x25.nc   MLD     1985/1-12/1/0 C xy m     * - 1 1
 * OCEAN_NPP     $ROOT/MERCURY/v2014-09/OCEAN/NPP_2003.geos.2x25.nc     NPP     2003/1-12/1/0 C xy kg/m2 * - 1 1
+* OCEAN_NPP_A   $ROOT/MERCURY/v2014-09/OCEAN/NPP_ocn_2009.geos.2x25.nc NPP_A   2009/1-12/1/0 C xy 1 * - 1 1
 * OCEAN_dMLD1   $ROOT/MERCURY/v2014-09/OCEAN/dMLD1_DreqDT.geos.2x25.nc dMLD1   1985/1-12/1/0 C xy cm/s  * - 1 1
 * OCEAN_dMLD2   $ROOT/MERCURY/v2014-09/OCEAN/dMLD2_DreqDT.geos.2x25.nc dMLD2   1985/1-12/1/0 C xy cm/s  * - 1 1 
 )))+OCEAN_Hg+
+
+#==============================================================================
+# --- TOMS/SBUV overhead ozone columns ---
+#==============================================================================
+(((+TOMS_SBUV_O3+
+* TOMS_O3_COL $ROOT/TOMS_SBUV/v2015-03/TOMS_O3col_$YYYY.geos.1x1.nc       TOMS    1971-2010/1-12/1/0 C xy dobsons   * - 1 1
+* TOMS_O3_PD  $ROOT/TOMS_SBUV/v2015-03/TOMS_O3col_presentday.geos.2x25.nc TOMS_PD  1085/1-12/1/0 C xy dobsons  * - 1 1
+* TOMS_O3_LT  $ROOT/TOMS_SBUV/v2015-03/TOMS_O3col_longterm.geos.2x25.nc   TOMS_LT  1985/1-12/1/0 C xy dobsons  * - 1 1
+)))+TOMS_SBUV_O3+
 
 #==============================================================================
 # --- Data for in plume reduction ---
