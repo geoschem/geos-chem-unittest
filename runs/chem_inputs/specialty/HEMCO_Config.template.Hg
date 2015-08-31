@@ -59,6 +59,7 @@
 #                                  for in-plume reduction
 #  26 Aug 2015 - E. Lundgren - Applied updates from Jenny Fisher to read 
 #                              present-day and long-term TOMS O3 data sets
+#                              and arctic NPP and chlorophyll-a
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -299,7 +300,7 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 (((+OCEAN_Hg+
 * OCEAN_CHLA    $ROOT/CHLA/v2014-07/Chl_2003.geos.1x1.nc               CHLA    2003/1-12/1/0 C xy kg/m3 * - 1 1
-* OCEAN_CHLA_A  $ROOT/MERCURY/v2014-09/OCEAN/CHL_ocn_2009.geos.2x25.nc CHLA_A  2009/1-12/1/0 C xy 1 * - 1 1
+* OCEAN_CHLA_A  $ROOT/MERCURY/v2014-09/OCEAN/CHL_ocn_2009.geos.2x25.nc CHLO_A  2009/1-12/1/0 C xy 1 * - 1 1
 * OCEAN_EKMAN_V $ROOT/MERCURY/v2014-09/OCEAN/ekman_upvel.geos.2x25.nc  EKMAN_V 1985/1-12/1/0 C xy m/s   * - 1 1
 * OCEAN_MLD     $ROOT/MERCURY/v2014-09/OCEAN/MLD_DReqDT.geos.2x25.nc   MLD     1985/1-12/1/0 C xy m     * - 1 1
 * OCEAN_NPP     $ROOT/MERCURY/v2014-09/OCEAN/NPP_2003.geos.2x25.nc     NPP     2003/1-12/1/0 C xy kg/m2 * - 1 1
@@ -313,8 +314,8 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 (((+TOMS_SBUV_O3+
 * TOMS_O3_COL $ROOT/TOMS_SBUV/v2015-03/TOMS_O3col_$YYYY.geos.1x1.nc       TOMS    1971-2010/1-12/1/0 C xy dobsons   * - 1 1
-* TOMS_O3_PD  $ROOT/TOMS_SBUV/v2015-03/TOMS_O3col_presentday.geos.2x25.nc TOMS_PD  1085/1-12/1/0 C xy dobsons  * - 1 1
-* TOMS_O3_LT  $ROOT/TOMS_SBUV/v2015-03/TOMS_O3col_longterm.geos.2x25.nc   TOMS_LT  1985/1-12/1/0 C xy dobsons  * - 1 1
+* TOMS_O3_PD  $ROOT/TOMS_SBUV/v2015-03/TOMS_O3col_presentday.geos.2x25.nc TOMS_PD  1085/1-12/1/0 C     xy dobsons       * - 1 1
+* TOMS_O3_LT  $ROOT/TOMS_SBUV/v2015-03/TOMS_O3col_longterm.geos.2x25.nc   TOMS_LT  1985/1-12/1/0 C     xy dobsons       * - 1 1
 )))+TOMS_SBUV_O3+
 
 #==============================================================================
