@@ -52,11 +52,11 @@
 #  19 May 2015 - R. Yantosca - Now use tokens for VERBOSE, WARNINGS
 #  05 Jun 2015 - R. Yantosca - Updated for the official GFED4 release data
 #  10 Jun 2015 - R. Yantosca - Bug fix: add Streets HgP into HgP tracer
-#  20 Aug 2015 - M. Sulprizio- Applied updates from Amanda Giang:
+#  31 Aug 2015 - M. Sulprizio- Applied updates from Amanda Giang:
 #                              (a) Now read MLD from MLD_DReqDT.geos.2x25
 #                              (b) Introduced dMLD files for MLD tendency
-#                              (c) Add AMAP/UNEP2010 emissions with adjustments
-#                                  for in-plume reduction
+#                              (c) Add AMAP/UNEP2010, NPRI2011, and NEI2011
+#                                  emissions with an emissions control option
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -108,14 +108,15 @@ Warnings:                    {WARNINGS}
     --> AMAP_COMB         :       true
     --> AMAP_INDS         :       true
     --> AMAP_INTW         :       true
-    --> NEI2005           :       true
+    --> ZHAOZHANG         :       false
+    --> CHAKRABORTY       :       false
+    --> EMISS_CONT        :       true 
     --> ARTISANAL         :       true
     --> NATURAL           :       true
     --> SOILDIST          :       true
     --> BrOx_GC           :       true
     --> BrOx_GMI          :       true
     --> LRED_JNO2         :       true
-    --> LRED_INPLUME      :       true
 # ----------------------------------------------------------------------------
 111     GFED              : on    Hg0
     --> GFED3             :       false
@@ -142,9 +143,9 @@ Warnings:                    {WARNINGS}
 # NOTE: HgP emissions are added to Hg2 emissions!
 #==============================================================================
 (((AMAP_COMB
-0 AMAP_COMB_HG0 $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc     Hg0 2010/1/1/0 C xy kg/m2/s Hg0 - 1 1
-0 AMAP_COMB_HG2 $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc     Hg2 2010/1/1/0 C xy kg/m2/s Hg2 - 1 1
-0 AMAP_COMB_HGP $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc     HgP 2010/1/1/0 C xy kg/m2/s HgP - 1 1
+0 AMAP_COMB_HG0 $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc Hg0 2010/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 AMAP_COMB_HG2 $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc Hg2 2010/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 AMAP_COMB_HGP $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc HgP 2010/1/1/0 C xy kg/m2/s HgP - 1 1
 )))AMAP_COMB
 
 (((AMAP_INDS
@@ -160,15 +161,75 @@ Warnings:                    {WARNINGS}
 )))AMAP_INTW
 
 #==============================================================================
-# --- NEI 2005 anthropogenic emissions (NA only) ---
-#
-# NOTE: HgP emissions are added to Hg2 emissions!
+# --- Zhang et al. 2015 and Zhao et al. 2015 China emissions totals ---
 #==============================================================================
-(((NEI2005
-0 NEI2005_HG0 $ROOT/MERCURY/v2014-09/NEI2005/NEI2005.geos5.4x5.nc Hg0 2005/1/1/0 C xy kg/m2/s Hg0 1004 1 2
-0 NEI2005_HG2 $ROOT/MERCURY/v2014-09/NEI2005/NEI2005.geos5.4x5.nc Hg2 2005/1/1/0 C xy kg/m2/s Hg2 1004 1 2
-0 NEI2005_HGP $ROOT/MERCURY/v2014-09/NEI2005/NEI2005.geos5.4x5.nc HgP 2005/1/1/0 C xy kg/m2/s HgP 1004 1 2
-)))NEI2005
+
+(((ZHAOZHANG
+
+(((AMAP_COMB
+0 AMAP_COMB_HG0 $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc Hg0 2010/1/1/0 C xy kg/m2/s Hg0 3/1006 1 3
+0 AMAP_COMB_HG2 $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc Hg2 2010/1/1/0 C xy kg/m2/s Hg2 4/1006 1 3
+0 AMAP_COMB_HGP $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc HgP 2010/1/1/0 C xy kg/m2/s HgP 5/1006 1 3
+)))AMAP_COMB
+
+(((AMAP_INDS
+0 AMAP_INDS_HG0 $ROOT/MERCURY/v2014-09/AMAP/AMAP_inds.0.5x0.5.2010.nc Hg0 2010/1/1/0 C xy kg/m2/s Hg0 3/1006 1 3
+0 AMAP_INDS_HG2 $ROOT/MERCURY/v2014-09/AMAP/AMAP_inds.0.5x0.5.2010.nc Hg2 2010/1/1/0 C xy kg/m2/s Hg2 4/1006 1 3
+0 AMAP_INDS_HGP $ROOT/MERCURY/v2014-09/AMAP/AMAP_inds.0.5x0.5.2010.nc HgP 2010/1/1/0 C xy kg/m2/s HgP 5/1006 1 3
+)))AMAP_INDS
+
+(((AMAP_INTW
+0 AMAP_INTW_HG0 $ROOT/MERCURY/v2014-09/AMAP/AMAP_intw.0.5x0.5.2010.nc Hg0 2010/1/1/0 C xy kg/m2/s Hg0 3/1006 1 3
+0 AMAP_INTW_HG2 $ROOT/MERCURY/v2014-09/AMAP/AMAP_intw.0.5x0.5.2010.nc Hg2 2010/1/1/0 C xy kg/m2/s Hg2 4/1006 1 3
+0 AMAP_INTW_HGP $ROOT/MERCURY/v2014-09/AMAP/AMAP_intw.0.5x0.5.2010.nc HgP 2010/1/1/0 C xy kg/m2/s HgP 5/1006 1 3
+)))AMAP_INTW
+
+)))ZHAOZHANG
+
+#==============================================================================
+# --- Chakraborty et al. 2013 India emissions totals ---
+#==============================================================================
+
+(((CHAKRABORTY
+
+(((AMAP_COMB
+0 AMAP_COMB_HG0 $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc Hg0 2010/1/1/0 C xy kg/m2/s Hg0 6/1007 1 3
+0 AMAP_COMB_HG2 $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc Hg2 2010/1/1/0 C xy kg/m2/s Hg2 7/1007 1 3
+0 AMAP_COMB_HGP $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc HgP 2010/1/1/0 C xy kg/m2/s HgP 8/1007 1 3
+)))AMAP_COMB
+
+(((AMAP_INDS
+0 AMAP_INDS_HG0 $ROOT/MERCURY/v2014-09/AMAP/AMAP_inds.0.5x0.5.2010.nc Hg0 2010/1/1/0 C xy kg/m2/s Hg0 6/1007 1 3
+0 AMAP_INDS_HG2 $ROOT/MERCURY/v2014-09/AMAP/AMAP_inds.0.5x0.5.2010.nc Hg2 2010/1/1/0 C xy kg/m2/s Hg2 7/1007 1 3
+0 AMAP_INDS_HGP $ROOT/MERCURY/v2014-09/AMAP/AMAP_inds.0.5x0.5.2010.nc HgP 2010/1/1/0 C xy kg/m2/s HgP 8/1007 1 3
+)))AMAP_INDS
+
+(((AMAP_INTW
+0 AMAP_INTW_HG0 $ROOT/MERCURY/v2014-09/AMAP/AMAP_intw.0.5x0.5.2010.nc Hg0 2010/1/1/0 C xy kg/m2/s Hg0 6/1007 1 3
+0 AMAP_INTW_HG2 $ROOT/MERCURY/v2014-09/AMAP/AMAP_intw.0.5x0.5.2010.nc Hg2 2010/1/1/0 C xy kg/m2/s Hg2 7/1007 1 3
+0 AMAP_INTW_HGP $ROOT/MERCURY/v2014-09/AMAP/AMAP_intw.0.5x0.5.2010.nc HgP 2010/1/1/0 C xy kg/m2/s HgP 8/1007 1 3
+)))AMAP_INTW
+
+)))CHAKRABORTY
+
+#==============================================================================
+# --- Emissions Controls for Coal Fired Power Plants  ---
+# Only applies to US, Canada, EU, and China 
+# See Zhang et al. forthcoming for details
+#==============================================================================
+
+(((EMISS_CONT
+0 NPRI2011_HG0 $ROOT/MERCURY/v2014-09/NPRI2011/Hg0.NPRI_2011_def_spec.025x03125.nc Hg0 2010/1/1/0 C xy kg/m2/s Hg0 10/1008 1 2
+0 NPRI2011_HG2 $ROOT/MERCURY/v2014-09/NPRI2011/Hg2.NPRI_2011_def_spec.025x03125.nc Hg2 2010/1/1/0 C xy kg/m2/s Hg2 9/1008  1 2
+0 NPRI2011_HGP $ROOT/MERCURY/v2014-09/NPRI2011/HgP.NPRI_2011_def_spec.025x03125.nc HgP 2010/1/1/0 C xy kg/m2/s HgP 1008    1 2
+0 EU_CONT_HG0  $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc               Hg0 2010/1/1/0 C xy kg/m2/s Hg0 11/1009 1 2
+0 EU_CONT_HG2  $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc               Hg2 2010/1/1/0 C xy kg/m2/s Hg2 9/1009  1 2
+0 CHN_CONT_HG0 $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc               Hg0 2010/1/1/0 C xy kg/m2/s Hg0 12/1006 1 2
+0 CHN_CONT_HG2 $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc               Hg2 2010/1/1/0 C xy kg/m2/s Hg2 9/1006  1 2
+0 NEI2011_HG0  $ROOT/MERCURY/v2014-09/NEI2011/US_NEI2011_Hg0.geos5.05x0666.nc      Hg0 2010/1/1/0 C xy kg/m2/s Hg0 1005    1 2
+0 NEI2011_HG2  $ROOT/MERCURY/v2014-09/NEI2011/US_NEI2011_Hg2.geos5.05x0666.nc      Hg2 2010/1/1/0 C xy kg/m2/s Hg2 1005    1 2
+0 NEI2011_HGP  $ROOT/MERCURY/v2014-09/NEI2011/US_NEI2011_HgP.geos5.05x0666.nc      HgP 2010/1/1/0 C xy kg/m2/s HgP 1005    1 2
+)))EMISS_CONT
 
 #==============================================================================
 # --- Artisanal mining ---
@@ -304,13 +365,6 @@ Warnings:                    {WARNINGS}
 * OCEAN_dMLD2   $ROOT/MERCURY/v2014-09/OCEAN/dMLD2_DreqDT.geos.2x25.nc dMLD2   1985/1-12/1/0 C xy cm/s  * - 1 1 
 )))+OCEAN_Hg+
 
-#==============================================================================
-# --- Data for in plume reduction ---
-#==============================================================================
-(((LRED_INPLUME
-* CFPP_NEI2005_Hg2 $ROOT/MERCURY/v2014-09/NEI2005/CFPP_NEI2005_NPRI2005_Hg2.geos5.2x25.2005.nc Hg2_an 2005/1/1/0 C xy kg/m2/s * - 1 1
-)))LRED_INPLUME
-
 ### END SECTION BASE EMISSIONS ###
 
 ###############################################################################
@@ -319,9 +373,19 @@ Warnings:                    {WARNINGS}
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
 
-# --- Scale factors for artisanal and soil emissions ---
-1 ARTISANALSCALE 0.75 - - - xy 1 1
-2 SOILSCALE      0.5  - - - xy 1 1
+# --- Scale factors for anthropogenic, artisinal, and soil emissions ---
+1  ARTISANALSCALE 0.75  - - - xy 1 1
+2  SOILSCALE      0.5   - - - xy 1 1
+3  ZHANGZHAO_0    1.120 - - - xy 1 1
+4  ZHANGZHAO_2    2.467 - - - xy 1 1
+5  ZHANGZHAO_P    0.557 - - - xy 1 1
+6  CHAKRABORTY_0  1.401 - - - xy 1 1
+7  CHAKRABORTY_2  2.120 - - - xy 1 1
+8  CHAKRABORTY_P  2.856 - - - xy 1 1
+9  EMISSCONT_2    0.5   - - - xy 1 1
+10 NPRI_CONT_0    1.343 - - - xy 1 1
+11 EU_CONT_0      1.396 - - - xy 1 1
+12 CHN_CONT_0     1.400 - - - xy 1 1
 
 ### END SECTION SCALE FACTORS ###
 
@@ -331,7 +395,12 @@ Warnings:                    {WARNINGS}
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
 
-1004 NA_MASK $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc MASK 1985/1/1/0 C xy 1 1 -165/10/-40/90
+1004 NA_MASK     $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc       MASK 1985/1/1/0 C xy 1 1 -165/10/-40/90
+1005 USA_MASK    $ROOT/MASKS/v2014-07/USA_mask.geos.1x1.nc      MASK 1985/1/1/0 C xy 1 1 -140/10/-40/70
+1006 CHINA_MASK  $ROOT/MASKS/v2014-07/China_mask.generic.1x1.nc MASK 1985/1/1/0 C xy 1 1 70/15/125/50
+1007 INDIA_MASK  $ROOT/MASKS/v2014-07/India_mask.generic.1x1.nc MASK 1985/1/1/0 C xy 1 1 65/5/100/35
+1008 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.gen.1x1.nc    MASK 2000/1/1/0 C xy 1 1 -130/45/-50/85
+1009 EU_MASK     $ROOT/MASKS/v2014-07/EU_mask.generic.1x1.nc    MASK 1985/1/1/0 C xy 1 1 20/35/50/80
 
 ### END SECTION MASKS ###
  
