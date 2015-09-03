@@ -392,6 +392,8 @@ dataclean:
 	rm -f HEMCO_restart.*;
 	if [ -f HC.nc ]; then mv -f HC.nc HEMCO_restart.$(START).nc; fi;
 	rm -f trac_rst*
+	rm -f ocean_rst*.mp
+	rm -f ocean_rst*.sp
 	rm -f trac_avg*
 	rm -f Ox.mass.*
 	rm -f diaginfo.dat tracerinfo.dat
@@ -401,12 +403,14 @@ spdataclean:
 	rm -f $(TRAC_AVG)*.sp
 	rm -f $(TRAC_RST)*.sp
 	rm -f HEMCO_restart*.sp
+	rm -f ocean_rst*.sp
 	rm -f diaginfo.dat tracerinfo.dat
 
 mpdataclean:
 	rm -f $(TRAC_AVG)*.mp
 	rm -f $(TRAC_RST)*.mp
 	rm -f HEMCO_restart*.mp
+	rm -f ocean_rst*.mp
 	rm -f diaginfo.dat tracerinfo.dat
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%

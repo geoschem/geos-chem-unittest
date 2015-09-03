@@ -128,6 +128,8 @@ Preindustrial sim?      : F
 Ocean Hg restart file   : ocean_rst.geos5_2x25_Hg.YYYYMMDDhhmm
 Use GTMM soil model?    : F
 GTMM Hg restart file    : GTM.totHg.YYYYMMDDhh
+Use Arctic river Hg?    : T
+Tie HgII(aq) red to UVB?: T
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
 Schedule output for JAN : 3000000000000000000000000000000
@@ -291,15 +293,15 @@ File w/ final Ox        : Ox.mass.final
 Save TPCORE BC's        : F
 Input BCs at 2x2.5?     : F
 Over North America?     : F
-TPCORE NA BC directory  : BC_4x5_NA/
+TPCORE NA BC directory  : BC_2x25_NA/
 Over Europe?            : F
-TPCORE EU BC directory  : BC_4x5_EU/
+TPCORE EU BC directory  : BC_2x25_EU/
 Over China?             : F
-TPCORE CH BC directory  : BC_4x5_CH/
+TPCORE CH BC directory  : BC_2x25_CH/
 Over SE Asia region?    : F
-TPCORE SE BC directory  : BC_4x5_SE/
+TPCORE SE BC directory  : BC_2x25_SE/
 Over Custom Region?     : F
-TPCORE BC directory     : BC_4x5/
+TPCORE BC directory     : BC_2x25/
 BC timestep [min]       : 180
 LL box of BC region     :   9  26
 UR box of BC region     :  29  41

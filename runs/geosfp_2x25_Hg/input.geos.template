@@ -128,6 +128,8 @@ Preindustrial sim?      : F
 Ocean Hg restart file   : ocean_rst.geosfp_2x25_Hg.YYYYMMDDhhmm
 Use GTMM soil model?    : F
 GTMM Hg restart file    : GTM.totHg.YYYYMMDDhh
+Use Arctic river Hg?    : T
+Tie HgII(aq) red to UVB?: T
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
 Schedule output for JAN : 3000000000000000000000000000000
