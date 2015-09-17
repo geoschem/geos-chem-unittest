@@ -3,7 +3,7 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !INCLUDE: UnitTest.nightly
+# !INCLUDE: UnitTest.specialty
 #
 # !DESCRIPTION: Input file that specifies debugging options for the 
 #  GEOS-Chem unit tester. Customized for specialty (aka "offline") simulations.
@@ -49,12 +49,13 @@
 #  21 May 2015 - R. Yantosca - Added VERBOSE and WARNINGS.  These default to
 #                              3, 3, respectively if not specified
 #  19 Jun 2015 - R. Yantosca - Add optional SLURM tags
+#  17 Sep 2015 - M. Sulprizio- Add unit tests for MERRA2
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION         : v11-01.offline
+   VERSION         : v11-01.specialty
    DESCRIPTION     : Tests GEOS-Chem specialty simulations
    CODE_DIR        : /home/bmy/GC/Code.v11-01
    DATA_ROOT       : /as/data/geos/ExtData
@@ -103,6 +104,7 @@
 #--------|-----------|------|------------|------------|--------------|--------|
 # ======= Radon-Lead-Beryllium ===============================================
   geosfp   4x5         -      RnPbBe       2013070100   2013070101    -
+  merra2   4x5         -      RnPbBe       2013070100   2013070101    -
   merra    4x5         -      RnPbBe       2006070100   2006070101    -
   geos5    4x5         -      RnPbBe       2006070100   2006070101    -
   geos4    4x5         -      RnPbBe       2006070100   2006070101    -
@@ -111,6 +113,7 @@
   geos5    2x25        -      RnPbBe       2006070100   200607010030  -
 # ======= Mercury ============================================================
   geosfp   4x5         -      Hg           2013010100   2013010101    -
+  merra2   4x5         -      Hg           2013010100   2013010101    -
   merra    4x5         -      Hg           2009010100   2009010101    -
   geos5    4x5         -      Hg           2009010100   2009010101    -
   geos4    4x5         -      Hg           2009010100   2009010101    -
@@ -119,6 +122,7 @@
   geos5    2x25        -      Hg           2009010100   200901010030  -
 # ======= POPs ===============================================================
   geosfp   4x5         -      POPs         2013070100   2013070101    -
+  merra2   4x5         -      POPs         2013070100   2013070101    -
   merra    4x5         -      POPs         2006070100   2006070101    -
   geos5    4x5         -      POPs         2006070100   2006070101    -
   geos4    4x5         -      POPs         2006070100   2006070101    -
@@ -127,6 +131,7 @@
   geos5    2x25        -      POPs         2006070100   200607010030  -
 # ======= Methane ============================================================
   geosfp   4x5         -      CH4          2013070100   2013070101    -
+  merra2   4x5         -      CH4          2013070100   2013070101    -
   merra    4x5         -      CH4          2006070100   2006070101    -
   geos5    4x5         -      CH4          2006070100   2006070101    -
   geos4    4x5         -      CH4          2006070100   2006070101    -
@@ -134,6 +139,7 @@
   geos5    2x25        -      CH4          2006070100   200607010030  -
 # ======= Tagged O3 ==========================================================
   geosfp   4x5         -      tagO3        2013070100   2013070101    -
+  merra2   4x5         -      tagO3        2013070100   2013070101    -
   merra    4x5         -      tagO3        2006070100   2006070101    -
   geos5    4x5         -      tagO3        2006070100   2006070101    -
   geos4    4x5         -      tagO3        2006070100   2006070101    -

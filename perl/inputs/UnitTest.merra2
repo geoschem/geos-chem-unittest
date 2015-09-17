@@ -3,10 +3,10 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !INCLUDE: UnitTest.POPs
+# !INCLUDE: UnitTest.merra2
 #
 # !DESCRIPTION: Input file that specifies debugging options for the 
-#  GEOS-Chem unit tester.  Customized for POPs simulations.
+#  GEOS-Chem unit tester.  Customized for MERRA2 simulations.
 #\\
 #\\
 # !REMARKS:  
@@ -32,37 +32,18 @@
 #  WEB_PUSH    : Remote location to send web page w/ unit test results
 #
 # !REMARKS:
-#  This file specifies unit tests for Hg simulations (all met types).
+#  This file specifies unit tests with MERRA2 meteorology.
 #  To omit individual unit tests, place a # in the first column.
 #
 # !REVISION HISTORY: 
-#  22 Aug 2013 - R. Yantosca - Initial version
-#  03 Sep 2013 - R. Yantosca - Now do 1-hr test runs for expediency
-#  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
-#  27 Feb 2014 - R. Yantosca - Now grouped runs by simulation type
-#  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
-#  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
-#  14 Apr 2014 - R. Yantosca - Added unit tests for POPs simulation
-#  24 Apr 2014 - R. Yantosca - Add extra GEOS-4 unit tests (Hg, tagO3, CH4)
-#  28 Jul 2014 - R. Yantosca - Add HEMCO_ROOT directory
-#  28 Jul 2014 - R. Yantosca - 2 x 2.5 runs now end after 30 mins
-#  07 Aug 2014 - M. Sulprizio- Add GCAP unit test for POPs simulation
-#  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
-#  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
-#  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
-#                              MERRA, and GCAP, so as to use NEI2011
-#  19 Mar 2015 - R. Yantosca - Hg simulations should use 2005 (except GEOS-FP)
-#  21 May 2015 - R. Yantosca - Added VERBOSE and WARNINGS.  These default to
-#                              3, 3, respectively if not specified
-#  18 Jun 2015 - M. Sulprizio- Now use HOME token to specify file paths
-#  19 Jun 2015 - R. Yantosca - Add optional SLURM tags
+#  17 Sep 2015 - M. Sulprizio- Initial version
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
-   VERSION         : v11-01.POPs
-   DESCRIPTION     : To test POPS simulation in GEOS-Chem
+   VERSION         : v11-01.merra2
+   DESCRIPTION     : Tests MERRA2 simulations in GEOS-Chem
    CODE_DIR        : {HOME}/GC/Code.v11-01
    DATA_ROOT       : /as/data/geos/ExtData
    HEMCO_ROOT      : {DATAROOT}/HEMCO
@@ -71,9 +52,9 @@
    JOB_DIR         : {HOME}/UT/jobs
    LOG_DIR         : {HOME}/UT/logs/{VERSION}
    PERL_DIR        : {HOME}/UT/perl
-   COMPILER        : ifort
    VERBOSE         : 3
    WARNINGS        : 3
+   COMPILER        : ifort
    MAKE_CMD        : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
    SUBMIT          : submit smp4
    TEMPLATE        : {PERLDIR}/ut_template.html
@@ -108,14 +89,11 @@
 #--------|-----------|------|------------|------------|--------------|--------|
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE     | EXTRA? |
 #--------|-----------|------|------------|------------|--------------|--------|
-  geosfp   4x5         -      POPs         2013070100   2013070101     -
-  merra2   4x5         -      POPs         2013070100   2013070101     -
-  merra    4x5         -      POPs         2006070100   2006070101     -
-  geos5    4x5         -      POPs         2006070100   2006070101     -
-  geos4    4x5         -      POPs         2006070100   2006070101     -
-  gcap     4x5         -      POPs         2005070100   2005070101     -
-  geosfp   2x25        -      POPs         2013070100   201307010030   -
-  geos5    2x25        -      POPs         2006070100   200607010030   -
+  merra2    4x5         -      RnPbBe       2013070100   2013070101     -
+  merra2    4x5         -      Hg           2013010100   2013010101     -
+  merra2    4x5         -      POPs         2013070100   2013070101     -
+  merra2    4x5         -      tagO3        2013070100   2013070101     -
+  merra2    4x5         -      CH4          2013070100   2013070101     -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------
