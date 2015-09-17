@@ -30,17 +30,30 @@
 #BOC
 
 #-------------------------------------------------
+# Settings for the SLURM scheduler
+#-------------------------------------------------
+#SBATCH -n 8                                # Number of CPUs you are requesting
+#SBATCH -N 1                                # Ask for all CPUs on the same node
+#SBATCH -t 720                              # Runtime in minutes (minimum: 10)
+#SBATCH -p jacob                            # Partition to submit to (see above)
+#SBATCH --mem-per-cpu=1000                  # Memory per cpu in MB. 
+#SBATCH -o v11-01.out                       # File where stdout will be written 
+#SBATCH -e v11-01.err                       # File where stderr will be written 
+#SBATCH --mail-type=END                     # Type of email notification 
+#SBATCH --mail-user=mpayer@seas.harvard.edu # Your email address
+
+# Set the proper # of threads for OpenMP
+# SLURM_NTASKS ensures this matches the number you set with -n above
+export OMP_NUM_THREADS=$SLURM_NTASKS
+
+#-------------------------------------------------
 # Initialize
 #-------------------------------------------------
 # Define version ID
-id="v11-01a"
+id="v11-01d"
 
 # Define GEOS-Chem log file
 log="$id.log"
-
-# Clear files from past runs
-rm -f $id.run.o*
-rm -f $id.run.po*
 
 #-------------------------------------------------
 # Start the simulation
