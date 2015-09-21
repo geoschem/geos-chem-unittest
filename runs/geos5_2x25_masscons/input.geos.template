@@ -7,14 +7,14 @@ Run directory           : ./
 Input restart file      : CO2_370_restart
 Make new restart file?  : F
 Output restart file(s)  : trac_rst.geos5_2x25_masscons.YYYYMMDDhhmm
-Root data directory     : /as/data/geos/ExtData
+Root data directory     : {DATA_ROOT}
  => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
  => GEOS-5  subdir      : GEOS_5/YYYY/MM/
  => GEOS-FP subdir      : GEOS_FP/YYYY/MM/
  => MERRA   subdir      : MERRA/YYYY/MM/
  => MERRA2  subdir      : MERRA2/YYYY/MM/
-Dir w/ 1x1 emissions etc: /as/data/geos/ExtData/GEOS_NATIVE/
+Dir w/ 1x1 emissions etc: {DATA_ROOT}/GEOS_NATIVE/
 Temporary directory     : ./
 Unzip met fields?       : F
 Wait for met fields?    : F
