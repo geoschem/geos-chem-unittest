@@ -221,8 +221,8 @@ Warnings:                    {WARNINGS}
 116     MarinePOA         : off   MOPO/MOPI 
 108     MEGAN             : on    ISOP/ACET/PRPE/C2H4/ALD2
     --> Isoprene scaling  :       1.0 
-    --> CO2 inhibition    :       false
-    --> CO2 conc (ppmv)   :       370.0
+    --> CO2 inhibition    :       true
+    --> CO2 conc (ppmv)   :       390.0
 109     MEGAN_Mono        : on    CO/OCPI/MONX
 110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
 111     GFED              : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POA1/NAP
