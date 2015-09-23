@@ -1,12 +1,6 @@
 This directory is the run directory for the GEOS-Chem unit tester,
 for GEOS-4 met fields, 4x5 grid, and the mercury simulation.
 
-Jenny Fisher provided tracer and ocean restart files for inclusion in
-v11-01c. These files were generated for 20090101 using MERRA 4x5 met fields.
-The tracer restart file here has been regridded from MERRA_47L to GEOS4_30L
-using GAMAP routine regridv_restart.pro. The ocean restart file is linked to
-the file in the ../merra_2x25_Hg directory.
-
 The HEMCO configuration file is linked to HEMCO_Config.template.Hg stored
 in ../chem_inputs/specialty.  This allows us to keep a single set of these
 files in one location, for convenience.

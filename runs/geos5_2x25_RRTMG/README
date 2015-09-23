@@ -6,10 +6,6 @@ configuration file is linked to HEMCO_Config.template stored in
 ../chem_inputs/fullchem.  This allows us to keep a single set of these
 files in one location, for convenience.
 
-Because RRTMG uses the same tracers as the fullchem simulation, we have
-created a symbolic link to the restart files in the ../geos5_2x2 5_fullchem
-directory.
-
 A new input.geos file will be created from the input.geos.template file
 each time the unit tester is run.  This allows the location of the data
 files to be customized for each user.

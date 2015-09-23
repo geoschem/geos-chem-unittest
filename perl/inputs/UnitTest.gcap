@@ -56,7 +56,7 @@
    DESCRIPTION     : Tests GCAP simulation in GEOS-Chem
    CODE_DIR        : {HOME}/GC/Code.v11-01
    DATA_ROOT       : /as/data/geos/ExtData
-   HEMCO_ROOT      : /as/data/geos/HEMCO
+   HEMCO_ROOT      : /as/data/geos/ExtData/HEMCO
    RUN_ROOT        : {HOME}/UT/runs
    RUN_DIR         : {RUNROOT}/{RUNDIR}
    JOB_DIR         : {HOME}/UT/jobs
@@ -99,7 +99,7 @@
 #--------|-----------|------|------------|------------|--------------|--------|
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE     | EXTRA? |
 #--------|-----------|------|------------|------------|--------------|--------|
-  gcap     4x5         -      tropchem     2005070100   2005070101     -
+#  gcap     4x5         -      tropchem     2005070100   2005070101     -
   gcap     4x5         -      RnPbBe       2005070100   2005070101     -
   gcap     4x5         -      POPs         2005070100   2005070101     -
  !END OF RUNS:

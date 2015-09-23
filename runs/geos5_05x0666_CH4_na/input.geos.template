@@ -4,7 +4,7 @@ GEOS-CHEM UNIT TEST SIMULATION: geos5_05x0666_CH4_na
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : initial_trac_rst.geos5_05x0666_CH4_na
+Input restart file      : {DATA_ROOT}/GC_RESTARTS/initial_trac_rst.geos5_05x0666_CH4_na
 Make new restart file?  : T
 Output restart file(s)  : trac_rst.geos5_05x0666_CH4_na.YYYYMMDDhhmm
 Root data directory     : {DATA_ROOT}
