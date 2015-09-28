@@ -126,7 +126,8 @@ Use future emissions?   : PRESENT
 Error check tag/tot Hg? : F
 Use dynamic ocean Hg?   : T
 Preindustrial sim?      : F
-Ocean Hg restart file   : {DATA_ROOT}/GC_RESTARTS/ocean_rst.geosfp_2x25_Hg.YYYYMMDDhhmm
+Input  ocean Hg restart : {DATA_ROOT}/GC_RESTARTS/initial_ocean_rst.geosfp_2x25_Hg.YYYYMMDDhhmm
+Output ocean Hg restart : ./ocean_rst.geosfp_2x25_Hg.YYYYMMDDhhmm
 Use GTMM soil model?    : F
 GTMM Hg restart file    : GTM.totHg.YYYYMMDDhh
 Use Arctic river Hg?    : T
