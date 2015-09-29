@@ -186,7 +186,7 @@ sub main() {
 	  # Remove files in each run directory ...
 	  print "==> Removing files in $runDir\n";
 	  $cmd  = "cd $runDir; ";
-	  $cmd .= "rm -f input.geos HEMCO_Config.rc HEMCO.log Makefile lastbuild* *.sp *.mp *info.dat; ";
+	  $cmd .= "rm -f input.geos HEMCO_Config.rc HEMCO.log smv2.log Ox.mass.* Makefile lastbuild* *.sp *.mp *info.dat; ";
 	  $cmd .= "cd ..";
           #print "$cmd\n";
 	  qx/$cmd/;

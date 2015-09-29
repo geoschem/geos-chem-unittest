@@ -4,7 +4,7 @@ GEOS-CHEM UNIT TEST SIMULATION: merra2_4x5_Hg
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : initial_trac_rst.merra2_4x5_Hg
+Input restart file      : {DATA_ROOT}/GC_RESTARTS/initial_trac_rst.merra2_4x5_Hg
 Make new restart file?  : T
 Output restart file(s)  : trac_rst.merra2_4x5_Hg.YYYYMMDDhhmm
 Root data directory     : {DATA_ROOT}
@@ -126,7 +126,8 @@ Use future emissions?   : PRESENT
 Error check tag/tot Hg? : F
 Use dynamic ocean Hg?   : T
 Preindustrial sim?      : F
-Ocean Hg restart file   : ocean_rst.merra2_4x5_Hg.YYYYMMDDhhmm
+Input  ocean Hg restart : {DATA_ROOT}/GC_RESTARTS/initial_ocean_rst.merra2_4x5_Hg.YYYYMMDDhhmm
+Output ocean Hg restart : ./ocean_rst.merra2_4x5_Hg.YYYYMMDDhhmm
 Use GTMM soil model?    : F
 GTMM Hg restart file    : GTM.totHg.YYYYMMDDhh
 Use Arctic river Hg?    : T

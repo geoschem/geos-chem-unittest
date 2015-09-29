@@ -1,10 +1,6 @@
 This directory is the run directory for the GEOS-Chem unit tester,
 for MERRA2 met fields, 4x5 grid, and the Rn-Pb-Be simulation.
 
-The tracer restart files are linked to the files in the ../geos5_4x5_RnPbBe 
-directory.  MERRA2 uses the same vertical grid as the GEOS-5 (aka GEOS-5.2.0)
-and GEOS-FP met field products, so the restart files are interchangeable.
-
 The HEMCO configuration file is linked to HEMCO_Config.template.RnPbBe stored
 in ../chem_inputs/specialty.  This allows us to keep a single set of these
 files in one location, for convenience.

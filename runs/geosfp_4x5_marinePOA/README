@@ -11,9 +11,6 @@ A new input.geos file will be created from the input.geos.template file
 each time the unit tester is run.  This allows the location of the data
 files to be customized for each user.
 
-Unlike the rest of the tracers, the two marine organic aerosols tracers
-(MOPO and MOPI) are not spun up in the included restart file.
-
 13 Jul 2015
 GEOS-Chem Support Team
 geos-chem-support@as.harvard.edu
