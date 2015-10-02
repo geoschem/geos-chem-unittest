@@ -1,0 +1,44 @@
+README for run directory copied from GEOS-Chem UnitTest
+14 Apr 2015
+GEOS-Chem Support Team
+geos-chem-support@as.harvard.edu
+
+This directory contains the following files or sets of files:
+
+     (1) Makefile
+     (2) input.geos configuration file
+     (3) getRunInfo perl script
+     (4) HEMCO_Config.rc configuration file
+     (5) one or more data restart files
+     (6) zero or more auxiliary data files
+
+The Makefile enables build, run, print, and clean functionality from the 
+prompt. Prior to use, open Makefile in a text editor and set the source code 
+location (CODE_DIR) and optionally the log path (LOG_DIR) and log file 
+prefix (VERSION). See the Makefile header for information about using make. 
+
+The perl script getRunInfo is used by Makefile to extract grid resolution, 
+simulation start and end times, meteorological data source, nested region, 
+and simulation type from the input.geos configuration file.
+
+Input.geos is a pre-configured text file containing default settings for 
+run directory simulations. Adjust input.geos as needed for custom runs 
+(e.g. start date, end date, output frequency, and output file diagnostics 
+to include). 
+
+HEMCO_Config.rc specifies emissions settings used by the Harvard/NASA
+Emissions Component of GEOS-Chem. For detailed information about HEMCO, see ___.
+
+All run directories include a tracer restart file that may be used to "spin
+up" initial conditions for a simulation. Auxiliary data files and additional 
+restart files may be included depending on the simulation type. 
+
+For information about using run directories copied from GEOS-Chem UnitTest, 
+visit the Creating GEOS-Chem Run Directories page on the GEOS-Chem wiki. For 
+detailed instructions on getting started with GEOS-Chem, see the online 
+GEOS-Chem User Manual.
+     
+
+
+
+

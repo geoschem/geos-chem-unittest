@@ -1,0 +1,150 @@
+# GEOS-Chem DiffTest #
+
+This directory can be used to run a difference test for a GEOS-Chem 
+simulation. If this directory is for GEOS-FP, GEOS-5, or MERRA, it can 
+also be used to run difference tests with any of these three met fields. 
+GEOS-FP, GEOS-5, and MERRA fields share the same vertical and horizontal 
+resolutions and can therefore interchange restart files.
+
+A difference test validates two versions of GEOS-Chem. It compares model 
+output from a version of GEOS-Chem in which you have made updates (aka 
+the development code, or **Dev**) against a version of GEOS-Chem with 
+known behavior (aka the reference code, or **Ref**).
+
+Typically you can only set up a difference test if you expect that the 
+Dev code will produce identical results w/r/t the Ref code.  This will 
+be true if Dev contains only structural changes (i.e. modifications in 
+how data gets passed from one place to another, replacing old Fortran 
+code with more modern equivalent code) w/r/t Ref.  If Dev contains 
+scientific changes (new chemistry reactions, addition of tracers, new 
+photolysis reactions, etc.), then you cannot do a difference test.  You 
+will need to rely on the 1-month and 1-year benchmarks to validate the 
+code.
+
+## Setup instructions ##
+
+The main directory is separated into Dev/, Ref/, and logs/ subdirectories.  
+There is a top-level Makefile as well.
+
+```
+cd DiffTest_Hg_4x5 (or whatever this specific DiffTest directory is)
+ls
+> Dev/  Makefile  Ref/  logs/  README.md
+```
+
+In the top-level Makefile, look for these lines:
+
+```
+# Reference code directory
+ifndef CODE_REF
+ CODE_REF   :=/home/$(USER)/GC/Code.Ref
+endif
+
+# Development code directory
+ifndef CODE_DEV
+ CODE_DEV   :=/home/$(USER)/GC/Code.Dev
+endif
+```
+Here:
+
+* CODE_REF specifies the GEOS-Chem source code directory for the Ref code.  
+* CODE_DEV specifies the GEOS-Chem source code directory for the Dev code
+* You can edit the default settings of CODE_REF and CODE_DEV here, if they 
+are in a different location than your /home/$USER/GC/ directory path.  
+($USER = your Unix login ID.)
+
+In many cases, the Dev and Ref codes will only differ from each other by a 
+few commits.  To set up a Ref code directory you can make a copy the Dev 
+code directory, and then open a new Git branch at a commit at the 
+appropriate point in the past.  (See our GEOS-Chem wiki page for 
+instructions on how to revert to an older state of the code with Git.)
+
+## Running a difference test ##
+
+Make sure that the input.geos file in the Dev/ directory has all of the 
+proper settings for your run.  The Ref/ directory links to this 
+input.geos file.
+
+Then make sure you are in the top-level directory.  Then you can simply 
+type:
+
+```
+make superclean
+make logclean
+make -j4 MET=geosfp GRID=4x5 TRACEBACK=y NO_ISO=y dt
+```
+
+NOTE: You can add the other debug flags (BOUNDS=y DEBUG=y FPE=y etc.) or 
+different met field flags (MET=geos5, MET=merra) if you wish.
+
+This will compile and run the Dev and Ref versions of GEOS-Chem.  Log 
+files will be sent to the logs/ directory. 
+
+Typing make superclean will do a make realclean in both the Dev and Ref 
+code directories.  It will also remove all output files from the Dev/ 
+and Ref/ subdirectories.  You don't have to do make superclean before 
+each difference test.  It is a good idea to do this periodically.
+
+Typing make logclean will remove any prior log files from the logs/ 
+directory.  This is not done when you type make superclean; you have to do 
+make logclean separately.
+
+If you want, you can also execute the individual segments of the difference 
+test separately.  For example:
+
+To just compile & run the Ref code, type this:
+```
+make -j4 TRACEBACK=y NO_ISO=y refonly
+```
+
+To just compile & run the Dev code, type this:
+```
+make -j4 TRACEBACK=y NO_ISO=y devonly
+```
+
+To compile & run the Dev code AND to check it against the Ref code (but 
+without running Ref), type this:
+```
+make -j4 TRACEBACK=y NO_ISO=y devcheck
+```
+
+To check Dev against Ref, without running either, type this:
+```
+make -j4 check
+```
+
+To compile and run the Ref code with the Totalview debugger, type one of 
+these commands:
+```
+# single-processor mode
+make -j4 DEBUG=y TRACEBACK=y FPE=y BOUNDS=y tvsp_ref
+
+# multi-processor mode
+make -j4 DEBUG=y TRACEBACK=y FPE=y BOUNDS=y tvmp_ref  
+```
+ 
+To compile and run the Dev code with the Totalview debugger, type one of 
+these commands:
+```
+# single-processor mode
+make -j4 DEBUG=y TRACEBACK=y FPE=y BOUNDS=y tvsp_dev
+
+# multi-processor mode
+make -j4 DEBUG=y TRACEBACK=y FPE=y BOUNDS=y tvmp_dev
+```
+
+## Examining the results ##
+
+The results of the difference test will be sent to a file called 
+log.results.geosfp.DDDHHMM (or log.results.geos5.DDDHHMM or 
+log.results.merra.DDDHHMM, depending on the met field you are using). 
+If all files are identical, then we can say that the Dev code passed 
+the difference test, and that is identical to Ref.
+
+If the restart files (trac_rst_YYYYMMDDhhmm*) are identical, but the 
+diagnostic files (trac_avg.YYYYMMDDhhmm*) differ, then this means that 
+there is a problem in the diagnostic output that needs to be further 
+addressed.
+
+-- The GEOS-Chem Support Team (geos-chem-support [at] as.harvard.edu), 
+02 October 2015
