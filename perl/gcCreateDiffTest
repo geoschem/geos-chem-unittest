@@ -422,6 +422,32 @@ sub doCopyDirs($$) {
           print FILE @newlines;
           close(FILE);
 	  
+	  # Edit summarizeDiff.sh to point to the correct output files
+          open(FILE, "<$copyDir/summarizeDiff.sh") || die "File not found";
+          my @lines = <FILE>;
+          close(FILE);
+          my @newlines;
+          foreach(@lines) {
+            $_ =~ s/rundir/$notDir/g;
+            push(@newlines,$_);
+          }
+          open(FILE, ">$copyDir/summarizeDiff.sh") || die "File not found";
+          print FILE @newlines;
+          close(FILE);
+
+	  # Edit locateDiff.sh to point to the correct output files
+          open(FILE, "<$copyDir/locateDiff.sh") || die "File not found";
+          my @lines = <FILE>;
+          close(FILE);
+          my @newlines;
+          foreach(@lines) {
+            $_ =~ s/rundir/$notDir/g;
+            push(@newlines,$_);
+          }
+          open(FILE, ">$copyDir/locateDiff.sh") || die "File not found";
+          print FILE @newlines;
+          close(FILE);
+
 	  # Copy run directory to DiffTest Dev subdirectory
 	  $cmd = "$COPY_CMD $runDir/* $devDir";
           qx/$cmd/;
