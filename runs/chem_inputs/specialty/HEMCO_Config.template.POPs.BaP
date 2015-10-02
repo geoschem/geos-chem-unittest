@@ -13,6 +13,8 @@
 #\\
 #\\
 # !REMARKS:
+#  Customized for the POPs simulation for BaP. 
+#
 #  The following tokens will be replaced:
 #  (1) ROOT    : Filepath to HEMCO root directory
 #  (2) CFDIR   : Filepath to directory of this configuration file. 
@@ -25,38 +27,9 @@
 #  (8) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
 #                as used in some filenames (e.g. "55L", "72L")
 # 
-# !REMARKS:
-#  Customized for the POPs simulation for BaP. 
-#
 # !REVISION HISTORY: 
-#  19 Aug 2014 - M. Sulprizio- Initial version
-#  15 Sep 2014 - M. Sulprizio- Now include global OC, BC, O3 and OH in GC_POPs
-#                              extension data list
-#  22 Sep 2014 - R. Yantosca - Add replaceable token {ROOT} in data paths
-#  07 Oct 2014 - R. Yantosca - Now use HEMCO tokens $ROOT, $MET, $RES
-#  16 Feb 2015 - C. Keller   - (a) Added data 'collections' (brackets).
-#                              (b) Moved section extension switches at the
-#                                  beginning.
-#                              (c) Removed section extension data. These fields
-#                                  are now listed in section base emissions.
-#                              (d) Fields can now cover multiple categories.
-#  11 Mar 2015 - C. Keller   - Added 'negative' bracket, e.g. data within a
-#                              bracket leading by '--' is only considered if 
-#                              this collection name is disabled.
-#  12 Mar 2015 - R. Yantosca - Now read oxidant fields on 2x25 72 level grid
-#  13 Mar 2015 - C. Keller   - Added option to include other configuration 
-#                              files by listing them as '>>>include CF_Name'.
-#                              Added token '$CFDIR'. 
-#  27 Mar 2015 - C. Keller   - Warnings are now 0-3
-#  21 Apr 2015 - R. Yantosca - Now can use extension names as switches
-#  21 Apr 2015 - R. Yantosca - Now make section endings more visible
-#  19 May 2015 - R. Yantosca - Now use tokens for VERBOSE, WARNINGS
-#  27 Aug 2015 - M. Sulprizio- Added updates from Carey Friedman for v11-01c:
-#                              (a) Use updated POPs emission file that 
-#                                  considers wildfire distributions
-#                              (b) Add SURF_POP and SOIL_CARBON entries for
-#                                  calculation of secondary emissions from
-#                                  soil, lakes, and vegetation.
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC

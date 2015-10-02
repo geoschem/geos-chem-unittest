@@ -13,6 +13,9 @@
 #\\
 #\\
 # !REMARKS:
+#  This file is the same as the HEMCO_Config.template for the fullchem
+#  simulation, but we turn on the TOMAS_SeaSalt extension.
+#
 #  The following tokens will be replaced:
 #  (1) ROOT    : Filepath to HEMCO root directory
 #  (2) CFDIR   : Filepath to directory of this configuration file. 
@@ -25,93 +28,9 @@
 #  (8) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
 #                as used in some filenames (e.g. "55L", "72L")
 # 
-# !REMARKS:
-#  This file is the same as the HEMCO_Config.template for the fullchem
-#  simulation, but we turn on the TOMAS_SeaSalt extension.
-#
 # !REVISION HISTORY: 
-#  17 Apr 2014 - R. Yantosca - Initial version
-#  02 Jul 2014 - R. Yantosca - Now use a 1 x 1 file for DMS seawater
-#  02 Jul 2014 - R. Yantosca - Now added LNOX token
-#  28 Jul 2014 - R. Yantosca - Now added "Unit tolerance" setting
-#  12 Aug 2014 - R. Yantosca - Now added FINN files
-#  18 Aug 2014 - R. Yantosca - Use proper NO2 to NO conversion for AEIC
-#  18 Aug 2014 - R. Yantosca - Don't use diurnal factors for biofuel C2H6 
-#  29 Aug 2014 - R. Yantosca - Apply GEIA_TOD_FOSSIL scale factor to NEI2005
-#  04 Sep 2014 - R. Yantosca - Make sure to turn on MEGAN SOA extension
-#  07 Oct 2014 - R. Yantosca - Now use HEMCO tokens $ROOT, $MET, $RES
-#  16 Oct 2014 - R. Yantosca - Remove scale factor 39 from LIANG_CH2Br2
-#  16 Oct 2014 - R. Yantosca - Now point to new CAC_NH3.geos.1x1.nc file
-#  20 Oct 2014 - R. Yantosca - Now read data from GFED3/v2014-10
-#  03 Nov 2014 - R. Yantosca - Now use proper scale factors for CAC NO, CO SO2
-#  12 Nov 2014 - R. Yantosca - Now emit BC and OC into hydrophilic tracers
-#                              BCPI & OCPI.  Apply scale factors as needed
-#                              to get hydrophobic tracers BCPO, OCPO.  
-#  25 Nov 2014 - R. Yantosca - For Fullchem simulations: turned off MEGAN_SOA
-#  05 Jan 2015 - R. Yantosca - Add GMI stratospheric Bry data
-#  12 Jan 2015 - R. Yantosca - Now move strat Bry data to base emissions
-#  20 Jan 2015 - M. Sulprizio- Update OTD-LIS factors through October 2014
-#  20 Jan 2015 - M. Sulprizio- Update EMEP emissions for 2008-2010
-#  05 Feb 2015 - M. Sulprizio- Update to EDGAR v4.2 emissions
-#  16 Feb 2015 - C. Keller   - (a) Added data 'collections' (brackets).
-#                              (b) Moved section extension switches at the
-#                                  beginning.
-#                              (c) Removed section extension data. These fields
-#                                  are now listed in section base emissions.
-#                              (d) Fields can now cover multiple categories.
-#  19 Feb 2015 - R. Yantosca - Read EDGAR_BENZ from EDGAR/v2015-02/VOCv2
-#  19 Feb 2015 - R. Yantosca - Read EDGAR_TODNOX from EDGAR/v2015-02/NO
-#  25 Feb 2015 - M. Sulprizio- Update MEGAN2.1 emissions according to Guenther
-#                              et al. (2012)
-#  02 Mar 2015 - R. Yantosca - Add RCP and eruptive/degassing emissions info
-#  04 Mar 2015 - R. Yantosca - Add UV albedo to the NON-EMISSIONS data section
-#  11 Mar 2015 - M. Sulprizio- Add MIX Asian anthropogenic emissions and
-#                              HTAP global anthropogenic emissions
-#  11 Mar 2015 - C. Keller   - Added 'negative' bracket, e.g. data within a
-#                              bracket leading by '--' is only considered if 
-#                              this collection name is disabled.
-#  13 Mar 2015 - C. Keller   - Added option to include other configuration 
-#                              files by listing them as '>>>include CF_Name'.
-#                              Added token '$CFDIR'. 
-#  16 Mar 2015 - M. Sulprizio- Add mask file for MIX Asia region
-#  16 Mar 2015 - M. Sulprizio- Now read variables for PARANOX and MEGAN from
-#                              the HEMCO restart file
-#  16 Mar 2015 - M. Sulprizio- Add GFED4 entries from Christoph Keller
-#  16 Mar 2015 - R. Yantosca - Add TOMS/SBUV O3 columns
-#  17 Mar 2015 - M. Sulprizio- Add NEI2011 entries from Christoph Keller
-#  18 Mar 2015 - M. Sulprizio- Now use updated 2006-2013 NEI2011 annual scale
-#                              factors from Katie Travis
-#  24 Mar 2015 - M. Sulprizio- Reorder NEI2011 files so that we read all species
-#                              for each sector before closing each netCDF file
-#  26 Mar 2015 - M. Sulprizio- Add entry for STATE_PSC from Christoph Keller
-#  27 Mar 2015 - M. Sulprizio- Revert to EMEP emissions in EMEP/v2014-07/
-#  27 Mar 2015 - C. Keller   - Warnings are now 0-3
-#  31 Mar 2015 - M. Sulprizio- Now use EMEP file from Aaron van Donkelaar with
-#                              updated emissions for 2008-2012
-#  08 Apr 2015 - R. Yantosca - Set units of STATE_PSC to "count"
-#  17 Apr 2015 - M. Sulprizio- Now read corrected AEIC file in AEIC/v2015-01/
-#  21 Apr 2015 - R. Yantosca - Now can use extension names as switches
-#  21 Apr 2015 - R. Yantosca - Now make section endings more visible
-#  13 May 2015 - R. Yantosca - Fixed path of bromocarb scale factors
-#  19 May 2015 - R. Yantosca - ICOADS_SHIP names now use "generic", not "gen"  
-#  19 May 2015 - R. Yantosca - Add a note to only pick one biomass option 
-#  19 May 2015 - R. Yantosca - Now use tokens for VERBOSE, WARNINGS            
-#  20 May 2015 - M. Sulprizio- Change HTAP category from 1 to 1/2 since it
-#                              includes anthro+biofuel emissions
-#  20 May 2015 - R. Yantosca - Updated name of HEMCO restart file
-#  21 May 2015 - R. Yantosca - Now use correct filenames for FINNv1
-#  22 May 2015 - R. Yantosca - Turn on TOMAS_SeaSalt extension.
-#  26 May 2015 - R. Yantosca - Remove entries for PARANOX suncos variables
-#  26 May 2015 - M. Sulprizio- Add QFED2 entries from Christoph Keller and
-#                              QFED2 diurnal scale factors from Katie Travis
-#  05 Jun 2015 - R. Yantosca - Updated for the official GFED4 release data
-#  16 Jun 2015 - M. Sulprizio- Add logical switch for HEMCO restart file
-#  16 Jun 2015 - R. Yantosca - Change units of UV albedo to "percent"
-#  08 Jul 2015 - M. Sulprizio- Add option for dust alkalinity to extensions
-#  13 Jul 2015 - E. Lundgren - Add option for marine POA to extensions
-#  21 Jul 2015 - E. Lundgren - Now use Lana 2011 DMS climatology
-#  15 Sep 2015 - M. Sulprizio- Include CO2 inhibition of MEGAN isoprene
-#                              emissions from Amos Tai
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -1312,33 +1231,41 @@ Warnings:                    {WARNINGS}
 # --- GFED biomass burning emissions (Extension 111) 
 # NOTE: These are the base emissions in kgDM/m2/s.
 #==============================================================================
-111 GFED_HUMTROP    $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy unitless  * - 1 1
 
-(((GFED3   
+(((GFED3
+111 GFED_HUMTROP    $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy unitless  * - 1 1
 111 GFED_WDL        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__WDL_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
 111 GFED_AGW        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__AGW_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
 111 GFED_DEF        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__DEF_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
 111 GFED_FOR        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__FOR_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
 111 GFED_PET        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__PET_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
 111 GFED_SAV        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__SAV_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-)))GFED3  
-
-(((GFED4
-111 GFED_TEMP       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_TEMP           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_AGRI       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_AGRI           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_DEFO       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_DEFO           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_BORF       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_BORF           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_PEAT       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_PEAT           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_SAVA       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_SAVA           1998-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
-)))GFED4
 
 (((GFED_daily
-111 GFED_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  R xy unitless  * - 1 1
+111 GFED_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  R xy unitless  * - 1 1 
 )))GFED_daily
 
 (((GFED_3hourly
-111 GFED_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 R xy unitless  * - 1 1
+111 GFED_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 R xy unitless  * - 1 1 
 )))GFED_3hourly
+)))GFED3
+
+(((GFED4
+111 GFED_TEMP       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_TEMP       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_AGRI       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_AGRI       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_DEFO       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_DEFO       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_BORF       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_BORF       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_PEAT       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_PEAT       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_SAVA       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_SAVA       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+
+(((GFED_daily
+111 GFED_FRAC_DAY   $ROOT/GFED4/v2015-10/$YYYY/GFED4_dailyfrac_gen.025x025.$YYYY$MM.nc GFED_FRACDAY 2003-2014/1-12/1-31/0  C xy 1 * - 1 1
+)))GFED_daily
+
+(((GFED_3hourly
+111 GFED_FRAC_3HOUR $ROOT/GFED4/v2015-10/$YYYY/GFED4_3hrfrac_gen.025x025.$YYYY$MM.nc   GFED_FRAC3HR 2003-2014/1-12/1/0-23  C xy 1 * - 1 1
+)))GFED_3hourly
+)))GFED4
 
 #==============================================================================
 # --- FINN biomass burning emissions (Extension 114) 

@@ -13,6 +13,8 @@
 #\\
 #\\
 # !REMARKS:
+#  Customized for the CH4 simulation. 
+#
 #  The following tokens will be replaced:
 #  (1) ROOT    : Filepath to HEMCO root directory
 #  (2) CFDIR   : Filepath to directory of this configuration file. 
@@ -25,38 +27,9 @@
 #  (8) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
 #                as used in some filenames (e.g. "55L", "72L")
 # 
-# !REMARKS:
-#  Customized for the CH4 simulation. 
-#
 # !REVISION HISTORY: 
-#  19 Aug 2014 - M. Sulprizio- Initial version
-#  23 Sep 2014 - R. Yantosca - Add replaceable tokens to file paths
-#  20 Oct 2014 - R. Yantosca - Now read data from GFED3/v2014-10
-#  16 Feb 2015 - C. Keller   - (a) Added data 'collections' (brackets).
-#                              (b) Moved section extension switches at the
-#                                  beginning.
-#                              (c) Removed section extension data. These fields
-#                                  are now listed in section base emissions.
-#                              (d) Fields can now cover multiple categories.
-#  19 Feb 2015 - R. Yantosca - Added EDGAR and FUNG collections so that you
-#                              can turn those off at the top of the file
-#  02 Mar 2015 - R. Yantosca - Ad RCP emissions info
-#  11 Mar 2015 - M. Sulprizio- Add MIX Asian anthropogenic emissions
-#  11 Mar 2015 - C. Keller   - Added 'negative' bracket, e.g. data within a
-#                              bracket leading by '--' is only considered if 
-#                              this collection name is disabled.
-#  12 Mar 2015 - R. Yantosca - Now read the 2x25 72-layer OH file
-#  13 Mar 2015 - C. Keller   - Added option to include other configuration 
-#                              files by listing them as '>>>include CF_Name'.
-#                              Added token '$CFDIR'. 
-#  16 Mar 2015 - M. Sulprizio- Add mask file for MIX Asia region
-#  16 Mar 2015 - M. Sulprizio- Add GFED4 entries from Christoph Keller
-#  27 Mar 2015 - C. Keller   - Warnings are now 0-3
-#  21 Apr 2015 - R. Yantosca - Now can use extension names as switches
-#  21 Apr 2015 - R. Yantosca - Now make section endings more visible
-#  19 May 2015 - R. Yantosca - Now use tokens for VERBOSE, WARNINGS 
-#  21 May 2015 - R. Yantosca - Now use correct filenames for FINNv1
-#  05 Jun 2015 - R. Yantosca - Updated for the official GFED4 release data
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
