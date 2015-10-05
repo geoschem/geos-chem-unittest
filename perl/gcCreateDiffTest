@@ -196,6 +196,62 @@ sub makeInputs($$$$$$$$) {
 #------------------------------------------------------------------------------
 #BOP
 #
+# !IROUTINE: replaceText
+#
+# !DESCRIPTION: Replaces text in a text file
+#\\
+#\\
+# !INTERFACE:
+#
+sub replaceText($$$) {
+#
+# !INPUT PARAMETERS:
+#
+  # $file : Filename
+  # $old  : Old text to be replaced
+  # $new  : New text to insert
+  my ( $file, $old, $new ) = @_;
+#
+# !CALLING SEQUENCE:
+#  &replaceText( "$COPY_DIR/summarizeDiff.sh", "START_DATE", "$start" );
+#
+# !REVISION HISTORY:
+#  05 Oct 2015 - E. Lundgren - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Arrays
+  my @newlines= ();
+  my @lines   = ();
+
+  # Open file and put lines in array @lines
+  open(FILE, "<$file") || die "File not found";
+  @lines = <FILE>;
+  close(FILE);
+
+  # Loop over lines, replacing old text if it is there
+  foreach(@lines) {
+    $_ =~ s/$old/$new/g;
+    push(@newlines,$_);
+  }
+
+  # Write new text to file
+  open(FILE, ">$file") || die "File not found";
+  print FILE @newlines;
+  close(FILE);
+
+  # Return
+  return( 0 );
+}
+#EOP
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
 # !IROUTINE: doCopyDirs
 #
 # !DESCRIPTION: Copies DiffTest-specific files and directories (Dev and Ref)
@@ -244,12 +300,12 @@ sub doCopyDirs($$) {
   my $home    = "";
   my $file    = "";
   my $filename= "";
-  my @files;
-  my @lines;
-  my @newlines;
 
   # Arrays
   my @txt     = ();
+  my @files;
+  my @lines;
+  my @newlines;
 
   #---------------------------------------------------------------------------
   # Read options from the input file
@@ -407,47 +463,17 @@ sub doCopyDirs($$) {
 	  $cmd = "$COPY_CMD ./difftest $copyDir";
 	  qx/$cmd/;
 
-	  # Edit the copied Makefile to use CODE_DEV and CODE_REF defined
-          # in configurable DiffTest.input
-          open(FILE, "<$copyDir/Makefile") || die "File not found";
-          my @lines = <FILE>;
-          close(FILE);
-          my @newlines;
-          foreach(@lines) {
-            $_ =~ s/CODE_REF_PATH/$CODE_REF/g;
-            $_ =~ s/CODE_DEV_PATH/$CODE_DEV/g;
-            push(@newlines,$_);
-          }
-          open(FILE, ">$copyDir/Makefile") || die "File not found";
-          print FILE @newlines;
-          close(FILE);
+	  # Edit the copied Makefile and shell scripts to reflect
+          # user settings in DiffTest.input
+	  &replaceText("$copyDir/Makefile",        "CODE_REF_PATH","$CODE_REF");
+	  &replaceText("$copyDir/Makefile",        "CODE_DEV_PATH","$CODE_DEV");
+	  &replaceText("$copyDir/summarizeDiff.sh","MET_GRID_SIM","$notDir");
+	  &replaceText("$copyDir/summarizeDiff.sh","START_DATE",  "${start}00");
+	  &replaceText("$copyDir/summarizeDiff.sh","END_DATE",    "$end");
+	  &replaceText("$copyDir/locateDiff.sh",   "MET_GRID_SIM","$notDir");
+	  &replaceText("$copyDir/locateDiff.sh",   "START_DATE",  "${start}00");
+	  &replaceText("$copyDir/locateDiff.sh",   "END_DATE",    "$end");
 	  
-	  # Edit summarizeDiff.sh to point to the correct output files
-          open(FILE, "<$copyDir/summarizeDiff.sh") || die "File not found";
-          my @lines = <FILE>;
-          close(FILE);
-          my @newlines;
-          foreach(@lines) {
-            $_ =~ s/rundir/$notDir/g;
-            push(@newlines,$_);
-          }
-          open(FILE, ">$copyDir/summarizeDiff.sh") || die "File not found";
-          print FILE @newlines;
-          close(FILE);
-
-	  # Edit locateDiff.sh to point to the correct output files
-          open(FILE, "<$copyDir/locateDiff.sh") || die "File not found";
-          my @lines = <FILE>;
-          close(FILE);
-          my @newlines;
-          foreach(@lines) {
-            $_ =~ s/rundir/$notDir/g;
-            push(@newlines,$_);
-          }
-          open(FILE, ">$copyDir/locateDiff.sh") || die "File not found";
-          print FILE @newlines;
-          close(FILE);
-
 	  # Copy run directory to DiffTest Dev subdirectory
 	  $cmd = "$COPY_CMD $runDir/* $devDir";
           qx/$cmd/;

@@ -29,11 +29,11 @@
 #
 # !INPUTS:
 #
-   VERSION     : v11-01
+   VERSION     : v11-01d
    DESCRIPTION : Create DiffTest directory from UnitTest
-   COPY_PATH   : {HOME}/GC/DiffTest
-   CODE_REF    : {HOME}/GC/Code.v11-01c
-   CODE_DEV    : {HOME}/GC/Code.UnitConv
+   COPY_PATH   : {HOME}/GC/DiffTest/v11-01d
+   CODE_REF    : {HOME}/GC/Code.Ref
+   CODE_DEV    : {HOME}/GC/Code.Dev
    DATA_ROOT   : /net/seasasfs01/srv/export/seasasfs01/share_root/gcgrid/gcdata/ExtData
    HEMCO_ROOT  : {DATAROOT}/HEMCO
    RUN_ROOT    : {HOME}/UT/runs
@@ -64,11 +64,11 @@
   geosfp   4x5         -      POPs         2013070100   2013070101   -
   geosfp   4x5         -      CH4          2013070100   2013070101   -
   geosfp   4x5         -      tagO3        2013070100   2013070101   -
-  geosfp   4x5         -      tagCO        2013070100   2013070101   -
+#  geosfp   4x5         -      tagCO        2013070100   2013070101   -
   geosfp   2x25        -      CO2          2013070100   201307010030 -
   geosfp   4x5         -      aerosol      2013070100   2013070101   - 
-  geosfp   025x03125   ch     tropchem     2013070100   201307010010 -
-  geosfp   025x03125   na     tropchem     2013070100   201307010010 -
+#  geosfp   025x03125   ch     tropchem     2013070100   201307010010 -
+#  geosfp   025x03125   na     tropchem     2013070100   201307010010 -
 !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

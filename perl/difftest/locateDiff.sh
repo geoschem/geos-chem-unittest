@@ -7,12 +7,12 @@
 # E. Lundgren, August 2015
 
 # restart files
-RSTFILE1="./Dev/trac_rst.rundir.201301010100.Dev"
-RSTFILE2="./Ref/trac_rst.rundir.201301010100.Ref"
+RSTFILE1="./Dev/trac_rst.MET_GRID_SIM.END_DATE.Dev"
+RSTFILE2="./Ref/trac_rst.MET_GRID_SIM.END_DATE.Ref"
 
 # diagnostic files
-DIAGFILE1="./Dev/trac_avg.rundir.201301010000.Dev"
-DIAGFILE2="./Ref/trac_avg.rundir.201301010000.Ref"
+DIAGFILE1="./Dev/trac_avg.MET_GRID_SIM.START_DATE.Dev"
+DIAGFILE2="./Ref/trac_avg.MET_GRID_SIM.START_DATE.Ref"
 
 # destination files for differences
 RSTDIFF="logs/rst_diffs_all.log"
