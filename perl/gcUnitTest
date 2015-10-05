@@ -254,6 +254,7 @@ sub makeSlurmTags() {
 #  21 Mar 2014 - R. Yantosca - Initial version
 #  24 Mar 2014 - R. Yantosca - Now pass %unitTests hash as an argument
 #  07 Apr 2014 - R. Yantosca - Now make $webFile chmod 664
+#  05 Oct 2015 - E. Lundgren - Move export CPU number to after SBATCH commands
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -265,8 +266,7 @@ sub makeSlurmTags() {
   # Number of CPUs
   if ( length( $SLURM_CPUS ) > 0 ) {  
     @slurm = ( @slurm, "\n\# === SLURM: Number of CPUs ===\n",
-                       "\#SBATCH -n $SLURM_CPUS\n",
-                       "export OMP_NUM_THREADS=$SLURM_CPUS\n" ); 
+                       "\#SBATCH -n $SLURM_CPUS\n" ); 
   }
 
   # Number of nodes
@@ -315,6 +315,11 @@ sub makeSlurmTags() {
   if ( length( $SLURM_STDERR ) > 0 ) {
     @slurm = ( @slurm, "\n\# === SLURM: Unix stderr stream ===\n",
                        "\#SBATCH -e $SLURM_STDERR\n" ); 
+  }
+
+  # Export number of CPUs (NOTE: This must be done after all SBATCH commands)
+  if ( length( $SLURM_CPUS ) > 0 ) {  
+    @slurm = ( @slurm, "export OMP_NUM_THREADS=$SLURM_CPUS\n" ); 
   }
 
   # Return list of SLURM tags
