@@ -304,8 +304,6 @@ sub doCopyDirs($$) {
   # Arrays
   my @txt     = ();
   my @files;
-  my @lines;
-  my @newlines;
 
   #---------------------------------------------------------------------------
   # Read options from the input file
