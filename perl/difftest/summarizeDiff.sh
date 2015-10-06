@@ -19,6 +19,8 @@ DIAGDIFF="logs/diag_diffs_summary.log"
 
 # Get rst and diag file diffs
 idl << idlenv
+ctm_diaginfo, file='./Dev/diaginfo.dat', /force
+ctm_tracerinfo, file='./Dev/tracerinfo.dat', /force
 ctm_summarizediff, '$RSTFILE1', '$RSTFILE2', OutFileName='$RSTDIFF'
 ctm_summarizediff, '$DIAGFILE1', '$DIAGFILE2', OutFileName='$DIAGDIFF'
 idlenv

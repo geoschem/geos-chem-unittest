@@ -21,6 +21,8 @@ DIAGDIFF="logs/diag_diffs_all.log"
 # Get rst file diffs 
 # warning: may produce a large file!
 idl << idlenv
+ctm_diaginfo, file='./Dev/diaginfo.dat', /force
+ctm_tracerinfo, file='./Dev/tracerinfo.dat', /force
 ctm_locatediff, '$RSTFILE1', '$RSTFILE2', OutFileName='$RSTDIFF'
 idlenv
 
@@ -30,6 +32,8 @@ idlenv
 # Get diagnostic file diffs 
 # warning: may produce a large file!
 #idl << idlend
+#ctm_diaginfo, file='./Dev/diaginfo.dat', /force
+#ctm_tracerinfo, file='./Dev/tracerinfo.dat', /force
 #ctm_locatediff, '$DIAGFILE1', '$DIAGFILE2', OutFileName='$DIAGDIFF'
 #idlenv
 
