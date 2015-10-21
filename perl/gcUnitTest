@@ -305,6 +305,12 @@ sub makeSlurmTags() {
                        "\#SBATCH --mail-user=$SLURM_MAILUSER\n" ); 
   }
 
+  # Enable email notification of at end of run if email provided
+  if ( length( $SLURM_MAILUSER ) > 0 ) {
+    @slurm = ( @slurm, "\n\# === SLURM: User email address ===\n",
+                       "\#SBATCH --mail-type=END\n" ); 
+  }
+
   # Stdout stream
   if ( length( $SLURM_STDOUT ) > 0 ) {
     @slurm = ( @slurm, "\n\# === SLURM: Unix stdout stream ===\n",
