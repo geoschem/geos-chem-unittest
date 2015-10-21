@@ -10,6 +10,8 @@
 #\\
 #\\
 # !REMARKS:  
+#  To omit individual unit tests, place a # in the first column.
+#
 #  Customize the unit tests for your system by specifying these values:
 #  -------------------------------------------------------------------
 #  VERSION     : A tag used to identify this Unit Test (e.g. v9-02o)
@@ -31,24 +33,8 @@
 #  WEB_GRID    : File name for web page containing unit test results
 #  WEB_PUSH    : Remote location to send web page w/ unit test results
 #
-# !REMARKS:
-#  This file specifies unit tests with GEOS-FP meteorology.
-#  To omit individual unit tests, place a # in the first column.
-#
 # !REVISION HISTORY: 
-#  22 Aug 2013 - R. Yantosca - Initial version
-#  03 Sep 2013 - R. Yantosca - Now do 1-hr test runs for expediency
-#  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
-#  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
-#  14 Apr 2014 - R. Yantosca - Added unit test for POPs
-#  28 Jul 2014 - R. Yantosca - Added HEMCO_ROOT directory
-#  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
-#  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
-#  21 May 2015 - R. Yantosca - Added VERBOSE and WARNINGS.  These default to
-#                              3, 3, respectively if not specified
-#  18 Jun 2015 - M. Sulprizio- Now use HOME token to specify file paths
-#  19 Jun 2015 - R. Yantosca - Add optional SLURM tags
-#  08 Jul 2015 - M. Sulprizio- Add unit tests for acid uptake on dust option
+# Type 'gitk' at the prompt to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #
@@ -57,7 +43,7 @@
    VERSION         : v11-01.geosfp
    DESCRIPTION     : Tests GEOS-FP simulations in GEOS-Chem
    CODE_DIR        : {HOME}/GC/Code.v11-01
-   DATA_ROOT       : /as/data/geos/ExtData
+   DATA_ROOT       : /net/seasasfs01/srv/export/seasasfs01/share_root/gcgrid/data/ExtData
    HEMCO_ROOT      : {DATAROOT}/HEMCO
    RUN_ROOT        : {HOME}/UT/runs
    RUN_DIR         : {RUNROOT}/{RUNDIR}
@@ -68,12 +54,12 @@
    WARNINGS        : 3
    COMPILER        : ifort
    MAKE_CMD        : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
-   SUBMIT          : submit smp4
+   SUBMIT          : sbatch
    TEMPLATE        : {PERLDIR}/ut_template.html
-   WEB_GRID        : {LOGDIR}/{VERSION}.results.html
    TXT_GRID        : {LOGDIR}/{VERSION}.results.txt
+   WEB_GRID        : {LOGDIR}/{VERSION}.results.html
    WEB_PUSH        : NONE
-
+#
 #  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  %%%  OPTIONAL SLURM COMMANDS:                                    %%%
 #  %%%                                                              %%%
@@ -85,14 +71,14 @@
 #  %%%  sure to set the SUBMIT command above to "sbatch".           %%%
 #  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #
-#   SLURM_CPUS      : 4
-#   SLURM_NODES     : 1
-#   SLURM_TIME      : 0-01:00
-#   SLURM_MEMPERCPU : 2500
-#   SLURM_PARTITION : general
-#   SLURM_MAILUSER  : your-email-address
-#   SLURM_STDOUT    : {LOGDIR}/{VERSION}.stdout.log
-#   SLURM_STDERR    : {LOGDIR}/{VERSION}.stderr.log
+   SLURM_CPUS      : 4
+   SLURM_NODES     : 1
+   SLURM_TIME      : 0-12:00
+   SLURM_MEMPERCPU : 2500
+   SLURM_PARTITION : jacob
+   SLURM_MAILUSER  : your-email-address
+   SLURM_STDOUT    : {LOGDIR}/{VERSION}.stdout.log
+   SLURM_STDERR    : {LOGDIR}/{VERSION}.stderr.log
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.

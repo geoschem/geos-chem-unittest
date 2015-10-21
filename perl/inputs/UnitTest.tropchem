@@ -11,6 +11,8 @@
 #\\
 #\\
 # !REMARKS:  
+#  To omit individual unit tests, place a # in the first column.
+#
 #  Customize the unit tests for your system by specifying these values:
 #  -------------------------------------------------------------------
 #  VERSION     : A tag used to identify this Unit Test (e.g. v9-02o)
@@ -32,40 +34,17 @@
 #  WEB_GRID    : File name for web page containing unit test results
 #  WEB_PUSH    : Remote location to send web page w/ unit test results
 #
-# !REMARKS:
-#  This file specifies unit tests for tropchem simulations (all met types).
-#  To omit individual unit tests, place a # in the first column.
-#
 # !REVISION HISTORY: 
-#  23 Oct 2013 - R. Yantosca - Initial version
-#  04 Nov 2013 - R. Yantosca - Added gcap_4x5_fullchem
-#  06 Nov 2013 - R. Yantosca - Added geos5_2x25_fullchem
-#  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
-#  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
-#  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
-#  28 Jul 2014 - R. Yantosca - Added HEMCO_ROOT directory
-#  28 Jul 2014 - R. Yantosca - 2 x 2.5 runs now end after 30 mins
-#  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
-#  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
-#  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
-#                              MERRA, and GCAP, so as to use NEI2011
-#  30 Mar 2015 - M. Sulprizio- Removed soa unit tests. These are included in the
-#                              UnitTest.soa_svpoa file.
-#  03 Apr 2015 - M. Sulprizio- Add 0.25x0.3125 nested grid unit tests
-#  21 May 2015 - R. Yantosca - Added VERBOSE and WARNINGS.  These default to
-#                              3, 3, respectively if not specified
-#  27 May 2015 - M. Sulprizio- Renamed fullchem to tropchem
-#  18 Jun 2015 - M. Sulprizio- Now use HOME token to specify file paths
-#  19 Jun 2015 - R. Yantosca - Add optional SLURM tags
+# Type 'gitk' at the prompt to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
    VERSION         : v11-01.tropchem
-   DESCRIPTION     : To test GEOS-Chem tropchem simulations
+   DESCRIPTION     : Tests tropchem simulations in GEOS-Chem
    CODE_DIR        : {HOME}/GC/Code.v11-01
-   DATA_ROOT       : /as/data/geos/ExtData
+   DATA_ROOT       : /net/seasasfs01/srv/export/seasasfs01/share_root/gcgrid/data/ExtData
    HEMCO_ROOT      : {DATAROOT}/HEMCO
    RUN_ROOT        : {HOME}/UT/runs
    RUN_DIR         : {RUNROOT}/{RUNDIR}
@@ -76,10 +55,10 @@
    WARNINGS        : 3
    COMPILER        : ifort
    MAKE_CMD        : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
-   SUBMIT          : submit smp4
+   SUBMIT          : sbatch
    TEMPLATE        : {PERLDIR}/ut_template.html
-   WEB_GRID        : {LOGDIR}/{VERSION}.results.html
    TXT_GRID        : {LOGDIR}/{VERSION}.results.txt
+   WEB_GRID        : {LOGDIR}/{VERSION}.results.html
    WEB_PUSH        : NONE
 #
 #  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -93,14 +72,14 @@
 #  %%%  sure to set the SUBMIT command above to "sbatch".           %%%
 #  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #
-#   SLURM_CPUS      : 4
-#   SLURM_NODES     : 1
-#   SLURM_TIME      : 0-01:00
-#   SLURM_MEMPERCPU : 2500
-#   SLURM_PARTITION : general
-#   SLURM_MAILUSER  : your-email-address
-#   SLURM_STDOUT    : {LOGDIR}/{VERSION}.stdout.log
-#   SLURM_STDERR    : {LOGDIR}/{VERSION}.stderr.log
+   SLURM_CPUS      : 4
+   SLURM_NODES     : 1
+   SLURM_TIME      : 0-12:00
+   SLURM_MEMPERCPU : 2500
+   SLURM_PARTITION : jacob
+   SLURM_MAILUSER  : your-email-address
+   SLURM_STDOUT    : {LOGDIR}/{VERSION}.stdout.log
+   SLURM_STDERR    : {LOGDIR}/{VERSION}.stderr.log
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.
@@ -109,16 +88,17 @@
 #--------|-----------|------|------------|------------|--------------|--------|
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE     | EXTRA? |
 #--------|-----------|------|------------|------------|--------------|--------|
-  gcap     4x5         -      tropchem     2005070100   2005070101     -
-  geos4    4x5         -      tropchem     2005070100   2005070101     -
-  geos5    4x5         -      tropchem     2005070100   2005070101     -
-  geos5    2x25        -      tropchem     2005070100   200507010030   -
-  geos5    05x0666     ch     tropchem     2005070100   200507010120   -
-  geos5    05x0666     na     tropchem     2006070100   200607010020   -
   geosfp   4x5         -      tropchem     2013070100   2013070101     -
+  merra    4x5         -      tropchem     2006070100   2006070101     -
+  geos5    4x5         -      tropchem     2006070100   2006070101     -
+  geos4    4x5         -      tropchem     2006070100   2006070101     -
+# gcap     4x5         -      tropchem     2005070100   2005070101     -
+  geosfp   2x25        -      tropchem     2013070100   201307010030   -
+  geos5    2x25        -      tropchem     2006070100   200607010030   -
+  geos5    05x0666     ch     tropchem     2006070100   200607010020   -
+  geos5    05x0666     na     tropchem     2006070100   200607010020   -
   geosfp   025x03125   ch     tropchem     2013070100   201307010010   -
   geosfp   025x03125   na     tropchem     2013070100   201307010010   -
-  merra    4x5         -      tropchem     2005070100   2005070101     -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

@@ -10,6 +10,8 @@
 #\\
 #\\
 # !REMARKS:  
+#  To omit individual unit tests, place a # in the first column.
+#
 #  Customize the unit tests for your system by specifying these values:
 #  -------------------------------------------------------------------
 #  VERSION     : A tag used to identify this Unit Test (e.g. v9-02o)
@@ -31,43 +33,17 @@
 #  WEB_GRID    : File name for web page containing unit test results
 #  WEB_PUSH    : Remote location to send web page w/ unit test results
 #
-# !REMARKS:
-#  This file specifies unit tests for Hg simulations (all met types).
-#  To omit individual unit tests, place a # in the first column.
-#
 # !REVISION HISTORY: 
-#  22 Aug 2013 - R. Yantosca - Initial version
-#  03 Sep 2013 - R. Yantosca - Now do 1-hr test runs for expediency
-#  31 Jan 2014 - R. Yantosca - Now specify extra makefile options
-#  27 Feb 2014 - R. Yantosca - Now grouped runs by simulation type
-#  24 Mar 2014 - R. Yantosca - Updated for web page w/ unit test matrix
-#  07 Apr 2014 - R. Yantosca - Updated for remote web page push (if desired)
-#  14 Apr 2014 - R. Yantosca - Added unit tests for POPs simulation
-#  24 Apr 2014 - R. Yantosca - Add extra GEOS-4 unit tests (Hg, tagO3, CH4)
-#  28 Jul 2014 - R. Yantosca - Add HEMCO_ROOT directory
-#  28 Jul 2014 - R. Yantosca - 2 x 2.5 runs now end after 30 mins
-#  07 Aug 2014 - M. Sulprizio- Add GCAP unit test for POPs simulation
-#  06 Mar 2015 - R. Yantosca - All data dirs are referenced w/r/t ExtData
-#  13 Mar 2015 - M. Sulprizio- Now use USER token to specify file paths
-#  19 Mar 2015 - R. Yantosca - Use 2006 instead of 2005 for GEOS-4, GEOS-5
-#                              MERRA, and GCAP, so as to use NEI2011
-#  19 Mar 2015 - R. Yantosca - Hg simulations should use 2005 (except GEOS-FP)
-#  27 Apr 2015 - M. Sulprizio- Add GEOS-5 nested NA unit test for Hg
-#  13 May 2015 - M. Sulprizio- Comment out geos5_05x0666_Hg_NA unit test until
-#                              OOB error in tpcore_geos5_window_mod is resolved
-#  21 May 2015 - R. Yantosca - Added VERBOSE and WARNINGS.  These default to
-#                              3, 3, respectively if not specified
-#  18 Jun 2015 - M. Sulprizio- Now use HOME token to specify file paths
-#  19 Jun 2015 - R. Yantosca - Add optional SLURM tags
+# Type 'gitk' at the prompt to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #
 # !INPUTS:
 #
    VERSION         : v11-01.Hg
-   DESCRIPTION     : To test Hg simulation in GEOS-Chem
+   DESCRIPTION     : Tests Hg simulations in GEOS-Chem
    CODE_DIR        : {HOME}/GC/Code.v11-01
-   DATA_ROOT       : /as/data/geos/ExtData
+   DATA_ROOT       : /net/seasasfs01/srv/export/seasasfs01/share_root/gcgrid/data/ExtData
    HEMCO_ROOT      : {DATAROOT}/HEMCO
    RUN_ROOT        : {HOME}/UT/runs
    RUN_DIR         : {RUNROOT}/{RUNDIR}
@@ -78,10 +54,10 @@
    WARNINGS        : 3
    COMPILER        : ifort
    MAKE_CMD        : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
-   SUBMIT          : submit smp4
+   SUBMIT          : sbatch
    TEMPLATE        : {PERLDIR}/ut_template.html
-   WEB_GRID        : {LOGDIR}/{VERSION}.results.html
    TXT_GRID        : {LOGDIR}/{VERSION}.results.txt
+   WEB_GRID        : {LOGDIR}/{VERSION}.results.html
    WEB_PUSH        : NONE
 #
 #  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -95,14 +71,14 @@
 #  %%%  sure to set the SUBMIT command above to "sbatch".           %%%
 #  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #
-#   SLURM_CPUS      : 4
-#   SLURM_NODES     : 1
-#   SLURM_TIME      : 0-01:00
-#   SLURM_MEMPERCPU : 2500
-#   SLURM_PARTITION : general
-#   SLURM_MAILUSER  : your-email-address
-#   SLURM_STDOUT    : {LOGDIR}/{VERSION}.stdout.log
-#   SLURM_STDERR    : {LOGDIR}/{VERSION}.stderr.log
+   SLURM_CPUS      : 4
+   SLURM_NODES     : 1
+   SLURM_TIME      : 0-12:00
+   SLURM_MEMPERCPU : 2500
+   SLURM_PARTITION : jacob
+   SLURM_MAILUSER  : your-email-address
+   SLURM_STDOUT    : {LOGDIR}/{VERSION}.stdout.log
+   SLURM_STDERR    : {LOGDIR}/{VERSION}.stderr.log
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.
