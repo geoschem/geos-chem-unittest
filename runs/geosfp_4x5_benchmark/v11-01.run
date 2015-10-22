@@ -40,7 +40,7 @@
 #SBATCH -o v11-01.out                       # File where stdout will be written 
 #SBATCH -e v11-01.err                       # File where stderr will be written 
 #SBATCH --mail-type=END                     # Type of email notification 
-#SBATCH --mail-user=mpayer@seas.harvard.edu # Your email address
+#SBATCH --mail-user=your-email-address      # Your email address
 
 # Set the proper # of threads for OpenMP
 # SLURM_NTASKS ensures this matches the number you set with -n above
