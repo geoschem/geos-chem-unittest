@@ -303,8 +303,7 @@ sp:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=no                   \
-                                TIMERS=$(TIMERS)     NO_REDUCED=$(NO_REDUCED) \
-                                > $(LOG_SP)
+                                TIMERS=$(TIMERS)     > $(LOG_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	./$(EXE_SP) >> $(LOG_SP)
@@ -320,8 +319,7 @@ mp:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=yes                  \
-                                TIMERS=$(TIMERS)     NO_REDUCED=$(NO_REDUCED) \
-                                > $(LOG_MP)
+                                TIMERS=$(TIMERS)     > $(LOG_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	./$(EXE_MP) >> $(LOG_MP)
@@ -342,7 +340,7 @@ spbuild:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=no                   \
-                                TIMERS=$(TIMERS)     NO_REDUCED=$(NO_REDUCED)
+                                TIMERS=$(TIMERS)
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	@$(MAKE) printbuildinfo
@@ -356,7 +354,7 @@ mpbuild:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=yes                  \
-                                TIMERS=$(TIMERS)     NO_REDUCED=$(NO_REDUCED)
+                                TIMERS=$(TIMERS)
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	@$(MAKE) printbuildinfo
