@@ -66,6 +66,7 @@ our $SLURM_PARTITION = "";         # SLURM: Partition (aka queue) name
 our $SLURM_STDOUT    = "";         # SLURM: Stdout stream
 our $SLURM_STDERR    = "";         # SLURM: Stderr stream
 our $SLURM_MAILUSER  = "";         # SLURM: Email address for updates
+our $SLURM_MAILTYPE  = "";         # SLURM: When to send emails?
 #		
 # !PUBLIC MEMBER FUNCTIONS:
 #  &main()     : Driver routine for gcUnitTest
@@ -299,16 +300,16 @@ sub makeSlurmTags() {
                        "\#SBATCH -p $SLURM_PARTITION\n" ); 
   }
 
-  # Email
+  # Email address for notifications
   if ( length( $SLURM_MAILUSER ) > 0 ) {
     @slurm = ( @slurm, "\n\# === SLURM: User email address ===\n",
                        "\#SBATCH --mail-user=$SLURM_MAILUSER\n" ); 
   }
 
-  # Enable email notification of at end of run if email provided
-  if ( length( $SLURM_MAILUSER ) > 0 ) {
-    @slurm = ( @slurm, "\n\# === SLURM: User email address ===\n",
-                       "\#SBATCH --mail-type=END\n" ); 
+  # When to send emails
+  if ( length( $SLURM_MAILTYPE ) > 0 ) {
+    @slurm = ( @slurm, "\n\# === SLURM: When to notify user via email ===\n",
+                       "\#SBATCH --mail-type=$SLURM_MAILTYPE\n" ); 
   }
 
   # Stdout stream
@@ -325,7 +326,8 @@ sub makeSlurmTags() {
 
   # Export number of CPUs (NOTE: This must be done after all SBATCH commands)
   if ( length( $SLURM_CPUS ) > 0 ) {  
-    @slurm = ( @slurm, "export OMP_NUM_THREADS=$SLURM_CPUS\n" ); 
+    @slurm = ( @slurm, "\n\# === Number of CPUs for OpenMP  ===\n",
+                       "\nexport OMP_NUM_THREADS=$SLURM_CPUS\n" ); 
   }
 
   # Return list of SLURM tags
@@ -502,6 +504,8 @@ sub doUnitTest($$) {
       elsif ( $txt[$i] =~ "SLURM_PARTITION" ) { $SLURM_PARTITION = 
 						  &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "SLURM_MAILUSER"  ) { $SLURM_MAILUSER  = 
+						  &parse( $txt[$i] ); }     
+      elsif ( $txt[$i] =~ "SLURM_MAILTYPE"  ) { $SLURM_MAILTYPE  = 
 						  &parse( $txt[$i] ); }     
       elsif ( $txt[$i] =~ "SLURM_STDOUT"    ) { $SLURM_STDOUT    = 
 						  &parse( $txt[$i] ); }
