@@ -37,8 +37,6 @@
 #SBATCH -t 720                              # Runtime in minutes (minimum: 10)
 #SBATCH -p jacob                            # Partition to submit to (see above)
 #SBATCH --mem-per-cpu=1000                  # Memory per cpu in MB. 
-#SBATCH -o v11-01.out                       # File where stdout will be written 
-#SBATCH -e v11-01.err                       # File where stderr will be written 
 #SBATCH --mail-type=END                     # Type of email notification 
 #SBATCH --mail-user=your-email-address      # Your email address
 
