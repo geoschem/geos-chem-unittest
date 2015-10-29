@@ -22,6 +22,7 @@
 #  15 Feb 2012 - M. Payer    - Comment out references to dir in my copy_1mon --
 #                              Only Bob has permission to write to that dir.
 #  24 Mar 2015 - M. Sulprizio- Now a bash script
+#  For all revisions after this date, see the GEOS-Chem UnitTest git history
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -38,7 +39,7 @@ fi
 
 # Set variables
 version=$1
-dirq="/as/pub/ftp/pub/exchange/mpayer/1mo_quick_look/$version/"
+dirq="/as/pub/ftp/gcgrid-rw/geos-chem/1mo_benchmarks/v11-01/$version/"
 
 # Make the directory if it does not exist
 if [ ! -d $dirq ]; then
@@ -48,7 +49,7 @@ fi
 
 echo "Copying 1-month benchmark output to $dirq"
 
-# Copy 1-month benchmark output 
+# Copy 1-month benchmark output
 cp -f $version.budget.fullchem     $dirq
 cp -f $version.emissions.fullchem  $dirq
 cp -f $version.*.pdf               $dirq
@@ -56,7 +57,7 @@ cp -rf emission_maps               $dirq
 cp -rf emission_differences        $dirq
 cp -rf emission_ratios             $dirq
 
-# Copy ouptut files from model
+# Copy output files from model
 cp -f ../trac_avg.$version         $dirq
 cp -f ../Ox.mass*                  $dirq  
 cp -f ../*info.dat                 $dirq
@@ -64,33 +65,9 @@ cp -f ../$version.log              $dirq
 cp -f ../HEMCO.log                 $dirq
 cp -f ../README                    $dirq
 
-#----------------------------------------------------------------------------
-# Copy output to permanent ftp site 
-#
-# NOTE: Only Bob Y. has permission to write to permanent ftp site
-#----------------------------------------------------------------------------
-## Set variables
-#set dir     = "/as/pub/ftp/pub/geos-chem/1mo_benchmarks/$version"
-#
-## Make the directory if it does not exist
-#if [ -f $dir ]; then
-#  mkdir $dir
-#fi
-#
-#echo "Copying 1-month benchmark output to $dir"
-#
-## Copy 1-month benchmark output 
-#cp -f $version.budget.fullchem     $dir
-#cp -f $version.emissions.fullchem  $dir
-#cp -f $version.*.pdf               $dir
-#
-## Copy ouptut files from model
-#cp -f ../ctm.bpch.$version         $dir
-#cp -f ../Ox.mass*                  $dir  
-#cp -f ../*info.dat                 $dir
-#cp -f ../$version.log              $dir
-#cp -f ../HEMCO.log                 $dir
-#cp -f ../README                    $dir
+# Change group name of new directory and files
+chgrp gcdata $dirq
+chgrp gcdata $dirq/*
 
 # Clear variables
 unset version
