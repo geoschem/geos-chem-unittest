@@ -138,14 +138,14 @@ Warnings:                    {WARNINGS}
     --> GFED4             :       true
     --> GFED_daily        :       false
     --> GFED_3hourly      :       false
-    --> CO scale factor   :       1.05
-    --> POA scale factor  :       1.27
-    --> NAP scale factor  :       2.75e-4
+    --> Scaling_CO        :       1.05
+    --> Scaling_POA       :       1.27
+    --> Scaling_NAP       :       2.75e-4
     --> hydrophilic BC    :       0.2
     --> hydrophilic OC    :       0.5
 114     FINN              : off   NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/GLYC/HAC
     --> FINN_daily        :       false
-    --> CO scale factor   :       1.0
+    --> Scaling_CO        :       1.0
     --> hydrophilic BC    :       0.2
     --> hydrophilic OC    :       0.5
 

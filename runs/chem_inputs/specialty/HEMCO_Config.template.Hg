@@ -96,9 +96,9 @@ Warnings:                    {WARNINGS}
     --> GFED4             :       true
     --> GFED_daily        :       false
     --> GFED_3hourly      :       false
-    --> CO scale factor   :       1.05
-    --> POA scale factor  :       1.27
-    --> NAP scale factor  :       2.75e-4
+    --> Scaling_CO        :       1.05
+    --> Scaling_POA       :       1.27
+    --> Scaling_NAP       :       2.75e-4
     --> hydrophilic BC    :       0.2
     --> hydrophilic OC    :       0.5
 
