@@ -256,6 +256,7 @@ sub makeSlurmTags() {
 #  24 Mar 2014 - R. Yantosca - Now pass %unitTests hash as an argument
 #  07 Apr 2014 - R. Yantosca - Now make $webFile chmod 664
 #  05 Oct 2015 - E. Lundgren - Move export CPU number to after SBATCH commands
+#  04 Dec 2015 - R. Yantosca - Remove comments above #SBATCH tags
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -266,68 +267,57 @@ sub makeSlurmTags() {
 
   # Number of CPUs
   if ( length( $SLURM_CPUS ) > 0 ) {  
-    @slurm = ( @slurm, "\n\# === SLURM: Number of CPUs ===\n",
-                       "\#SBATCH -n $SLURM_CPUS\n" ); 
+    @slurm = ( @slurm, "\#SBATCH -n $SLURM_CPUS\n" ); 
   }
 
   # Number of nodes
   if ( length( $SLURM_NODES ) > 0 ) { 
-    @slurm = ( @slurm, "\n\# === SLURM: Number of nodes ===\n", 
-                       "\#SBATCH -N $SLURM_NODES\n" );
+    @slurm = ( @slurm, "\#SBATCH -N $SLURM_NODES\n" );
   }
 
   # Time requested
   if ( length( $SLURM_TIME ) > 0 ) { 
-    @slurm = ( @slurm,  "\n\# === SLURM: Time requested ===\n",
-                        "\#SBATCH -t $SLURM_TIME\n" );  
+    @slurm = ( @slurm, "\#SBATCH -t $SLURM_TIME\n" );  
   }
 
   # Mem per node
   if ( length( $SLURM_MEM ) > 0 ) {
-    @slurm = ( @slurm, "\n\# === SLURM: Memory per node ===\n",
-                       "\#SBATCH --mem-per-cpu=$SLURM_MEM\n" ); 
+    @slurm = ( @slurm, "\#SBATCH --mem=$SLURM_MEM\n" ); 
   }
   
   # Mem per CPU
   if ( length( $SLURM_MEMPERCPU ) > 0 ) {
-    @slurm = ( @slurm, "\n\# === SLURM: Memory per CPU ===\n",
-                       "\#SBATCH --mem-per-cpu=$SLURM_MEMPERCPU\n" ); 
+    @slurm = ( @slurm, "\#SBATCH --mem-per-cpu=$SLURM_MEMPERCPU\n" ); 
   }
 
   # Partition
   if ( length( $SLURM_PARTITION ) > 0 ) {
-    @slurm = ( @slurm, "\n\# === SLURM: Partition (aka queue) ===\n",
-                       "\#SBATCH -p $SLURM_PARTITION\n" ); 
+    @slurm = ( @slurm, "\#SBATCH -p $SLURM_PARTITION\n" ); 
   }
 
   # Email address for notifications
   if ( length( $SLURM_MAILUSER ) > 0 ) {
-    @slurm = ( @slurm, "\n\# === SLURM: User email address ===\n",
-                       "\#SBATCH --mail-user=$SLURM_MAILUSER\n" ); 
+    @slurm = ( @slurm, "\#SBATCH --mail-user=$SLURM_MAILUSER\n" ); 
   }
 
   # When to send emails
   if ( length( $SLURM_MAILTYPE ) > 0 ) {
-    @slurm = ( @slurm, "\n\# === SLURM: When to notify user via email ===\n",
-                       "\#SBATCH --mail-type=$SLURM_MAILTYPE\n" ); 
+    @slurm = ( @slurm, "\#SBATCH --mail-type=$SLURM_MAILTYPE\n" ); 
   }
 
   # Stdout stream
   if ( length( $SLURM_STDOUT ) > 0 ) {
-    @slurm = ( @slurm, "\n\# === SLURM: Unix stdout stream ===\n",
-                       "\#SBATCH -o $SLURM_STDOUT\n" ); 
+    @slurm = ( @slurm, "\#SBATCH -o $SLURM_STDOUT\n" ); 
   }
 
   # Stderr stream
   if ( length( $SLURM_STDERR ) > 0 ) {
-    @slurm = ( @slurm, "\n\# === SLURM: Unix stderr stream ===\n",
-                       "\#SBATCH -e $SLURM_STDERR\n" ); 
+    @slurm = ( @slurm, "\#SBATCH -e $SLURM_STDERR\n" ); 
   }
 
   # Export number of CPUs (NOTE: This must be done after all SBATCH commands)
   if ( length( $SLURM_CPUS ) > 0 ) {  
-    @slurm = ( @slurm, "\n\# === Number of CPUs for OpenMP  ===\n",
-                       "\nexport OMP_NUM_THREADS=$SLURM_CPUS\n" ); 
+    @slurm = ( @slurm, "export OMP_NUM_THREADS=$SLURM_CPUS\n\n" ); 
   }
 
   # Return list of SLURM tags
@@ -698,11 +688,12 @@ EOF
 
   # Add some more commands to the top of the job script
   # Call gcUtWeb to generate the matrix of results as a web page
+  # NOTE: SLURM tags have to go before any other comments or text!!!
   @cmds = ( '#!/bin/bash'."\n\n",
+            @slurm,
             "\#"x79,
             "\n\# Job script for unit test: $VERSION\n\# $DESCRIBE\n",
             "\#"x79,"\n",
-            @slurm,
             "\nset \-e\n", 
 	    "$logTop\n", 
             @cmds );
