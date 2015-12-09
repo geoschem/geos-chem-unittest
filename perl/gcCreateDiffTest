@@ -277,6 +277,9 @@ sub doCopyDirs($$) {
 #
 # !REVISION HISTORY:
 #  02 Sep 2015 - E. Lundgren - Initial version, based on gcCopyRunDirs
+#  09 Dec 2015 - R. Yantosca - Link the HEMCO_restart file in the $refDir
+#                              to $devDir.  This makes sure the runs start
+#                              with the same initial conditions.  
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -501,7 +504,7 @@ sub doCopyDirs($$) {
 	  # Loop over files in Dev to create symbolic links in Ref
 	  @files = <$copyDir/Dev/*>;
 	  foreach $file (@files) {
-	    if ( $file =~ /\.dat$/i) {
+	    if ( $file =~ /\.dat$/i || $file =~ m/HEMCO_restart/ ) {
 	      $filename   = &baseName( $file );
 	      $cmd = "ln -s $file $refDir/$filename";
 	      qx/$cmd/;	      
