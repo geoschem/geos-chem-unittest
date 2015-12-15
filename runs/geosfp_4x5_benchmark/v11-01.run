@@ -1,5 +1,13 @@
 #!/bin/bash
 
+#SBATCH -n 8
+#SBATCH -N 1
+#SBATCH -t 0-15:00
+#SBATCH -p jacob
+#SBATCH --mem=12000
+#SBATCH --mail-type=END
+#SBATCH --mail-user=<YOUR_EMAIL>
+
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
@@ -25,20 +33,10 @@
 #
 # !REVISION HISTORY:
 #  17 Jun 2015 - M. Sulprizio- Initial version
+#  Check the git history for revision history
 #EOP
 #------------------------------------------------------------------------------
 #BOC
-
-#-------------------------------------------------
-# Settings for the SLURM scheduler
-#-------------------------------------------------
-#SBATCH -n 8                                # Number of CPUs you are requesting
-#SBATCH -N 1                                # Ask for all CPUs on the same node
-#SBATCH -t 720                              # Runtime in minutes (minimum: 10)
-#SBATCH -p jacob                            # Partition to submit to (see above)
-#SBATCH --mem-per-cpu=1000                  # Memory per cpu in MB. 
-#SBATCH --mail-type=END                     # Type of email notification 
-#SBATCH --mail-user=your-email-address      # Your email address
 
 # Set the proper # of threads for OpenMP
 # SLURM_NTASKS ensures this matches the number you set with -n above
@@ -48,7 +46,7 @@ export OMP_NUM_THREADS=$SLURM_NTASKS
 # Initialize
 #-------------------------------------------------
 # Define version ID
-id="v11-01d"
+id="v11-01"
 
 # Define GEOS-Chem log file
 log="$id.log"
