@@ -43,7 +43,7 @@
    VERSION         : v11-01.POPs
    DESCRIPTION     : Tests POPS simulations in GEOS-Chem
    CODE_DIR        : {HOME}/GC/Code.v11-01
-   DATA_ROOT       : /net/seasasfs01/srv/export/seasasfs01/share_root/gcgrid/data/ExtData
+   DATA_ROOT       : /n/seasasfs01/gcgrid/data/ExtData
    HEMCO_ROOT      : {DATAROOT}/HEMCO
    RUN_ROOT        : {HOME}/UT/runs
    RUN_DIR         : {RUNROOT}/{RUNDIR}

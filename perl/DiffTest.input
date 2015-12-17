@@ -34,7 +34,7 @@
    COPY_PATH   : {HOME}/GC/DiffTest/v11-01
    CODE_REF    : {HOME}/GC/Code.Ref
    CODE_DEV    : {HOME}/GC/Code.Dev
-   DATA_ROOT   : /net/seasasfs01/srv/export/seasasfs01/share_root/gcgrid/gcdata/ExtData
+   DATA_ROOT   : /n/seasasfs01/gcgrid/gcdata/ExtData
    HEMCO_ROOT  : {DATAROOT}/HEMCO
    RUN_ROOT    : {HOME}/UT/runs
    RUN_DIR     : {RUNROOT}/{RUNDIR}
