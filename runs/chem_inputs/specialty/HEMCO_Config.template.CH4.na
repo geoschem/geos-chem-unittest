@@ -160,8 +160,8 @@ Warnings:                    {WARNINGS}
 # NOTE: Multiply soil absorption by -1 to get a "negative" flux.
 #==============================================================================
 (((FUNG
-0 CH4_SOILABSORBTION $ROOT/CH4/v2014-09/$RES/soilabs.geos.$RES.nc  CH4 1985/1/1/0 C xy kg/m2/s CH4 1 7 1
-0 CH4_TERMITES       $ROOT/CH4/v2014-09/$RES/termites.geos.$RES.nc CH4 1985/1/1/0 C xy kg/m2/s CH4 - 8 1
+0 CH4_SOILABSORBTION $ROOT/CH4/v2014-09/05x0666/soilabs.geos.05x0666.nc  CH4 1985/1/1/0 C xy kg/m2/s CH4 1 7 1
+0 CH4_TERMITES       $ROOT/CH4/v2014-09/05x0666/termites.geos.05x0666.nc CH4 1985/1/1/0 C xy kg/m2/s CH4 - 8 1
 )))FUNG
 
 #==============================================================================
@@ -250,12 +250,12 @@ Warnings:                    {WARNINGS}
 # --- CH4 wetland and rice emissions (Extension 121) 
 #==============================================================================
 121 CH4_RICE     $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc                    ch4_4C_4D 2004-2008/1/1/0    C xy kg/m2/s  CH4 - 1 1
-121 CH4_GWET_YR  $ROOT/CH4/v2014-09/$RES/GWETTOP.annual.geos5.$RES_NA.nc  GWETTOP   2004-2011/1/1/0    C xy 1        *   - 1 1
-121 CH4_GWET_MT  $ROOT/CH4/v2014-09/$RES/GWETTOP.monthly.geos5.$RES_NA.nc GWETTOP   2004-2011/1-12/1/0 C xy 1        *   - 1 1
-121 CH4_MEAN_T   $ROOT/CH4/v2014-09/$RES/TSKIN.annual.geos5.$RES_NA.nc    TSKIN     2004-2011/1/1/0    C xy 1        *   - 1 1
-121 CH4_WETFRAC  $ROOT/CH4/v2014-09/$RES/Wetfrac.$RES.nc                  WETFRAC   2000/1/1/0         C xy 1        *   - 1 1
-121 CH4_LITTER_C $ROOT/CH4/v2014-09/$RES/Carbon_litter.$RES.nc            CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
-121 CH4_SOIL_C   $ROOT/CH4/v2014-09/$RES/Carbon_soil.$RES.nc              CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
+121 CH4_GWET_YR  $ROOT/CH4/v2014-09/05x0666/GWETTOP.annual.geos5.05x0666_NA.nc  GWETTOP   2004-2011/1/1/0    C xy 1        *   - 1 1
+121 CH4_GWET_MT  $ROOT/CH4/v2014-09/05x0666/GWETTOP.monthly.geos5.05x0666_NA.nc GWETTOP   2004-2011/1-12/1/0 C xy 1        *   - 1 1
+121 CH4_MEAN_T   $ROOT/CH4/v2014-09/05x0666/TSKIN.annual.geos5.05x0666_NA.nc    TSKIN     2004-2011/1/1/0    C xy 1        *   - 1 1
+121 CH4_WETFRAC  $ROOT/CH4/v2014-09/05x0666/Wetfrac.05x0666.nc                  WETFRAC   2000/1/1/0         C xy 1        *   - 1 1
+121 CH4_LITTER_C $ROOT/CH4/v2014-09/05x0666/Carbon_litter.05x0666.nc            CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
+121 CH4_SOIL_C   $ROOT/CH4/v2014-09/05x0666/Carbon_soil.05x0666.nc              CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
 
 ###############################################################################
 ### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
