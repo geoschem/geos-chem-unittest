@@ -63,6 +63,7 @@ our $SLURM_TIME      = "";         # SLURM: Run time (-t D-hh:mm)
 our $SLURM_MEM       = "";         # SLURM: Memory per node (MB)
 our $SLURM_MEMPERCPU = "";         # SLURM: Memory per CPU (MB)
 our $SLURM_PARTITION = "";         # SLURM: Partition (aka queue) name
+our $SLURM_CONSTRAINT= "";         # SLURM: Constraints
 our $SLURM_STDOUT    = "";         # SLURM: Stdout stream
 our $SLURM_STDERR    = "";         # SLURM: Stderr stream
 our $SLURM_MAILUSER  = "";         # SLURM: Email address for updates
@@ -94,6 +95,7 @@ our $SLURM_MAILTYPE  = "";         # SLURM: When to send emails?
 #  19 Jun 2015 - R. Yantosca - Added optional SLURM tags
 #  22 Jun 2015 - R. Yantosca - Now write out unit test results to a text file
 #                              in case a web push is disallowed
+#  17 Dec 2015 - R. Yantosca - Now get constraints for the SLURM job  
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -257,6 +259,7 @@ sub makeSlurmTags() {
 #  07 Apr 2014 - R. Yantosca - Now make $webFile chmod 664
 #  05 Oct 2015 - E. Lundgren - Move export CPU number to after SBATCH commands
 #  04 Dec 2015 - R. Yantosca - Remove comments above #SBATCH tags
+#  17 Dec 2015 - R. Yantosca - Now add optional #SBATCH --constraint tag
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -295,6 +298,11 @@ sub makeSlurmTags() {
     @slurm = ( @slurm, "\#SBATCH -p $SLURM_PARTITION\n" ); 
   }
 
+  # SLURM constraints (i.e. which type of CPU to run on, etc)
+  if ( length( $SLURM_CONSTRAINT ) > 0 ) {
+    @slurm = ( @slurm, "\#SBATCH --constraint=$SLURM_CONSTRAINT\n" ); 
+  }
+  
   # Email address for notifications
   if ( length( $SLURM_MAILUSER ) > 0 ) {
     @slurm = ( @slurm, "\#SBATCH --mail-user=$SLURM_MAILUSER\n" ); 
@@ -385,6 +393,7 @@ sub doUnitTest($$) {
 #  18 Jun 2015 - M. Sulprizio- Now use home directory for file paths
 #  18 Jun 2015 - R. Yantosca - Use mkdir -p instead of mkdirhier
 #  22 Jun 2015 - R. Yantosca - Now append SLURM #SBATCH tags to job file
+#  17 Dec 2015 - R. Yantosca - Now get optional SLURM_CONSTRAINT info
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -492,6 +501,8 @@ sub doUnitTest($$) {
       elsif ( $txt[$i] =~ "SLURM_MEMPERCPU" ) { $SLURM_MEMPERCPU = 
 						  &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "SLURM_PARTITION" ) { $SLURM_PARTITION = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "SLURM_CONSTRAINT" ) { $SLURM_CONSTRAINT = 
 						  &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "SLURM_MAILUSER"  ) { $SLURM_MAILUSER  = 
 						  &parse( $txt[$i] ); }     

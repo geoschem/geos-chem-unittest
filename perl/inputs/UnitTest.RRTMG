@@ -75,6 +75,7 @@
    SLURM_TIME      : 1-00:00
    SLURM_MEMORY    : 12000
    SLURM_PARTITION : jacob
+   SLURM_CONSTRAINT: intel
    SLURM_MAILTYPE  : ALL
    SLURM_MAILUSER  : your-email-address
    SLURM_STDOUT    : {LOGDIR}/{VERSION}.stdout.log
