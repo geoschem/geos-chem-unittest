@@ -39,6 +39,7 @@ our $JOB_DIR    = "";                # Unit Test job directory
 our $LOG_DIR    = "";                # Unit Test logs directory
 our $RUN_ROOT   = "";                # Unit Test top-level run directory
 our $RUN_DIR    = "";                # Unit Test run directory subdirectory
+our $UT_ROOT    = "";                # Unit Test root directory
 our $WEB_GRID   = "";                # Web page w/ unit text matrix
 our $WEB_PUSH   = "";                # Remote server for web page push
 our $VERSION    = "";                # GEOS-Chem version ID
@@ -280,6 +281,8 @@ sub doCopyDirs($$) {
 #  09 Dec 2015 - R. Yantosca - Link the HEMCO_restart file in the $refDir
 #                              to $devDir.  This makes sure the runs start
 #                              with the same initial conditions.  
+#  18 Dec 2015 - R. Yantosca - Add $UT_ROOT global variable
+#  18 Dec 2015 - R. Yantosca - Replace ~ in $COPY_PATH with home directory
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -333,10 +336,12 @@ sub doCopyDirs($$) {
     # PLEASE NOTE THAT THE FOLLOWING ORDER MUST BE OBSERVED:
     # (1) VERSION   has to be listed last of all
     # (2) DATA_ROOT has to be listed before HEMCO_ROOT
+    # (3) UNIT_TEST_ROOT has to be listed befor all other unit test dirs
     #------------------------------------------------------------------------
     if ( !( $txt[$i] =~ m/\#/ ) ) { 
       if    ( $txt[$i] =~ "DATA_ROOT"   ) { $DATA_ROOT = &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "HEMCO_ROOT"  ) { $HEMCO_ROOT= &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "UNIT_TEST_ROOT") { $UT_ROOT = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "JOB_DIR"     ) { $JOB_DIR   = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "LOG_DIR"     ) { $LOG_DIR   = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "RUN_ROOT"    ) { $RUN_ROOT  = &parse( $txt[$i] ); } 
@@ -359,15 +364,21 @@ sub doCopyDirs($$) {
     elsif ( $txt[$i] =~ "!RUNS"     ) {
 
       # Replace tokens in a few more variables
+      $UT_ROOT    =~ s/{HOME}/$home/g;
       $COPY_PATH  =~ s/{HOME}/$home/g;
+      $COPY_PATH  =~ s/\~/$home/g;
       $CODE_REF   =~ s/{HOME}/$home/g;
       $CODE_DEV   =~ s/{HOME}/$home/g;
       $RUN_ROOT   =~ s/{HOME}/$home/g;
+      $RUN_ROOT   =~ s/{UTROOT}/$UT_ROOT/g;
       $JOB_DIR    =~ s/{HOME}/$home/g;
+      $JOB_DIR    =~ s/{UTROOT}/$UT_ROOT/g;
       $LOG_DIR    =~ s/{HOME}/$home/g;
+      $LOG_DIR    =~ s/{UTROOT}/$UT_ROOT/g;
       $LOG_DIR    =~ s/{VERSION}/$VERSION/g;
       $HEMCO_ROOT =~ s/{DATAROOT}/$DATA_ROOT/g;
       $RUN_DIR    =~ s/{RUNROOT}/$RUN_ROOT/g;
+      $RUN_DIR    =~ s/{UTROOT}/$UT_ROOT/g;
 
       # Make sure each of these directories exist before proceeding
       &checkDir( $CODE_REF   );

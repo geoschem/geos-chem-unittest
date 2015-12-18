@@ -7,18 +7,12 @@
 #  copying a run directory from the UnitTester. 
 #\\
 #\\
-# !REMARKS:  
-#  Customize the run directory for your system by specifying these values:
-#  -------------------------------------------------------------------
-#  VERSION     : A tag used to identify this Unit Test (e.g. v10-01h)
-#  DESCRIPTION : A short description of this file's run dir copy configuration
-#  COPY_PATH   : Local path where run directory will be copied to
-#  DATA_ROOT   : Root GEOS-Chem data directory
-#  HEMCO_ROOT  : Root directory where HEMCO emissions data files are stored
-#  RUN_ROOT    : Unit test run directories are subdirectories of RUN_ROOT
-#  RUN_DIR     : Individual unit test run directory path
-#  PERL_DIR    : Unit Test perl script directory (i.e. this directory)
-#  COPY_CMD    : Unix copy command with optional tags
+# !REMARKS:
+#  For a complete description of how to customize the settings in the
+#  INPUTS and RUNS sections, see the following wiki posts:
+#
+#   wiki.geos-chem.org/Creating_GEOS-Chem_run_directories#Section_1:_INPUTS
+#   wiki.geos-chem.org/Creating_GEOS-Chem_run_directories#Section_2:_RUNS
 #
 # !REVISION HISTORY: 
 #  18 Mar 2015 - R. Yantosca - Initial version
@@ -29,17 +23,29 @@
 #
 # !INPUTS:
 #
-   VERSION     : v11-01
-   DESCRIPTION : Create run directory from UnitTest
-   COPY_PATH   : {HOME}/GC/rundirs
-   DATA_ROOT   : /n/seasasfs01/gcgrid/data/ExtData
-   HEMCO_ROOT  : {DATAROOT}/HEMCO
-   RUN_ROOT    : {HOME}/UT/runs
-   RUN_DIR     : {RUNROOT}/{RUNDIR}
-   PERL_DIR    : {HOME}/UT/perl
-   COPY_CMD    : cp -rfL
-   VERBOSE     : 0
-   WARNINGS    : 1
+# %%% ID tags %%%
+#
+   VERSION        : v11-01
+   DESCRIPTION    : Create run directory from UnitTest
+#
+# %%% Data path and HEMCO settings %%%
+#
+   DATA_ROOT      : /n/seasasfs01/gcgrid/data/ExtData
+   HEMCO_ROOT     : {DATAROOT}/HEMCO
+   VERBOSE        : 0
+   WARNINGS       : 1
+#
+# %%% Unit tester path names %%%
+#
+   UNIT_TEST_ROOT : {HOME}/UT
+   RUN_ROOT       : {UTROOT}/runs
+   RUN_DIR        : {RUNROOT}/{RUNDIR}
+   PERL_DIR       : {UTROOT}/perl
+#
+# %%% Target directory and copy command %%%
+# 
+   COPY_PATH      : {HOME}/GC/rundirs
+   COPY_CMD       : cp -rfL
 #
 # !RUNS:
 #  Specify the runs directories that you want to copy below.

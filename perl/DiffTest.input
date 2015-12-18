@@ -29,19 +29,34 @@
 #
 # !INPUTS:
 #
-   VERSION     : v11-01
-   DESCRIPTION : Create DiffTest directory from UnitTest
-   COPY_PATH   : {HOME}/GC/DiffTest/v11-01
-   CODE_REF    : {HOME}/GC/Code.Ref
-   CODE_DEV    : {HOME}/GC/Code.Dev
-   DATA_ROOT   : /n/seasasfs01/gcgrid/gcdata/ExtData
-   HEMCO_ROOT  : {DATAROOT}/HEMCO
-   RUN_ROOT    : {HOME}/UT/runs
-   RUN_DIR     : {RUNROOT}/{RUNDIR}
-   PERL_DIR    : {HOME}/UT/perl
-   COPY_CMD    : cp -rfL
-   VERBOSE     : 0
-   WARNINGS    : 1
+# %%% ID tags %%%
+#
+   VERSION        : v11-01
+   DESCRIPTION    : Create run directory from UnitTest
+#
+# %%% Data path and HEMCO settings %%%
+#
+   DATA_ROOT      : /n/seasasfs01/gcgrid/gcdata/ExtData
+   HEMCO_ROOT     : {DATAROOT}/HEMCO
+   VERBOSE        : 0
+   WARNINGS       : 1
+#
+# %%% Unit tester path names %%%
+#
+   UNIT_TEST_ROOT : {HOME}/UT
+   RUN_ROOT       : {UTROOT}/runs
+   RUN_DIR        : {RUNROOT}/{RUNDIR}
+   PERL_DIR       : {UTROOT}/perl
+#
+# %%% Reference (Ref) and Development (Dev) codes %%%
+#
+   CODE_REF       : {HOME}/GC/Code.Ref
+   CODE_DEV       : {HOME}/GC/Code.Dev
+#
+# %%% Target directory and copy command %%%
+#
+   COPY_PATH      : {HOME}/GC/DiffTest/v11-01
+   COPY_CMD       : cp -rfL
 #
 # !RUNS:
 #  Specify the runs directories that you want to make DiffTests out of.

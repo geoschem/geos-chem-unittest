@@ -32,6 +32,7 @@ use UtUtils qw( &baseName
 
 # Directories
 our $CODE_DIR        = "";         # GEOS-Chem Code directory
+our $UT_ROOT         = "";         # Unit test root directory
 our $DATA_ROOT       = "";         # Root path for GEOS-Chem data directory
 our $HEMCO_ROOT      = "";         # Root path for HEMCO emissions files
 our $JOB_DIR         = "";         # Unit Test job directory
@@ -95,7 +96,9 @@ our $SLURM_MAILTYPE  = "";         # SLURM: When to send emails?
 #  19 Jun 2015 - R. Yantosca - Added optional SLURM tags
 #  22 Jun 2015 - R. Yantosca - Now write out unit test results to a text file
 #                              in case a web push is disallowed
-#  17 Dec 2015 - R. Yantosca - Now get constraints for the SLURM job  
+#  17 Dec 2015 - R. Yantosca - Now get constraints for the SLURM job
+#  18 Dec 2015 - R. Yantosca - Add UT_ROOT directory.  This lets us place the
+#                              unit test directory in scratch space if needed.
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -394,6 +397,7 @@ sub doUnitTest($$) {
 #  18 Jun 2015 - R. Yantosca - Use mkdir -p instead of mkdirhier
 #  22 Jun 2015 - R. Yantosca - Now append SLURM #SBATCH tags to job file
 #  17 Dec 2015 - R. Yantosca - Now get optional SLURM_CONSTRAINT info
+#  18 Dec 2015 - R. Yantosca - Add UT_ROOT variable
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -450,10 +454,11 @@ sub doUnitTest($$) {
     # Skip over lines beginning with the # comment character
     #
     # PLEASE NOTE THAT THE FOLLOWING ORDER MUST BE OBSERVED:
-    # (1) VERSION   has to be listed last of all
-    # (2) DATA_ROOT has to be listed before HEMCO_ROOT
-    # (3) RUN_ROOT  has to be listed before RUN_DIR
-    # (3) WEB_GRID  has to be listed before WEB_PUSH
+    # (1) VERSION        has to be listed last of all
+    # (2) DATA_ROOT      has to be listed before HEMCO_ROOT
+    # (3) RUN_ROOT       has to be listed before RUN_DIR
+    # (4) WEB_GRID       has to be listed before WEB_PUSH
+    # (5) UNIT_TEST_ROOT has to be listed before other unit test dirs
     #------------------------------------------------------------------------
     if ( !( $txt[$i] =~ m/\#/ ) ) { 
       if    ( $txt[$i] =~ "CODE_DIR"        ) { $CODE_DIR = 
@@ -463,6 +468,8 @@ sub doUnitTest($$) {
       elsif ( $txt[$i] =~ "DATA_ROOT"       ) { $DATA_ROOT = 
 						  &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "HEMCO_ROOT"      ) { $HEMCO_ROOT = 
+						  &parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "UNIT_TEST_ROOT"  ) { $UT_ROOT = 
 						  &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "JOB_DIR"         ) { $JOB_DIR = 
 						  &parse( $txt[$i] ); } 
@@ -523,17 +530,24 @@ sub doUnitTest($$) {
     #------------------------------------------------------------------------
     elsif ( $txt[$i] =~ "!RUNS"     ) {
 
+      # Replace tokens in UT_ROOT 
+      $UT_ROOT =~  s/{HOME}/$home/g;
+      
       # Append the version tag to the log directory
       # So that we can keep several log files simultaneously
       $LOG_DIR =~ s/{VERSION}/$VERSION/g;
       $LOG_DIR =~ s/{HOME}/$home/g;
+      $LOG_DIR =~ s/{UTROOT}/$UT_ROOT/g;
       if ( !( -f $LOG_DIR ) ) { qx( mkdir -p $LOG_DIR ); }
 
       # Replace directory tokens in a few more variables
       $CODE_DIR     =~ s/{HOME}/$home/g;
       $RUN_ROOT     =~ s/{HOME}/$home/g;
+      $RUN_ROOT     =~ s/{UTROOT}/$UT_ROOT/g;
       $JOB_DIR      =~ s/{HOME}/$home/g;
+      $JOB_DIR      =~ s/{UTROOT}/$UT_ROOT/g;
       $PERL_DIR     =~ s/{HOME}/$home/g;
+      $PERL_DIR     =~ s/{UTROOT}/$UT_ROOT/g;
       $TEMPLATE     =~ s/{PERLDIR}/$PERL_DIR/g;
       $TXT_GRID     =~ s/{VERSION}/$VERSION/g;
       $TXT_GRID     =~ s/{LOGDIR}/$LOG_DIR/g;
@@ -541,12 +555,13 @@ sub doUnitTest($$) {
       $WEB_GRID     =~ s/{LOGDIR}/$LOG_DIR/g;
       $HEMCO_ROOT   =~ s/{DATAROOT}/$DATA_ROOT/g;
       $RUN_DIR      =~ s/{RUNROOT}/$RUN_ROOT/g;
+      $RUN_DIR      =~ s/{UTROOT}/$UT_ROOT/g;
       $WEB_PUSH     =~ s/\|/:/g;
       $SLURM_STDOUT =~ s/{LOGDIR}/$LOG_DIR/g;
       $SLURM_STDOUT =~ s/{VERSION}/$VERSION/g;
       $SLURM_STDERR =~ s/{LOGDIR}/$LOG_DIR/g;
       $SLURM_STDERR =~ s/{VERSION}/$VERSION/g;
-
+      
       # Make sure each of these directories exist before proceeding
       &checkDir( $DATA_ROOT  );
       &checkDir( $HEMCO_ROOT );
