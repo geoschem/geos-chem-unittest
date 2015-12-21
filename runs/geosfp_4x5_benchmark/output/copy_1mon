@@ -69,6 +69,10 @@ cp -f ../README                    $dirq
 chgrp gcdata $dirq
 chgrp gcdata $dirq/*
 
+# Change permissions of new directory and files
+chmod 775 $dirq
+chmod 775 $dirq/*
+
 # Clear variables
 unset version
 unset root
