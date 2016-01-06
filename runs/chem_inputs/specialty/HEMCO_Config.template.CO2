@@ -420,7 +420,7 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # Country/region masks
 #==============================================================================
-1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.nc            MASK 2000/1/1/0 C xy unitless 1 -30/30/45/70
+1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc   MASK 2000/1/1/0 C xy unitless 1 -30/30/45/70
 1001 MEXICO_MASK $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc  MASK 2000/1/1/0 C xy unitless 1 -118/17/-95/33
 1002 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc          MASK 2000/1/1/0 C xy unitless 1 -141/40/-52/85
 1003 SEASIA_MASK $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc      MASK 2000/1/1/0 C xy unitless 1  60/-12/153/55
