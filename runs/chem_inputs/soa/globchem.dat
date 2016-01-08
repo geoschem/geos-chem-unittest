@@ -14,6 +14,11 @@
 #\\
 # !REVISION HISTORY:
 #
+#  08 Jan 2016 (v11-01f)
+#  ----------------------
+#     Fixed syntax error in the MOBA + OH -> MOBAOO rxn rate.
+#     See http://wiki.geos-chem.org/New_isoprene_scheme#Syntax_error_in_globchem.dat_file_for_MOBA_reaction_rate
+#
 #  25 Sep 2015 (v11-01d)
 #  ----------------------
 #     Updates from D. B. Millet and E. A. Marais:
@@ -2690,7 +2695,7 @@ A  999 2.91E-13  0.0E+00   1300 1 HR  0.00     0.     0.
 +0.072HAC           +0.072GLYX          +0.850R4P           +                  
 +                   +                   +                   +
 +                   +                   +                   +             
-A 999 2.79E-11   0.0E+00    380 0     0.00     0.     0.         
+A  999 2.79E-11  0.0E+00    380 0     0.00     0.     0.         
       MOBA          +     OH
 =1.000MOBAOO        +                   +                   +             
 +                   +                   +                   +  
