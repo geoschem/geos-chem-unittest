@@ -114,7 +114,7 @@ pro Plot_1mon, InFile, _EXTRA=e
    ;Benchmark_1Mon, InFile, /No_Profiles, /NO_EMISSIONS, $
    ;    /NO_FREQ_DIST, /NO_DIFFS, /NO_JVALUES, /NO_RATIOS,  /NO_ZONALDiff, $
    ;    /No_2D_Met, /No_3D_Met, /NO_JVDIFFS, /No_AOD_Diffs, /No_AOD_Maps, $
-   ;    /No_JVMaps, /No_Conc_Maps, /NO_ZONALCONC, /No_StratDiff, No_StratConc, $
+   ;    /No_JVMaps, /No_Conc_Maps, /NO_ZONALCONC, /No_StratDiff, /No_StratConc,$
    ;    _EXTRA=e
 
    ; Create PDF files from the postscript files
