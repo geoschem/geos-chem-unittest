@@ -71,7 +71,13 @@ chgrp gcdata $dirq/*
 
 # Change permissions of new directory and files
 chmod 775 $dirq
-chmod 775 $dirq/*
+chmod 664 $dirq/*
+chmod 775 $dirq/emission_maps
+chmod 664 $dirq/emission_maps/*
+chmod 775 $dirq/emission_differences
+chmod 664 $dirq/emission_differences/*
+chmod 775 $dirq/emission_ratios
+chmod 664 $dirq/emission_ratios/*
 
 # Clear variables
 unset version
