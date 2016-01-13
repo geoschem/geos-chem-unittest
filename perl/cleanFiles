@@ -64,14 +64,20 @@ sub getDirs($) {
 #  24 Mar 2014 - R. Yantosca - Now use $RUN_ROOT to get the root run dir
 #  13 Mar 2015 - M. Sulprizio- Now get username for file paths
 #  18 Jun 2015 - M. Sulprizio- Now use home directory for file paths
+#  13 Jan 2016 - R. Yantosca - Now look for unit test root
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 #
 # !LOCAL VARIABLES:
 #
-  my $home = "";
+  # Scalars
+  my $home   = "";
+  my $utRoot = "";
+
+  # Arrays
   my @txt  = ();
+  
 
   # Read data from input file
   open( I, "<$fileName" ) or die "Cannot open $fileName!\n";
@@ -83,15 +89,20 @@ sub getDirs($) {
 
   # Parse each line until we find the log directory
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
-    if ( $txt[$i] =~ "JOB_DIR"  ) { $jobDir = &parse( $txt[$i] ); }
-    if ( $txt[$i] =~ "LOG_DIR"  ) { $logDir = &parse( $txt[$i] ); }
-    if ( $txt[$i] =~ "RUN_ROOT" ) { $runDir = &parse( $txt[$i] ); }
+    if ( $txt[$i] =~ "JOB_DIR"        ) { $jobDir = &parse( $txt[$i] ); }
+    if ( $txt[$i] =~ "LOG_DIR"        ) { $logDir = &parse( $txt[$i] ); }
+    if ( $txt[$i] =~ "RUN_ROOT"       ) { $runDir = &parse( $txt[$i] ); }
+    if ( $txt[$i] =~ "UNIT_TEST_ROOT" ) { $utRoot = &parse( $txt[$i] ); }
   }
 
   # Replace directory tokens
+  $utRoot =~ s/{HOME}/$home/g;
   $jobDir =~ s/{HOME}/$home/g;
   $logDir =~ s/{HOME}/$home/g;
   $runDir =~ s/{HOME}/$home/g;
+  $jobDir =~ s/{UTROOT}/$utRoot/g;
+  $logDir =~ s/{UTROOT}/$utRoot/g;
+  $runDir =~ s/{UTROOT}/$utRoot/g;
 
   # Only get the root part of the run & log directories
 #  $runDir =~ s/{RUNDIR}//g;
