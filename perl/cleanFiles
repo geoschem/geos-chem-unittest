@@ -30,6 +30,7 @@ use UtUtils qw( &cleanDir
 # !REVISION HISTORY:
 #  26 Aug 2013 - R. Yantosca - Initial version
 #  28 Aug 2013 - R. Yantosca - Now reference &cleanDir from UtUtils.pm
+#  14 Jan 2016 - R. Yantosca - Use relative data paths if no argument is passed
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -65,6 +66,7 @@ sub getDirs($) {
 #  13 Mar 2015 - M. Sulprizio- Now get username for file paths
 #  18 Jun 2015 - M. Sulprizio- Now use home directory for file paths
 #  13 Jan 2016 - R. Yantosca - Now look for unit test root
+#  14 Jan 2016 - R. Yantosca - Add option for returning relative data paths
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -77,7 +79,20 @@ sub getDirs($) {
 
   # Arrays
   my @txt  = ();
-  
+ 
+  #-------------------------------------------------------------------------
+  # If no filename is passed, return relative data paths
+  #-------------------------------------------------------------------------
+  if ( $fileName eq "RELATIVE" ) {
+    $jobDir = "../jobs";
+    $logDir = "../logs";
+    $runDir = "../runs"; 
+    return( $jobDir, $logDir, $runDir  );
+  }
+
+  #-------------------------------------------------------------------------
+  # Otherwise, read the data paths from the specified input filename
+  #-------------------------------------------------------------------------
 
   # Read data from input file
   open( I, "<$fileName" ) or die "Cannot open $fileName!\n";
@@ -162,8 +177,8 @@ sub main() {
 
   # If the user passes a filename from the command line, use it
   # Otherwise, default to "UnitTest.input"
-  if ( scalar( @ARGV ) == 1 ) { $optFile = $ARGV[0];         }
-  else                        { $optFile = "UnitTest.input"; }
+  if ( scalar( @ARGV ) == 1 ) { $optFile = $ARGV[0];   }
+  else                        { $optFile = "RELATIVE"; }
 
   # Get the local directories
   ( $jobDir, $logDir, $runRoot ) = &getDirs( $optFile );
