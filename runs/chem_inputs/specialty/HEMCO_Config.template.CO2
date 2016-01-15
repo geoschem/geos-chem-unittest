@@ -97,10 +97,12 @@ Warnings:                    {WARNINGS}
     --> GFED_daily        :       true
     --> GFED_3hourly      :       false
     --> Scaling_CO        :       1.05
-    --> Scaling_POA       :       1.27
+    --> Scaling_POG1      :       1.27
+    --> Scaling_POG2      :       1.27
     --> Scaling_NAP       :       2.75e-4
     --> hydrophilic BC    :       0.2
     --> hydrophilic OC    :       0.5
+    --> fraction POG1     :       0.49
 114     FINN              : off   CO2bb
     --> FINN_daily        :       true
     --> Scaling_CO        :       1.0

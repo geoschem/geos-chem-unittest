@@ -79,8 +79,8 @@ Warnings:                    {WARNINGS}
 ###
 ### --> BOND_BIOMASS must be set to false if GFED, QFED, or FINN is enabled.
 ###
-### --> The biomass burning POG scale factor (Scaling_POG1) is the same as for
-###     the biofuel and anthro sources (POGSCAL). 
+### --> The biomass burning SVOC scale factors (Scaling_POG1, Scaling POG2)
+###     should be the same as for the biofuel and anthro sources (POGSCAL). 
 ###
 ### --> The NAP scale factor is determined as in the original simulation:
 ###     Obtain NAP emissions using scale factor from Hays 2002 ES&T 
