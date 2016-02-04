@@ -78,7 +78,7 @@
    SLURM_MEMORY     : 12000
    SLURM_PARTITION  : jacob
    SLURM_CONSTRAINT : intel
-   SLURM_MAILTYPE   : ALL
+   SLURM_MAILTYPE   : END
    SLURM_MAILUSER   : your-email-address
    SLURM_STDOUT     : {LOGDIR}/{VERSION}.stdout.log
    SLURM_STDERR     : {LOGDIR}/{VERSION}.stderr.log
@@ -111,6 +111,8 @@
   merra    2x25        -      Hg           2009010100   200901010030   -
   geos5    2x25        -      Hg           2009010100   200901010030   -
 # geos5    05x0666     na     Hg           2008010100   200801010020   -
+# ======= Tagged Mercury =====================================================
+  geos5    4x5         -      tagHg        2010010100   2010010101     -
 # ======= POPs ===============================================================
   geosfp   4x5         -      POPs         2013070100   2013070101     -
   merra2   4x5         -      POPs         2013070100   2013070101     -
