@@ -161,17 +161,17 @@ Tracer #131             :  131  DSTAL4   40.0
 Turn on Transport       : T
  => Fill Negative Values: T 
  => IORD, JORD, KORD    : 3  3  7
-Transport Timestep [min]: 15
+Transport Timestep [min]: 10
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
 Turn on PBL Mixing?     : T
  => Use non-local PBL?  : T
-Convect Timestep (min)  : 15
+Convect Timestep [min]  : 10
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
-Emiss timestep (min)    : 30
+Emiss Timestep [min]    : 20
 HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
 Switches for UCX        :---
@@ -230,7 +230,7 @@ Use linear. strat. chem?: T
 Use UCX strat. chem?    : T
 Online CH4 chemistry?   : T
 Active strat. H2O?      : T
-Chemistry Timestep [min]: 30
+Chemistry Timestep [min]: 20
 Read and save CSPEC_FULL: F
  => CSPEC rst filename? : spec_rst.geosfp_2x25_aciduptake.YYYYMMDDhh
 USE solver coded by KPP : T

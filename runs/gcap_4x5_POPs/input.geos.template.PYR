@@ -35,17 +35,17 @@ Tracer #5               :   5   POPPBCPI    202.25
 Turn on Transport       : T
  => Fill Negative Values: T 
  => IORD, JORD, KORD    : 3  3  7
-Transport Timestep [min]: 30   
+Transport Timestep [min]: 10
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
 Turn on PBL Mixing?     : T
  => Use non-local PBL?  : F
-Convect Timestep (min)  : 30
+Convect Timestep (min)  : 10
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
-Emiss timestep (min)    : 60
+Emiss timestep (min)    : 20
 HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
 Switches for UCX        :---
@@ -96,7 +96,7 @@ Calc. strat. aero. OD?  : F
 %%% POPS MENU %%%       :
 POP type [PHE,PYR,BAP]  : PYR
 Chemistry processing on?: T
-POP_XMW                 : 202d-3  
+POP_XMW                 : 202.25d-3  
 POP_KOA                 : 7.24d8 
 POP_KBC                 : 1.0d11 
 POP_K_POPG_OH           : 50d-12  
@@ -117,7 +117,7 @@ Use linear. strat. chem?: F
 Use UCX strat. chem?    : F
 Online CH4 chemistry?   : F
 Active strat. H2O?      : F
-Chemistry Timestep [min]: 60
+Chemistry Timestep [min]: 20
 Read and save CSPEC_FULL: F
  => CSPEC rst filename? : none
 USE solver coded by KPP : F
