@@ -145,6 +145,23 @@ ifndef TIMERS
  TIMERS      :=0
 endif
 
+ifndef BPCH_RST_IN
+ BPCH_RST_IN :=n
+endif
+
+ifndef BPCH_RST_OUT
+ BPCH_RST_OUT :=n
+endif
+
+ifndef BPCH_DIAG
+ BPCH_DIAG :=y
+endif
+
+ifndef NC_DIAG
+ NC_DIAG   :=n
+ BPCH_DIAG :=y
+endif
+
 ###############################################################################
 #####                                                                     #####
 #####  RUN OPTIONS: Get various settings from the run directory name,     #####
@@ -261,7 +278,7 @@ EXE_MP       :=geos.mp
 
 # Output data files
 TRAC_AVG     :=trac_avg.$(RUNID).$(START)
-TRAC_RST     :=trac_rst.$(RUNID).$(END)
+TRAC_RST     :=GEOSChem_restart.$(END).nc
 HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
 ifeq ($(SIM),Hg)
  OCN_RST     :=ocean_rst.$(RUNID).$(END)
@@ -303,7 +320,8 @@ sp:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=no                   \
-                                TIMERS=$(TIMERS)     > $(LOG_SP)
+                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)   \
+                                > $(LOG_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	./$(EXE_SP) >> $(LOG_SP)
@@ -319,7 +337,8 @@ mp:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=yes                  \
-                                TIMERS=$(TIMERS)     > $(LOG_MP)
+                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)   \
+                                > $(LOG_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	./$(EXE_MP) >> $(LOG_MP)
@@ -340,7 +359,7 @@ spbuild:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=no                   \
-                                TIMERS=$(TIMERS)
+                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	@$(MAKE) printbuildinfo
@@ -354,7 +373,7 @@ mpbuild:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=yes                  \
-                                TIMERS=$(TIMERS)
+                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	@$(MAKE) printbuildinfo
@@ -389,6 +408,9 @@ dataclean:
 	rm -f trac_rst*
 	rm -f ocean_rst*.mp
 	rm -f ocean_rst*.sp
+	rm -f spec_rst.*
+	rm -f GEOSChem_restart.*
+	rm -f GEOSCHEM_diagnostics.*
 	rm -f trac_avg*
 	rm -f Ox.mass.*
 	rm -f diaginfo.dat tracerinfo.dat
@@ -515,28 +537,32 @@ printruninfomp:
 
 printbuildinfo:
 	@echo "LAST BUILD INFORMATION:"
-	@echo "  CODE_DIR  : $(CODE_DIR)"
-	@echo "  VERSION   : $(VERSION)"
-	@echo "  MET       : $(MET)"
-	@echo "  GRID      : $(GRID)"
-	@echo "  SIM       : $(SIM)"
-	@echo "  NEST      : $(NEST)"
-	@echo "  TRACEBACK : $(TRACEBACK)"
-	@echo "  BOUNDS    : $(BOUNDS)"
-	@echo "  DEBUG     : $(DEBUG)"
-	@echo "  FPE       : $(FPE)"
-	@echo "  NO_ISO    : $(NO_ISO)"	
-	@echo "  NO_REDUCED: $(NO_REDUCED)"
-	@echo "  CHEM      : $(CHEM)"
-	@echo "  UCX       : $(UCX)"
-	@echo "  TOMAS12   : $(TOMAS12)"	
-	@echo "  TOMAS15   : $(TOMAS15)"
-	@echo "  TOMAS40   : $(TOMAS40)"
-	@echo "  RRTMG     : $(RRTMG)"
-	@echo "  MASSCONS  : $(MASSCONS)"
-	@echo "  TIMERS    : $(TIMERS)"
-	@echo "  COMPILER  : $(COMPILER)"
-	@echo "  Datetime  : $(TIMESTAMP)"
+	@echo "  CODE_DIR     : $(CODE_DIR)"
+	@echo "  VERSION      : $(VERSION)"
+	@echo "  MET          : $(MET)"
+	@echo "  GRID         : $(GRID)"
+	@echo "  SIM          : $(SIM)"
+	@echo "  NEST         : $(NEST)"
+	@echo "  TRACEBACK    : $(TRACEBACK)"
+	@echo "  BOUNDS       : $(BOUNDS)"
+	@echo "  DEBUG        : $(DEBUG)"
+	@echo "  FPE          : $(FPE)"
+	@echo "  NO_ISO       : $(NO_ISO)"	
+	@echo "  NO_REDUCED   : $(NO_REDUCED)"
+	@echo "  CHEM         : $(CHEM)"
+	@echo "  UCX          : $(UCX)"
+	@echo "  TOMAS12      : $(TOMAS12)"	
+	@echo "  TOMAS15      : $(TOMAS15)"
+	@echo "  TOMAS40      : $(TOMAS40)"
+	@echo "  RRTMG        : $(RRTMG)"
+	@echo "  MASSCONS     : $(MASSCONS)"
+	@echo "  TIMERS       : $(TIMERS)"
+	@echo "  BPCH_RST_IN  : $(BPCH_RST_IN)"
+	@echo "  BPCH_RST_OUT : $(BPCH_RST_OUT)"
+	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"
+	@echo "  NC_DIAG      : $(NC_DIAG)"
+	@echo "  COMPILER     : $(COMPILER)"
+	@echo "  Datetime     : $(TIMESTAMP)"
 
 printallinfosp: 
 	@$(MAKE) printbuildinfo
@@ -680,4 +706,7 @@ help:
 	@echo 'TRACEBACK=y       Compiles GEOS-Chem with traceback error printout'
 	@echo 'NO_ISO=y          Compiles GEOS-Chem and turns off ISORROPIA'
 	@echo 'TIMERS=1          Compiles GEOS-Chem with timers turned on'
+	@echo 'BPCH_RST_IN=y     Compiles GEOS-Chem such that binary-punch restart file is input at run-time (default is NetCDF)'
+	@echo 'BPCH_RST_OUT=y    Compiles GEOS-Chem such that binary-punch restart file is output at run-time (default is NetCDF)'
+	@echo 'NC_DIAG=y       Compiles GEOS-Chem such that diagnostics are output in NetCDF format (default is binary-punch)'
 #EOC
