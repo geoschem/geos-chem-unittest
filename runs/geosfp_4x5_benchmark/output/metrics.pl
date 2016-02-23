@@ -55,6 +55,10 @@ my $val1  = 0.0;
 my $val2  = 0.0;
 my $pct   = 0.0;
 
+# Open output file
+my $outFile = "$v2.metrics.fullchem";
+open( O, ">$outFile") or die "Can't open $outFile\n";
+
 #--------------------------------------------
 # Print % difference in Mean OH
 #--------------------------------------------
@@ -82,12 +86,19 @@ $val2 = $tmp2[3];
 # Compute percent difference
 $pct  = 100.0 * ( ( $val2 - $val1 ) / $val1 );
 
-# Print results
+# Print results to screen
 print "MEAN OH CONCENTRATION [1e5 molec/cm3/s]\n";
 print '---------------------------------------'."\n";
 print "$v1    : $val1\n";
 print "$v2    : $val2\n";
 print "% Difference : $pct\n";
+
+# Print results to text file
+print O "MEAN OH CONCENTRATION [1e5 molec/cm3/s]\n";
+print O '---------------------------------------'."\n";
+print O "$v1    : $val1\n";
+print O "$v2    : $val2\n";
+print O "% Difference : $pct\n";
 
 #--------------------------------------------
 # Print % difference in MCF lifetime
@@ -116,13 +127,24 @@ $val2 = $tmp2[4];
 # Compute percent difference
 $pct  = 100.0 * ( ( $val2 - $val1 ) / $val1 );
 
-# Print results
+# Print results to screen
 print "\n";
 print "MCF LIFETIME w/r/t TROP OH [years]"."\n";
 print '----------------------------------'."\n";
 print "$v1    : $val1\n";
 print "$v2    : $val2\n";
 print "% Difference : $pct\n";
+
+# Print results to text file
+print O "\n";
+print O "MCF LIFETIME w/r/t TROP OH [years]"."\n";
+print O '----------------------------------'."\n";
+print O "$v1    : $val1\n";
+print O "$v2    : $val2\n";
+print O "% Difference : $pct\n";
+
+# Close output file
+close( O );
 
 # Exit normally
 exit(0);
