@@ -4,9 +4,9 @@ GEOS-CHEM UNIT TEST SIMULATION: geos5_2x25_RRTMG
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : {DATA_ROOT}/GC_RESTARTS/initial_GEOSChem_rst.geos5_2x25_RRTMG.nc
+Input restart file      : {DATA_ROOT}/NC_RESTARTS/initial_GEOSChem_rst.geos5_2x25_RRTMG.nc
 Make new restart file?  : T
-Output restart file(s)  : GEOSChem_restart.YYYYMMDDhhmm.nc
+Out bpch rst (if using) : trac_rst.geos5_2x25_RRTMG.YYYYMMDDhhmm
 Root data directory     : {DATA_ROOT}
  => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
@@ -166,7 +166,7 @@ Use UCX strat. chem?    : F
 Online CH4 chemistry?   : F
 Active strat. H2O?      : F
 Chemistry Timestep [min]: 20
-Read and save CSPEC_FULL: F
+Use spec_rst (bpch only): F
  => CSPEC rst filename? : spec_rst.geos5_2x25_RRTMG.YYYYMMDDhh
 USE solver coded by KPP : F
 Online O3 for FAST-JX?  : T
