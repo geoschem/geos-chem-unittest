@@ -4,7 +4,7 @@ GEOS-CHEM UNIT TEST SIMULATION: merra2_4x5_POPs
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : {DATA_ROOT}/GC_RESTARTS/initial_trac_rst.merra2_4x5_POPs
+Input restart file      : {DATA_ROOT}/GC_RESTARTS/initial_GEOSChem_rst.merra2_4x5_POPs.nc
 Make new restart file?  : T
 Output restart file(s)  : GEOSChem_restart.YYYYMMDDhhmm.nc
 Root data directory     : {DATA_ROOT}
