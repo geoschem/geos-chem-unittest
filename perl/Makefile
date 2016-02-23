@@ -256,6 +256,13 @@ ifeq ($(SIM),masscons)
  MASSCONS    :=y
 endif
 
+# Temporarily only use BPCH restarts for mercury simulation
+# pending implementation of ocean restart variables in netcdf
+ifeq ($(SIM),Hg)
+ BPCH_RST_IN    :=y
+ BPCH_RST_OUT   :=y
+endif
+
 # General run information
 TIMESTAMP    :=$(shell date +"%Y/%m/%d %H:%M")	
 RUNID        :=$(MET)_$(GRID)_$(SIM)
@@ -278,10 +285,12 @@ EXE_MP       :=geos.mp
 
 # Output data files
 TRAC_AVG     :=trac_avg.$(RUNID).$(START)
-TRAC_RST     :=GEOSChem_restart.$(END).nc
 HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
 ifeq ($(SIM),Hg)
+ TRAC_RST    :=trac_rst.$(RUNID).$(END)
  OCN_RST     :=ocean_rst.$(RUNID).$(END)
+else
+ TRAC_RST     :=GEOSChem_restart.$(END).nc 
 endif
 
 # Unit test validation script and results file
@@ -321,6 +330,8 @@ sp:
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=no                   \
                                 TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)   \
+                                BPCH_RST_IN=$(BPCH_RST_IN)                    \
+                                BPCH_RST_OUT=$(BPCH_RST_OUT)                  \
                                 > $(LOG_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
@@ -338,6 +349,8 @@ mp:
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=yes                  \
                                 TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)   \
+                                BPCH_RST_IN=$(BPCH_RST_IN)                    \
+                                BPCH_RST_OUT=$(BPCH_RST_OUT)                  \
                                 > $(LOG_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
@@ -359,7 +372,9 @@ spbuild:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=no                   \
-                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)
+                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)   \
+                                BPCH_RST_IN=$(BPCH_RST_IN)                    \
+                                BPCH_RST_OUT=$(BPCH_RST_OUT)                  
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	@$(MAKE) printbuildinfo
@@ -373,7 +388,9 @@ mpbuild:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=yes                  \
-                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)
+                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)   \
+                                BPCH_RST_IN=$(BPCH_RST_IN)                    \
+                                BPCH_RST_OUT=$(BPCH_RST_OUT)                  
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	@$(MAKE) printbuildinfo
