@@ -25,7 +25,7 @@
 ###############################################################################
 
 ##### Parameters for Model #1 #####
-Version_1   : v11-01c
+Version_1   : v11-01e
 Model_1     : GEOSFP
 Date_1      : 20130701
 N_Tracers_1 : 119
@@ -33,7 +33,7 @@ RunDir_1    : ~{your username}/SR/%VERSION_1%
 File_1      : %RUNDIR_1%/trac_avg.%VERSION_1%
 
 ##### Parameters for Model #2 #####
-Version_2   : v11-01d
+Version_2   : v11-01f
 Model_2     : GEOSFP
 Date_2      : 20130701
 N_Tracers_2 : 119

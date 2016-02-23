@@ -208,7 +208,7 @@ sub main() {
 #
 # !LOCAL VARIABLES:
 #
-  my $msg = "Usage: check.pl FILE1 FILE2 TOPHDR BOTHDR\n";
+  my $msg = "Usage: validate FILE1 FILE2 TOPHDR BOTHDR\n";
 
   # If there is the proper # of args, validate the GEOS-Chem files
   # Otherwise exit with an error message
