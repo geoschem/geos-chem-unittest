@@ -290,7 +290,7 @@ ifeq ($(SIM),Hg)
  TRAC_RST    :=trac_rst.$(RUNID).$(END)
  OCN_RST     :=ocean_rst.$(RUNID).$(END)
 else
- TRAC_RST     :=GEOSChem_restart.$(END).nc 
+ TRAC_RST     :=GEOSChem_restart.$(END).nc
 endif
 
 # Unit test validation script and results file
