@@ -1,10 +1,10 @@
-GEOS-CHEM UNIT TEST SIMULATION: merra_2x25_Hg
+xGEOS-CHEM UNIT TEST SIMULATION: merra_2x25_Hg
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : {DATA_ROOT}/GC_RESTARTS/initial_trac_rst.geosfp_4x5_Hg
+Input restart file      : {DATA_ROOT}/GC_RESTARTS/initial_trac_rst.merra_2x25_Hg
 Make new restart file?  : T
 Out bpch rst (if using) : trac_rst.merra_2x25_Hg.YYYYMMDDhhmm
 Root data directory     : {DATA_ROOT}
