@@ -6,11 +6,13 @@ job.*
 log.*
 trac_avg.*
 trac_rst.*
-soil_rst.*
+ocean_rst.*
+GEOSChem_restart*
+GEOSChem_diagnostics*
 diaginfo.dat
 tracerinfo.dat
-geos.mp
-geos.sp
+geos.*
+geos
 input.geos
 *.log
 HEMCO*Config.rc
@@ -19,4 +21,7 @@ HEMCO*restart*mp
 HEMCO*log*
 lastbuild.*
 Makefile
+Ox.mass.*
 tracer*mass*.dat
+*.mp
+*.sp
