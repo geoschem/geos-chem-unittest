@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#SBATCH -n 8
+#SBATCH -n 16
 #SBATCH -N 1
-#SBATCH -t 0-15:00
+#SBATCH -t 0-12:00
 #SBATCH -p jacob
 #SBATCH --mem=12000
 #SBATCH --mail-type=END
