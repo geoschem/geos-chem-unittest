@@ -65,9 +65,12 @@ cp -f ../$version.log              $dirq
 cp -f ../HEMCO.log                 $dirq
 cp -f ../README                    $dirq
 
-# Change group name of new directory and files
+# Change group name of new directories and files
 chgrp gcdata $dirq
 chgrp gcdata $dirq/*
+chgrp gcdata $dirq/emisssion_ratios/*
+chgrp gcdata $dirq/emisssion_maps/*
+chgrp gcdata $dirq/emisssion_differences/*
 
 # Change permissions of new directory and files
 chmod 775 $dirq

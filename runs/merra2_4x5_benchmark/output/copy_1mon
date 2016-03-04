@@ -68,6 +68,9 @@ cp -f ../README                    $dirq
 # Change group name of new directory and files
 chgrp gcdata $dirq
 chgrp gcdata $dirq/*
+chgrp gcdata $dirq/emission_maps/*
+chgrp gcdata $dirq/emission_ratios/*
+chgrp gcdata $dirq/emission_differences/*
 
 # Change permissions of new directory and files
 chmod 775 $dirq
