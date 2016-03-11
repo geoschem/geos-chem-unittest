@@ -22,8 +22,7 @@
 rm -f *.pdf
 rm -f *.ps
 rm -f *.gif
-rm -f *.budget.fullchem
-rm -f *.emissions.fullchem
+rm -f *.fullchem
 rm -f emission_differences/*
 rm -f emission_maps/*
 rm -f emission_ratios/*
