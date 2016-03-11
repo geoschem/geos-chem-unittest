@@ -87,17 +87,17 @@
 #  Specify the debugging runs that you want to perform below.
 #  You can deactivate runs by commenting them out with "#".
 #
-#--------|-----------|------|------------|------------|-------------|---------|
-# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE    | EXTRA?  |
-#--------|-----------|------|------------|------------|-------------|---------|
-  geosfp   4x5         -      TOMAS40      2013070100   2013070101   TOMAS40=y
-# geosfp   4x5         -      TOMAS30      2013070100   2013070101   TOMAS30=y
-# geosfp   4x5         -      TOMAS15      2013070100   2013070101   TOMAS15=y
-# geosfp   4x5         -      TOMAS12      2013070100   2013070101   TOMAS12=y
-  geos5    4x5         -      TOMAS40      2006070100   2006070101   TOMAS40=y
-# geos5    4x5         -      TOMAS30      2006070100   2006070101   TOMAS30=y
-# geos5    4x5         -      TOMAS15      2006070100   2006070101   TOMAS15=y
-# geos5    4x5         -      TOMAS12      2006070100   2006070101   TOMAS12=y
+#--------|-----------|------|------------|------------|--------------|--------|
+# MET    | GRID      | NEST | SIMULATION | START DATE | END DATE     | EXTRA? |
+#--------|-----------|------|------------|------------|--------------|--------|
+  geosfp   4x5         -      TOMAS40      2013070100   201307010020  TOMAS40=y
+# geosfp   4x5         -      TOMAS30      2013070100   201307010020  TOMAS30=y
+# geosfp   4x5         -      TOMAS15      2013070100   201307010020  TOMAS15=y
+# geosfp   4x5         -      TOMAS12      2013070100   201307010020  TOMAS12=y
+  geos5    4x5         -      TOMAS40      2006070100   200607010020  TOMAS40=y
+# geos5    4x5         -      TOMAS30      2006070100   200607010020  TOMAS30=y
+# geos5    4x5         -      TOMAS15      2006070100   200607010020  TOMAS15=y
+# geos5    4x5         -      TOMAS12      2006070100   200607010020  TOMAS12=y
   !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------
