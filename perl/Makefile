@@ -513,6 +513,8 @@ clean:
 
 realclean:
 	@$(MAKE) -C $(CODE_DIR) realclean
+	@$(MAKE) execlean
+	rm -f lastbuild.*
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Clean and Remove All   %
