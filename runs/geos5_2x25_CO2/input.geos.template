@@ -197,7 +197,7 @@ ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 :  0   all
   ==> OH/HO2 time range :       0 24   
 ND44: Drydep flx/vel    :  0   all
-ND45: Tracer Conc's     : 47   1
+ND45: Tracer Conc's     : 47   all
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions:  0   all
 ND47: 24-h avg trc conc :  0   all
