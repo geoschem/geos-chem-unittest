@@ -1,4 +1,4 @@
-GEOS-CHEM UNIT TEST SIMULATION: merra2_4x5_tagCO
+GEOS-CHEM UNIT TEST SIMULATION: merra2_2x25_tagCO
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
@@ -6,7 +6,7 @@ End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
 Input restart file      : {DATA_ROOT}/NC_RESTARTS/initial_GEOSChem_rst.4x5_tagCO.nc
 Make new restart file?  : T
-Out bpch rst (if using) : trac_rst.merra2_4x5_tagCO.YYYYMMDDhhmm
+Out bpch rst (if using) : trac_rst.merra2_2x25_tagCO.YYYYMMDDhhmm
 Root data directory     : {DATA_ROOT}
  => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
@@ -153,7 +153,7 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% : 
-Binary punch file name  : trac_avg.merra2_4x5_tagCO.YYYYMMDDhhmm
+Binary punch file name  : trac_avg.geos5_4x5_tagCO.YYYYMMDDhhmm
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND01: Rn/Pb/Be source   :  0   all        
 ND02: Rn/Pb/Be decay    :  0   all             
@@ -184,7 +184,7 @@ ND27: Strat NOx,Ox,HNO3 :  0   all
 ND28: Biomass emissions :  0   all
 ND29: CO sources        : 47   all
 ND30: Land Map          :  0   all
-ND31: Surface pressure  :  0   all
+ND31: Surface pressure  : 47   all
 ND32: NOx sources       :  0   all
 ND33: Column tracer     :  0   all
 ND34: Biofuel emissions :  0   all

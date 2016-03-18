@@ -1,4 +1,4 @@
-GEOS-CHEM UNIT TEST SIMULATION: geos4_4x5_tago3
+GEOS-CHEM UNIT TEST SIMULATION: geos4_4x5_tagCO
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
@@ -35,7 +35,7 @@ Tracer #7               :   7  CObbaf   28.0
 Tracer #8               :   8  CObbas   28.0    
 Tracer #9               :   9  CObboc   28.0    
 Tracer #10              :  10  CObbeu   28.0    
-Tracer #11              :  11  CObbna   28.0    
+Tracer #11              :  11  CObboth  28.0    
 Tracer #12              :  12  COch4    28.0    
 Tracer #13              :  13  CObiof   28.0    
 Tracer #14              :  14  COisop   28.0    
@@ -181,13 +181,13 @@ ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
 ND26: U/D transpt flx   :  0   all
 ND27: Strat NOx,Ox,HNO3 :  0   all
-ND28: Biomass emissions :  1   1
-ND29: CO sources        :  0   all
+ND28: Biomass emissions :  0   all
+ND29: CO sources        : 30   all
 ND30: Land Map          :  0   all
-ND31: Surface pressure  :  0   all
+ND31: Surface pressure  : 30   all
 ND32: NOx sources       :  0   all
 ND33: Column tracer     :  0   all
-ND34: Biofuel emissions :  1   1
+ND34: Biofuel emissions :  0   all
 ND35: Tracers at 500 mb :  0   all
 ND36: Anthro emissions  :  1   1
 ND37: Updraft scav frac :  0   all
@@ -197,7 +197,7 @@ ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 :  0   all
   ==> OH/HO2 time range :       0 24   
-ND44: Drydep flx/vel    :  1   1
+ND44: Drydep flx/vel    :  0   1
 ND45: Tracer Conc's     : 30   all 
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions:  0   all
