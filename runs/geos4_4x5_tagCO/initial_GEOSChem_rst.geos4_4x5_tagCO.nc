@@ -1,1 +1,0 @@
-/mnt/gcgrid-rw/data/ExtData/NC_RESTARTS/initial_GEOSChem_rst.geos4_4x5_tagCO.nc
