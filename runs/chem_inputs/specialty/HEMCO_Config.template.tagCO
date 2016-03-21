@@ -48,6 +48,12 @@
 #      to this HEMCO_Config file (following the example of QFED) to apply
 #      the regional masks to the total CO biomass emissions.
 #
+#  (6) We have removed the +LinStratChem+ block around the GMI_PROD_CO
+#      and GMI_LOSS_CO.  +LinStratChem+ is automatically toggled when
+#      stratospheric chemistry is turned on in input.geos.  But for the
+#      tagged CO simulation, we read GMI_PROD_CO and GMI_LOSS_CO directly
+#      from HEMCO without having to invoke the strat chem module.
+#
 # !REVISION HISTORY: 
 #  Use the "gitk" browser to view the Git version history
 #EOP
@@ -532,26 +538,10 @@ BEGIN SECTION BASE EMISSIONS
 * GLOBAL_OH  $ROOT/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.geos5.72L.2x25.nc OH  1985/1-12/1/0 C xyz kg/m3 * - 1 1
 
 #==============================================================================
-# --- Linear stratospheric chemistry fields ---
-#
-# These fields will only be read if the +LinStratChem+ toggle is activated.
-# +LinStratChem+ can be set explicitly above as a setting of the base
-# extension (--> +LinStratChem+: true/false). If not defined, it will be set
-# automatically based on the linear stratospheric chemistry toggle in
-# input.geos (recommended).
+# --- GMI chemistry: prod/loss rates (for strato-/mesosphere) ---
 #==============================================================================
-(((+LinStratChem+
-
-#------------------------------------------------------------------------------
-#--- GMI chemistry: prod/loss rates (for strato-/mesosphere) ---
-#------------------------------------------------------------------------------
 * GMI_LOSS_CO  $ROOT/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc  loss     2000/$MM/1/0 C xyz s-1   CO  - 1  1
 * GMI_PROD_CO  $ROOT/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc  prod     2000/$MM/1/0 C xyz v/v/s CO  - 1  1
-
-# Archived OH concentrations. These are always needed, so set species to wildcard (*) to make
-# sure that this entry will always be read. 
-* STRAT_OH     $ROOT/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc  species  2000/$MM/1/0 C xyz v/v   *   - 1  1
-)))+LinStratChem+
 
 ### END SECTION BASE EMISSIONS ###
 
