@@ -39,7 +39,7 @@ fi
 
 # Set variables
 version=$1
-dirq="/as/pub/ftp/gcgrid-rw/geos-chem/1mo_benchmarks/v11-01/$version/"
+dirq="/as/pub/ftp/gcgrid-rw/geos-chem/1mo_benchmarks/v11-01/$version"
 
 # Make the directory if it does not exist
 if [ ! -d $dirq ]; then
@@ -68,9 +68,9 @@ cp -f ../README                    $dirq
 # Change group name of new directories and files
 chgrp gcdata $dirq
 chgrp gcdata $dirq/*
-chgrp gcdata $dirq/emisssion_ratios/*
-chgrp gcdata $dirq/emisssion_maps/*
-chgrp gcdata $dirq/emisssion_differences/*
+chgrp gcdata $dirq/emission_ratios/*
+chgrp gcdata $dirq/emission_maps/*
+chgrp gcdata $dirq/emission_differences/*
 
 # Change permissions of new directory and files
 chmod 775 $dirq
