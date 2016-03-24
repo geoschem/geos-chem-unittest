@@ -107,12 +107,11 @@ BEGIN SECTION EXTENSION SWITCHES
     --> RCP_85            :       false
     --> QFED2             :       true
 # -----------------------------------------------------------------------------
-108     MEGAN             : off    ISOP
+108     MEGAN             : on    ISOP
     --> Isoprene scaling  :       1.0 
     --> CO2 inhibition    :       true
     --> CO2 conc (ppmv)   :       390.0
-109     MEGAN_Mono        : off   CO
-110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
+109     MEGAN_Mono        : on    CO
 
 END SECTION EXTENSION SWITCHES 
 
