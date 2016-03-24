@@ -77,15 +77,15 @@ Verbose:                     {VERBOSE}
 Warnings:                    {WARNINGS}
 Mask fractions:              false
 #
-END SECTION SETTINGS 
+### END SECTION SETTINGS ###
 
 ###############################################################################
-BEGIN SECTION EXTENSION SWITCHES
+### BEGIN SECTION EXTENSION SWITCHES
 ###############################################################################
 #
 # ExtNr ExtName           on/off  Species 
 0       Base              : on    *             
-    --> HEMCO_RESTART     :       false
+    --> HEMCO_RESTART     :       true
     --> AEIC              :       true
     --> BIOFUEL           :       true
     --> BRAVO             :       true
@@ -107,16 +107,16 @@ BEGIN SECTION EXTENSION SWITCHES
     --> RCP_85            :       false
     --> QFED2             :       true
 # -----------------------------------------------------------------------------
-108     MEGAN             : on    ISOP
+108     MEGAN             : on    ISOP/ACET
     --> Isoprene scaling  :       1.0 
     --> CO2 inhibition    :       true
     --> CO2 conc (ppmv)   :       390.0
 109     MEGAN_Mono        : on    CO
 
-END SECTION EXTENSION SWITCHES 
+### END SECTION EXTENSION SWITCHES ###
 
 ###############################################################################
-BEGIN SECTION BASE EMISSIONS 
+### BEGIN SECTION BASE EMISSIONS 
 ###############################################################################
 
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
