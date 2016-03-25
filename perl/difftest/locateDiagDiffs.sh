@@ -6,36 +6,17 @@
 #
 # E. Lundgren, August 2015
 
-# restart files
-RSTFILE1="./Dev/trac_rst.MET_GRID_SIM.END_DATE.Dev"
-RSTFILE2="./Ref/trac_rst.MET_GRID_SIM.END_DATE.Ref"
-
 # diagnostic files
 DIAGFILE1="./Dev/trac_avg.MET_GRID_SIM.START_DATE.Dev"
 DIAGFILE2="./Ref/trac_avg.MET_GRID_SIM.START_DATE.Ref"
 
 # destination files for differences
-RSTDIFF="logs/rst_diffs_all.log"
 DIAGDIFF="logs/diag_diffs_all.log"
 
-# Get rst file diffs 
-# warning: may produce a large file!
+# Get diagnostic file diffs 
+# warning: may produce a large file! Use summarizeDiagDiffs.sh first.
 idl << idlenv
 ctm_diaginfo, file='./Dev/diaginfo.dat', /force
 ctm_tracerinfo, file='./Dev/tracerinfo.dat', /force
-ctm_locatediff, '$RSTFILE1', '$RSTFILE2', OutFileName='$RSTDIFF'
+ctm_locatediff, '$DIAGFILE1', '$DIAGFILE2', OutFileName='$DIAGDIFF'
 idlenv
-
-# View rst diffs
-#cat $RSTDIFF
-
-# Get diagnostic file diffs 
-# warning: may produce a large file!
-#idl << idlend
-#ctm_diaginfo, file='./Dev/diaginfo.dat', /force
-#ctm_tracerinfo, file='./Dev/tracerinfo.dat', /force
-#ctm_locatediff, '$DIAGFILE1', '$DIAGFILE2', OutFileName='$DIAGDIFF'
-#idlenv
-
-# View diag diffs
-#cat $DIAGDIFF

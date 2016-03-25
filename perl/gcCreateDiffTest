@@ -479,12 +479,12 @@ sub doCopyDirs($$) {
           # user settings in DiffTest.input
 	  &replaceText("$copyDir/Makefile",        "CODE_REF_PATH","$CODE_REF");
 	  &replaceText("$copyDir/Makefile",        "CODE_DEV_PATH","$CODE_DEV");
-	  &replaceText("$copyDir/summarizeDiff.sh","MET_GRID_SIM","$notDir");
-	  &replaceText("$copyDir/summarizeDiff.sh","START_DATE",  "${start}00");
-	  &replaceText("$copyDir/summarizeDiff.sh","END_DATE",    "$end");
-	  &replaceText("$copyDir/locateDiff.sh",   "MET_GRID_SIM","$notDir");
-	  &replaceText("$copyDir/locateDiff.sh",   "START_DATE",  "${start}00");
-	  &replaceText("$copyDir/locateDiff.sh",   "END_DATE",    "$end");
+	  &replaceText("$copyDir/summarizeDiagDiffs.sh","MET_GRID_SIM","$notDir");
+	  &replaceText("$copyDir/summarizeDiagDiffs.sh","START_DATE",  "${start}00");
+	  &replaceText("$copyDir/summarizeDiagDiffs.sh","END_DATE",    "$end");
+	  &replaceText("$copyDir/locateDiagDiffs.sh",   "MET_GRID_SIM","$notDir");
+	  &replaceText("$copyDir/locateDiagDiffs.sh",   "START_DATE",  "${start}00");
+	  &replaceText("$copyDir/locateDiagDiffs.sh",   "END_DATE",    "$end");
 	  
 	  # Copy run directory to DiffTest Dev subdirectory
 	  $cmd = "$COPY_CMD $runDir/* $devDir";

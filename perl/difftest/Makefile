@@ -138,6 +138,27 @@ ifndef MASSCONS
  MASSCONS    :=n
 endif
 
+ifndef TIMERS
+ TIMERS      :=0
+endif
+
+ifndef BPCH_RST_IN
+ BPCH_RST_IN :=n
+endif
+
+ifndef BPCH_RST_OUT
+ BPCH_RST_OUT :=n
+endif
+
+ifndef BPCH_DIAG
+ BPCH_DIAG :=y
+endif
+
+ifndef NC_DIAG
+ NC_DIAG   :=n
+ BPCH_DIAG :=y
+endif
+
 ###############################################################################
 #####                                                                     #####
 #####  RUN OPTIONS: Get various settings from the run directory name,     #####
@@ -222,6 +243,13 @@ ifeq ($(SIM),masscons)
  MASSCONS    :=y
 endif
 
+# Temporarily only use BPCH restarts for mercury simulation
+# pending implementation of ocean restart variables in netcdf
+ifeq ($(SIM),Hg)
+ BPCH_RST_IN    :=y
+ BPCH_RST_OUT   :=y
+endif
+
 # General run information
 TIMESTAMP    :=$(shell date +"%Y/%m/%d %H:%M")	
 RUNID        :=$(MET)_$(GRID)_$(SIM)
@@ -244,10 +272,14 @@ EXEC_DEV     :=geos.Dev
 
 # Output data files
 TRAC_AVG     :=trac_avg.$(RUNID).$(START)
-TRAC_RST     :=trac_rst.$(RUNID).$(END)
-SPEC_RST     :=spec_rst.$(RUNID).$(END)
 HMCO_AVG     :=HEMCO_diagnostics.$(END).nc
 HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
+ifeq ($(SIM),Hg)
+ TRAC_RST    :=trac_rst.$(RUNID).$(END)
+ OCN_RST     :=ocean_rst.$(RUNID).$(END)
+else
+ TRAC_RST     :=GEOSChem_restart.$(END).nc
+endif
 
 # Diff test validation script and results file
 VALIDATE     :=/usr/bin/perl $(RUN_DEV)/validate
@@ -314,10 +346,12 @@ refonly:
                                 NO_ISO=$(NO_ISO)       CODE=$(CODE_REF)     \
                                 EXEC=$(EXEC_REF)       TRAC_AVG=$(TRAC_AVG) \
                                 TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG) \
-                                HMCO_RST=$(HMCO_RST)   SPEC_RST=$(SPEC_RST) \
+                                HMCO_RST=$(HMCO_RST)                        \
                                 HMCO_LOG=$(LOG_HMCO)   LOG=$(LOG_REF)       \
                                 START=$(START)         END=$(END)           \
-                                TAU_OPTIONS=$(TAU_OPT)
+                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
+                                BPCH_RST_IN=$(BPCH_RST_IN)                  \
+                                BPCH_RST_OUT=$(BPCH_RST_OUT)
 	@$(MAKE) printbuildinfo > $(RUN_REF)/$(LOG_COMP).Ref
 	@$(MAKE) printruninforef >> $(LOG_REF)
 	@$(MAKE) printallinforef
@@ -334,10 +368,12 @@ devonly:
                                 NO_ISO=$(NO_ISO)       CODE=$(CODE_DEV)     \
                                 EXEC=$(EXEC_DEV)       TRAC_AVG=$(TRAC_AVG) \
                                 TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG) \
-                                HMCO_RST=$(HMCO_RST)   SPEC_RST=$(SPEC_RST) \
+                                HMCO_RST=$(HMCO_RST)                        \
                                 HMCO_LOG=$(LOG_HMCO)   LOG=$(LOG_DEV)       \
                                 START=$(START)         END=$(END)           \
-                                TAU_OPTIONS=$(TAU_OPT)
+                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
+                                BPCH_RST_IN=$(BPCH_RST_IN)                  \
+                                BPCH_RST_OUT=$(BPCH_RST_OUT)  
 	@$(MAKE) printbuildinfo > $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
 	@$(MAKE) printallinfodev
@@ -361,7 +397,9 @@ devlib:
                                 HMCO_RST=$(HMCO_RST)   SPEC_RST=$(SPEC_RST) \
                                 HMCO_LOG=$(LOG_HMCO)   LOG=$(LOG_DEV)       \
                                 START=$(START)         END=$(END)           \
-                                TAU_OPTIONS=$(TAU_OPT)
+                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
+                                BPCH_RST_IN=$(BPCH_RST_IN)                  \
+                                BPCH_RST_OUT=$(BPCH_RST_OUT)  
 	@$(MAKE) printbuildinfo > $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
 	@$(MAKE) printallinfodev
@@ -385,7 +423,9 @@ devrun:
                                 HMCO_RST=$(HMCO_RST)   SPEC_RST=$(SPEC_RST) \
                                 HMCO_LOG=$(LOG_HMCO)   LOG=$(LOG_DEV)       \
                                 START=$(START)         END=$(END)           \
-                                TAU_OPTIONS=$(TAU_OPT)
+                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
+                                BPCH_RST_IN=$(BPCH_RST_IN)                  \
+                                BPCH_RST_OUT=$(BPCH_RST_OUT)
 	@$(MAKE) printbuildinfo > $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
 	@$(MAKE) printallinfodev
@@ -518,25 +558,29 @@ printruninfodev:
 
 printbuildinfo:
 	@echo "LAST BUILD INFORMATION:"
-	@echo "  MET       : $(MET)"
-	@echo "  GRID      : $(GRID)"
-	@echo "  SIM       : $(SIM)"
-	@echo "  NEST      : $(NEST)"
-	@echo "  TRACEBACK : $(TRACEBACK)"
-	@echo "  BOUNDS    : $(BOUNDS)"
-	@echo "  DEBUG     : $(DEBUG)"
-	@echo "  FPE       : $(FPE)"
-	@echo "  NO_ISO    : $(NO_ISO)"	
-	@echo "  NO_REDUCED: $(NO_REDUCED)"
-	@echo "  CHEM      : $(CHEM)"
-	@echo "  UCX       : $(UCX)"
-	@echo "  TOMAS12   : $(TOMAS12)"	
-	@echo "  TOMAS15   : $(TOMAS15)"
-	@echo "  TOMAS40   : $(TOMAS40)"
-	@echo "  RRTMG     : $(RRTMG)"
-	@echo "  MASSCONS  : $(MASSCONS)"
-	@echo "  COMPILER  : $(COMPILER)"
-	@echo "  Datetime  : $(TIMESTAMP)"
+	@echo "  MET          : $(MET)"
+	@echo "  GRID         : $(GRID)"
+	@echo "  SIM          : $(SIM)"
+	@echo "  NEST         : $(NEST)"
+	@echo "  TRACEBACK    : $(TRACEBACK)"
+	@echo "  BOUNDS       : $(BOUNDS)"
+	@echo "  DEBUG        : $(DEBUG)"
+	@echo "  FPE          : $(FPE)"
+	@echo "  NO_ISO       : $(NO_ISO)"	
+	@echo "  NO_REDUCED   : $(NO_REDUCED)"
+	@echo "  CHEM         : $(CHEM)"
+	@echo "  UCX          : $(UCX)"
+	@echo "  TOMAS12      : $(TOMAS12)"	
+	@echo "  TOMAS15      : $(TOMAS15)"
+	@echo "  TOMAS40      : $(TOMAS40)"
+	@echo "  RRTMG        : $(RRTMG)"
+	@echo "  MASSCONS     : $(MASSCONS)"
+	@echo "  BPCH_RST_IN  : $(BPCH_RST_IN)"
+	@echo "  BPCH_RST_OUT : $(BPCH_RST_OUT)"
+	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"
+	@echo "  NC_DIAG      : $(NC_DIAG)"
+	@echo "  COMPILER     : $(COMPILER)"
+	@echo "  Datetime     : $(TIMESTAMP)"
 
 printallinforef: 
 	@$(MAKE) printbuildinfo
@@ -625,9 +669,13 @@ help:
 	@echo '----------------------------------------------------------'
 	@echo 'OPTIONAL-FLAGS may be one of the following:'
 	@echo '----------------------------------------------------------'
-	@echo 'DEBUG=y           Compiles GEOS-Chem with various debugging options'
-	@echo 'BOUNDS=y          Compiles GEOS-Chem with out-of-bounds error checks'
-	@echo 'FPE=y             Compiles GEOS-Chem with floating-point math error checks'
-	@echo 'TRACEBACK=y       Compiles GEOS-Chem with traceback error printout'
-	@echo 'NO_ISO=y          Compiles GEOS-Chem and turns off ISORROPIA'
+	@echo 'DEBUG=y           Compiles with various debugging options'
+	@echo 'BOUNDS=y          Compiles with out-of-bounds error checks'
+	@echo 'FPE=y             Compiles with floating-point math error checks'
+	@echo 'TRACEBACK=y       Compiles with traceback error printout'
+	@echo 'NO_ISO=n          Compiles with ISORROPIA on (default is off for diff testing)'
+	@echo 'TIMERS=1          Compiles GEOS-Chem with timers turned on'
+	@echo 'BPCH_RST_IN=y     Compiles GEOS-Chem such that binary-punch restart file is input at run-time (default is NetCDF)'
+	@echo 'BPCH_RST_OUT=y    Compiles GEOS-Chem such that binary-punch restart file is output at run-time (default is NetCDF)'
+	@echo 'NC_DIAG=y         Compiles GEOS-Chem such that diagnostics are output in NetCDF format (default is binary-punch)'
 #EOC

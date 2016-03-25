@@ -18,9 +18,8 @@
 #                                                                             .
 #
 # !REVISION HISTORY:
-#  31 Oct 2014 - R. Yantosca - Initial version
-#  02 Sep 2015 - R. Yantosca - Add ./ in front of $(EXEC) to make sure we look
-#                              for the executable in the current directory
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -69,7 +68,7 @@ realclean:
 
 tvsp:
 	rm -f $(LOG)
-	@$(MAKE) -C $(CODE) DEBUG=y OMP=no
+	@$(MAKE) -C $(CODE) DEBUG=y OMP=no 
 	cp -f $(CODE)/bin/geos $(EXEC)
 	totalview $(EXEC) &
 tvmp:
