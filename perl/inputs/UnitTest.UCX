@@ -33,7 +33,7 @@
 #
 # %%% Data path and HEMCO settings %%%
 #
-   DATA_ROOT        : /n/seasasfs01/gcgrid/data/ExtData
+   DATA_ROOT        : /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData
    HEMCO_ROOT       : {DATAROOT}/HEMCO
    VERBOSE          : 3
    WARNINGS         : 3
@@ -77,7 +77,7 @@
    SLURM_TIME       : 1-00:00
    SLURM_MEMORY     : 12000
    SLURM_PARTITION  : jacob
-   SLURM_CONSTRAINT : fintel
+   SLURM_CONSTRAINT : intel
    SLURM_MAILTYPE   : ALL
    SLURM_MAILUSER   : your-email-address
    SLURM_STDOUT     : {LOGDIR}/{VERSION}.stdout.log
