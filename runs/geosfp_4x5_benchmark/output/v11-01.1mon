@@ -61,5 +61,6 @@ Zonal_Diffs : %OUTPUTDIR%/%VERSION_2%.zonal_differences.ps
 Zonal_Conc  : %OUTPUTDIR%/%VERSION_2%.zonal_concentrations.ps
 AOD_Diffs   : %OUTPUTDIR%/%VERSION_2%.aod_differences.ps
 AOD_Maps    : %OUTPUTDIR%/%VERSION_2%.aod_maps.ps
+Cloud_Diffs : %OUTPUTDIR%/%VERSION_2%.cloud_differences.ps
 Diff_2D_Met : %OUTPUTDIR%/%VERSION_2%.2d_met_differences.ps
 Diff_3D_Met : %OUTPUTDIR%/%VERSION_2%.3d_met_differences.ps

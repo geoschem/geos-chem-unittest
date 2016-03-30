@@ -89,33 +89,34 @@ pro Plot_1mon, InFile, _EXTRA=e
    ;Benchmark_1Mon, InFile, /No_Profiles, /NO_BUDGET, /NO_EMISSIONS, $
    ;    /NO_FREQ_DIST, /NO_DIFFS, /NO_JVALUES, /NO_RATIOS,  /NO_ZONALDiff, $
    ;    /No_2D_Met, /No_3D_Met, /NO_JVDIFFS, /No_AOD_Diffs, /No_AOD_Maps, $
-   ;    /No_JVMaps, /No_StratDiff, _EXTRA=e
+   ;    /No_JVMaps, /No_StratDiff, /No_CloudDiff, _EXTRA=e
 
    ; To generate only zonal maps
    ;Benchmark_1Mon, InFile, /No_Profiles, /NO_BUDGET, /NO_EMISSIONS, $
    ;    /NO_FREQ_DIST, /NO_DIFFS, /NO_JVALUES, /NO_RATIOS, /No_Conc_Maps,  $
    ;    /No_2D_Met, /No_3D_Met, /NO_JVDIFFS, /No_AOD_Diffs, /No_AOD_Maps, $
-   ;    /No_JVMaps, _EXTRA=e
+   ;    /No_JVMaps, /No_CloudDiff, _EXTRA=e
 
    ; To generate only J-values maps
    ;Benchmark_1Mon, InFile, /No_Profiles, /NO_BUDGET, /NO_EMISSIONS, $
    ;    /NO_FREQ_DIST, /NO_DIFFS, /NO_RATIOS,  /NO_ZONALDiff, $
-   ;    /NO_ZONALCONC, /No_2D_Met, /No_3D_Met, _EXTRA=e,  $
-   ;    /No_Conc_Maps, /No_AOD_Maps, /No_AOD_Diffs, /No_StratDiff, No_StratConc
+   ;    /NO_ZONALCONC, /No_2D_Met, /No_3D_Met, /No_Conc_Maps, $
+   ;    /No_AOD_Maps, /No_AOD_Diffs, /No_StratDiff, /No_StratConc, $
+   ;    /No_CloudDiff, _EXTRA=e
 
    ; To generate only emission maps
    ;Benchmark_1Mon, InFile, /No_Profiles, /NO_BUDGET, $
    ;    /NO_FREQ_DIST, /NO_DIFFS, /NO_JVALUES, /NO_RATIOS,  /NO_ZONALDiff, $
    ;    /No_2D_Met, /No_3D_Met, /NO_JVDIFFS, /No_AOD_Diffs, /No_AOD_Maps, $
-   ;    /No_JVMaps, /No_Conc_Maps, /NO_ZONALCONC, /No_StratDiff, No_StratConc, $
-   ;    _EXTRA=e
+   ;    /No_JVMaps, /No_Conc_Maps, /NO_ZONALCONC, /No_StratDiff, $
+   ;    /No_StratConc, /No_CloudDiff, _EXTRA=e
 
    ; To generate only budget
    ;Benchmark_1Mon, InFile, /No_Profiles, /NO_EMISSIONS, $
    ;    /NO_FREQ_DIST, /NO_DIFFS, /NO_JVALUES, /NO_RATIOS,  /NO_ZONALDiff, $
    ;    /No_2D_Met, /No_3D_Met, /NO_JVDIFFS, /No_AOD_Diffs, /No_AOD_Maps, $
-   ;    /No_JVMaps, /No_Conc_Maps, /NO_ZONALCONC, /No_StratDiff, /No_StratConc,$
-   ;    _EXTRA=e
+   ;    /No_JVMaps, /No_Conc_Maps, /NO_ZONALCONC, /No_StratDiff, $
+   ;    /No_StratConc, /No_CloudDiff, _EXTRA=e
 
    ; Create PDF files from the postscript files
    Make_Pdf, './'

@@ -50,8 +50,7 @@ fi
 echo "Copying 1-month benchmark output to $dirq"
 
 # Copy 1-month benchmark output
-cp -f $version.budget.fullchem     $dirq
-cp -f $version.emissions.fullchem  $dirq
+cp -f $version.*.fullchem          $dirq
 cp -f $version.*.pdf               $dirq
 cp -rf emission_maps               $dirq
 cp -rf emission_differences        $dirq
