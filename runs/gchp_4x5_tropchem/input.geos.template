@@ -96,13 +96,13 @@ Tracer #66              :  66   HNO2    47.0
 Turn on Transport       : T
  => Fill Negative Values: T 
  => IORD, JORD, KORD    : 3  3  7
-Transport Timestep [min]: 10   
+Transport Timestep [min]: 20   
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
 Turn on PBL Mixing?     : T
  => Use non-local PBL?  : T
-Convect Timestep [min]  : 10
+Convect Timestep [min]  : 20
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
@@ -168,7 +168,7 @@ Active strat. H2O?      : F
 Chemistry Timestep [min]: 20
 Use spec_rst (bpch only): F
  => CSPEC rst filename? : spec_rst.geosfp_4x5_tropchem.YYYYMMDDhh
-USE solver coded by KPP : F
+USE solver coded by KPP : T
 Online O3 for FAST-JX?  : T
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
@@ -267,7 +267,7 @@ ND66: DAO 3-D fields    : 47   all
 ND67: DAO 2-D fields    : 47   all
 ND68: Airmass/Boxheight : 47   all
 ND69: Surface area      :  1   all
-ND70: Debug output      :  0   all
+ND70: Debug output      :  1   all
 ND71: Hourly max ppbv   :  0   2
 ND72: Radiative output  :  0   all
 ------------------------+------------------------------------------------------
