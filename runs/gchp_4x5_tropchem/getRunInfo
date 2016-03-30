@@ -1,0 +1,179 @@
+#!/usr/bin/perl -w
+
+#EOC
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: getRunInfo.pl
+#
+# !DESCRIPTION: This script extracts information from the input.geos file
+#  and prints the result. The input arguments are (1) the location of file
+#  input.geos, and (2) the ID of run information to be extracted. Mapping 
+#  between ID and input.geos information are is as follows: 0:MET, 1:GRID,
+#  2:SIM, 3:NEST, 4:START, and 5:END.
+#\\
+#\\
+# !USES:
+#
+require 5.003;                   # Need this version of Perl or newer
+use English;                     # Use English language
+use Carp;                        # Get detailed error messages
+use strict;                      # Use "IMPLICIT NONE" syntax
+#
+# !PUBLIC MEMBER FUNCTIONS
+#  &getRunInfo
+# 
+# !CALLING SEQUENCE:
+#  getRunInfo RUNDIR ID
+#    where RUNDIR is the path location of input.geos and ID is the 
+#    ID of the run information to retrieve
+#
+# !REMARKS:
+#  Designed for use with the root-level Makefile in a run directory when
+#  using the unit test or a run directory copied from UnitTest.
+# 
+# !REVISION HISTORY: 
+#  06 Apr 2015 - E. Lundgren - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: getRunInfo
+#
+# !DESCRIPTION: Extracts run information from input.geos.
+#\\
+#\\
+# !INTERFACE:
+#
+sub getInfo($$) {
+#
+# !INPUT PARAMETERS:
+#
+  my ( $rundir, $id ) = @_;
+#
+# !CALLING SEQUENCE:
+#  &getInfo( $rundir, $id );
+#
+# !REMARKS:
+
+#
+# !REVISION HISTORY:
+#  06 Apr 2015 - E. Lundgren - Initial version
+#  27 Apr 2015 - M. Sulprizio- Now use YYYYMMDDhhmm format for start/end time
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Scalars
+  my $runstr  = ""; 
+  my $line    = "";
+  my $runinfo = "";
+
+  # Arrays
+  my @linestrings = ();
+  my @runinfoarray = ();
+
+  # Make sure that an input.geos file is found; otherwise print a "";
+  if ( -f "$rundir/input.geos" ) {
+  
+    # get start run time if $id is 4, end run time is $id is 5
+    if ( $id == 4 || $id == 5) {
+        
+      if ($id == 4) { $runstr = "Start" }
+      if ($id == 5) { $runstr = "End" }
+   
+      # Grep for date & time in input.geos
+      $line = qx( grep "$runstr.*YYYYMMDD" $rundir/input.geos );
+      chomp( $line );
+  
+      # Split by spaces
+      @linestrings = split( ' ', $line );
+  
+      # Place start and end times into YYYYMMDDhhmm format
+      $runinfo = "$linestrings[4]$linestrings[5]";
+      if ($id == 4 ) { $runinfo = substr( $runinfo, 0, 12 ); }
+      if ($id == 5 ) { $runinfo = substr( $runinfo, 0, 12 ); }
+  
+     } else {
+ 
+      # Grep for input.geos header
+      $line = qx( grep "GEOS-CHEM UNIT TEST SIMULATION" $rundir/input.geos );
+      chomp( $line );
+      
+      # Split by spaces
+      @linestrings = split( ' ', $line );
+      
+      # Extract the original run directory name
+      $runstr = "$linestrings[4]";
+      
+      # Split by '_' delimiter
+      @runinfoarray  = split( '_', $runstr );
+      
+      # If the id is less than the # of rundirstrings,
+      # extract the run information from the rundir name.
+      # Else, set runinfo to 'n' (used as NEST for non-nested grid runs)
+      if ( $id < 0+@runinfoarray ) {
+         $runinfo = "$runinfoarray[$id]";
+      } else {
+         $runinfo = "n";
+      }
+    }				
+  }
+
+  # Print the result
+  print "$runinfo";
+  
+  return(0)
+}
+#EOP
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: main
+#
+# !DESCRIPTION: Driver routine for the getRunInfo script.
+#\\
+#\\
+# !INTERFACE:
+#
+sub main() {
+#
+# !CALLING SEQUENCE:
+#  getRunInfo DIR ID
+#
+# !REVISION HISTORY:
+#  07 Apr 2015 - E. Lundgren - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  my $msg = "Out of bounds error within getRunInfo";
+
+  # Exist with an error message if the ID argument is not within valid range
+  if ( scalar( $ARGV[1] ) >= 0 && scalar( $ARGV[1] ) <= 5 ) {
+    &getInfo( @ARGV ); 
+  } else { 
+    print "$msg"; 
+    exit(1);    
+  }
+  return ( 0 );
+}
+
+#------------------------------------------------------------------------------
+
+# Call the main program
+main();
+
+# Return normally
+exit(0);
+#EOC
