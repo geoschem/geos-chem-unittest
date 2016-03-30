@@ -1,6 +1,6 @@
 # Atmospheric Model Configuration Parameters
 # ------------------------------------------
-           NX: 2 
+           NX: 1 
            NY: 6
            IM: 24
            JM: 144
