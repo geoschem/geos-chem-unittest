@@ -45,9 +45,8 @@ RADSWG   '1'  xy   C     N     N  -  0.0      1.0 SWGDN    ./MetDir/GEOS_4x5/GEO
 TROPP    '1'  xy   C     N     N  -  0.0      1.0 TROPPT   ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A1.4x5.nc
 TSKIN    '1'  xy   C     N     N  -  0.0      1.0 TS       ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A1.4x5.nc
 TS       '1'  xy   C     N     N  -  0.0      1.0 T2M      ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A1.4x5.nc
-U10M     '1'  xy   C     N     N  -  0.0      1.0 U10M     ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A1.4x5.nc
+U10M;V10M     '1'  xy   C     N     N  -  0.0      1.0 U10M;V10M     ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A1.4x5.nc
 USTAR    '1'  xy   C     N     N  -  0.0      1.0 USTAR    ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A1.4x5.nc
-V10M     '1'  xy   C     N     N  -  0.0      1.0 V10M     ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A1.4x5.nc
 Z0       '1'  xy   C     N     N  -  0.0      1.0 Z0M      ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A1.4x5.nc
 FRLAKE   '1'  xy   C     N     N  -  0.0      1.0 SEAICE00 ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A1.4x5.nc
 FRLAND   '1'  xy   C     N     N  -  0.0      1.0 SEAICE00 ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A1.4x5.nc
@@ -55,7 +54,7 @@ FRLANDIC '1'  xy   C     N     N  -  0.0      1.0 SEAICE00 ./MetDir/GEOS_4x5/GEO
 FROCEAN  '1'  xy   C     N     N  -  0.0      1.0 SEAICE00 ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A1.4x5.nc
 PHIS     '1'  xy   C     N     N  -  0.0      1.0 SEAICE00 ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A1.4x5.nc
 PS2      '1'  xy   C     N     N  -  0.0      1.0 PS2      /dev/null
-SPHU1    '1'  xyz  C     N     N  -  0.0      1.0 QV       ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.I3.4x5.nc
+SPHU1    '1'  xyz  C     N     N  0;030000  0.0      1.0 QV       ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.I3.4x5.nc
 SPHU2    '1'  xyz  C     N     N  -  0.0      1.0 QV1      /dev/null
 TMPU1    'K'  xyz  C     N     N  -  0.0      1.0 T        ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.I3.4x5.nc
 TMPU2    '1'  xyz  C     N     N  -  0.0      1.0 T1       /dev/null
@@ -68,8 +67,8 @@ CLDF     '1'  xyz  C     N     N  -  0.0      1.0 CLOUD    ./MetDir/GEOS_4x5/GEO
 CMFMC    '1'  xyz  E     N     N  -  0.0      1.0 CMFMC    ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.4x5.nc
 DTRAIN   '1'  xyz  C     N     N  -  0.0      1.0 DTRAIN   ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.4x5.nc
 RH       '1'  xyz  C     N     N  -  0.0      1.0 RH 	   ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.4x5.nc
-UC0;VC0  'm s-1'  xyz    C  N  N  0        0.0      1.0 U;V  	   ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.4x5.nc
-UC1;VC1  'm s-1'  xyz    C  N  N  0;0  0.0      1.0 U;V  	   ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.4x5.nc
+UC0;VC0  'm s-1'  xyz    C  N  N  0;030000    0.0      1.0 U;V        ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.4x5.nc
+UC1;VC1  'm s-1'  xyz    C  N  N  0;030000    0.0      1.0 U;V            ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.4x5.nc
 DQRCU    '1'  xyz  C     N     N  -  0.0      1.0 DQRCU    ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.4x5.nc
 DQRLSAN  '1'  xyz  C     N     N  -  0.0      1.0 DQRLSAN  ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.4x5.nc
 REEVAPCN '1'  xyz  C     N     N  -  0.0      1.0 REEVAPCN ./MetDir/GEOS_4x5/GEOS_FP/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.4x5.nc
