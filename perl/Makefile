@@ -304,11 +304,6 @@ COMMIT_DATE  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cd")
 COMMIT_USER  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cn") 
 COMMIT_HASH  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%h") 
 CODE_STATUS  :=$(shell git -C $(CODE_DIR) status -s) 
-ifndef CODE_STATUS
- CODE_STATUS :="nothing to commit, working directory clean"
-else
- CODE_STATUS :=$(shell echo "uncommitted changes\n$(CODE_STATUS)")
-endif
 
 ###############################################################################
 #####                                                                     #####
@@ -615,7 +610,7 @@ printcodeinfo:
 	@echo -e "   Date:         $(COMMIT_DATE)"
 	@echo -e "   Committer:    $(COMMIT_USER)"
 	@echo -e "   Hash abbrev:  $(COMMIT_HASH)"
-	@echo -e "Git status:      $(CODE_STATUS)"
+	@echo -e "Uncommitted files (if any):\n$(CODE_STATUS)"
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Utilities              %
