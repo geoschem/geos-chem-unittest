@@ -233,7 +233,7 @@ ND27: Strat NOx,Ox,HNO3 :  0   1 2 7
 ND28: Biomass emissions :  1   1 4 5 9 10 11 18 19 20 21 26 30 34 35
 ND29: CO sources        :  1   all
 ND30: Land Map          :  0   all
-ND31: Surface pressure  :  0   all
+ND31: Surface pressure  : 24   all
 ND32: NOx sources       :  1   all
 ND33: Column tracer     :  0   all
 ND34: Biofuel emissions :  1   1 4 5 9 10 11 18 19 20 21
