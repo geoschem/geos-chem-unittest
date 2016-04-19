@@ -243,13 +243,6 @@ ifeq ($(SIM),masscons)
  MASSCONS    :=y
 endif
 
-# Temporarily only use BPCH restarts for mercury simulation
-# pending implementation of ocean restart variables in netcdf
-ifeq ($(SIM),Hg)
- BPCH_RST_IN    :=y
- BPCH_RST_OUT   :=y
-endif
-
 # General run information
 TIMESTAMP    :=$(shell date +"%Y/%m/%d %H:%M")	
 RUNID        :=$(MET)_$(GRID)_$(SIM)
@@ -274,12 +267,7 @@ EXEC_DEV     :=geos.Dev
 TRAC_AVG     :=trac_avg.$(RUNID).$(START)
 HMCO_AVG     :=HEMCO_diagnostics.$(END).nc
 HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
-ifeq ($(SIM),Hg)
- TRAC_RST    :=trac_rst.$(RUNID).$(END)
- OCN_RST     :=ocean_rst.$(RUNID).$(END)
-else
- TRAC_RST     :=GEOSChem_restart.$(END).nc
-endif
+TRAC_RST     :=GEOSChem_restart.$(END).nc
 
 # Diff test validation script and results file
 VALIDATE     :=/usr/bin/perl $(RUN_DEV)/validate
