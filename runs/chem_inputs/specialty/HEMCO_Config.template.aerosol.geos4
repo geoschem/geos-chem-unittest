@@ -548,12 +548,12 @@ Warnings:                    {WARNINGS}
 # --- QFED2 biomass burning ---
 #==============================================================================
 (((QFED2
-0 QFED_BCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_bc.005.$YYYY$MM$DD.nc4   biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s BCPI 70/75 3 2 
-0 QFED_BCPO  -                                                                 -       -                     - -  -       BCPO 71/75 3 2 
-0 QFED_OCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_oc.005.$YYYY$MM$DD.nc4   biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s OCPI 72/75 3 2 
-0 QFED_OCPO  -                                                                 -       -                     - -  -       OCPO 73/75 3 2 
-0 QFED_NH3   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_nh3.005.$YYYY$MM$DD.nc4  biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s NH3  75    3 2 
-0 QFED_SO2   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_so2.005.$YYYY$MM$DD.nc4  biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s SO2  75    3 2 
+0 QFED_BCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_bc.005.$YYYY$MM$DD.nc4   biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s BCPI 70/75 5 2 
+0 QFED_BCPO  -                                                                 -       -                     - -  -       BCPO 71/75 5 2 
+0 QFED_OCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_oc.005.$YYYY$MM$DD.nc4   biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s OCPI 72/75 5 2 
+0 QFED_OCPO  -                                                                 -       -                     - -  -       OCPO 73/75 5 2 
+0 QFED_NH3   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_nh3.005.$YYYY$MM$DD.nc4  biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s NH3  75    5 2 
+0 QFED_SO2   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_so2.005.$YYYY$MM$DD.nc4  biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s SO2  75    5 2 
 )))QFED2
 
 ###############################################################################
