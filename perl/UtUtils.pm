@@ -741,12 +741,12 @@ sub readResults($$) {
 
       }
 
-      # Check the results fo the Hg ocean restart file
-      if ( $utName =~ m/Hg/ ) {
-	for ( my $j = 0; $j < 6; $j++ ) { 
-	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $psc = -1; }
-        }
-      }
+      ## Check the results fo the Hg ocean restart file
+      #if ( $utName =~ m/Hg/ ) {
+#	for ( my $j = 0; $j < 6; $j++ ) { 
+#	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $psc = -1; }
+#        }
+#      }
 
       #-----------------------------------------------------------------------
       # Assign a color to the unit test output
