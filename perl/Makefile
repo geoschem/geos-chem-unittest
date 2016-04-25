@@ -256,13 +256,6 @@ ifeq ($(SIM),masscons)
  MASSCONS    :=y
 endif
 
-# Temporarily only use BPCH restarts for mercury simulation
-# pending implementation of ocean restart variables in netcdf
-ifeq ($(SIM),Hg)
- BPCH_RST_IN    :=y
- BPCH_RST_OUT   :=y
-endif
-
 # General run information
 TIMESTAMP    :=$(shell date +"%Y/%m/%d %H:%M")	
 RUNID        :=$(MET)_$(GRID)_$(SIM)
@@ -286,16 +279,19 @@ EXE_MP       :=geos.mp
 # Output data files
 TRAC_AVG     :=trac_avg.$(RUNID).$(START)
 HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
-ifeq ($(SIM),Hg)
- TRAC_RST    :=trac_rst.$(RUNID).$(END)
- OCN_RST     :=ocean_rst.$(RUNID).$(END)
-else
- TRAC_RST     :=GEOSChem_restart.$(END).nc
-endif
+TRAC_RST     :=GEOSChem_restart.$(END).nc
 
 # Unit test validation script and results file
 VALIDATE     :=/usr/bin/perl $(PERL_DIR)/validate
 RESULTS      :=$(LOG_DIR)/$(VERSION).results.log
+
+# Code git information
+CODE_BRANCH  :=$(shell git -C $(CODE_DIR) rev-parse --abbrev-ref HEAD)
+LAST_COMMIT  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%s") 
+COMMIT_DATE  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cd") 
+COMMIT_USER  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cn") 
+COMMIT_HASH  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%h") 
+CODE_STATUS  :=$(shell git -C $(CODE_DIR) status -s) 
 
 ###############################################################################
 #####                                                                     #####
@@ -423,8 +419,6 @@ dataclean:
 	rm -f HEMCO_restart.*;
 	if [ -f HC.nc ]; then mv -f HC.nc HEMCO_restart.$(START).nc; fi;
 	rm -f trac_rst*
-	rm -f ocean_rst*.mp
-	rm -f ocean_rst*.sp
 	rm -f spec_rst.*
 	rm -f GEOSChem_restart.*
 	rm -f GEOSCHEM_diagnostics.*
@@ -437,14 +431,12 @@ spdataclean:
 	rm -f $(TRAC_AVG)*.sp
 	rm -f $(TRAC_RST)*.sp
 	rm -f HEMCO_restart*.sp
-	rm -f ocean_rst*.sp
 	rm -f diaginfo.dat tracerinfo.dat
 
 mpdataclean:
 	rm -f $(TRAC_AVG)*.mp
 	rm -f $(TRAC_RST)*.mp
 	rm -f HEMCO_restart*.mp
-	rm -f ocean_rst*.mp
 	rm -f diaginfo.dat tracerinfo.dat
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -557,6 +549,9 @@ printruninfomp:
 printbuildinfo:
 	@echo "LAST BUILD INFORMATION:"
 	@echo "  CODE_DIR     : $(CODE_DIR)"
+	@echo "  CODE_BRANCH  : $(CODE_BRANCH)"
+	@echo "  LAST_COMMIT  : $(LAST_COMMIT)"
+	@echo "  COMMIT_DATE  : $(COMMIT_DATE)"
 	@echo "  VERSION      : $(VERSION)"
 	@echo "  MET          : $(MET)"
 	@echo "  GRID         : $(GRID)"
@@ -591,6 +586,16 @@ printallinfomp:
 	@$(MAKE) printbuildinfo
 	@$(MAKE) printruninfomp
 
+printcodeinfo:
+	@echo -e "Code directory:  $(CODE_DIR)"
+	@echo -e "Git branch:      $(CODE_BRANCH)"
+	@echo -e "Last commit:"
+	@echo -e "   Message:      $(LAST_COMMIT)"
+	@echo -e "   Date:         $(COMMIT_DATE)"
+	@echo -e "   Committer:    $(COMMIT_USER)"
+	@echo -e "   Hash abbrev:  $(COMMIT_HASH)"
+	@echo -e "Uncommitted files (if any):\n$(CODE_STATUS)"
+
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Utilities              %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -600,30 +605,17 @@ addsuffixsp:
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
-ifeq ($(SIM),Hg)
-	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).sp;  fi;
-endif
 
 addsuffixmp:
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
-ifeq ($(SIM),Hg)
-	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).mp;  fi;
-endif
 
 check:
-ifeq ($(SIM),Hg)
-	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
-	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
-	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 0 >> $(RESULTS)
-	@$(VALIDATE) $(OCN_RST).sp  $(OCN_RST).mp  0 1 >> $(RESULTS)
-else
 	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
 	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
 	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
-endif
 
 ###############################################################################
 #####                                                                     #####
@@ -703,8 +695,9 @@ help:
 	@echo 'printruninfomp    Prints the run settings for GEOS-Chem simulations'
 	@echo '                    for which the parallelization is turned ON'
 	@echo 'printbuildinfo    Prints the build settings for GEOS-Chem simulations'
-	@echo 'prinallinfosp     Synonym for: printbuildinfosp printruninfosp'
-	@echo 'prinallinfomp     Synonym for: printbuildinfomp printruninfomp'
+	@echo 'printallinfosp    Synonym for: printbuildinfosp printruninfosp'
+	@echo 'printallinfomp    Synonym for: printbuildinfomp printruninfomp'
+	@echo 'printcodeinfo     Print code directory git information'
 	@echo ''
 	@echo '%%% UTILITIES %%%'
 	@echo 'addsuffixsp       Adds ".sp" to files generated by GEOS-Chem simulations'

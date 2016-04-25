@@ -4,7 +4,7 @@ GEOS-CHEM UNIT TEST SIMULATION: merra_4x5_Hg
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : {DATA_ROOT}/GC_RESTARTS/initial_trac_rst.geosfp_4x5_Hg
+Input restart file      : {DATA_ROOT}/NC_RESTARTS/initial_GEOSChem_rst.4x5_Hg.nc
 Make new restart file?  : T
 Out bpch rst (if using) : trac_rst.merra_4x5_Hg.YYYYMMDDhhmm
 Root data directory     : {DATA_ROOT}
@@ -183,7 +183,7 @@ ND27: Strat NOx,Ox,HNO3 :  0   all
 ND28: Biomass emissions :  0   all
 ND29: CO sources        :  0   all
 ND30: Land Map          :  0   all
-ND31: Surface pressure  :  0   all
+ND31: Surface pressure  : 48   all
 ND32: NOx sources       :  0   all
 ND33: Column tracer     :  0   all
 ND34: Biofuel emissions :  0   all
