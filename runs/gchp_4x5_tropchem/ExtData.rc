@@ -67,8 +67,7 @@ CLDF     '1'       xyz C N N 0        0.0 1.0 CLOUD      ./MetDir/%y4/%m2/GEOSFP
 CMFMC    '1'       xyz E N N 0        0.0 1.0 CMFMC      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.2x25.nc
 DTRAIN   '1'       xyz C N N 0        0.0 1.0 DTRAIN     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.2x25.nc
 RH       '1'       xyz C N N 0        0.0 1.0 RH 	 ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.2x25.nc
-UC0;VC0  'm s-1'   xyz C N N 0        0.0 1.0 U;V        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.2x25.nc
-UC1;VC1  'm s-1'   xyz C N N 0;030000 0.0 1.0 U;V        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.2x25.nc
+UC;VC   'm s-1'   xyz C N N 0;03000  0.0 1.0 U;V        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.2x25.nc
 DQRCU    '1'       xyz C N N 0        0.0 1.0 DQRCU      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.2x25.nc
 DQRLSAN  '1'       xyz C N N 0        0.0 1.0 DQRLSAN    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.2x25.nc
 REEVAPCN '1'       xyz C N N 0        0.0 1.0 REEVAPCN   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.2x25.nc
@@ -81,7 +80,7 @@ PFLLSAN  '1'       xyz E N N 0        0.0 1.0 PFLLSAN    ./MetDir/%y4/%m2/GEOSFP
 #-------------
 # 2D variables at edge
 #-------------
-PS0      'hPa'     xy  E N N 0        0.0 1.0 PS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.2x25.nc
+PS       'hPa'     xy  E N N 0        0.0 1.0 PS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.2x25.nc
 PS1      'hPa'     xy  E N N 0;030000 0.0 1.0 PS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.2x25.nc
 PS2      '1'       xy  C N N -        0.0 1.0 PS2        /dev/null
 #
