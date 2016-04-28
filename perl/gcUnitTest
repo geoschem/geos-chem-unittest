@@ -58,7 +58,7 @@ our $VERBOSE         = "3";        # HEMCO verbose setting (0-3)
 our $WARNINGS        = "3";        # HEMCO warnings setting (0-3)
 
 # SLURM parameters (optional)
-our $SLURM_CPUS      = "";         # SLURM: Number of CPUs (-n)
+our $SLURM_CPUS      = "";         # SLURM: Number of CPUs (-c)
 our $SLURM_NODES     = "";         # SLURM: Number of nodes (-N)
 our $SLURM_TIME      = "";         # SLURM: Run time (-t D-hh:mm)
 our $SLURM_MEM       = "";         # SLURM: Memory per node (MB)
@@ -99,6 +99,7 @@ our $SLURM_MAILTYPE  = "";         # SLURM: When to send emails?
 #  17 Dec 2015 - R. Yantosca - Now get constraints for the SLURM job
 #  18 Dec 2015 - R. Yantosca - Add UT_ROOT directory.  This lets us place the
 #                              unit test directory in scratch space if needed.
+#  28 Apr 2016 - R. Yantosca - Now use -c $SLURM_CPUS (i.e. cpus-per-task)
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -263,6 +264,7 @@ sub makeSlurmTags() {
 #  05 Oct 2015 - E. Lundgren - Move export CPU number to after SBATCH commands
 #  04 Dec 2015 - R. Yantosca - Remove comments above #SBATCH tags
 #  17 Dec 2015 - R. Yantosca - Now add optional #SBATCH --constraint tag
+#  28 Apr 2016 - R. Yantosca - Now use -c $SLURM_CPUS which is more efficient
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -273,7 +275,7 @@ sub makeSlurmTags() {
 
   # Number of CPUs
   if ( length( $SLURM_CPUS ) > 0 ) {  
-    @slurm = ( @slurm, "\#SBATCH -n $SLURM_CPUS\n" ); 
+    @slurm = ( @slurm, "\#SBATCH -c $SLURM_CPUS\n" ); 
   }
 
   # Number of nodes
