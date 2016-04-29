@@ -33,21 +33,21 @@
 #
 # %%% Data path and HEMCO settings %%%
 #
-   DATA_ROOT        : /n/seasasfs01/gcgrid/data/ExtData
+   DATA_ROOT        : /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData
    HEMCO_ROOT       : {DATAROOT}/HEMCO
    VERBOSE          : 3
    WARNINGS         : 3
 #
 # %%% Code, compiler, and queue settings %%%
 #
-   CODE_DIR         : {HOME}/GC/bleeding_edge/code
+   CODE_DIR         : {HOME}/GC/Code.v11-01
    COMPILER         : ifort
    MAKE_CMD         : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
    SUBMIT           : sbatch
 #
 # %%% Unit tester path names %%%
 #
-   UNIT_TEST_ROOT   : {HOME}/GC/bleeding_edge/ut
+   UNIT_TEST_ROOT   : {HOME}/UT
    RUN_ROOT         : {UTROOT}/runs
    RUN_DIR          : {RUNROOT}/{RUNDIR}
    JOB_DIR          : {UTROOT}/jobs
@@ -75,11 +75,11 @@
    SLURM_CPUS       : 4
    SLURM_NODES      : 1
    SLURM_TIME       : 1-00:00
-   SLURM_MEMORY     : 40000
+   SLURM_MEMORY     : 12000
    SLURM_PARTITION  : jacob
    SLURM_CONSTRAINT : intel
-   SLURM_MAILTYPE   : ALL
-   SLURM_MAILUSER   : myannetti@seas.harvard.edu
+   SLURM_MAILTYPE   : END
+   SLURM_MAILUSER   : your-email-address
    SLURM_STDOUT     : {LOGDIR}/{VERSION}.stdout.log
    SLURM_STDERR     : {LOGDIR}/{VERSION}.stderr.log
 #
@@ -93,7 +93,7 @@
 # ======= GEOS-Chem benchmark ================================================
   geosfp   4x5         -      benchmark    2013070100   201307010020   -
   merra2   4x5         -      benchmark    2013070100   201307010020   -
-#  geosfp   2x25        -      benchmark    2013070100   201307010020   -
+  geosfp   2x25        -      benchmark    2013070100   201307010020   -
 # ======= Radon-Lead-Beryllium ===============================================
   geosfp   4x5         -      RnPbBe       2013070100   201307010020   -
   merra2   4x5         -      RnPbBe       2013070100   201307010020   -
