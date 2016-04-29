@@ -230,9 +230,12 @@ Warnings:                    {WARNINGS}
 
 #==============================================================================
 # --- Soil distribution factor (pointer is imported in mercury_mod.F) ---
+#
+# NOTE: Here we use the 4x5 GEOS-FP file, but users may want to change this
+# for other met fields and resolutions.
 #==============================================================================
 (((SOILDIST
-0 HG0_SOILDIST $ROOT/MERCURY/v2014-09/SOIL/soilHg.merra.presentday.4x5.nc HG0_DIST 1985/1/1/0 C xy unitless * - 1 1
+0 HG0_SOILDIST $ROOT/MERCURY/v2014-09/SOIL/soilHg.presentday.v11-01.geosfp.4x5.nc HG0_DIST 1985/1/1/0 C xy unitless * - 1 1
 )))SOILDIST
 
 ###############################################################################
