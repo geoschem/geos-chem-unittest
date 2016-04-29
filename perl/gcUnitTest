@@ -194,6 +194,7 @@ sub makeInputs($$$$$$$$) {
 #  23 Sep 2014 - R. Yantosca - Remove call to &getHemcoEndTime.  The HEMCO
 #                              restart timestamp is now the same as $end.
 #  19 May 2015 - R. Yantosca - Pass $VERBOSE, $WARNINGS to &makeHemcoCfg
+#  29 Apr 2016 - E. Lundgren - Allow start date to include minutes
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -209,13 +210,19 @@ sub makeInputs($$$$$$$$) {
   my $inpGeos = "$runDir/input.geos";
   my $hcoTmpl = "$runDir/HEMCO_Config.template";
   my $hcoCfg  = "$runDir/HEMCO_Config.rc";
-  my $errMsg  = "makeInputs: END must be YYYYMMDDhh or YYYYMMDDhhmm!";
+  my $errMsg  = "makeInputs: DATE must be YYYYMMDDhh or YYYYMMDDhhmm!";
   my $hcoEnd  = ""; 
 
   # Get start date and hour
   $d0         = substr( $start, 0, 8 );
   $h0         = substr( $start, 8, 2 );
   $h0        .= "0000";
+
+  # Compute the starting hour (hhmmss) from the starting string, 
+  # which may be in either YYYYMMDDhhmm or YYYYMMDDhh format
+  if    ( length( $start ) == 12 ) { $h0 = substr( $start, 8, 4 ) . "00";   } 
+  elsif ( length( $start ) == 10 ) { $h0 = substr( $start, 8, 2 ) . "0000"; }
+  else                           { print "$errMsg\n"; exit(1);          }
 
   # Get end date and hour
   $d1         = substr( $end,   0, 8 );
