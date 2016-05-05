@@ -300,7 +300,6 @@ Active strat. H2O?      : F
 Chemistry Timestep [min]: 20
 Use spec_rst (bpch only): F
  => CSPEC rst filename? : spec_rst.geosfp_4x5_TOMAS15.YYYYMMDDhh
-USE solver coded by KPP : F
 Online O3 for FAST-JX?  : T
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
@@ -463,7 +462,7 @@ IMIN, IMAX of region    :  70  30
 JMIN, JMAX of region    :  23  46
 -------------------------------------------------------------------------------
 %%% PROD & LOSS MENU %%%:
-Turn on P/L (ND65) diag?: T
+Turn on P/L (ND65) diag?: F
 # of levels for ND65    : 47
 Save O3 P/L (ND20)?     : F
 Number of P/L families  : 4

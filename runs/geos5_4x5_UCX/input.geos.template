@@ -194,7 +194,6 @@ Active strat. H2O?      : T
 Chemistry Timestep [min]: 20
 Use spec_rst (bpch only): F
  => CSPEC rst filename? : spec_rst.geos5_4x5_UCX.YYYYMMDDhh
-USE solver coded by KPP : T
 Online O3 for FAST-JX?  : T
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------

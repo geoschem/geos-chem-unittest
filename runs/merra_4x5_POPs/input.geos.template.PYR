@@ -120,7 +120,6 @@ Active strat. H2O?      : F
 Chemistry Timestep [min]: 20
 Read and save CSPEC_FULL: F
  => CSPEC rst filename? : none
-USE solver coded by KPP : F
 Online O3 for FAST-JX?  : F
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
