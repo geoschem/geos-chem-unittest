@@ -18,9 +18,8 @@
 #                                                                             .
 #
 # !REVISION HISTORY:
-#  31 Oct 2014 - R. Yantosca - Initial version
-#  02 Sep 2015 - R. Yantosca - Add ./ in front of $(EXEC) to make sure we look
-#                              for the executable in the current directory
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -32,7 +31,7 @@
 ###############################################################################
 
 # Use GNU bash shell
-SHELL    :=/bin/bash
+SHELL   :=/bin/bash
 
 ###############################################################################
 ###                                                                         ###

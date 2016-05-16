@@ -46,7 +46,7 @@ all: ref
 ref:
 	rm -f $(LOG)
 	@$(MAKE) lib
-	@$(MAKE) run	
+	@$(MAKE) run
 
 lib:
 	@$(MAKE) -C $(CODE) >> $(LOG)
@@ -65,15 +65,15 @@ clean:
 
 realclean:
 	@$(MAKE) -C $(CODE) realclean
+	rm -f $(EXEC)
 
 tvsp:
-	rm -f $(LOG)
-	@$(MAKE) -C $(CODE) DEBUG=y OMP=no 
+	@$(MAKE) -C $(CODE)
 	cp -f $(CODE)/bin/geos $(EXEC)
 	totalview $(EXEC) &
+
 tvmp:
-	rm -f $(LOG)
-	@$(MAKE) -C $(CODE) DEBUG=y OMP=y
+	@$(MAKE) -C $(CODE)
 	cp -f $(CODE)/bin/geos $(EXEC)
 	totalview $(EXEC) &
 

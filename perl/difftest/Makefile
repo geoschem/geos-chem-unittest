@@ -39,10 +39,8 @@
 #                                              make code dirs realclean
 # 
 # !REVISION HISTORY: 
-#  31 Oct 2014 - R. Yantosca - Initial version
-#  14 Jul 2015 - M. Sulprizio- Updated for GEOS-Chem v11-01. Makefile structure
-#                              is now more consistent with Makefile in UT.
-#   2 Sep 2015 - R. Yantosca - Now get root data directory with getRunInfo
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -272,6 +270,14 @@ TRAC_RST     :=GEOSChem_restart.$(END).nc
 # Diff test validation script and results file
 VALIDATE     :=/usr/bin/perl $(RUN_DEV)/validate
 RESULTS      :=$(LOG_DIR)/log.$(RUNID).Results
+
+# Code git information
+CODE_BRANCH_REF :=$(shell git -C $(CODE_REF) rev-parse --abbrev-ref HEAD)
+LAST_COMMIT_REF :=$(shell git -C $(CODE_REF) log -n 1 --pretty=format:"%s")
+COMMIT_DATE_REF :=$(shell git -C $(CODE_REF) log -n 1 --pretty=format:"%cd")
+CODE_BRANCH_DEV :=$(shell git -C $(CODE_DEV) rev-parse --abbrev-ref HEAD)
+LAST_COMMIT_DEV :=$(shell git -C $(CODE_DEV) log -n 1 --pretty=format:"%s")
+COMMIT_DATE_DEV :=$(shell git -C $(CODE_DEV) log -n 1 --pretty=format:"%cd")
 
 # Variable to hold the TAU_OPTIONS environment setting
 TAU_OPT     :=""
@@ -519,6 +525,9 @@ tvmp_dev:
 printruninforef:
 	@echo "RUN SETTINGS:"
 	@echo "  Code directory      : $(CODE_REF)"
+	@echo "  Code branch         : $(CODE_BRANCH_REF)"
+	@echo "  Last commit         : $(LAST_COMMIT_REF)"
+	@echo "  Commit date         : $(COMMIT_DATE_REF)"
 	@echo "  Run directory       : $(RUN_REF)"
 	@echo "  Run ID              : $(RUNID)"
 	@echo "  Simulation Start    : $(START)"
@@ -533,6 +542,9 @@ printruninforef:
 printruninfodev:
 	@echo "RUN SETTINGS:"
 	@echo "  Code directory      : $(CODE_DEV)"
+	@echo "  Code branch         : $(CODE_BRANCH_DEV)"
+	@echo "  Last commit         : $(LAST_COMMIT_DEV)"
+	@echo "  Commit date         : $(COMMIT_DATE_DEV)"
 	@echo "  Run directory       : $(RUN_DEV)"
 	@echo "  Run ID              : $(RUNID)"
 	@echo "  Simulation Start    : $(START)"
@@ -563,6 +575,7 @@ printbuildinfo:
 	@echo "  TOMAS40      : $(TOMAS40)"
 	@echo "  RRTMG        : $(RRTMG)"
 	@echo "  MASSCONS     : $(MASSCONS)"
+	@echo "  TIMERS       : $(TIMERS)"
 	@echo "  BPCH_RST_IN  : $(BPCH_RST_IN)"
 	@echo "  BPCH_RST_OUT : $(BPCH_RST_OUT)"
 	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"
