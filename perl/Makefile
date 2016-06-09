@@ -192,14 +192,22 @@ HMCO_END     :=$(END)
 # Also define the proper setting for CHEM, which picks the correct KPP files.
 ifeq ($(SIM),TOMAS12)
  TOMAS12     :=y
+ CHEM        :=NOx_Ox_HC_Aer_Br
 endif
 
 ifeq ($(SIM),TOMAS15)
  TOMAS15     :=y
+ CHEM        :=NOx_Ox_HC_Aer_Br
+endif
+
+ifeq ($(SIM),TOMAS30)
+ TOMAS30     :=y
+ CHEM        :=NOx_Ox_HC_Aer_Br
 endif
 
 ifeq ($(SIM),TOMAS40)
  TOMAS40     :=y
+ CHEM        :=NOx_Ox_HC_Aer_Br
 endif
 
 ifeq ($(SIM),RRTMG)
