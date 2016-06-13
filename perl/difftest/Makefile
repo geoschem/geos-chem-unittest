@@ -302,8 +302,7 @@ endif
 # PHONY targets don't actually compile anything. They either are
 # synonyms for other targets, they remove files, or they print output.
 .PHONY: all             dt              difftest
-.PHONY: devcheck        check
-.PHONY: config          refconfig       devconfig
+.PHONY: devcheck        check           quickdt
 .PHONY: realclean       refclean        devclean  
 .PHONY: tauclean        reftauclean     devtauclean
 .PHONY: fileclean       superclean      logclean
@@ -328,8 +327,12 @@ difftest:
 	@$(MAKE) devonly
 	@$(MAKE) check
 
+quickdt:
+	@$(MAKE) refonly
+	@$(MAKE) devonly
+	@$(MAKE) check
+
 refonly:
-	@$(MAKE) refconfig
 	@$(MAKE) -C $(RUN_REF)  ref                                         \
                                 MET=$(MET)             GRID=$(GRID)         \
                                 NEST=$(NEST)           UCX=$(UCX)           \
@@ -351,7 +354,6 @@ refonly:
 	@$(MAKE) printallinforef
 
 devonly:
-	@$(MAKE) devconfig
 	@$(MAKE) -C $(RUN_DEV)  dev                                         \
                                 MET=$(MET)             GRID=$(GRID)         \
                                 NEST=$(NEST)           UCX=$(UCX)           \
@@ -377,7 +379,6 @@ devonly:
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 devlib:
-	@$(MAKE) devconfig
 	@$(MAKE) -C $(RUN_DEV)  lib                                          \
                                 MET=$(MET)             GRID=$(GRID)         \
                                 NEST=$(NEST)           UCX=$(UCX)           \
@@ -403,7 +404,6 @@ devlib:
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 devrun:
-	@$(MAKE) devconfig
 	@$(MAKE) -C $(RUN_DEV)  run                                         \
                                 MET=$(MET)             GRID=$(GRID)         \
                                 NEST=$(NEST)           UCX=$(UCX)           \
@@ -499,22 +499,18 @@ logclean:
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 tvsp_ref:
-	@$(MAKE) refconfig
 	@$(MAKE) -C $(RUN_REF) CODE=$(CODE_REF) EXEC=$(EXEC_REF) \
                     DEBUG=y    OMP=n            tvsp
 
 tvmp_ref:
-	@$(MAKE) refconfig
 	@$(MAKE) -C $(RUN_REF) CODE=$(CODE_REF) EXEC=$(EXEC_REF) \
                     DEBUG=y    OMP=y            tvmp
 
 tvsp_dev:
-	@$(MAKE) devconfig
 	@$(MAKE) -C $(RUN_DEV) CODE=$(CODE_DEV) EXEC=$(EXEC_DEV) \
                     DEBUG=y    OMP=n            tvsp
 
 tvmp_dev:
-	@$(MAKE) devconfig
 	@$(MAKE) -C $(RUN_DEV) CODE=$(CODE_DEV) EXEC=$(EXEC_DEV) \
                     DEBUG=y    OMP=y            tvmp
 
