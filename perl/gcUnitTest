@@ -541,11 +541,13 @@ sub doUnitTest($$) {
 
       # Replace tokens in UT_ROOT 
       $UT_ROOT =~  s/{HOME}/$home/g;
+      $UT_ROOT =~  s/{USER}/$user/g;
       
       # Append the version tag to the log directory
       # So that we can keep several log files simultaneously
       $LOG_DIR =~ s/{VERSION}/$VERSION/g;
       $LOG_DIR =~ s/{HOME}/$home/g;
+      $LOG_DIR =~ s/{USER}/$user/g;
       $LOG_DIR =~ s/{UTROOT}/$UT_ROOT/g;
       if ( !( -f $LOG_DIR ) ) { qx( mkdir -p $LOG_DIR ); }
 
@@ -574,6 +576,7 @@ sub doUnitTest($$) {
       # Replace user token
       $CODE_DIR     =~ s/{USER}/$user/g;
       $RUN_ROOT     =~ s/{USER}/$user/g;
+      $RUN_DIR      =~ s/{USER}/$user/g;
       $JOB_DIR      =~ s/{USER}/$user/g;
       $PERL_DIR     =~ s/{USER}/$user/g;
 
