@@ -571,6 +571,12 @@ sub doUnitTest($$) {
       $SLURM_STDERR =~ s/{LOGDIR}/$LOG_DIR/g;
       $SLURM_STDERR =~ s/{VERSION}/$VERSION/g;
       
+      # Replace user token
+      $CODE_DIR     =~ s/{USER}/$user/g;
+      $RUN_ROOT     =~ s/{USER}/$user/g;
+      $JOB_DIR      =~ s/{USER}/$user/g;
+      $PERL_DIR     =~ s/{USER}/$user/g;
+
       # Make sure each of these directories exist before proceeding
       &checkDir( $DATA_ROOT  );
       &checkDir( $HEMCO_ROOT );

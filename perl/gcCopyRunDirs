@@ -253,6 +253,7 @@ sub doCopyDirs($$) {
   my $sim     = "";
   my $start   = "";
   my $home    = "";
+  my $user    = "";
 
   # Arrays
   my @txt     = ();
@@ -268,6 +269,9 @@ sub doCopyDirs($$) {
 
   # Get home directory
   $home = $ENV{"HOME"};
+
+  # Get username
+  $user = $ENV{"USER"};
 
   # Loop thru each line in the file; parse information into global variables
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
@@ -321,6 +325,13 @@ sub doCopyDirs($$) {
       $HEMCO_ROOT =~ s/{DATAROOT}/$DATA_ROOT/g;
       $RUN_DIR    =~ s/{RUNROOT}/$RUN_ROOT/g;
       $RUN_DIR    =~ s/{UTROOT}/$UT_ROOT/g;
+
+      # Replace user token
+      $UT_ROOT    =~ s/{USER}/$user/g;
+      $COPY_PATH  =~ s/{USER}/$user/g;
+      $RUN_ROOT   =~ s/{USER}/$user/g;
+      $JOB_DIR    =~ s/{USER}/$user/g;
+      $LOG_DIR    =~ s/{USER}/$user/g;
       
       # Make sure each of these directories exist before proceeding
       &checkDir( $DATA_ROOT  );
