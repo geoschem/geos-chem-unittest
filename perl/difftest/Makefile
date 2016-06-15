@@ -576,6 +576,7 @@ printbuildinfo:
 	@echo "  UCX          : $(UCX)"
 	@echo "  TOMAS12      : $(TOMAS12)"	
 	@echo "  TOMAS15      : $(TOMAS15)"
+	@echo "  TOMAS30      : $(TOMAS30)"
 	@echo "  TOMAS40      : $(TOMAS40)"
 	@echo "  RRTMG        : $(RRTMG)"
 	@echo "  MASSCONS     : $(MASSCONS)"
