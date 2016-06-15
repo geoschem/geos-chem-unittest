@@ -315,6 +315,8 @@ CODE_STATUS  :=$(shell git -C $(CODE_DIR) status -s)
 
 all: unittest
 
+ut: unittest
+
 unittest:
 	@$(MAKE) superclean
 	@$(MAKE) sp
