@@ -95,6 +95,10 @@ ifndef FPE
  FPE         :=n
 endif
 
+ifndef OMP
+ OMP         :=y
+endif
+
 # Turn off ISORROPIA for all diff testing
 ifndef NO_ISO
  NO_ISO      :=y
@@ -353,7 +357,7 @@ refonly:
                                 CHEM=$(CHEM)           RRTMG=$(RRTMG)       \
                                 TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)   \
                                 TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)   \
-                                MASSCONS=$(MASSCONS)   OMP=yes              \
+                                MASSCONS=$(MASSCONS)   OMP=$(OMP)           \
                                 NO_ISO=$(NO_ISO)       CODE=$(CODE_REF)     \
                                 EXEC=$(EXEC_REF)       TRAC_AVG=$(TRAC_AVG) \
                                 TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG) \
@@ -374,7 +378,7 @@ devonly:
                                 CHEM=$(CHEM)           RRTMG=$(RRTMG)       \
                                 TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)   \
                                 TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)   \
-                                MASSCONS=$(MASSCONS)   OMP=yes              \
+                                MASSCONS=$(MASSCONS)   OMP=$(OMP)           \
                                 NO_ISO=$(NO_ISO)       CODE=$(CODE_DEV)     \
                                 EXEC=$(EXEC_DEV)       TRAC_AVG=$(TRAC_AVG) \
                                 TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG) \
