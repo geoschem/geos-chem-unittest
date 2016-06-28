@@ -111,7 +111,7 @@ Mask fractions:              false
     --> Isoprene scaling  :       1.0 
     --> CO2 inhibition    :       true
     --> CO2 conc (ppmv)   :       390.0
-109     MEGAN_Mono        : on    CO
+109     MEGAN_Mono        : on    MONX
 
 ### END SECTION EXTENSION SWITCHES ###
 
