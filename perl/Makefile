@@ -318,7 +318,7 @@ all: unittest
 ut: unittest
 
 unittest:
-	@$(MAKE) superclean
+	@$(MAKE) realclean
 	@$(MAKE) sp
 	@$(MAKE) realclean
 	@$(MAKE) mp

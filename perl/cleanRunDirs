@@ -67,6 +67,7 @@ sub getDirs($) {
   # Scalars
   my $home   = "";
   my $utRoot = "";
+  my $user   = "";
 
   # Arrays
   my @txt  = ();

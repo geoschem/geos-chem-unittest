@@ -1,0 +1,66 @@
+###############################################################################
+#####         Input FILE FOR 1-MONTH BENCHMARK PLOTTING PROGRAMS          #####
+#####    Define dirs, model names, and other relevant quantities here     #####
+#####                                                                     #####
+##### VERSION*   = String to denote GEOS-Chem version number              #####
+##### MODEL*     = String to denote GEOS-Chem model name                  #####
+##### DATE*      = Date at start of benchmark simulation (YYYYMMDD)       #####
+##### N_TRACERS  = Number of transported tracers                          #####
+##### RUNDIR*    = Run directory containing output files from 1-mon sim   #####
+##### FILE*      = Binary punch file name from 1-mon simulation           #####
+##### INITFILE*  = File w/ initial mass of Ox from 1-mon simulation       #####
+##### FINALFILE* = File w/ final mass of Ox from 1-mon simulation         #####
+##### OUTPUTDIR  = Directory path where plots will be created             #####
+##### MAX_ALT_KM = For profile plots, defines the altitude range          #####
+##### FREQ_DIST  = Postscript file name for frequency distribution plot   #####
+##### DIFFERENCES= Postscript file name for absolute difference plot      #####
+##### RATIOS     = Postscript file name for ratio plot                    #####
+##### PROFILES   = Postscript file name for longitudinal diff profiles    #####
+##### J-VALUES   = Postscript file name for J-Value ratio plots           #####
+##### BUDGET     = Text file name for budget output                       #####
+##### EMISSIONS  = Text file name for emissions totals                    #####
+#####                                                                     #####
+##### NOTE: Tokens (e.g. %VERSION_1%) will be replaced in the IDL code    #####
+#####       with the appropriate replacement text (cf. replace_token.pro) #####
+###############################################################################
+
+##### Parameters for Model #1 #####
+Version_1   : v11-01e
+Model_1     : GEOSFP
+Date_1      : 20130701
+N_Tracers_1 : 119
+RunDir_1    : ~{your username}/SR/%VERSION_1%
+File_1      : %RUNDIR_1%/trac_avg.%VERSION_1%
+
+##### Parameters for Model #2 #####
+Version_2   : v11-01f
+Model_2     : GEOSFP
+Date_2      : 20130701
+N_Tracers_2 : 119
+RunDir_2    : ~{your username}/SR/%VERSION_2%
+File_2      : %RUNDIR_2%/trac_avg.%VERSION_2%
+InitFile_2  : %RUNDIR_2%/Ox.mass.initial
+FinalFile_2 : %RUNDIR_2%/Ox.mass.final
+
+##### Parameters for Plotting #####
+OutputDir   : %RUNDIR_2%/output
+Max_Alt_km  : 20
+Budget      : %OUTPUTDIR%/%VERSION_2%.budget.fullchem
+Conc_Maps   : %OUTPUTDIR%/%VERSION_2%.concentrations.ps
+Differences : %OUTPUTDIR%/%VERSION_2%.differences.ps
+Emissions   : %OUTPUTDIR%/%VERSION_2%.emissions.fullchem
+Freq_Dist   : %OUTPUTDIR%/%VERSION_2%.freq_distribution.ps
+J-Values    : %OUTPUTDIR%/%VERSION_2%.jvalue_ratios.ps
+JV_Diffs    : %OUTPUTDIR%/%VERSION_2%.jvalue_differences.ps
+JV_Maps     : %OUTPUTDIR%/%VERSION_2%.jvalue_maps.ps
+Profiles    : %OUTPUTDIR%/%VERSION_2%.profiles.ps
+Ratios      : %OUTPUTDIR%/%VERSION_2%.ratios.ps
+Strat_Diffs : %OUTPUTDIR%/%VERSION_2%.strat_differences.ps
+Strat_Conc  : %OUTPUTDIR%/%VERSION_2%.strat_concentrations.ps
+Zonal_Diffs : %OUTPUTDIR%/%VERSION_2%.zonal_differences.ps
+Zonal_Conc  : %OUTPUTDIR%/%VERSION_2%.zonal_concentrations.ps
+AOD_Diffs   : %OUTPUTDIR%/%VERSION_2%.aod_differences.ps
+AOD_Maps    : %OUTPUTDIR%/%VERSION_2%.aod_maps.ps
+Cloud_Diffs : %OUTPUTDIR%/%VERSION_2%.cloud_differences.ps
+Diff_2D_Met : %OUTPUTDIR%/%VERSION_2%.2d_met_differences.ps
+Diff_3D_Met : %OUTPUTDIR%/%VERSION_2%.3d_met_differences.ps

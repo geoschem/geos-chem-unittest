@@ -96,6 +96,7 @@ sub getRunDir($$$$) {
 #
 # !REVISION HISTORY:
 #  06 Mar 2015 - R. Yantosca - Initial version, based on gcUnitTest
+#  13 Jul 2016 - M. Sulprizio- Modify runLoc for consolidated run directories
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -103,10 +104,15 @@ sub getRunDir($$$$) {
 # !LOCAL VARIABLES:
 #
   # Run directory string
-  my $runLoc = "{MET}_{GRID}_{SIM}";
+  my $runLoc = "";
 
-  # Append nested grid string if necessary
-  if ( length( $nest ) > 0 ) { $runLoc .= "_{NEST}"; }
+  if ( ( $met =~ m/gcap/ ) || ( $met =~ m/geos4/ ) ) {
+    $runLoc = "{MET}_{GRID}_{SIM}";
+  } elsif ( length( $nest ) > 0 ) {
+    $runLoc = "{MET}_{GRID}_{SIM}_{NEST}";
+  } else {
+    $runLoc = "{GRID}_{SIM}";
+  }
 
   # Replace tokens
   $runLoc =~ s/{MET}/$met/g;
@@ -182,7 +188,7 @@ sub makeInputs($$$$$$$$) {
   else                           { print "$errMsg\n"; exit(1);          }
 
   # Make the input.geos file in the run directory
-  &makeInputGeos( $d0, $h0, $d1, $h1, $DATA_ROOT, $inpTmpl, $inpGeos );
+  &makeInputGeos( $d0, $h0, $d1, $h1, $met, $DATA_ROOT, $inpTmpl, $inpGeos );
 
   # Make the HEMCO_Config.rc file in the run directory
   &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
@@ -234,6 +240,7 @@ sub doCopyDirs($$) {
 #  18 Jun 2015 - R. Yantosca - Use mkdir -p instead of mkdirhier
 #  18 Dec 2015 - R. Yantosca - Now get root path of unit tester in $UT_ROOT
 #  18 Dec 2015 - R. Yantosca - Replace ~ in $COPY_PATH with home directory
+#  13 Jul 2016 - M. Sulprizio- Update copyDir to always use $met\_$grid\_$sim
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -400,7 +407,10 @@ sub doCopyDirs($$) {
 	  $notDir   = &baseName( $runDir );
 
 	  # Directory in the remote location
-	  $copyDir = "$COPY_PATH/$notDir";
+	  $copyDir = "$COPY_PATH/$met\_$grid\_$sim";
+
+	  # Append nested grid string if necessary
+	  if ( length( $nest ) > 0 ) { $copyDir .= "_$nest"; }
 
 	  #-----------------------------------------------------------------
 	  # Create the input.geos and HEMCO_Config.rc files from templates 

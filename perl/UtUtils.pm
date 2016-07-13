@@ -282,10 +282,12 @@ sub makeInputGeos($$$$$$) {
   # $time1    : Starting time for GEOS-Chem model run (e.g. 000000  ) 
   # $date2    : Ending   date for GEOS-Chem model run (e.g. 20040102)
   # $time2    : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
+  # $met      : Met field type  (passed via MET flag in G-C compilation)
   # $dataRoot : GEOS-chem root data directory
   # $template : Path for input.geos "template" file
   # $fileName : Path for input.geos file (w/ dates replaced)
-  my ( $date1, $time1, $date2, $time2, $dataRoot, $inFile, $outFile ) = @_;
+  my ( $date1,  $time1,  $date2, $time2, $met, $dataRoot,
+       $inFile, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
 # &makeInputGeos( 20130101,             000000, 
@@ -296,6 +298,8 @@ sub makeInputGeos($$$$$$) {
 # !REVISION HISTORY:
 #  23 May 2013 - R. Yantosca - Initial version, adapted from NRT-ARCTAS
 #  31 Jul 2013 - R. Yantosca - Change permission of input.geos to chmod 777
+#  13 Jul 2016 - M. Sulprizio- Pass met field as argument and use to replace
+#                              {MET} token in input.geos
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -331,11 +335,12 @@ sub makeInputGeos($$$$$$) {
     # Remove newline character
     chomp( $line );
 
-    # Replace start & end dates
+    # Replace tokens
     $line =~ s/{DATE1}/$dStr1/g;
     $line =~ s/{TIME1}/$tStr1/g;
     $line =~ s/{DATE2}/$dStr2/g; 
     $line =~ s/{TIME2}/$tStr2/g;
+    $line =~ s/{MET}/$met/g;
     $line =~ s/{DATA_ROOT}/$dataRoot/g;
 
     # Write to output file

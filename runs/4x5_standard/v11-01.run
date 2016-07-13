@@ -1,0 +1,86 @@
+#!/bin/bash
+
+#SBATCH -n 24
+#SBATCH -N 1
+#SBATCH -t 0-12:00
+#SBATCH -p jacob
+#SBATCH --mem=12000
+#SBATCH --mail-type=END
+#SBATCH --mail-user=<YOUR_EMAIL>
+
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: v11-01.run
+#
+# !DESCRIPTION: This bash script submits a 1-month benchmark simulation
+#\\
+#\\
+# !REMARKS:
+# Designed to be used with the geosfp_4x5_benchmark run directory created
+# by the GEOS-Chem Unit Tester. To use this script, you must first compile
+# the GEOS-Chem code using the command "make -j4 mpbuild" to create the
+# geos.mp executable.
+#
+# !CALLING SEQUENCE:
+#  To submit run to the SGE batch queue system:
+#   qsub -cwd -b y -j y -r y -pe smp8 8 v11-01.run
+#
+#  To run interactively:
+#   v11-01.run
+#
+# !REVISION HISTORY:
+#  17 Jun 2015 - M. Sulprizio- Initial version
+#  Check the git history for revision history
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+# Set the proper # of threads for OpenMP
+# SLURM_NTASKS ensures this matches the number you set with -n above
+export OMP_NUM_THREADS=$SLURM_NTASKS
+
+#-------------------------------------------------
+# Initialize
+#-------------------------------------------------
+# Define version ID
+id="v11-01"
+
+# Define GEOS-Chem log file
+log="$id.log"
+
+#-------------------------------------------------
+# Start the simulation
+#-------------------------------------------------
+# Run GEOS-Chem and pipe output to log
+time ./geos.mp >> $log
+
+# Echo end fin
+echo '===> Run ended at' `date` >> $log
+
+#-------------------------------------------------
+# Clean up
+#-------------------------------------------------
+# Rename output file
+if [ -f trac_avg.geosfp_4x5_benchmark.201307010000 ]; then
+   mv -fv trac_avg.geosfp_4x5_benchmark.201307010000 trac_avg.$id
+fi
+
+# Echo info from computational cores to log file for displaying results
+nodeName=`uname -n`
+echo "# of CPUs: $OMP_NUM_THREADS"
+echo "NodeName : $nodeName"
+grep "vendor_id"  /proc/cpuinfo
+grep "model name" /proc/cpuinfo
+grep "cpu MHz"    /proc/cpuinfo
+
+# Clear variable
+unset id
+unset log
+unset nodename
+
+# Exit normally
+exit 0
+#EOC
