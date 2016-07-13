@@ -64,9 +64,24 @@ sub getDirs($) {
 #
 # !LOCAL VARIABLES:
 #
-  my $home = "";
-  my $user = "";
+  # Scalars
+  my $home   = "";
+  my $utRoot = "";
+
+  # Arrays
   my @txt  = ();
+ 
+  #-------------------------------------------------------------------------
+  # If no filename is passed, return relative data paths
+  #-------------------------------------------------------------------------
+  if ( $fileName eq "RELATIVE" ) {
+    $runDir = "../runs"; 
+    return( $runDir  );
+  }
+
+  #-------------------------------------------------------------------------
+  # Otherwise, read the data paths from the specified input filename
+  #-------------------------------------------------------------------------
 
   # Read data from input file
   open( I, "<$fileName" ) or die "Cannot open $fileName!\n";
@@ -82,11 +97,14 @@ sub getDirs($) {
   # Parse each line until we find the log directory
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
     if ( $txt[$i] =~ "RUN_ROOT" ) { $runDir = &parse( $txt[$i] ); }
+    if ( $txt[$i] =~ "UNIT_TEST_ROOT" ) { $utRoot = &parse( $txt[$i] ); }
   }
 
   # Replace directory tokens
+  $utRoot =~ s/{HOME}/$home/g;
   $runDir =~ s/{HOME}/$home/g;
   $runDir =~ s/{USER}/$user/g;
+  $runDir =~ s/{UTROOT}/$utRoot/g;
 
   # Return to main program
   return( $runDir  );
@@ -130,8 +148,8 @@ sub main() {
 
   # If the user passes a filename from the command line, use it
   # Otherwise, default to "UnitTest.input"
-  if ( scalar( @ARGV ) == 1 ) { $optFile = $ARGV[0];         }
-  else                        { $optFile = "UnitTest.input"; }
+  if ( scalar( @ARGV ) == 1 ) { $optFile = $ARGV[0];   }
+  else                        { $optFile = "RELATIVE"; }
 
   # Get the local directories
   ( $runRoot ) = &getDirs( $optFile );

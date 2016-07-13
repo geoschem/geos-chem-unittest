@@ -361,31 +361,31 @@ Mask fractions:              false
 #     zero.
 #==============================================================================
 (((SHIP
-0  ICOADS_SHIP_CO       $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                CO  2002/1-12/1/0       C xy kg/m2/s  CO     6/10          10 1
-0  ICOADS_SHIP_CO_us    -                                                               -   -                   - -  -        COus   6/10/1100     10 1
-0  ICOADS_SHIP_CO_eur   -                                                               -   -                   - -  -        COeur  6/10/1101     10 1
-0  ICOADS_SHIP_CO_asia  -                                                               -   -                   - -  -        COasia 6/10/1102     10 1
-0  ICOADS_SHIP_CO_oth   -                                                               -   -                   - -  -        COoth  6/10/1103     10 1
+0  ICOADS_SHIP_CO       $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                CO     2002/1-12/1/0       C xy kg/m2/s  CO     6/10          10 1
+0  ICOADS_SHIP_CO_us    -                                                               -      -                   - -  -        COus   6/10/1100     10 1
+0  ICOADS_SHIP_CO_eur   -                                                               -      -                   - -  -        COeur  6/10/1101     10 1
+0  ICOADS_SHIP_CO_asia  -                                                               -      -                   - -  -        COasia 6/10/1102     10 1
+0  ICOADS_SHIP_CO_oth   -                                                               -      -                   - -  -        COoth  6/10/1103     10 1
 
-#0 HTAP_SHIP_CO         $ROOT/HTAP/v2015-03/EDGAR_HTAP_CO_SHIPS.generic.01x01.nc        CO  2008-2010/1/1/0     C xy kg/m2/s  CO     6/28          10 2
-#0 HTAP_SHIP_CO_us      -                                                               -   -                   - -  -        COus   6/28/1100     10 2
-#0 HTAP_SHIP_CO_eur     -                                                               -   -                   - -  -        COeur  6/28/1101     10 2
-#0 HTAP_SHIP_CO_asia    -                                                               -   -                   - -  -        COasia 6/28/1102     10 2
-#0 HTAP_SHIP_CO_oth     -                                                               -   -                   - -  -        COoth  6/28/1103     10 2
+#0 HTAP_SHIP_CO         $ROOT/HTAP/v2015-03/EDGAR_HTAP_CO_SHIPS.generic.01x01.nc        CO     2008-2010/1/1/0     C xy kg/m2/s  CO     6/28          10 2
+#0 HTAP_SHIP_CO_us      -                                                               -      -                   - -  -        COus   6/28/1100     10 2
+#0 HTAP_SHIP_CO_eur     -                                                               -      -                   - -  -        COeur  6/28/1101     10 2
+#0 HTAP_SHIP_CO_asia    -                                                               -      -                   - -  -        COasia 6/28/1102     10 2
+#0 HTAP_SHIP_CO_oth     -                                                               -      -                   - -  -        COoth  6/28/1103     10 2
 
 (((EMEP
-0 EMEP_SHIP_CO          $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         CO  1990-2012/1/1/0     C xy kg/m2/s  CO     1000          10 2
-0 EMEP_SHIP_CO_us       -                                                               -   -                   - -  -        COus   1000/1100     10 2
-0 EMEP_SHIP_CO_eur      -                                                               -   -                   - -  -        COeur  1000/1101     10 2
-0 EMEP_SHIP_CO_asia     -                                                               -   -                   - -  -        COasia 1000/1102     10 2
-0 EMEP_SHIP_CO_oth      -                                                               -   -                   - -  -        COoth  1000/1103     10 2
+0 EMEP_SHIP_CO          $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipCO 1990-2012/1/1/0     C xy kg/m2/s  CO     1000          10 2
+0 EMEP_SHIP_CO_us       -                                                               -      -                   - -  -        COus   1000/1100     10 2
+0 EMEP_SHIP_CO_eur      -                                                               -      -                   - -  -        COeur  1000/1101     10 2
+0 EMEP_SHIP_CO_asia     -                                                               -      -                   - -  -        COasia 1000/1102     10 2
+0 EMEP_SHIP_CO_oth      -                                                               -      -                   - -  -        COoth  1000/1103     10 2
 )))EMEP
 
 (((NEI2011_SHIP
-0 NEI11_C3MARINE_CO     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc CO  2006-2013/$MM/$DD/* R xy kg/m2/s  CO     252/1007      10 50
-0 NEI11_C3MARINE_CO_us  -                                                               -   -                   - -  -        COus   252/1007/1100 10 50
-0 NEI11_C3MARINE_CO_eur -                                                               -   -                   - -  -        COeur  252/1007/1101 10 50
-0 NEI11_C3MARINE_CO_oth -                                                               -   -                   - -  -        COoth  252/1007/1103 10 50
+0 NEI11_C3MARINE_CO     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc CO     2006-2013/$MM/$DD/* R xy kg/m2/s  CO     252/1007      10 50
+0 NEI11_C3MARINE_CO_us  -                                                               -      -                   - -  -        COus   252/1007/1100 10 50
+0 NEI11_C3MARINE_CO_eur -                                                               -      -                   - -  -        COeur  252/1007/1101 10 50
+0 NEI11_C3MARINE_CO_oth -                                                               -      -                   - -  -        COoth  252/1007/1103 10 50
 )))NEI2011_SHIP
 
 )))SHIP
