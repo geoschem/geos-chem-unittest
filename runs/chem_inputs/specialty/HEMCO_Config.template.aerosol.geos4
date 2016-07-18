@@ -195,39 +195,39 @@ Warnings:                    {WARNINGS}
 #    GFED3 or FINN.
 #==============================================================================
 (((EDGAR
-0 EDGAR_SO2_1A1a_6C        $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A1a_6C.generic.01x01.nc        emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
-0 EDGAR_SO4_1A1a_6C        -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
-0 EDGAR_SO2_1A2            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A2.generic.01x01.nc            emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
-0 EDGAR_SO4_1A2            -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
-#0 EDGAR_SO2_1A3a_c_d_e    $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3a_c_d_e.generic.01x01.nc     emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
-#0 EDGAR_SO4_1A3a_c_d_e    -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
-0 EDGAR_SO2_1A3b           $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3b.generic.01x01.nc           emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
-0 EDGAR_SO4_1A3b           -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
-0 EDGAR_SO2_1A4            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A4.generic.01x01.nc            emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
-0 EDGAR_SO4_1A4            -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
-0 EDGAR_SO2_1B1_1B2_1A1b_c $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1B1_1B2_1A1b_c.generic.01x01.nc emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
-0 EDGAR_SO4_1B1_1B2_1A1b_c -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
-0 EDGAR_SO2_2B_2D          $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2B_2D.generic.01x01.nc          emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
-0 EDGAR_SO4_2B_2D          -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
-0 EDGAR_SO2_2C             $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2C.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
-0 EDGAR_SO4_2C             -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
-#0 EDGAR_SO2_4F            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_4F.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
-#0 EDGAR_SO4_4F            -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
-#0 EDGAR_SO2_5A_C_D_F_4E   $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_5A_C_D_F_4E.generic.01x01.nc    emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
-#0 EDGAR_SO4_5A_C_D_F_4E   -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
-0 EDGAR_SO2_7A             $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_7A.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31    1 2
-0 EDGAR_SO4_7A             -                                                                              -       -               - -  -       SO4 11/42/31/63 1 2 
-0 EDGAR_NH3_1A1a_6         $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1a_6.generic.01x01.nc         emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
-0 EDGAR_NH3_1A1b_c         $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1b_c.generic.01x01.nc         emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
-0 EDGAR_NH3_1A2            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A2.generic.01x01.nc            emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
-0 EDGAR_NH3_1A3            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A3.generic.01x01.nc            emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
-0 EDGAR_NH3_1A4            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A4.generic.01x01.nc            emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
-0 EDGAR_NH3_2A             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2A.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
-0 EDGAR_NH3_2B             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2B.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
-0 EDGAR_NH3_4B             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4B.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
-0 EDGAR_NH3_4C_4D          $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4C_4D.generic.01x01.nc          emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
-#0 EDGAR_NH3_4F            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4F.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
-#0 EDGAR_NH3_5A_C_D_F_4E   $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_5A_C_D_F_4E.generic.01x01.nc    emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38          1 2
+0 EDGAR_SO2_1A1a_6C        $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A1a_6C.generic.01x01.nc        emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31/62    1 2
+0 EDGAR_SO4_1A1a_6C        -                                                                              -       -               - -  -       SO4 11/42/31/62/63 1 2 
+0 EDGAR_SO2_1A2            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A2.generic.01x01.nc            emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31/62    1 2
+0 EDGAR_SO4_1A2            -                                                                              -       -               - -  -       SO4 11/42/31/62/63 1 2 
+#0 EDGAR_SO2_1A3a_c_d_e    $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3a_c_d_e.generic.01x01.nc     emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31/62    1 2
+#0 EDGAR_SO4_1A3a_c_d_e    -                                                                              -       -               - -  -       SO4 11/42/31/62/63 1 2 
+0 EDGAR_SO2_1A3b           $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3b.generic.01x01.nc           emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31/62    1 2
+0 EDGAR_SO4_1A3b           -                                                                              -       -               - -  -       SO4 11/42/31/62/63 1 2 
+0 EDGAR_SO2_1A4            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A4.generic.01x01.nc            emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31/62    1 2
+0 EDGAR_SO4_1A4            -                                                                              -       -               - -  -       SO4 11/42/31/62/63 1 2 
+0 EDGAR_SO2_1B1_1B2_1A1b_c $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1B1_1B2_1A1b_c.generic.01x01.nc emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31/62    1 2
+0 EDGAR_SO4_1B1_1B2_1A1b_c -                                                                              -       -               - -  -       SO4 11/42/31/62/63 1 2 
+0 EDGAR_SO2_2B_2D          $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2B_2D.generic.01x01.nc          emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31/62    1 2
+0 EDGAR_SO4_2B_2D          -                                                                              -       -               - -  -       SO4 11/42/31/62/63 1 2 
+0 EDGAR_SO2_2C             $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2C.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31/62    1 2
+0 EDGAR_SO4_2C             -                                                                              -       -               - -  -       SO4 11/42/31/62/63 1 2 
+#0 EDGAR_SO2_4F            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_4F.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31/62    1 2
+#0 EDGAR_SO4_4F            -                                                                              -       -               - -  -       SO4 11/42/31/62/63 1 2 
+#0 EDGAR_SO2_5A_C_D_F_4E   $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_5A_C_D_F_4E.generic.01x01.nc    emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31/62    1 2
+#0 EDGAR_SO4_5A_C_D_F_4E   -                                                                              -       -               - -  -       SO4 11/42/31/62/63 1 2 
+0 EDGAR_SO2_7A             $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_7A.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2 11/42/31/62    1 2
+0 EDGAR_SO4_7A             -                                                                              -       -               - -  -       SO4 11/42/31/62/63 1 2 
+0 EDGAR_NH3_1A1a_6         $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1a_6.generic.01x01.nc         emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38             1 2
+0 EDGAR_NH3_1A1b_c         $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1b_c.generic.01x01.nc         emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38             1 2
+0 EDGAR_NH3_1A2            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A2.generic.01x01.nc            emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38             1 2
+0 EDGAR_NH3_1A3            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A3.generic.01x01.nc            emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38             1 2
+0 EDGAR_NH3_1A4            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A4.generic.01x01.nc            emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38             1 2
+0 EDGAR_NH3_2A             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2A.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38             1 2
+0 EDGAR_NH3_2B             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2B.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38             1 2
+0 EDGAR_NH3_4B             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4B.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38             1 2
+0 EDGAR_NH3_4C_4D          $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4C_4D.generic.01x01.nc          emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38             1 2
+#0 EDGAR_NH3_4F            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4F.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38             1 2
+#0 EDGAR_NH3_5A_C_D_F_4E   $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_5A_C_D_F_4E.generic.01x01.nc    emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3 38             1 2
 )))EDGAR
 
 #==============================================================================
