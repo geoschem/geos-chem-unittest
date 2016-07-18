@@ -23,7 +23,7 @@ Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% TRACER MENU %%%     : 
 Type of simulation      : 3
-Number of Tracers       : 119
+Number of Tracers       : 125
 Tracer Entries -------> : TR#   Name   g/mole   Tracer Members; () = emitted 
 Tracer #1               :   1   NO       30.0   (NO)
 Tracer #2               :   2   O3       48.0   (O3)
@@ -79,71 +79,77 @@ Tracer #51              :  51   CHBr3   253.0   (CHBr3)
 Tracer #52              :  52   CH2Br2  174.0   (CH2Br2)
 Tracer #53              :  53   CH3Br    95.0
 Tracer #54              :  54   MPN      93.0
-Tracer #55              :  55   ISOPN   147.0   ISOPND ISOPNB
-Tracer #56              :  56   MOBA    114.0
-Tracer #57              :  57   PROPNN  119.0   PROPNN
-Tracer #58              :  58   HAC      74.0 
-Tracer #59              :  59   GLYC     60.0 
-Tracer #60              :  60   MMN     149.0   MVKN MACRN
-Tracer #61              :  61   RIP     118.0
-Tracer #62              :  62   IEPOX   118.0
-Tracer #63              :  63   MAP      76.0
-Tracer #64              :  64   NO2      46.0
-Tracer #65              :  65   NO3      62.0
-Tracer #66              :  66   HNO2     47.0
-Tracer #67              :  67   N2O      44.0
-Tracer #68              :  68   OCS      60.0
-Tracer #69              :  69   CH4      16.0   (CH4)
-Tracer #70              :  70   BrCl    115.0
-Tracer #71              :  71   HCl      36.0
-Tracer #72              :  72   CCl4    152.0
-Tracer #73              :  73   CH3Cl    50.0
-Tracer #74              :  74   CH3CCl3 133.0
-Tracer #75              :  75   CFCX    187.0   CFC113 CFC114 CFC115
-Tracer #76              :  76   HCFCX   117.0   HCFC123 HCFC141b HCFC142b
-Tracer #77              :  77   CFC11   137.0   
-Tracer #78              :  78   CFC12   121.0   
-Tracer #79              :  79   HCFC22   86.0   
-Tracer #80              :  80   H1211   165.0   
-Tracer #81              :  81   H1301   149.0   
-Tracer #82              :  82   H2402   260.0   
-Tracer #83              :  83   Cl       35.0 
-Tracer #84              :  84   ClO      51.0 
-Tracer #85              :  85   HOCl     52.0 
-Tracer #86              :  86   ClNO3    97.0 
-Tracer #87              :  87   ClNO2    81.0 
-Tracer #88              :  88   ClOO     67.0 
-Tracer #89              :  89   OClO     67.0 
-Tracer #90              :  90   Cl2      71.0             
-Tracer #91              :  91   Cl2O2   103.0              
-Tracer #92              :  92   H2O      18.0
-Tracer #93              :  93   MTPA    136.23
-Tracer #94              :  94   LIMO    136.23
-Tracer #95              :  95   MTPO    136.23
-Tracer #96              :  96   TSOG1   150.0
-Tracer #97              :  97   TSOG2   150.0
-Tracer #98              :  98   TSOG3   150.0
-Tracer #99              :  99   TSOG0   150.0
-Tracer #100             :  100  TSOA1   150.0
-Tracer #101             :  101  TSOA2   150.0
-Tracer #102             :  102  TSOA3   150.0
-Tracer #103             :  103  TSOA0   150.0
-Tracer #104             :  104  ISOG1   150.0
-Tracer #105             :  105  ISOG2   150.0
-Tracer #106             :  106  ISOG3   150.0
-Tracer #107             :  107  ISOA1   150.0
-Tracer #108             :  108  ISOA2   150.0
-Tracer #109             :  109  ISOA3   150.0
-Tracer #110             :  110  BENZ     12.0   (6C)
-Tracer #111             :  111  TOLU     12.0   (7C)
-Tracer #112             :  112  XYLE     12.0   (8C)
-Tracer #113             :  113  ASOG1   150.0
-Tracer #114             :  114  ASOG2   150.0
-Tracer #115             :  115  ASOG3   150.0
-Tracer #116             :  116  ASOAN   150.0
-Tracer #117             :  117  ASOA1   150.0
-Tracer #118             :  118  ASOA2   150.0
-Tracer #119             :  119  ASOA3   150.0
+Tracer #55              :  55   ISOPND  147.0
+Tracer #56              :  56   ISOPNB  147.0
+Tracer #57              :  57   MOBA    114.0
+Tracer #58              :  58   PROPNN  119.0   PROPNN
+Tracer #59              :  59   HAC      74.0 
+Tracer #60              :  60   GLYC     60.0 
+Tracer #61              :  61   MVKN   149.0
+Tracer #62              :  62   MACRN  149.0
+Tracer #63              :  63   RIP     118.0
+Tracer #64              :  64   IEPOX   118.0
+Tracer #65              :  65   MAP      76.0
+Tracer #66              :  66   NO2      46.0
+Tracer #67              :  67   NO3      62.0
+Tracer #68              :  68   HNO2     47.0
+Tracer #69              :  69   N2O      44.0
+Tracer #70              :  70   OCS      60.0
+Tracer #71              :  71   CH4      16.0   (CH4)
+Tracer #72              :  72   BrCl    115.0
+Tracer #73              :  73   HCl      36.0
+Tracer #74              :  74   CCl4    152.0
+Tracer #75              :  75   CH3Cl    50.0
+Tracer #76              :  76   CH3CCl3 133.0
+Tracer #77              :  77   CFC113  187.0
+Tracer #78              :  78   CFC114  187.0
+Tracer #79              :  79   CFC115  187.0
+Tracer #80              :  80   HCFC123  117.0
+Tracer #81              :  81   HCFC141b 117.0
+Tracer #82              :  82   HCFC142b 117.0
+Tracer #83              :  83   CFC11   137.0   
+Tracer #84              :  84   CFC12   121.0   
+Tracer #85              :  85   HCFC22   86.0   
+Tracer #86              :  86   H1211   165.0   
+Tracer #87              :  87   H1301   149.0   
+Tracer #88              :  88   H2402   260.0   
+Tracer #89              :  89   Cl       35.0 
+Tracer #90              :  90   ClO      51.0 
+Tracer #91              :  91   HOCl     52.0 
+Tracer #92              :  92   ClNO3    97.0 
+Tracer #93              :  93   ClNO2    81.0 
+Tracer #94              :  94   ClOO     67.0 
+Tracer #95              :  95   OClO     67.0 
+Tracer #96              :  96   Cl2      71.0             
+Tracer #97              :  97   Cl2O2   103.0              
+Tracer #98              :  98   H2O      18.0
+Tracer #99              :  99   MTPA    136.23
+Tracer #100             :  100  LIMO    136.23
+Tracer #101             :  101  MTPO    136.23
+Tracer #102             :  102  TSOG1   150.0
+Tracer #103             :  103  TSOG2   150.0
+Tracer #104             :  104  TSOG3   150.0
+Tracer #105             :  105  TSOG0   150.0
+Tracer #106             :  106  TSOA1   150.0
+Tracer #107             :  107  TSOA2   150.0
+Tracer #108             :  108  TSOA3   150.0
+Tracer #109             :  109  TSOA0   150.0
+Tracer #110             :  110  ISOG1   150.0
+Tracer #111             :  111  ISOG2   150.0
+Tracer #112             :  112  ISOG3   150.0
+Tracer #113             :  113  ISOA1   150.0
+Tracer #114             :  114  ISOA2   150.0
+Tracer #115             :  115  ISOA3   150.0
+Tracer #116             :  116  BENZ     12.0   (6C)
+Tracer #117             :  117  TOLU     12.0   (7C)
+Tracer #118             :  118  XYLE     12.0   (8C)
+Tracer #119             :  119  ASOG1   150.0
+Tracer #120             :  120  ASOG2   150.0
+Tracer #121             :  121  ASOG3   150.0
+Tracer #122             :  122  ASOAN   150.0
+Tracer #123             :  123  ASOA1   150.0
+Tracer #124             :  124  ASOA2   150.0
+Tracer #125             :  125  ASOA3   150.0
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
