@@ -85,38 +85,30 @@ pro Plot_1mon, InFile, _EXTRA=e
    ; Create the benchmark plots!
    Benchmark_1Mon, InFile, /No_Profiles, /No_2D_Met, /No_3D_Met, _EXTRA=e
 
-   ; To generate only tracer concentration maps
-   ;Benchmark_1Mon, InFile, /No_Profiles, /NO_BUDGET, /NO_EMISSIONS, $
-   ;    /NO_FREQ_DIST, /NO_DIFFS, /NO_JVALUES, /NO_RATIOS,  /NO_ZONALDiff, $
-   ;    /No_2D_Met, /No_3D_Met, /NO_JVDIFFS, /No_AOD_Diffs, /No_AOD_Maps, $
-   ;    /No_JVMaps, /No_StratDiff, /No_CloudDiff, _EXTRA=e
-
-   ; To generate only zonal maps
-   ;Benchmark_1Mon, InFile, /No_Profiles, /NO_BUDGET, /NO_EMISSIONS, $
-   ;    /NO_FREQ_DIST, /NO_DIFFS, /NO_JVALUES, /NO_RATIOS, /No_Conc_Maps,  $
-   ;    /No_2D_Met, /No_3D_Met, /NO_JVDIFFS, /No_AOD_Diffs, /No_AOD_Maps, $
-   ;    /No_JVMaps, /No_CloudDiff, _EXTRA=e
-
-   ; To generate only J-values maps
-   ;Benchmark_1Mon, InFile, /No_Profiles, /NO_BUDGET, /NO_EMISSIONS, $
-   ;    /NO_FREQ_DIST, /NO_DIFFS, /NO_RATIOS,  /NO_ZONALDiff, $
-   ;    /NO_ZONALCONC, /No_2D_Met, /No_3D_Met, /No_Conc_Maps, $
-   ;    /No_AOD_Maps, /No_AOD_Diffs, /No_StratDiff, /No_StratConc, $
-   ;    /No_CloudDiff, _EXTRA=e
-
-   ; To generate only emission maps
-   ;Benchmark_1Mon, InFile, /No_Profiles, /NO_BUDGET, $
-   ;    /NO_FREQ_DIST, /NO_DIFFS, /NO_JVALUES, /NO_RATIOS,  /NO_ZONALDiff, $
-   ;    /No_2D_Met, /No_3D_Met, /NO_JVDIFFS, /No_AOD_Diffs, /No_AOD_Maps, $
-   ;    /No_JVMaps, /No_Conc_Maps, /NO_ZONALCONC, /No_StratDiff, $
-   ;    /No_StratConc, /No_CloudDiff, _EXTRA=e
-
-   ; To generate only budget
-   ;Benchmark_1Mon, InFile, /No_Profiles, /NO_EMISSIONS, $
-   ;    /NO_FREQ_DIST, /NO_DIFFS, /NO_JVALUES, /NO_RATIOS,  /NO_ZONALDiff, $
-   ;    /No_2D_Met, /No_3D_Met, /NO_JVDIFFS, /No_AOD_Diffs, /No_AOD_Maps, $
-   ;    /No_JVMaps, /No_Conc_Maps, /NO_ZONALCONC, /No_StratDiff, $
-   ;    /No_StratConc, /No_CloudDiff, _EXTRA=e
+   ; To customize set of maps, uncomment all of the below and then
+   ; selectively comment out lines
+;   Benchmark_1Mon, InFile, $ 
+;        /NO_AOD_DIFFS,  $; difference maps of aerosol optical depths.
+;        /NO_AOD_MAPS,   $; aerosol optical depths.
+;        /NO_BUDGET,     $; table of Ox and CO budgets, mean OH and CH3CCl3 LT.
+;        /NO_CONC_MAPS,  $; tracer concentrations maps
+;        /NO_DIFFS,      $; tracer differences maps
+;        /NO_EMISSIONS,  $; table of emissions totals. 
+;        /NO_FREQ_DIST,  $; frequency distribution histogram plot.
+;        /NO_JVALUES,    $; J-value ratios maps
+;        /NO_JVDIFFS,    $; J-value differences maps
+;        /NO_JVMAPS,     $; J-values maps
+;        /NO_PROFILES,   $; plot of vertical profiles of tracer differences
+;        /NO_RATIOS,     $; tracer ratios maps
+;        /NO_STRATDIFF,  $; zonal mean differences maps in strat (100-0.01hPa)
+;        /NO_STRATCONC,  $; zonal mean conc maps in strat (100-0.01hPa)
+;        /NO_ZONALDIFF,  $; zonal mean differences maps
+;        /NO_ZONALCONC,  $; zonal tracer concentrations maps
+;        /NO_CLOUDDIFF,  $; difference plots of cloud optical depth
+;        /NO_2D_MET,     $; difference plots for 2-D met fields
+;        /NO_3D_MET,     $; difference plots for 3-D met fields
+;        /NO_FULLCHEM,   $; enable if chemistry is turned off
+;         _EXTRA = e
 
    ; Create PDF files from the postscript files
    Make_Pdf, './'
