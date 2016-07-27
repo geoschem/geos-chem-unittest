@@ -294,13 +294,13 @@ ND17: Rainout fraction  :  0   all
 ND18: Washout fraction  :  0   all            
 ND19: CH4 loss          :  0   all            
 ND21: Optical depths    : 72   all            
-ND22: J-Values          : 72   1 2 7 8 9 11 13 14 20 44 46 47 49 50 51 58 59 64 65 67 72 73 77 78 -1
+ND22: J-Values          : 72   1 2 7 8 9 11 13 14 20 44 46 47 49 50 51 59 60 66 67 69 74 75 83 84 -1
       => JV time range  :      11 13
 ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
 ND26: U/D transpt flx   :  0   all
 ND27: Strat NOx,Ox,HNO3 :  0   1 2 7
-ND28: Biomass emissions :  1   1 4 5 9 10 11 18 19 20 21 26 30 34 35 69
+ND28: Biomass emissions :  1   1 4 5 9 10 11 18 19 20 21 26 30 34 35 71
 ND29: CO sources        :  1   all
 ND30: Land Map          :  0   all
 ND31: Surface pressure  : 73   all
@@ -308,7 +308,7 @@ ND32: NOx sources       :  1   all
 ND33: Column tracer     :  0   all
 ND34: Biofuel emissions :  1   1 4 5 9 10 11 18 19 20 21
 ND35: Tracers at 500 mb :  0   all
-ND36: Anthro emissions  :  1   1 2 4 5 7 9 10 11 18 19 20 21 69
+ND36: Anthro emissions  :  1   1 2 4 5 7 9 10 11 18 19 20 21 71
 ND37: Updraft scav frac :  0   all
 ND38: Cld Conv scav loss: 72   all
 ND39: Wetdep scav loss  : 72   all
@@ -316,7 +316,7 @@ ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 : 72   all
   ==> OH/HO2 time range :       0 24   
-ND44: Drydep flx/vel    :  1   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 47 48 50 55 57 58 59 60 61 62 63 64 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 113 114 115 116 117 118 119
+ND44: Drydep flx/vel    :  1   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 47 48 50 55 56 58 59 60 61 62 63 64 65 66 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 119 120 121 122 123 124 125
 ND45: Tracer Conc's     : 72   all 
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions:  1   all

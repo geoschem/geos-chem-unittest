@@ -98,17 +98,17 @@ Tracer #68              :  68   HNO2    47.0
 Turn on Transport       : T
  => Fill Negative Values: T 
  => IORD, JORD, KORD    : 3  3  7
-Transport Timestep [min]: 5   
+Transport Timestep [min]: 5
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
 Turn on PBL Mixing?     : T
  => Use non-local PBL?  : T
-Convect Timestep (min)  : 5
+Convect Timestep [min]  : 5
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
-Emiss timestep (min)    : 10
+Emiss Timestep [min]    : 10
 HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
 Switches for UCX        :---
@@ -225,7 +225,7 @@ ND17: Rainout fraction  :  0   all
 ND18: Washout fraction  :  0   all            
 ND19: CH4 loss          :  0   all            
 ND21: Optical depths    : 47   all            
-ND22: J-Values          : 47   1 2 7 8 9 11 13 14 20 44 46 47 49 50 51 58 59 64 65
+ND22: J-Values          : 47   1 2 7 8 9 11 13 14 20 44 46 47 49 50 51 59 60 66 67
       => JV time range  :      11 13
 ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
@@ -247,7 +247,7 @@ ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 : 47   all
   ==> OH/HO2 time range :       0 24   
-ND44: Drydep flx/vel    :  1   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 47 48 50 55 57 58 59 60 61 62 63 64
+ND44: Drydep flx/vel    :  1   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 47 48 50 55 56 58 59 60 61 62 63 64 65 66
 ND45: Tracer Conc's     : 47   all 
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions:  1   all

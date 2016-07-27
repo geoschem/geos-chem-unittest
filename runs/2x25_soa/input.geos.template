@@ -93,39 +93,39 @@ Tracer #65              :  65   MAP     76.0
 Tracer #66              :  66   NO2     46.0
 Tracer #67              :  67   NO3     62.0
 Tracer #68              :  68   HNO2    47.0
-Tracer #69              :  69   MTPA    136.23
-Tracer #70              :  70   LIMO    136.23
-Tracer #71              :  71   MTPO    136.23
-Tracer #72              :  72   TSOG1   150.0
-Tracer #73              :  73   TSOG2   150.0
-Tracer #74              :  74   TSOG3   150.0
-Tracer #75              :  75   TSOG0   150.0
-Tracer #76              :  76   TSOA1   150.0
-Tracer #77              :  77   TSOA2   150.0
-Tracer #78              :  78   TSOA3   150.0
-Tracer #79              :  79   TSOA0   150.00
-Tracer #80              :  80   ISOG1   150.0
-Tracer #81              :  81   ISOG2   150.0
-Tracer #82              :  82   ISOG3   150.0
-Tracer #83              :  83   ISOA1   150.0
-Tracer #84              :  84   ISOA2   150.0
-Tracer #85              :  85   ISOA3   150.0
+Tracer #69              :  69   MTPA   136.23
+Tracer #70              :  70   LIMO   136.23
+Tracer #71              :  71   MTPO   136.23
+Tracer #72              :  72   TSOG1  150.0
+Tracer #73              :  73   TSOG2  150.0
+Tracer #74              :  74   TSOG3  150.0
+Tracer #75              :  75   TSOG0  150.0
+Tracer #76              :  76   TSOA1  150.0
+Tracer #77              :  77   TSOA2  150.0
+Tracer #78              :  78   TSOA3  150.0
+Tracer #79              :  79   TSOA0  150.0
+Tracer #80              :  80   ISOG1  150.0
+Tracer #81              :  81   ISOG2  150.0
+Tracer #82              :  82   ISOG3  150.0
+Tracer #83              :  83   ISOA1  150.0
+Tracer #84              :  84   ISOA2  150.0
+Tracer #85              :  85   ISOA3  150.0
 Tracer #86              :  86   BENZ    12.0   (6C)
 Tracer #87              :  87   TOLU    12.0   (7C)
 Tracer #88              :  88   XYLE    12.0   (8C)
-Tracer #89              :  89   ASOG1   150.0
-Tracer #90              :  90   ASOG2   150.0
-Tracer #91              :  91   ASOG3   150.0
-Tracer #92              :  92   ASOAN   150.0
-Tracer #93              :  93   ASOA1   150.0
-Tracer #94              :  94   ASOA2   150.0
-Tracer #95              :  95   ASOA3   150.0
+Tracer #89              :  89   ASOG1  150.0
+Tracer #90              :  90   ASOG2  150.0
+Tracer #91              :  91   ASOG3  150.0
+Tracer #92              :  92   ASOAN  150.0
+Tracer #93              :  93   ASOA1  150.0
+Tracer #94              :  94   ASOA2  150.0
+Tracer #95              :  95   ASOA3  150.0
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
  => Fill Negative Values: T 
  => IORD, JORD, KORD    : 3  3  7
-Transport Timestep [min]: 10 
+Transport Timestep [min]: 10
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
@@ -252,7 +252,7 @@ ND17: Rainout fraction  :  0   all
 ND18: Washout fraction  :  0   all            
 ND19: CH4 loss          :  0   all            
 ND21: Optical depths    : 47   all            
-ND22: J-Values          : 47   1 2 7 8 9 11 13 14 20 44 46 47 49 50 51 58 59 64 65
+ND22: J-Values          : 47   1 2 7 8 9 11 13 14 20 44 46 47 49 50 51 59 60 66 67
       => JV time range  :      11 13
 ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
@@ -274,7 +274,7 @@ ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 : 47   all
   ==> OH/HO2 time range :       0 24   
-ND44: Drydep flx/vel    :  1   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 47 48 50 55 57 58 59 60 61 62 63 64 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 87 88 89 90 91 92 93 
+ND44: Drydep flx/vel    :  1   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 47 48 50 55 56 58 59 60 61 62 63 64 65 66 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 89 90 91 92 93 94 95
 ND45: Tracer Conc's     : 47   all 
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions:  1   all
