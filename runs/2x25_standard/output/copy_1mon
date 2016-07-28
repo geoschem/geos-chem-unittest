@@ -1,0 +1,92 @@
+#!/bin/bash
+
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: copy_1mon
+#
+# !DESCRIPTION: Copies the 1-month plots and model output files to 
+#  two locations: (1) The regular FTP site (updated 1x/day) and (2) a 
+#  "quick-look" FTP site (updated hourly).  This will allow GEOS-Chem 
+#  developers to examine outputs from the 1-month benchmark simulations.
+#\\
+#\\
+# !CALLING SEQUENCE:
+#  copy_1month v10-01h  (or whatever the version # is)
+#
+# !REVISION HISTORY: 
+#  15 Jun 2011 - R. Yantosca - Initial version
+#  01 Aug 2011 - R. Yantosca - Also copy the README file
+#  15 Feb 2012 - M. Payer    - Comment out references to dir in my copy_1mon --
+#                              Only Bob has permission to write to that dir.
+#  24 Mar 2015 - M. Sulprizio- Now a bash script
+#  For all revisions after this date, see the GEOS-Chem UnitTest git history
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+# Make sure the version string is passed
+if [ $# != 1 ]; then 
+   echo "Usage: copy_1mon VERSION"
+   exit 0
+fi
+
+#----------------------------------------------------------------------------
+# Copy output to "quick look" ftp site 
+#----------------------------------------------------------------------------
+
+# Set variables
+version=$1
+dirq="/as/pub/ftp/gcgrid-rw/geos-chem/1mo_benchmarks/v11-01/$version"
+
+# Make the directory if it does not exist
+if [ ! -d $dirq ]; then
+  echo "Creating $dirq"
+  mkdir $dirq
+fi
+
+echo "Copying 1-month benchmark output to $dirq"
+
+# Copy 1-month benchmark output
+cp -f $version.*.fullchem          $dirq
+cp -f $version.*.pdf               $dirq
+cp -rf emission_maps               $dirq
+cp -rf emission_differences        $dirq
+cp -rf emission_ratios             $dirq
+
+# Copy output files from model
+cp -f ../trac_avg.$version         $dirq
+cp -f ../Ox.mass*                  $dirq  
+cp -f ../*info.dat                 $dirq
+cp -f ../$version.log              $dirq
+cp -f ../HEMCO.log                 $dirq
+cp -f ../README                    $dirq
+
+# Change group name of new directories and files
+chgrp gcdata $dirq
+chgrp gcdata $dirq/*
+chgrp gcdata $dirq/emission_ratios/*
+chgrp gcdata $dirq/emission_maps/*
+chgrp gcdata $dirq/emission_differences/*
+
+# Change permissions of new directory and files
+chmod 775 $dirq
+chmod 664 $dirq/*
+chmod 775 $dirq/emission_maps
+chmod 664 $dirq/emission_maps/*
+chmod 775 $dirq/emission_differences
+chmod 664 $dirq/emission_differences/*
+chmod 775 $dirq/emission_ratios
+chmod 664 $dirq/emission_ratios/*
+
+# Clear variables
+unset version
+unset root
+unset dirq
+unset dir
+
+# Exit normally
+exit 0
+#EOC
