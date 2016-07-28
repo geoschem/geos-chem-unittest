@@ -19,13 +19,13 @@ Wait for met fields?    : F
 Use variable tropopause?: T
 Global offsets I0, J0   : 60 200
 ------------------------+------------------------------------------------------
-%%% TRACER MENU %%%     : 
+%%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 11
-Number of Tracers       : 3                     
-Tracer Entries -------> : TR#   Name      g/mole  
-Tracer #1               :   1   Hg0        201.0
-Tracer #2               :   2   Hg2        201.0
-Tracer #3               :   3   HgP        201.0
+Number of Advected Spec.: 3                     
+Species Entries ------->: Name
+Species #1              : Hg0
+Species #2              : Hg2
+Species #3              : HgP
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
@@ -37,11 +37,11 @@ Transport Timestep [min]: 10
 Turn on Cloud Conv?     : T
 Turn on PBL Mixing?     : T
  => Use non-local PBL?  : T
-Convect Timestep (min)  : 10
+Convect Timestep [min]  : 10
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
-Emiss timestep (min)    : 20
+Emiss Timestep [min]    : 20
 HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
 Switches for UCX        :---

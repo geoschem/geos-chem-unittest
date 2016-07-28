@@ -19,30 +19,30 @@ Wait for met fields?    : F
 Use variable tropopause?: T
 Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
-%%% TRACER MENU %%%     : 
+%%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 10
-Number of Tracers       : 20
-Tracer Entries -------> : TR#   Name  g/mole   Tracer Members; () = emitted 
-Tracer #1               :   1   DMS     62.0
-Tracer #2               :   2   SO2     64.0
-Tracer #3               :   3   SO4     96.0
-Tracer #4               :   4   SO4s    96.0
-Tracer #5               :   5   MSA     96.0
-Tracer #6               :   6   NH3     17.0
-Tracer #7               :   7   NH4     18.0
-Tracer #8               :   8   NIT     62.0
-Tracer #9               :   9   NITs    62.0
-Tracer #10              :  10   H2O2    34.0
-Tracer #11              :  11   BCPI    12.0
-Tracer #12              :  12   OCPI    12.0
-Tracer #13              :  13   BCPO    12.0
-Tracer #14              :  14   OCPO    12.0
-Tracer #15              :  15   DST1    29.0
-Tracer #16              :  16   DST2    29.0
-Tracer #17              :  17   DST3    29.0
-Tracer #18              :  18   DST4    29.0
-Tracer #19              :  19   SALA    31.4
-Tracer #20              :  20   SALC    31.4
+Number of Advected Spec.: 20
+Species Entries ------->: Name
+Species #1              : DMS
+Species #2              : SO2
+Species #3              : SO4
+Species #4              : SO4s
+Species #5              : MSA
+Species #6              : NH3
+Species #7              : NH4
+Species #8              : NIT
+Species #9              : NITs
+Species #10             : H2O2
+Species #11             : BCPI
+Species #12             : OCPI
+Species #13             : BCPO
+Species #14             : OCPO
+Species #15             : DST1
+Species #16             : DST2
+Species #17             : DST3
+Species #18             : DST4
+Species #19             : SALA
+Species #20             : SALC
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T

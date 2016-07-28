@@ -19,78 +19,78 @@ Wait for met fields?    : F
 Use variable tropopause?: T
 Global offsets I0, J0   : 64 200
 ------------------------+------------------------------------------------------
-%%% TRACER MENU %%%     : 
+%%% ADVECTED SPECIES MENU %%%: 
 Type of simulation      : 3
-Number of Tracers       : 68
-Tracer Entries -------> : TR#   Name  g/mole   Tracer Members; () = emitted 
-Tracer #1               :   1   NO      30.0   (NO)
-Tracer #2               :   2   O3      48.0   (O3)
-Tracer #3               :   3   PAN    121.0
-Tracer #4               :   4   CO      28.0   (CO)
-Tracer #5               :   5   ALK4    12.0   (4C)
-Tracer #6               :   6   ISOP    12.0   (5C)
-Tracer #7               :   7   HNO3    63.0   (HNO3)
-Tracer #8               :   8   H2O2    34.0
-Tracer #9               :   9   ACET    12.0   (3C)
-Tracer #10              :  10   MEK     12.0   (4C)
-Tracer #11              :  11   ALD2    12.0   (2C)
-Tracer #12              :  12   RCHO    58.0
-Tracer #13              :  13   MVK     70.0
-Tracer #14              :  14   MACR    70.0
-Tracer #15              :  15   PMN    147.0
-Tracer #16              :  16   PPN    135.0
-Tracer #17              :  17   R4N2   119.0
-Tracer #18              :  18   PRPE    12.0   (3C)
-Tracer #19              :  19   C3H8    12.0   (3C)
-Tracer #20              :  20   CH2O    30.0   (CH2O)
-Tracer #21              :  21   C2H6    12.0   (2C)
-Tracer #22              :  22   N2O5   105.0
-Tracer #23              :  23   HNO4    79.0
-Tracer #24              :  24   MP      48.0
-Tracer #25              :  25   DMS     62.0
-Tracer #26              :  26   SO2     64.0
-Tracer #27              :  27   SO4     96.0
-Tracer #28              :  28   SO4s    96.0
-Tracer #29              :  29   MSA     96.0
-Tracer #30              :  30   NH3     17.0
-Tracer #31              :  31   NH4     18.0
-Tracer #32              :  32   NIT     62.0
-Tracer #33              :  33   NITs    62.0
-Tracer #34              :  34   BCPI    12.0
-Tracer #35              :  35   OCPI    12.0
-Tracer #36              :  36   BCPO    12.0
-Tracer #37              :  37   OCPO    12.0
-Tracer #38              :  38   DST1    29.0
-Tracer #39              :  39   DST2    29.0
-Tracer #40              :  40   DST3    29.0
-Tracer #41              :  41   DST4    29.0
-Tracer #42              :  42   SALA    31.4
-Tracer #43              :  43   SALC    31.4
-Tracer #44              :  44   Br2    160.0   (Br2)
-Tracer #45              :  45   Br      80.0
-Tracer #46              :  46   BrO     96.0
-Tracer #47              :  47   HOBr    97.0
-Tracer #48              :  48   HBr     81.0
-Tracer #49              :  49   BrNO2  126.0
-Tracer #50              :  50   BrNO3  142.0
-Tracer #51              :  51   CHBr3  253.0   (CHBr3)
-Tracer #52              :  52   CH2Br2 174.0   (CH2Br2)
-Tracer #53              :  53   CH3Br   95.0
-Tracer #54              :  54   MPN     93.0
-Tracer #55              :  55   ISOPND  147.0
-Tracer #56              :  56   ISOPNB  147.0
-Tracer #57              :  57   MOBA   114.0
-Tracer #58              :  58   PROPNN 119.0   PROPNN
-Tracer #59              :  59   HAC     74.0 
-Tracer #60              :  60   GLYC    60.0 
-Tracer #61              :  61   MVKN   149.0
-Tracer #62              :  62   MACRN  149.0
-Tracer #63              :  63   RIP    118.0
-Tracer #64              :  64   IEPOX  118.0
-Tracer #65              :  65   MAP     76.0
-Tracer #66              :  66   NO2     46.0
-Tracer #67              :  67   NO3     62.0
-Tracer #68              :  68   HNO2    47.0
+Number of Advected Spec.: 68
+Species Entries ------->: Name
+Species #1              : NO
+Species #2              : O3
+Species #3              : PAN
+Species #4              : CO
+Species #5              : ALK4
+Species #6              : ISOP
+Species #7              : HNO3
+Species #8              : H2O2
+Species #9              : ACET
+Species #10             : MEK
+Species #11             : ALD2
+Species #12             : RCHO
+Species #13             : MVK
+Species #14             : MACR
+Species #15             : PMN
+Species #16             : PPN
+Species #17             : R4N2
+Species #18             : PRPE
+Species #19             : C3H8
+Species #20             : CH2O
+Species #21             : C2H6
+Species #22             : N2O5
+Species #23             : HNO4
+Species #24             : MP
+Species #25             : DMS
+Species #26             : SO2
+Species #27             : SO4
+Species #28             : SO4s
+Species #29             : MSA
+Species #30             : NH3
+Species #31             : NH4
+Species #32             : NIT
+Species #33             : NITs
+Species #34             : BCPI
+Species #35             : OCPI
+Species #36             : BCPO
+Species #37             : OCPO
+Species #38             : DST1
+Species #39             : DST2
+Species #40             : DST3
+Species #41             : DST4
+Species #42             : SALA
+Species #43             : SALC
+Species #44             : Br2
+Species #45             : Br
+Species #46             : BrO
+Species #47             : HOBr
+Species #48             : HBr
+Species #49             : BrNO2
+Species #50             : BrNO3
+Species #51             : CHBr3
+Species #52             : CH2Br2
+Species #53             : CH3Br
+Species #54             : MPN
+Species #55             : ISOPND
+Species #56             : ISOPNB
+Species #57             : MOBA
+Species #58             : PROPNN
+Species #59             : HAC
+Species #60             : GLYC
+Species #61             : MVKN
+Species #62             : MACRN
+Species #63             : RIP
+Species #64             : IEPOX
+Species #65             : MAP
+Species #66             : NO2
+Species #67             : NO3
+Species #68             : HNO2
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T

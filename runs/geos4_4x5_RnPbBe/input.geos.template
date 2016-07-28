@@ -19,20 +19,20 @@ Wait for met fields?    : F
 Use variable tropopause?: T
 Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
-%%% TRACER MENU %%%     : 
+%%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 1
-Number of Tracers       : 4
-Tracer Entries -------> : TR#   Name  g/mole   Tracer Members; () = emitted 
-Tracer #1               :   1   Rn     222.0  
-Tracer #2               :   2   Pb     210.0
-Tracer #3               :   3   Be7      7.0
-Tracer #4               :   4   PASV     1.0
+Number of Advected Spec.: 4
+Species Entries ------->: Name
+Species #1              : Rn
+Species #2              : Pb
+Species #3              : Be7
+Species #4              : PASV
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
  => Fill Negative Values: T 
  => IORD, JORD, KORD    : 3  3  7
-Transport Timestep [min]: 10   
+Transport Timestep [min]: 10
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T

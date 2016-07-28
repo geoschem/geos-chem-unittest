@@ -19,103 +19,103 @@ Wait for met fields?    : F
 Use variable tropopause?: T
 Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
-%%% TRACER MENU %%%     : 
+%%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 11
-Number of Tracers       : 87                     
-Tracer Entries -------> : TR#   Name      g/mole  
-Tracer #1               :   1   Hg0        201.0
-Tracer #2               :   2   Hg2        201.0
-Tracer #3               :   3   HgP        201.0
-Tracer #4               :   4   Hg0_can    201.0
-Tracer #5               :   5   Hg0_usa    201.0
-Tracer #6               :   6   Hg0_cam    201.0
-Tracer #7               :   7   Hg0_sam    201.0
-Tracer #8               :   8   Hg0_waf    201.0
-Tracer #9               :   9   Hg0_eaf    201.0
-Tracer #10              :  10   Hg0_saf    201.0
-Tracer #11              :  11   Hg0_naf    201.0
-Tracer #12              :  12   Hg0_eur    201.0
-Tracer #13              :  13   Hg0_eeu    201.0
-Tracer #14              :  14   Hg0_sov    201.0
-Tracer #15              :  15   Hg0_mde    201.0
-Tracer #16              :  16   Hg0_sas    201.0
-Tracer #17              :  17   Hg0_eas    201.0
-Tracer #18              :  18   Hg0_sea    201.0
-Tracer #19              :  19   Hg0_jpn    201.0
-Tracer #20              :  20   Hg0_oce    201.0
-Tracer #21              :  21   Hg0_so     201.0
-Tracer #22              :  22   Hg0_bb     201.0
-Tracer #23              :  23   Hg0_geo    201.0
-Tracer #24              :  24   Hg0_atl    201.0
-Tracer #25              :  25   Hg0_nat    201.0
-Tracer #26              :  26   Hg0_sat    201.0
-Tracer #27              :  27   Hg0_npa    201.0
-Tracer #28              :  28   Hg0_arc    201.0
-Tracer #29              :  29   Hg0_ant    201.0
-Tracer #30              :  30   Hg0_ocn    201.0
-Tracer #31              :  31   Hg0_str    201.0
-Tracer #32              :  32   Hg2_can    201.0
-Tracer #33              :  33   Hg2_usa    201.0
-Tracer #34              :  34   Hg2_cam    201.0
-Tracer #35              :  35   Hg2_sam    201.0
-Tracer #36              :  36   Hg2_waf    201.0
-Tracer #37              :  37   Hg2_eaf    201.0
-Tracer #38              :  38   Hg2_saf    201.0
-Tracer #39              :  39   Hg2_naf    201.0
-Tracer #40              :  40   Hg2_eur    201.0
-Tracer #41              :  41   Hg2_eeu    201.0
-Tracer #42              :  42   Hg2_sov    201.0
-Tracer #43              :  43   Hg2_mde    201.0
-Tracer #44              :  44   Hg2_sas    201.0
-Tracer #45              :  45   Hg2_eas    201.0
-Tracer #46              :  46   Hg2_sea    201.0
-Tracer #47              :  47   Hg2_jpn    201.0
-Tracer #48              :  48   Hg2_oce    201.0
-Tracer #49              :  49   Hg2_so     201.0
-Tracer #50              :  50   Hg2_bb     201.0
-Tracer #51              :  51   Hg2_geo    201.0
-Tracer #52              :  52   Hg2_atl    201.0
-Tracer #53              :  53   Hg2_nat    201.0
-Tracer #54              :  54   Hg2_sat    201.0
-Tracer #55              :  55   Hg2_npa    201.0
-Tracer #56              :  56   Hg2_arc    201.0
-Tracer #57              :  57   Hg2_ant    201.0
-Tracer #58              :  58   Hg2_ocn    201.0
-Tracer #59              :  59   Hg2_str    201.0
-Tracer #60              :  60   HgP_can    201.0
-Tracer #61              :  61   HgP_usa    201.0
-Tracer #62              :  62   HgP_cam    201.0
-Tracer #63              :  63   HgP_sam    201.0
-Tracer #64              :  64   HgP_waf    201-0
-Tracer #65              :  65   HgP_eaf    201.0
-Tracer #66              :  66   HgP_saf    201.0
-Tracer #67              :  67   HgP_naf    201.0
-Tracer #68              :  68   HgP_eur    201.0
-Tracer #69              :  69   HgP_eeu    201.0
-Tracer #70              :  70   HgP_sov    201.0
-Tracer #71              :  71   HgP_mde    201.0
-Tracer #72              :  72   HgP_sas    201.0
-Tracer #73              :  73   HgP_eas    201.0
-Tracer #74              :  74   HgP_sea    201.0
-Tracer #75              :  75   HgP_jpn    201.0
-Tracer #76              :  76   HgP_oce    201.0
-Tracer #77              :  77   HgP_so     201.0
-Tracer #78              :  78   HgP_bb     201.0
-Tracer #79              :  79   HgP_geo    201.0
-Tracer #80              :  80   HgP_atl    201.0
-Tracer #81              :  81   HgP_nat    201.0
-Tracer #82              :  82   HgP_sat    201.0
-Tracer #83              :  83   HgP_npa    201.0
-Tracer #84              :  84   HgP_arc    201.0
-Tracer #85              :  85   HgP_ant    201.0
-Tracer #86              :  86   HgP_ocn    201.0
-Tracer #87              :  87   HgP_str    201.0
+Number of Advected Spec.: 87                     
+Species Entries ------->: Name
+Species #1              : Hg0
+Species #2              : Hg2
+Species #3              : HgP
+Species #4              : Hg0_can
+Species #5              : Hg0_usa
+Species #6              : Hg0_cam
+Species #7              : Hg0_sam
+Species #8              : Hg0_waf
+Species #9              : Hg0_eaf
+Species #10             : Hg0_saf
+Species #11             : Hg0_naf
+Species #12             : Hg0_eur
+Species #13             : Hg0_eeu
+Species #14             : Hg0_sov
+Species #15             : Hg0_mde
+Species #16             : Hg0_sas
+Species #17             : Hg0_eas
+Species #18             : Hg0_sea
+Species #19             : Hg0_jpn
+Species #20             : Hg0_oce
+Species #21             : Hg0_so
+Species #22             : Hg0_bb
+Species #23             : Hg0_geo
+Species #24             : Hg0_atl
+Species #25             : Hg0_nat
+Species #26             : Hg0_sat
+Species #27             : Hg0_npa
+Species #28             : Hg0_arc
+Species #29             : Hg0_ant
+Species #30             : Hg0_ocn
+Species #31             : Hg0_str
+Species #32             : Hg2_can
+Species #33             : Hg2_usa
+Species #34             : Hg2_cam
+Species #35             : Hg2_sam
+Species #36             : Hg2_waf
+Species #37             : Hg2_eaf
+Species #38             : Hg2_saf
+Species #39             : Hg2_naf
+Species #40             : Hg2_eur
+Species #41             : Hg2_eeu
+Species #42             : Hg2_sov
+Species #43             : Hg2_mde
+Species #44             : Hg2_sas
+Species #45             : Hg2_eas
+Species #46             : Hg2_sea
+Species #47             : Hg2_jpn
+Species #48             : Hg2_oce
+Species #49             : Hg2_so
+Species #50             : Hg2_bb
+Species #51             : Hg2_geo
+Species #52             : Hg2_atl
+Species #53             : Hg2_nat
+Species #54             : Hg2_sat
+Species #55             : Hg2_npa
+Species #56             : Hg2_arc
+Species #57             : Hg2_ant
+Species #58             : Hg2_ocn
+Species #59             : Hg2_str
+Species #60             : HgP_can
+Species #61             : HgP_usa
+Species #62             : HgP_cam
+Species #63             : HgP_sam
+Species #64             : HgP_waf
+Species #65             : HgP_eaf
+Species #66             : HgP_saf
+Species #67             : HgP_naf
+Species #68             : HgP_eur
+Species #69             : HgP_eeu
+Species #70             : HgP_sov
+Species #71             : HgP_mde
+Species #72             : HgP_sas
+Species #73             : HgP_eas
+Species #74             : HgP_sea
+Species #75             : HgP_jpn
+Species #76             : HgP_oce
+Species #77             : HgP_so
+Species #78             : HgP_bb
+Species #79             : HgP_geo
+Species #80             : HgP_atl
+Species #81             : HgP_nat
+Species #82             : HgP_sat
+Species #83             : HgP_npa
+Species #84             : HgP_arc
+Species #85             : HgP_ant
+Species #86             : HgP_ocn
+Species #87             : HgP_str
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
  => Fill Negative Values: T 
  => IORD, JORD, KORD    : 3  3  7
-Transport Timestep [min]: 10   
+Transport Timestep [min]: 10
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T

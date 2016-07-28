@@ -19,33 +19,33 @@ Wait for met fields?    : F
 Use variable tropopause?: T
 Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
-%%% TRACER MENU %%%     : 
+%%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 7
-Number of Tracers       : 17                  
-Tracer Entries -------> : TR#  Name   g/mole  Tracer Members; () = emitted 
-Tracer #1               :   1  CO       28.0  (CO)
-Tracer #2               :   2  COus     28.0    
-Tracer #3               :   3  COeur    28.0    
-Tracer #4               :   4  COasia   28.0    
-Tracer #5               :   5  COoth    28.0    
-Tracer #6               :   6  CObbam   28.0    
-Tracer #7               :   7  CObbaf   28.0    
-Tracer #8               :   8  CObbas   28.0    
-Tracer #9               :   9  CObboc   28.0    
-Tracer #10              :  10  CObbeu   28.0    
-Tracer #11              :  11  CObboth  28.0    
-Tracer #12              :  12  COch4    28.0    
-Tracer #13              :  13  CObiof   28.0    
-Tracer #14              :  14  COisop   28.0    
-Tracer #15              :  15  COmono   28.0    
-Tracer #16              :  16  COmeoh   28.0    
-Tracer #17              :  17  COacet   28.0 
+Number of Advected Spec.: 17                  
+Species Entries ------->: Name
+Species #1              : CO
+Species #2              : COus
+Species #3              : COeur
+Species #4              : COasia
+Species #5              : COoth
+Species #6              : CObbam
+Species #7              : CObbaf
+Species #8              : CObbas
+Species #9              : CObboc
+Species #10             : CObbeu
+Species #11             : CObboth
+Species #12             : COch4
+Species #13             : CObiof
+Species #14             : COisop
+Species #15             : COmono
+Species #16             : COmeoh
+Species #17             : COacet
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
  => Fill Negative Values: T 
  => IORD, JORD, KORD    : 3  3  7
-Transport Timestep [min]: 10   
+Transport Timestep [min]: 10
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T

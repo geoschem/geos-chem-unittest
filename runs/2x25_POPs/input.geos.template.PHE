@@ -19,15 +19,15 @@ Wait for met fields?    : F
 Use variable tropopause?: T
 Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
-%%% TRACER MENU %%%     : 
+%%% ADVECTED SPECIES MENU %%%: 
 Type of simulation      : 14
-Number of Tracers       : 5                    
-Tracer Entries -------> : TR#   Name      g/mole  
-Tracer #1               :   1   POPG        178.23
-Tracer #2               :   2   POPPOCPO    178.23
-Tracer #3               :   3   POPPOCPI    178.23
-Tracer #4               :   4   POPPBCPO    178.23
-Tracer #5               :   5   POPPBCPI    178.23
+Number of Advected Spec.: 5                    
+Species Entries ------->: Name
+Species #1              : POPG
+Species #2              : POPPOCPO
+Species #3              : POPPOCPI
+Species #4              : POPPBCPO
+Species #5              : POPPBCPI
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
