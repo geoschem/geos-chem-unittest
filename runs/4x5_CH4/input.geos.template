@@ -27,7 +27,7 @@ Species #1              : CH4
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
- => Fill Negative Values: T 
+ => Fill Negative Values: T
  => IORD, JORD, KORD    : 3  3  7
 Transport Timestep [min]: 10
 ------------------------+------------------------------------------------------
@@ -91,7 +91,7 @@ Calc. strat. aero. OD?  : F
 Turn on Dry Deposition? : F
 Turn on Wet Deposition? : F
 ------------------------+------------------------------------------------------
-%%% CHEMISTRY MENU %%%  : 
+%%% CHEMISTRY MENU %%%  :
 Turn on Chemistry?      : T
 Use linear. strat. chem?: F
  => Use Linoz for O3?   : F
@@ -113,7 +113,7 @@ Radiation Timestep [min]: 180
 Species fluxes          : 0 0 0 0 0 0 0 0 0 1
  ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM]
 ------------------------+------------------------------------------------------
-%%% CH4 MENU %%%        : 
+%%% CH4 MENU %%%        :
 Compute CH4 budget?     : F
 Use Gas & Oil emis?     : T
 Use Coal Mine emis?     : T
@@ -127,7 +127,7 @@ Use Wetlands emis?      : T
 Use Soil Absorption?    : T
 Use Ot. Natural?        : T
 ------------------------+------------------------------------------------------
-%%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
+%%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH
 Schedule output for JAN : 3000000000000000000000000000000
 Schedule output for FEB : 30000000000000000000000000000
 Schedule output for MAR : 3000000000000000000000000000000
@@ -145,29 +145,29 @@ Schedule output for DEC : 3000000000000000000000000000000
 diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
-%%% DIAGNOSTIC MENU %%% : 
+%%% DIAGNOSTIC MENU %%% :
 Binary punch file name  : trac_avg.{MET}_4x5_CH4.YYYYMMDDhhmm
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
-ND01: Rn/Pb/Be source   :  0   all        
-ND02: Rn/Pb/Be decay    :  0   all             
-ND03: Hg emissions, P/L :  0   all                
-ND04: CO2 Sources       :  0   all                
-ND05: Sulfate prod/loss :  0   all               
-ND06: Dust aer source   :  0   all                
-ND07: Carbon aer source :  0   all                
-ND08: Seasalt aer source:  0   all                
-ND09: -                 :  0   all                
-ND10: -                 :  0   all                
-ND11: Acetone sources   :  0   all                 
-ND12: BL fraction       :  0   all              
-ND13: Sulfur sources    :  0   all                
-ND14: Cld conv mass flx :  0   all                
-ND15: BL mix mass flx   :  0   all                
-ND16: LS/Conv prec frac :  0   all               
-ND17: Rainout fraction  :  0   all            
-ND18: Washout fraction  :  0   all            
-ND19: CH4 loss          : 47   all            
-ND21: Optical depths    :  0   all            
+ND01: Rn/Pb/Be source   :  0   all
+ND02: Rn/Pb/Be decay    :  0   all
+ND03: Hg emissions, P/L :  0   all
+ND04: CO2 Sources       :  0   all
+ND05: Sulfate prod/loss :  0   all
+ND06: Dust aer source   :  0   all
+ND07: Carbon aer source :  0   all
+ND08: Seasalt aer source:  0   all
+ND09: -                 :  0   all
+ND10: -                 :  0   all
+ND11: Acetone sources   :  0   all
+ND12: BL fraction       :  0   all
+ND13: Sulfur sources    :  0   all
+ND14: Cld conv mass flx :  0   all
+ND15: BL mix mass flx   :  0   all
+ND16: LS/Conv prec frac :  0   all
+ND17: Rainout fraction  :  0   all
+ND18: Washout fraction  :  0   all
+ND19: CH4 loss          : 47   all
+ND21: Optical depths    :  0   all
 ND22: J-Values          :  0   all
       => JV time range  :      11 13
 ND24: E/W transpt flx   : 47   all
@@ -189,9 +189,9 @@ ND39: Wetdep scav loss  :  0   all
 ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 :  0   all
-  ==> OH/HO2 time range :       0 24   
+  ==> OH/HO2 time range :       0 24
 ND44: Drydep flx/vel    :  0   all
-ND45: Tracer Conc's     : 47   all 
+ND45: Tracer Conc's     : 47   all
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions:  0   all
 ND47: 24-h avg trc conc :  0   all
@@ -229,7 +229,7 @@ Number of stations      :   0
 %%% ND49 MENU %%%       :
 Turn on ND49 diagnostic : F
 Inst 3-D timeser. file  : tsYYYYMMDD.bpch
-Tracers to include      : 94 
+Tracers to include      : 94
 Frequency [min]         : 120
 IMIN, IMAX of region    :  70  30
 JMIN, JMAX of region    :  23  46
@@ -287,12 +287,12 @@ Number of P/L families  : 7
 6th  chemical family    : PBry: 2Br2 Br BrO HOBr HBr BrNO2 BrNO3
 7th  chemical family    : LBry: 2Br2 Br BrO HOBr HBr BrNO2 BrNO3
 ------------------------+------------------------------------------------------
-%%% BENCHMARK MENU %%%  :  
+%%% BENCHMARK MENU %%%  :
 Save benchmark output?  : F
 File w/ initial Ox      : Ox.mass.initial
 File w/ final Ox        : Ox.mass.final
 ------------------------+------------------------------------------------------
-%%% NESTED GRID MENU %%%:  
+%%% NESTED GRID MENU %%%:
 Save TPCORE BC's        : F
 Input BCs at 2x2.5?     : F
 Over North America?     : F
@@ -310,8 +310,8 @@ LL box of BC region     :   9  26
 UR box of BC region     :  29  41
 I0_W, J0_W, I0_E, J0_E  :   3   3   3   3
 ------------------------+------------------------------------------------------
-%%% UNIX CMDS MENU %%%  : 
-Background symbol       : & 
+%%% UNIX CMDS MENU %%%  :
+Background symbol       : &
 Redirect symbol         :  >
 Unix remove command     : rm -f
 Unix pathname separator : /
