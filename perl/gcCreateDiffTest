@@ -296,6 +296,7 @@ sub doCopyDirs($$) {
 # !LOCAL VARIABLES:
 #
   # Scalar
+  my $baseDir = "";
   my $cmd     = "";
   my $copyDir = "";
   my $devDir  = "";
@@ -468,7 +469,8 @@ sub doCopyDirs($$) {
 	  $notDir   = &baseName( $runDir );
 
 	  # Directories in the remote location
-	  $copyDir = "$COPY_PATH/DiffTest\_$sim\_$grid";
+	  $baseDir = "$met\_$grid\_$sim";
+	  $copyDir = "$COPY_PATH/DiffTest\_$baseDir";
 	  $devDir  = "$copyDir/Dev";
 	  $refDir  = "$copyDir/Ref";
 
@@ -499,10 +501,10 @@ sub doCopyDirs($$) {
           # user settings in DiffTest.input
 	  &replaceText("$copyDir/Makefile",        "CODE_REF_PATH","$CODE_REF");
 	  &replaceText("$copyDir/Makefile",        "CODE_DEV_PATH","$CODE_DEV");
-	  &replaceText("$copyDir/summarizeDiagDiffs.sh","MET_GRID_SIM","$notDir");
+	  &replaceText("$copyDir/summarizeDiagDiffs.sh","MET_GRID_SIM","$baseDir");
 	  &replaceText("$copyDir/summarizeDiagDiffs.sh","START_DATE",  "${start}00");
 	  &replaceText("$copyDir/summarizeDiagDiffs.sh","END_DATE",    "$end");
-	  &replaceText("$copyDir/locateDiagDiffs.sh",   "MET_GRID_SIM","$notDir");
+	  &replaceText("$copyDir/locateDiagDiffs.sh",   "MET_GRID_SIM","$baseDir");
 	  &replaceText("$copyDir/locateDiagDiffs.sh",   "START_DATE",  "${start}00");
 	  &replaceText("$copyDir/locateDiagDiffs.sh",   "END_DATE",    "$end");
 	  
