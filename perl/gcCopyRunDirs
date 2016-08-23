@@ -241,6 +241,7 @@ sub doCopyDirs($$) {
 #  18 Dec 2015 - R. Yantosca - Now get root path of unit tester in $UT_ROOT
 #  18 Dec 2015 - R. Yantosca - Replace ~ in $COPY_PATH with home directory
 #  13 Jul 2016 - M. Sulprizio- Update copyDir to always use $met\_$grid\_$sim
+#  23 Aug 2016 - R. Yantosca - Bug fix: Replace {HOME} in $HEMCO_ROOT
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -329,6 +330,7 @@ sub doCopyDirs($$) {
       $LOG_DIR    =~ s/{HOME}/$home/g;
       $LOG_DIR    =~ s/{UTROOT}/$UT_ROOT/g;
       $LOG_DIR    =~ s/{VERSION}/$VERSION/g;
+      $HEMCO_ROOT =~ s/{HOME}/$home/g;
       $HEMCO_ROOT =~ s/{DATAROOT}/$DATA_ROOT/g;
       $RUN_DIR    =~ s/{RUNROOT}/$RUN_ROOT/g;
       $RUN_DIR    =~ s/{UTROOT}/$UT_ROOT/g;

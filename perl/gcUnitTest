@@ -418,6 +418,7 @@ sub doUnitTest($$) {
 #  22 Jun 2015 - R. Yantosca - Now append SLURM #SBATCH tags to job file
 #  17 Dec 2015 - R. Yantosca - Now get optional SLURM_CONSTRAINT info
 #  18 Dec 2015 - R. Yantosca - Add UT_ROOT variable
+#  23 Aug 2016 - R. Yantosca - Bug fix: Replace {HOME} in $HEMCO_ROOT
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -575,6 +576,7 @@ sub doUnitTest($$) {
       $TXT_GRID     =~ s/{LOGDIR}/$LOG_DIR/g;
       $WEB_GRID     =~ s/{VERSION}/$VERSION/g;
       $WEB_GRID     =~ s/{LOGDIR}/$LOG_DIR/g;
+      $HEMCO_ROOT   =~ s/{HOME}/$home/g;
       $HEMCO_ROOT   =~ s/{DATAROOT}/$DATA_ROOT/g;
       $RUN_DIR      =~ s/{RUNROOT}/$RUN_ROOT/g;
       $RUN_DIR      =~ s/{UTROOT}/$UT_ROOT/g;
