@@ -1,7 +1,7 @@
 #!/bin/bash
 # First time setup script - run only once!
 
-if [[ -L CodeDir || -L geos || -L MainDataDir || -L MetDir ]] ; then
+if [[ -L CodeDir || -L geos || -L MainDataDir || -L MetDir || -L RestartsDir || -L ChemDataDir ]] ; then
   echo "Soft links already set up"
   exit 1
 fi
@@ -21,6 +21,8 @@ if [[ $onOdyssey == "y" ]]; then
   baseDir='/n/seasasfs01/gcgrid'
   MetDir=$baseDir
   MainDataDir="$baseDir/data/ExtData/HEMCO"
+  RestartsDir="$baseDir/data/ExtData/NC_RESTARTS"
+  ChemDataDir="$baseDir/gcdata/ExtData/CHEM_INPUTS"
   echo "Valid INPUT resolution choices:"
   echo "[N] Native (0.25x0.3125) (2015-07-01 to 2015-07-10)"
   echo "[2] 2x2.5                (2012-05-01 to 2014-12-31)"
@@ -44,6 +46,8 @@ if [[ $onOdyssey == "y" ]]; then
 elif [[ $onOdyssey  == "n" ]]; then
   read -p "Enter path containing met data: " MetDir
   read -p "Enter path to HEMCO data directory: " MainDataDir
+  read -p "Enter path to GEOS-Chem restart files: " RestartsDir
+  read -p "Enter path to CHEM_INPUTS directory for Olson maps: " ChemDataDir
 else
   echo "Invalid response given"
   unlink CodeDir
@@ -51,9 +55,11 @@ else
   exit 1
 fi
 
-if [[ -d $MetDir && -d $MainDataDir ]]; then
+if [[ -d $MetDir && -d $MainDataDir && -d $RestartsDir && -d $ChemDataDir ]]; then
   ln -s $MetDir MetDir
   ln -s $MainDataDir MainDataDir
+  ln -s $RestartsDir RestartsDir
+  ln -s $ChemDataDir ChemDataDir
 else
   echo "Could not find target directories"
   unlink CodeDir

@@ -41,7 +41,7 @@ BKG_FREQUENCY: 0
 # -------------------------------------
 GIGCchem_INTERNAL_RESTART_FILE:     -gcchem_internal_rst_c24.nc
 GIGCchem_INTERNAL_RESTART_TYPE:     pnc4
-GIGCchem_INTERNAL_CHECKPOINT_FILE:  gcchem_internal_checkpoint_c24.nc
+GIGCchem_INTERNAL_CHECKPOINT_FILE:  -gcchem_internal_checkpoint_c24.nc
 GIGCchem_INTERNAL_CHECKPOINT_TYPE:  pnc4
 
 DYN_INTERNAL_RESTART_FILE:    -fvcore_internal_rst
@@ -75,3 +75,4 @@ STDOUT_LOGFILE:       PET%%%%%.GEOSCHEMchem.log
 STDOUT_LOGLUN:        6
 
 INIT_ZERO: 0
+INIT_GCC:  1
