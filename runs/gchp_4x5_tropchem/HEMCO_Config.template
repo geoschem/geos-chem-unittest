@@ -117,6 +117,8 @@ Warnings:                    {WARNINGS}
     --> +TOMS_SBUV_O3+    :       true
     --> +STATE_PSC+       :       false
     --> +LinStratChem+    :       true
+    --> +GCCRestart+      :       true
+    --> +Olson+           :       true
 # -----------------------------------------------------------------------------
 100     Custom            : off   - 
 101     SeaFlux           : on    DMS/ACET
@@ -124,13 +126,13 @@ Warnings:                    {WARNINGS}
     --> LUT data format   :       txt
     --> LUT source dir    :       $ROOT/PARANOX/v2015-02
 103     LightNOx          : on    NO
-    --> OTD-LIS scaling   :       0.05572
+    --> OTD-LIS scaling   :       0.5568042545
     --> OTD-LIS factors   :       false
     --> CDF table         :       $ROOT/LIGHTNOX/v2014-07/light_dist.ott2010.dat
 104     SoilNOx           : on    NO 
     --> Use fertilizer NOx:       true
 105     DustDead          : on    DST1/DST2/DST3/DST4 
-    --> Mass tuning factor:       0.0003
+    --> Mass tuning factor:       0.00083286
 106     DustGinoux        : off   DST1/DST2/DST3/DST4
 115     DustAlk           : off   DSTAL1/DSTAL2/DSTAL3/DSTAL4
 107     SeaSalt           : on    SALA/SALC/Br2
@@ -148,8 +150,8 @@ Warnings:                    {WARNINGS}
 109     MEGAN_Mono        : on    CO/OCPI/MONX
 110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
 111     GFED              : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/NAP
-    --> GFED3             :       false 
-    --> GFED4             :       true
+    --> GFED3             :       true 
+    --> GFED4             :       false
     --> GFED_daily        :       false
     --> GFED_3hourly      :       false
     --> Scaling_CO        :       1.05
@@ -1611,6 +1613,154 @@ Warnings:                    {WARNINGS}
 # sure that this entry will always be read. 
 * STRAT_OH            $ROOT/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc          species 2000/$MM/1/0 C xyz v/v   *        - 1  1
 )))+LinStratChem+
+
+# Olson land map data
+(((+Olson+
+* Olson01 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson02 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson03 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson04 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson05 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson06 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson07 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson08 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson09 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson10 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson11 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson12 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson13 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson14 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson15 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson16 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson17 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson18 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson19 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson20 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson21 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson22 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson23 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson24 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson25 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson26 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson27 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson28 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson29 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson30 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson31 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson32 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson33 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson34 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson35 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson36 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson37 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson38 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson39 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson40 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson41 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson42 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson43 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson44 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson45 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson46 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson47 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson48 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson49 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson50 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson51 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson52 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson53 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson54 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson55 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson56 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson57 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson58 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson59 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson60 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson61 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson62 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson63 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson64 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson65 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson66 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson67 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson68 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson69 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson70 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson71 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson72 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson73 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+* Olson74 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
+)))+Olson+
+
+# GEOS-Chem classic restart (!)
+(((+GCCRestart+
+* GCC_NO      Ignore.nc TRC_NO     2000/1/1/0 C xyz v/v * - 1 1
+* GCC_O3      Ignore.nc TRC_O3     2000/1/1/0 C xyz v/v * - 1 1
+* GCC_PAN     Ignore.nc TRC_PAN    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_CO      Ignore.nc TRC_CO     2000/1/1/0 C xyz v/v * - 1 1
+* GCC_ALK4    Ignore.nc TRC_ALK4   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_ISOP    Ignore.nc TRC_ISOP   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_HNO3    Ignore.nc TRC_HNO3   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_H2O2    Ignore.nc TRC_H2O2   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_ACET    Ignore.nc TRC_ACET   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_MEK     Ignore.nc TRC_MEK    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_ALD2    Ignore.nc TRC_ALD2   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_RCHO    Ignore.nc TRC_RCHO   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_MVK     Ignore.nc TRC_MVK    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_MACR    Ignore.nc TRC_MACR   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_PMN     Ignore.nc TRC_PMN    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_PPN     Ignore.nc TRC_PPN    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_R4N2    Ignore.nc TRC_R4N2   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_PRPE    Ignore.nc TRC_PRPE   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_C3H8    Ignore.nc TRC_C3H8   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_CH2O    Ignore.nc TRC_CH2O   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_C2H6    Ignore.nc TRC_C2H6   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_N2O5    Ignore.nc TRC_N2O5   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_HNO4    Ignore.nc TRC_HNO4   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_MP      Ignore.nc TRC_MP     2000/1/1/0 C xyz v/v * - 1 1
+* GCC_DMS     Ignore.nc TRC_DMS    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_SO2     Ignore.nc TRC_SO2    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_SO4     Ignore.nc TRC_SO4    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_SO4s    Ignore.nc TRC_SO4s   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_MSA     Ignore.nc TRC_MSA    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_NH3     Ignore.nc TRC_NH3    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_NH4     Ignore.nc TRC_NH4    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_NIT     Ignore.nc TRC_NIT    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_NITs    Ignore.nc TRC_NITs   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_BCPI    Ignore.nc TRC_BCPI   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_OCPI    Ignore.nc TRC_OCPI   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_BCPO    Ignore.nc TRC_BCPO   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_OCPO    Ignore.nc TRC_OCPO   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_DST1    Ignore.nc TRC_DST1   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_DST2    Ignore.nc TRC_DST2   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_DST3    Ignore.nc TRC_DST3   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_DST4    Ignore.nc TRC_DST4   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_SALA    Ignore.nc TRC_SALA   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_SALC    Ignore.nc TRC_SALC   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_Br2     Ignore.nc TRC_Br2    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_Br      Ignore.nc TRC_Br     2000/1/1/0 C xyz v/v * - 1 1
+* GCC_BrO     Ignore.nc TRC_BrO    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_HOBr    Ignore.nc TRC_HOBr   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_HBr     Ignore.nc TRC_HBr    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_BrNO2   Ignore.nc TRC_BrNO2  2000/1/1/0 C xyz v/v * - 1 1
+* GCC_BrNO3   Ignore.nc TRC_BrNO3  2000/1/1/0 C xyz v/v * - 1 1
+* GCC_CHBr3   Ignore.nc TRC_CHBr3  2000/1/1/0 C xyz v/v * - 1 1
+* GCC_CH2Br2  Ignore.nc TRC_CH2Br2 2000/1/1/0 C xyz v/v * - 1 1
+* GCC_CH3Br   Ignore.nc TRC_CH3Br  2000/1/1/0 C xyz v/v * - 1 1
+* GCC_MPN     Ignore.nc TRC_MPN    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_ISOPN   Ignore.nc TRC_ISOPN  2000/1/1/0 C xyz v/v * - 1 1
+* GCC_MOBA    Ignore.nc TRC_MOBA   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_PROPNN  Ignore.nc TRC_PROPNN 2000/1/1/0 C xyz v/v * - 1 1
+* GCC_HAC     Ignore.nc TRC_HAC    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_GLYC    Ignore.nc TRC_GLYC   2000/1/1/0 C xyz v/v * - 1 1
+* GCC_MMN     Ignore.nc TRC_MMN    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_RIP     Ignore.nc TRC_RIP    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_IEPOX   Ignore.nc TRC_IEPOX  2000/1/1/0 C xyz v/v * - 1 1
+* GCC_MAP     Ignore.nc TRC_MAP    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_NO2     Ignore.nc TRC_NO2    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_NO3     Ignore.nc TRC_NO3    2000/1/1/0 C xyz v/v * - 1 1
+* GCC_HNO2    Ignore.nc TRC_HNO2   2000/1/1/0 C xyz v/v * - 1 1
+)))+GCCRestart+
 
 ### END SECTION BASE EMISSIONS ###
 

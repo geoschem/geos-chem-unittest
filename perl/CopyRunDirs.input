@@ -37,14 +37,14 @@
 #
 # %%% Unit tester path names %%%
 #
-   UNIT_TEST_ROOT : {HOME}/UT
+   UNIT_TEST_ROOT : {HOME}/jacob_lab/myannetti/UT
    RUN_ROOT       : {UTROOT}/runs
    RUN_DIR        : {RUNROOT}/{RUNDIR}
    PERL_DIR       : {UTROOT}/perl
 #
 # %%% Target directory and copy command %%%
 # 
-   COPY_PATH      : {HOME}/GC/rundirs
+   COPY_PATH      : {HOME}/GCHPv11/BE
    COPY_CMD       : cp -rfL
 #
 # !RUNS:
@@ -56,23 +56,23 @@
 #--------|-----------|------|------------|------------|------------|---------|
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
 #--------|-----------|------|------------|------------|------------|---------|
-  geosfp   4x5         -      benchmark    2013070100   2013080100   -
-  geosfp   4x5         -      tropchem     2013070100   2013070101   -
-  geosfp   4x5         -      soa          2013070100   2013070101   -
-  geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
-  geosfp   4x5         -      aciduptake   2013070100   2013070101   -
-  geosfp   4x5         -      UCX          2013070100   2013070101   -
-  geosfp   4x5         -      RRTMG        2013070100   2013070101   -
-  geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
-  geosfp   4x5         -      Hg           2013010100   2013010101   -
-  geosfp   4x5         -      POPs         2013070100   2013070101   -
-  geosfp   4x5         -      CH4          2013070100   2013070101   -
-  geosfp   4x5         -      tagO3        2013070100   2013070101   -
-  geosfp   4x5         -      tagCO        2013070100   2013070101   -
-  geosfp   2x25        -      CO2          2013070100   201307010030 -
-  geosfp   4x5         -      aerosol      2013070100   2013070101   - 
-  geosfp   025x03125   ch     tropchem     2013070100   201307010010 -
-  geosfp   025x03125   na     tropchem     2013070100   201307010010 -
-!END OF RUNS:
+#  geosfp   4x5         -      benchmark    2013070100   2013080100   -
+  gchp     4x5         -      tropchem     2013070100   2013070101   -
+#  geosfp   4x5         -      soa          2013070100   2013070101   -
+#  geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
+#  geosfp   4x5         -      aciduptake   2013070100   2013070101   -
+#  geosfp   4x5         -      UCX          2013070100   2013070101   -
+#  geosfp   4x5         -      RRTMG        2013070100   2013070101   -
+#  geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
+#  geosfp   4x5         -      Hg           2013010100   2013010101   -
+#  geosfp   4x5         -      POPs         2013070100   2013070101   -
+#  geosfp   4x5         -      CH4          2013070100   2013070101   -
+#  geosfp   4x5         -      tagO3        2013070100   2013070101   -
+#  geosfp   4x5         -      tagCO        2013070100   2013070101   -
+#  geosfp   2x25        -      CO2          2013070100   201307010030 -
+#  geosfp   4x5         -      aerosol      2013070100   2013070101   - 
+#  geosfp   025x03125   ch     tropchem     2013070100   201307010010 -
+#  geosfp   025x03125   na     tropchem     2013070100   201307010010 -
+#!END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------
