@@ -37,14 +37,14 @@
 #
 # %%% Unit tester path names %%%
 #
-   UNIT_TEST_ROOT : {HOME}/jacob_lab/myannetti/UT
+   UNIT_TEST_ROOT : {HOME}/UT
    RUN_ROOT       : {UTROOT}/runs
    RUN_DIR        : {RUNROOT}/{RUNDIR}
    PERL_DIR       : {UTROOT}/perl
 #
 # %%% Target directory and copy command %%%
 # 
-   COPY_PATH      : {HOME}/GCHPv11/BE
+   COPY_PATH      : {HOME}/GC/rundirs
    COPY_CMD       : cp -rfL
 #
 # !RUNS:
@@ -57,7 +57,6 @@
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
 #--------|-----------|------|------------|------------|------------|---------|
 #  geosfp   4x5         -      benchmark    2013070100   2013080100   -
-  gchp     4x5         -      tropchem     2013070100   2013070101   -
 #  geosfp   4x5         -      soa          2013070100   2013070101   -
 #  geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
 #  geosfp   4x5         -      aciduptake   2013070100   2013070101   -
@@ -73,6 +72,7 @@
 #  geosfp   4x5         -      aerosol      2013070100   2013070101   - 
 #  geosfp   025x03125   ch     tropchem     2013070100   201307010010 -
 #  geosfp   025x03125   na     tropchem     2013070100   201307010010 -
+#  gchp     4x5         -      tropchem     2013070100   2013070101   -
 #!END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------
