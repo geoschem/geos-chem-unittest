@@ -121,6 +121,10 @@ ifndef TOMAS15
  TOMAS15     :=n
 endif
 
+ifndef TOMAS30
+ TOMAS30     :=n
+endif
+
 ifndef TOMAS40
  TOMAS40     :=n
 endif
@@ -134,7 +138,7 @@ ifndef RRTMG
 endif
 
 ifndef CHEM
- CHEM        :=benchmark
+ CHEM        :=Standard
 endif
 
 ifndef MASSCONS 
@@ -192,26 +196,27 @@ HMCO_END     :=$(END)
 # Also define the proper setting for CHEM, which picks the correct KPP files.
 ifeq ($(SIM),TOMAS12)
  TOMAS12     :=y
- CHEM        :=NOx_Ox_HC_Aer_Br
+ CHEM        :=Tropchem
 endif
 
 ifeq ($(SIM),TOMAS15)
  TOMAS15     :=y
- CHEM        :=NOx_Ox_HC_Aer_Br
+ CHEM        :=Tropchem
 endif
 
 ifeq ($(SIM),TOMAS30)
  TOMAS30     :=y
- CHEM        :=NOx_Ox_HC_Aer_Br
+ CHEM        :=Tropchem
 endif
 
 ifeq ($(SIM),TOMAS40)
  TOMAS40     :=y
- CHEM        :=NOx_Ox_HC_Aer_Br
+ CHEM        :=Tropchem
 endif
 
 ifeq ($(SIM),RRTMG)
  RRTMG       :=y
+ CHEM        :=Tropchem
 endif
 
 ifeq ($(SIM),UCX)
@@ -220,22 +225,22 @@ ifeq ($(SIM),UCX)
  NO_REDUCED  :=y
 endif
 
-ifeq ($(SIM),benchmark)
+ifeq ($(SIM),$(filter $(SIM), benchmark, standard))
  UCX         :=y
- CHEM        :=benchmark
+ CHEM        :=Standard
  NO_REDUCED  :=y
  TIMERS      :=1
 endif
 
 ifeq ($(SIM),aciduptake)
  UCX         :=y
- CHEM        :=benchmark
+ CHEM        :=Standard
  NO_REDUCED  :=y
 endif
 
 ifeq ($(SIM),marinePOA)
  UCX         :=y
- CHEM        :=benchmark
+ CHEM        :=Standard
  NO_REDUCED  :=y
 endif
 
@@ -249,15 +254,7 @@ ifeq ($(SIM),soa_svpoa)
 endif
 
 ifeq ($(SIM),tropchem)
- CHEM        :=NOx_Ox_HC_Aer_Br
-endif
-
-ifeq ($(SIM),fullchem)
- CHEM        :=NOx_Ox_HC_Aer_Br
-endif
-
-ifeq ($(SIM),NOx_Ox_HC_Aer_Br)
- CHEM        :=NOx_Ox_HC_Aer_Br
+ CHEM        :=Tropchem
 endif
 
 ifeq ($(SIM),masscons)
@@ -318,8 +315,10 @@ CODE_STATUS  :=$(shell git -C $(CODE_DIR) status -s)
 
 all: unittest
 
+ut: unittest
+
 unittest:
-	@$(MAKE) superclean
+	@$(MAKE) realclean
 	@$(MAKE) sp
 	@$(MAKE) realclean
 	@$(MAKE) mp
@@ -575,6 +574,7 @@ printbuildinfo:
 	@echo "  UCX          : $(UCX)"
 	@echo "  TOMAS12      : $(TOMAS12)"	
 	@echo "  TOMAS15      : $(TOMAS15)"
+	@echo "  TOMAS30      : $(TOMAS30)"
 	@echo "  TOMAS40      : $(TOMAS40)"
 	@echo "  RRTMG        : $(RRTMG)"
 	@echo "  MASSCONS     : $(MASSCONS)"

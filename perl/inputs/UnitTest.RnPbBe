@@ -97,7 +97,7 @@
   geos4    4x5         -      RnPbBe       2006070100   200607010020   -
   gcap     4x5         -      RnPbBe       2005070100   200507010020   -
   geosfp   2x25        -      RnPbBe       2013070100   201307010020   -
-# merra2   2x25        -      RnPbBe       2013070100   201307010020   -
+  merra2   2x25        -      RnPbBe       2013070100   201307010020   -
   geos5    2x25        -      RnPbBe       2006070100   200607010020   -
  !END OF RUNS:
 #EOP

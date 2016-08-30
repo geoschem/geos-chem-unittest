@@ -135,6 +135,7 @@ sub getRunDir($$$$) {
 #  22 Aug 2013 - R. Yantosca - Initial version
 #  31 Jan 2014 - R. Yantosca - Now append the nested grid suffix if
 #                              length( $nest ) is greater than zero
+#  13 Jul 2016 - M. Sulprizio- Modify runLoc for consolidated run directories
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -142,10 +143,15 @@ sub getRunDir($$$$) {
 # !LOCAL VARIABLES:
 #
   # Run directory string
-  my $runLoc = "{MET}_{GRID}_{SIM}";
+  my $runLoc = "";
 
-  # Append nested grid string if necessary
-  if ( length( $nest ) > 0 ) { $runLoc .= "_{NEST}"; }
+  if ( ( $met =~ m/gcap/ ) || ( $met =~ m/geos4/ ) ) {
+    $runLoc = "{MET}_{GRID}_{SIM}";
+  } elsif ( length( $nest ) > 0 ) {
+    $runLoc = "{MET}_{GRID}_{SIM}_{NEST}";
+  } else {
+    $runLoc = "{GRID}_{SIM}";
+  }
 
   # Replace tokens
   $runLoc =~ s/{MET}/$met/g;
@@ -196,6 +202,11 @@ sub makeInputs($$$$$$$$) {
 #                              restart timestamp is now the same as $end.
 #  19 May 2015 - R. Yantosca - Pass $VERBOSE, $WARNINGS to &makeHemcoCfg
 #  29 Apr 2016 - E. Lundgren - Allow start date to include minutes
+#  13 Jul 2016 - M. Sulprizio- Specify inpGeos file as input.geos.met_grid_sim
+#                              and copy that to input.geos immediately before
+#                              make command. This allows us to use one directory
+#                              (e.g. 4x5_tropchem) for GEOS-5, GEOS-FP, MERRA,
+#                              and MERRA-2.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -208,7 +219,7 @@ sub makeInputs($$$$$$$$) {
   my $d1      = "";
   my $h1      = "";
   my $inpTmpl = "$runDir/input.geos.template";
-  my $inpGeos = "$runDir/input.geos";
+  my $inpGeos = "$runDir/input.geos.$met\_$grid\_$sim";
   my $hcoTmpl = "$runDir/HEMCO_Config.template";
   my $hcoCfg  = "$runDir/HEMCO_Config.rc";
   my $errMsg  = "makeInputs: DATE must be YYYYMMDDhh or YYYYMMDDhhmm!";
@@ -235,7 +246,7 @@ sub makeInputs($$$$$$$$) {
   else                           { print "$errMsg\n"; exit(1);          }
 
   # Make the input.geos file in the run directory
-  &makeInputGeos( $d0, $h0, $d1, $h1, $DATA_ROOT, $inpTmpl, $inpGeos );
+  &makeInputGeos( $d0, $h0, $d1, $h1, $met, $DATA_ROOT, $inpTmpl, $inpGeos );
 
   # Make the HEMCO_Config.rc file in the run directory
   &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
@@ -407,6 +418,7 @@ sub doUnitTest($$) {
 #  22 Jun 2015 - R. Yantosca - Now append SLURM #SBATCH tags to job file
 #  17 Dec 2015 - R. Yantosca - Now get optional SLURM_CONSTRAINT info
 #  18 Dec 2015 - R. Yantosca - Add UT_ROOT variable
+#  23 Aug 2016 - R. Yantosca - Bug fix: Replace {HOME} in $HEMCO_ROOT
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -541,11 +553,13 @@ sub doUnitTest($$) {
 
       # Replace tokens in UT_ROOT 
       $UT_ROOT =~  s/{HOME}/$home/g;
+      $UT_ROOT =~  s/{USER}/$user/g;
       
       # Append the version tag to the log directory
       # So that we can keep several log files simultaneously
       $LOG_DIR =~ s/{VERSION}/$VERSION/g;
       $LOG_DIR =~ s/{HOME}/$home/g;
+      $LOG_DIR =~ s/{USER}/$user/g;
       $LOG_DIR =~ s/{UTROOT}/$UT_ROOT/g;
       if ( !( -f $LOG_DIR ) ) { qx( mkdir -p $LOG_DIR ); }
 
@@ -562,6 +576,7 @@ sub doUnitTest($$) {
       $TXT_GRID     =~ s/{LOGDIR}/$LOG_DIR/g;
       $WEB_GRID     =~ s/{VERSION}/$VERSION/g;
       $WEB_GRID     =~ s/{LOGDIR}/$LOG_DIR/g;
+      $HEMCO_ROOT   =~ s/{HOME}/$home/g;
       $HEMCO_ROOT   =~ s/{DATAROOT}/$DATA_ROOT/g;
       $RUN_DIR      =~ s/{RUNROOT}/$RUN_ROOT/g;
       $RUN_DIR      =~ s/{UTROOT}/$UT_ROOT/g;
@@ -571,6 +586,13 @@ sub doUnitTest($$) {
       $SLURM_STDERR =~ s/{LOGDIR}/$LOG_DIR/g;
       $SLURM_STDERR =~ s/{VERSION}/$VERSION/g;
       
+      # Replace user token
+      $CODE_DIR     =~ s/{USER}/$user/g;
+      $RUN_ROOT     =~ s/{USER}/$user/g;
+      $RUN_DIR      =~ s/{USER}/$user/g;
+      $JOB_DIR      =~ s/{USER}/$user/g;
+      $PERL_DIR     =~ s/{USER}/$user/g;
+
       # Make sure each of these directories exist before proceeding
       &checkDir( $DATA_ROOT  );
       &checkDir( $HEMCO_ROOT );
@@ -676,6 +698,8 @@ sub doUnitTest($$) {
 		    "\n\n\# %%% $notDir %%%\n",
 		    "cp -f $PERL_DIR/Makefile $runDir\n",
 		    "cd $runDir >> $stdout\n\n",
+		    "cp -f input.geos.$met\_$grid\_$sim input.geos >> $stdout\n",
+		    "rm -f input.geos.$met\_$grid\_$sim >> $stdout\n",
  	            "$makeCmd unittest >> $stdout\n", #);
 		    "rm -f Makefile\n",
                     "\n\# %%% Create web page w/ unit test matrix %%%\n",

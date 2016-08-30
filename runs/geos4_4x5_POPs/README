@@ -1,9 +1,10 @@
-This directory is the run directory for the GEOS-Chem unit tester,
-for GEOS-4 met fields, 4x5 grid, and the POPs simulation.
+This directory is the GEOS-Chem run directory for the 4x5 POPs simulation with
+GEOS-4 meteorology.
 
 The HEMCO configuration file is linked to HEMCO_Config.template.POPs.[SPECIES]
 stored in ../chem_inputs/specialty.  This allows us to keep a single set of
-these files in one location, for convenience.
+these files in one location, for convenience. A new HEMCO_Config.rc file will
+be created from the HEMCO_Config.template file each time the unit tester is run.
 
 A new input.geos file will be created from the input.geos.template.[SPECIES]
 file each time the unit tester is run. This allows the location of the data

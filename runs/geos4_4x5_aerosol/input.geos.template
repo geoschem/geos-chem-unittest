@@ -4,9 +4,7 @@ GEOS-CHEM UNIT TEST SIMULATION: geos4_4x5_aerosol
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : {DATA_ROOT}/NC_RESTARTS/initial_GEOSChem_rst.geos4_4x5_aerosol.nc
-Make new restart file?  : T
-Out bpch rst (if using) : trac_rst.geos4_4x5_aerosol.YYYYMMDDhhmm
+Input restart file      : {DATA_ROOT}/SPC_RESTARTS/initial_GEOSChem_rst.geos4_4x5_aerosol.nc
 Root data directory     : {DATA_ROOT}
  => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
@@ -21,36 +19,36 @@ Wait for met fields?    : F
 Use variable tropopause?: T
 Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
-%%% TRACER MENU %%%     : 
+%%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 10
-Number of Tracers       : 20
-Tracer Entries -------> : TR#   Name  g/mole   Tracer Members; () = emitted 
-Tracer #1               :   1   DMS     62.0
-Tracer #2               :   2   SO2     64.0
-Tracer #3               :   3   SO4     96.0
-Tracer #4               :   4   SO4s    96.0
-Tracer #5               :   5   MSA     96.0
-Tracer #6               :   6   NH3     17.0
-Tracer #7               :   7   NH4     18.0
-Tracer #8               :   8   NIT     62.0
-Tracer #9               :   9   NITs    62.0
-Tracer #10              :  10   H2O2    34.0
-Tracer #11              :  11   BCPI    12.0
-Tracer #12              :  12   OCPI    12.0
-Tracer #13              :  13   BCPO    12.0
-Tracer #14              :  14   OCPO    12.0
-Tracer #15              :  15   DST1    29.0
-Tracer #16              :  16   DST2    29.0
-Tracer #17              :  17   DST3    29.0
-Tracer #18              :  18   DST4    29.0
-Tracer #19              :  19   SALA    31.4
-Tracer #20              :  20   SALC    31.4
+Number of Advected Spec.: 20
+Species Entries ------->: Name
+Species #1              : DMS
+Species #2              : SO2
+Species #3              : SO4
+Species #4              : SO4s
+Species #5              : MSA
+Species #6              : NH3
+Species #7              : NH4
+Species #8              : NIT
+Species #9              : NITs
+Species #10             : H2O2
+Species #11             : BCPI
+Species #12             : OCPI
+Species #13             : BCPO
+Species #14             : OCPO
+Species #15             : DST1
+Species #16             : DST2
+Species #17             : DST3
+Species #18             : DST4
+Species #19             : SALA
+Species #20             : SALC
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
- => Fill Negative Values: T 
+ => Fill Negative Values: T
  => IORD, JORD, KORD    : 3  3  7
-Transport Timestep [min]: 10   
+Transport Timestep [min]: 10
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
@@ -112,7 +110,7 @@ Calc. strat. aero. OD?  : F
 Turn on Dry Deposition? : T
 Turn on Wet Deposition? : T
 ------------------------+------------------------------------------------------
-%%% CHEMISTRY MENU %%%  : 
+%%% CHEMISTRY MENU %%%  :
 Turn on Chemistry?      : T
 Use linear. strat. chem?: F
  => Use Linoz for O3?   : F
@@ -120,9 +118,6 @@ Use UCX strat. chem?    : F
 Online CH4 chemistry?   : F
 Active strat. H2O?      : F
 Chemistry Timestep [min]: 20
-Use spec_rst (bpch only): F
- => CSPEC rst filename? : none
-USE solver coded by KPP : F
 Online O3 for FAST-JX?  : F
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
@@ -137,7 +132,7 @@ Radiation Timestep [min]: 180
 Species fluxes          : 0 0 0 0 0 0 0 0 0 1
  ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM]
 ------------------------+------------------------------------------------------
-%%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
+%%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH
 Schedule output for JAN : 3000000000000000000000000000000
 Schedule output for FEB : 30000000000000000000000000000
 Schedule output for MAR : 3000000000000000000000000000000
@@ -155,29 +150,29 @@ Schedule output for DEC : 3000000000000000000000000000000
 diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
-%%% DIAGNOSTIC MENU %%% : 
+%%% DIAGNOSTIC MENU %%% :
 Binary punch file name  : trac_avg.geos4_4x5_aerosol.YYYYMMDDhhmm
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
-ND01: Rn/Pb/Be source   :  0   all        
-ND02: Rn/Pb/Be decay    :  0   all             
-ND03: Hg emissions, P/L :  0   all                
-ND04: CO2 Sources       :  0   all                
-ND05: Sulfate prod/loss : 30   all               
-ND06: Dust aer source   :  1   all                
-ND07: Carbon aer source : 30   all                
-ND08: Seasalt aer source:  1   all                
-ND09: -                 :  0   all                
-ND10: -                 :  0   all                
-ND11: Acetone sources   :  0   all                 
-ND12: BL fraction       :  0   all              
-ND13: Sulfur sources    : 47   all                
-ND14: Cld conv mass flx :  0   all                
-ND15: BL mix mass flx   :  0   all                
-ND16: LS/Conv prec frac :  0   all               
-ND17: Rainout fraction  :  0   all            
-ND18: Washout fraction  :  0   all            
-ND19: CH4 loss          :  0   all            
-ND21: Optical depths    :  0   all            
+ND01: Rn/Pb/Be source   :  0   all
+ND02: Rn/Pb/Be decay    :  0   all
+ND03: Hg emissions, P/L :  0   all
+ND04: CO2 Sources       :  0   all
+ND05: Sulfate prod/loss : 30   all
+ND06: Dust aer source   :  1   all
+ND07: Carbon aer source : 30   all
+ND08: Seasalt aer source:  1   all
+ND09: -                 :  0   all
+ND10: -                 :  0   all
+ND11: Acetone sources   :  0   all
+ND12: BL fraction       :  0   all
+ND13: Sulfur sources    : 47   all
+ND14: Cld conv mass flx :  0   all
+ND15: BL mix mass flx   :  0   all
+ND16: LS/Conv prec frac :  0   all
+ND17: Rainout fraction  :  0   all
+ND18: Washout fraction  :  0   all
+ND19: CH4 loss          :  0   all
+ND21: Optical depths    :  0   all
 ND22: J-Values          :  0   1 2 7 8 9 11 13 14 20 44 46 47 49 50 51 58 59 64 65
       => JV time range  :      11 13
 ND24: E/W transpt flx   :  0   all
@@ -199,9 +194,9 @@ ND39: Wetdep scav loss  : 30   all
 ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 :  0   all
-  ==> OH/HO2 time range :       0 24   
+  ==> OH/HO2 time range :       0 24
 ND44: Drydep flx/vel    :  1   2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
-ND45: Tracer Conc's     : 30   all 
+ND45: Tracer Conc's     : 30   all
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions:  1   all
 ND47: 24-h avg trc conc :  0   all
@@ -239,7 +234,7 @@ Number of stations      :   0
 %%% ND49 MENU %%%       :
 Turn on ND49 diagnostic : F
 Inst 3-D timeser. file  : tsYYYYMMDD.bpch
-Tracers to include      : 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 71 72 74 75 
+Tracers to include      : 1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 71 72 74 75
 Frequency [min]         : 60
 IMIN, IMAX of region    :   1  144
 JMIN, JMAX of region    :   1  91
@@ -288,18 +283,18 @@ JMIN, JMAX of region    :  23  46
 Turn on P/L (ND65) diag?: F
 # of levels for ND65    : 30
 Save O3 P/L (ND20)?     : F
-Number of P/L families  : 4   
+Number of P/L families  : 4
 1st chemical family     : POX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3 BrO HOBr BrNO2 2BrNO3 MPN
 2nd chemical family     : LOX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3 BrO HOBr BrNO2 2BrNO3 MPN
 3rd chemical family     : PCO: CO
 4th chemical family     : LCO: CO
 ------------------------+------------------------------------------------------
-%%% BENCHMARK MENU %%%  :  
+%%% BENCHMARK MENU %%%  :
 Save benchmark output?  : F
 File w/ initial Ox      : Ox.mass.initial
 File w/ final Ox        : Ox.mass.final
 ------------------------+------------------------------------------------------
-%%% NESTED GRID MENU %%%:  
+%%% NESTED GRID MENU %%%:
 Save TPCORE BC's        : F
 Input BCs at 2x2.5?     : F
 Over North America?     : F
@@ -317,8 +312,8 @@ LL box of BC region     :   9  26
 UR box of BC region     :  29  41
 I0_W, J0_W, I0_E, J0_E  :   3   3   3   3
 ------------------------+------------------------------------------------------
-%%% UNIX CMDS MENU %%%  : 
-Background symbol       : & 
+%%% UNIX CMDS MENU %%%  :
+Background symbol       : &
 Redirect symbol         :  >
 Unix remove command     : rm -f
 Unix pathname separator : /

@@ -282,10 +282,12 @@ sub makeInputGeos($$$$$$) {
   # $time1    : Starting time for GEOS-Chem model run (e.g. 000000  ) 
   # $date2    : Ending   date for GEOS-Chem model run (e.g. 20040102)
   # $time2    : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
+  # $met      : Met field type  (passed via MET flag in G-C compilation)
   # $dataRoot : GEOS-chem root data directory
   # $template : Path for input.geos "template" file
   # $fileName : Path for input.geos file (w/ dates replaced)
-  my ( $date1, $time1, $date2, $time2, $dataRoot, $inFile, $outFile ) = @_;
+  my ( $date1,  $time1,  $date2, $time2, $met, $dataRoot,
+       $inFile, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
 # &makeInputGeos( 20130101,             000000, 
@@ -296,6 +298,8 @@ sub makeInputGeos($$$$$$) {
 # !REVISION HISTORY:
 #  23 May 2013 - R. Yantosca - Initial version, adapted from NRT-ARCTAS
 #  31 Jul 2013 - R. Yantosca - Change permission of input.geos to chmod 777
+#  13 Jul 2016 - M. Sulprizio- Pass met field as argument and use to replace
+#                              {MET} token in input.geos
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -331,11 +335,12 @@ sub makeInputGeos($$$$$$) {
     # Remove newline character
     chomp( $line );
 
-    # Replace start & end dates
+    # Replace tokens
     $line =~ s/{DATE1}/$dStr1/g;
     $line =~ s/{TIME1}/$tStr1/g;
     $line =~ s/{DATE2}/$dStr2/g; 
     $line =~ s/{TIME2}/$tStr2/g;
+    $line =~ s/{MET}/$met/g;
     $line =~ s/{DATA_ROOT}/$dataRoot/g;
 
     # Write to output file
@@ -610,6 +615,10 @@ sub readResults($$) {
 #  02 Jul 2014 - R. Yantosca - Improved the search method for HEMCO, UCX files
 #  25 Mar 2015 - R. Yantosca - Now always validate the HEMCO restart files
 #  25 Mar 2015 - R. Yantosca - The UCX PSC restart is removed, so ignore it
+#  14 Jul 2016 - M. Sulprizio- Remove initialization of unitTests. UT run dirs
+#                              are now consolidated so using 'ls -1 $runRoot'
+#                              to populate unitTests no longer works. Instead
+#                              unitTests is populated when the log file is read.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -636,32 +645,6 @@ sub readResults($$) {
   # Arrays
   my @txt      = ();
   my @subStr   = ();
-
-  #---------------------------------------------------------------------------
-  # Initialization
-  #---------------------------------------------------------------------------
-  
-  # Initialize the UNITTEST hash w/ all possible values
-  # Set background color to white
-  @txt = qx( ls -1 $runRoot );
-
-  # Loop over all subdirectories in the root run directory
-  foreach $utName ( @txt ) { 
-    
-    # Strip newline characters
-    chomp( $utName );
-    
-    # Change name of soa_svpoa to soasvpoa to avoid problems
-    if ( $utName =~ m/soa_svpoa/ ) { $utName =~ s/soa_svpoa/svpoa/g; }
-
-    # Give each unit test the background color of white
-    $unitTests{ $utName } = $WHITE;
-  }
-
-  # Also add two entries for the version tag and date of submission
-  $unitTests{ "UNIT_TEST_VERSION"  } = "";
-  $unitTests{ "UNIT_TEST_DATE"     } = "";
-  $unitTests{ "UNIT_TEST_DESCRIBE" } = "";
 
   #---------------------------------------------------------------------------
   # Read the results.log file
@@ -721,7 +704,7 @@ sub readResults($$) {
       # Initialize flags
       $bpch   = 1;
       $rst    = 1;
-      $hemco   = 1;
+      $hemco  = 1;
       $psc    = 1;
 
       # Check the results of the BPCH file    
@@ -798,6 +781,8 @@ sub makeMatrix($$%) {
 #  21 Mar 2014 - R. Yantosca - Initial version
 #  24 Mar 2014 - R. Yantosca - Now pass %unitTests hash as an argument
 #  07 Apr 2014 - R. Yantosca - Now make $webFile chmod 664
+#  14 Jul 2016 - M. Sulprizio- Update to replace #FFFFFF string with utColor 
+#                              if utName matches the name in the html file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -808,9 +793,11 @@ sub makeMatrix($$%) {
   my $utColor = "";
   my $utName  = "";
   my $line    = "";
+  my $name    = "";
 
   # Arrays
   my @txt     = ();
+  my @subStr  = ();
 
   #---------------------------------------------------------------------------
   # makeMatrix begins here!
@@ -829,10 +816,38 @@ sub makeMatrix($$%) {
 
     # Strip newlines
     chomp( $line );
-
-    # Text-replace the proper color for each unit test
+ 
+    # Loop over unit test names
     while ( ( $utName, $utColor ) = each( %unitTests ) ) { 
-      $line =~ s/$utName/$utColor/g;
+
+      # Text-replace header information
+      if ( ( index ($line, "UNIT_TEST_DESCRIBE") != -1 ) ||
+           ( index ($line, "UNIT_TEST_DATE"    ) != -1 ) ||
+           ( index ($line, "UNIT_TEST_VERSION" ) != -1 ) ) {
+        $line =~ s/$utName/$utColor/g;
+      }
+
+      # Look for bgcolor="#FFFFFF" (white)
+      if ( index ($line, "\#FFFFFF") != -1 ) {
+
+        # Obtain unit test name from html file
+        # Names are in html comments <!-- -->, so check for '--' and split
+        if ( index ($line, '--') != -1 ) {
+
+          @subStr = split( '--', $line );
+          $name   = $subStr[1];
+          $name   =~ s/^\s+//; 
+          $name   =~ s/\s+$//;
+
+	  # Check if utName matches the name in html file
+          if ( $utName =~ m/$name/ ) {
+
+            # Text-replace the proper color for each unit test
+            $line =~ s/\#FFFFFF/$utColor/g;
+
+	  }
+        }
+      }
     }	
 
     # Write to output file
@@ -874,7 +889,7 @@ sub makeTxtMatrix($%) {
   my ( $txtFile, %unitTests ) = @_;
 #
 # !CALLING SEQUENCE:
-#  &makeMatrix( $txtFile, %unitTests );
+#  &makeTxtMatrix( $txtFile, %unitTests );
 #
 # !REVISION HISTORY:
 #  21 Mar 2014 - R. Yantosca - Initial version, based on &makeMatrix
@@ -892,14 +907,14 @@ sub makeTxtMatrix($%) {
   my $padSpc  = 0;
 
   #---------------------------------------------------------------------------
-  # makeMatrix begins here!
+  # makeTxtMatrix begins here!
   #---------------------------------------------------------------------------
 
   # Open output file
   open( O, ">$txtFile" ) or die "Cannot open $txtFile!\n";
 
   # Write header line
-  print O "GEOS-Chem Unit Test             : RESULT\n"; # 
+  print O "GEOS-Chem Unit Test             : RESULT\n";
   print O '-'x42 . "\n";
 
   # Print out the results from each unit test
