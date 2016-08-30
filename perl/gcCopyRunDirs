@@ -459,7 +459,7 @@ sub doCopyDirs($$) {
 	    &makeInputs( $start, $end,  $copyDir, $met, $grid, $nest, $sim );
 
 	    # Remove the output files from the copied run dir
-	    $cmd =  "rm -f $copyDir/input.geos.template";
+	    $cmd =  "rm -f $copyDir/input.geos.*";
 	    $cmd .= " $copyDir/HEMCO_Config.template";
 	    $cmd .= " $copyDir/trac_avg.*";
 	    $cmd .= " $copyDir/trac_rst.*";
