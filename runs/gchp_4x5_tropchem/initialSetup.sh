@@ -13,6 +13,11 @@ fi
 ln -s $codePath CodeDir
 ln -s CodeDir/bin/geos geos
 
+# Replace the GEOS-Chem Classic Makefile with the GCHP Makefile
+if [[ -f Makefile_GCHP ]]; then
+  mv Makefile_GCHP Makefile
+fi
+
 # Now set up paths to the meteorological data
 read -p "Are you on Odyssey [y/n]? " onOdyssey
 # Make lower-case

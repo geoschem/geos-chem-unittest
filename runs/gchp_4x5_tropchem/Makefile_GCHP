@@ -1,0 +1,247 @@
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: Makefile
+#
+# !DESCRIPTION: Utility Makefile for the GCHP run directory.
+#\\
+#\\
+# !REMARKS:
+#   (1) This Makefile currently does not work for source code compiling
+#       because the path suffixes for some GCHP files are appended to
+#       the run directory path rather than the source code directory.
+#       There may be path variables set to current directory that I have
+#       not yet found but that are used in GCHP subdirectory Makefiles.
+#   (2) This file only works (except for compiling) with recent GCHP_Dev
+#       updates made by L. Lundgren to the GCHP/Makefile.
+# 
+# !REVISION HISTORY: 
+#  2016 Aug 30 - E. Lundgren - Initial version
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+# Unix shell (we'll assume Bash, which is on every Linux system)
+SHELL        :=/bin/bash
+
+###############################################################################
+#####                                                                     #####
+#####   CONFIGURABLE TOKENS: You can modify these for your environment.   #####
+#####                                                                     #####
+###############################################################################
+
+# GEOS-Chem run log filename prefix
+ifndef VERSION
+ VERSION     :=v11-01
+endif
+
+# Source code location
+ifndef GC_DIR
+ CODEDIR_GC :=$(HOME)/regal/GCHP/Code.GCHP_Dev
+endif
+
+# Output log file destination (default is run directory) 
+ifndef LOG_DIR 
+ LOG_DIR     :=.
+endif
+
+###############################################################################
+#####                                                                     #####
+#####  DEFAULT COMPILATION OPTIONS: Set various switches if not defined   #####
+#####  (currently not used in GCHP)                                       #####
+###############################################################################
+
+# to be added. For now, all options are hard-coded below
+
+###############################################################################
+#####                                                                     #####
+#####  RUN OPTIONS: Get various settings from the run directory name,     #####
+#####               or from the type of simulation that is being used.    #####
+#####                                                                     #####
+###############################################################################
+
+# GCHP code directory path
+CODEDIR_GCHP     :=$(CODEDIR_GC)/GCHP
+
+# Run directory path
+RUN_DIR      :=$(shell pwd)
+
+# Log files that will be written to the log directory
+CLEAN_BUILD_LOG :="$(RUN_DIR)/clean_build.log"
+STD_BUILD_LOG   :="$(RUN_DIR)/std_build.log"
+DEBUG_BUILD_LOG :="$(RUN_DIR)/debug_build.log"
+MAPL_LOG        :="$(RUN_DIR)/MAPL.log"
+
+# Executables
+EXE          :=geos
+
+# Code git information for GEOS-Chem repo
+CODE_BRANCH_GC :=$(shell git -C $(CODEDIR_GC) rev-parse --abbrev-ref HEAD)
+LAST_COMMIT_GC :=$(shell git -C $(CODEDIR_GC) log -n 1 --pretty=format:"%s") 
+COMMIT_DATE_GC :=$(shell git -C $(CODEDIR_GC) log -n 1 --pretty=format:"%cd") 
+COMMIT_USER_GC :=$(shell git -C $(CODEDIR_GC) log -n 1 --pretty=format:"%cn") 
+COMMIT_HASH_GC :=$(shell git -C $(CODEDIR_GC) log -n 1 --pretty=format:"%h") 
+CODE_STATUS_GC :=$(shell git -C $(CODEDIR_GC) status -s) 
+
+# Code git information for GCHP repo
+CODE_BRANCH_GCHP:=$(shell git -C $(CODEDIR_GCHP) rev-parse --abbrev-ref HEAD)
+LAST_COMMIT_GCHP:=$(shell git -C $(CODEDIR_GCHP) log -n 1 --pretty=format:"%s")
+COMMIT_DATE_GCHP:=$(shell git -C $(CODEDIR_GCHP) log -n 1 --pretty=format:"%cd")
+COMMIT_USER_GCHP:=$(shell git -C $(CODEDIR_GCHP) log -n 1 --pretty=format:"%cn")
+COMMIT_HASH_GCHP:=$(shell git -C $(CODEDIR_GCHP) log -n 1 --pretty=format:"%h") 
+CODE_STATUS_GCHP:=$(shell git -C $(CODEDIR_GCHP) status -s) 
+
+###############################################################################
+#####                                                                     #####
+#####                          MAKEFILE TARGETS                           #####
+#####                                                                     #####
+###############################################################################
+
+# PHONY targets don't actually compile anything. They either are
+# synonyms for other targets, they remove files, or they print output.
+.PHONY: build_clean build_standard
+.PHONY: run_6cpu    run_12cpu
+.PHONY: fileclean   logclean   dataclean     allclean
+.PHONY: execlean    gcclean    nuclearclean  superclean
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%
+#  Build Only               %
+#%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# It seems compiling remotely does not work yet since the compiler still
+# is looking for files in the run directory. For now, use the existing
+# shell scripts. Revisit later...
+build_clean:
+	./CLEAN_compile.sh
+#	@$(MAKE) allclean
+#	@$(MAKE) -C $(CODEDIR_GCHP) EXTERNAL_GRID=yes    DEVEL=yes           \
+#                                    the_nuclear_option	
+#	@$(MAKE) -C $(CODEDIR_GC)   NC_DIAG=yes          CHEM=tropchem       \
+#                                    EXTERNAL_GRID=yes    DEVEL=yes           \
+#                                    TRACEBACK=yes        MET=geos-fp         \
+#                                    GRID=4x5             NO_REDUCED=yes      \
+#                                    UCX=no               hpc 2>&1            \
+#                                    | tee $(CLEAN_BUILD_LOG)
+#	cp -f $(CODEDIR_GCHP)/bin/geos $(EXE_MP)
+#	@$(MAKE) printbuildinfo > $(RUNDIR)/last_clean_build.log
+#
+
+build_standard:
+	./STD_compile.sh
+#	@$(MAKE) execlean
+#	@$(MAKE) -C $(CODEDIR_GC) NC_DIAG=yes     CHEM=tropchem              \
+#                                  EXTERNAL_GRID=yes    DEVEL=yes             \
+#                                  TRACEBACK=yes        MET=geos-fp           \
+#                                  GRID=4x5             NO_REDUCED=yes        \
+#                                  UCX=no               hpc 2>&1              \
+#                                  | tee $(STD_BUILD_LOG)
+#	cp -f $(CODEDIR_GCHP)/bin/geos $(EXE_MP)
+#	@$(MAKE) printbuildinfo > $(RUNDIR)/lastbuild.log
+#
+#build_fast:
+#
+#build_debug:
+#	@$(MAKE) execlean
+#	@$(MAKE) -C $(CODEDIR_GC) HPC=yes realclean	
+#	@$(MAKE) -C $(CODEDIR_GC) NC_DIAG=yes          CHEM=tropchem         \
+#                                   EXTERNAL_GRID=yes    DEBUG=yes            \
+#                                   DEVEL=yes            TRACEBACK=yes        \
+#                                   MET=geos-fp          GRID=4x5             \
+#                                   NO_REDUCED=yes       UCX=no               \
+#                                   hpc 2>&1 | tee $(DEBUG_BUILD_LOG)
+#	@$(MAKE) printbuildinfo > $(RUNDIR)/lastbuild.log
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%
+#  Run Only               %
+#%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+run_6cpus:
+	mpirun -n 6 ./$(EXE) 2>&1 | tee $(MAPL_LOG)
+
+run_12cpus:
+	mpirun -n 12 ./$(EXE) 2>&1 | tee $(MAPL_LOG)
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%
+#  Remove Output Files    %
+#%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+fileclean: dataclean logclean
+
+dataclean: 
+	rm -f $(RUN_DIR)/OutputDir/GCHP.center.*
+	rm -f $(RUN_DIR)/OutputDir/GCHP.regrid.*
+	rm -f trac_avg.*
+	rm -f tracerinfo.dat
+	rm -f diaginfo.dat
+	rm -f cap_restart
+	rm -f regrid.rcx
+	rm -f center.rcx
+	rm -f *~
+
+logclean: 
+	rm -f HEMCO.log
+	rm -f PET00000.GEOSCHEMchem.log
+	rm -f logfile.000000.out
+	rm -f MAPL.log
+	rm -f smv2.log
+	rm -f slurm-*
+	rm -f 1
+	rm -f EGRESS 
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%
+#  Clean Source Code      %
+#   (BE CAREFUL!!!)       %
+#%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+allclean: 
+	@$(MAKE) execlean 
+	@$(MAKE) gcclean 
+	@$(MAKE) nuclearclean
+
+execlean: 
+	rm -f $(CODEDIR_GCHP)/bin/geos
+	rm -f $(CLEAN_BUILD_LOG)
+	rm -f $(STD_BUILD_LOG)
+	rm -f $(DEBUG_BUILD_LOG)
+
+gcclean:
+	@$(MAKE) -C $(CODEDIR_GC) HPC=yes realclean	
+
+nuclearclean:
+	@$(MAKE) -C $(CODEDIR_GCHP) EXTERNAL_GRID=yes    DEVEL=yes           \
+                                     the_nuclear_option	
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%
+#  Clean Everything       %
+#   (BE CAREFUL!!!)       %
+#%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+superclean: execlean gcclean nuclearclean fileclean
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%
+#  Print information      %
+#%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+printbuildinfo:
+	@echo "LAST BUILD INFORMATION - GEOS-Chem:"
+	@echo "   CODEDIR_GC        : $(CODEDIR_GC)"
+	@echo "   CODE_BRANCH_GC    : $(CODE_BRANCH_GC)"
+	@echo "   LAST_COMMIT_GC    : $(LAST_COMMIT_GC)"
+	@echo "   COMMIT_DATE_GC    : $(COMMIT_DATE_GC)"
+	@echo "   COMMIT_USER_GCHP  : $(COMMIT_USER_GCHP)"
+	@echo "   COMMIT_HASH_GCHP  : $(COMMIT_HASH_GCHP)"
+	@echo "   CODE_STATUS_GCHP  : $(CODE_STATUS_GCHP)"
+	@echo "LAST BUILD INFORMATION - GCHP:"
+	@echo "   CODEDIR_GCHP      : $(CODEDIR_GCHP)"
+	@echo "   CODE_BRANCH_GCHP  : $(CODE_BRANCH_GCHP)"
+	@echo "   LAST_COMMIT_GCHP  : $(LAST_COMMIT_GCHP)"
+	@echo "   COMMIT_DATE_GCHP  : $(COMMIT_DATE_GCHP)"
+	@echo "   COMMIT_USER_GCHP  : $(COMMIT_USER_GCHP)"
+	@echo "   COMMIT_HASH_GCHP  : $(COMMIT_HASH_GCHP)"
+	@echo "   CODE_STATUS_GCHP  : $(CODE_STATUS_GCHP)"
+
+
