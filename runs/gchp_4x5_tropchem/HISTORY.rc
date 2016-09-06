@@ -17,7 +17,7 @@ COLLECTIONS: 'center',
                   'TRC_O3',  'GIGCchem',
   			  ::
   regrid.template:  '%y4%m2%d2.nc4',
-  regrid.resolution: 144 91,
+  regrid.resolution: 72 46,
   regrid.format:    'CFIO',
   regrid.frequency:  010000,
   regrid.duration:   240000,
