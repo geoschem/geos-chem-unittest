@@ -64,8 +64,8 @@ echo '===> Run ended at' `date` >> $log
 # Clean up
 #-------------------------------------------------
 # Rename output file
-if [ -f trac_avg.geosfp_4x5_benchmark.201307010000 ]; then
-   mv -fv trac_avg.geosfp_4x5_benchmark.201307010000 trac_avg.$id
+if [ -f trac_avg.geosfp_4x5_standard.201307010000 ]; then
+   mv -fv trac_avg.geosfp_4x5_standard.201307010000 trac_avg.$id
 fi
 
 # Echo info from computational cores to log file for displaying results
