@@ -59,22 +59,22 @@
 #--------|-----------|------|------------|------------|------------|---------|
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
 #--------|-----------|------|------------|------------|------------|---------|
-  geosfp   4x5         -      standard     2013070100   2013070106   -
-  geosfp   4x5         -      tropchem     2013070100   2013070106   -
-  geosfp   4x5         -      soa          2013070100   2013070106   -
-  geosfp   4x5         -      soa_svpoa    2013070100   2013070106   -
-  geosfp   4x5         -      aciduptake   2013070100   2013070106   -
-  geosfp   4x5         -      UCX          2013070100   2013070106   -
-  geosfp   4x5         -      RRTMG        2013070100   2013070106   -
-  geosfp   4x5         -      RnPbBe       2013070100   2013070106   -
-  geosfp   4x5         -      Hg           2013010100   2013010106   -
-  geosfp   4x5         -      POPs         2013070100   2013070106   -
-  geosfp   4x5         -      TOMAS40      2013070100   2013070106   -
-  geosfp   4x5         -      CH4          2013070100   2013070106   -
-  geosfp   4x5         -      tagO3        2013070100   2013070106   -
-  geosfp   4x5         -      tagCO        2013070100   2013070106   -
-  geosfp   2x25        -      CO2          2013070100   2013070106   -
-  geosfp   4x5         -      aerosol      2013070100   2013070106   - 
+  geosfp   4x5         -      standard     2013070100   2013070101   -
+  geosfp   4x5         -      tropchem     2013070100   2013070101   -
+  geosfp   4x5         -      soa          2013070100   2013070101   -
+  geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
+  geosfp   4x5         -      aciduptake   2013070100   2013070101   -
+  geosfp   4x5         -      UCX          2013070100   2013070101   -
+  geosfp   4x5         -      RRTMG        2013070100   2013070101   -
+  geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
+  geosfp   4x5         -      Hg           2013010100   2013010101   -
+  geosfp   4x5         -      POPs         2013070100   2013070101   -
+  geosfp   4x5         -      TOMAS40      2013070100   2013070101   -
+  geosfp   4x5         -      CH4          2013070100   2013070101   -
+  geosfp   4x5         -      tagO3        2013070100   2013070101   -
+  geosfp   4x5         -      tagCO        2013070100   2013070101   -
+  geosfp   2x25        -      CO2          2013070100   2013070101   -
+  geosfp   4x5         -      aerosol      2013070100   2013070101   - 
 #  geosfp   025x03125   ch     tropchem     2013070100   201307010010 -
 #  geosfp   025x03125   na     tropchem     2013070100   201307010010 -
 !END OF RUNS:
