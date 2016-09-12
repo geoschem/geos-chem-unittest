@@ -315,6 +315,8 @@ sub doCopyDirs($$) {
   my $file    = "";
   my $filename= "";
   my $user    = "";
+  my $date1   = "";
+  my $metType = "";
 
   # Arrays
   my @txt     = ();
@@ -499,6 +501,16 @@ sub doCopyDirs($$) {
 	  $cmd = "$COPY_CMD ./difftest $copyDir";
 	  qx/$cmd/;
 
+	  # Get start date in YYYYMMDD format
+          $date1= substr( $start, 0, 8 );
+
+	  # Define met field for IDL plotting routines
+          if ( ( $sim =~ m/standard/ ) || ( $sim =~ m/UCX/ ) ) {
+             $metType = "$met";
+          } else {
+             $metType = "${met}_47L";
+          }
+
 	  # Edit the copied Makefile and shell scripts to reflect
           # user settings in DiffTest.input
 	  &replaceText("$copyDir/Makefile",        "CODE_REF_PATH","$CODE_REF");
@@ -509,6 +521,10 @@ sub doCopyDirs($$) {
 	  &replaceText("$copyDir/locateDiagDiffs.sh",   "MET_GRID_SIM","$baseDir");
 	  &replaceText("$copyDir/locateDiagDiffs.sh",   "START_DATE",  "${start}00");
 	  &replaceText("$copyDir/locateDiagDiffs.sh",   "END_DATE",    "$end");
+	  &replaceText("$copyDir/plots/PlotDiffs.input", "MET_GRID_SIM", "$baseDir");
+	  &replaceText("$copyDir/plots/PlotDiffs.input", "START_DATE", "${start}00");
+	  &replaceText("$copyDir/plots/PlotDiffs.input", "DATE1", "$date1");
+	  &replaceText("$copyDir/plots/PlotDiffs.input", "MET_TYPE", "$metType");
 	  
 	  # Copy run directory to DiffTest Dev subdirectory
 	  $cmd = "$COPY_CMD $runDir/* $devDir";
