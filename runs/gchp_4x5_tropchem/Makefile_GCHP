@@ -71,9 +71,9 @@ CODEDIR_GCHP     :=$(CODEDIR_GC)/GCHP
 RUN_DIR      :=$(shell pwd)
 
 # Log files that will be written to the log directory
-CLEAN_BUILD_LOG :="$(RUN_DIR)/clean_build.log"
-STD_BUILD_LOG   :="$(RUN_DIR)/std_build.log"
-DEBUG_BUILD_LOG :="$(RUN_DIR)/debug_build.log"
+CLEAN_BUILD_LOG :="$(RUN_DIR)/compile_clean.log"
+STD_BUILD_LOG   :="$(RUN_DIR)/compile_standard.log"
+DEBUG_BUILD_LOG :="$(RUN_DIR)/compile_debug.log"
 MAPL_LOG        :="$(RUN_DIR)/MAPL.log"
 
 # Executables
@@ -116,8 +116,8 @@ CODE_STATUS_GCHP:=$(shell git -C $(CODEDIR_GCHP) status -s)
 # is looking for files in the run directory. For now, use the existing
 # shell scripts. Revisit later...
 build_clean:
-	./CLEAN_compile.sh 2>&1 | tee clean_compile.log
-	@$(MAKE) printbuildinfo >> clean_compile.log
+	./compile_clean.sh 2>&1 | tee $(CLEAN_BUILD_LOG)
+	@$(MAKE) printbuildinfo >> $(CLEAN_BUILD_LOG)
 #	@$(MAKE) allclean
 #	@$(MAKE) -C $(CODEDIR_GCHP) EXTERNAL_GRID=yes    DEVEL=yes           \
 #                                    the_nuclear_option	
@@ -132,8 +132,8 @@ build_clean:
 #
 
 build_standard:
-	./STD_compile.sh 2>&1 | tee standard_compile.log  
-	@$(MAKE) printbuildinfo >> standard_compile.log
+	./compile_standard.sh 2>&1 | tee $(STD_BUILD_LOG)
+	@$(MAKE) printbuildinfo >> $(STD_BUILD_LOG)
 #	@$(MAKE) execlean
 #	@$(MAKE) -C $(CODEDIR_GC) NC_DIAG=yes     CHEM=tropchem              \
 #                                  EXTERNAL_GRID=yes    DEVEL=yes             \
