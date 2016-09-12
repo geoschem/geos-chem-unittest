@@ -41,7 +41,7 @@ endif
 
 # Source code location
 ifndef GC_DIR
- CODEDIR_GC :=$(HOME)/regal/GCHP/Code.GCHP_Dev
+ CODEDIR_GC :=./CodeDir
 endif
 
 # Output log file destination (default is run directory) 
@@ -116,7 +116,8 @@ CODE_STATUS_GCHP:=$(shell git -C $(CODEDIR_GCHP) status -s)
 # is looking for files in the run directory. For now, use the existing
 # shell scripts. Revisit later...
 build_clean:
-	./CLEAN_compile.sh
+	./CLEAN_compile.sh 2>&1 | tee clean_compile.log
+	@$(MAKE) printbuildinfo >> clean_compile.log
 #	@$(MAKE) allclean
 #	@$(MAKE) -C $(CODEDIR_GCHP) EXTERNAL_GRID=yes    DEVEL=yes           \
 #                                    the_nuclear_option	
@@ -131,7 +132,8 @@ build_clean:
 #
 
 build_standard:
-	./STD_compile.sh
+	./STD_compile.sh 2>&1 | tee standard_compile.log  
+	@$(MAKE) printbuildinfo >> standard_compile.log
 #	@$(MAKE) execlean
 #	@$(MAKE) -C $(CODEDIR_GC) NC_DIAG=yes     CHEM=tropchem              \
 #                                  EXTERNAL_GRID=yes    DEVEL=yes             \
@@ -160,9 +162,11 @@ build_standard:
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 run_6cpus:
+	./checkLink.sh geos
 	mpirun -n 6 ./$(EXE) 2>&1 | tee $(MAPL_LOG)
 
 run_12cpus:
+	./checkLink.sh geos
 	mpirun -n 12 ./$(EXE) 2>&1 | tee $(MAPL_LOG)
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%

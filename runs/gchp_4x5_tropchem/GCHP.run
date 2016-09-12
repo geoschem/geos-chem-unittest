@@ -33,7 +33,7 @@
 #------------------------------------------------------------------------------
 #BOC
 
-# Source the GCHP bashrc
+# Source the GCHP bashrc (you may also use GCHP.ifort15.bashrc)
 source GCHP.ifort13.bashrc
 
 # Set the proper # of threads for OpenMP
