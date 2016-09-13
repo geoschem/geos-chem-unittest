@@ -107,7 +107,7 @@ pro Plot_Diffs, InFile, _EXTRA=e
         /NO_CLOUDDIFF,  $; difference plots of cloud optical depth
         /NO_2D_MET,     $; difference plots for 2-D met fields
         /NO_3D_MET,     $; difference plots for 3-D met fields
-;        /NO_FULLCHEM,   $; enable if chemistry is turned off
+        /NO_FULLCHEM,   $; enable if chemistry is turned off
         _EXTRA = e
 
    ; Create PDF files from the postscript files

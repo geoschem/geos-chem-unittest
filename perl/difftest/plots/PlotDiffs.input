@@ -28,7 +28,7 @@
 Version_1   : Ref
 Model_1     : MET_TYPE
 Date_1      : DATE1
-N_Tracers_1 : 125
+N_Tracers_1 : N_TRACERS
 RunDir_1    : ../%VERSION_1%
 File_1      : %RUNDIR_1%/trac_avg.MET_GRID_SIM.START_DATE.%VERSION_1%
 
@@ -36,7 +36,7 @@ File_1      : %RUNDIR_1%/trac_avg.MET_GRID_SIM.START_DATE.%VERSION_1%
 Version_2   : Dev
 Model_2     : MET_TYPE
 Date_2      : DATE1
-N_Tracers_2 : 125
+N_Tracers_2 : N_TRACERS
 RunDir_2    : ../%VERSION_2%
 File_2      : %RUNDIR_2%/trac_avg.MET_GRID_SIM.START_DATE.%VERSION_2%
 InitFile_2  : %RUNDIR_2%/Ox.mass.initial

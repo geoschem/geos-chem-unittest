@@ -290,6 +290,7 @@ sub doCopyDirs($$) {
 #  18 Dec 2015 - R. Yantosca - Add $UT_ROOT global variable
 #  18 Dec 2015 - R. Yantosca - Replace ~ in $COPY_PATH with home directory
 #  23 Aug 2016 - R. Yantosca - Bug fix: Replace {HOME} in $HEMCO_ROOT
+#  13 Sep 2016 - M. Sulprizio- Replace text in new PlotDiff.input file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -317,6 +318,7 @@ sub doCopyDirs($$) {
   my $user    = "";
   my $date1   = "";
   my $metType = "";
+  my $nTracers= "";
 
   # Arrays
   my @txt     = ();
@@ -511,6 +513,30 @@ sub doCopyDirs($$) {
              $metType = "${met}_47L";
           }
 
+	  # Hardcode number of tracers for several simulations for now
+	  # Eventually, find a better way to obtain these values
+          if    ( $sim =~ m/standard/    ) {
+             $nTracers = "125";
+          } elsif ( $sim =~ m/soa_svpoa/ ) {
+             $nTracers = "102";
+          } elsif ( $sim =~ m/UCX/       ) {
+             $nTracers = "98";
+          } elsif ( $sim =~ m/soa/       ) {
+             $nTracers = "95";
+          } elsif ( $sim =~ m/tropchem/  ) {
+             $nTracers = "68";
+          } elsif ( $sim =~ m/aerosol/   ) {
+             $nTracers = "20";
+          } elsif ( $sim =~ m/POPs/      ) {
+             $nTracers = "5";
+          } elsif ( $sim =~ m/RnPbBe/    ) {
+             $nTracers = "4";
+          } elsif ( $sim =~ m/Hg/        ) {
+             $nTracers = "3";
+          } else {
+             $nTracers = "1";
+          }
+
 	  # Edit the copied Makefile and shell scripts to reflect
           # user settings in DiffTest.input
 	  &replaceText("$copyDir/Makefile",        "CODE_REF_PATH","$CODE_REF");
@@ -525,6 +551,7 @@ sub doCopyDirs($$) {
 	  &replaceText("$copyDir/plots/PlotDiffs.input", "START_DATE", "${start}00");
 	  &replaceText("$copyDir/plots/PlotDiffs.input", "DATE1", "$date1");
 	  &replaceText("$copyDir/plots/PlotDiffs.input", "MET_TYPE", "$metType");
+	  &replaceText("$copyDir/plots/PlotDiffs.input", "N_TRACERS", "$nTracers");
 	  
 	  # Copy run directory to DiffTest Dev subdirectory
 	  $cmd = "$COPY_CMD $runDir/* $devDir";
