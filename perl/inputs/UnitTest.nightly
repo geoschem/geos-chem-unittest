@@ -218,7 +218,7 @@
 # ======= Nested model runs ==================================================
 # geosfp   025x03125   ch     tropchem     2013070100   201307010010   -
 # geosfp   025x03125   na     tropchem     2013070100   201307010010   -
-# merra2   05x0625     ch     tropchem     2013070100   201307010020   -
+# merra2   05x0625     as     tropchem     2013070100   201307010020   -
 # merra2   05x0625     na     tropchem     2013070100   201307010020   -
 # geos5    05x0666     ch     tropchem     2006070100   200607010020   -
 # geos5    05x0666     na     tropchem     2006070100   200607010020   -

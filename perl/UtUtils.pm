@@ -378,7 +378,7 @@ sub makeHemcoCfg($$$$$$$) {
   # $infile   : HEMCO_Config template file w/ replaceable tokens
   # $met      : Met field type  (passed via MET flag in G-C compilation)
   # $grid     : Horizontal grid (passed via GRID flag in G-C compilation)
-  # $nest     : Nested grid suffix (i.e. CH, EU, NA, SE, etc.)
+  # $nest     : Nested grid suffix (i.e. CH, EU, NA, AS, etc.)
   # $simType  : Simulation type (passed via GRID flag in G-C compilation)
   # $verbose  : HEMCO verbose setting (0=no verbose, 3=most verbose)
   # $warnings : HEMCO warnings setting (0=no warnings, 3=most warnings)

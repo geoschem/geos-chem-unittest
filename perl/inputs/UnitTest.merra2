@@ -116,7 +116,7 @@
   merra2   2x25        -      soa_svpoa    2013070100   201307010020   -
   merra2   2x25        -      UCX          2013070100   201307010020   -
   merra2   2x25        -      RRTMG        2013070100   201307010040   -
-  merra2   05x0625     ch     tropchem     2013070100   201307010020   -
+  merra2   05x0625     as     tropchem     2013070100   201307010020   -
   merra2   05x0625     na     tropchem     2013070100   201307010020   -
   merra2   05x0625     na     CH4          2013070100   201307010020   -
  !END OF RUNS:
