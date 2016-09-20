@@ -101,7 +101,7 @@ sub getInfo($$) {
       if ($id == 4 ) { $runinfo = substr( $runinfo, 0, 12 ); }
       if ($id == 5 ) { $runinfo = substr( $runinfo, 0, 12 ); }
   
-     } else {
+    } else {
  
       # Grep for input.geos header
       $line = qx( grep "GEOS-CHEM UNIT TEST SIMULATION" $rundir/input.geos );
@@ -126,13 +126,15 @@ sub getInfo($$) {
 	  if ( $runinfoarray[3] eq "svpoa" ) {
 	    if ( $id == 2 ) { $runinfo = "soa_svpoa" }  # SIM=soa_svpoa
 	    if ( $id == 3 ) { $runinfo = "n" }          # NEST=n
-  	  }
+	  } else {
+	    $runinfo = "$runinfoarray[$id]"; 
+	  }
         } else {
          $runinfo = "$runinfoarray[$id]"; 
         }	
 
       } else {
-         $runinfo = "n";
+        $runinfo = "n";
       }
 
     }				
