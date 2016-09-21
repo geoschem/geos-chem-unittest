@@ -354,8 +354,8 @@ Over Europe?            : F
 TPCORE EU BC directory  : BC_4x5_EU/
 Over China?             : F
 TPCORE CH BC directory  : BC_4x5_CH/
-Over SE Asia region?    : F
-TPCORE SE BC directory  : BC_4x5_SE/
+Over Asia?              : F
+TPCORE AS BC directory  : BC_4x5_AS/
 Over Custom Region?     : F
 TPCORE BC directory     : BC_4x5/
 BC timestep [min]       : 180

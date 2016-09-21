@@ -381,8 +381,8 @@ Over Europe?            : F
 TPCORE EU BC directory  : BC_2x25_EU/
 Over China?             : F
 TPCORE CH BC directory  : BC_2x25_CH/
-Over SE Asia region?    : F
-TPCORE SE BC directory  : BC_2x25_SE/
+Over Asia?              : F
+TPCORE AS BC directory  : BC_2x25_AS/
 Over Custom Region?     : F
 TPCORE BC directory     : BC_2x25/
 BC timestep [min]       : 180
