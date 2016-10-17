@@ -1,0 +1,64 @@
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: GCHP.ifort13.bashrc.glooscap
+#
+# !DESCRIPTION: Use this .bashrc to compile and run GCHP with the Intel 
+#  Fortran Compiler v13 on the glooscap.ace-net.ca cluster.
+#\\
+#\\
+# !CALLING SEQUENCE:
+#  source GCHP.ifort13.bashrc.glooscap  or
+#  . GCHP.ifort13.bashrc.glooscap
+#
+# !REVISION HISTORY:
+#  06 Jan 2015 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+# Load default ACEnet cluster profile
+if [ -f /usr/local/lib/bashrc ]; then
+  source /usr/local/lib/bashrc
+fi
+
+#==============================================================================
+# Modules and paths
+#==============================================================================
+module purge
+module load intel/13.0.0.079 openmpi/intel/1.8.1 netcdf/intel/4.1.3  
+module load git
+module load totalview
+module list
+
+# NetCDF library paths for GEOS-Chem
+export GC_BIN="$NETCDF_DIR/bin"
+export GC_LIB="$NETCDF_DIR/lib"
+export GC_INCLUDE="$NETCDF_DIR/include"
+
+#==============================================================================
+# %%%%% Settings for programming languages and applications %%%%%
+#==============================================================================
+
+# Settings for compilers
+export FC=ifort
+export CC=icc
+export CXX=icpc
+export COMPILER=$FC
+export OMPI_FC=$FC
+export OMPI_CC=$CC
+export OMPI_CXX=$CXX
+
+# Reset the compilers to the MPI wrappers
+if [[ "x$OPENMPI" != x ]]; then
+ export FC=mpifort
+ export CC=mpicc
+ export CXX=mpicxx
+fi
+
+# Max out the stack memory for OpenMP
+# OMP_STACKSIZE works with all compilers; KMP_STACKSIZE works only w/ Intel
+export OMP_STACKSIZE=500m
+ 
