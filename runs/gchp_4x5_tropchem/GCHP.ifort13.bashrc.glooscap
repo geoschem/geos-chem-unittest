@@ -14,7 +14,7 @@
 #  . GCHP.ifort13.bashrc.glooscap
 #
 # !REVISION HISTORY:
-#  06 Jan 2015 - R. Yantosca - Initial version
+#  Use the "gitk" browser to view the version history!
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -43,20 +43,13 @@ export GC_INCLUDE="$NETCDF_DIR/include"
 #==============================================================================
 
 # Settings for compilers
-export FC=ifort
-export CC=icc
-export CXX=icpc
-export COMPILER=$FC
-export OMPI_FC=$FC
-export OMPI_CC=$CC
-export OMPI_CXX=$CXX
-
-# Reset the compilers to the MPI wrappers
-if [[ "x$OPENMPI" != x ]]; then
- export FC=mpifort
- export CC=mpicc
- export CXX=mpicxx
-fi
+export FC=ifort              # Fortran compiler
+export CC=icc                # C compiler
+export CXX=icpc              # C++ compiler
+export COMPILER=$FC          # Tells GEOS-Chem which compiler to use
+export OMPI_FC=$FC           # Tells OpenMPI which Fortran compiler to use
+export OMPI_CC=$CC           # Tells OpenMPI which C compiler to use
+export OMPI_CXX=$CXX         # Tells OpenMPI which C++ compiler to use
 
 # Max out the stack memory for OpenMP
 # OMP_STACKSIZE works with all compilers; KMP_STACKSIZE works only w/ Intel
