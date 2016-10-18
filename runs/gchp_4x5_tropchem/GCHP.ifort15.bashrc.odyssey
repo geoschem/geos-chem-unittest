@@ -20,7 +20,7 @@
 #BOC
 
 # Source systemwide global definitions from /etc/bashrc
-if [[ -f /etc/bashrc ]] ; then
+if [[ -f /etc/bashrc ]]; then
  . /etc/bashrc
 fi
 
@@ -29,6 +29,8 @@ fi
 #==============================================================================
 
 # Load modules
+export LMOD_COLORIZE=yes
+source new-modules.sh 
 module purge
 module load git
 module load intel
