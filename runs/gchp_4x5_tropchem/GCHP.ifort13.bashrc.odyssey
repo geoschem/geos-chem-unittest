@@ -41,7 +41,7 @@ module list
 export PATH=${NETCDF_HOME}/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_HOME}/lib
 
-#export CPATH=/n/sw/fasrcsw/apps/MPI/intel/13.0.079-fasrc01/openmpi/1.8.1-fasrc01/netcdf/4.1.3-fasrc01/include:/n/sw/fasrcsw/apps/MPI/intel/13.0.079-fasrc01/openmpi/1.8.1-fasrc01/hdf5/1.8.12-fasrc03/include:/n/sw/fasrcsw/apps/Comp/intel/13.0.079-fasrc01/zlib/1.2.8-fasrc02/include:/n/sw/fasrcsw/apps/Comp/intel/13.0.079-fasrc01/openmpi/1.8.1-fasrc01/include:/n/sw/fasrcsw/apps/Comp/intel/13.0.079-fasrc01/gsl/1.16-fasrc02/include:/n/sw/intel_cluster_studio-2013/composerxe/include/intel64:/n/sw/fasrcsw/apps/Core/nco/4.5.3-fasrc01/include:/n/sw/fasrcsw/apps/Core/antlr/2.7.7-fasrc01/include:/n/sw/fasrcsw/apps/Core/udunits/2.2.18-fasrc01/include
+export CPATH=/n/sw/fasrcsw/apps/MPI/intel/13.0.079-fasrc01/openmpi/1.8.1-fasrc01/netcdf/4.1.3-fasrc01/include:/n/sw/fasrcsw/apps/MPI/intel/13.0.079-fasrc01/openmpi/1.8.1-fasrc01/hdf5/1.8.12-fasrc03/include:/n/sw/fasrcsw/apps/Comp/intel/13.0.079-fasrc01/zlib/1.2.8-fasrc02/include:/n/sw/fasrcsw/apps/Comp/intel/13.0.079-fasrc01/openmpi/1.8.1-fasrc01/include:/n/sw/fasrcsw/apps/Comp/intel/13.0.079-fasrc01/gsl/1.16-fasrc02/include:/n/sw/intel_cluster_studio-2013/composerxe/include/intel64:/n/sw/fasrcsw/apps/Core/nco/4.5.3-fasrc01/include:/n/sw/fasrcsw/apps/Core/antlr/2.7.7-fasrc01/include:/n/sw/fasrcsw/apps/Core/udunits/2.2.18-fasrc01/include
 
 #==============================================================================
 # Environment variables
