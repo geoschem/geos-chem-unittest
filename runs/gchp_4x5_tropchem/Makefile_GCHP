@@ -56,9 +56,7 @@ CODEDIR_GCHP     :=$(CODEDIR_GC)/GCHP
 RUN_DIR      :=$(shell pwd)
 
 # Log files that will be written to the log directory
-CLEAN_BUILD_LOG :="$(RUN_DIR)/compile_clean.log"
-STD_BUILD_LOG   :="$(RUN_DIR)/compile_standard.log"
-DEBUG_BUILD_LOG :="$(RUN_DIR)/compile_debug.log"
+BUILD_LOG :="$(RUN_DIR)/compile.log"
 MAPL_LOG        :="$(RUN_DIR)/MAPL.log"
 LAST_BUILD      :="$(RUN_DIR)/last_build_code_info.log"
 
@@ -99,15 +97,19 @@ CODE_STATUS_GCHP:=$(shell git -C $(CODEDIR_GCHP) status -s)
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 build_clean:
-	./build.sh compile_clean 2>&1 | tee $(CLEAN_BUILD_LOG)
+	./build.sh compile_clean 2>&1 | tee $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
 build_standard:
-	./build.sh compile_standard 2>&1 | tee $(STD_BUILD_LOG)
+	./build.sh compile_standard 2>&1 | tee $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
 build_debug:
-	./build.sh compile_debug 2>&1 | tee $(DEBUG_BUILD_LOG)
+	./build.sh compile_debug 2>&1 | tee $(BUILD_LOG)
+	@$(MAKE) printbuildinfo > $(LAST_BUILD)
+
+build_mapl:
+	./build.sh compile_mapl 2>&1 | tee $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -163,6 +165,9 @@ allclean:
 
 gcclean:
 	./build.sh clean_gc
+
+maplclean:
+	./build.sh clean_mapl
 
 nuclearclean:
 	./build.sh clean_nuclear

@@ -14,6 +14,7 @@
 #\\
 # !REMARKS:
 #  (1) Implemented arguments options include:
+#         help (lists options)
 #         clean_gc
 #         clean_nuclear
 #         clean_all
@@ -47,6 +48,28 @@ export ESMF_COMM=openmpi
 #   (2) In CodeDir/GCHP/Makefile, change “export ESMF_COMM=openmpi” to 
 #       “export ESMF_COMM=mvapich2”
 # NOTE: eventually these changes will be automatic
+
+###############################
+###       Help              ###
+###############################
+if [[ $1 == "help" ]]; then
+  echo "Script name:"
+  echo "   build.sh"
+  echo "Arguments:"
+  echo "   Accepts single argument indicating clean and/or compile settings."
+  echo "   Currently implemented arguments include:"
+  echo "      clean_gc         - classic only"
+  echo "      clean_nuclear    - GCHP, ESMF, MAPL, FVdycore (be careful!)"
+  echo "      clean_all        - classic, GCHP, ESMF, MAPL, FVdycore (be careful!)"
+  echo "      clean_mapl       - mapl and fvdycore only"
+  echo "      compile_debug    - turns on debug flags, no cleaning"
+  echo "      compile_standard - no cleaning"
+  echo "      compile_mapl     - includes fvdycore"
+  echo "      compile_clean    - cleans and compiles everything (be careful!)"
+  echo "Example usage:"
+  echo "   ./build.sh compile_standard"
+  exit 0
+fi
 
 ###############################
 ###     General Setup       ###
@@ -136,6 +159,15 @@ elif [[ $1 == "compile_clean" ]]; then
 
 else
   echo "Argument passed to util.sh is not defined"
+  echo "Defined options include:"
+  echo "   clean_gc         - classic only"
+  echo "   clean_nuclear    - GCHP, ESMF, MAPL, FVdycore (be careful!)"
+  echo "   clean_all        - classic, GCHP, ESMF, MAPL, FVdycore (be careful!)"
+  echo "   clean_mapl       - mapl and fvdycore only"
+  echo "   compile_debug    - turns on debug flags, no cleaning"
+  echo "   compile_standard - no cleaning"
+  echo "   compile_mapl     - includes fvdycore"
+  echo "   compile_clean    - cleans and compiles everything (be careful!)"
   exit 1
 fi
  # Remove executable, if it exists
