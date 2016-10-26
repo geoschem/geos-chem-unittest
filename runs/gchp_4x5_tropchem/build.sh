@@ -15,6 +15,7 @@
 # !REMARKS:
 #  (1) Implemented arguments options include:
 #         help (lists options)
+#         check_mpi
 #         clean_gc
 #         clean_nuclear
 #         clean_all
@@ -48,11 +49,15 @@ export ESMF_COMPILER=intel
 export ESMF_COMM=openmpi
 #export ESMF_COMM=mvapich2
 
-# WARNING: Code changes are necessary if switching from openmp to mvapich:
-#   (1) In CodeDir/GCHP/GIGC.mk, comment out the OpenMPI line (L53) and 
-#       uncomment the MVAPICH line (55)
-#   (2) In CodeDir/GCHP/Makefile, change “export ESMF_COMM=openmpi” to 
-#       “export ESMF_COMM=mvapich2”
+# WARNING: Code changes are necessary if switching from openmpi to MVAPICH2
+#  To run GCHP with MVAPICH2, you must have the following updates:
+#    (1) In GCHP/GIGC.mk, the OpenMPI lines for setting MPI_LIB are
+#        uncommented out and the MVAPICH line are commented out
+#    (2) In GCHP/Makefile, "export ESMF_COMM=openmpi" is uncommented
+#        and "export ESMF_COMM=mvapich2" are commented out
+#    (3) In build.sh within the run directory, BASHRC is set to a
+#        bashrc that includes "openmpi" in the filename (such as this)
+#        and the ESMF_COMM export is set to openmpi
 #   NOTE: eventually these changes will be automatic
 
 ###############################
@@ -74,6 +79,19 @@ if [[ $1 == "help" ]]; then
   echo "      compile_clean    - cleans and compiles everything (be careful!)"
   echo "Example usage:"
   echo "   ./build.sh compile_standard"
+  exit 0
+fi
+
+##########################################
+###  Check MPI settings in source code ###
+##########################################
+if [[ $1 == "check_mpi" ]]; then
+  echo "*** MPI settings in CodeDir/GCHP/GIGC.mk ***"
+  echo " "
+  grep "MPI settings" -A 11 CodeDir/GCHP/GIGC.mk
+  echo "*** MPI settings in CodeDir/GCHP/Makefile ***"
+  echo " "
+  grep "MPI type" -A 4 CodeDir/GCHP/Makefile
   exit 0
 fi
 
