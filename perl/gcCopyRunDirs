@@ -469,6 +469,12 @@ sub doCopyDirs($$) {
 	    $cmd = "[ -f HEMCO_restart* ] && chmod 444 $copyDir/HEMCO_restart.*";
 	    qx/$cmd/;
 
+	    # If the run directory is GCHP, over-write mv Makefile_GCHP
+	    # into Makefile
+	    if ( $met eq "gchp" ) {
+	      $cmd = "mv $copyDir/Makefile_GCHP $copyDir/Makefile";
+	      qx/$cmd/;
+	    }
           }
         }
 

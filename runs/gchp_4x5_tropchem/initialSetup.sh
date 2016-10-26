@@ -42,11 +42,6 @@ if [[ ! -d $codePath ]]; then
 fi
 ln -s $codePath CodeDir
 
-# Replace the GEOS-Chem Classic Makefile with the GCHP Makefile
-if [[ -f Makefile_GCHP ]]; then
-  mv Makefile_GCHP Makefile
-fi
-
 # Prompt the user on whether using Odyssey (Harvard)
 read -p "Are you on Odyssey [y/n]? " onOdyssey
 
