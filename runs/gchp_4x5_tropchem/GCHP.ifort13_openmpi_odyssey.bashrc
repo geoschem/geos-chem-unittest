@@ -3,15 +3,25 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !MODULE: GCHP.ifort13.bashrc.odyssey
+# !MODULE: GCHP.ifort13_openmpi_odyssey.bashrc
 #
 # !DESCRIPTION: Use this .bashrc to compile and run GCHP with the Intel 
-#  Fortran Compiler v13 on the dyssey.rc.fas.harvard.edu cluster.
+#  Fortran Compiler v13 on the Odyssey.rc.fas.harvard.edu cluster.
 #\\
 #\\
 # !CALLING SEQUENCE:
-#  source GCHP.ifort13.bashrc.odyssey  or
-#  . GCHP.ifort13.bashrc.odyssey
+#  source GCHP.ifort13_openmpi_odyssey.bashrc or
+#  . GCHP.ifort13_openmpi_odyssey.bashrc
+#
+# !REMARKS
+#  To run GCHP with MVAPICH2, you must have the following updates:
+#    (1) In GCHP/GIGC.mk, the OpenMPI lines for setting MPI_LIB are
+#        uncommented out and the MVAPICH line are commented out
+#    (2) In GCHP/Makefile, "export ESMF_COMM=openmpi" is uncommented
+#        and "export ESMF_COMM=mvapich2" are commented out
+#    (3) In build.sh within the run directory, BASHRC is set to a
+#        bashrc that includes "openmpi" in the filename (such as this)
+#        and the ESMF_COMM export is set to openmpi
 #
 # !REVISION HISTORY:
 #  06 Jan 2015 - R. Yantosca - Initial version

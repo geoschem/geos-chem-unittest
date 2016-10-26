@@ -13,6 +13,16 @@
 #  source GCHP.ifort13.bashrc.glooscap  or
 #  . GCHP.ifort13.bashrc.glooscap
 #
+# !REMARKS
+#  To run GCHP with MVAPICH2, you must have the following updates:
+#    (1) In GCHP/GIGC.mk, the OpenMPI lines for setting MPI_LIB are
+#        uncommented out and the MVAPICH line are commented out
+#    (2) In GCHP/Makefile, "export ESMF_COMM=openmpi" is uncommented
+#        and "export ESMF_COMM=mvapich2" are commented out
+#    (3) In build.sh within the run directory, BASHRC is set to a
+#        bashrc that includes "openmpi" in the filename (such as this)
+#        and the ESMF_COMM export is set to openmpi
+#
 # !REVISION HISTORY:
 #  Use the "gitk" browser to view the version history!
 #EOP
