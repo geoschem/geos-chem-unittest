@@ -3,20 +3,14 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !MODULE: Makefile_GCHP
+# !MODULE: Makefile
 #
-# !DESCRIPTION: Utility Makefile for the GCHP run directory. It is copied 
-#  to the GCHP run directory as 'Makefile'.
+# !DESCRIPTION: Utility Makefile for the GCHP run directory. It is stored
+#  in the Unit Tester with name 'Makefile_GCHP' but is copied to the 
+#  GCHP run directory as 'Makefile'.
 #\\
 #\\
 # !REMARKS:
-#   (1) This Makefile currently does not work for source code compiling
-#       because the path suffixes for some GCHP files are appended to
-#       the run directory path rather than the source code directory.
-#       There may be path variables set to current directory that I have
-#       not yet found but that are used in GCHP subdirectory Makefiles.
-#   (2) This file only works (except for compiling) with recent GCHP_Dev
-#       updates made by L. Lundgren to the GCHP/Makefile.
 # 
 # !REVISION HISTORY: 
 #  Navigate to your unit tester directory and type 'gitk' at the prompt
@@ -34,15 +28,17 @@ SHELL        :=/bin/bash
 #####                                                                     #####
 ###############################################################################
 
-# Source code location
-ifndef GC_DIR
- CODEDIR_GC :=$(shell readlink -f ./CodeDir)
-endif
+# Bashrc file
+BASHRC=GCHP.ifort13_openmpi_odyssey.bashrc
 
-# Output log file destination (default is run directory) 
-ifndef LOG_DIR 
- LOG_DIR     :=.
-endif
+# MPI implementation (openmpi or mvapich2)
+# NOTE: the MPI implementation must match bashrc defined above and in
+# build.sh, and source code if compiling. See remarks section at top of bashrc
+# file for instructions of setting MPI implementation in the source code.
+MPI=openmpi
+
+# Number of CPUs for interactive run
+NUM_THREADS=6
 
 ###############################################################################
 #####                                                                     #####
@@ -50,19 +46,24 @@ endif
 #####                                                                     #####
 ###############################################################################
 
+# Source code location
+ifndef GC_DIR
+ CODEDIR_GC :=$(shell readlink -f ./CodeDir)
+endif
+
 # GCHP code directory path
-CODEDIR_GCHP     :=$(CODEDIR_GC)/GCHP
+CODEDIR_GCHP :=$(CODEDIR_GC)/GCHP
 
 # Run directory path
-RUN_DIR      :=$(shell pwd)
+RUN_DIR :=$(shell pwd)
 
 # Log files that will be written to the log directory
-BUILD_LOG :="$(RUN_DIR)/compile.log"
-MAPL_LOG        :="$(RUN_DIR)/MAPL.log"
-LAST_BUILD      :="$(RUN_DIR)/last_build_code_info.log"
+BUILD_LOG  :="$(RUN_DIR)/compile.log"
+MAPL_LOG   :="$(RUN_DIR)/MAPL.log"
+LAST_BUILD :="$(RUN_DIR)/last_build_code_info.log"
 
 # Executables
-EXE          :=geos
+EXE :=geos
 
 # Code git information for GEOS-Chem repo
 CODE_BRANCH_GC :=$(shell git -C $(CODEDIR_GC) rev-parse --abbrev-ref HEAD)
@@ -88,70 +89,74 @@ CODE_STATUS_GCHP:=$(shell git -C $(CODEDIR_GCHP) status -s)
 
 # PHONY targets don't actually compile anything. They either are
 # synonyms for other targets, they remove files, or they print output.
-.PHONY: build_clean build_standard
-.PHONY: run_6cpus   run_12cpus
-.PHONY: fileclean   logclean   dataclean     allclean
-.PHONY: execlean    gcclean    nuclearclean  superclean
+.PHONY: run_interactive
+.PHONY: cleanup_data cleanup_logs cleanup_exe cleanup_files
+.PHONY: clean_gc clean_mapl clean_nuclear clean_all
+.PHONY: nuclear
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Build Only             %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-build_clean:
+# Beware! Destroys ESMF, MAPL, and FVdycore compilations
+compile_clean:
 	./build.sh compile_clean 2>&1 | tee $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
-build_standard:
+compile_standard:
 	./build.sh compile_standard 2>&1 | tee $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
-build_debug:
+compile_debug:
 	./build.sh compile_debug 2>&1 | tee $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
-build_mapl:
+compile_mapl:
 	./build.sh compile_mapl 2>&1 | tee $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Run Only               %
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
+#%%%%%%%%%%%%%%%%%%%%%%%
+#  Run Interactively   %
+#%%%%%%%%%%%%%%%%%%%%%%%
 
-run_6cpus:
-	mpirun -n 6 ./$(EXE) 2>&1 | tee $(MAPL_LOG)
-
-run_12cpus:
-	mpirun -n 12 ./$(EXE) 2>&1 | tee $(MAPL_LOG)
+run_interactive:
+	source $(BASHRC)
+	module list
+	if [[ $(MPI) == openmpi ]]; then mpirun -n $(NUM_THREADS) ./$(EXE) 2>&1 | tee $(MAPL_LOG); fi;
+	if [[ $(MPI) == mvapich2 ]]; then srun -n $(NUM_THREADS) --mpi=pmi2 ./$(EXE) 2>&1 | tee $(MAPL_LOG); fi;
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Build and Run (currently set at 6 cpus) %
+#  Clean up, Build, and Run Interactively  %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-# Beware!
+# Beware! Destroys ESMF, MAPL, and FVdycore compilations
 gchp_clean:
-	@$(MAKE) fileclean
-	@$(MAKE) build_clean
-	@$(MAKE) run_6cpus
+	@$(MAKE) cleanup_files
+	@$(MAKE) compile_clean
+	@$(MAKE) run_interactive
 
-# Does not clean prior to recompiling
 gchp_standard:
-	@$(MAKE) fileclean
-	@$(MAKE) build_standard
-	@$(MAKE) run_6cpus
+	@$(MAKE) cleanup_files
+	@$(MAKE) compile_standard
+	@$(MAKE) run_interactive
 
-# Same as standard but with all debug flags on
 gchp_debug:
-	@$(MAKE) fileclean
-	@$(MAKE) build_debug
-	@$(MAKE) run_6cpus
+	@$(MAKE) cleanup_files
+	@$(MAKE) compile_debug
+	@$(MAKE) run_interactive
 
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Remove Output Files    %
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
+gchp_mapl:
+	@$(MAKE) cleanup_files
+	@$(MAKE) compile_mapl
+	@$(MAKE) run_interactive
 
-fileclean: dataclean logclean
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#  Clean up Run Directory  %
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-dataclean: 
+cleanup_files: cleanup_data cleanup_logs
+
+cleanup_data: 
 	rm -f $(RUN_DIR)/OutputDir/GCHP.center.*
 	rm -f $(RUN_DIR)/OutputDir/GCHP.regrid.*
 	rm -f trac_avg.*
@@ -162,7 +167,7 @@ dataclean:
 	rm -f center.rcx
 	rm -f *~
 
-logclean: 
+cleanup_logs: 
 	rm -f HEMCO.log
 	rm -f PET00000.GEOSCHEMchem.log
 	rm -f logfile.000000.out
@@ -172,7 +177,7 @@ logclean:
 	rm -f 1
 	rm -f EGRESS 
 
-execlean: 
+cleanup_exe: 
 	rm -f geos
 	rm -f $(BUILD_LOG)
 
@@ -181,26 +186,27 @@ execlean:
 #   (BE CAREFUL!!!)       %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-allclean:
+clean_all:
 	./build.sh clean_all
 
-gcclean:
+clean_gc:
 	./build.sh clean_gc
 
-maplclean:
+clean_mapl:
 	./build.sh clean_mapl
 
-nuclearclean:
+clean_nuclear:
 	./build.sh clean_nuclear
 
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Clean Everything       %
-#   (BE CAREFUL!!!)       %
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#  Delete and kill Everything  %
+#   (BE CAREFUL!!!)            %
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-superclean:
-	@$(MAKE) fileclean
-	@$(MAKE) allclean
+nuclear:
+	@$(MAKE) cleanup_files
+	@$(MAKE) cleanup_exe
+	@$(MAKE) clean_all
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Print information  (to be expanded)    %
