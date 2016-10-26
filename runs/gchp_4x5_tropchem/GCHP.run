@@ -1,4 +1,4 @@
-#!/bin/bash
+i#!/bin/bash
 
 #SBATCH -n 6
 #SBATCH -N 1
@@ -27,14 +27,15 @@
 #   sbatch GCHP.run
 #
 # !REVISION HISTORY:
-#  06 Sep 2016 - E. Lundgren - Initial version
 #  Check the git history for revision history
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 
-# Source the GCHP bashrc (you may also use GCHP.ifort15.bashrc)
-source GCHP.ifort13.bashrc
+# Set and source your bashrc
+BASHRC=GCHP.ifort13_openmpi_odyssey.bashrc
+echo "WARNING: You are using environment settings in $BASHRC"
+source $BASHRC
 
 # Set the proper # of threads for OpenMP
 # SLURM_NTASKS ensures this matches the number you set with -n above

@@ -38,16 +38,22 @@
 ###  Configurable Settings  ###
 ###############################
 
-BASHRC=GCHP.ifort13.bashrc.odyssey
+# Set bashrc (see run directory for samples)
+BASHRC=GCHP.ifort13_openmpi_odyssey.bashrc
+
+# Set compiler
 export ESMF_COMPILER=intel
+
+# Set MPI implementation
 export ESMF_COMM=openmpi
+#export ESMF_COMM=mvapich2
 
 # WARNING: Code changes are necessary if switching from openmp to mvapich:
 #   (1) In CodeDir/GCHP/GIGC.mk, comment out the OpenMPI line (L53) and 
 #       uncomment the MVAPICH line (55)
 #   (2) In CodeDir/GCHP/Makefile, change “export ESMF_COMM=openmpi” to 
 #       “export ESMF_COMM=mvapich2”
-# NOTE: eventually these changes will be automatic
+#   NOTE: eventually these changes will be automatic
 
 ###############################
 ###       Help              ###
