@@ -3,9 +3,10 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !MODULE: Makefile
+# !MODULE: Makefile_GCHP
 #
-# !DESCRIPTION: Utility Makefile for the GCHP run directory.
+# !DESCRIPTION: Utility Makefile for the GCHP run directory. It is copied 
+#  to the GCHP run directory as 'Makefile'.
 #\\
 #\\
 # !REMARKS:
@@ -93,7 +94,7 @@ CODE_STATUS_GCHP:=$(shell git -C $(CODEDIR_GCHP) status -s)
 .PHONY: execlean    gcclean    nuclearclean  superclean
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Build Only               %
+#  Build Only             %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 build_clean:
@@ -121,6 +122,28 @@ run_6cpus:
 
 run_12cpus:
 	mpirun -n 12 ./$(EXE) 2>&1 | tee $(MAPL_LOG)
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#  Build and Run (currently set at 6 cpus) %
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# Beware!
+gchp_clean:
+	@$(MAKE) fileclean
+	@$(MAKE) build_clean
+	@$(MAKE) run_6cpus
+
+# Does not clean prior to recompiling
+gchp_standard:
+	@$(MAKE) fileclean
+	@$(MAKE) build_standard
+	@$(MAKE) run_6cpus
+
+# Same as standard but with all debug flags on
+gchp_debug:
+	@$(MAKE) fileclean
+	@$(MAKE) build_debug
+	@$(MAKE) run_6cpus
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Remove Output Files    %
@@ -151,9 +174,7 @@ logclean:
 
 execlean: 
 	rm -f geos
-	rm -f $(CLEAN_BUILD_LOG)
-	rm -f $(STD_BUILD_LOG)
-	rm -f $(DEBUG_BUILD_LOG)
+	rm -f $(BUILD_LOG)
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Clean Source Code      %
