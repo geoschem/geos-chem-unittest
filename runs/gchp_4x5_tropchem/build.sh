@@ -39,8 +39,20 @@
 ###  Configurable Settings  ###
 ###############################
 
-# Set bashrc (see run directory for samples)
-BASHRC=GCHP.ifort13_openmpi_odyssey.bashrc
+# Ask user to pick the default bashrc
+if [[ "x${BASHRC}" == x ]]; then
+   LIST=`ls -1 *.bashrc*`
+   echo "Please issue one of these commands at the Unix prompt"
+   echo "This will activate the proper settings for your machine and compiler"
+   echo "--------------------------------------------------------------------"
+   for f in $LIST; do
+      echo "export BASHRC=$f"
+   done
+   exit -1
+fi
+
+# Source the bashrc file
+source $BASHRC
 
 # Set compiler
 export ESMF_COMPILER=intel
@@ -48,6 +60,9 @@ export ESMF_COMPILER=intel
 # Set MPI implementation
 export ESMF_COMM=openmpi
 #export ESMF_COMM=mvapich2
+
+# Set ESMF optimization (g=debugging, O=optimized)
+export ESMF_BOPT=g
 
 # WARNING: Code changes are necessary if switching from openmpi to MVAPICH2
 #  To run GCHP with MVAPICH2, you must have the following updates:
