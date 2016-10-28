@@ -89,6 +89,7 @@ CODE_STATUS_GCHP:=$(shell git -C $(CODEDIR_GCHP) status -s)
 
 # PHONY targets don't actually compile anything. They either are
 # synonyms for other targets, they remove files, or they print output.
+.PHONY: compile_clean   compile_standard   compile_debug  compile_mapl
 .PHONY: run_interactive
 .PHONY: cleanup_data cleanup_logs cleanup_exe cleanup_files
 .PHONY: clean_gc clean_mapl clean_nuclear clean_all
