@@ -89,10 +89,10 @@ CODE_STATUS_GCHP:=$(shell git -C $(CODEDIR_GCHP) status -s)
 
 # PHONY targets don't actually compile anything. They either are
 # synonyms for other targets, they remove files, or they print output.
-.PHONY: compile_clean   compile_standard   compile_debug  compile_mapl
+.PHONY: cleanup_data      cleanup_logs   cleanup_output  cleanup_exe
+.PHONY: clean_gc          clean_mapl     clean_all       clean_nuclear
+.PHONY: compile_standard  compile_mapl   compile_debug   compile_clean
 .PHONY: run_interactive
-.PHONY: cleanup_data cleanup_logs cleanup_exe cleanup_files
-.PHONY: clean_gc clean_mapl clean_nuclear clean_all
 .PHONY: nuclear
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -132,22 +132,22 @@ run_interactive:
 
 # Beware! Destroys ESMF, MAPL, and FVdycore compilations
 gchp_clean:
-	@$(MAKE) cleanup_files
+	@$(MAKE) cleanup_output
 	@$(MAKE) compile_clean
 	@$(MAKE) run_interactive
 
 gchp_standard:
-	@$(MAKE) cleanup_files
+	@$(MAKE) cleanup_output
 	@$(MAKE) compile_standard
 	@$(MAKE) run_interactive
 
 gchp_debug:
-	@$(MAKE) cleanup_files
+	@$(MAKE) cleanup_output
 	@$(MAKE) compile_debug
 	@$(MAKE) run_interactive
 
 gchp_mapl:
-	@$(MAKE) cleanup_files
+	@$(MAKE) cleanup_output
 	@$(MAKE) compile_mapl
 	@$(MAKE) run_interactive
 
@@ -155,7 +155,7 @@ gchp_mapl:
 #  Clean up Run Directory  %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-cleanup_files: cleanup_data cleanup_logs
+cleanup_output: cleanup_data cleanup_logs
 
 cleanup_data: 
 	rm -f $(RUN_DIR)/OutputDir/GCHP.center.*
@@ -205,7 +205,7 @@ clean_nuclear:
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 nuclear:
-	@$(MAKE) cleanup_files
+	@$(MAKE) cleanup_output
 	@$(MAKE) cleanup_exe
 	@$(MAKE) clean_all
 

@@ -1,4 +1,4 @@
-i#!/bin/bash
+#!/bin/bash
 
 #SBATCH -n 6
 #SBATCH -N 1
@@ -33,6 +33,7 @@ i#!/bin/bash
 #BOC
 
 # Set and source your bashrc
+
 BASHRC=GCHP.ifort13_openmpi_odyssey.bashrc
 echo "WARNING: You are using environment settings in $BASHRC"
 source $BASHRC
