@@ -432,11 +432,11 @@ Warnings:                    {WARNINGS}
 # --- CAC (Canada) ---
 #==============================================================================
 (((CAC
-0 CAC_NO  $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     NO  2002-2008/1/1/0 C xy kg/m2/s NO  1/24/25/1002    1/2 30
-0 CAC_CO  $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     CO  2002-2008/1/1/0 C xy kg/m2/s CO  6/23/26/52/1002 1/2 30
-0 CAC_SO2 $ROOT/CAC/v2014-07/CAC.geos.1x1.nc     SOx 2002-2008/1/1/0 C xy kg/m2/s SO2 11/19/60/1002   1/2 30
+0 CAC_NO  $ROOT/CAC/v2016-09/CAC.geos.0.1x0.1.nc NO  2002-2008/1/1/0 C xy kg/m2/s NO  1/24/25/1002    1/2 30
+0 CAC_CO  $ROOT/CAC/v2016-09/CAC.geos.0.1x0.1.nc CO  2002-2008/1/1/0 C xy kg/m2/s CO  6/23/26/52/1002 1/2 30
+0 CAC_SO2 $ROOT/CAC/v2016-09/CAC.geos.0.1x0.1.nc SOx 2002-2008/1/1/0 C xy kg/m2/s SO2 11/19/60/1002   1/2 30
 0 CAC_SO4 -                                      -   -               - -  -       SO4 60/65/1002      1/2 30
-0 CAC_NH3 $ROOT/CAC/v2014-07/CAC_NH3.geos.1x1.nc NH3 2008/1-12/1/0   C xy kg/m2/s NH3 1002            1/2 30
+0 CAC_NH3 $ROOT/CAC/v2016-09/CAC_NH3.geos.1x1.nc NH3 2008/1-12/1/0   C xy kg/m2/s NH3 1002            1/2 30
 )))CAC
 
 #==============================================================================
@@ -1870,14 +1870,14 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # Country/region masks
 #==============================================================================
-1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc   MASK     2000/1/1/0 C xy unitless 1 -30/30/45/70
-1001 MEXICO_MASK $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc  MASK     2000/1/1/0 C xy unitless 1 -118/17/-95/33
-1002 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc          MASK     2000/1/1/0 C xy unitless 1 -141/40/-52/85
-1003 SEASIA_MASK $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc      MASK     2000/1/1/0 C xy unitless 1  60/-12/153/55
-1004 NA_MASK     $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc              MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
-1005 USA_MASK    $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc     MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
-1006 ASIA_MASK   $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc MASK     2000/1/1/0 C xy unitless 1 46/-12/180/82
-1007 NEI11_MASK  $ROOT/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.nc  LANDMASK 2000/1/1/0 C xy 1        1 -140/20/-50/60
+1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc           MASK     2000/1/1/0 C xy unitless 1 -30/30/45/70
+1001 MEXICO_MASK $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc          MASK     2000/1/1/0 C xy unitless 1 -118/17/-95/33
+1002 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc                  MASK     2000/1/1/0 C xy unitless 1 -141/40/-52/85
+1003 SEASIA_MASK $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc              MASK     2000/1/1/0 C xy unitless 1  60/-12/153/55
+1004 NA_MASK     $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc                      MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
+1005 USA_MASK    $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc             MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
+1006 ASIA_MASK   $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc         MASK     2000/1/1/0 C xy unitless 1 46/-12/180/82
+1007 NEI11_MASK  $ROOT/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc LANDMASK 2000/1/1/0 C xy 1        1 -140/20/-50/60
 
 ### END SECTION MASKS ###
 
