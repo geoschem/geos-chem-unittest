@@ -92,8 +92,7 @@ CODE_STATUS_GCHP:=$(shell git -C $(CODEDIR_GCHP) status -s)
 .PHONY: cleanup_data      cleanup_logs   cleanup_output  cleanup_exe
 .PHONY: clean_gc          clean_mapl     clean_all       clean_nuclear
 .PHONY: compile_standard  compile_mapl   compile_debug   compile_clean
-.PHONY: run_interactive
-.PHONY: nuclear
+.PHONY: run_interactive   superclean
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Build Only             %
@@ -204,7 +203,7 @@ clean_nuclear:
 #   (BE CAREFUL!!!)            %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-nuclear:
+superclean:
 	@$(MAKE) cleanup_output
 	@$(MAKE) cleanup_exe
 	@$(MAKE) clean_all

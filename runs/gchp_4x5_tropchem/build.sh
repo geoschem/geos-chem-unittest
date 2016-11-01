@@ -130,9 +130,6 @@ elif [[ ! -f ${BASHRC} ]]; then
   exit 1
 fi
 
-# Source the bashrc
-source ${runDir}/${BASHRC}
-
 # Go to the source code directory
 cd ${runDir}/CodeDir
 
