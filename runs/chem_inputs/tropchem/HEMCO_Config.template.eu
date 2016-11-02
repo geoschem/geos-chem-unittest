@@ -97,7 +97,7 @@ Warnings:                    {WARNINGS}
     --> BOND              :       true
     --> BRAVO             :       false
     --> CAC               :       false
-    --> C2H6              :       true
+    --> XIAO              :       true
     --> EDGAR             :       true
     --> HTAP              :       false
     --> EMEP              :       true
@@ -393,17 +393,15 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- Xiao et al., JGR, 2008 ---
 #
-# NOTE: Xiao et al C2H6 is used in place of RETRO C2H6
-# See: http://wiki.geos-chem.org/Implementation_of_RETRO_Anthropogenic_Emissions#RETRO_anthropogenic_ethane_emissions_are_too_low
+# NOTES:
+# - Xiao et al C2H6 is used in place of RETRO C2H6
+#   See: http://wiki.geos-chem.org/Implementation_of_RETRO_Anthropogenic_Emissions#RETRO_anthropogenic_ethane_emissions_are_too_low
+# - Priority is set to 48 to overwrite RETRO, MIX/Streets, and NEI2005, but not NEI2011
 #==============================================================================
-(((C2H6
-0  XIAO_C2H6    $ROOT/XIAO/v2014-09/C3H8_C2H6_ngas.geos.1x1.nc C2H6         1985/1/1/0 C xy kgC/m2/s C2H6 26        1 1000
-#0 XIAO_C3H8    $ROOT/XIAO/v2014-09/C3H8_C2H6_ngas.geos.1x1.nc C3H8         1985/1/1/0 C xy kgC/m2/s C3H8 6/7/26/22 1 1000
-(((BIOFUEL
-0  BIOFUEL_C2H6 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc     BIOFUEL_C2H6 1985/1/1/0 C xy kgC/m2/s C2H6 -         2 1000
-#0 BIOFUEL_C3H8 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc     BIOFUEL_C3H8 1985/1/1/0 C xy kgC/m2/s C3H8 -         2 1000
-)))BIOFUEL
-)))C2H6
+(((XIAO
+0 XIAO_C2H6    $ROOT/XIAO/v2014-09/C3H8_C2H6_ngas.geos.1x1.nc C2H6         1985/1/1/0 C xy kgC/m2/s C2H6 26        1 48
+0 XIAO_C3H8    $ROOT/XIAO/v2014-09/C3H8_C2H6_ngas.geos.1x1.nc C3H8         1985/1/1/0 C xy kgC/m2/s C3H8 6/7/26/22 1 48
+)))XIAO
 
 #==============================================================================
 # --- EMEP (Europe) ---
@@ -1605,7 +1603,7 @@ Warnings:                    {WARNINGS}
 
 # Archived OH concentrations. These are always needed, so set species to wildcard (*) to make
 # sure that this entry will always be read. 
-* STRAT_OH            $ROOT/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc          species 2000/1-12/1/0 C xyz v/v   *        - 1  1
+* STRAT_OH            $ROOT/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc             species 2000/1-12/1/0 C xyz v/v   *        - 1  1
 )))+LinStratChem+
 
 ### END SECTION BASE EMISSIONS ###
