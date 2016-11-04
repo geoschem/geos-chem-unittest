@@ -44,9 +44,9 @@ module load totalview
 module list
 
 # NetCDF library paths for GEOS-Chem
-export GC_BIN="$NETCDF_DIR/bin"
-export GC_LIB="$NETCDF_DIR/lib"
-export GC_INCLUDE="$NETCDF_DIR/include"
+export GC_BIN="$NETCDF/bin"
+export GC_LIB="$NETCDF/lib"
+export GC_INCLUDE="$NETCDF/include"
 
 #==============================================================================
 # %%%%% Settings for programming languages and applications %%%%%
