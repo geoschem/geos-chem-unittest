@@ -728,9 +728,11 @@ Warnings:                    {WARNINGS}
 # --- TOMS/SBUV overhead ozone colums, for photolysis ---
 #==============================================================================
 (((+TOMS_SBUV_O3+
-* TOMS_O3_COL   $ROOT/TOMS_SBUV/v2015-03/TOMS_O3col_$YYYY.geos.1x1.nc TOMS   1971-2010/1-12/1/0 C xy dobsons     * - 1 1
-* DTOMS1_O3_COL -                                                     DTOMS1 -                  - -  dobsons/day * - 1 1 
-* DTOMS2_O3_COL -                                                     DTOMS2 -                  - -  dobsons/day * - 1 1
+* TOMS_O3_COL   $ROOT/TOMS_SBUV/v2016-11/TOMS_O3col_$YYYY.a.geos.1x1.nc TOMS   1971-2010/1-12/1/0 C xy dobsons     * - 1 1
+* TOMS1_O3_COL  -                                                       TOMS1  -                  - -  dobsons/day * - 1 1
+* TOMS2_O3_COL  -                                                       TOMS2  -                  - -  dobsons/day * - 1 1
+* DTOMS1_O3_COL -                                                       DTOMS1 -                  - -  dobsons/day * - 1 1 
+* DTOMS2_O3_COL -                                                       DTOMS2 -                  - -  dobsons/day * - 1 1
 )))+TOMS_SBUV_O3+
 
 #==============================================================================
