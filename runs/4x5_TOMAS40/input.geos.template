@@ -688,11 +688,6 @@ JMIN, JMAX of region    :  23  46
 Turn on P/L (ND65) diag?: T
 # of levels for ND65    : 47
 Save O3 P/L (ND20)?     : F
-Number of P/L families  : 4
-1st chemical family     : PSO21: P1
-2nd chemical family     : PSO22: P2
-3rd chemical family     : PSO4: SO4
-4th chemical family     : PMSA: MSA
 ------------------------+------------------------------------------------------
 %%% BENCHMARK MENU %%%  :
 Save benchmark output?  : F

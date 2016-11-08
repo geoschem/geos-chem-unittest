@@ -277,32 +277,9 @@ IMIN, IMAX of region    :  70  30
 JMIN, JMAX of region    :  23  46
 -------------------------------------------------------------------------------
 %%% PROD & LOSS MENU %%%:
-Turn on P/L (ND65) diag?: F
+Turn on P/L (ND65) diag?: T
 # of levels for ND65    : 47
 Save O3 P/L (ND20)?     : F
-Number of P/L families  : 22
-Prod/Loss Family #1     : LCO:     CO
-Prod/Loss Family #2     : PCOus:   COus
-Prod/Loss Family #3     : PCOeur:  COeur
-Prod/Loss Family #4     : PCOasia: COasia
-Prod/Loss Family #5     : PCOoth:  COoth
-Prod/Loss Family #6     : PCObbam: CObbam
-Prod/Loss Family #7     : PCObbaf: CObbaf
-Prod/Loss Family #8     : PCObbas: CObbas
-Prod/Loss Family #9     : PCObboc: CObboc
-Prod/Loss Family #10    : PCObbeu: CObbeu
-Prod/Loss Family #11    : PCObbna: CObbna
-Prod/Loss Family #12    : PCOch4:  COch4
-Prod/Loss Family #13    : PCObiof: CObiof
-Prod/Loss Family #14    : PCOisop: COisop
-Prod/Loss Family #15    : PCOmono: COmono
-Prod/Loss Family #16    : PCOmeoh: COmeoh
-Prod/Loss Family #17    : PCOacet: COacet
-Prod/Loss Family #18    : PISOP:   ISOP
-Prod/Loss Family #19    : PCH4:    CH4
-Prod/Loss Family #20    : PCH3OH:  CH3OH
-Prod/Loss Family #21    : PCH4:    CH4
-Prod/Loss Family #22    : PACET:   ACET
 ------------------------+------------------------------------------------------
 %%% BENCHMARK MENU %%%  :
 Save benchmark output?  : F

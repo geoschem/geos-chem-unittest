@@ -387,29 +387,9 @@ IMIN, IMAX of region    :  70  30
 JMIN, JMAX of region    :  23  46
 -------------------------------------------------------------------------------
 %%% PROD & LOSS MENU %%%:
-Turn on P/L (ND65) diag?: F
+Turn on P/L (ND65) diag?: T
 # of levels for ND65    : 72
 Save O3 P/L (ND20)?     : F
-Number of P/L families  : 19
-1st  chemical family    : POX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3 BrO HOBr BrNO2 2BrNO3 MPN
-2nd  chemical family    : LOX: O3 NO2 2NO3 PAN PMN PPN HNO4 3N2O5 HNO3 BrO HOBr BrNO2 2BrNO3 MPN
-3rd  chemical family    : PCO: CO
-4th  chemical family    : LCO: CO
-5th  chemical family    : PBrOx: Br BrO
-6th  chemical family    : PBry: 2Br2 Br BrO HOBr HBr BrNO2 BrNO3
-7th  chemical family    : LBry: 2Br2 Br BrO HOBr HBr BrNO2 BrNO3
-8th  chemical family    : PBR: Br
-9th  chemical family    : LBR: Br
-10th chemical family    : PHB: HBr
-11th chemical family    : LHB: HBr
-12th chemical family    : PHO: ClNO3
-13th chemical family    : LHO: ClNO3
-14th chemical family    : PBN: HOCl
-15th chemical family    : LBN: HOCl
-16th chemical family    : PB2: HCl
-17th chemical family    : LB2: HCl
-18th chemical family    : PBC: HNO3
-19th chemical family    : LBC: HNO3
 ------------------------+------------------------------------------------------
 %%% BENCHMARK MENU %%%  :
 Save benchmark output?  : F
