@@ -25,6 +25,7 @@
 #
 # !REVISION HISTORY:
 #  06 Jan 2015 - R. Yantosca - Initial version
+#  See git log for all other revisions
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -43,15 +44,12 @@ export LMOD_COLORIZE=yes
 source new-modules.sh 
 module purge
 module load git
-module load intel
-module load openmpi/1.10.1-fasrc01
-module load hdf5/1.8.16-fasrc01
-module load netcdf/4.3.3.1-fasrc02
-module load netcdf-fortran/4.4.2-fasrc01
+module load intel/15.0.0-fasrc01
+module load openmpi/1.10.3-fasrc01
+module load hdf5/1.8.12-fasrc12
+module load netcdf/4.1.3-fasrc09
 module load totalview
 
-# Made links to all the relevant files somewhere accessible
-export NETCDF_HOME=/n/regal/jacob_lab/seastham/NCLinks
 export PATH=${NETCDF_HOME}/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_HOME}/lib
 
