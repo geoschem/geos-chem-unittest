@@ -21,6 +21,7 @@ input.geos.merra*
 HEMCO*Config.rc
 HEMCO*restart*sp
 HEMCO*restart*mp
+HEMCO*diagnostics*
 HEMCO*log*
 lastbuild.*
 Makefile
