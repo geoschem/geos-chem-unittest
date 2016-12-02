@@ -29,7 +29,7 @@ SHELL        :=/bin/bash
 ###############################################################################
 
 # Bashrc file
-BASHRC=GCHP.ifort13_openmpi_odyssey.bashrc
+BASHRC=GCHP.ifort15_openmpi_odyssey.bashrc
 
 # MPI implementation (openmpi or mvapich2)
 # NOTE: the MPI implementation must match bashrc defined above and in
@@ -121,7 +121,6 @@ compile_mapl:
 
 run_interactive:
 	source $(BASHRC)
-	module list
 	if [[ $(MPI) == openmpi ]]; then mpirun -n $(NUM_THREADS) ./$(EXE) 2>&1 | tee $(MAPL_LOG); fi;
 	if [[ $(MPI) == mvapich2 ]]; then srun -n $(NUM_THREADS) --mpi=pmi2 ./$(EXE) 2>&1 | tee $(MAPL_LOG); fi;
 
