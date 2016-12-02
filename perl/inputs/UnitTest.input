@@ -74,8 +74,8 @@
 #
    SLURM_CPUS       : 4
    SLURM_NODES      : 1
-   SLURM_TIME       : 1-00:00
-   SLURM_MEMORY     : 12000
+   SLURM_TIME       : 1-12:00
+   SLURM_MEMORY     : 30000
    SLURM_PARTITION  : jacob
    SLURM_CONSTRAINT : intel
    SLURM_MAILTYPE   : END
@@ -198,6 +198,8 @@
   geosfp   4x5         -      marinePOA    2013070100   201307010020   -
   geosfp   2x25        -      marinePOA    2013070100   201307010020   -
 # ======= TOMAS aerosol microphysics =========================================
+  geosfp   4x5         -      TOMAS15      2013070100   201307010020   -
+  geos5    4x5         -      TOMAS15      2006070100   200607010020   -
   geosfp   4x5         -      TOMAS40      2013070100   201307010020   -
   geos5    4x5         -      TOMAS40      2006070100   200607010020   -
 # ======= UCX strat-trop chemistry ===========================================
