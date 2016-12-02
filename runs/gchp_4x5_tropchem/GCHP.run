@@ -4,7 +4,7 @@
 #SBATCH -N 1
 #SBATCH -t 0-12:00
 #SBATCH -p jacob
-#SBATCH --mem-per-cpu=2500
+#SBATCH --mem-per-cpu=4500
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=your_email
 
@@ -34,7 +34,7 @@
 
 # Set and source your bashrc
 
-BASHRC=GCHP.ifort13_openmpi_odyssey.bashrc
+BASHRC=GCHP.ifort15_openmpi_odyssey.bashrc
 echo "WARNING: You are using environment settings in $BASHRC"
 source $BASHRC
 
