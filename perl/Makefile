@@ -105,10 +105,6 @@ ifndef NO_ISO
  NO_ISO      :=n
 endif
 
-ifndef COMPILER
- COMPILER    :=ifort
-endif
-
 ifndef NO_REDUCED
  NO_REDUCED  :=n
 endif
@@ -297,6 +293,26 @@ COMMIT_DATE  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cd")
 COMMIT_USER  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cn") 
 COMMIT_HASH  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%h") 
 CODE_STATUS  :=$(shell git -C $(CODE_DIR) status -s) 
+
+# Compiler information
+# If COMPILER is not defined, default to the $(FC) variable, which
+# is set in your .bashrc, or when you load the compiler module
+ifndef COMPILER
+  COMPILER   :=$(FC)
+endif
+
+# Get compiler version
+COMPILER_VERSION_LONG :=$(shell $(FC) --version))
+COMPILER_VERSION_LONG :=$(sort $(COMPILER_VERSION_LONG))
+
+# For ifort, the 3rd substring of the sorted text is the version number.
+# For pgfortran and gfortran, it's the 4th substring.
+# NOTE: Future compiler updates may break this algorithm.
+ifeq ($(COMPILER),ifort)
+ COMPILER_VERSION :=$(word 3, $(COMPILER_VERSION_LONG))
+else
+ COMPILER_VERSION :=$(word 4, $(COMPILER_VERSION_LONG))
+endif
 
 ###############################################################################
 #####                                                                     #####
@@ -583,7 +599,7 @@ printbuildinfo:
 	@echo "  BPCH_RST_OUT : $(BPCH_RST_OUT)"
 	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"
 	@echo "  NC_DIAG      : $(NC_DIAG)"
-	@echo "  COMPILER     : $(COMPILER)"
+	@echo "  COMPILER     : $(COMPILER) $(COMPILER_VERSION)"
 	@echo "  Datetime     : $(TIMESTAMP)"
 
 printallinfosp: 
