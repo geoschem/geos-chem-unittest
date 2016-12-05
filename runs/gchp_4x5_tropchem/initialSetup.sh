@@ -29,8 +29,7 @@
 
 # Check whether symlinks for source code, met, hemco, chem, and restarts 
 # already are set. If yes then exist since setup is not necessary. 
-tileFile=DE1440xPE0720_CF0024x6C.bin
-if [[ -L CodeDir && -L MainDataDir && -L MetDir && -L RestartsDir && -L ChemDataDir && -L ${tileFile}]] ; then
+if [[ -L CodeDir && -L MainDataDir && -L MetDir && -L RestartsDir && -L ChemDataDir ]] ; then
   echo "All necessary symbolic links already exist"
   exit 1
 fi
@@ -43,14 +42,8 @@ if [[ ! -d $codePath ]]; then
 fi
 ln -s $codePath CodeDir
 
-# Prompt the user for directory containing tile files and set symlink
-# to tile file needed to regrid Olson landmap and MODIS LAI to c24 (~4x5)
-read -p "Enter path to DE1440xPE0720_CF0024x6C.bin tile file:" tilePath
-if [[ ! -d $tilePath ]]; then
-  echo "Directory $tilePath does not exist"
-  exit 1
-fi
-ln -s ${tilePath}/${tileFile} ${tileFile} 
+# Define tile file needed to regrid Olson landmap and MODIS LAI to c24 (~4x5)
+tileFile=DE1440xPE0720_CF0024x6C.bin
 
 # Prompt the user on whether using Odyssey (Harvard)
 read -p "Are you on Odyssey [y/n]? " onOdyssey
@@ -64,6 +57,7 @@ if [[ $onOdyssey == "y" ]]; then
   MainDataDir="$baseDir/data/ExtData/HEMCO"
   RestartsDir="$baseDir/data/ExtData/NC_RESTARTS"
   ChemDataDir="$baseDir/gcdata/ExtData/CHEM_INPUTS"
+  TileFileDir="$baseDir/gcdata/ExtData/GCHP/TileFiles"
   echo "Valid INPUT resolution choices:"
   echo "[N] Native (0.25x0.3125) (2015-07-01 to 2015-07-10)"
   echo "[2] 2x2.5                (2012-05-01 to 2014-12-31)"
@@ -89,7 +83,8 @@ elif [[ $onOdyssey  == "n" ]]; then
   read -p "Enter path containing met data: " MetDir
   read -p "Enter path to HEMCO data directory: " MainDataDir
   read -p "Enter path to GEOS-Chem restart files: " RestartsDir
-  read -p "Enter path to CHEM_INPUTS directory for Olson maps: " ChemDataDir
+  read -p "Enter path to CHEM_INPUTS directory: " ChemDataDir
+  read -p "Enter path to tile files: " TileFileDir
   echo "WARNING: You must replace ExtData.rc with the appropriate template"
   echo "         file (e.g. ExtData_4x5.rc if using 4x5 met input resolution!"
 else
@@ -99,11 +94,12 @@ else
 fi
 
 # Set symlinks based on the paths set above
-if [[ -d $MetDir && -d $MainDataDir && -d $RestartsDir && -d $ChemDataDir ]]; then
+if [[ -d $MetDir && -d $MainDataDir && -d $RestartsDir && -d $ChemDataDir && -d ${TileFileDir} ]]; then
   ln -s $MetDir MetDir
   ln -s $MainDataDir MainDataDir
   ln -s $RestartsDir RestartsDir
   ln -s $ChemDataDir ChemDataDir
+  ln -s ${TileFileDir}/${tileFile} ${tileFile} 
 else
   echo "Could not find target directories"
   unlink CodeDir
@@ -117,16 +113,17 @@ echo "  (1) Sample bashrc files that are compatible with the Harvard Odyssey"
 echo "      Compute Cluster are included in this run directory. If you are on a"
 echo "      different system, you may use them as a guide to customize a bashrc"
 echo "      compatible with your local system. By default, the Makefile and"
-echo "      GCHP.run are set to use GCHP.ifort15_openmpi_odyssey.bashrc."
+echo "      GCHP.run are set to use GCHP.ifort15_openmpi_odyssey.bashrc and"
+echo "      you must manually change the files if using a different bashrc."
 echo " "
-echo "  (2) Compile using build.sh, either directly or using the Makefile."
-echo "      Type './build.sh help' for options."
+echo "  (2) Compile using build.sh, either directly on the command line or "
+echo "      using make. Type './build.sh help' for options."
 echo " "
 echo "  (3) Sample run script GCHP.run is included in this directory."
 echo "      It is compatible with SLURM on the Harvard Odyssey Cluster"
 echo "      and may be adapted to other systems. Prior to use, open the file,"
 echo "      enter your email address for SLURM notifications, and update the"
-echo "      bashrc to match your environment. The bashrc specific in the"
+echo "      bashrc to match your environment. The bashrc specified in the"
 echo "      the Makefile is only invoked if you choose to run GCHP "
 echo "      interactively using make."
 echo " "
