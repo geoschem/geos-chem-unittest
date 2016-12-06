@@ -388,7 +388,7 @@ ND56: Lightning flashes : 47   all
 ND57: Potential T       : 47   all
 ND58: CH4 Emissions     :  0   all
 ND59: TOMAS aerosol emis: 47   all
-ND60: TOMAS microphysics:  0   64-383
+ND60: TOMAS microphysics:  0   all
 ND61: TOMAS 3D rate     : 47   all
 ND62: Inst column maps  :  0   all
 ND64: Radiative flux    :  0   all
