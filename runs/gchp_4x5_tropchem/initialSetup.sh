@@ -74,6 +74,10 @@ if [[ $onOdyssey == "y" ]]; then
     exit 1
   fi
 
+  # Replace TileFiles directory with a softlink to the Odyssey dir
+  rmdir TileFiles
+  ln -s $baseDir/gcdata/Extdata/GCHP/TileFiles TileFiles
+
 # If not on Odyssey, ask the user for the paths
 elif [[ $onOdyssey  == "n" ]]; then
   read -p "Enter path containing met data: " MetDir
