@@ -110,6 +110,8 @@ sub getRunDir($$$$) {
     $runLoc = "{MET}_{GRID}_{SIM}";
   } elsif ( length( $nest ) > 0 ) {
     $runLoc = "{MET}_{GRID}_{SIM}_{NEST}";
+  } elsif ( $sim =~ m/gc_timing/) {
+    $runLoc = "{SIM}";
   } else {
     $runLoc = "{GRID}_{SIM}";
   }
@@ -483,10 +485,6 @@ sub doCopyDirs($$) {
             $cmd = "cp ./validate $copyDir/validate"; 
             qx/$cmd/;
           
-            # Copy RunDirCopyREADMEN to copied run directory
-            $cmd = "cp ./RunDirCopyREADME $copyDir/README"; 
-            qx/$cmd/;
-
 	    # Set permissions for HEMCO restart file to read-only
             # to prevent deletion when cleaning up directory
 	    $cmd = "[ -f HEMCO_restart* ] && chmod 444 $copyDir/HEMCO_restart.*";

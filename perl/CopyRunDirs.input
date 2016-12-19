@@ -57,6 +57,7 @@
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
 #--------|-----------|------|------------|------------|------------|---------|
   geosfp   4x5         -      standard     2013070100   2013080100   -
+# geosfp   4x5         -      gc_timing    2013070100   2013070800   -
 # geosfp   4x5         -      tropchem     2013070100   2013070101   -
 # geosfp   4x5         -      soa          2013070100   2013070101   -
 # geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
