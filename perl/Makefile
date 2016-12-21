@@ -286,13 +286,38 @@ TRAC_RST     :=GEOSChem_restart.$(END).nc
 VALIDATE     :=/usr/bin/perl $(PERL_DIR)/validate
 RESULTS      :=$(LOG_DIR)/$(VERSION).results.log
 
-# Code git information
-CODE_BRANCH  :=$(shell git -C $(CODE_DIR) rev-parse --abbrev-ref HEAD)
-LAST_COMMIT  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%s") 
-COMMIT_DATE  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cd") 
-COMMIT_USER  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cn") 
-COMMIT_HASH  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%h") 
-CODE_STATUS  :=$(shell git -C $(CODE_DIR) status -s) 
+# Get information about the Git version, because some features
+# (like -C) are not available in older Git versions.  The git 
+# version command returns "git version X.Y.Z", so we will just take
+# the 3rd word and strip all the dots. (bmy, 12/21/16)
+GIT_VERSION    :=$(subst .,,$(word 3, $(shell git --version)))
+NEWER_THAN_185 :=$(shell perl -e "print ($(GIT_VERSION) gt 185)")
+
+ifeq ($(NEWER_THAN_185),1)
+
+ # Git version 1.8.5 and higher uses the -C option to look in
+ # directories other than the current directory.  Use this to
+ # get info about the last committed state of the code.
+ CODE_BRANCH  :=$(shell git -C $(CODE_DIR) rev-parse --abbrev-ref HEAD)
+ LAST_COMMIT  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%s") 
+ COMMIT_DATE  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cd") 
+ COMMIT_USER  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cn") 
+ COMMIT_HASH  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%h") 
+ CODE_STATUS  :=$(shell git -C $(CODE_DIR) status -s) 
+
+else
+
+ # Git versions older than 1.8.5 don't have the -C option,
+ # so we have to manually change to the code dir to get information
+ # about the last committed state of the code. (bmy, 12/21/16)
+ CODE_BRANCH  :=$(shell cd $(CODE_DIR); git rev-parse --abbrev-ref HEAD; cd $(PWD))
+ LAST_COMMIT  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%s"; cd $(PWD)) 
+ COMMIT_DATE  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%cd"; cd $(PWD)) 
+ COMMIT_USER  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%cn"; cd $(PWD)) 
+ COMMIT_HASH  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%h"; cd $(PWD)) 
+ CODE_STATUS  :=$(shell cd $(CODE_DIR); git status -s; cd $(PWD)) 
+
+endif
 
 # Compiler information
 # If COMPILER is not defined, default to the $(FC) variable, which
