@@ -4,7 +4,7 @@
 #SBATCH -N 1
 #SBATCH -t 0-12:00
 #SBATCH -p jacob
-#SBATCH --mem-per-cpu=2500
+#SBATCH --mem-per-cpu=4500
 #SBATCH --mail-type=ALL
 #SBATCH --mail-user=your_email
 

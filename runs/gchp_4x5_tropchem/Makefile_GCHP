@@ -264,7 +264,7 @@ help:
 	@echo 'To run interactively:'
 	@echo '  run_interactive'
 	@echo ' '
-	@echo 'to clean, build, and run interactively:'
+	@echo 'To clean, build, and run interactively:'
 	@echo '  gchp_clean       Include everything'
 	@echo '  gchp_standard    Skip MAPL, FvDyCore, and ESMF; debug off'
 	@echo '  gchp_debug       Skip MAPL, FvDyCore, and ESMF; debug on'
