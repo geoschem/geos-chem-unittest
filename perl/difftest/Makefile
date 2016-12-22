@@ -289,13 +289,38 @@ TRAC_RST     :=GEOSChem_restart.$(END).nc
 VALIDATE     :=/usr/bin/perl $(RUN_DEV)/validate
 RESULTS      :=$(LOG_DIR)/log.$(RUNID).Results
 
-# Code git information
-CODE_BRANCH_REF :=$(shell git -C $(CODE_REF) rev-parse --abbrev-ref HEAD)
-LAST_COMMIT_REF :=$(shell git -C $(CODE_REF) log -n 1 --pretty=format:"%s")
-COMMIT_DATE_REF :=$(shell git -C $(CODE_REF) log -n 1 --pretty=format:"%cd")
-CODE_BRANCH_DEV :=$(shell git -C $(CODE_DEV) rev-parse --abbrev-ref HEAD)
-LAST_COMMIT_DEV :=$(shell git -C $(CODE_DEV) log -n 1 --pretty=format:"%s")
-COMMIT_DATE_DEV :=$(shell git -C $(CODE_DEV) log -n 1 --pretty=format:"%cd")
+# Get information about the Git version, because some features
+# (like -C) are not available in older Git versions.  The git 
+# version command returns "git version X.Y.Z", so we will just take
+# the 3rd word and strip all the dots. (bmy, 12/21/16)
+GIT_VERSION    :=$(subst .,,$(word 3, $(shell git --version)))
+NEWER_THAN_185 :=$(shell perl -e "print ($(GIT_VERSION) gt 185)")
+
+ifeq ($(NEWER_THAN_185),1)
+
+ # Git version 1.8.5 and higher uses the -C option to look in directories 
+ # other than the current directory.  Use this to get info about the last 
+ # committed states of the Dev and Ref codes. (bmy, 12/22/16)
+ CODE_BRANCH_REF :=$(shell git -C $(CODE_REF) rev-parse --abbrev-ref HEAD)
+ LAST_COMMIT_REF :=$(shell git -C $(CODE_REF) log -n 1 --pretty=format:"%s")
+ COMMIT_DATE_REF :=$(shell git -C $(CODE_REF) log -n 1 --pretty=format:"%cd")
+ CODE_BRANCH_DEV :=$(shell git -C $(CODE_DEV) rev-parse --abbrev-ref HEAD)
+ LAST_COMMIT_DEV :=$(shell git -C $(CODE_DEV) log -n 1 --pretty=format:"%s")
+ COMMIT_DATE_DEV :=$(shell git -C $(CODE_DEV) log -n 1 --pretty=format:"%cd")
+
+else
+
+ # Git versions older than 1.8.5 don't have the -C option, so we have to 
+ # manually change to the Dev or Ref code dir to get information 
+ # about the last committed state of the Dev and Ref codes. (bmy, 12/22/16)
+ CODE_BRANCH_REF :=$(shell cd $(CODE_REF); git rev-parse --abbrev-ref HEAD; cd $(PWD))
+ LAST_COMMIT_REF :=$(shell cd $(CODE_REF); git log -n 1 --pretty=format:"%s"; cd $(PWD))
+ COMMIT_DATE_REF :=$(shell cd $(CODE_REF); git log -n 1 --pretty=format:"%cd"; cd $(PWD))
+ CODE_BRANCH_DEV :=$(shell cd $(CODE_DEV); git rev-parse --abbrev-ref HEAD; cd $(PWD))
+ LAST_COMMIT_DEV :=$(shell cd $(CODE_DEV); git log -n 1 --pretty=format:"%s"; cd $(PWD))
+ COMMIT_DATE_DEV :=$(shell cd $(CODE_DEV); git log -n 1 --pretty=format:"%cd"; cd $(PWD))
+
+endif
 
 # Variable to hold the TAU_OPTIONS environment setting
 TAU_OPT     :=""
