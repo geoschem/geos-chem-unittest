@@ -239,7 +239,7 @@ cd ${runDir}
 # Cleanup and quit
 if [[ -e ${runDir}/CodeDir/bin/geos ]]; then
    echo '#############################################'
-   echo '### GCHP executable compiled succesfully! ###'
+   echo '### GCHP executable compiled successfully! ###'
    echo '#############################################'
    cp CodeDir/bin/geos .
 else
