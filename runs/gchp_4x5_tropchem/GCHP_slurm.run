@@ -13,7 +13,7 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !MODULE: GCHP.run
+# !MODULE: GCHP_slurm.run
 #
 # !DESCRIPTION: This bash script is a template run script for GCHP
 #\\
@@ -34,7 +34,7 @@
 
 # Set and source your bashrc
 
-BASHRC=GCHP.ifort13_openmpi_odyssey.bashrc
+BASHRC=GCHP.ifort15_openmpi_odyssey.bashrc
 echo "WARNING: You are using environment settings in $BASHRC"
 source $BASHRC
 

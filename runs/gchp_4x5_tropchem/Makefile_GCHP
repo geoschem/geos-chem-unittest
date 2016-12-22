@@ -28,16 +28,13 @@ SHELL        :=/bin/bash
 #####                                                                     #####
 ###############################################################################
 
-# Bashrc file
-BASHRC=GCHP.ifort13_openmpi_odyssey.bashrc
-
 # MPI implementation (openmpi or mvapich2)
 # NOTE: the MPI implementation must match bashrc defined above and in
 # build.sh, and source code if compiling. See remarks section at top of bashrc
 # file for instructions of setting MPI implementation in the source code.
 MPI=openmpi
 
-# Number of CPUs for interactive run
+# Number of CPUs for interactive run (make configurable in future!)
 NUM_THREADS=6
 
 ###############################################################################
@@ -120,8 +117,6 @@ compile_mapl:
 #%%%%%%%%%%%%%%%%%%%%%%%
 
 run_interactive:
-	source $(BASHRC)
-	module list
 	if [[ $(MPI) == openmpi ]]; then mpirun -n $(NUM_THREADS) ./$(EXE) 2>&1 | tee $(MAPL_LOG); fi;
 	if [[ $(MPI) == mvapich2 ]]; then srun -n $(NUM_THREADS) --mpi=pmi2 ./$(EXE) 2>&1 | tee $(MAPL_LOG); fi;
 
@@ -209,7 +204,7 @@ superclean:
 	@$(MAKE) clean_all
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Print information  (to be expanded)    %
+#  Print information                      %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 printbuildinfo:
@@ -229,5 +224,52 @@ printbuildinfo:
 	@echo "   COMMIT_USER_GCHP  : $(COMMIT_USER_GCHP)"
 	@echo "   COMMIT_HASH_GCHP  : $(COMMIT_HASH_GCHP)"
 	@echo "   CODE_STATUS_GCHP  : $(CODE_STATUS_GCHP)"
+
+help:
+	@echo '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
+	@echo '%%%    GCHP Run Directory Makefile Options    %%%'
+	@echo '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
+	@echo ' '
+	@echo 'Usage: make TARGET [OPTIONAL-FLAGS]'
+	@echo ' '
+	@echo 'Default threads for compiling is hard-coded as 6'
+	@echo ' '
+	@echo '----------------------------------------------------------'
+	@echo 'TARGET may be one of the following:'
+	@echo '----------------------------------------------------------'
+	@echo ' '      
+	@echo 'To print settings to screen:' 
+	@echo '  printbuildinfo   Print out git info for GC and GCHP repos'
+	@echo '  help             If you got this far, you know this one'
+	@echo ' '
+	@echo 'To clean source code:'
+	@echo '  clean_all        Clean all source code using build.sh'
+	@echo '  clean_gc         Clean GEOS-Chem classic only using build.sh'
+	@echo '  clean_mapl       Clean MAPL and FVdyCore using build.sh'
+	@echo '  clean_nuclear    Clean everything using build.sh'
+	@echo '  superclean       Remove exe, logs, output, and clean ALL code'
+	@echo ' '
+	@echo 'To compile:'
+	@echo '  compile_clean     Include everything'
+	@echo '  compile_standard  Skip MAPL, FvDyCore, and ESMF; debug off'
+	@echo '  compile_debug     Skip MAPL, FvDyCore, and ESMF; debug on'
+	@echo '  compile_mapl      Skip ESMF'
+	@echo ' '
+	@echo 'To remove run directory files:' 
+	@echo '  cleanup_output   Remove output data, log files, and executable'
+	@echo '  cleanup_data     Remove output data' 
+	@echo '  cleanup_logs     Remove log files' 
+	@echo '  cleanup_exe      Remove executable'
+	@echo ' ' 
+	@echo 'To run interactively:'
+	@echo '  run_interactive'
+	@echo ' '
+	@echo 'to clean, build, and run interactively:'
+	@echo '  gchp_clean       Include everything'
+	@echo '  gchp_standard    Skip MAPL, FvDyCore, and ESMF; debug off'
+	@echo '  gchp_debug       Skip MAPL, FvDyCore, and ESMF; debug on'
+	@echo '  gchp_mapl        Skip ESMF'
+	@echo ' '
+#EOC
 
 
