@@ -13,6 +13,9 @@
 #\\
 #\\
 # !REMARKS:
+#  This file is the same as the HEMCO_Config.template for the fullchem
+#  simulation, but we turn on the TOMAS_Jeagle extension.
+#
 #  The following tokens will be replaced:
 #  (1) ROOT    : Filepath to HEMCO root directory
 #  (2) CFDIR   : Filepath to directory of this configuration file. 
@@ -141,7 +144,7 @@ Warnings:                    {WARNINGS}
     --> CO2 inhibition    :       true
     --> CO2 conc (ppmv)   :       390.0
 109     MEGAN_Mono        : on    CO/OCPI/MONX
-110     MEGAN_SOA         : on    MTPA/MTPO/LIMO/SESQ
+110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
 111     GFED              : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/NAP
     --> GFED3             :       false 
     --> GFED4             :       true
@@ -159,7 +162,7 @@ Warnings:                    {WARNINGS}
     --> Scaling_CO        :       1.0
     --> hydrophilic BC    :       0.2
     --> hydrophilic OC    :       0.5
-
+120     TOMAS_Jeagle      : on    SS1/SS2/SS3/SS4/SS5/SS6/SS7/SS8/SS9/SS10/SS11/SS12/SS13/SS14/SS15/SS16/SS17/SS18/SS19/SS20/SS21/SS22/SS23/SS24/SS25/SS26/SS27/SS28/SS29/SS30/SS31/SS32/SS33/SS34/SS35/SS36/SS37/SS38/SS39/SS40
 ### END SECTION EXTENSION SWITCHES ###
 
 ###############################################################################
@@ -1467,8 +1470,8 @@ Warnings:                    {WARNINGS}
 * GMI_PROD_HCFC142b   $ROOT/GMI/v2015-02/gmi.clim.HCFC142b.geos5.2x25.nc       prod    2000/1-12/1/0 C xyz v/v/s HCFC142b - 1  1
 * GMI_LOSS_HCFC22     $ROOT/GMI/v2015-02/gmi.clim.HCFC22.geos5.2x25.nc         loss    2000/1-12/1/0 C xyz s-1   HCFC22   - 1  1
 * GMI_PROD_HCFC22     $ROOT/GMI/v2015-02/gmi.clim.HCFC22.geos5.2x25.nc         prod    2000/1-12/1/0 C xyz v/v/s HCFC22   - 1  1
-* GMI_LOSS_HCOOH      $ROOT/GMI/v2015-02/gmi.clim.HCOOH.geos5.2x25.20160912.nc loss    2000/1-12/1/0 C xyz s-1   HCOOH    - 1  1
-* GMI_PROD_HCOOH      $ROOT/GMI/v2015-02/gmi.clim.HCOOH.geos5.2x25.20160912.nc prod    2000/1-12/1/0 C xyz v/v/s HCOOH    - 1  1
+* GMI_LOSS_HCOOH      $ROOT/GMI/v2015-02/gmi.clim.HCOOH.geos5.2x25.20170103.nc loss    2000/1-12/1/0 C xyz s-1   HCOOH    - 1  1
+* GMI_PROD_HCOOH      $ROOT/GMI/v2015-02/gmi.clim.HCOOH.geos5.2x25.20170103.nc prod    2000/1-12/1/0 C xyz v/v/s HCOOH    - 1  1
 * GMI_LOSS_HCl        $ROOT/GMI/v2015-02/gmi.clim.HCl.geos5.2x25.nc            loss    2000/1-12/1/0 C xyz s-1   HCl      - 1  1
 * GMI_PROD_HCl        $ROOT/GMI/v2015-02/gmi.clim.HCl.geos5.2x25.nc            prod    2000/1-12/1/0 C xyz v/v/s HCl      - 1  1
 * GMI_LOSS_HNO2       $ROOT/GMI/v2015-02/gmi.clim.HNO2.geos5.2x25.nc           loss    2000/1-12/1/0 C xyz s-1   HNO2     - 1  1
