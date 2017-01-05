@@ -88,12 +88,12 @@ Warnings:                    {WARNINGS}
 ###############################################################################
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
-    --> HEMCO_RESTART     :       true
-    --> AEIC              :       true
+    --> HEMCO_RESTART     :       false
+    --> AEIC              :       false
     --> BIOFUEL           :       true
     --> BOND              :       true
     --> BRAVO             :       true
-    --> CAC               :       true
+    --> CAC               :       false
     --> C2H6              :       true
     --> EDGAR             :       true
     --> HTAP              :       false
@@ -152,8 +152,8 @@ Warnings:                    {WARNINGS}
 109     MEGAN_Mono        : on    CO/OCPI/MONX
 110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
 111     GFED              : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/NAP
-    --> GFED3             :       true 
-    --> GFED4             :       false
+    --> GFED3             :       false
+    --> GFED4             :       true
     --> GFED_daily        :       false
     --> GFED_3hourly      :       false
     --> Scaling_CO        :       1.05

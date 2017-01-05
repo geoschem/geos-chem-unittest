@@ -18,6 +18,7 @@
 #         MetDir
 #         RestartsDir
 #         ChemDataDir
+#         TileFiles
 #
 # !REVISION HISTORY: 
 #  Navigate to your unit tester directory and type 'gitk' at the prompt
@@ -29,18 +30,18 @@
 
 # Check whether symlinks for source code, met, hemco, chem, and restarts 
 # already are set. If yes then exist since setup is not necessary. 
-if [[ -L CodeDir && -L MainDataDir && -L MetDir && -L RestartsDir && -L ChemDataDir ]] ; then
-  echo "All necessary symbolic links already exist"
+if [[ -L CodeDir && -L MainDataDir && -L MetDir && -L RestartsDir && -L ChemDataDir && -L TileFiles ]] ; then
+  echo "Symbolic links already set up"
   exit 1
 fi
 
 # Prompt the user for source code directory and set symlink
 read -p "Enter path to code directory:" codePath
-if [[ ! -d $codePath ]]; then
-  echo "Directory $codePath does not exist"
+if [[ ! -d ${codePath} ]]; then
+  echo "Directory ${codePath} does not exist"
   exit 1
 fi
-ln -s $codePath CodeDir
+ln -s ${codePath} CodeDir
 
 # Define tile file needed to regrid Olson landmap and MODIS LAI to c24 (~4x5)
 tileFile=DE1440xPE0720_CF0024x6C.bin
@@ -50,8 +51,8 @@ read -p "Are you on Odyssey [y/n]? " onOdyssey
 
 # Automatically set met, hemco, chem, and restart paths if on Odyssey,
 # and ask the user what input met resolution to use.
-onOdyssey=$( echo "$onOdyssey" | tr '[:upper:]' '[:lower:]' )
-if [[ $onOdyssey == "y" ]]; then
+onOdyssey=$( echo "${onOdyssey}" | tr '[:upper:]' '[:lower:]' )
+if [[ ${onOdyssey} == "y" ]]; then
   baseDir='/n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid'
   MetDir=$baseDir
   MainDataDir="$baseDir/data/ExtData/HEMCO"
@@ -63,14 +64,14 @@ if [[ $onOdyssey == "y" ]]; then
   echo "[2] 2x2.5                (2012-05-01 to 2014-12-31)"
   echo "[4] 4x5                  (2012-05-01 to 2015-07-31)"
   read -p "Select an INPUT resolution for met data: " resChoice
-  if [[ $resChoice == "N" || $resChoice == "n" ]]; then
-    MetDir=$MetDir/GEOS_0.25x0.3125/GEOS_0.25x0.3125.d/GEOS_FP
+  if [[ ${resChoice} == "N" || ${resChoice} == "n" ]]; then
+    MetDir=${MetDir}/GEOS_0.25x0.3125/GEOS_0.25x0.3125.d/GEOS_FP
     cp ExtData_Native.rc ExtData.rc
-  elif [[ $resChoice == 4 ]]; then
-    MetDir=$MetDir/GEOS_4x5/GEOS_FP
+  elif [[ ${resChoice} == 4 ]]; then
+    MetDir=${MetDir}/GEOS_4x5/GEOS_FP
     cp ExtData_4x5.rc ExtData.rc
-  elif [[ $resChoice == 2 ]]; then
-    MetDir=$MetDir/GEOS_2x2.5_GEOS_5/GEOS_FP
+  elif [[ ${resChoice} == 2 ]]; then
+    MetDir=${MetDir}/GEOS_2x2.5_GEOS_5/GEOS_FP
     cp ExtData_2x25.rc ExtData.rc
   else
     echo "Invalid resolution selected"
@@ -79,7 +80,7 @@ if [[ $onOdyssey == "y" ]]; then
   fi
 
 # If not on Odyssey, ask the user for the paths
-elif [[ $onOdyssey  == "n" ]]; then
+elif [[ ${onOdyssey} == "n" ]]; then
   read -p "Enter path containing met data: " MetDir
   read -p "Enter path to HEMCO data directory: " MainDataDir
   read -p "Enter path to GEOS-Chem restart files: " RestartsDir
@@ -94,39 +95,43 @@ else
 fi
 
 # Set symlinks based on the paths set above
-if [[ -d $MetDir && -d $MainDataDir && -d $RestartsDir && -d $ChemDataDir && -d ${TileFileDir} ]]; then
-  ln -s $MetDir MetDir
-  ln -s $MainDataDir MainDataDir
-  ln -s $RestartsDir RestartsDir
-  ln -s $ChemDataDir ChemDataDir
-  ln -s ${TileFileDir}/${tileFile} ${tileFile} 
+if [[ -d ${MetDir} && -d ${MainDataDir} && -d ${RestartsDir} && -d ${ChemDataDir} && -d ${TileFileDir} ]]; then
+  ln -s ${MetDir} MetDir
+  ln -s ${MainDataDir} MainDataDir
+  ln -s ${RestartsDir} RestartsDir
+  ln -s ${ChemDataDir} ChemDataDir
+  ln -s ${TileFileDir} TileFiles
 else
   echo "Could not find target directories"
   unlink CodeDir
-  unlink geos
   exit 1
 fi
 echo " "
-echo "IMPORTANT NOTE: You must now set up your environment!" 
+echo "IMPORTANT NOTES: You must now set up your environment, compile, and run" 
 echo " "
-echo "  (1) Sample bashrc files that are compatible with the Harvard Odyssey"
-echo "      Compute Cluster are included in this run directory. If you are on a"
-echo "      different system, you may use them as a guide to customize a bashrc"
-echo "      compatible with your local system. By default, the Makefile and"
-echo "      GCHP.run are set to use GCHP.ifort15_openmpi_odyssey.bashrc and"
-echo "      you must manually change the files if using a different bashrc."
+echo "  (1) ENVIRONMENT: You must set up your environment by sourcing a "
+echo "bashrc file. Sample bashrc files compatible with Harvard's Odyssey "
+echo "Compute Cluster and Dalhousie's ACENET Glooscap cluster are included"
+echo "in this run directory. If you are on a different system, you may use"
+echo "them as a guide to customize a bashrc compatible with your local "
+echo "system. If you clean and compile with build.sh, or with any make"
+echo "commands that call build.sh, then you will be guided through the"
+echo "process of setting up your environment."
 echo " "
-echo "  (2) Compile using build.sh, either directly on the command line or "
-echo "      using make. Type './build.sh help' for options."
+echo "  (2) COMPILE: Compile using one of the make commands defined in the"
+echo "Makefile which calls build.sh, or use build.sh directly. Enter"
+echo "'make help' or './build.sh help' for options."
 echo " "
-echo "  (3) Sample run script GCHP.run is included in this directory."
-echo "      It is compatible with SLURM on the Harvard Odyssey Cluster"
-echo "      and may be adapted to other systems. Prior to use, open the file,"
-echo "      enter your email address for SLURM notifications, and update the"
-echo "      bashrc to match your environment. The bashrc specified in the"
-echo "      the Makefile is only invoked if you choose to run GCHP "
-echo "      interactively using make."
+echo "  (3) RUN: Sample run scripts for SLURM and Grid Engine schedulers"
+echo "are included in this directory. The scripts are GCHP_slurm.run and"
+echo "and GCHP_gridengine.run. GCHP_slurm.run is configured for use"
+echo "on Harvard's Odyssey cluster and GCHP_gridengine.run for use on"
+echo "Dalhousie's Glooscap cluster. These may be helpful in creating"
+echo "a run script for your own system. Beware that the bashrc is"
+echo "hard-coded in the run scripts and you should check and edit as"
+echo "needed prior to submitting."
 echo " "
-echo "Thank you for using the GCHP Dev Kit! Please send any comments, issues, "
+echo "Thank you for using the GCHP Dev Kit! Please send any comments, issues,"
 echo "or questions to Lizzie Lundgren at elundgren@seas.harvard.edu"
+
 exit 0
