@@ -10,142 +10,142 @@ PrimaryExports%%
 #
 
 # Restart quantities
-GCC_NO     '1' xyz C N N - none none TRC_NO     ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_O3     '1' xyz C N N - none none TRC_O3     ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_PAN    '1' xyz C N N - none none TRC_PAN    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_CO     '1' xyz C N N - none none TRC_CO     ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_ALK4   '1' xyz C N N - none none TRC_ALK4   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_ISOP   '1' xyz C N N - none none TRC_ISOP   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_HNO3   '1' xyz C N N - none none TRC_HNO3   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_H2O2   '1' xyz C N N - none none TRC_H2O2   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_ACET   '1' xyz C N N - none none TRC_ACET   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_MEK    '1' xyz C N N - none none TRC_MEK    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_ALD2   '1' xyz C N N - none none TRC_ALD2   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_RCHO   '1' xyz C N N - none none TRC_RCHO   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_MVK    '1' xyz C N N - none none TRC_MVK    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_MACR   '1' xyz C N N - none none TRC_MACR   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_PMN    '1' xyz C N N - none none TRC_PMN    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_PPN    '1' xyz C N N - none none TRC_PPN    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_R4N2   '1' xyz C N N - none none TRC_R4N2   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_PRPE   '1' xyz C N N - none none TRC_PRPE   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_C3H8   '1' xyz C N N - none none TRC_C3H8   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_CH2O   '1' xyz C N N - none none TRC_CH2O   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_C2H6   '1' xyz C N N - none none TRC_C2H6   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_N2O5   '1' xyz C N N - none none TRC_N2O5   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_HNO4   '1' xyz C N N - none none TRC_HNO4   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_MP     '1' xyz C N N - none none TRC_MP     ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_DMS    '1' xyz C N N - none none TRC_DMS    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_SO2    '1' xyz C N N - none none TRC_SO2    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_SO4    '1' xyz C N N - none none TRC_SO4    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_SO4s   '1' xyz C N N - none none TRC_SO4s   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_MSA    '1' xyz C N N - none none TRC_MSA    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_NH3    '1' xyz C N N - none none TRC_NH3    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_NH4    '1' xyz C N N - none none TRC_NH4    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_NIT    '1' xyz C N N - none none TRC_NIT    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_NITs   '1' xyz C N N - none none TRC_NITs   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_BCPI   '1' xyz C N N - none none TRC_BCPI   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_OCPI   '1' xyz C N N - none none TRC_OCPI   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_BCPO   '1' xyz C N N - none none TRC_BCPO   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_OCPO   '1' xyz C N N - none none TRC_OCPO   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_DST1   '1' xyz C N N - none none TRC_DST1   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_DST2   '1' xyz C N N - none none TRC_DST2   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_DST3   '1' xyz C N N - none none TRC_DST3   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_DST4   '1' xyz C N N - none none TRC_DST4   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_SALA   '1' xyz C N N - none none TRC_SALA   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_SALC   '1' xyz C N N - none none TRC_SALC   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_Br2    '1' xyz C N N - none none TRC_Br2    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_Br     '1' xyz C N N - none none TRC_Br     ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_BrO    '1' xyz C N N - none none TRC_BrO    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_HOBr   '1' xyz C N N - none none TRC_HOBr   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_HBr    '1' xyz C N N - none none TRC_HBr    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_BrNO2  '1' xyz C N N - none none TRC_BrNO2  ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_BrNO3  '1' xyz C N N - none none TRC_BrNO3  ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_CHBr3  '1' xyz C N N - none none TRC_CHBr3  ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_CH2Br2 '1' xyz C N N - none none TRC_CH2Br2 ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_CH3Br  '1' xyz C N N - none none TRC_CH3Br  ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_MPN    '1' xyz C N N - none none TRC_MPN    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_ISOPN  '1' xyz C N N - none none TRC_ISOPN  ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_MOBA   '1' xyz C N N - none none TRC_MOBA   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_PROPNN '1' xyz C N N - none none TRC_PROPNN ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_HAC    '1' xyz C N N - none none TRC_HAC    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_GLYC   '1' xyz C N N - none none TRC_GLYC   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_MMN    '1' xyz C N N - none none TRC_MMN    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_RIP    '1' xyz C N N - none none TRC_RIP    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_IEPOX  '1' xyz C N N - none none TRC_IEPOX  ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_MAP    '1' xyz C N N - none none TRC_MAP    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_NO2    '1' xyz C N N - none none TRC_NO2    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_NO3    '1' xyz C N N - none none TRC_NO3    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
-GCC_HNO2   '1' xyz C N N - none none TRC_HNO2   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_NO     '1' xyz C N Y - none none TRC_NO     ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_O3     '1' xyz C N Y - none none TRC_O3     ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_PAN    '1' xyz C N Y - none none TRC_PAN    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_CO     '1' xyz C N Y - none none TRC_CO     ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_ALK4   '1' xyz C N Y - none none TRC_ALK4   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_ISOP   '1' xyz C N Y - none none TRC_ISOP   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_HNO3   '1' xyz C N Y - none none TRC_HNO3   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_H2O2   '1' xyz C N Y - none none TRC_H2O2   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_ACET   '1' xyz C N Y - none none TRC_ACET   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_MEK    '1' xyz C N Y - none none TRC_MEK    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_ALD2   '1' xyz C N Y - none none TRC_ALD2   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_RCHO   '1' xyz C N Y - none none TRC_RCHO   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_MVK    '1' xyz C N Y - none none TRC_MVK    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_MACR   '1' xyz C N Y - none none TRC_MACR   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_PMN    '1' xyz C N Y - none none TRC_PMN    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_PPN    '1' xyz C N Y - none none TRC_PPN    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_R4N2   '1' xyz C N Y - none none TRC_R4N2   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_PRPE   '1' xyz C N Y - none none TRC_PRPE   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_C3H8   '1' xyz C N Y - none none TRC_C3H8   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_CH2O   '1' xyz C N Y - none none TRC_CH2O   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_C2H6   '1' xyz C N Y - none none TRC_C2H6   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_N2O5   '1' xyz C N Y - none none TRC_N2O5   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_HNO4   '1' xyz C N Y - none none TRC_HNO4   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_MP     '1' xyz C N Y - none none TRC_MP     ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_DMS    '1' xyz C N Y - none none TRC_DMS    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_SO2    '1' xyz C N Y - none none TRC_SO2    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_SO4    '1' xyz C N Y - none none TRC_SO4    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_SO4s   '1' xyz C N Y - none none TRC_SO4s   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_MSA    '1' xyz C N Y - none none TRC_MSA    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_NH3    '1' xyz C N Y - none none TRC_NH3    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_NH4    '1' xyz C N Y - none none TRC_NH4    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_NIT    '1' xyz C N Y - none none TRC_NIT    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_NITs   '1' xyz C N Y - none none TRC_NITs   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_BCPI   '1' xyz C N Y - none none TRC_BCPI   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_OCPI   '1' xyz C N Y - none none TRC_OCPI   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_BCPO   '1' xyz C N Y - none none TRC_BCPO   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_OCPO   '1' xyz C N Y - none none TRC_OCPO   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_DST1   '1' xyz C N Y - none none TRC_DST1   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_DST2   '1' xyz C N Y - none none TRC_DST2   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_DST3   '1' xyz C N Y - none none TRC_DST3   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_DST4   '1' xyz C N Y - none none TRC_DST4   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_SALA   '1' xyz C N Y - none none TRC_SALA   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_SALC   '1' xyz C N Y - none none TRC_SALC   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_Br2    '1' xyz C N Y - none none TRC_Br2    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_Br     '1' xyz C N Y - none none TRC_Br     ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_BrO    '1' xyz C N Y - none none TRC_BrO    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_HOBr   '1' xyz C N Y - none none TRC_HOBr   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_HBr    '1' xyz C N Y - none none TRC_HBr    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_BrNO2  '1' xyz C N Y - none none TRC_BrNO2  ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_BrNO3  '1' xyz C N Y - none none TRC_BrNO3  ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_CHBr3  '1' xyz C N Y - none none TRC_CHBr3  ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_CH2Br2 '1' xyz C N Y - none none TRC_CH2Br2 ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_CH3Br  '1' xyz C N Y - none none TRC_CH3Br  ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_MPN    '1' xyz C N Y - none none TRC_MPN    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_ISOPN  '1' xyz C N Y - none none TRC_ISOPN  ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_MOBA   '1' xyz C N Y - none none TRC_MOBA   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_PROPNN '1' xyz C N Y - none none TRC_PROPNN ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_HAC    '1' xyz C N Y - none none TRC_HAC    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_GLYC   '1' xyz C N Y - none none TRC_GLYC   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_MMN    '1' xyz C N Y - none none TRC_MMN    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_RIP    '1' xyz C N Y - none none TRC_RIP    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_IEPOX  '1' xyz C N Y - none none TRC_IEPOX  ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_MAP    '1' xyz C N Y - none none TRC_MAP    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_NO2    '1' xyz C N Y - none none TRC_NO2    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_NO3    '1' xyz C N Y - none none TRC_NO3    ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
+GCC_HNO2   '1' xyz C N Y - none none TRC_HNO2   ./RestartsDir/initial_GEOSChem_rst.2x25_benchmark.nc
 
 # Met data
-ALBD     '1'       xy  C N N 0         none none ALBEDO     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-CLDFRC   '1'       xy  C N N 0         none none CLDTOT     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-EFLUX    '1'       xy  C N N 0         none none EFLUX      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-EVAP     '1'       xy  C N N 0         none none EVAP       ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-FRSEAICE '1'       xy  C N N 0         none none FRSEAICE   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-FRSNO    '1'       xy  C N N 0         none none FRSNO      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-GRN      '1'       xy  C N N 0         none none GRN        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-GWETROOT '1'       xy  C N N 0         none none GWETROOT   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-GWETTOP  '1'       xy  C N N 0         none none GWETTOP    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-HFLUX    '1'       xy  C N N 0         none none HFLUX      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-LAI      '1'       xy  C N N 0         none none LAI        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-LWI      '1'       xy  C N N 0         none none LWI        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-RADLWG   '1'       xy  C N N 0         none none LWGNT      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-PARDF    '1'       xy  C N N 0         none none PARDF      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-PARDR    '1'       xy  C N N 0         none none PARDR      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-PBLH     '1'       xy  C N N 0         none none PBLH       ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-PRECANV  '1'       xy  C N N 0         none none PRECANV    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-PRECCON  '1'       xy  C N N 0         none none PRECCON    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-PRECLSC  '1'       xy  C N N 0         none none PRECLSC    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-PRECSNO  '1'       xy  C N N 0         none none PRECSNO    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-PRECTOT  '1'       xy  C N N 0         none none PRECTOT    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-SEAICE00 '1'       xy  C N N -         none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-SEAICE10 '1'       xy  C N N -         none none SEAICE10   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-SEAICE20 '1'       xy  C N N -         none none SEAICE20   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-SEAICE30 '1'       xy  C N N -         none none SEAICE30   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-SEAICE40 '1'       xy  C N N -         none none SEAICE40   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-SEAICE50 '1'       xy  C N N -         none none SEAICE50   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-SEAICE60 '1'       xy  C N N -         none none SEAICE60   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-SEAICE70 '1'       xy  C N N -         none none SEAICE70   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-SEAICE80 '1'       xy  C N N -         none none SEAICE80   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-SEAICE90 '1'       xy  C N N -         none none SEAICE90   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-SLP      '1'       xy  C N N 0         none none SLP        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-SNODP    '1'       xy  C N N 0         none none SNODP      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-SNOMAS   '1'       xy  C N N 0         none none SNOMAS     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-RADSWG   '1'       xy  C N N 0         none none SWGDN      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-TROPP    '1'       xy  C N N 0         none none TROPPT     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-TSKIN    '1'       xy  C N N 0         none none TS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-TS       '1'       xy  C N N 0         none none T2M        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-USTAR    '1'       xy  C N N 0         none none USTAR      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+ALBD     '1'       xy  C N Y 0         none none ALBEDO     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+CLDFRC   '1'       xy  C N Y 0         none none CLDTOT     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+EFLUX    '1'       xy  C N Y 0         none none EFLUX      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+EVAP     '1'       xy  C N Y 0         none none EVAP       ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+FRSEAICE '1'       xy  C N Y 0         none none FRSEAICE   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+FRSNO    '1'       xy  C N Y 0         none none FRSNO      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+GRN      '1'       xy  C N Y 0         none none GRN        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+GWETROOT '1'       xy  C N Y 0         none none GWETROOT   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+GWETTOP  '1'       xy  C N Y 0         none none GWETTOP    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+HFLUX    '1'       xy  C N Y 0         none none HFLUX      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+LAI      '1'       xy  C N Y 0         none none LAI        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+LWI      '1'       xy  C N Y 0         none none LWI        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+RADLWG   '1'       xy  C N Y 0         none none LWGNT      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+PARDF    '1'       xy  C N Y 0         none none PARDF      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+PARDR    '1'       xy  C N Y 0         none none PARDR      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+PBLH     '1'       xy  C N Y 0         none none PBLH       ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+PRECANV  '1'       xy  C N Y 0         none none PRECANV    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+PRECCON  '1'       xy  C N Y 0         none none PRECCON    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+PRECLSC  '1'       xy  C N Y 0         none none PRECLSC    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+PRECSNO  '1'       xy  C N Y 0         none none PRECSNO    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+PRECTOT  '1'       xy  C N Y 0         none none PRECTOT    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+SEAICE00 '1'       xy  C N Y -         none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+SEAICE10 '1'       xy  C N Y -         none none SEAICE10   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+SEAICE20 '1'       xy  C N Y -         none none SEAICE20   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+SEAICE30 '1'       xy  C N Y -         none none SEAICE30   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+SEAICE40 '1'       xy  C N Y -         none none SEAICE40   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+SEAICE50 '1'       xy  C N Y -         none none SEAICE50   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+SEAICE60 '1'       xy  C N Y -         none none SEAICE60   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+SEAICE70 '1'       xy  C N Y -         none none SEAICE70   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+SEAICE80 '1'       xy  C N Y -         none none SEAICE80   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+SEAICE90 '1'       xy  C N Y -         none none SEAICE90   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+SLP      '1'       xy  C N Y 0         none none SLP        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+SNODP    '1'       xy  C N Y 0         none none SNODP      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+SNOMAS   '1'       xy  C N Y 0         none none SNOMAS     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+RADSWG   '1'       xy  C N Y 0         none none SWGDN      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+TROPP    '1'       xy  C N Y 0         none none TROPPT     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+TSKIN    '1'       xy  C N Y 0         none none TS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+TS       '1'       xy  C N Y 0         none none T2M        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+USTAR    '1'       xy  C N Y 0         none none USTAR      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
 U10M;V10M 'm s-1'  xy  C N N 0         none none U10M;V10M  ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-Z0       '1'       xy  C N N 0         none none Z0M        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-FRLAKE   '1'       xy  C N N -         none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-FRLAND   '1'       xy  C N N -         none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-FRLANDIC '1'       xy  C N N -         none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-FROCEAN  '1'       xy  C N N -         none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-PHIS     '1'       xy  C N N -         none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-SPHU1    '1'       xyz C N N 0         none none QV         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.2x25.nc
-SPHU2    '1'       xyz C N N -         none none QV1        /dev/null
-TMPU1    'K'       xyz C N N 0         none none T          ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.2x25.nc
-TMPU2    '1'       xyz C N N -         none none T1         /dev/null
-QI       '1'       xyz C N N 0         none none QI 	 ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.2x25.nc
-QL       '1'       xyz C N N 0         none none QL 	 ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.2x25.nc
-TAUCLI   '1'       xyz C N N 0         none none TAUCLI     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.2x25.nc
-TAUCLW   '1'       xyz C N N 0         none none TAUCLW     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.2x25.nc
-OPTDEP   '1'       xyz C N N F0        none none OPTDEPTH   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.2x25.nc
-CLDF     '1'       xyz C N N F0        none none CLOUD      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.2x25.nc
-CMFMC    '1'       xyz E N N F0        none none CMFMC      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.2x25.nc
-DTRAIN   '1'       xyz C N N F0        none none DTRAIN     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.2x25.nc
-RH       '1'       xyz C N N 0         none none RH 	 ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.2x25.nc
+Z0       '1'       xy  C N Y 0         none none Z0M        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+FRLAKE   '1'       xy  C N Y -         none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+FRLAND   '1'       xy  C N Y -         none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+FRLANDIC '1'       xy  C N Y -         none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+FROCEAN  '1'       xy  C N Y -         none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+PHIS     '1'       xy  C N Y -         none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+SPHU1    '1'       xyz C N Y 0         none none QV         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.2x25.nc
+SPHU2    '1'       xyz C N Y -         none none QV1        /dev/null
+TMPU1    'K'       xyz C N Y 0         none none T          ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.2x25.nc
+TMPU2    '1'       xyz C N Y -         none none T1         /dev/null
+QI       '1'       xyz C N Y 0         none none QI 	 ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.2x25.nc
+QL       '1'       xyz C N Y 0         none none QL 	 ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.2x25.nc
+TAUCLI   '1'       xyz C N Y 0         none none TAUCLI     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.2x25.nc
+TAUCLW   '1'       xyz C N Y 0         none none TAUCLW     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.2x25.nc
+OPTDEP   '1'       xyz C N Y F0        none none OPTDEPTH   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.2x25.nc
+CLDF     '1'       xyz C N Y F0        none none CLOUD      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.2x25.nc
+CMFMC    '1'       xyz E N Y F0        none none CMFMC      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.2x25.nc
+DTRAIN   '1'       xyz C N Y F0        none none DTRAIN     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.2x25.nc
+RH       '1'       xyz C N Y 0         none none RH 	 ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.2x25.nc
 UC;VC    'm s-1'   xyz C N N F0;013000 none none U;V        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.2x25.nc
-DQRCU    '1'       xyz C N N F0        none none DQRCU      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.2x25.nc
-DQRLSAN  '1'       xyz C N N F0        none none DQRLSAN    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.2x25.nc
-REEVAPCN '1'       xyz C N N F0        none none REEVAPCN   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.2x25.nc
-REEVAPLS '1'       xyz C N N F0        none none REEVAPLS   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.2x25.nc
-PFICU    '1'       xyz E N N F0        none none PFICU      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.2x25.nc
-PFILSAN  '1'       xyz E N N F0        none none PFILSAN    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.2x25.nc
-PFLCU    '1'       xyz E N N F0        none none PFLCU      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.2x25.nc
-PFLLSAN  '1'       xyz E N N F0        none none PFLLSAN    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.2x25.nc
+DQRCU    '1'       xyz C N Y F0        none none DQRCU      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.2x25.nc
+DQRLSAN  '1'       xyz C N Y F0        none none DQRLSAN    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.2x25.nc
+REEVAPCN '1'       xyz C N Y F0        none none REEVAPCN   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.2x25.nc
+REEVAPLS '1'       xyz C N Y F0        none none REEVAPLS   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.2x25.nc
+PFICU    '1'       xyz E N Y F0        none none PFICU      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.2x25.nc
+PFILSAN  '1'       xyz E N Y F0        none none PFILSAN    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.2x25.nc
+PFLCU    '1'       xyz E N Y F0        none none PFLCU      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.2x25.nc
+PFLLSAN  '1'       xyz E N Y F0        none none PFLLSAN    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.2x25.nc
 
 #-------------
 # 2D variables at edge
@@ -327,32 +327,35 @@ Olson74 1 xy C N N - none none OLSON /dev/null
 #
 # Need DC0360xPC0181_CFnnnnx6C.bin
 # One year of monthly data
-GEIA_NH3_ANTH  kg_m-2_s-1 xy C Y Y F1990-%m2-01T00:00:00 none none NH3_ANTH    ./MainDataDir/NH3/v2014-07/NH3_geos.1x1.nc
-GEIA_NH3_BIOF  kg_m-2_s-1 xy C Y Y F1998-%m2-01T00:00:00 none none NH3_BIOFUEL ./MainDataDir/NH3/v2014-07/NH3_biofuel.geos.1x1.nc
-GEIA_NH3_NATU  kg_m-2_s-1 xy C Y Y F1990-%m2-01T00:00:00 none none NH3_NATU    ./MainDataDir/NH3/v2014-07/NH3_geos.1x1.nc
+# Confusingly, the files labeled 2x25 actually contain data at 1x1
+# None of the 3 files (4x5, 2x25, 1x1) actually agree with each other in magnitude, although the 2x25 and 4x5 patterns agree
+GEIA_NH3_ANTH  kg_m-2_s-1 xy C Y Y F1990-%m2-01T00:00:00 none none NH3_ANTH    ./MainDataDir/NH3/v2014-07/NH3_geos.4x5.nc
+GEIA_NH3_BIOF  kg_m-2_s-1 xy C Y Y F1998-%m2-01T00:00:00 none none NH3_BIOFUEL ./MainDataDir/NH3/v2014-07/NH3_biofuel.geos.4x5.nc
+GEIA_NH3_NATU  kg_m-2_s-1 xy C Y Y F1990-%m2-01T00:00:00 none none NH3_NATU    ./MainDataDir/NH3/v2014-07/NH3_geos.4x5.nc
 #
 # Need D?????xP?????_CFnnnnx6C.bin
 # Think this is no longer used?
-EDGAR_NO       kg_m-2_s-1 xy C N  Y F- none none NO.total     ./MainDataDir/EDGAR.generic.1x1.esmf.nc
-EDGAR_CO       kg_m-2_s-1 xy C N  Y F- none none CO.total     ./MainDataDir/EDGAR.generic.1x1.esmf.nc
-EDGAR_SO2      kg_m-2_s-1 xy C N  Y F- none none SO2.total    ./MainDataDir/EDGAR.generic.1x1.esmf.nc
+#EDGAR_NO       kg_m-2_s-1 xy C N  Y F- none none NO.total     ./MainDataDir/EDGAR.generic.1x1.esmf.nc
+#EDGAR_CO       kg_m-2_s-1 xy C N  Y F- none none CO.total     ./MainDataDir/EDGAR.generic.1x1.esmf.nc
+#EDGAR_SO2      kg_m-2_s-1 xy C N  Y F- none none SO2.total    ./MainDataDir/EDGAR.generic.1x1.esmf.nc
 #
 # Need DC0360xPC0181_CFnnnnx6C.bin
 # Single entry
-BIOFUEL_NO     kg_m-2_s-1 xy C N  Y F- none none BIOFUEL_NO   ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_CO     kg_m-2_s-1 xy C N  Y F- none none BIOFUEL_CO   ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_C2H6   kg_m-2_s-1 xy C N  Y F- none none BIOFUEL_C2H6 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_ALK4   kg_m-2_s-1 xy C N  Y F- none none BIOFUEL_ALK4 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_ACET   kg_m-2_s-1 xy C N  Y F- none none BIOFUEL_ACET ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_ALK4   kg_m-2_s-1 xy C N  Y F- none none BIOFUEL_ALK4 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_MEK    kg_m-2_s-1 xy C N  Y F- none none BIOFUEL_MEK  ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_ALD2   kg_m-2_s-1 xy C N  Y F- none none BIOFUEL_ALD2 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_PRPE   kg_m-2_s-1 xy C N  Y F- none none BIOFUEL_PRPE ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_C3H8   kg_m-2_s-1 xy C N  Y F- none none BIOFUEL_C3H8 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_CH2O   kg_m-2_s-1 xy C N  Y F- none none BIOFUEL_CH2O ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_C2H6   kg_m-2_s-1 xy C N  Y F- none none BIOFUEL_C2H6 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_NO     kg_m-2_s-1 xy C N Y F- none none BIOFUEL_NO   ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_CO     kg_m-2_s-1 xy C N Y F- none none BIOFUEL_CO   ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_C2H6   kg_m-2_s-1 xy C N Y F- none none BIOFUEL_C2H6 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_ALK4   kg_m-2_s-1 xy C N Y F- none none BIOFUEL_ALK4 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_ACET   kg_m-2_s-1 xy C N Y F- none none BIOFUEL_ACET ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_ALK4   kg_m-2_s-1 xy C N Y F- none none BIOFUEL_ALK4 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_MEK    kg_m-2_s-1 xy C N Y F- none none BIOFUEL_MEK  ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_ALD2   kg_m-2_s-1 xy C N Y F- none none BIOFUEL_ALD2 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_PRPE   kg_m-2_s-1 xy C N Y F- none none BIOFUEL_PRPE ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_C3H8   kg_m-2_s-1 xy C N Y F- none none BIOFUEL_C3H8 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_CH2O   kg_m-2_s-1 xy C N Y F- none none BIOFUEL_CH2O ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_C2H6   kg_m-2_s-1 xy C N Y F- none none BIOFUEL_C2H6 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
 #
 # Need DE0720xPE0360_CFnnnnx6C.bin
+# One year, monthly data
 RETRO_ALK4__A kg_m-2_s-1 xy C Y Y F- none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/butanes_kgC.nc
 RETRO_ALK4__B kg_m-2_s-1 xy C Y Y F- none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/pentanes_kgC.nc
 RETRO_ALK4__C kg_m-2_s-1 xy C Y Y F- none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/hexanes_kgC.nc
@@ -374,23 +377,24 @@ XIAO_C2H6 kg_m2_s-1 xy C N Y F- none none C2H6 ./MainDataDir/XIAO/v2014-09/C3H8_
 #
 # Need DC0360xPC0181_CFnnnnx6C.bin
 # Files have annual data for 2002-2008 except for NH3, where we have one year of monthly data
-CAC_NO    kg_m2_s-1 xy C N Y F2006-01-01T00:00:00  none none NO  ./MainDataDir/CAC/v2014-07/CAC.geos.1x1.nc
-CAC_CO    kg_m2_s-1 xy C N Y F2006-01-01T00:00:00  none none CO  ./MainDataDir/CAC/v2014-07/CAC.geos.1x1.nc
-CAC_SO2   kg_m2_s-1 xy C N Y F2006-01-01T00:00:00  none none SOx ./MainDataDir/CAC/v2014-07/CAC.geos.1x1.nc
+CAC_NO    kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00  none none NO  ./MainDataDir/CAC/v2014-07/CAC.geos.1x1.nc
+CAC_CO    kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00  none none CO  ./MainDataDir/CAC/v2014-07/CAC.geos.1x1.nc
+CAC_SO2   kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00  none none SOx ./MainDataDir/CAC/v2014-07/CAC.geos.1x1.nc
 CAC_NH3   kg_m2_s-1 xy C Y Y F2008-%m2-01T00:00:00 none none NH3 ./MainDataDir/CAC/v2014-07/CAC_NH3.geos.1x1.nc
 #
 # Cannot yet regrid conservatively - regional file
-# Files have annual data up to 2000 (VOCs)/2012 (other)
-EMEP_NO    kg_m2_s-1 xy C N N F2011-01-01T00:00:00 none none NO    ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
-EMEP_CO    kg_m2_s-1 xy C N N F2011-01-01T00:00:00 none none CO    ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
-EMEP_SO2   kg_m2_s-1 xy C N N F2011-01-01T00:00:00 none none SO2   ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
-EMEP_NH3   kg_m2_s-1 xy C N N F2011-01-01T00:00:00 none none NH3   ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
-EMEP_ALK4  kg_m2_s-1 xy C N N F1999-01-01T00:00:00 none none ALK4  ./MainDataDir/EMEP/v2015-03/EMEP.geos.1x1.nc
-EMEP_ALD2  kg_m2_s-1 xy C N N F1999-01-01T00:00:00 none none ALD2  ./MainDataDir/EMEP/v2015-03/EMEP.geos.1x1.nc
-EMEP_PRPE  kg_m2_s-1 xy C N N F1999-01-01T00:00:00 none none PRPE  ./MainDataDir/EMEP/v2015-03/EMEP.geos.1x1.nc
-EMEP_MEK   kg_m2_s-1 xy C N N F1999-01-01T00:00:00 none none MEK   ./MainDataDir/EMEP/v2015-03/EMEP.geos.1x1.nc
+# Files have annual data for 1980-2000 (VOCs)/1990-2012 (other)
+EMEP_NO    kg_m2_s-1 xy C N N F%y4-01-01T00:00:00 none none NO    ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
+EMEP_CO    kg_m2_s-1 xy C N N F%y4-01-01T00:00:00 none none CO    ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
+EMEP_SO2   kg_m2_s-1 xy C N N F%y4-01-01T00:00:00 none none SO2   ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
+EMEP_NH3   kg_m2_s-1 xy C N N F%y4-01-01T00:00:00 none none NH3   ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
+EMEP_ALK4  kg_m2_s-1 xy C N N F%y4-01-01T00:00:00 none none ALK4  ./MainDataDir/EMEP/v2015-03/EMEP.geos.1x1.nc
+EMEP_ALD2  kg_m2_s-1 xy C N N F%y4-01-01T00:00:00 none none ALD2  ./MainDataDir/EMEP/v2015-03/EMEP.geos.1x1.nc
+EMEP_PRPE  kg_m2_s-1 xy C N N F%y4-01-01T00:00:00 none none PRPE  ./MainDataDir/EMEP/v2015-03/EMEP.geos.1x1.nc
+EMEP_MEK   kg_m2_s-1 xy C N N F%y4-01-01T00:00:00 none none MEK   ./MainDataDir/EMEP/v2015-03/EMEP.geos.1x1.nc
 #
 # Need DE0360xPE0180_CFnnnnx6C.bin
+# Single entry
 BRAVO_NO  kg_m2_s-1 xy C Y Y F- none none NO  ./MainDataDir/BRAVO/v2014-07/BRAVO.generic.1x1.nc
 BRAVO_CO  kg_m2_s-1 xy C Y Y F- none none CO  ./MainDataDir/BRAVO/v2014-07/BRAVO.generic.1x1.nc
 BRAVO_SO2 kg_m2_s-1 xy C Y Y F- none none SO2 ./MainDataDir/BRAVO/v2014-07/BRAVO.generic.1x1.nc
@@ -464,61 +468,64 @@ ZHANG_PRPE__TRA  kg_m2_s-1 xy C Y Y F- none none PRPE_tra ./MainDataDir/STREETS/
 STREETS_NH3      kg_m2_s-1 xy C Y Y F- none none NH3_tot  ./MainDataDir/STREETS/v2014-07/2000/Streets_2000.generic.1x1.nc
 #
 # Cannot yet regrid conservatively - regional file
-MIX_NO_IND   kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none NO_INDUSTRY      ./MainDataDir/MIX/v2015-03/MIX_Asia_NO.generic.025x025.nc    
-MIX_NO_POW   kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none NO_POWER         ./MainDataDir/MIX/v2015-03/MIX_Asia_NO.generic.025x025.nc    
-MIX_NO_RES   kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none NO_RESIDENTIAL   ./MainDataDir/MIX/v2015-03/MIX_Asia_NO.generic.025x025.nc    
-MIX_NO_TRA   kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none NO_TRANSPORT     ./MainDataDir/MIX/v2015-03/MIX_Asia_NO.generic.025x025.nc    
-MIX_CO_IND   kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none CO_INDUSTRY      ./MainDataDir/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc 
-MIX_CO_POW   kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none CO_POWER         ./MainDataDir/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc 
-MIX_CO_RES   kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none CO_RESIDENTIAL   ./MainDataDir/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc 
-MIX_CO_TRA   kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none CO_TRANSPORT     ./MainDataDir/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc 
-MIX_SO2_IND  kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none SO2_INDUSTRY     ./MainDataDir/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc 
-MIX_SO2_POW  kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none SO2_POWER        ./MainDataDir/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc 
-MIX_SO2_RES  kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none SO2_RESIDENTIAL  ./MainDataDir/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc 
-MIX_SO2_TRA  kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none SO2_TRANSPORT    ./MainDataDir/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc 
-MIX_ALK4_IND kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none ALK4_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_ALK4.generic.025x025.nc 
-MIX_ALK4_POW kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none ALK4_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_ALK4.generic.025x025.nc 
-MIX_ALK4_RES kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none ALK4_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_ALK4.generic.025x025.nc 
-MIX_ALK4_TRA kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none ALK4_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_ALK4.generic.025x025.nc 
-MIX_ACET_IND kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none ACET_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_ACET.generic.025x025.nc 
-MIX_ACET_POW kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none ACET_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_ACET.generic.025x025.nc 
-MIX_ACET_RES kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none ACET_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_ACET.generic.025x025.nc 
-MIX_ACET_TRA kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none ACET_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_ACET.generic.025x025.nc 
-MIX_ALD2_IND kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none ALD2_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_ALD2.generic.025x025.nc 
-MIX_ALD2_POW kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none ALD2_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_ALD2.generic.025x025.nc 
-MIX_ALD2_RES kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none ALD2_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_ALD2.generic.025x025.nc 
-MIX_ALD2_TRA kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none ALD2_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_ALD2.generic.025x025.nc 
-MIX_C2H6_IND kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none C2H6_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_C2H6.generic.025x025.nc 
-MIX_C2H6_POW kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none C2H6_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_C2H6.generic.025x025.nc 
-MIX_C2H6_RES kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none C2H6_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_C2H6.generic.025x025.nc 
-MIX_C2H6_TRA kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none C2H6_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_C2H6.generic.025x025.nc 
-MIX_C3H8_IND kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none C3H8_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_C3H8.generic.025x025.nc 
-MIX_C3H8_POW kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none C3H8_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_C3H8.generic.025x025.nc 
-MIX_C3H8_RES kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none C3H8_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_C3H8.generic.025x025.nc 
-MIX_C3H8_TRA kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none C3H8_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_C3H8.generic.025x025.nc 
-MIX_CH2O_IND kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none CH2O_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_CH2O.generic.025x025.nc 
-MIX_CH2O_POW kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none CH2O_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_CH2O.generic.025x025.nc 
-MIX_CH2O_RES kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none CH2O_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_CH2O.generic.025x025.nc 
-MIX_CH2O_TRA kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none CH2O_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_CH2O.generic.025x025.nc 
-MIX_MEK_IND  kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none MEK_INDUSTRY     ./MainDataDir/MIX/v2015-03/MIX_Asia_MEK.generic.025x025.nc 
-MIX_MEK_POW  kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none MEK_POWER        ./MainDataDir/MIX/v2015-03/MIX_Asia_MEK.generic.025x025.nc 
-MIX_MEK_RES  kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none MEK_RESIDENTIAL  ./MainDataDir/MIX/v2015-03/MIX_Asia_MEK.generic.025x025.nc 
-MIX_MEK_TRA  kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none MEK_TRANSPORT    ./MainDataDir/MIX/v2015-03/MIX_Asia_MEK.generic.025x025.nc 
-MIX_NH3_AGR  kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none NH3_AGRICULTURE  ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
-MIX_NH3_IND  kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none NH3_INDUSTRY     ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
-MIX_NH3_POW  kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none NH3_POWER        ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
-MIX_NH3_RES  kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none NH3_RESIDENTIAL  ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
-MIX_NH3_TRA  kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none NH3_TRANSPORT    ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
-MIX_PRPE_IND kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none PRPE_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_PRPE.generic.025x025.nc 
-MIX_PRPE_POW kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none PRPE_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_PRPE.generic.025x025.nc 
-MIX_PRPE_RES kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none PRPE_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_PRPE.generic.025x025.nc 
-MIX_PRPE_TRA kg_m2_s-1 xy C N N 2008-%m4-01T00:00:00 none none PRPE_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_PRPE.generic.025x025.nc 
+# Contains data from 2008-2010
+MIX_NO_IND   kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none NO_INDUSTRY      ./MainDataDir/MIX/v2015-03/MIX_Asia_NO.generic.025x025.nc    
+MIX_NO_POW   kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none NO_POWER         ./MainDataDir/MIX/v2015-03/MIX_Asia_NO.generic.025x025.nc    
+MIX_NO_RES   kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none NO_RESIDENTIAL   ./MainDataDir/MIX/v2015-03/MIX_Asia_NO.generic.025x025.nc    
+MIX_NO_TRA   kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none NO_TRANSPORT     ./MainDataDir/MIX/v2015-03/MIX_Asia_NO.generic.025x025.nc    
+MIX_CO_IND   kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none CO_INDUSTRY      ./MainDataDir/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc 
+MIX_CO_POW   kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none CO_POWER         ./MainDataDir/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc 
+MIX_CO_RES   kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none CO_RESIDENTIAL   ./MainDataDir/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc 
+MIX_CO_TRA   kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none CO_TRANSPORT     ./MainDataDir/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc 
+MIX_SO2_IND  kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none SO2_INDUSTRY     ./MainDataDir/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc 
+MIX_SO2_POW  kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none SO2_POWER        ./MainDataDir/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc 
+MIX_SO2_RES  kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none SO2_RESIDENTIAL  ./MainDataDir/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc 
+MIX_SO2_TRA  kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none SO2_TRANSPORT    ./MainDataDir/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc 
+MIX_ALK4_IND kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none ALK4_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_ALK4.generic.025x025.nc 
+MIX_ALK4_POW kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none ALK4_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_ALK4.generic.025x025.nc 
+MIX_ALK4_RES kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none ALK4_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_ALK4.generic.025x025.nc 
+MIX_ALK4_TRA kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none ALK4_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_ALK4.generic.025x025.nc 
+MIX_ACET_IND kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none ACET_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_ACET.generic.025x025.nc 
+MIX_ACET_POW kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none ACET_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_ACET.generic.025x025.nc 
+MIX_ACET_RES kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none ACET_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_ACET.generic.025x025.nc 
+MIX_ACET_TRA kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none ACET_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_ACET.generic.025x025.nc 
+MIX_ALD2_IND kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none ALD2_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_ALD2.generic.025x025.nc 
+MIX_ALD2_POW kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none ALD2_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_ALD2.generic.025x025.nc 
+MIX_ALD2_RES kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none ALD2_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_ALD2.generic.025x025.nc 
+MIX_ALD2_TRA kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none ALD2_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_ALD2.generic.025x025.nc 
+MIX_C2H6_IND kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none C2H6_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_C2H6.generic.025x025.nc 
+MIX_C2H6_POW kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none C2H6_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_C2H6.generic.025x025.nc 
+MIX_C2H6_RES kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none C2H6_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_C2H6.generic.025x025.nc 
+MIX_C2H6_TRA kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none C2H6_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_C2H6.generic.025x025.nc 
+MIX_C3H8_IND kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none C3H8_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_C3H8.generic.025x025.nc 
+MIX_C3H8_POW kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none C3H8_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_C3H8.generic.025x025.nc 
+MIX_C3H8_RES kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none C3H8_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_C3H8.generic.025x025.nc 
+MIX_C3H8_TRA kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none C3H8_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_C3H8.generic.025x025.nc 
+MIX_CH2O_IND kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none CH2O_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_CH2O.generic.025x025.nc 
+MIX_CH2O_POW kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none CH2O_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_CH2O.generic.025x025.nc 
+MIX_CH2O_RES kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none CH2O_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_CH2O.generic.025x025.nc 
+MIX_CH2O_TRA kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none CH2O_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_CH2O.generic.025x025.nc 
+MIX_MEK_IND  kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none MEK_INDUSTRY     ./MainDataDir/MIX/v2015-03/MIX_Asia_MEK.generic.025x025.nc 
+MIX_MEK_POW  kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none MEK_POWER        ./MainDataDir/MIX/v2015-03/MIX_Asia_MEK.generic.025x025.nc 
+MIX_MEK_RES  kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none MEK_RESIDENTIAL  ./MainDataDir/MIX/v2015-03/MIX_Asia_MEK.generic.025x025.nc 
+MIX_MEK_TRA  kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none MEK_TRANSPORT    ./MainDataDir/MIX/v2015-03/MIX_Asia_MEK.generic.025x025.nc 
+MIX_NH3_AGR  kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none NH3_AGRICULTURE  ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
+MIX_NH3_IND  kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none NH3_INDUSTRY     ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
+MIX_NH3_POW  kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none NH3_POWER        ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
+MIX_NH3_RES  kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none NH3_RESIDENTIAL  ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
+MIX_NH3_TRA  kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none NH3_TRANSPORT    ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
+MIX_PRPE_IND kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none PRPE_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_PRPE.generic.025x025.nc 
+MIX_PRPE_POW kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none PRPE_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_PRPE.generic.025x025.nc 
+MIX_PRPE_RES kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none PRPE_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_PRPE.generic.025x025.nc 
+MIX_PRPE_TRA kg_m2_s-1 xy C N N %y4-%m2-01T00:00:00 none none PRPE_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_PRPE.generic.025x025.nc 
 #
 # Need DC0144xPC0091_CFnnnnx6C.bin
+# Single file, single sample
 LIANG_CHBR3    kg_m2_s-1  xy C N Y F- none none CHBr3_emission  ./MainDataDir/BROMINE/v2015-02/Bromocarb_Liang2010.nc
 LIANG_CH2BR2   kg_m2_s-1  xy C N Y F- none none CH2Br2_emission ./MainDataDir/BROMINE/v2015-02/Bromocarb_Liang2010.nc
 #
 # Need DE0360xPE0180_CFnnnnx6C.bin (for all of the following BOND emissions)
+# 12-month climatology
 BOND_ANTH_BCPI kg_m2_s-1  xy C Y Y F2000-%m2-01T00:00:00 none none BC ./MainDataDir/BCOC_BOND/v2014-07/Bond_fossil.nc
 BOND_ANTH_OCPI kg_m2_s-1  xy C Y Y F2000-%m2-01T00:00:00 none none OC ./MainDataDir/BCOC_BOND/v2014-07/Bond_fossil.nc
 BOND_BF_BCPI   kg_m2_s-1  xy C Y Y F2000-%m2-01T00:00:00 none none BC ./MainDataDir/BCOC_BOND/v2014-07/Bond_biofuel.nc
@@ -532,106 +539,119 @@ BOND_BM_POG1   kg_m2_s-1  xy C N Y F- none none OC ./MainDataDir/BCOC_BOND/v2014
 BOND_BM_POG2   kg_m2_s-1  xy C N Y F- none none OC ./MainDataDir/BCOC_BOND/v2014-07/Bond_biomass.nc
 #
 # Need DE0360xPE0180_CFnnnnx6C.bin
+# Single entry
 ARCTAS_SHIP_SO2 kg_m2_s-1 xy C Y Y -                    none none SO2     ./MainDataDir/ARCTAS_SHIP/v2014-07/ARCTAS_ship.generic.1x1.nc
 # Need DE0360xPE0180_CFnnnnx6C.bin
+# 12-month climatology
 ICOADS_SHIP_CO  kg_m2_s-1 xy C Y Y F2002-%m2-01T00:00:00 none none CO      ./MainDataDir/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc
 ICOADS_SHIP_NO  kg_m2_s-1 xy C Y Y F2002-%m2-01T00:00:00 none none NO      ./MainDataDir/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc
 # Cannot yet regrid conservatively - regional file
-EMEP_SHIP_CO   kg_m2_s-1  xy C N N F2001-12-29T00:00:00  none none ShipCO  ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
-EMEP_SHIP_SO2  kg_m2_s-1  xy C N N F2001-12-29T00:00:00  none none ShipSO2 ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
-EMEP_SHIP_NO   kg_m2_s-1  xy C N N F2001-12-29T00:00:00  none none ShipNO  ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
+# 1990-2012, one entry per year
+EMEP_SHIP_CO   kg_m2_s-1  xy C N N F%y4-01-01T00:00:00  none none ShipCO  ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
+EMEP_SHIP_SO2  kg_m2_s-1  xy C N N F%y4-01-01T00:00:00  none none ShipSO2 ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
+EMEP_SHIP_NO   kg_m2_s-1  xy C N N F%y4-01-01T00:00:00  none none ShipNO  ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
 #
 # Need D?????xP?????_CFnnnnx6C.bin
+# 12-month climatology
 AEIC_NO   kg_m-2_s-1 xyz C Y N F2005-%m2-01T00:00:00 none none NO2      /dev/null #./MainDataDir/AEIC/v2015-01/AEIC.47L.gen.1x1.nc
 AEIC_CO   kg_m-2_s-1 xyz C Y N F2005-%m2-01T00:00:00 none none CO       /dev/null #./MainDataDir/AEIC/v2015-01/AEIC.47L.gen.1x1.nc
 AEIC_SO2  kg_m-2_s-1 xyz C Y N F2005-%m2-01T00:00:00 none none FUELBURN /dev/null #./MainDataDir/AEIC/v2015-01/AEIC.47L.gen.1x1.nc
 AEIC_ACET kg_m-2_s-1 xyz C Y N F2005-%m2-01T00:00:00 none none HC       /dev/null #./MainDataDir/AEIC/v2015-01/AEIC.47L.gen.1x1.nc
 #
 # Need D?????xP?????_CFnnnnx6C.bin
-VOLCANO_SO2_ERUPT kg_m-2_s-1 xyz C N N 2006-%m2-%d2T00:00:00 none none SO2_erupt /dev/null #./MainDataDir/VOLCANO/v2015-02/%y4/volc_so2_gen.1x1.47L.%y4%m2.nc
-VOLCANO_SO2_DEGAS kg_m-2_s-1 xyz C N N 2006-%m2-%d2T00:00:00 none none SO2_degas /dev/null #./MainDataDir/VOLCANO/v2015-02/%y4/volc_so2_gen.1x1.47L.%y4%m2.nc
+VOLCANO_SO2_ERUPT kg_m-2_s-1 xyz C N N %y4-%m2-%d2T00:00:00 none none SO2_erupt /dev/null #./MainDataDir/VOLCANO/v2015-02/%y4/volc_so2_gen.1x1.47L.%y4%m2.nc
+VOLCANO_SO2_DEGAS kg_m-2_s-1 xyz C N N %y4-%m2-%d2T00:00:00 none none SO2_degas /dev/null #./MainDataDir/VOLCANO/v2015-02/%y4/volc_so2_gen.1x1.47L.%y4%m2.nc
 #
 # Need DC0360xPC0181_CFnnnnx6C.bin
-TOTFUEL_THISYR    1 xy C N Y 1985-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-TOTFUEL_1985      1 xy C N Y 1985-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-TOTFUEL_1999      1 xy C N Y 1999-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-TOTFUEL_2002      1 xy C N Y 2002-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-TOTFUEL_2005      1 xy C N Y 2005-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-TOTFUEL_2006      1 xy C N Y 2006-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-TOTFUEL_2008      1 xy C N Y 2008-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-TOTFUEL_1985_2008 1 xy C N Y 1985-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-TOTFUEL_2008_2010 1 xy C N Y 2008-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-LIQFUEL_THISYR    1 xy C N Y 1985-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-LIQFUEL_1985      1 xy C N Y 1985-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-LIQFUEL_1999      1 xy C N Y 1999-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-LIQFUEL_2002      1 xy C N Y 2002-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-LIQFUEL_2005      1 xy C N Y 2005-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-LIQFUEL_2006      1 xy C N Y 2006-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-LIQFUEL_2008      1 xy C N Y 2008-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-LIQFUEL_1985_2008 1 xy C N Y 1985-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-LIQFUEL_2008_2010 1 xy C N Y 2008-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-SOLFUEL_THISYR    1 xy C N Y 1985-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-SOLFUEL_1985      1 xy C N Y 1985-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-SOLFUEL_1999      1 xy C N Y 1999-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-SOLFUEL_2002      1 xy C N Y 2002-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-SOLFUEL_2005      1 xy C N Y 2005-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-SOLFUEL_2006      1 xy C N Y 2006-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-SOLFUEL_2008      1 xy C N Y 2008-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-SOLFUEL_1985_2008 1 xy C N Y 1985-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
-SOLFUEL_2008_2010 1 xy C N Y 2008-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_THISYR    1 xy C N Y F%y4-01-01T00:00:00   none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_1985      1 xy C N Y F1985-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_1999      1 xy C N Y F1999-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_2002      1 xy C N Y F2002-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_2005      1 xy C N Y F2005-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_2006      1 xy C N Y F2006-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_2008      1 xy C N Y F2008-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_1985_2008 1 xy C N Y F%y4-01-01T00:00:00   none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_2008_2010 1 xy C N Y F%y4-01-01T00:00:00   none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_THISYR    1 xy C N Y F%y4-01-01T00:00:00   none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_1985      1 xy C N Y F1985-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_1999      1 xy C N Y F1999-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_2002      1 xy C N Y F2002-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_2005      1 xy C N Y F2005-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_2006      1 xy C N Y F2006-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_2008      1 xy C N Y F2008-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_1985_2008 1 xy C N Y F%y4-01-01T00:00:00   none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_2008_2010 1 xy C N Y F%y4-01-01T00:00:00   none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_THISYR    1 xy C N Y F%y4-01-01T00:00:00   none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_1985      1 xy C N Y F1985-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_1999      1 xy C N Y F1999-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_2002      1 xy C N Y F2002-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_2005      1 xy C N Y F2005-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_2006      1 xy C N Y F2006-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_2008      1 xy C N Y F2008-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_1985_2008 1 xy C N Y F%y4-01-01T00:00:00   none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_2008_2010 1 xy C N Y F%y4-01-01T00:00:00   none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
 # Need DC0360xPE0180_CFnnnnx6C.bin
-GEIA_SEASON_NOX   1 xy C Y Y 1985-%m2-01T00:00:00 none none NOXrat    ./MainDataDir/GEIA/v2014-07/GEIA_monthscal.generic.1x1.nc
-GEIA_SEASON_SO2   1 xy C Y Y 1985-%m2-01T00:00:00 none none SO2rat    ./MainDataDir/GEIA/v2014-07/GEIA_monthscal.generic.1x1.nc
+# 12-month climatology
+GEIA_SEASON_NOX   1 xy C Y Y F1985-%m2-01T00:00:00 none none NOXrat    ./MainDataDir/GEIA/v2014-07/GEIA_monthscal.generic.1x1.nc
+GEIA_SEASON_SO2   1 xy C Y Y F1985-%m2-01T00:00:00 none none SO2rat    ./MainDataDir/GEIA/v2014-07/GEIA_monthscal.generic.1x1.nc
 # Need DE0360xPE0180_CFnnnnx6C.bin
-EDGAR_TODNOX 1 xy C N Y 2000-01-01T00:%h2:00 none none NOXscale  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_hourly_NOxScal.nc
+EDGAR_TODNOX      1 xy C N Y F2000-01-01T00:%h2:00 none none NOXscale  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_hourly_NOxScal.nc
 #
 # Need DC0360xPC0181_CFnnnnx6C.bin
+# Single file, single entry
 CO_ratio          1 xy C N Y -                    none none NOXscalar ./MainDataDir/AnnualScalar/v2014-07/NO_ratio_2005_2002.nc 
 NO_ratio          1 xy C N Y -                    none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/CO_ratio_2005_1985.nc 
 #
 # Need DC0360xPC0181_CFnnnnx6C.bin
-EMEP_SEASON_NOX   1 xy C Y Y F2005-%m2-01T00:01:00 none none NOXrat    ./MainDataDir/EMEP/v2015-03/EMEP.Seasonal.geos.1x1.nc
-EMEP_SEASON_CO    1 xy C Y Y F2005-%m2-01T00:01:00 none none COrat     ./MainDataDir/EMEP/v2015-03/EMEP.Seasonal.geos.1x1.nc
-EMEP_SEASON_NH3   1 xy C Y Y F2005-%m2-01T00:01:00 none none NH3rat    ./MainDataDir/EMEP/v2015-03/EMEP.Seasonal.geos.1x1.nc
-EMEP_SEASON_SO2   1 xy C Y Y F2005-%m2-01T00:01:00 none none SO2rat    ./MainDataDir/EMEP/v2015-03/EMEP.Seasonal.geos.1x1.nc
+# 12-month climatology
+EMEP_SEASON_NOX   1 xy C Y Y F2005-%m2-01T00:00:00 none none NOXrat    ./MainDataDir/EMEP/v2015-03/EMEP.Seasonal.geos.1x1.nc
+EMEP_SEASON_CO    1 xy C Y Y F2005-%m2-01T00:00:00 none none COrat     ./MainDataDir/EMEP/v2015-03/EMEP.Seasonal.geos.1x1.nc
+EMEP_SEASON_NH3   1 xy C Y Y F2005-%m2-01T00:00:00 none none NH3rat    ./MainDataDir/EMEP/v2015-03/EMEP.Seasonal.geos.1x1.nc
+EMEP_SEASON_SO2   1 xy C Y Y F2005-%m2-01T00:00:00 none none SO2rat    ./MainDataDir/EMEP/v2015-03/EMEP.Seasonal.geos.1x1.nc
 #
 # Need DE0360xPE0180_CFnnnnx6C.bin
+# 12-month climatology
 ZHANG_SEASON_NOX  1 xy C Y Y F2004-%m2-01T00:01:00 none none NOxrat    ./MainDataDir/STREETS/v2014-07/2006/Streets_2004_NOx_MonthFctr_total.generic.1x1.nc
 ZHANG_SEASON_CO   1 xy C Y Y F2001-%m2-01T00:01:00 none none ratio     ./MainDataDir/STREETS/v2014-07/2006/Streets_2001_CO_MonthFctr_total.generic.1x1.nc
 #
 # Need DE0360xPE0180_CFnnnnx6C.bin
+# 12-month climatology
 STREETS_SEASON_NH3 1 xy C Y Y F1995-%m2-01T00:01:00 none none NH3_scale ./MainDataDir/STREETS/v2014-07/2000/Streets_NH3_scale.generic.1x1.nc
 #
 # Need DE0360xPE0180_CFnnnnx6C.bin
+# 12-month climatology
 BROMOCARB_SEASON  1 xy C Y Y F2000-%m2-01T00:01:00 none none CHXBRY_scale ./MainDataDir/BROMINE/v2015-02/BromoCarb_Season.nc
 #
 # Need DC0360xPC0181_CFnnnnx6C.bin
+# 12-month climatology
 DMS_SEAWATER  kg/m3 xy C Y Y 1985-%m2-01T00:00:00 none none DMS_OCEAN ./MainDataDir/DMS/v2015-07/DMS_lana.geos.1x1.nc
 # Need DE0360xPE0180_CFnnnnx6C.bin
+# Single entry
 ACET_SEAWATER kg/m3 xy C N Y -                    none none ACET      ./MainDataDir/ACET/v2014-07/ACET_seawater.generic.1x1.nc
 # Need D?????xP?????_CFnnnnx6C.bin
+# 12-month climatology
 CH3I_SEAWATER kg/m3 xy C Y Y 1985-%m2-01T00:00:00 none none CH3I      ./MainDataDir/CH3I/v2014-07/ocean_ch3i.geos.4x5.nc
 #
 # Need DC0144xPC0091_CFnnnnx6C.bin
-DEAD_EF_GEO   1     xy C Y Y - none none EF_GEO   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc
-DEAD_LF_DRY   1     xy C Y Y - none none LF_DRY   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc
-DEAD_MF_CACO3 1     xy C Y Y - none none MF_CaCO3 ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc
-DEAD_MF_CLY   1     xy C Y Y - none none MF_CLY   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc
-DEAD_MF_SND   1     xy C Y Y - none none MF_SND   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc
-DEAD_SFC_TYP  count xy C Y Y - none none SFC_TYP  ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc
-DEAD_GOC_SRC  1     xy C Y Y - none none GOC_SRC  ./MainDataDir/DUST_DEAD/v2014-07/GOCART_src_fn.geos.2x25.nc
-DEAD_VAI      1     xy C Y Y - none none VAI      ./MainDataDir/DUST_DEAD/v2014-07/dst_tvbds.geos.2x25.nc
+DEAD_EF_GEO   1     xy C Y Y -                    none none EF_GEO   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc
+DEAD_LF_DRY   1     xy C Y Y -                    none none LF_DRY   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc
+DEAD_MF_CACO3 1     xy C Y Y -                    none none MF_CaCO3 ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc
+DEAD_MF_CLY   1     xy C Y Y -                    none none MF_CLY   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc
+DEAD_MF_SND   1     xy C Y Y -                    none none MF_SND   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc
+DEAD_SFC_TYP  count xy C Y Y -                    none none SFC_TYP  ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.2x25.nc
+DEAD_GOC_SRC  1     xy C Y Y -                    none none GOC_SRC  ./MainDataDir/DUST_DEAD/v2014-07/GOCART_src_fn.geos.2x25.nc
+DEAD_VAI      1     xy C Y Y 1985-%m2-01T00:00:00 none none VAI      ./MainDataDir/DUST_DEAD/v2014-07/dst_tvbds.geos.2x25.nc
 # GFED3
 # Need DE0720xPE0360_CFnnnnx6C.bin
-GFED_HUMTROP  1       xy C N N -                     none none humtrop           ./MainDataDir/GFED3/v2014-10/GFED3_humtropmap.nc
-GFED_WDL      kg/m2/s xy C Y Y 2007-%m2-01T00:00:00  none none GFED3_BB__WDL_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.2007.nc
-GFED_AGW      kg/m2/s xy C Y Y 2007-%m2-01T00:00:00  none none GFED3_BB__AGW_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.2007.nc
-GFED_DEF      kg/m2/s xy C Y Y 2007-%m2-01T00:00:00  none none GFED3_BB__DEF_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.2007.nc
-GFED_FOR      kg/m2/s xy C Y Y 2007-%m2-01T00:00:00  none none GFED3_BB__FOR_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.2007.nc
-GFED_PET      kg/m2/s xy C Y Y 2007-%m2-01T00:00:00  none none GFED3_BB__PET_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.2007.nc
-GFED_SAV      kg/m2/s xy C Y Y 2007-%m2-01T00:00:00  none none GFED3_BB__SAV_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.2007.nc
-#GFED_FRAC_DAY 1  xy C N Y 2007-%m2-%d2T00:00:00 none none GFED3_BB__DAYFRAC ./MainDataDir/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.2007.nc
-#GFED_FRAC_3HOUR 1 xy C N Y 2007-%m2-01T%h2:00:00 none none GFED3_BB__HRFRAC ./MainDataDir/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.2007.nc
+GFED_HUMTROP  1       xy C N N -                   none none humtrop           ./MainDataDir/GFED3/v2014-10/GFED3_humtropmap.nc
+GFED_WDL      kg/m2/s xy C Y Y %y4-%m2-01T00:00:00 none none GFED3_BB__WDL_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
+GFED_AGW      kg/m2/s xy C Y Y %y4-%m2-01T00:00:00 none none GFED3_BB__AGW_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
+GFED_DEF      kg/m2/s xy C Y Y %y4-%m2-01T00:00:00 none none GFED3_BB__DEF_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
+GFED_FOR      kg/m2/s xy C Y Y %y4-%m2-01T00:00:00 none none GFED3_BB__FOR_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
+GFED_PET      kg/m2/s xy C Y Y %y4-%m2-01T00:00:00 none none GFED3_BB__PET_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
+GFED_SAV      kg/m2/s xy C Y Y %y4-%m2-01T00:00:00 none none GFED3_BB__SAV_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
+#GFED_FRAC_DAY 1  xy C N Y %y4-%m2-%d2T00:00:00 none none GFED3_BB__DAYFRAC ./MainDataDir/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.%y4.nc
+#GFED_FRAC_3HOUR 1 xy C N Y %y4-%m2-01T%h2:00:00 none none GFED3_BB__HRFRAC ./MainDataDir/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.%y4.nc
 # GFED4
 GFED_TEMP 1 xy C N Y F%y4-%m2-01T00:00:00 none none DM_TEMP ./MainDataDir/GFED4/v2015-10/%y4/GFED4_gen.025x025.%y4%m2.nc
 GFED_AGRI 1 xy C N Y F%y4-%m2-01T00:00:00 none none DM_AGRI ./MainDataDir/GFED4/v2015-10/%y4/GFED4_gen.025x025.%y4%m2.nc
@@ -642,7 +662,7 @@ GFED_SAVA 1 xy C N Y F%y4-%m2-01T00:00:00 none none DM_SAVA ./MainDataDir/GFED4/
 GFED_FRAC_DAY 1  xy C N Y %y4-%m2-%d2T00:00:00 none none GFED_FRACDAY  ./MainDataDir/GFED4/v2015-10/%y4/GFED4_dailyfrac_gen.025x025.%y4%m2.nc
 GFED_FRAC_3HOUR 1 xy C N Y %y4-%m2-01T%h2:00:00 none none GFED_FRAC3HR ./MainDataDir/GFED4/v2015-10/%y4/GFED4_3hrfrac_gen.025x025.%y4%m2.nc
 #
-LIGHTNOX_OTDLIS 1 xy C Y N 1985-%m2-01T00:00:00 none none OTD ./MainDataDir/LIGHTNOX/v2014-07/OTD-LIS-Local-Redist.CTH.v5.geosfp.2x25.nc
+LIGHTNOX_OTDLIS 1 xy C Y N %y4-%m2-01T00:00:00 none none OTD ./MainDataDir/LIGHTNOX/v2014-07/OTD-LIS-Local-Redist.CTH.v5.geosfp.2x25.nc
 #
 MEGAN_AEF_ISOP  kgC/m2/s xy C N Y - none none AEF_ISOPRENE     ./MainDataDir/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc
 MEGAN_AEF_MBOX  kgC/m2/s xy C N Y - none none AEF_MBO          ./MainDataDir/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc
@@ -672,6 +692,7 @@ CLM4_PFT_CROP                1 xy C N Y - none none PFT_CROP                ./Ma
 MEGAN_ORVC                   1 xy C Y Y - none none OCPI                    ./MainDataDir/SOA/v2014-07/NVOC.geos.1x1.nc
 #
 # Need DE0720xPE0360 grid
+# One-year climatology
 SOILNOX_FERT      kg/m3 xy C N Y  2000-%m2-%d2T00:00:00 none none FERT ./MainDataDir/SOILNOX/v2014-07/soilNOx.fert_res.generic.05x05.nc
 SOILNOX_LANDK1    1     xy C N Y  - none none LANDFRAC_K01 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
 SOILNOX_LANDK2    1     xy C N Y  - none none LANDFRAC_K02 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
@@ -699,7 +720,8 @@ SOILNOX_LANDK23   1     xy C N Y  - none none LANDFRAC_K23 ./MainDataDir/SOILNOX
 SOILNOX_LANDK24   1     xy C N Y  - none none LANDFRAC_K24 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
 SOILNOX_ARID      1     xy C N Y  - none none ARID         ./MainDataDir/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc
 SOILNOX_NONARID   1     xy C N Y  - none none NON_ARID     ./MainDataDir/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc
-TIMEZONES         count xy C N V  - none none UTC_OFFSET ./MainDataDir/TIMEZONES/v2015-02/timezones_1x1.nc
+#TIMEZONES         count xy C N Y  - none none UTC_OFFSET ./MainDataDir/TIMEZONES/v2015-02/timezones_1x1.nc
+TIMEZONES         count xy C N V  - none none UTC_OFFSET timezones_extended_1x1.nc
 
 # Don't actually need these yet
 HTAP_NH3_IND      1     xy C N N  - none none HTAP_NH3_IND /dev/null
@@ -712,228 +734,228 @@ HTAP_NH3_RES      1     xy C N N  - none none HTAP_NH3_RES /dev/null
 # ------------------
 #
 #--- GMI chemistry: prod/loss rates (for strato-/mesosphere) ---
-GMI_LOSS_A3O2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.A3O2.geos5.2x25.nc 
-GMI_PROD_A3O2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.A3O2.geos5.2x25.nc
-GMI_LOSS_ACET      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ACET.geos5.2x25.nc
-GMI_PROD_ACET      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ACET.geos5.2x25.nc 
-GMI_LOSS_ACTA      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ACTA.geos5.2x25.nc
-GMI_PROD_ACTA      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ACTA.geos5.2x25.nc
-GMI_LOSS_ALD2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ALD2.geos5.2x25.nc 
-GMI_PROD_ALD2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ALD2.geos5.2x25.nc
-GMI_LOSS_ALK4      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ALK4.geos5.2x25.nc 
-GMI_PROD_ALK4      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ALK4.geos5.2x25.nc
-GMI_LOSS_ATO2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ATO2.geos5.2x25.nc
-GMI_PROD_ATO2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ATO2.geos5.2x25.nc
-GMI_LOSS_B3O2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.B3O2.geos5.2x25.nc
-GMI_PROD_B3O2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.B3O2.geos5.2x25.nc
-GMI_LOSS_C2H6      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.C2H6.geos5.2x25.nc
-GMI_PROD_C2H6      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.C2H6.geos5.2x25.nc
-GMI_LOSS_C3H8      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.C3H8.geos5.2x25.nc
-GMI_PROD_C3H8      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.C3H8.geos5.2x25.nc
-GMI_LOSS_CCl4      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CCl4.geos5.2x25.nc
-GMI_PROD_CCl4      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CCl4.geos5.2x25.nc
-GMI_LOSS_CFC113    s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CFC113.geos5.2x25.nc 
-GMI_PROD_CFC113    v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CFC113.geos5.2x25.nc 
-GMI_LOSS_CFC114    s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CFC114.geos5.2x25.nc
-GMI_PROD_CFC114    v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CFC114.geos5.2x25.nc
-GMI_LOSS_CFC115    s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CFC115.geos5.2x25.nc 
-GMI_PROD_CFC115    v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CFC115.geos5.2x25.nc
-GMI_LOSS_CFC11     s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CFCl3.geos5.2x25.nc 
-GMI_PROD_CFC11     v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CFCl3.geos5.2x25.nc 
-GMI_LOSS_CFC12     s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CF2Cl2.geos5.2x25.nc
-GMI_PROD_CFC12     v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CF2Cl2.geos5.2x25.nc
-GMI_LOSS_CH2O      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CH2O.geos5.2x25.nc 
-GMI_PROD_CH2O      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CH2O.geos5.2x25.nc
-GMI_LOSS_CH3CCl3   s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CH3CCl3.geos5.2x25.nc
-GMI_PROD_CH3CCl3   v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CH3CCl3.geos5.2x25.nc
-GMI_LOSS_CH3Cl     s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CH3Cl.geos5.2x25.nc
-GMI_PROD_CH3Cl     v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CH3Cl.geos5.2x25.nc
-GMI_LOSS_CH4       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CH4.geos5.2x25.nc
-GMI_PROD_CH4       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CH4.geos5.2x25.nc
-GMI_LOSS_CO        s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc
-GMI_PROD_CO        v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc
-GMI_LOSS_Cl        s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.Cl.geos5.2x25.nc
-GMI_PROD_Cl        v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.Cl.geos5.2x25.nc
-GMI_LOSS_Cl2       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.Cl2.geos5.2x25.nc
-GMI_PROD_Cl2       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.Cl2.geos5.2x25.nc
-GMI_LOSS_Cl2O2     s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.Cl2O2.geos5.2x25.nc
-GMI_PROD_Cl2O2     v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.Cl2O2.geos5.2x25.nc
-GMI_LOSS_ClO       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ClO.geos5.2x25.nc
-GMI_PROD_ClO       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ClO.geos5.2x25.nc
-GMI_LOSS_ClONO2    s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ClONO2.geos5.2x25.nc
-GMI_PROD_ClONO2    v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ClONO2.geos5.2x25.nc
-GMI_LOSS_EOH       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.EOH.geos5.2x25.nc
-GMI_PROD_EOH       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.EOH.geos5.2x25.nc
-GMI_LOSS_ETO2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ETO2.geos5.2x25.nc
-GMI_PROD_ETO2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ETO2.geos5.2x25.nc
-GMI_LOSS_ETP       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ETP.geos5.2x25.nc
-GMI_PROD_ETP       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ETP.geos5.2x25.nc
-GMI_LOSS_GCO3      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.GCO3.geos5.2x25.nc
-GMI_PROD_GCO3      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.GCO3.geos5.2x25.nc
-GMI_LOSS_GLYC      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.GLYC.geos5.2x25.nc
-GMI_PROD_GLYC      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.GLYC.geos5.2x25.nc
-GMI_LOSS_GLYX      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.GLYX.geos5.2x25.nc
-GMI_PROD_GLYX      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.GLYX.geos5.2x25.nc
-GMI_LOSS_GP        s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.GP.geos5.2x25.nc
-GMI_PROD_GP        v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.GP.geos5.2x25.nc
-GMI_LOSS_GPAN      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.GPAN.geos5.2x25.nc
-GMI_PROD_GPAN      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.GPAN.geos5.2x25.nc
-GMI_LOSS_H         s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.H.geos5.2x25.nc
-GMI_PROD_H         v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.H.geos5.2x25.nc
-GMI_LOSS_H2        s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.H2.geos5.2x25.nc
-GMI_PROD_H2        v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.H2.geos5.2x25.nc
-GMI_LOSS_H2402     s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.H2402.geos5.2x25.nc
-GMI_PROD_H2402     v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.H2402.geos5.2x25.nc
-GMI_LOSS_H2O       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.H2O.geos5.2x25.nc
-GMI_PROD_H2O       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.H2O.geos5.2x25.nc
-GMI_LOSS_H2O2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.H2O2.geos5.2x25.nc
-GMI_PROD_H2O2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.H2O2.geos5.2x25.nc
-GMI_LOSS_HAC       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HAC.geos5.2x25.nc
-GMI_PROD_HAC       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HAC.geos5.2x25.nc
-GMI_LOSS_HCFC141b  s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HCFC141b.geos5.2x25.nc 
-GMI_PROD_HCFC141b  v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HCFC141b.geos5.2x25.nc
-GMI_LOSS_HCFC142b  s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HCFC142b.geos5.2x25.nc
-GMI_PROD_HCFC142b  v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HCFC142b.geos5.2x25.nc
-GMI_LOSS_HCFC22    s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HCFC22.geos5.2x25.nc
-GMI_PROD_HCFC22    v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HCFC22.geos5.2x25.nc
-GMI_LOSS_HCOOH     s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HCOOH.geos5.2x25.nc
-GMI_PROD_HCOOH     v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HCOOH.geos5.2x25.nc
-GMI_LOSS_HCl       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HCl.geos5.2x25.nc
-GMI_PROD_HCl       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HCl.geos5.2x25.nc
-GMI_LOSS_HNO2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HNO2.geos5.2x25.nc
-GMI_PROD_HNO2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HNO2.geos5.2x25.nc
-GMI_LOSS_HNO3      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HNO3.geos5.2x25.nc
-GMI_PROD_HNO3      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HNO3.geos5.2x25.nc
-GMI_LOSS_HNO4      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HNO4.geos5.2x25.nc
-GMI_PROD_HNO4      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HNO4.geos5.2x25.nc
-GMI_LOSS_HO2       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HO2.geos5.2x25.nc
-GMI_PROD_HO2       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HO2.geos5.2x25.nc
-GMI_LOSS_HOCl      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HOCl.geos5.2x25.nc
-GMI_PROD_HOCl      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HOCl.geos5.2x25.nc
-GMI_LOSS_IALD      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.IALD.geos5.2x25.nc
-GMI_PROD_IALD      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.IALD.geos5.2x25.nc
-GMI_LOSS_IAO2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.IAO2.geos5.2x25.nc
-GMI_PROD_IAO2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.IAO2.geos5.2x25.nc
-GMI_LOSS_IAP       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.IAP.geos5.2x25.nc 
-GMI_PROD_IAP       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.IAP.geos5.2x25.nc
-GMI_LOSS_INO2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.INO2.geos5.2x25.nc
-GMI_PROD_INO2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.INO2.geos5.2x25.nc
-GMI_LOSS_INPN      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.INPN.geos5.2x25.nc
-GMI_PROD_INPN      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.INPN.geos5.2x25.nc
-GMI_LOSS_ISN1      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ISN1.geos5.2x25.nc
-GMI_PROD_ISN1      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ISN1.geos5.2x25.nc
-GMI_LOSS_ISNP      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ISNP.geos5.2x25.nc
-GMI_PROD_ISNP      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ISNP.geos5.2x25.nc
-GMI_LOSS_ISOP      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ISOP.geos5.2x25.nc
-GMI_PROD_ISOP      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ISOP.geos5.2x25.nc
-GMI_LOSS_KO2       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.KO2.geos5.2x25.nc
-GMI_PROD_KO2       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.KO2.geos5.2x25.nc
-GMI_LOSS_MACR      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MACR.geos5.2x25.nc
-GMI_PROD_MACR      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MACR.geos5.2x25.nc
-GMI_LOSS_MAN2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MAN2.geos5.2x25.nc
-GMI_PROD_MAN2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MAN2.geos5.2x25.nc
-GMI_LOSS_MAO3      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MAO3.geos5.2x25.nc
-GMI_PROD_MAO3      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MAO3.geos5.2x25.nc
-GMI_LOSS_MAOP      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MAOP.geos5.2x25.nc
-GMI_PROD_MAOP      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MAOP.geos5.2x25.nc
-GMI_LOSS_MAP       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MAP.geos5.2x25.nc
-GMI_PROD_MAP       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MAP.geos5.2x25.nc
-GMI_LOSS_MCO3      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MCO3.geos5.2x25.nc
-GMI_PROD_MCO3      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MCO3.geos5.2x25.nc
-GMI_LOSS_MEK       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MEK.geos5.2x25.nc
-GMI_PROD_MEK       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MEK.geos5.2x25.nc
-GMI_LOSS_MGLY      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MGLY.geos5.2x25.nc
-GMI_PROD_MGLY      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MGLY.geos5.2x25.nc
-GMI_LOSS_MO2       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MO2.geos5.2x25.nc
-GMI_PROD_MO2       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MO2.geos5.2x25.nc
-GMI_LOSS_MOH       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MOH.geos5.2x25.nc
-GMI_PROD_MOH       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MOH.geos5.2x25.nc
-GMI_LOSS_MP        s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MP.geos5.2x25.nc
-GMI_PROD_MP        v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MP.geos5.2x25.nc
-GMI_LOSS_MRO2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MRO2.geos5.2x25.nc
-GMI_PROD_MRO2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MRO2.geos5.2x25.nc
-GMI_LOSS_MRP       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MRP.geos5.2x25.nc
-GMI_PROD_MRP       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MRP.geos5.2x25.nc
-GMI_LOSS_MVK       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MVK.geos5.2x25.nc
-GMI_PROD_MVK       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MVK.geos5.2x25.nc
-GMI_LOSS_MVN2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MVN2.geos5.2x25.nc
-GMI_PROD_MVN2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MVN2.geos5.2x25.nc
-GMI_LOSS_N         s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.N.geos5.2x25.nc
-GMI_PROD_N         v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.N.geos5.2x25.nc
-GMI_LOSS_N2O       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.N2O.geos5.2x25.nc
-GMI_PROD_N2O       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.N2O.geos5.2x25.nc
-GMI_LOSS_N2O5      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.N2O5.geos5.2x25.nc
-GMI_PROD_N2O5      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.N2O5.geos5.2x25.nc
-GMI_LOSS_NO        s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.NO.geos5.2x25.nc
-GMI_PROD_NO        v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.NO.geos5.2x25.nc
-GMI_LOSS_NO2       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.NO2.geos5.2x25.nc
-GMI_PROD_NO2       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.NO2.geos5.2x25.nc
-GMI_LOSS_NO3       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.NO3.geos5.2x25.nc
-GMI_PROD_NO3       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.NO3.geos5.2x25.nc
-GMI_LOSS_NOx       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.NOx.geos5.2x25.nc
-GMI_PROD_NOx       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.NOx.geos5.2x25.nc
-GMI_LOSS_O         s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.O.geos5.2x25.nc
-GMI_PROD_O         v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.O.geos5.2x25.nc
-GMI_LOSS_O1D       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.O1D.geos5.2x25.nc
-GMI_PROD_O1D       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.O1D.geos5.2x25.nc
-GMI_LOSS_O3        s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.O3.geos5.2x25.nc
-GMI_PROD_O3        v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.O3.geos5.2x25.nc
-GMI_LOSS_OClO      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.OClO.geos5.2x25.nc
-GMI_PROD_OClO      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.OClO.geos5.2x25.nc
-GMI_LOSS_OH        s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc
-GMI_PROD_OH        v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc
-GMI_LOSS_Ox        s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.Ox.geos5.2x25.nc
-GMI_PROD_Ox        v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.Ox.geos5.2x25.nc
-GMI_LOSS_PAN       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PAN.geos5.2x25.nc
-GMI_PROD_PAN       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PAN.geos5.2x25.nc
-GMI_LOSS_PMN       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PMN.geos5.2x25.nc
-GMI_PROD_PMN       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PMN.geos5.2x25.nc
-GMI_LOSS_PO2       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PO2.geos5.2x25.nc
-GMI_PROD_PO2       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PO2.geos5.2x25.nc
-GMI_LOSS_PP        s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PP.geos5.2x25.nc
-GMI_PROD_PP        v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PP.geos5.2x25.nc
-GMI_LOSS_PPN       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PPN.geos5.2x25.nc
-GMI_PROD_PPN       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PPN.geos5.2x25.nc
-GMI_LOSS_PRN1      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PRN1.geos5.2x25.nc
-GMI_PROD_PRN1      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PRN1.geos5.2x25.nc
-GMI_LOSS_PRPE      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PRPE.geos5.2x25.nc
-GMI_PROD_PRPE      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PRPE.geos5.2x25.nc
-GMI_LOSS_PRPN      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PRPN.geos5.2x25.nc
-GMI_PROD_PRPN      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PRPN.geos5.2x25.nc
-GMI_LOSS_R4N1      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.R4N1.geos5.2x25.nc
-GMI_PROD_R4N1      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.R4N1.geos5.2x25.nc
-GMI_LOSS_R4N2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.R4N2.geos5.2x25.nc
-GMI_PROD_R4N2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.R4N2.geos5.2x25.nc
-GMI_LOSS_R4O2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.R4O2.geos5.2x25.nc
-GMI_PROD_R4O2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.R4O2.geos5.2x25.nc
-GMI_LOSS_R4P       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.R4P.geos5.2x25.nc
-GMI_PROD_R4P       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.R4P.geos5.2x25.nc
-GMI_LOSS_RA3P      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RA3P.geos5.2x25.nc
-GMI_PROD_RA3P      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RA3P.geos5.2x25.nc
-GMI_LOSS_RB3P      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RB3P.geos5.2x25.nc
-GMI_PROD_RB3P      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RB3P.geos5.2x25.nc
-GMI_LOSS_RCHO      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RCHO.geos5.2x25.nc
-GMI_PROD_RCHO      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RCHO.geos5.2x25.nc
-GMI_LOSS_RCO3      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RCO3.geos5.2x25.nc
-GMI_PROD_RCO3      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RCO3.geos5.2x25.nc
-GMI_LOSS_RCOOH     s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RCOOH.geos5.2x25.nc
-GMI_PROD_RCOOH     v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RCOOH.geos5.2x25.nc
-GMI_LOSS_RIO1      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RIO1.geos5.2x25.nc
-GMI_PROD_RIO1      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RIO1.geos5.2x25.nc
-GMI_LOSS_RIP       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RIP.geos5.2x25.nc
-GMI_PROD_RIP       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RIP.geos5.2x25.nc
-GMI_LOSS_ROH       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ROH.geos5.2x25.nc
-GMI_PROD_ROH       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ROH.geos5.2x25.nc
-GMI_LOSS_RP        s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RP.geos5.2x25.nc
-GMI_PROD_RP        v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RP.geos5.2x25.nc
-GMI_LOSS_VRO2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.VRO2.geos5.2x25.nc
-GMI_PROD_VRO2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.VRO2.geos5.2x25.nc
-GMI_LOSS_VRP       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.VRP.geos5.2x25.nc
-GMI_PROD_VRP       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.VRP.geos5.2x25.nc
-GMI_LOSS_H1211     s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CF2ClBr.geos5.2x25.nc
-GMI_PROD_H1211     v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CF2ClBr.geos5.2x25.nc
+GMI_LOSS_A3O2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.A3O2.geos5.2x25.nc 
+GMI_PROD_A3O2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.A3O2.geos5.2x25.nc
+GMI_LOSS_ACET      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ACET.geos5.2x25.nc
+GMI_PROD_ACET      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ACET.geos5.2x25.nc 
+GMI_LOSS_ACTA      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ACTA.geos5.2x25.nc
+GMI_PROD_ACTA      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ACTA.geos5.2x25.nc
+GMI_LOSS_ALD2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ALD2.geos5.2x25.nc 
+GMI_PROD_ALD2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ALD2.geos5.2x25.nc
+GMI_LOSS_ALK4      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ALK4.geos5.2x25.nc 
+GMI_PROD_ALK4      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ALK4.geos5.2x25.nc
+GMI_LOSS_ATO2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ATO2.geos5.2x25.nc
+GMI_PROD_ATO2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ATO2.geos5.2x25.nc
+GMI_LOSS_B3O2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.B3O2.geos5.2x25.nc
+GMI_PROD_B3O2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.B3O2.geos5.2x25.nc
+GMI_LOSS_C2H6      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.C2H6.geos5.2x25.nc
+GMI_PROD_C2H6      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.C2H6.geos5.2x25.nc
+GMI_LOSS_C3H8      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.C3H8.geos5.2x25.nc
+GMI_PROD_C3H8      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.C3H8.geos5.2x25.nc
+GMI_LOSS_CCl4      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CCl4.geos5.2x25.nc
+GMI_PROD_CCl4      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CCl4.geos5.2x25.nc
+GMI_LOSS_CFC113    s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CFC113.geos5.2x25.nc 
+GMI_PROD_CFC113    v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CFC113.geos5.2x25.nc 
+GMI_LOSS_CFC114    s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CFC114.geos5.2x25.nc
+GMI_PROD_CFC114    v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CFC114.geos5.2x25.nc
+GMI_LOSS_CFC115    s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CFC115.geos5.2x25.nc 
+GMI_PROD_CFC115    v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CFC115.geos5.2x25.nc
+GMI_LOSS_CFC11     s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CFCl3.geos5.2x25.nc 
+GMI_PROD_CFC11     v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CFCl3.geos5.2x25.nc 
+GMI_LOSS_CFC12     s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CF2Cl2.geos5.2x25.nc
+GMI_PROD_CFC12     v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CF2Cl2.geos5.2x25.nc
+GMI_LOSS_CH2O      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CH2O.geos5.2x25.nc 
+GMI_PROD_CH2O      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CH2O.geos5.2x25.nc
+GMI_LOSS_CH3CCl3   s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CH3CCl3.geos5.2x25.nc
+GMI_PROD_CH3CCl3   v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CH3CCl3.geos5.2x25.nc
+GMI_LOSS_CH3Cl     s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CH3Cl.geos5.2x25.nc
+GMI_PROD_CH3Cl     v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CH3Cl.geos5.2x25.nc
+GMI_LOSS_CH4       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CH4.geos5.2x25.nc
+GMI_PROD_CH4       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CH4.geos5.2x25.nc
+GMI_LOSS_CO        s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc
+GMI_PROD_CO        v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc
+GMI_LOSS_Cl        s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.Cl.geos5.2x25.nc
+GMI_PROD_Cl        v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.Cl.geos5.2x25.nc
+GMI_LOSS_Cl2       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.Cl2.geos5.2x25.nc
+GMI_PROD_Cl2       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.Cl2.geos5.2x25.nc
+GMI_LOSS_Cl2O2     s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.Cl2O2.geos5.2x25.nc
+GMI_PROD_Cl2O2     v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.Cl2O2.geos5.2x25.nc
+GMI_LOSS_ClO       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ClO.geos5.2x25.nc
+GMI_PROD_ClO       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ClO.geos5.2x25.nc
+GMI_LOSS_ClONO2    s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ClONO2.geos5.2x25.nc
+GMI_PROD_ClONO2    v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ClONO2.geos5.2x25.nc
+GMI_LOSS_EOH       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.EOH.geos5.2x25.nc
+GMI_PROD_EOH       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.EOH.geos5.2x25.nc
+GMI_LOSS_ETO2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ETO2.geos5.2x25.nc
+GMI_PROD_ETO2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ETO2.geos5.2x25.nc
+GMI_LOSS_ETP       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ETP.geos5.2x25.nc
+GMI_PROD_ETP       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ETP.geos5.2x25.nc
+GMI_LOSS_GCO3      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.GCO3.geos5.2x25.nc
+GMI_PROD_GCO3      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.GCO3.geos5.2x25.nc
+GMI_LOSS_GLYC      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.GLYC.geos5.2x25.nc
+GMI_PROD_GLYC      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.GLYC.geos5.2x25.nc
+GMI_LOSS_GLYX      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.GLYX.geos5.2x25.nc
+GMI_PROD_GLYX      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.GLYX.geos5.2x25.nc
+GMI_LOSS_GP        s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.GP.geos5.2x25.nc
+GMI_PROD_GP        v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.GP.geos5.2x25.nc
+GMI_LOSS_GPAN      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.GPAN.geos5.2x25.nc
+GMI_PROD_GPAN      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.GPAN.geos5.2x25.nc
+GMI_LOSS_H         s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.H.geos5.2x25.nc
+GMI_PROD_H         v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.H.geos5.2x25.nc
+GMI_LOSS_H2        s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.H2.geos5.2x25.nc
+GMI_PROD_H2        v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.H2.geos5.2x25.nc
+GMI_LOSS_H2402     s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.H2402.geos5.2x25.nc
+GMI_PROD_H2402     v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.H2402.geos5.2x25.nc
+GMI_LOSS_H2O       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.H2O.geos5.2x25.nc
+GMI_PROD_H2O       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.H2O.geos5.2x25.nc
+GMI_LOSS_H2O2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.H2O2.geos5.2x25.nc
+GMI_PROD_H2O2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.H2O2.geos5.2x25.nc
+GMI_LOSS_HAC       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HAC.geos5.2x25.nc
+GMI_PROD_HAC       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HAC.geos5.2x25.nc
+GMI_LOSS_HCFC141b  s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HCFC141b.geos5.2x25.nc 
+GMI_PROD_HCFC141b  v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HCFC141b.geos5.2x25.nc
+GMI_LOSS_HCFC142b  s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HCFC142b.geos5.2x25.nc
+GMI_PROD_HCFC142b  v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HCFC142b.geos5.2x25.nc
+GMI_LOSS_HCFC22    s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HCFC22.geos5.2x25.nc
+GMI_PROD_HCFC22    v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HCFC22.geos5.2x25.nc
+GMI_LOSS_HCOOH     s-1   xyz C N N  2000-%m2-01T00:00:00 none none loss /dev/null #./MainDataDir/GMI/v2015-02/gmi.clim.HCOOH.geos5.2x25.20170103.nc
+GMI_PROD_HCOOH     v/v/s xyz C N N  2000-%m2-01T00:00:00 none none prod /dev/null #./MainDataDir/GMI/v2015-02/gmi.clim.HCOOH.geos5.2x25.20170103.nc
+GMI_LOSS_HCl       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HCl.geos5.2x25.nc
+GMI_PROD_HCl       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HCl.geos5.2x25.nc
+GMI_LOSS_HNO2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HNO2.geos5.2x25.nc
+GMI_PROD_HNO2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HNO2.geos5.2x25.nc
+GMI_LOSS_HNO3      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HNO3.geos5.2x25.nc
+GMI_PROD_HNO3      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HNO3.geos5.2x25.nc
+GMI_LOSS_HNO4      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HNO4.geos5.2x25.nc
+GMI_PROD_HNO4      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HNO4.geos5.2x25.nc
+GMI_LOSS_HO2       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HO2.geos5.2x25.nc
+GMI_PROD_HO2       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HO2.geos5.2x25.nc
+GMI_LOSS_HOCl      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.HOCl.geos5.2x25.nc
+GMI_PROD_HOCl      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.HOCl.geos5.2x25.nc
+GMI_LOSS_IALD      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.IALD.geos5.2x25.nc
+GMI_PROD_IALD      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.IALD.geos5.2x25.nc
+GMI_LOSS_IAO2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.IAO2.geos5.2x25.nc
+GMI_PROD_IAO2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.IAO2.geos5.2x25.nc
+GMI_LOSS_IAP       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.IAP.geos5.2x25.nc 
+GMI_PROD_IAP       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.IAP.geos5.2x25.nc
+GMI_LOSS_INO2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.INO2.geos5.2x25.nc
+GMI_PROD_INO2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.INO2.geos5.2x25.nc
+GMI_LOSS_INPN      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.INPN.geos5.2x25.nc
+GMI_PROD_INPN      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.INPN.geos5.2x25.nc
+GMI_LOSS_ISN1      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ISN1.geos5.2x25.nc
+GMI_PROD_ISN1      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ISN1.geos5.2x25.nc
+GMI_LOSS_ISNP      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ISNP.geos5.2x25.nc
+GMI_PROD_ISNP      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ISNP.geos5.2x25.nc
+GMI_LOSS_ISOP      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ISOP.geos5.2x25.nc
+GMI_PROD_ISOP      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ISOP.geos5.2x25.nc
+GMI_LOSS_KO2       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.KO2.geos5.2x25.nc
+GMI_PROD_KO2       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.KO2.geos5.2x25.nc
+GMI_LOSS_MACR      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MACR.geos5.2x25.nc
+GMI_PROD_MACR      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MACR.geos5.2x25.nc
+GMI_LOSS_MAN2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MAN2.geos5.2x25.nc
+GMI_PROD_MAN2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MAN2.geos5.2x25.nc
+GMI_LOSS_MAO3      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MAO3.geos5.2x25.nc
+GMI_PROD_MAO3      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MAO3.geos5.2x25.nc
+GMI_LOSS_MAOP      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MAOP.geos5.2x25.nc
+GMI_PROD_MAOP      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MAOP.geos5.2x25.nc
+GMI_LOSS_MAP       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MAP.geos5.2x25.nc
+GMI_PROD_MAP       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MAP.geos5.2x25.nc
+GMI_LOSS_MCO3      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MCO3.geos5.2x25.nc
+GMI_PROD_MCO3      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MCO3.geos5.2x25.nc
+GMI_LOSS_MEK       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MEK.geos5.2x25.nc
+GMI_PROD_MEK       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MEK.geos5.2x25.nc
+GMI_LOSS_MGLY      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MGLY.geos5.2x25.nc
+GMI_PROD_MGLY      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MGLY.geos5.2x25.nc
+GMI_LOSS_MO2       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MO2.geos5.2x25.nc
+GMI_PROD_MO2       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MO2.geos5.2x25.nc
+GMI_LOSS_MOH       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MOH.geos5.2x25.nc
+GMI_PROD_MOH       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MOH.geos5.2x25.nc
+GMI_LOSS_MP        s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MP.geos5.2x25.nc
+GMI_PROD_MP        v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MP.geos5.2x25.nc
+GMI_LOSS_MRO2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MRO2.geos5.2x25.nc
+GMI_PROD_MRO2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MRO2.geos5.2x25.nc
+GMI_LOSS_MRP       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MRP.geos5.2x25.nc
+GMI_PROD_MRP       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MRP.geos5.2x25.nc
+GMI_LOSS_MVK       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MVK.geos5.2x25.nc
+GMI_PROD_MVK       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MVK.geos5.2x25.nc
+GMI_LOSS_MVN2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.MVN2.geos5.2x25.nc
+GMI_PROD_MVN2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.MVN2.geos5.2x25.nc
+GMI_LOSS_N         s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.N.geos5.2x25.nc
+GMI_PROD_N         v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.N.geos5.2x25.nc
+GMI_LOSS_N2O       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.N2O.geos5.2x25.nc
+GMI_PROD_N2O       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.N2O.geos5.2x25.nc
+GMI_LOSS_N2O5      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.N2O5.geos5.2x25.nc
+GMI_PROD_N2O5      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.N2O5.geos5.2x25.nc
+GMI_LOSS_NO        s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.NO.geos5.2x25.nc
+GMI_PROD_NO        v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.NO.geos5.2x25.nc
+GMI_LOSS_NO2       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.NO2.geos5.2x25.nc
+GMI_PROD_NO2       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.NO2.geos5.2x25.nc
+GMI_LOSS_NO3       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.NO3.geos5.2x25.nc
+GMI_PROD_NO3       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.NO3.geos5.2x25.nc
+GMI_LOSS_NOx       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.NOx.geos5.2x25.nc
+GMI_PROD_NOx       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.NOx.geos5.2x25.nc
+GMI_LOSS_O         s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.O.geos5.2x25.nc
+GMI_PROD_O         v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.O.geos5.2x25.nc
+GMI_LOSS_O1D       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.O1D.geos5.2x25.nc
+GMI_PROD_O1D       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.O1D.geos5.2x25.nc
+GMI_LOSS_O3        s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.O3.geos5.2x25.nc
+GMI_PROD_O3        v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.O3.geos5.2x25.nc
+GMI_LOSS_OClO      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.OClO.geos5.2x25.nc
+GMI_PROD_OClO      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.OClO.geos5.2x25.nc
+GMI_LOSS_OH        s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc
+GMI_PROD_OH        v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc
+GMI_LOSS_Ox        s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.Ox.geos5.2x25.nc
+GMI_PROD_Ox        v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.Ox.geos5.2x25.nc
+GMI_LOSS_PAN       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PAN.geos5.2x25.nc
+GMI_PROD_PAN       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PAN.geos5.2x25.nc
+GMI_LOSS_PMN       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PMN.geos5.2x25.nc
+GMI_PROD_PMN       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PMN.geos5.2x25.nc
+GMI_LOSS_PO2       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PO2.geos5.2x25.nc
+GMI_PROD_PO2       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PO2.geos5.2x25.nc
+GMI_LOSS_PP        s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PP.geos5.2x25.nc
+GMI_PROD_PP        v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PP.geos5.2x25.nc
+GMI_LOSS_PPN       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PPN.geos5.2x25.nc
+GMI_PROD_PPN       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PPN.geos5.2x25.nc
+GMI_LOSS_PRN1      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PRN1.geos5.2x25.nc
+GMI_PROD_PRN1      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PRN1.geos5.2x25.nc
+GMI_LOSS_PRPE      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PRPE.geos5.2x25.nc
+GMI_PROD_PRPE      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PRPE.geos5.2x25.nc
+GMI_LOSS_PRPN      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PRPN.geos5.2x25.nc
+GMI_PROD_PRPN      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PRPN.geos5.2x25.nc
+GMI_LOSS_R4N1      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.R4N1.geos5.2x25.nc
+GMI_PROD_R4N1      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.R4N1.geos5.2x25.nc
+GMI_LOSS_R4N2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.R4N2.geos5.2x25.nc
+GMI_PROD_R4N2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.R4N2.geos5.2x25.nc
+GMI_LOSS_R4O2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.R4O2.geos5.2x25.nc
+GMI_PROD_R4O2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.R4O2.geos5.2x25.nc
+GMI_LOSS_R4P       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.R4P.geos5.2x25.nc
+GMI_PROD_R4P       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.R4P.geos5.2x25.nc
+GMI_LOSS_RA3P      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RA3P.geos5.2x25.nc
+GMI_PROD_RA3P      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RA3P.geos5.2x25.nc
+GMI_LOSS_RB3P      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RB3P.geos5.2x25.nc
+GMI_PROD_RB3P      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RB3P.geos5.2x25.nc
+GMI_LOSS_RCHO      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RCHO.geos5.2x25.nc
+GMI_PROD_RCHO      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RCHO.geos5.2x25.nc
+GMI_LOSS_RCO3      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RCO3.geos5.2x25.nc
+GMI_PROD_RCO3      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RCO3.geos5.2x25.nc
+GMI_LOSS_RCOOH     s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RCOOH.geos5.2x25.nc
+GMI_PROD_RCOOH     v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RCOOH.geos5.2x25.nc
+GMI_LOSS_RIO1      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RIO1.geos5.2x25.nc
+GMI_PROD_RIO1      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RIO1.geos5.2x25.nc
+GMI_LOSS_RIP       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RIP.geos5.2x25.nc
+GMI_PROD_RIP       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RIP.geos5.2x25.nc
+GMI_LOSS_ROH       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ROH.geos5.2x25.nc
+GMI_PROD_ROH       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ROH.geos5.2x25.nc
+GMI_LOSS_RP        s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RP.geos5.2x25.nc
+GMI_PROD_RP        v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RP.geos5.2x25.nc
+GMI_LOSS_VRO2      s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.VRO2.geos5.2x25.nc
+GMI_PROD_VRO2      v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.VRO2.geos5.2x25.nc
+GMI_LOSS_VRP       s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.VRP.geos5.2x25.nc
+GMI_PROD_VRP       v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.VRP.geos5.2x25.nc
+GMI_LOSS_H1211     s-1   xyz C Y N  2000-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.CF2ClBr.geos5.2x25.nc
+GMI_PROD_H1211     v/v/s xyz C Y N  2000-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CF2ClBr.geos5.2x25.nc
 
-STRAT_OH           v/v   xyz C Y N  2005-%m2-01T00:00:00 none none species ./MainDataDir/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc
+STRAT_OH           v/v   xyz C Y N  2000-%m2-01T00:00:00 none none species ./MainDataDir/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc
 
 # --- Stratospheric Bry data ---
 GEOSCCM_Br_DAY     1 xyz C Y N  2007-%m2-01T00:00:00 none none BR     ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.day.nc 
@@ -955,18 +977,27 @@ GEOSCCM_HOBr_NIGHT 1 xyz C Y N  2007-%m2-01T00:00:00 none none HOBR   ./MainData
 # ----------------
 #
 UV_ALBEDO     1       xy  C Y Y 1985-%m2-01T00:00:00   none none UVALBD ./MainDataDir/UVALBEDO/v2015-03/uvalbedo.geos.2x25.nc
-TOMS_O3_COL   dobsons xy  C Y N 2007-%m2-01T00:00:00   none none TOMS   ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_2007.geos.1x1.nc
-DTOMS1_O3_COL 1       xy  C Y N 2007-%m2-01T00:00:00   none none DTOMS1 ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_2007.geos.1x1.nc
-DTOMS2_O3_COL 1       xy  C Y N 2007-%m2-01T00:00:00   none none DTOMS2 ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_2007.geos.1x1.nc
+#====NO O3 DATA=================DEBUG===============================
+#TOMS_O3_COL   dobsons xy  C N N - none none TOMS   /dev/null
+#DTOMS1_O3_COL 1       xy  C N N - none none DTOMS1 /dev/null
+#DTOMS2_O3_COL 1       xy  C N N - none none DTOMS2 /dev/null
+#====NO EXPLICIT REFERENCE TIME=DEBUG===============================
+#TOMS_O3_COL   dobsons xy  C N N %y4-%m2-01T00:00:00 none none TOMS   ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_%y4.geos.1x1.nc
+#DTOMS1_O3_COL 1       xy  C N N %y4-%m2-01T00:00:00 none none DTOMS1 ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_%y4.geos.1x1.nc
+#DTOMS2_O3_COL 1       xy  C N N %y4-%m2-01T00:00:00 none none DTOMS2 ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_%y4.geos.1x1.nc
+#====EXPLICIT REFERENCE TIME====DEBUG===============================
+TOMS_O3_COL   dobsons xy  C N N %y4-%m2-01T00:00:00   none none TOMS   ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_%y4.geos.1x1.nc 1980-01-01T00:00:00P0001-00-00T00:00:00
+DTOMS1_O3_COL 1       xy  C N N %y4-%m2-01T00:00:00   none none DTOMS1 ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_%y4.geos.1x1.nc 1980-01-01T00:00:00P0001-00-00T00:00:00
+DTOMS2_O3_COL 1       xy  C N N %y4-%m2-01T00:00:00   none none DTOMS2 ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_%y4.geos.1x1.nc 1980-01-01T00:00:00P0001-00-00T00:00:00
 #==============================================================================
 # --- NEI 2005 scale factors ---
 #==============================================================================
-VISTAS_SEASON     1 xy C Y Y -                    none none NOratio ./MainDataDir/NEI2005/v2014-09/scaling/Vistas_season.geos.1x1.nc
-ARP_SEASON        1 xy C N Y 2000-%m2-01T00:00:00 none none NOxrat  ./MainDataDir/NEI2005/v2014-09/scaling/ARP_season.geos.1x1.nc
-NEI99_DOW_NOX     1 xy C N N -                    none none NOX     /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_CO      1 xy C N N -                    none none CO      /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_ALK4    1 xy C N N -                    none none ALK4    /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_ACET    1 xy C N N -                    none none ACET    /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+VISTAS_SEASON     1 xy C Y Y -                   none none NOratio ./MainDataDir/NEI2005/v2014-09/scaling/Vistas_season.geos.1x1.nc
+ARP_SEASON        1 xy C N Y %y4-%m2-01T00:00:00 none none NOxrat  ./MainDataDir/NEI2005/v2014-09/scaling/ARP_season.geos.1x1.nc
+NEI99_DOW_NOX     1 xy C N N -                   none none NOX     /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_CO      1 xy C N N -                   none none CO      /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_ALK4    1 xy C N N -                   none none ALK4    /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_ACET    1 xy C N N -                   none none ACET    /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
 NEI99_DOW_MEK     1 xy C N N -                    none none MEK     /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
 NEI99_DOW_PRPE    1 xy C N N -                    none none PRPE    /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
 NEI99_DOW_C3H8    1 xy C N N -                    none none C3H8    /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
@@ -1001,40 +1032,40 @@ T_DAVG            1 xy C N N -                    none none NULL    /dev/null
 T_PREVDAY         1 xy C N N -                    none none NULL    /dev/null
 #
 # Need DE3600xPE1800 
-EDGAR_NO_1A1a          1   xy C N Y 2000-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A1a.generic.01x01.nc 
-EDGAR_NO_1A2           1   xy C N Y 2000-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A2.generic.01x01.nc 
-EDGAR_NO_1A3b          1   xy C N Y 2000-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A3b.generic.01x01.nc 
-EDGAR_NO_1A4           1   xy C N Y 2000-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A4.generic.01x01.nc 
-EDGAR_NO_1B2a_c_1A1b_c 1   xy C N Y 2000-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1B2a_c_1A1b_c.generic.01x01.nc 
-EDGAR_NO_2             1   xy C N Y 2000-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_2.generic.01x01.nc 
-EDGAR_NO_4B            1   xy C N Y 2000-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_4B.generic.01x01.nc 
-EDGAR_NO_6A_6C         1   xy C N Y 2000-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_6A_6C.generic.01x01.nc 
-EDGAR_NO_7A            1   xy C N Y 2000-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_7A.generic.01x01.nc 
-EDGAR_CO_1A1a_6        1   xy C N Y 2000-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A1a_6.generic.01x01.nc 
-EDGAR_CO_1A2           1   xy C N Y 2000-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A2.generic.01x01.nc 
-EDGAR_CO_1A3b          1   xy C N Y 2000-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A3b.generic.01x01.nc 
-EDGAR_CO_1A4           1   xy C N Y 2000-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A4.generic.01x01.nc 
-EDGAR_CO_1B2a_c_1A1b_c 1   xy C N Y 2000-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1B2a_c_1A1b_c.generic.01x01.nc 
-EDGAR_CO_2A_2B_2D      1   xy C N Y 2000-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_2A_2B_2D.generic.01x01.nc 
-EDGAR_CO_2C            1   xy C N Y 2000-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_2C.generic.01x01.nc 
-EDGAR_CO_7A            1   xy C N Y 2000-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_7A.generic.01x01.nc 
-EDGAR_SO2_1A1a_6C      1   xy C N Y 2000-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A1a_6C.generic.01x01.nc 
-EDGAR_SO2_1A2          1   xy C N Y 2000-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A2.generic.01x01.nc 
-EDGAR_SO2_1A3b         1   xy C N Y 2000-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3b.generic.01x01.nc 
-EDGAR_SO2_1A4          1   xy C N Y 2000-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A4.generic.01x01.nc 
-EDGAR_SO2_1B1_1B2_1A1b_c 1 xy C N Y 2000-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1B1_1B2_1A1b_c.generic.01x01.nc 
-EDGAR_SO2_2B_2D        1   xy C N Y 2000-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2B_2D.generic.01x01.nc 
-EDGAR_SO2_2C           1   xy C N Y 2000-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2C.generic.01x01.nc 
-EDGAR_SO2_7A           1   xy C N Y 2000-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_7A.generic.01x01.nc 
-EDGAR_NH3_1A1a_6       1   xy C N Y 2000-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1a_6.generic.01x01.nc 
-EDGAR_NH3_1A1b_c       1   xy C N Y 2000-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1b_c.generic.01x01.nc 
-EDGAR_NH3_1A2          1   xy C N Y 2000-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A2.generic.01x01.nc 
-EDGAR_NH3_1A3          1   xy C N Y 2000-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A3.generic.01x01.nc 
-EDGAR_NH3_1A4          1   xy C N Y 2000-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A4.generic.01x01.nc 
-EDGAR_NH3_2A           1   xy C N Y 2000-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2A.generic.01x01.nc 
-EDGAR_NH3_2B           1   xy C N Y 2000-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2B.generic.01x01.nc 
-EDGAR_NH3_4B           1   xy C N Y 2000-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4B.generic.01x01.nc 
-EDGAR_NH3_4C_4D        1   xy C N Y 2000-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4C_4D.generic.01x01.nc 
+EDGAR_NO_1A1a          1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A1a.generic.01x01.nc 
+EDGAR_NO_1A2           1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A2.generic.01x01.nc 
+EDGAR_NO_1A3b          1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A3b.generic.01x01.nc 
+EDGAR_NO_1A4           1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A4.generic.01x01.nc 
+EDGAR_NO_1B2a_c_1A1b_c 1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1B2a_c_1A1b_c.generic.01x01.nc 
+EDGAR_NO_2             1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_2.generic.01x01.nc 
+EDGAR_NO_4B            1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_4B.generic.01x01.nc 
+EDGAR_NO_6A_6C         1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_6A_6C.generic.01x01.nc 
+EDGAR_NO_7A            1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_7A.generic.01x01.nc 
+EDGAR_CO_1A1a_6        1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A1a_6.generic.01x01.nc 
+EDGAR_CO_1A2           1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A2.generic.01x01.nc 
+EDGAR_CO_1A3b          1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A3b.generic.01x01.nc 
+EDGAR_CO_1A4           1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A4.generic.01x01.nc 
+EDGAR_CO_1B2a_c_1A1b_c 1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1B2a_c_1A1b_c.generic.01x01.nc 
+EDGAR_CO_2A_2B_2D      1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_2A_2B_2D.generic.01x01.nc 
+EDGAR_CO_2C            1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_2C.generic.01x01.nc 
+EDGAR_CO_7A            1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_7A.generic.01x01.nc 
+EDGAR_SO2_1A1a_6C      1   xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A1a_6C.generic.01x01.nc 
+EDGAR_SO2_1A2          1   xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A2.generic.01x01.nc 
+EDGAR_SO2_1A3b         1   xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3b.generic.01x01.nc 
+EDGAR_SO2_1A4          1   xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A4.generic.01x01.nc 
+EDGAR_SO2_1B1_1B2_1A1b_c 1 xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1B1_1B2_1A1b_c.generic.01x01.nc 
+EDGAR_SO2_2B_2D        1   xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2B_2D.generic.01x01.nc 
+EDGAR_SO2_2C           1   xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2C.generic.01x01.nc 
+EDGAR_SO2_7A           1   xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_7A.generic.01x01.nc 
+EDGAR_NH3_1A1a_6       1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1a_6.generic.01x01.nc 
+EDGAR_NH3_1A1b_c       1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1b_c.generic.01x01.nc 
+EDGAR_NH3_1A2          1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A2.generic.01x01.nc 
+EDGAR_NH3_1A3          1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A3.generic.01x01.nc 
+EDGAR_NH3_1A4          1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A4.generic.01x01.nc 
+EDGAR_NH3_2A           1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2A.generic.01x01.nc 
+EDGAR_NH3_2B           1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2B.generic.01x01.nc 
+EDGAR_NH3_4B           1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4B.generic.01x01.nc 
+EDGAR_NH3_4C_4D        1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4C_4D.generic.01x01.nc 
 # Need DC0360xPC0181_CFnnnnx6C.bin
 EDGAR_NAP              1   xy C N Y -                   none none BENZ    ./MainDataDir/EDGARv42/v2015-02/VOCv2/EDGAR2_1985_FF_IND.1x1geos.nc
 
@@ -1204,13 +1235,13 @@ NEI11_PTNONIPM_BCPI 1 xyz C N N 2011-%m2-%d2T%h2:00:00 none none PEC       /dev/
 NEI11_PTNONIPM_OCPI 1 xyz C N N 2011-%m2-%d2T%h2:00:00 none none POC       /dev/null #./MainDataDir/NEI2011/v2015-03/%m2/NEI11_0.1x0.1_2011%m2%d2_ptnonipm.nc
 
 # Masks (temporary, until we have the right regridding files)
-EMEP_MASK    1 xy C N V F- none none MASK     ./MainDataDir/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc
-MEXICO_MASK  1 xy C N V F- none none MASK     ./MainDataDir/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc
-CANADA_MASK  1 xy C N V F- none none MASK     ./MainDataDir/MASKS/v2014-07/Canada_mask.geos.1x1.nc
-SEASIA_MASK  1 xy C N V F- none none MASK     ./MainDataDir/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc
-NA_MASK      1 xy C N V F- none none MASK     ./MainDataDir/MASKS/v2014-07/NA_mask.geos.1x1.nc
-USA_MASK     1 xy C N V F- none none MASK     ./MainDataDir/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc
-ASIA_MASK    1 xy C N V F- none none MASK     ./MainDataDir/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc
+EMEP_MASK    1 xy C N Y F- none none MASK     ./MainDataDir/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc
+MEXICO_MASK  1 xy C N Y F- none none MASK     ./MainDataDir/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc
+CANADA_MASK  1 xy C N Y F- none none MASK     ./MainDataDir/MASKS/v2014-07/Canada_mask.geos.1x1.nc
+SEASIA_MASK  1 xy C N Y F- none none MASK     ./MainDataDir/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc
+NA_MASK      1 xy C N Y F- none none MASK     ./MainDataDir/MASKS/v2014-07/NA_mask.geos.1x1.nc
+USA_MASK     1 xy C N Y F- none none MASK     ./MainDataDir/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc
+ASIA_MASK    1 xy C N Y F- none none MASK     ./MainDataDir/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc
 # Need UU0900xUU0400_CFnnnnx6C.bin - this is regional only
 NEI11_MASK   1 xy C N N F- none none LANDMASK ./MainDataDir/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.nc
 %%
