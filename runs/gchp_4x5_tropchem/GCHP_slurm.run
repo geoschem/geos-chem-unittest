@@ -13,7 +13,7 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !MODULE: GCHP.run
+# !MODULE: GCHP_slurm.run
 #
 # !DESCRIPTION: This bash script is a template run script for GCHP
 #\\

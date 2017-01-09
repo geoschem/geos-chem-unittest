@@ -38,21 +38,35 @@
 ###############################
 ###  Configurable Settings  ###
 ###############################
-
-# Ask user to pick the default bashrc
+# Ask user to source and export a bashrc, if not already done
 if [[ "x${BASHRC}" == x ]]; then
    LIST=`ls -1 *.bashrc*`
-   echo "Please issue one of these commands at the Unix prompt"
-   echo "This will activate the proper settings for your machine and compiler"
-   echo "--------------------------------------------------------------------"
-   for f in $LIST; do
-      echo "export BASHRC=$f"
+   echo "Set up your environment by picking one of the following existing bashrcs,"
+   echo "or exit and create your own file ending in '.bashrc':"
+   n=1
+   for f in ${LIST}; do
+      echo "  ${n}. $f"
+      n="$((${n}+1))"
    done
-   exit -1
+   echo "Enter an integer in range [1,$((${n}-1))], or 0 to exit:"
+   read answer
+   if [[ "$answer" == "0" ]]; then
+       exit 1
+   fi
+   n=1
+   for f in ${LIST}; do
+      if [[ "$answer" == "${n}" ]]; then
+	  echo "Now do the following:"
+	  echo "   1. copy and execute 'source ${f}' if you haven't already"
+          echo "   2. copy and execute 'export BASHRC=${f}'"
+          echo "   3. run again"
+	  exit 1
+      fi
+      n="$((${n}+1))"
+   done   
+else 
+   echo "WARNING: You are using settings in ${BASHRC}"
 fi
-
-# Source the bashrc file
-source $BASHRC
 
 # Set compiler
 export ESMF_COMPILER=intel
