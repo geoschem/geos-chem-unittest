@@ -1467,8 +1467,8 @@ Warnings:                    {WARNINGS}
 * GMI_PROD_HCFC142b   $ROOT/GMI/v2015-02/gmi.clim.HCFC142b.geos5.2x25.nc       prod    2000/1-12/1/0 C xyz v/v/s HCFC142b - 1  1
 * GMI_LOSS_HCFC22     $ROOT/GMI/v2015-02/gmi.clim.HCFC22.geos5.2x25.nc         loss    2000/1-12/1/0 C xyz s-1   HCFC22   - 1  1
 * GMI_PROD_HCFC22     $ROOT/GMI/v2015-02/gmi.clim.HCFC22.geos5.2x25.nc         prod    2000/1-12/1/0 C xyz v/v/s HCFC22   - 1  1
-* GMI_LOSS_HCOOH      $ROOT/GMI/v2015-02/gmi.clim.HCOOH.geos5.2x25.20170103.nc loss    2000/1-12/1/0 C xyz s-1   HCOOH    - 1  1
-* GMI_PROD_HCOOH      $ROOT/GMI/v2015-02/gmi.clim.HCOOH.geos5.2x25.20170103.nc prod    2000/1-12/1/0 C xyz v/v/s HCOOH    - 1  1
+* GMI_LOSS_HCOOH      $ROOT/GMI/v2015-02/gmi.clim.HCOOH.geos5.2x25.20170108.nc loss    2000/1-12/1/0 C xyz s-1   HCOOH    - 1  1
+* GMI_PROD_HCOOH      $ROOT/GMI/v2015-02/gmi.clim.HCOOH.geos5.2x25.20170108.nc prod    2000/1-12/1/0 C xyz v/v/s HCOOH    - 1  1
 * GMI_LOSS_HCl        $ROOT/GMI/v2015-02/gmi.clim.HCl.geos5.2x25.nc            loss    2000/1-12/1/0 C xyz s-1   HCl      - 1  1
 * GMI_PROD_HCl        $ROOT/GMI/v2015-02/gmi.clim.HCl.geos5.2x25.nc            prod    2000/1-12/1/0 C xyz v/v/s HCl      - 1  1
 * GMI_LOSS_HNO2       $ROOT/GMI/v2015-02/gmi.clim.HNO2.geos5.2x25.nc           loss    2000/1-12/1/0 C xyz s-1   HNO2     - 1  1
