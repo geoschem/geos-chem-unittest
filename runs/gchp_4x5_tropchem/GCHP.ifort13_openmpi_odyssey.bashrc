@@ -67,6 +67,7 @@ export PATH=$PATH:${NETCDF_HOME}/bin
 
 # Compiler environnment settings
 export FC=ifort                            # Fortran compiler
+export COMPILER=$FC                        # Tell GC which compiler to use
 export F90=$FC                             # F90 compiler
 export F77=$FC                             # F77 compiler
 export CC=gcc                              # C compiler
