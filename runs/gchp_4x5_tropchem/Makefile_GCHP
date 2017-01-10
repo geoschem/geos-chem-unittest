@@ -62,22 +62,6 @@ LAST_BUILD :="$(RUN_DIR)/last_build_code_info.log"
 # Executables
 EXE :=geos
 
-# Code git information for GEOS-Chem repo
-CODE_BRANCH_GC :=$(shell git -C $(CODEDIR_GC) rev-parse --abbrev-ref HEAD)
-LAST_COMMIT_GC :=$(shell git -C $(CODEDIR_GC) log -n 1 --pretty=format:"%s") 
-COMMIT_DATE_GC :=$(shell git -C $(CODEDIR_GC) log -n 1 --pretty=format:"%cd") 
-COMMIT_USER_GC :=$(shell git -C $(CODEDIR_GC) log -n 1 --pretty=format:"%cn") 
-COMMIT_HASH_GC :=$(shell git -C $(CODEDIR_GC) log -n 1 --pretty=format:"%h") 
-CODE_STATUS_GC :=$(shell git -C $(CODEDIR_GC) status -s) 
-
-# Code git information for GCHP repo
-CODE_BRANCH_GCHP:=$(shell git -C $(CODEDIR_GCHP) rev-parse --abbrev-ref HEAD)
-LAST_COMMIT_GCHP:=$(shell git -C $(CODEDIR_GCHP) log -n 1 --pretty=format:"%s")
-COMMIT_DATE_GCHP:=$(shell git -C $(CODEDIR_GCHP) log -n 1 --pretty=format:"%cd")
-COMMIT_USER_GCHP:=$(shell git -C $(CODEDIR_GCHP) log -n 1 --pretty=format:"%cn")
-COMMIT_HASH_GCHP:=$(shell git -C $(CODEDIR_GCHP) log -n 1 --pretty=format:"%h") 
-CODE_STATUS_GCHP:=$(shell git -C $(CODEDIR_GCHP) status -s) 
-
 ###############################################################################
 #####                                                                     #####
 #####                          MAKEFILE TARGETS                           #####
@@ -208,6 +192,18 @@ superclean:
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 printbuildinfo:
+	$(eval CODE_BRANCH_GC :=$(shell git -C $(CODEDIR_GC) rev-parse --abbrev-ref HEAD))
+	$(eval LAST_COMMIT_GC :=$(shell git -C $(CODEDIR_GC) log -n 1 --pretty=format:"%s")) 
+	$(eval COMMIT_DATE_GC :=$(shell git -C $(CODEDIR_GC) log -n 1 --pretty=format:"%cd")) 
+	$(eval COMMIT_USER_GC :=$(shell git -C $(CODEDIR_GC) log -n 1 --pretty=format:"%cn")) 
+	$(eval COMMIT_HASH_GC :=$(shell git -C $(CODEDIR_GC) log -n 1 --pretty=format:"%h")) 
+	$(eval CODE_STATUS_GC :=$(shell git -C $(CODEDIR_GC) status -s)) 
+	$(eval CODE_BRANCH_GCHP:=$(shell git -C $(CODEDIR_GCHP) rev-parse --abbrev-ref HEAD))
+	$(eval LAST_COMMIT_GCHP:=$(shell git -C $(CODEDIR_GCHP) log -n 1 --pretty=format:"%s"))
+	$(eval COMMIT_DATE_GCHP:=$(shell git -C $(CODEDIR_GCHP) log -n 1 --pretty=format:"%cd"))
+	$(eval COMMIT_USER_GCHP:=$(shell git -C $(CODEDIR_GCHP) log -n 1 --pretty=format:"%cn"))
+	$(eval COMMIT_HASH_GCHP:=$(shell git -C $(CODEDIR_GCHP) log -n 1 --pretty=format:"%h")) 
+	$(eval CODE_STATUS_GCHP:=$(shell git -C $(CODEDIR_GCHP) status -s)) 
 	@echo "LAST BUILD INFORMATION - GEOS-Chem:"
 	@echo "   CODEDIR_GC        : $(CODEDIR_GC)"
 	@echo "   CODE_BRANCH_GC    : $(CODE_BRANCH_GC)"
