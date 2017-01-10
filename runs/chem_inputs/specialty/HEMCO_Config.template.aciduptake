@@ -1306,7 +1306,7 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- Time zones (offset to UTC) ---
 #==============================================================================
-* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_1x1.edit.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
+* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
 
 #==============================================================================
 # --- UV albedo, for photolysis (cf Hermann & Celarier, 1997) ---
