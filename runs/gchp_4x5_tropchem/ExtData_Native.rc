@@ -720,8 +720,7 @@ SOILNOX_LANDK23   1     xy C N Y  - none none LANDFRAC_K23 ./MainDataDir/SOILNOX
 SOILNOX_LANDK24   1     xy C N Y  - none none LANDFRAC_K24 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
 SOILNOX_ARID      1     xy C N Y  - none none ARID         ./MainDataDir/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc
 SOILNOX_NONARID   1     xy C N Y  - none none NON_ARID     ./MainDataDir/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc
-#TIMEZONES         count xy C N Y  - none none UTC_OFFSET ./MainDataDir/TIMEZONES/v2015-02/timezones_1x1.nc
-TIMEZONES         count xy C N V  - none none UTC_OFFSET timezones_extended_1x1.nc
+TIMEZONES         count xy C N Y  - none none UTC_OFFSET ./MainDataDir/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc
 
 # Don't actually need these yet
 HTAP_NH3_IND      1     xy C N N  - none none HTAP_NH3_IND /dev/null
