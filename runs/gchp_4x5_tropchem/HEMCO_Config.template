@@ -119,6 +119,8 @@ Warnings:                    {WARNINGS}
     --> +LinStratChem+    :       true
     --> +GCCRestart+      :       true
     --> +Olson+           :       true
+    --> +ModisLAI+        :       true
+    --> +ModisCHLR+       :       false
 # -----------------------------------------------------------------------------
 100     Custom            : off   - 
 101     SeaFlux           : on    DMS/ACET
@@ -1614,84 +1616,6 @@ Warnings:                    {WARNINGS}
 * STRAT_OH            $ROOT/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc          species 2000/$MM/1/0 C xyz v/v   *        - 1  1
 )))+LinStratChem+
 
-# Olson land map data
-(((+Olson+
-* Olson01 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson02 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson03 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson04 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson05 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson06 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson07 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson08 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson09 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson10 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson11 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson12 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson13 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson14 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson15 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson16 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson17 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson18 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson19 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson20 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson21 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson22 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson23 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson24 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson25 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson26 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson27 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson28 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson29 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson30 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson31 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson32 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson33 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson34 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson35 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson36 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson37 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson38 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson39 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson40 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson41 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson42 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson43 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson44 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson45 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson46 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson47 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson48 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson49 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson50 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson51 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson52 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson53 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson54 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson55 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson56 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson57 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson58 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson59 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson60 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson61 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson62 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson63 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson64 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson65 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson66 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson67 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson68 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson69 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson70 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson71 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson72 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson73 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-* Olson74 Ignore.nc NA 2000/1/1/0 C xyz unitless * - 1 1
-)))+Olson+
-
 # GEOS-Chem classic restart (!)
 (((+GCCRestart+
 * GCC_NO      Ignore.nc TRC_NO     2000/1/1/0 C xyz v/v * - 1 1
@@ -1761,6 +1685,237 @@ Warnings:                    {WARNINGS}
 * GCC_NO3     Ignore.nc TRC_NO3    2000/1/1/0 C xyz v/v * - 1 1
 * GCC_HNO2    Ignore.nc TRC_HNO2   2000/1/1/0 C xyz v/v * - 1 1
 )))+GCCRestart+
+
+# Olson land map data
+(((+Olson+
+* OLSON00 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON01 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON02 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON03 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON04 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON05 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON06 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON07 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON08 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON09 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON10 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON11 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON12 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON13 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON14 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON15 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON16 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON17 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON18 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON19 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON20 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON21 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON22 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON23 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON24 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON25 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON26 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON27 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON28 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON29 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON30 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON31 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON32 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON33 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON34 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON35 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON36 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON37 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON38 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON39 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON40 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON41 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON42 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON43 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON44 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON45 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON46 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON47 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON48 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON49 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON50 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON51 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON52 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON53 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON54 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON55 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON56 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON57 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON58 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON59 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON60 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON61 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON62 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON63 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON64 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON65 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON66 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON67 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON68 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON69 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON70 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON71 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON72 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+)))+Olson+
+
+# MODIS LAI data
+(((+ModisLAI+
+* XLAI00 Ignore.nc XLAI00 2008/7/15/0 C xy unitless * - 1 1
+* XLAI01 Ignore.nc XLAI01 2008/7/15/0 C xy unitless * - 1 1
+* XLAI02 Ignore.nc XLAI02 2008/7/15/0 C xy unitless * - 1 1
+* XLAI03 Ignore.nc XLAI03 2008/7/15/0 C xy unitless * - 1 1
+* XLAI04 Ignore.nc XLAI04 2008/7/15/0 C xy unitless * - 1 1
+* XLAI05 Ignore.nc XLAI05 2008/7/15/0 C xy unitless * - 1 1
+* XLAI06 Ignore.nc XLAI06 2008/7/15/0 C xy unitless * - 1 1
+* XLAI07 Ignore.nc XLAI07 2008/7/15/0 C xy unitless * - 1 1
+* XLAI08 Ignore.nc XLAI08 2008/7/15/0 C xy unitless * - 1 1
+* XLAI09 Ignore.nc XLAI09 2008/7/15/0 C xy unitless * - 1 1
+* XLAI10 Ignore.nc XLAI10 2008/7/15/0 C xy unitless * - 1 1
+* XLAI11 Ignore.nc XLAI11 2008/7/15/0 C xy unitless * - 1 1
+* XLAI12 Ignore.nc XLAI12 2008/7/15/0 C xy unitless * - 1 1
+* XLAI13 Ignore.nc XLAI13 2008/7/15/0 C xy unitless * - 1 1
+* XLAI14 Ignore.nc XLAI14 2008/7/15/0 C xy unitless * - 1 1
+* XLAI15 Ignore.nc XLAI15 2008/7/15/0 C xy unitless * - 1 1
+* XLAI16 Ignore.nc XLAI16 2008/7/15/0 C xy unitless * - 1 1
+* XLAI17 Ignore.nc XLAI17 2008/7/15/0 C xy unitless * - 1 1
+* XLAI18 Ignore.nc XLAI18 2008/7/15/0 C xy unitless * - 1 1
+* XLAI19 Ignore.nc XLAI19 2008/7/15/0 C xy unitless * - 1 1
+* XLAI20 Ignore.nc XLAI20 2008/7/15/0 C xy unitless * - 1 1
+* XLAI21 Ignore.nc XLAI21 2008/7/15/0 C xy unitless * - 1 1
+* XLAI22 Ignore.nc XLAI22 2008/7/15/0 C xy unitless * - 1 1
+* XLAI23 Ignore.nc XLAI23 2008/7/15/0 C xy unitless * - 1 1
+* XLAI24 Ignore.nc XLAI24 2008/7/15/0 C xy unitless * - 1 1
+* XLAI25 Ignore.nc XLAI25 2008/7/15/0 C xy unitless * - 1 1
+* XLAI26 Ignore.nc XLAI26 2008/7/15/0 C xy unitless * - 1 1
+* XLAI27 Ignore.nc XLAI27 2008/7/15/0 C xy unitless * - 1 1
+* XLAI28 Ignore.nc XLAI28 2008/7/15/0 C xy unitless * - 1 1
+* XLAI29 Ignore.nc XLAI29 2008/7/15/0 C xy unitless * - 1 1
+* XLAI30 Ignore.nc XLAI30 2008/7/15/0 C xy unitless * - 1 1
+* XLAI31 Ignore.nc XLAI31 2008/7/15/0 C xy unitless * - 1 1
+* XLAI32 Ignore.nc XLAI32 2008/7/15/0 C xy unitless * - 1 1
+* XLAI33 Ignore.nc XLAI33 2008/7/15/0 C xy unitless * - 1 1
+* XLAI34 Ignore.nc XLAI34 2008/7/15/0 C xy unitless * - 1 1
+* XLAI35 Ignore.nc XLAI35 2008/7/15/0 C xy unitless * - 1 1
+* XLAI36 Ignore.nc XLAI36 2008/7/15/0 C xy unitless * - 1 1
+* XLAI37 Ignore.nc XLAI37 2008/7/15/0 C xy unitless * - 1 1
+* XLAI38 Ignore.nc XLAI38 2008/7/15/0 C xy unitless * - 1 1
+* XLAI39 Ignore.nc XLAI39 2008/7/15/0 C xy unitless * - 1 1
+* XLAI40 Ignore.nc XLAI40 2008/7/15/0 C xy unitless * - 1 1
+* XLAI41 Ignore.nc XLAI41 2008/7/15/0 C xy unitless * - 1 1
+* XLAI42 Ignore.nc XLAI42 2008/7/15/0 C xy unitless * - 1 1
+* XLAI43 Ignore.nc XLAI43 2008/7/15/0 C xy unitless * - 1 1
+* XLAI44 Ignore.nc XLAI44 2008/7/15/0 C xy unitless * - 1 1
+* XLAI45 Ignore.nc XLAI45 2008/7/15/0 C xy unitless * - 1 1
+* XLAI46 Ignore.nc XLAI46 2008/7/15/0 C xy unitless * - 1 1
+* XLAI47 Ignore.nc XLAI47 2008/7/15/0 C xy unitless * - 1 1
+* XLAI48 Ignore.nc XLAI48 2008/7/15/0 C xy unitless * - 1 1
+* XLAI49 Ignore.nc XLAI49 2008/7/15/0 C xy unitless * - 1 1
+* XLAI50 Ignore.nc XLAI50 2008/7/15/0 C xy unitless * - 1 1
+* XLAI51 Ignore.nc XLAI51 2008/7/15/0 C xy unitless * - 1 1
+* XLAI52 Ignore.nc XLAI52 2008/7/15/0 C xy unitless * - 1 1
+* XLAI53 Ignore.nc XLAI53 2008/7/15/0 C xy unitless * - 1 1
+* XLAI54 Ignore.nc XLAI54 2008/7/15/0 C xy unitless * - 1 1
+* XLAI55 Ignore.nc XLAI55 2008/7/15/0 C xy unitless * - 1 1
+* XLAI56 Ignore.nc XLAI56 2008/7/15/0 C xy unitless * - 1 1
+* XLAI57 Ignore.nc XLAI57 2008/7/15/0 C xy unitless * - 1 1
+* XLAI58 Ignore.nc XLAI58 2008/7/15/0 C xy unitless * - 1 1
+* XLAI59 Ignore.nc XLAI59 2008/7/15/0 C xy unitless * - 1 1
+* XLAI60 Ignore.nc XLAI60 2008/7/15/0 C xy unitless * - 1 1
+* XLAI61 Ignore.nc XLAI61 2008/7/15/0 C xy unitless * - 1 1
+* XLAI62 Ignore.nc XLAI62 2008/7/15/0 C xy unitless * - 1 1
+* XLAI63 Ignore.nc XLAI63 2008/7/15/0 C xy unitless * - 1 1
+* XLAI64 Ignore.nc XLAI64 2008/7/15/0 C xy unitless * - 1 1
+* XLAI65 Ignore.nc XLAI65 2008/7/15/0 C xy unitless * - 1 1
+* XLAI66 Ignore.nc XLAI66 2008/7/15/0 C xy unitless * - 1 1
+* XLAI67 Ignore.nc XLAI67 2008/7/15/0 C xy unitless * - 1 1
+* XLAI68 Ignore.nc XLAI68 2008/7/15/0 C xy unitless * - 1 1
+* XLAI69 Ignore.nc XLAI69 2008/7/15/0 C xy unitless * - 1 1
+* XLAI70 Ignore.nc XLAI70 2008/7/15/0 C xy unitless * - 1 1
+* XLAI71 Ignore.nc XLAI71 2008/7/15/0 C xy unitless * - 1 1
+* XLAI72 Ignore.nc XLAI72 2008/7/15/0 C xy unitless * - 1 1
+)))+ModisLAI+
+
+# MODIS Chlorophyll-a data
+(((+ModisCHLR+
+* XCHLR00 Ignore.nc XCHLR00 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR01 Ignore.nc XCHLR01 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR02 Ignore.nc XCHLR02 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR03 Ignore.nc XCHLR03 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR04 Ignore.nc XCHLR04 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR05 Ignore.nc XCHLR05 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR06 Ignore.nc XCHLR06 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR07 Ignore.nc XCHLR07 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR08 Ignore.nc XCHLR08 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR09 Ignore.nc XCHLR09 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR10 Ignore.nc XCHLR10 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR11 Ignore.nc XCHLR11 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR12 Ignore.nc XCHLR12 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR13 Ignore.nc XCHLR13 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR14 Ignore.nc XCHLR14 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR15 Ignore.nc XCHLR15 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR16 Ignore.nc XCHLR16 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR17 Ignore.nc XCHLR17 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR18 Ignore.nc XCHLR18 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR19 Ignore.nc XCHLR19 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR20 Ignore.nc XCHLR20 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR21 Ignore.nc XCHLR21 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR22 Ignore.nc XCHLR22 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR23 Ignore.nc XCHLR23 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR24 Ignore.nc XCHLR24 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR25 Ignore.nc XCHLR25 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR26 Ignore.nc XCHLR26 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR27 Ignore.nc XCHLR27 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR28 Ignore.nc XCHLR28 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR29 Ignore.nc XCHLR29 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR30 Ignore.nc XCHLR30 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR31 Ignore.nc XCHLR31 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR32 Ignore.nc XCHLR32 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR33 Ignore.nc XCHLR33 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR34 Ignore.nc XCHLR34 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR35 Ignore.nc XCHLR35 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR36 Ignore.nc XCHLR36 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR37 Ignore.nc XCHLR37 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR38 Ignore.nc XCHLR38 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR39 Ignore.nc XCHLR39 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR40 Ignore.nc XCHLR40 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR41 Ignore.nc XCHLR41 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR42 Ignore.nc XCHLR42 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR43 Ignore.nc XCHLR43 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR44 Ignore.nc XCHLR44 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR45 Ignore.nc XCHLR45 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR46 Ignore.nc XCHLR46 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR47 Ignore.nc XCHLR47 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR48 Ignore.nc XCHLR48 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR49 Ignore.nc XCHLR49 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR50 Ignore.nc XCHLR50 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR51 Ignore.nc XCHLR51 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR52 Ignore.nc XCHLR52 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR53 Ignore.nc XCHLR53 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR54 Ignore.nc XCHLR54 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR55 Ignore.nc XCHLR55 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR56 Ignore.nc XCHLR56 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR57 Ignore.nc XCHLR57 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR58 Ignore.nc XCHLR58 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR59 Ignore.nc XCHLR59 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR60 Ignore.nc XCHLR60 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR61 Ignore.nc XCHLR61 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR62 Ignore.nc XCHLR62 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR63 Ignore.nc XCHLR63 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR64 Ignore.nc XCHLR64 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR65 Ignore.nc XCHLR65 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR66 Ignore.nc XCHLR66 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR67 Ignore.nc XCHLR67 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR68 Ignore.nc XCHLR68 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR69 Ignore.nc XCHLR69 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR70 Ignore.nc XCHLR70 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR71 Ignore.nc XCHLR71 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR72 Ignore.nc XCHLR72 2013/7/15/0 C xy unitless * - 1 1
+)))+ModisCHLR+
 
 ### END SECTION BASE EMISSIONS ###
 

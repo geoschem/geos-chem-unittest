@@ -31,7 +31,7 @@
 # Check whether symlinks for source code, met, hemco, chem, and restarts 
 # already are set. If yes then exist since setup is not necessary. 
 if [[ -L CodeDir && -L MainDataDir && -L MetDir && -L RestartsDir && -L ChemDataDir && -L TileFiles ]] ; then
-  echo "Soft links already set up"
+  echo "Symbolic links already set up"
   exit 1
 fi
 
@@ -43,6 +43,9 @@ if [[ ! -d ${codePath} ]]; then
 fi
 ln -s ${codePath} CodeDir
 
+# Define tile file needed to regrid Olson landmap and MODIS LAI to c24 (~4x5)
+tileFile=DE1440xPE0720_CF0024x6C.bin
+
 # Prompt the user on whether using Odyssey (Harvard)
 read -p "Are you on Odyssey [y/n]? " onOdyssey
 
@@ -51,11 +54,11 @@ read -p "Are you on Odyssey [y/n]? " onOdyssey
 onOdyssey=$( echo "${onOdyssey}" | tr '[:upper:]' '[:lower:]' )
 if [[ ${onOdyssey} == "y" ]]; then
   baseDir='/n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid'
-  MetDir=${baseDir}
-  MainDataDir="${baseDir}/data/ExtData/HEMCO"
-  RestartsDir="${baseDir}/data/ExtData/NC_RESTARTS"
-  ChemDataDir="${baseDir}/gcdata/ExtData/CHEM_INPUTS"
-  TileFiles="${baseDir}/gcdata/ExtData/GCHP/TileFiles"
+  MetDir=$baseDir
+  MainDataDir="$baseDir/data/ExtData/HEMCO"
+  RestartsDir="$baseDir/data/ExtData/NC_RESTARTS"
+  ChemDataDir="$baseDir/gcdata/ExtData/CHEM_INPUTS"
+  TileFileDir="$baseDir/gcdata/ExtData/GCHP/TileFiles"
   echo "Valid INPUT resolution choices:"
   echo "[N] Native (0.25x0.3125) (2015-07-01 to 2015-07-10)"
   echo "[2] 2x2.5                (2012-05-01 to 2014-12-31)"
@@ -82,9 +85,9 @@ elif [[ ${onOdyssey} == "n" ]]; then
   read -p "Enter path to HEMCO data directory: " MainDataDir
   read -p "Enter path to GEOS-Chem restart files: " RestartsDir
   read -p "Enter path to CHEM_INPUTS directory: " ChemDataDir
-  read -p "Enter path to tile files: " TileFiles
-  echo "WARNING: you must replace ExtData.rc with the appropriate template"
-  echo "         file (e.g. ExtData_4x5.rc if using 4x5 met input res"
+  read -p "Enter path to tile files: " TileFileDir
+  echo "WARNING: You must replace ExtData.rc with the appropriate template"
+  echo "         file (e.g. ExtData_4x5.rc if using 4x5 met input resolution!"
 else
   echo "Invalid response given"
   unlink CodeDir
@@ -92,18 +95,17 @@ else
 fi
 
 # Set symlinks based on the paths set above
-if [[ -d ${MetDir} && -d ${MainDataDir} && -d ${RestartsDir} && -d ${ChemDataDir} && -d ${TileFiles} ]]; then
+if [[ -d ${MetDir} && -d ${MainDataDir} && -d ${RestartsDir} && -d ${ChemDataDir} && -d ${TileFileDir} ]]; then
   ln -s ${MetDir} MetDir
   ln -s ${MainDataDir} MainDataDir
   ln -s ${RestartsDir} RestartsDir
   ln -s ${ChemDataDir} ChemDataDir
-  ln -s ${TileFiles} TileFiles
+  ln -s ${TileFileDir} TileFiles
 else
   echo "Could not find target directories"
   unlink CodeDir
   exit 1
 fi
-
 echo " "
 echo "IMPORTANT NOTES: You must now set up your environment, compile, and run" 
 echo " "
