@@ -117,7 +117,8 @@ TROPP    '1'       xy  C N Y 0         none none TROPPT     ./MetDir/%y4/%m2/GEO
 TSKIN    '1'       xy  C N Y 0         none none TS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
 TS       '1'       xy  C N Y 0         none none T2M        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
 USTAR    '1'       xy  C N Y 0         none none USTAR      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
-U10M;V10M 'm s-1'  xy  C N N 0         none none U10M;V10M  ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+U10M     'm s-1'   xy  C N N 0         none none U10M       ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+V10M     'm s-1'   xy  C N N 0         none none V10M       ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
 Z0       '1'       xy  C N Y 0         none none Z0M        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
 FRLAKE   '1'       xy  C N Y -         none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
 FRLAND   '1'       xy  C N Y -         none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
