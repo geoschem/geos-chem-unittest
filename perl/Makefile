@@ -253,6 +253,10 @@ ifeq ($(SIM),tropchem)
  CHEM        :=Tropchem
 endif
 
+ifeq ($(SIM),custom)
+ CHEM        :=Custom
+endif
+
 ifeq ($(SIM),masscons)
  MASSCONS    :=y
 endif
