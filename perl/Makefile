@@ -105,10 +105,6 @@ ifndef NO_ISO
  NO_ISO      :=n
 endif
 
-ifndef COMPILER
- COMPILER    :=ifort
-endif
-
 ifndef NO_REDUCED
  NO_REDUCED  :=n
 endif
@@ -119,6 +115,10 @@ endif
 
 ifndef TOMAS15
  TOMAS15     :=n
+endif
+
+ifndef TOMAS30
+ TOMAS30     :=n
 endif
 
 ifndef TOMAS40
@@ -134,7 +134,7 @@ ifndef RRTMG
 endif
 
 ifndef CHEM
- CHEM        :=benchmark
+ CHEM        :=Standard
 endif
 
 ifndef MASSCONS 
@@ -192,18 +192,27 @@ HMCO_END     :=$(END)
 # Also define the proper setting for CHEM, which picks the correct KPP files.
 ifeq ($(SIM),TOMAS12)
  TOMAS12     :=y
+ CHEM        :=Tropchem
 endif
 
 ifeq ($(SIM),TOMAS15)
  TOMAS15     :=y
+ CHEM        :=Tropchem
+endif
+
+ifeq ($(SIM),TOMAS30)
+ TOMAS30     :=y
+ CHEM        :=Tropchem
 endif
 
 ifeq ($(SIM),TOMAS40)
  TOMAS40     :=y
+ CHEM        :=Tropchem
 endif
 
 ifeq ($(SIM),RRTMG)
  RRTMG       :=y
+ CHEM        :=Tropchem
 endif
 
 ifeq ($(SIM),UCX)
@@ -212,22 +221,22 @@ ifeq ($(SIM),UCX)
  NO_REDUCED  :=y
 endif
 
-ifeq ($(SIM),benchmark)
+ifeq ($(SIM),$(filter $(SIM), benchmark, standard))
  UCX         :=y
- CHEM        :=benchmark
+ CHEM        :=Standard
  NO_REDUCED  :=y
  TIMERS      :=1
 endif
 
 ifeq ($(SIM),aciduptake)
  UCX         :=y
- CHEM        :=benchmark
+ CHEM        :=Standard
  NO_REDUCED  :=y
 endif
 
 ifeq ($(SIM),marinePOA)
  UCX         :=y
- CHEM        :=benchmark
+ CHEM        :=Standard
  NO_REDUCED  :=y
 endif
 
@@ -241,26 +250,15 @@ ifeq ($(SIM),soa_svpoa)
 endif
 
 ifeq ($(SIM),tropchem)
- CHEM        :=NOx_Ox_HC_Aer_Br
+ CHEM        :=Tropchem
 endif
 
-ifeq ($(SIM),fullchem)
- CHEM        :=NOx_Ox_HC_Aer_Br
-endif
-
-ifeq ($(SIM),NOx_Ox_HC_Aer_Br)
- CHEM        :=NOx_Ox_HC_Aer_Br
+ifeq ($(SIM),custom)
+ CHEM        :=Custom
 endif
 
 ifeq ($(SIM),masscons)
  MASSCONS    :=y
-endif
-
-# Temporarily only use BPCH restarts for mercury simulation
-# pending implementation of ocean restart variables in netcdf
-ifeq ($(SIM),Hg)
- BPCH_RST_IN    :=y
- BPCH_RST_OUT   :=y
 endif
 
 # General run information
@@ -286,16 +284,64 @@ EXE_MP       :=geos.mp
 # Output data files
 TRAC_AVG     :=trac_avg.$(RUNID).$(START)
 HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
-ifeq ($(SIM),Hg)
- TRAC_RST    :=trac_rst.$(RUNID).$(END)
- OCN_RST     :=ocean_rst.$(RUNID).$(END)
-else
- TRAC_RST     :=GEOSChem_restart.$(END).nc
-endif
+TRAC_RST     :=GEOSChem_restart.$(END).nc
 
 # Unit test validation script and results file
 VALIDATE     :=/usr/bin/perl $(PERL_DIR)/validate
 RESULTS      :=$(LOG_DIR)/$(VERSION).results.log
+
+# Get information about the Git version, because some features
+# (like -C) are not available in older Git versions.  The git 
+# version command returns "git version X.Y.Z", so we will just take
+# the 3rd word and strip all the dots. (bmy, 12/21/16)
+GIT_VERSION    :=$(subst .,,$(word 3, $(shell git --version)))
+NEWER_THAN_185 :=$(shell perl -e "print ($(GIT_VERSION) gt 185)")
+
+ifeq ($(NEWER_THAN_185),1)
+
+ # Git version 1.8.5 and higher uses the -C option to look in
+ # directories other than the current directory.  Use this to
+ # get info about the last committed state of the code.
+ CODE_BRANCH  :=$(shell git -C $(CODE_DIR) rev-parse --abbrev-ref HEAD)
+ LAST_COMMIT  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%s") 
+ COMMIT_DATE  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cd") 
+ COMMIT_USER  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cn") 
+ COMMIT_HASH  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%h") 
+ CODE_STATUS  :=$(shell git -C $(CODE_DIR) status -s) 
+
+else
+
+ # Git versions older than 1.8.5 don't have the -C option,
+ # so we have to manually change to the code dir to get information
+ # about the last committed state of the code. (bmy, 12/21/16)
+ CODE_BRANCH  :=$(shell cd $(CODE_DIR); git rev-parse --abbrev-ref HEAD; cd $(PWD))
+ LAST_COMMIT  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%s"; cd $(PWD)) 
+ COMMIT_DATE  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%cd"; cd $(PWD)) 
+ COMMIT_USER  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%cn"; cd $(PWD)) 
+ COMMIT_HASH  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%h"; cd $(PWD)) 
+ CODE_STATUS  :=$(shell cd $(CODE_DIR); git status -s; cd $(PWD)) 
+
+endif
+
+# Compiler information
+# If COMPILER is not defined, default to the $(FC) variable, which
+# is set in your .bashrc, or when you load the compiler module
+ifndef COMPILER
+  COMPILER   :=$(FC)
+endif
+
+# Get compiler version
+COMPILER_VERSION_LONG :=$(shell $(FC) --version))
+COMPILER_VERSION_LONG :=$(sort $(COMPILER_VERSION_LONG))
+
+# For ifort, the 3rd substring of the sorted text is the version number.
+# For pgfortran and gfortran, it's the 4th substring.
+# NOTE: Future compiler updates may break this algorithm.
+ifeq ($(COMPILER),ifort)
+ COMPILER_VERSION :=$(word 3, $(COMPILER_VERSION_LONG))
+else
+ COMPILER_VERSION :=$(word 4, $(COMPILER_VERSION_LONG))
+endif
 
 ###############################################################################
 #####                                                                     #####
@@ -314,8 +360,10 @@ RESULTS      :=$(LOG_DIR)/$(VERSION).results.log
 
 all: unittest
 
+ut: unittest
+
 unittest:
-	@$(MAKE) superclean
+	@$(MAKE) realclean
 	@$(MAKE) sp
 	@$(MAKE) realclean
 	@$(MAKE) mp
@@ -423,8 +471,6 @@ dataclean:
 	rm -f HEMCO_restart.*;
 	if [ -f HC.nc ]; then mv -f HC.nc HEMCO_restart.$(START).nc; fi;
 	rm -f trac_rst*
-	rm -f ocean_rst*.mp
-	rm -f ocean_rst*.sp
 	rm -f spec_rst.*
 	rm -f GEOSChem_restart.*
 	rm -f GEOSCHEM_diagnostics.*
@@ -437,14 +483,12 @@ spdataclean:
 	rm -f $(TRAC_AVG)*.sp
 	rm -f $(TRAC_RST)*.sp
 	rm -f HEMCO_restart*.sp
-	rm -f ocean_rst*.sp
 	rm -f diaginfo.dat tracerinfo.dat
 
 mpdataclean:
 	rm -f $(TRAC_AVG)*.mp
 	rm -f $(TRAC_RST)*.mp
 	rm -f HEMCO_restart*.mp
-	rm -f ocean_rst*.mp
 	rm -f diaginfo.dat tracerinfo.dat
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -557,6 +601,9 @@ printruninfomp:
 printbuildinfo:
 	@echo "LAST BUILD INFORMATION:"
 	@echo "  CODE_DIR     : $(CODE_DIR)"
+	@echo "  CODE_BRANCH  : $(CODE_BRANCH)"
+	@echo "  LAST_COMMIT  : $(LAST_COMMIT)"
+	@echo "  COMMIT_DATE  : $(COMMIT_DATE)"
 	@echo "  VERSION      : $(VERSION)"
 	@echo "  MET          : $(MET)"
 	@echo "  GRID         : $(GRID)"
@@ -572,6 +619,7 @@ printbuildinfo:
 	@echo "  UCX          : $(UCX)"
 	@echo "  TOMAS12      : $(TOMAS12)"	
 	@echo "  TOMAS15      : $(TOMAS15)"
+	@echo "  TOMAS30      : $(TOMAS30)"
 	@echo "  TOMAS40      : $(TOMAS40)"
 	@echo "  RRTMG        : $(RRTMG)"
 	@echo "  MASSCONS     : $(MASSCONS)"
@@ -580,7 +628,7 @@ printbuildinfo:
 	@echo "  BPCH_RST_OUT : $(BPCH_RST_OUT)"
 	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"
 	@echo "  NC_DIAG      : $(NC_DIAG)"
-	@echo "  COMPILER     : $(COMPILER)"
+	@echo "  COMPILER     : $(COMPILER) $(COMPILER_VERSION)"
 	@echo "  Datetime     : $(TIMESTAMP)"
 
 printallinfosp: 
@@ -591,6 +639,16 @@ printallinfomp:
 	@$(MAKE) printbuildinfo
 	@$(MAKE) printruninfomp
 
+printcodeinfo:
+	@echo -e "Code directory:  $(CODE_DIR)"
+	@echo -e "Git branch:      $(CODE_BRANCH)"
+	@echo -e "Last commit:"
+	@echo -e "   Message:      $(LAST_COMMIT)"
+	@echo -e "   Date:         $(COMMIT_DATE)"
+	@echo -e "   Committer:    $(COMMIT_USER)"
+	@echo -e "   Hash abbrev:  $(COMMIT_HASH)"
+	@echo -e "Uncommitted files (if any):\n$(CODE_STATUS)"
+
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Utilities              %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -600,30 +658,17 @@ addsuffixsp:
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
-ifeq ($(SIM),Hg)
-	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).sp;  fi;
-endif
 
 addsuffixmp:
 	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
 	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
-ifeq ($(SIM),Hg)
-	if [ -f $(OCN_RST)  ]; then mv -f $(OCN_RST)  $(OCN_RST).mp;  fi;
-endif
 
 check:
-ifeq ($(SIM),Hg)
-	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
-	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
-	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 0 >> $(RESULTS)
-	@$(VALIDATE) $(OCN_RST).sp  $(OCN_RST).mp  0 1 >> $(RESULTS)
-else
 	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
 	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
 	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
-endif
 
 ###############################################################################
 #####                                                                     #####
@@ -703,8 +748,9 @@ help:
 	@echo 'printruninfomp    Prints the run settings for GEOS-Chem simulations'
 	@echo '                    for which the parallelization is turned ON'
 	@echo 'printbuildinfo    Prints the build settings for GEOS-Chem simulations'
-	@echo 'prinallinfosp     Synonym for: printbuildinfosp printruninfosp'
-	@echo 'prinallinfomp     Synonym for: printbuildinfomp printruninfomp'
+	@echo 'printallinfosp    Synonym for: printbuildinfosp printruninfosp'
+	@echo 'printallinfomp    Synonym for: printbuildinfomp printruninfomp'
+	@echo 'printcodeinfo     Print code directory git information'
 	@echo ''
 	@echo '%%% UTILITIES %%%'
 	@echo 'addsuffixsp       Adds ".sp" to files generated by GEOS-Chem simulations'

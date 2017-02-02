@@ -1,0 +1,132 @@
+README for GEOS-Chem timing test run directory
+19 Dec 2016
+GEOS-Chem Support Team
+geos-chem-support@as.harvard.edu
+
+This directory contains the following files or sets of files:
+
+(1) Makefile
+(2) input.geos configuration file
+(3) getRunInfo perl script
+(4) HEMCO_Config.rc configuration file
+(5) doTimeTest       -- run script (generic)
+(6) doTimeTest.slurm -- run script (specifically for SLURM scheduler)
+
+
+Installation steps:
+==============================================================================
+
+(1) Use the GEOS-Chem UnitTest to create a GEOS-FP 4x5 gc_timing run directory
+    by setting the following line in the CopyRunDirs.input file:
+
+    #--------|-----------|------|------------|------------|------------|-------|
+    # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?|
+    #--------|-----------|------|------------|------------|------------|-------|
+      geosfp   4x5         -      gc_timing    2013070100   2013070800   -
+
+    For more instructions see:
+
+    http://wiki.seas.harvard.edu/geos-chem/index.php/Creating_GEOS-Chem_run_directories
+
+
+(3) Compile the code (piping the output to a log file for later reference):
+
+    cd geosfp_4x5_gc_timing
+    make -j4 mpbuild > log.build 2>&1
+
+
+(4) Check your root data directory path in input.geos, e.g.
+
+    Root data directory     : /as/data/geos/ExtData
+    Dir w/ 1x1 emissions etc: /as/data/geos/ExtData/GEOS_NATIVE/
+
+
+(5) Check your root data directory path in HEMCO_Config.rc, e.g.
+
+    ROOT: /as/data/geos/ExtData/HEMCO
+
+
+IF YOU ARE USING THE SLURM SCHEDULER, THEN FOLLOW THESE INSTRUCTIONS:
+==============================================================================
+
+(1) In the doTimeTest.slurm script, replace "QUEUE_NAME" with the name of
+    the run queue here:
+
+       #SBATCH -p QUEUE_NAME
+
+(2) If you want to run the time test on a specific node of your machine,
+    replace NODE_NAME with the name of your node in this #SBATCH tag
+    (also in the doTimeTest.slurm script):
+
+       #SBATCH -w NODE_NAME
+
+(3) In the doTimeTest.slurm script, replace YOUR_EMAIL_ADDRESS with the
+    email address where you want to receive notifications from SLURM   
+
+       #SBATCH --mail-user=YOUR_EMAIL_ADDRESS
+
+(4) Submit the job to the SLURM scheduler with this command:
+
+       sbatch doTimeTest.slurm
+
+(5) Output from the job (both stdout and stderr) will be sent to the file
+    
+       doTimeTest.log.JOBID
+
+    where JOBID is the ID number assigned to the job by SLURM.
+
+(6) When the job finishes, run the "printTime" script to print out
+    timing information:
+
+       ./printTimeTest doTimeTest.log.JOBID
+
+    You will get output similar to:
+
+       GEOS-Chem Time Test output
+       ====================================================================
+       Machine or node name: : holyseas04.rc.fas.harvard.edu
+       CPU vendor            : AuthenticAMD
+       CPU model name        : AMD Opteron(tm) Processor 6376                 
+       CPU speed [MHz]       : 2300.078
+       Number of CPUs used   : 8
+       Simulation start date : 20130701 000000
+       Simulation end date   : 20130701 020000
+       Total CPU time  [s]   : 1715.92
+       Wall clock time [s]   : 274.79
+       CPU / Wall ratio      : 6.2445
+       % of ideal performace : 78.06
+
+    NOTE: This was a test example that ran for 2 model hours, but the
+    actual GEOS-Chem time test will run for 7 model days.
+
+    Report this information to the GEOS-Chem Support Team
+    at geos-chem-support@as.harvard.edu
+
+
+
+IF YOU DO NOT HAVE A QUEUING SYSTEM, THEN FOLLOW THESE INSTRUCTIONS:
+===============================================================================
+
+(1) Run the doTimeTest script at the command line, and pipe both the
+    stderr and stdout to the same file?
+
+       ./doTimeTest > doTimeTest.log.$$ 2>&1 &     # If you use bash
+
+       ./doTimeTest >& doTimeTest.log.$$           # If you use tcsh
+
+    Note, the $$ will append the process number to the log file so that
+    successive time tests will not overwrite each other.
+
+(2) When the job finishes, run the "printTime" script to get the timing
+    information:
+
+       ./printTime doTimeTest.log.PROCESSID
+
+    where the PROCESSID is the number that was appended to the log file
+    in the previous command.
+
+    Report the timing information to the GEOS-Chem Support Team.
+
+
+
+

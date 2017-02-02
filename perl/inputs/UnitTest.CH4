@@ -33,7 +33,7 @@
 #
 # %%% Data path and HEMCO settings %%%
 #
-   DATA_ROOT        : /n/seasasfs01/gcgrid/data/ExtData
+   DATA_ROOT        : /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData
    HEMCO_ROOT       : {DATAROOT}/HEMCO
    VERBOSE          : 3
    WARNINGS         : 3
@@ -96,7 +96,7 @@
   geos5    4x5         -      CH4          2006070100   200607010020   -
   geos4    4x5         -      CH4          2004070100   200407010020   -
   geosfp   2x25        -      CH4          2013070100   201307010020   -
-# merra2   2x25        -      CH4          2013070100   201307010020   -
+  merra2   2x25        -      CH4          2013070100   201307010020   -
   geos5    2x25        -      CH4          2006070100   200607010020   -
   merra2   05x0625     na     CH4          2013070100   201307010020   -
   geos5    05x0666     na     CH4          2006070100   200607010020   -

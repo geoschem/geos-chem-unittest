@@ -1,0 +1,18 @@
+This is the GEOS-Chem run directory for the 4x5 SOA simulation.  This directory
+can be used with GEOS-5, GEOS-FP, MERRA, or MERRA-2 meteorology.
+
+Photolysis and aerosol .dat input files are linked to ../chem_inputs/soa.
+This allows us to keep a single set of these files in one location, for
+convenience.
+
+The HEMCO configuration file is linked to HEMCO_Config.template also stored in
+../chem_inputs/soa.  A new HEMCO_Config.rc file will be created from the
+HEMCO_Config.template file each time the unit tester is run.
+
+A new input.geos file will also be created from the input.geos.template file
+each time the unit tester is run.  This allows the location of the data
+files to be customized for each user.
+
+13 Jul 2016
+GEOS-Chem Support Team
+geos-chem-support@as.harvard.edu

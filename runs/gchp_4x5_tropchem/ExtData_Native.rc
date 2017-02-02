@@ -147,13 +147,6 @@ PFICU    '1'       xyz E N Y F0        none none PFICU      ./MetDir/%y4/%m2/GEO
 PFILSAN  '1'       xyz E N Y F0        none none PFILSAN    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.Native.nc
 PFLCU    '1'       xyz E N Y F0        none none PFLCU      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.Native.nc
 PFLLSAN  '1'       xyz E N Y F0        none none PFLLSAN    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.Native.nc
-
-#-------------
-# 2D variables at edge
-#-------------
-PS0      'hPa'     xy  E N N 0        none none PS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.Native.nc
-PS1      'hPa'     xy  E N N 0;030000 none none PS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.Native.nc
-PS2      '1'       xy  C N N -        none none PS2        /dev/null
 #
 
 # ----------------

@@ -1,0 +1,725 @@
+GEOS-CHEM UNIT TEST SIMULATION: {MET}_4x5_TOMAS40
+------------------------+------------------------------------------------------
+%%% SIMULATION MENU %%% :
+Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
+End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
+Run directory           : ./
+Input restart file      : {DATA_ROOT}/SPC_RESTARTS/initial_GEOSChem_rst.4x5_TOMAS40.nc
+Root data directory     : {DATA_ROOT}
+ => GCAP    subdir      : AGRID/YYYY/MM/
+ => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
+ => GEOS-5  subdir      : GEOS_5/YYYY/MM/
+ => GEOS-FP subdir      : GEOS_FP/YYYY/MM/
+ => MERRA   subdir      : MERRA/YYYY/MM/
+ => MERRA2  subdir      : MERRA2/YYYY/MM/
+Dir w/ 1x1 emissions etc: {DATA_ROOT}/GEOS_NATIVE/
+Temporary directory     : ./
+Unzip met fields?       : F
+Wait for met fields?    : F
+Use variable tropopause?: T
+Global offsets I0, J0   : 0 0
+------------------------+------------------------------------------------------
+%%% ADVECTED SPECIES MENU %%%:
+Type of simulation      : 3
+Number of Advected Spec.: 425
+Species Entries ------->: Name
+Species #1              : NO
+Species #2              : O3
+Species #3              : PAN
+Species #4              : CO
+Species #5              : ALK4
+Species #6              : ISOP
+Species #7              : HNO3
+Species #8              : H2O2
+Species #9              : ACET
+Species #10             : MEK
+Species #11             : ALD2
+Species #12             : RCHO
+Species #13             : MVK
+Species #14             : MACR
+Species #15             : PMN
+Species #16             : PPN
+Species #17             : R4N2
+Species #18             : PRPE
+Species #19             : C3H8
+Species #20             : CH2O
+Species #21             : C2H6
+Species #22             : N2O5
+Species #23             : HNO4
+Species #24             : MP
+Species #25             : DMS
+Species #26             : SO2
+Species #27             : SO4
+Species #28             : SO4s
+Species #29             : MSA
+Species #30             : NH3
+Species #31             : NH4
+Species #32             : NIT
+Species #33             : NITs
+Species #34             : BCPI
+Species #35             : OCPI
+Species #36             : BCPO
+Species #37             : OCPO
+Species #38             : SALA
+Species #39             : SALC
+Species #40             : Br2
+Species #41             : Br
+Species #42             : BrO
+Species #43             : HOBr
+Species #44             : HBr
+Species #45             : BrNO2
+Species #46             : BrNO3
+Species #47             : CHBr3
+Species #48             : CH2Br2
+Species #49             : CH3Br
+Species #50             : MPN
+Species #51             : ISOPND
+Species #52             : ISOPNB
+Species #53             : MOBA
+Species #54             : PROPNN
+Species #55             : HAC
+Species #56             : GLYC
+Species #57             : MVKN
+Species #58             : MACRN
+Species #59             : RIP
+Species #60             : IEPOX
+Species #61             : MAP
+Species #62             : NO2
+Species #63             : NO3
+Species #64             : HNO2
+Species #65             : H2SO4
+Species #66             : NK1
+Species #67             : NK2
+Species #68             : NK3
+Species #69             : NK4
+Species #70             : NK5
+Species #71             : NK6
+Species #72             : NK7
+Species #73             : NK8
+Species #74             : NK9
+Species #75             : NK10
+Species #76             : NK11
+Species #77             : NK12
+Species #78             : NK13
+Species #79             : NK14
+Species #80             : NK15
+Species #81             : NK16
+Species #82             : NK17
+Species #83             : NK18
+Species #84             : NK19
+Species #85             : NK20
+Species #86             : NK21
+Species #87             : NK22
+Species #88             : NK23
+Species #89             : NK24
+Species #90             : NK25
+Species #91             : NK26
+Species #92             : NK27
+Species #93             : NK28
+Species #94             : NK29
+Species #95             : NK30
+Species #96             : NK31
+Species #97             : NK32
+Species #98             : NK33
+Species #99             : NK34
+Species #100            : NK35
+Species #101            : NK36
+Species #102            : NK37
+Species #103            : NK38
+Species #104            : NK39
+Species #105            : NK40
+Species #106            : SF1
+Species #107            : SF2
+Species #108            : SF3
+Species #109            : SF4
+Species #110            : SF5
+Species #111            : SF6
+Species #112            : SF7
+Species #113            : SF8
+Species #114            : SF9
+Species #115            : SF10
+Species #116            : SF11
+Species #117            : SF12
+Species #118            : SF13
+Species #119            : SF14
+Species #120            : SF15
+Species #121            : SF16
+Species #122            : SF17
+Species #123            : SF18
+Species #124            : SF19
+Species #125            : SF20
+Species #126            : SF21
+Species #127            : SF22
+Species #128            : SF23
+Species #129            : SF24
+Species #130            : SF25
+Species #131            : SF26
+Species #132            : SF27
+Species #133            : SF28
+Species #134            : SF29
+Species #135            : SF30
+Species #136            : SF31
+Species #137            : SF32
+Species #138            : SF33
+Species #139            : SF34
+Species #140            : SF35
+Species #141            : SF36
+Species #142            : SF37
+Species #143            : SF38
+Species #144            : SF39
+Species #145            : SF40
+Species #146            : SS1
+Species #147            : SS2
+Species #148            : SS3
+Species #149            : SS4
+Species #150            : SS5
+Species #151            : SS6
+Species #152            : SS7
+Species #153            : SS8
+Species #154            : SS9
+Species #155            : SS10
+Species #156            : SS11
+Species #157            : SS12
+Species #158            : SS13
+Species #159            : SS14
+Species #160            : SS15
+Species #161            : SS16
+Species #162            : SS17
+Species #163            : SS18
+Species #164            : SS19
+Species #165            : SS20
+Species #166            : SS21
+Species #167            : SS22
+Species #168            : SS23
+Species #169            : SS24
+Species #170            : SS25
+Species #171            : SS26
+Species #172            : SS27
+Species #173            : SS28
+Species #174            : SS29
+Species #175            : SS30
+Species #176            : SS31
+Species #177            : SS32
+Species #178            : SS33
+Species #179            : SS34
+Species #180            : SS35
+Species #181            : SS36
+Species #182            : SS37
+Species #183            : SS38
+Species #184            : SS39
+Species #185            : SS40
+Species #186            : ECOB1
+Species #187            : ECOB2
+Species #188            : ECOB3
+Species #189            : ECOB4
+Species #190            : ECOB5
+Species #191            : ECOB6
+Species #192            : ECOB7
+Species #193            : ECOB8
+Species #194            : ECOB9
+Species #195            : ECOB10
+Species #196            : ECOB11
+Species #197            : ECOB12
+Species #198            : ECOB13
+Species #199            : ECOB14
+Species #200            : ECOB15
+Species #201            : ECOB16
+Species #202            : ECOB17
+Species #203            : ECOB18
+Species #204            : ECOB19
+Species #205            : ECOB20
+Species #206            : ECOB21
+Species #207            : ECOB22
+Species #208            : ECOB23
+Species #209            : ECOB24
+Species #210            : ECOB25
+Species #211            : ECOB26
+Species #212            : ECOB27
+Species #213            : ECOB28
+Species #214            : ECOB29
+Species #215            : ECOB30
+Species #216            : ECOB31
+Species #217            : ECOB32
+Species #218            : ECOB33
+Species #219            : ECOB34
+Species #220            : ECOB35
+Species #221            : ECOB36
+Species #222            : ECOB37
+Species #223            : ECOB38
+Species #224            : ECOB39
+Species #225            : ECOB40
+Species #226            : ECIL1
+Species #227            : ECIL2
+Species #228            : ECIL3
+Species #229            : ECIL4
+Species #230            : ECIL5
+Species #231            : ECIL6
+Species #232            : ECIL7
+Species #233            : ECIL8
+Species #234            : ECIL9
+Species #235            : ECIL10
+Species #236            : ECIL11
+Species #237            : ECIL12
+Species #238            : ECIL13
+Species #239            : ECIL14
+Species #240            : ECIL15
+Species #241            : ECIL16
+Species #242            : ECIL17
+Species #243            : ECIL18
+Species #244            : ECIL19
+Species #245            : ECIL20
+Species #246            : ECIL21
+Species #247            : ECIL22
+Species #248            : ECIL23
+Species #249            : ECIL24
+Species #250            : ECIL25
+Species #251            : ECIL26
+Species #252            : ECIL27
+Species #253            : ECIL28
+Species #254            : ECIL29
+Species #255            : ECIL30
+Species #256            : ECIL31
+Species #257            : ECIL32
+Species #258            : ECIL33
+Species #259            : ECIL34
+Species #260            : ECIL35
+Species #261            : ECIL36
+Species #262            : ECIL37
+Species #263            : ECIL38
+Species #264            : ECIL39
+Species #265            : ECIL40
+Species #266            : OCOB1
+Species #267            : OCOB2
+Species #268            : OCOB3
+Species #269            : OCOB4
+Species #270            : OCOB5
+Species #271            : OCOB6
+Species #272            : OCOB7
+Species #273            : OCOB8
+Species #274            : OCOB9
+Species #275            : OCOB10
+Species #276            : OCOB11
+Species #277            : OCOB12
+Species #278            : OCOB13
+Species #279            : OCOB14
+Species #280            : OCOB15
+Species #281            : OCOB16
+Species #282            : OCOB17
+Species #283            : OCOB18
+Species #284            : OCOB19
+Species #285            : OCOB20
+Species #286            : OCOB21
+Species #287            : OCOB22
+Species #288            : OCOB23
+Species #289            : OCOB24
+Species #290            : OCOB25
+Species #291            : OCOB26
+Species #292            : OCOB27
+Species #293            : OCOB28
+Species #294            : OCOB29
+Species #295            : OCOB30
+Species #296            : OCOB31
+Species #297            : OCOB32
+Species #298            : OCOB33
+Species #299            : OCOB34
+Species #300            : OCOB35
+Species #301            : OCOB36
+Species #302            : OCOB37
+Species #303            : OCOB38
+Species #304            : OCOB39
+Species #305            : OCOB40
+Species #306            : OCIL1
+Species #307            : OCIL2
+Species #308            : OCIL3
+Species #309            : OCIL4
+Species #310            : OCIL5
+Species #311            : OCIL6
+Species #312            : OCIL7
+Species #313            : OCIL8
+Species #314            : OCIL9
+Species #315            : OCIL10
+Species #316            : OCIL11
+Species #317            : OCIL12
+Species #318            : OCIL13
+Species #319            : OCIL14
+Species #320            : OCIL15
+Species #321            : OCIL16
+Species #322            : OCIL17
+Species #323            : OCIL18
+Species #324            : OCIL19
+Species #325            : OCIL20
+Species #326            : OCIL21
+Species #327            : OCIL22
+Species #328            : OCIL23
+Species #329            : OCIL24
+Species #330            : OCIL25
+Species #331            : OCIL26
+Species #332            : OCIL27
+Species #333            : OCIL28
+Species #334            : OCIL29
+Species #335            : OCIL30
+Species #336            : OCIL31
+Species #337            : OCIL32
+Species #338            : OCIL33
+Species #339            : OCIL34
+Species #340            : OCIL35
+Species #341            : OCIL36
+Species #342            : OCIL37
+Species #343            : OCIL38
+Species #344            : OCIL39
+Species #345            : OCIL40
+Species #346            : DUST1
+Species #347            : DUST2
+Species #348            : DUST3
+Species #349            : DUST4
+Species #350            : DUST5
+Species #351            : DUST6
+Species #352            : DUST7
+Species #353            : DUST8
+Species #354            : DUST9
+Species #355            : DUST10
+Species #356            : DUST11
+Species #357            : DUST12
+Species #358            : DUST13
+Species #359            : DUST14
+Species #360            : DUST15
+Species #361            : DUST16
+Species #362            : DUST17
+Species #363            : DUST18
+Species #364            : DUST19
+Species #365            : DUST20
+Species #366            : DUST21
+Species #367            : DUST22
+Species #368            : DUST23
+Species #369            : DUST24
+Species #370            : DUST25
+Species #371            : DUST26
+Species #372            : DUST27
+Species #373            : DUST28
+Species #374            : DUST29
+Species #375            : DUST30
+Species #376            : DUST31
+Species #377            : DUST32
+Species #378            : DUST33
+Species #379            : DUST34
+Species #380            : DUST35
+Species #381            : DUST36
+Species #382            : DUST37
+Species #383            : DUST38
+Species #384            : DUST39
+Species #385            : DUST40
+Species #386            : AW1
+Species #387            : AW2
+Species #388            : AW3
+Species #389            : AW4
+Species #390            : AW5
+Species #391            : AW6
+Species #392            : AW7
+Species #393            : AW8
+Species #394            : AW9
+Species #395            : AW10
+Species #396            : AW11
+Species #397            : AW12
+Species #398            : AW13
+Species #399            : AW14
+Species #400            : AW15
+Species #401            : AW16
+Species #402            : AW17
+Species #403            : AW18
+Species #404            : AW19
+Species #405            : AW20
+Species #406            : AW21
+Species #407            : AW22
+Species #408            : AW23
+Species #409            : AW24
+Species #410            : AW25
+Species #411            : AW26
+Species #412            : AW27
+Species #413            : AW28
+Species #414            : AW29
+Species #415            : AW30
+Species #416            : AW31
+Species #417            : AW32
+Species #418            : AW33
+Species #419            : AW34
+Species #420            : AW35
+Species #421            : AW36
+Species #422            : AW37
+Species #423            : AW38
+Species #424            : AW39
+Species #425            : AW40
+------------------------+------------------------------------------------------
+%%% TRANSPORT MENU %%%  :
+Turn on Transport       : T
+ => Fill Negative Values: T
+ => IORD, JORD, KORD    : 3  3  7
+Transport Timestep [min]: 10
+------------------------+------------------------------------------------------
+%%% CONVECTION MENU %%% :
+Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
+ => Use non-local PBL?  : F
+Convect Timestep [min]  : 10
+------------------------+------------------------------------------------------
+%%% EMISSIONS MENU %%%  :
+Turn on emissions?      : T
+Emiss Timestep [min]    : 20
+HEMCO Input file        : HEMCO_Config.rc
+ => 1ppt MBL BRO Sim.?  : F
+Switches for UCX        :---
+ => Use CH4 emissions?  : F
+ => Turn on surface BCs :---
+    => CH4?             : F
+    => OCS?             : F
+    => CFCs?            : F
+    => Cl species?      : F
+    => Br species?      : F
+    => N2O?             : F
+ => Set initial glob MRs:---
+    => strat. H2O?      : F
+    => CH4?             : F
+    => OCS?             : F
+    => CFCs?            : F
+    => Cl species?      : F
+    => strat Bry (GCCM)?: F
+    => Br species?      : F
+    => strat. Br?       : F
+    => strat. NOx/HNO3? : F
+    => N2O?             : F
+    => strat. SO4?      : F
+ => CFC emission year   : 0
+------------------------+------------------------------------------------------
+%%% AEROSOL MENU %%%    :
+Online SULFATE AEROSOLS : T
+Online CRYST/AQ AEROSOLS: F
+Online CARBON  AEROSOLS : T
+ => Use Brown Carbon?   : F
+Online 2dy ORG AEROSOLS : F
+ => Semivolatile POA?   : F
+Online DUST    AEROSOLS : T
+ => Acidic uptake ?     : F
+Online SEASALT AEROSOLS : T
+ => SALA radius bin [um]: 0.01 0.5
+ => SALC radius bin [um]: 0.5  8.0
+ => MARINE ORG AEROSOLS : F
+Online dicarb. chem.    : F
+Settle strat. aerosols  : F
+Online PSC AEROSOLS     : F
+Allow homogeneous NAT?  : F
+NAT supercooling req.(K): 3.0
+Ice supersaturation req.: 1.2
+Perform PSC het. chem.? : F
+Calc. strat. aero. OD?  : F
+------------------------+------------------------------------------------------
+%%% DEPOSITION MENU %%% :
+Turn on Dry Deposition? : T
+Turn on Wet Deposition? : T
+------------------------+------------------------------------------------------
+%%% CHEMISTRY MENU %%%  :
+Turn on Chemistry?      : T
+Use linear. strat. chem?: F
+ => Use Linoz for O3?   : T
+Use UCX strat. chem?    : F
+Online CH4 chemistry?   : F
+Active strat. H2O?      : F
+Chemistry Timestep [min]: 20
+Online O3 for FAST-JX?  : T
+Gamma HO2               : 0.2
+------------------------+------------------------------------------------------
+%%% RADIATION MENU %%%  :
+AOD Wavelength (nm)     : 550
+Turn on RRTMG?          : F
+Calculate LW fluxes?    : F
+Calculate SW fluxes?    : F
+Clear-sky flux?         : F
+All-sky flux?           : F
+Radiation Timestep [min]: 180
+Species fluxes          : 0 0 0 0 0 0 0 0 0 1
+ ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM]
+------------------------+------------------------------------------------------
+%%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH
+Schedule output for JAN : 3000000000000000000000000000000
+Schedule output for FEB : 30000000000000000000000000000
+Schedule output for MAR : 3000000000000000000000000000000
+Schedule output for APR : 300000000000000000000000000000
+Schedule output for MAY : 3000000000000000000000000000000
+Schedule output for JUN : 300000000000000000000000000000
+Schedule output for JUL : 3000000000000000000000000000000
+Schedule output for AUG : 3000000000000000000000000000000
+Schedule output for SEP : 300000000000000000000000000000
+Schedule output for OCT : 3000000000000000000000000000000
+Schedule output for NOV : 300000000000000000000000000000
+Schedule output for DEC : 3000000000000000000000000000000
+------------------------+------------------------------------------------------
+%%% GAMAP MENU %%%      :
+diaginfo.dat path       : diaginfo.dat
+tracerinfo.dat path     : tracerinfo.dat
+------------------------+------------------------------------------------------
+%%% DIAGNOSTIC MENU %%% :
+Binary punch file name  : trac_avg.{MET}_4x5_TOMAS40.YYYYMMDDhhmm
+Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
+ND01: Rn/Pb/Be source   :  0   all
+ND02: Rn/Pb/Be decay    :  0   all
+ND03: Hg emissions, P/L :  0   all
+ND04: CO2 Sources       :  0   all
+ND05: Sulfate prod/loss : 47   all
+ND06: Dust aer source   :  1   all
+ND07: Carbon aer source : 47   all
+ND08: Seasalt aer source:  1   all
+ND09: -                 :  0   all
+ND10: -                 :  0   all
+ND11: Acetone sources   :  1   all
+ND12: BL fraction       :  0   all
+ND13: Sulfur sources    : 47   all
+ND14: Cld conv mass flx :  0   all
+ND15: BL mix mass flx   :  0   all
+ND16: LS/Conv prec frac :  0   all
+ND17: Rainout fraction  :  0   all
+ND18: Washout fraction  :  0   all
+ND19: CH4 loss          :  0   all
+ND21: Optical depths    : 47   all
+ND22: J-Values          : 47   1 2 7 8 9 11 13 14 20 44 46 47 49 50 51 59 60 66 67
+      => JV time range  :      11 13
+ND24: E/W transpt flx   :  0   all
+ND25: N/S transpt flx   :  0   all
+ND26: U/D transpt flx   :  0   all
+ND27: Strat NOx,Ox,HNO3 :  0   1 2 7
+ND28: Biomass emissions :  1   1 4 5 9 10 11 18 19 20 21 26 30 34 35
+ND29: CO sources        :  1   all
+ND30: Land Map          :  0   all
+ND31: Surface pressure  : 48   all
+ND32: NOx sources       :  1   all
+ND33: Column tracer     :  0   all
+ND34: Biofuel emissions :  1   1 4 5 9 10 11 18 19 20 21
+ND35: Tracers at 500 mb :  0   all
+ND36: Anthro emissions  :  1   1 2 4 5 7 9 10 11 18 19 20 21
+ND37: Updraft scav frac : 47   all
+ND38: Cld Conv scav loss: 47   all
+ND39: Wetdep scav loss  : 47   all
+ND41: Afternoon PBL ht  :  0   all
+ND42: SOA concentrations:  0   all
+ND43: Chem prod OH, HO2 : 47   all
+  ==> OH/HO2 time range :       0 24
+ND44: Drydep flx/vel    :  1   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 47 48 50 55 56 58 59 60 61 62 63 64 65 66
+ND45: Tracer Conc's     : 47   all
+  ==> ND45 Time range   :       0 24
+ND46: Biogenic emissions:  1   all
+ND47: 24-h avg trc conc :  0   all
+ND52: GAMMA HO2         :  0   all
+ND53: POPs Emissions    :  0   all
+ND54: Time in t'sphere  : 47   all
+ND55: Tropopause height : 47   all
+ND56: Lightning flashes : 47   all
+ND57: Potential T       : 47   all
+ND58: CH4 Emissions     :  0   all
+ND59: TOMAS aerosol emis: 47   all
+ND60: TOMAS microphysics:  0   64-383
+ND61: TOMAS 3D rate     : 47   all
+ND62: Inst column maps  :  0   all
+ND64: Radiative flux    :  0   all
+ND66: DAO 3-D fields    : 47   all
+ND67: DAO 2-D fields    : 47   all
+ND68: Airmass/Boxheight : 47   all
+ND69: Surface area      :  1   all
+ND70: Debug output      :  0   all
+ND71: Hourly max ppbv   :  0   2
+ND72: Radiative output  :  0   all
+------------------------+------------------------------------------------------
+%%% PLANEFLIGHT MENU %%%:
+Turn on plane flt diag? : F
+Flight track info file  : Planeflight.dat.YYYYMMDD
+Output file name        : plane.log.YYYYMMDD
+------------------------+------------------------------------------------------
+%%% ND48 MENU %%%       :
+Turn on ND48 stations   : F
+Station Timeseries file : stations.YYYYMMDD
+Frequency [min]         :  60
+Number of stations      :   0
+------------------------+------------------------------------------------------
+%%% ND49 MENU %%%       :
+Turn on ND49 diagnostic : F
+Inst 3-D timeser. file  : tsYYYYMMDD.bpch
+Tracers to include      : 94
+Frequency [min]         : 120
+IMIN, IMAX of region    :  70  30
+JMIN, JMAX of region    :  23  46
+LMIN, LMAX of region    :   1   1
+-------------------------------------------------------------------------------
+%%% ND50 MENU %%%       :
+Turn on ND50 diagnostic : F
+24-hr avg timeser. file : ts_24h_avg.YYYYMMDD.bpch
+Output as HDF5?         : F
+Tracers to include      : 82 83 84 85 86 87
+IMIN, IMAX of region    :   1  72
+JMIN, JMAX of region    :   1  46
+LMIN, LMAX of region    :   1   1
+-------------------------------------------------------------------------------
+%%% ND51 MENU %%%       :
+Turn on ND51 diagnostic : F
+LT avg timeseries file  : ts_satellite.YYYYMMDD.bpch
+Output as HDF5?         : F
+Tracers to include      : 82 83 84 85 86 87
+GMT Hour for disk write :   0
+Avg Period [LT hours]   :  10  12
+IMIN, IMAX of region    :   1 151
+JMIN, JMAX of region    :   1 121
+LMIN, LMAX of region    :   1  40
+-------------------------------------------------------------------------------
+%%% ND51b MENU %%%      :
+Turn on ND51b diagnstic : F
+LT avg timeseries file  : ts_13_15.NA.YYYYMMDD.h5
+Output as HDF5?         : F
+Tracers to include      : 1 4 20 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 60 61 62 63 64 65 66 72 73 75 82 83 84 85 86 87 93 94 98 99
+GMT Hour for disk write :  1
+Avg Period [LT hours]   :  13  15
+IMIN, IMAX of region    :   1  72
+JMIN, JMAX of region    :   1  46
+LMIN, LMAX of region    :   1   1
+------------------------+------------------------------------------------------
+%%% ND63 MENU %%%       :
+Turn on ND63 diagnostic : F
+Inst 3-D timeser. file  : paranox_ts.YYYYMMDD.bpch
+Tracers to include      : 1
+Frequency [min]         : 120
+IMIN, IMAX of region    :  70  30
+JMIN, JMAX of region    :  23  46
+-------------------------------------------------------------------------------
+%%% PROD & LOSS MENU %%%:
+Turn on P/L (ND65) diag?: T
+# of levels for ND65    : 47
+Save O3 P/L (ND20)?     : F
+------------------------+------------------------------------------------------
+%%% BENCHMARK MENU %%%  :
+Save benchmark output?  : F
+File w/ initial Ox      : Ox.mass.initial
+File w/ final Ox        : Ox.mass.final
+------------------------+------------------------------------------------------
+%%% NESTED GRID MENU %%%:
+Save TPCORE BC's        : F
+Input BCs at 2x2.5?     : F
+Over North America?     : F
+TPCORE NA BC directory  : BC_4x5_NA/
+Over Europe?            : F
+TPCORE EU BC directory  : BC_4x5_EU/
+Over China?             : F
+TPCORE CH BC directory  : BC_4x5_CH/
+Over Asia?              : F
+TPCORE AS BC directory  : BC_4x5_AS/
+Over Custom Region?     : F
+TPCORE BC directory     : BC_4x5/
+BC timestep [min]       : 180
+LL box of BC region     :   9  26
+UR box of BC region     :  29  41
+I0_W, J0_W, I0_E, J0_E  :   3   3   3   3
+------------------------+------------------------------------------------------
+%%% UNIX CMDS MENU %%%  :
+Background symbol       : &
+Redirect symbol         :  >
+Unix remove command     : rm -f
+Unix pathname separator : /
+Unix wildcard character : *
+Unix unzip command      : gzip -dc
+Zip file suffix         : .gz
+------------------------+------------------------------------------------------
+END OF FILE             :
+------------------------+------------------------------------------------------

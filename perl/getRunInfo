@@ -64,6 +64,7 @@ sub getInfo($$) {
 # !REVISION HISTORY:
 #  06 Apr 2015 - E. Lundgren - Initial version
 #  27 Apr 2015 - M. Sulprizio- Now use YYYYMMDDhhmm format for start/end time
+#  31 Mar 2015 - E. Lundgren - Add special case of soa_svpoa
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -100,7 +101,7 @@ sub getInfo($$) {
       if ($id == 4 ) { $runinfo = substr( $runinfo, 0, 12 ); }
       if ($id == 5 ) { $runinfo = substr( $runinfo, 0, 12 ); }
   
-     } else {
+    } else {
  
       # Grep for input.geos header
       $line = qx( grep "GEOS-CHEM UNIT TEST SIMULATION" $rundir/input.geos );
@@ -115,14 +116,27 @@ sub getInfo($$) {
       # Split by '_' delimiter
       @runinfoarray  = split( '_', $runstr );
       
-      # If the id is less than the # of rundirstrings,
-      # extract the run information from the rundir name.
-      # Else, set runinfo to 'n' (used as NEST for non-nested grid runs)
+      # If the id is less than the # of rundirstrings, then extract the 
+      # run info from the rundir name. Else, set runinfo to 'n' which is 
+      # used as NEST for non-nested simulations
       if ( $id < 0+@runinfoarray ) {
-         $runinfo = "$runinfoarray[$id]";
+      
+        # Special case for soa_svpoa
+	if ( ( $id == 2 || $id == 3 ) && 0+@runinfoarray == 4 ) {
+	  if ( $runinfoarray[3] eq "svpoa" ) {
+	    if ( $id == 2 ) { $runinfo = "soa_svpoa" }  # SIM=soa_svpoa
+	    if ( $id == 3 ) { $runinfo = "n" }          # NEST=n
+	  } else {
+	    $runinfo = "$runinfoarray[$id]"; 
+	  }
+        } else {
+         $runinfo = "$runinfoarray[$id]"; 
+        }	
+
       } else {
-         $runinfo = "n";
+        $runinfo = "n";
       }
+
     }				
   }
 

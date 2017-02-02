@@ -802,6 +802,7 @@ HTAP_NH3_POW      1     xy C N N  - none none HTAP_NH3_POW /dev/null
 HTAP_NH3_TRA      1     xy C N N  - none none HTAP_NH3_TRA /dev/null
 HTAP_NH3_AGR      1     xy C N N  - none none HTAP_NH3_AGR /dev/null
 HTAP_NH3_RES      1     xy C N N  - none none HTAP_NH3_RES /dev/null
+
 # ------------------
 # STRATOSPHERIC DATA
 # ------------------

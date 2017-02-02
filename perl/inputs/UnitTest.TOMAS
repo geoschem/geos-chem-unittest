@@ -33,7 +33,7 @@
 #
 # %%% Data path and HEMCO settings %%%
 #
-   DATA_ROOT        : /n/seasasfs01/gcgrid/data/ExtData
+   DATA_ROOT        : /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData
    HEMCO_ROOT       : {DATAROOT}/HEMCO
    VERBOSE          : 3
    WARNINGS         : 3
@@ -92,11 +92,11 @@
 #--------|-----------|------|------------|------------|--------------|--------|
   geosfp   4x5         -      TOMAS40      2013070100   201307010020  TOMAS40=y
 # geosfp   4x5         -      TOMAS30      2013070100   201307010020  TOMAS30=y
-# geosfp   4x5         -      TOMAS15      2013070100   201307010020  TOMAS15=y
+  geosfp   4x5         -      TOMAS15      2013070100   201307010020  TOMAS15=y
 # geosfp   4x5         -      TOMAS12      2013070100   201307010020  TOMAS12=y
   geos5    4x5         -      TOMAS40      2006070100   200607010020  TOMAS40=y
 # geos5    4x5         -      TOMAS30      2006070100   200607010020  TOMAS30=y
-# geos5    4x5         -      TOMAS15      2006070100   200607010020  TOMAS15=y
+  geos5    4x5         -      TOMAS15      2006070100   200607010020  TOMAS15=y
 # geos5    4x5         -      TOMAS12      2006070100   200607010020  TOMAS12=y
   !END OF RUNS:
 #EOP

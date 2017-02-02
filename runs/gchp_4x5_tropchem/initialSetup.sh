@@ -64,6 +64,7 @@ if [[ ${onOdyssey} == "y" ]]; then
   echo "[2] 2x2.5                (2012-05-01 to 2014-12-31)"
   echo "[4] 4x5                  (2012-05-01 to 2015-07-31)"
   read -p "Select an INPUT resolution for met data: " resChoice
+
   if [[ ${resChoice} == "N" || ${resChoice} == "n" ]]; then
     MetDir=${MetDir}/GEOS_0.25x0.3125/GEOS_0.25x0.3125.d/GEOS_FP
     cp ExtData_Native.rc ExtData.rc

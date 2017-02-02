@@ -1,0 +1,66 @@
+#!/bin/bash
+
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: doTimeTest
+#
+# !DESCRIPTION: This bash script submits the GEOS-Chem timing test
+#  to a computational queue using the SLURM scheduler.
+#\\
+#\\
+# !REMARKS:
+# Designed to be used with the geosfp_4x5_benchmark run directory created
+# by the GEOS-Chem Unit Tester. To use this script, you must first compile
+# the GEOS-Chem code using the command "make -j4 mpbuild" to create the
+# geos.mp executable.
+#\\
+# !REMARKS:
+#  The SBATCH tags at the top of the file request computational resources
+#  for this job via the SLURM scheduler:
+#
+#    -c 8             : Use 8 CPUs
+#    -N 1             : Use a single node
+#    -p QUEUE_NAME    : Specify the run queue in which you want to run the test
+#    -w NODE_NAME     : (Optional) Use a specific node of the cluster
+#    --mem=8000       : Use 8 GB total memory for the test
+#    --mail-type=ALL  : Get an email when the test starts, stops, or fails
+#    --mail-user=___  : Send email notifications to this address
+#    -o FILENAME      : Send stdout output to this log
+#    -e FILENAME      : Send stderr output to this log
+#
+#  To make sure that the output from the time command gets send to the same
+#  file as the GEOS-Chem stdout output, you can use this command:
+#
+#    ./doTimeTest > doTimeTest.log.$$ 2>&1
+#
+# !REVISION HISTORY:
+#  23 Nov 2015 - M. Sulprizio- Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+# Set OMP num threads properly
+if [[ "x$SLURM_CPUS_PER_TASK" != x ]]; then
+  export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+fi
+
+# Run GEOS-Chem and pipe output to log
+time -p ./geos.mp
+
+# Echo info from computational cores to log file for displaying results
+nodeName=`uname -n`
+echo "# of CPUs: $OMP_NUM_THREADS"
+echo "NodeName : $nodeName"
+grep "vendor_id"  /proc/cpuinfo
+grep "model name" /proc/cpuinfo
+grep "cpu MHz"    /proc/cpuinfo
+
+# Undefine variables
+unset nodename
+
+# Exit normally
+exit 0
+#EOC

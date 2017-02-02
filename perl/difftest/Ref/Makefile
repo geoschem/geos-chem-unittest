@@ -18,9 +18,8 @@
 #                                                                             .
 #
 # !REVISION HISTORY:
-#  31 Oct 2014 - R. Yantosca - Initial version
-#  02 Sep 2015 - R. Yantosca - Add ./ in front of $(EXEC) to make sure we look
-#                              for the executable in the current directory
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -47,7 +46,7 @@ all: ref
 ref:
 	rm -f $(LOG)
 	@$(MAKE) lib
-	@$(MAKE) run	
+	@$(MAKE) run
 
 lib:
 	@$(MAKE) -C $(CODE) >> $(LOG)
@@ -66,15 +65,15 @@ clean:
 
 realclean:
 	@$(MAKE) -C $(CODE) realclean
+	rm -f $(EXEC)
 
 tvsp:
-	rm -f $(LOG)
-	@$(MAKE) -C $(CODE) DEBUG=y OMP=no
+	@$(MAKE) -C $(CODE)
 	cp -f $(CODE)/bin/geos $(EXEC)
 	totalview $(EXEC) &
+
 tvmp:
-	rm -f $(LOG)
-	@$(MAKE) -C $(CODE) DEBUG=y OMP=y
+	@$(MAKE) -C $(CODE)
 	cp -f $(CODE)/bin/geos $(EXEC)
 	totalview $(EXEC) &
 

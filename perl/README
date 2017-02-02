@@ -33,4 +33,3 @@ Other Files:
 -------------
 Makefile         : Makefile used for Unit Tester run directories and run
                    directories copied from the Unit Tester
-RunDirCopyREADME : Readme file for run directories copied from Unit Tester

@@ -1,0 +1,356 @@
+#!/usr/bin/perl -w
+
+#EOC
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: printTime
+#
+# !DESCRIPTION: Prints timing results from the GEOS-Chem time test.
+#\\
+#\\
+# !USES:
+#
+ require 5.003;
+ use strict;
+ use Carp;
+ use Scalar::Util qw(looks_like_number);
+#
+# !CALLING SEQUENCE
+#  printTime
+#
+# !REVISION HISTORY:
+#  24 Nov 2015 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: round
+#
+# !DESCRIPTION: Rounds a number to any place.
+#\\
+#\\
+# !INTERFACE:
+#
+sub round($$) {
+#
+# !INPUT PARAMETERS: 
+#
+  my( $num, $prec )= @_;   # Number and precision
+#
+# !CALLING SEQUENCE:
+#  $result = &round( $num, 10.0 )   # Rounds to nearest 10
+#  $result = &round( $num, 1.0  )   # Rounds to nearest 1
+#  $result = &round( $num, 0.1  )   # Rounds to nearest 0.1
+#  $result = &round( $num, 0.01 )   # Rounds to nearest 0.01, etc.
+#
+# !REMARKS:
+#  Taken from http://www.perlmonks.org/?node_id=30195
+#
+# !REVISION HISTORY:
+#  27 Oct 2015 - R. Yantosca - Initial version
+#  16 Dec 2016 - R. Yantosca - Now get the compiler version from lastbuild.mp
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+  return int( $num/$prec + 0.5 - ($num<0) ) * $prec;
+}
+#EOC
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: doPrintTime
+#
+# !DESCRIPTION: Prints the total CPU time, wall clock time, and CPU/wall time
+#  ratio.
+#\\
+#\\
+# !INTERFACE:
+#
+sub doPrintTime($) {
+#
+# !INPUT PARAMETERS: 
+#
+  my ( $fileName ) = @_;
+#
+# !REVISION HISTORY:
+#  24 Nov 2015 - R. Yantosca - Initial version
+#  16 Dec 2016 - R. Yantosca - Now get info from lastbuild.mp
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+
+  # Strings
+  my $commitLast = "";
+  my $commitDate = "";
+  my $compiler   = "";
+  my $cpuModel   = "";
+  my $cpuSpeed   = "";
+  my $cpuType    = "";  
+  my $cpuVendor  = "";
+  my $grep       = "";
+  my $nCpus      = "";
+  my $nodeName   = "";
+  my $optionList = "";
+  my $version    = "";
+  my $word       = "";
+    		 
+  # Scalars	 
+  my $end        = 0;
+  my $i          = 0;
+  my $percent    = 0;
+  my $scale      = 0;
+  my $start      = 0;
+  my $sys        = 0;
+  my $totCpu     = 0;
+  my $user       = 0;
+  my $wall       = 0;
+ 		 
+  # Arrays	 
+  my @options    = ();
+  my @result     = ();
+
+  #-------------------------------------------------------------------------
+  # Get fields from lastbuild.mp
+  #-------------------------------------------------------------------------
+
+  # Look for the compiler version in lastbuild.mp
+  $grep = qx(grep "COMPILER" lastbuild.mp);
+  chomp( $grep );
+  @result = split( ':', $grep ); 
+  $compiler = $result[1];
+
+  # Look for the last commit in th code directory
+  $grep = qx(grep "LAST_COMMIT" lastbuild.mp);
+  chomp( $grep );
+  @result = split( ':', $grep ); 
+  $commitLast = $result[1];
+
+  # Look for the commit date in th code directory
+  $grep = qx(grep "COMMIT_DATE" lastbuild.mp);
+  chomp( $grep );
+  @result = split( ':', $grep );
+  for ( $i=1; $i<scalar(@result); $i++ ) {
+    $commitDate .= $result[$i]; 
+    if ( $i==1 || $i==2 ) { $commitDate .= ":"; }
+  }
+
+  # Look for the GEOS-Chem version in th code directory
+  $grep = qx(grep "VERSION" lastbuild.mp);
+  chomp( $grep );
+  @result = split( ':', $grep ); 
+  $version = $result[1];
+
+  # Look for the various GEOS-Chem options
+  @options = qw( MET GRID SIM        TRACEBACK BOUNDS DEBUG  FPE 
+                 NO_ISO   NO_REDUCED CHEM      UCX    TIMERS     );
+ 
+  # Create a string of options
+  foreach $word ( @options ) { 
+    $grep = qx(grep "$word" lastbuild.mp);
+    chomp( $grep );
+    @result = split( ':', $grep );
+    
+    if    ( $result[0] =~ m/MET/        ) { $optionList .= "$result[1]";     }
+    elsif ( $result[0] =~ m/GRID/       ) { $optionList .= "$result[1]";     }
+    elsif ( $result[0] =~ m/SIM/        ) { $optionList .= "$result[1]";     }
+    elsif ( $result[0] =~ m/TRACEBACK/  ) { if ( $result[1] =~ /y/ ) 	      
+                                             { $optionList .= " traceback";  }
+                                          } 				      
+    elsif ( $result[0] =~ m/BOUNDS/     ) { if ( $result[1] =~ m/y/ )  	      
+                                             { $optionList .= " bounds";     } 
+                                          }				      
+    elsif ( $result[0] =~ m/DEBUG/      ) { if ( $result[1] =~ m/y/ ) 	      
+                                             { $optionList .= " debug";      } 
+                                          }				      
+    elsif ( $result[0] =~ m/FPE/        ) { if ( $result[1] =~ m/y/ ) 	      
+                                             { $optionList .= " fpe";        } 
+                                          }
+    elsif ( $result[0] =~ m/NO_ISO/     ) { if ( $result[1] =~ m/y/ )
+                                             { $optionList .= " no_iso";     }
+                                          }
+    elsif ( $result[0] =~ m/NO_REDUCED/ ) { if ( $result[1] =~ m/y/ )
+                                             { $optionList .= " no_reduced"; }
+                                          }
+    elsif ( $result[0] =~ m/UCX/        ) { if ( $result[1] =~ m/y/ )
+                                              { $optionList .= " UCX";       }
+                                          }
+
+    elsif ( $result[0] =~ m/TIMERS/     ) { if ( $result[1] =~ m/1/ )
+                                              { $optionList .= " timers";    }
+                                          }
+    else                                  { }
+  }
+
+  #-------------------------------------------------------------------------
+  # Get CPU info
+  #-------------------------------------------------------------------------
+
+  # NodeName
+  $grep    = qx(grep "NodeName" $fileName);
+  chomp( $grep );
+  @result  = split( ":", $grep ); 
+  $nodeName = $result[1];
+
+  # Number of CPUs
+  $grep    = qx(grep "# of CPUs" $fileName);
+  chomp( $grep );
+  @result  = split( ":", $grep ); 
+  $nCpus = $result[1];
+
+  # CPU type
+  $grep    = qx(grep vendor_id $fileName);
+  chomp( $grep );
+  @result  = split( "\n", $grep      ); 
+  @result  = split( ':',  $result[1] );
+  $cpuVendor = $result[1];
+
+  # CPU model
+  $grep = qx( grep "model name" $fileName);
+  chomp( $grep );
+  @result = split( "\n", $grep      ); 
+  @result = split( ':',  $result[1] );
+  $cpuModel = $result[1];
+
+  # CPU speed
+  $grep = qx(grep "cpu MHz" $fileName);
+  chomp( $grep );
+  @result = split( "\n", $grep      ); 
+  @result = split( ':',  $result[1] );
+  $cpuSpeed = $result[1];
+
+  #-------------------------------------------------------------------------
+  # Get start and end dates
+  #-------------------------------------------------------------------------
+
+  # Starting date
+  $grep = qx(grep "Start YYYYMMDD, HHMMSS" input.geos);
+  chomp( $grep );
+  @result = split( ':', $grep ); 
+  $start = $result[1];
+
+  # Ending date
+  $grep = qx(grep "End   YYYYMMDD, HHMMSS" input.geos);
+  chomp( $grep );
+  @result = split( ':', $grep ); 
+  $end = $result[1];
+  
+  #-------------------------------------------------------------------------
+  # Get timing info
+  #-------------------------------------------------------------------------
+  
+  # Look for wall clock time
+  $grep = qx(grep real $fileName);
+  chomp( $grep );
+  @result = split( ' ', $grep ); 
+  if ( looks_like_number( $result[1] ) ) { $wall = $result[1]; }
+
+  # Look for user CPU time
+  $grep = qx(grep user $fileName);
+  chomp( $grep );
+  @result = split( ' ', $grep ); 
+  if ( looks_like_number( $result[1] ) ) { $user = $result[1]; }
+
+  # Look for system CPU time
+  $grep = qx(grep sys $fileName);
+  chomp( $grep );
+  @result  = split( ' ', $grep ); 
+  if ( looks_like_number( $result[1] ) ) { $sys = $result[1]; }
+  
+  # Total CPU = user + system time
+  $totCpu = $user + $sys;
+    
+  # Scalability
+  if ( $wall > 0 ) { $scale = $totCpu / $wall; }
+
+  # Round to 4 digits
+  $scale = &round( $scale, 0.0001 );
+
+  # Compute percentage of ideal performance
+  $percent = ( $scale / $nCpus ) * 100.0;
+  $percent = &round( $percent, 0.01 );
+  
+  #-------------------------------------------------------------------------
+  # Display results
+  #-------------------------------------------------------------------------
+
+  # NOTE: Some values will have a preceding space.  We can cheat a bit
+  # and skip the space before the colon in these instances. (bmy, 11/24/15)
+  print "GEOS-Chem 7-Model-Day Time Test Results\n";
+  print "="x79 . "\n";
+  print "\n";
+  print "Machine information\n";
+  print '-'x79 . "\n";
+  print "Machine or node name: :$nodeName\n";
+  print "CPU vendor            :$cpuVendor\n";
+  print "CPU model name        :$cpuModel\n";
+  print "CPU speed [MHz]       :$cpuSpeed\n";
+  print "\n";
+  print "GEOS-Chem information\n";
+  print "-"x79 . "\n";
+  print "GEOS-Chem Version     :$version\n";
+  print "Last commit           :$commitLast\n";
+  print "Commit date           :$commitDate\n";
+  print "Compiler version      :$compiler\n";
+  print "Compilation options   :$optionList\n";
+  print "\n";
+  print "Simulation information\n";
+  print "-"x79 . "\n";
+  print "Simulation start date :$start\n";
+  print "Simulation end date   :$end\n";
+  print "Number of CPUs used   :$nCpus\n";
+  print "Total CPU time  [s]   : $totCpu\n";
+  print "Wall clock time [s]   : $wall\n";
+  print "CPU / Wall ratio      : $scale\n";
+  print "% of ideal performace : $percent\n";
+  
+  # Return with error code
+  return( $? );
+}
+#EOC
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: main
+#
+# !DESCRIPTION: Passes command-line arguments to routine &doPrintTime.
+#\\
+#\\
+# !INTERFACE:
+#
+sub main() {
+#
+# !REVISION HISTORY:
+#  24 Nov 2015 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+  if ( scalar( @ARGV ) == 1 ) { &doPrintTime( @ARGV );                    }
+  else                        { print "Usage: printTime LOG-FILE-NAME\n"; }
+
+
+  # Return w/ error code
+  return( $? )
+}
+
+#------------------------------------------------------------------------------
+
+# Call main program
+main();
+
+# Exit with error code
+exit( $? );
+#EOC

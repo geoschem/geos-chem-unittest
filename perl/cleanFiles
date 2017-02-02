@@ -76,6 +76,7 @@ sub getDirs($) {
   # Scalars
   my $home   = "";
   my $utRoot = "";
+  my $user   = "";
 
   # Arrays
   my @txt  = ();
@@ -102,6 +103,9 @@ sub getDirs($) {
   # Get home directory
   $home = $ENV{"HOME"};
 
+  # Get username
+  $user = $ENV{"USER"};
+
   # Parse each line until we find the log directory
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
     if ( $txt[$i] =~ "JOB_DIR"        ) { $jobDir = &parse( $txt[$i] ); }
@@ -118,6 +122,12 @@ sub getDirs($) {
   $jobDir =~ s/{UTROOT}/$utRoot/g;
   $logDir =~ s/{UTROOT}/$utRoot/g;
   $runDir =~ s/{UTROOT}/$utRoot/g;
+
+  # Replace user token
+  $utRoot =~ s/{USER}/$user/g;
+  $jobDir =~ s/{USER}/$user/g;
+  $logDir =~ s/{USER}/$user/g;
+  $runDir =~ s/{USER}/$user/g;
 
   # Only get the root part of the run & log directories
 #  $runDir =~ s/{RUNDIR}//g;
@@ -212,7 +222,7 @@ sub main() {
 	  # Remove files in each run directory ...
 	  print "==> Removing files in $runDir\n";
 	  $cmd  = "cd $runDir; ";
-	  $cmd .= "rm -f input.geos HEMCO_Config.rc HEMCO.log smv2.log Ox.mass.* Makefile lastbuild* *.sp *.mp *info.dat; ";
+	  $cmd .= "rm -f input.geos HEMCO_Config.rc HEMCO.log HEMCO_diagnostics.* smv2.log Ox.mass.* Makefile lastbuild* *.sp *.mp *info.dat input.geos.g* input.geos.m*; ";
 	  $cmd .= "cd ..";
           #print "$cmd\n";
 	  qx/$cmd/;

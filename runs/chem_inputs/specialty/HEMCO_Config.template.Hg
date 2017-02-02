@@ -90,6 +90,7 @@ Warnings:                    {WARNINGS}
     --> BrOx_GC           :       true
     --> BrOx_GMI          :       true
     --> LRED_JNO2         :       true
+    --> QFED2             :       false
 # ----------------------------------------------------------------------------
 111     GFED              : on    Hg0
     --> GFED3             :       false
@@ -103,6 +104,12 @@ Warnings:                    {WARNINGS}
     --> hydrophilic BC    :       0.2
     --> hydrophilic OC    :       0.5
     --> fraction POG1     :       0.49
+114     FINN              : off   Hg0 
+    --> FINN_daily        :       false
+    --> Scaling_CO        :       1.0
+    --> hydrophilic BC    :       0.2
+    --> hydrophilic OC    :       0.5
+    --> Scaling_Hg0       :       7.16e-7
 
 ### END SECTION EXTENSION SWITCHES ###
 
@@ -230,10 +237,20 @@ Warnings:                    {WARNINGS}
 
 #==============================================================================
 # --- Soil distribution factor (pointer is imported in mercury_mod.F) ---
+#
+# NOTE: Here we use the 4x5 GEOS-FP file, but users may want to change this
+# for other met fields and resolutions.
 #==============================================================================
 (((SOILDIST
-0 HG0_SOILDIST $ROOT/MERCURY/v2014-09/SOIL/soilHg.merra.presentday.4x5.nc HG0_DIST 1985/1/1/0 C xy unitless * - 1 1
+0 HG0_SOILDIST $ROOT/MERCURY/v2014-09/SOIL/soilHg.presentday.v11-01.geosfp.4x5.nc HG0_DIST 1985/1/1/0 C xy unitless * - 1 1
 )))SOILDIST
+
+#==============================================================================
+# --- QFED2 biomass burning ---
+#==============================================================================
+(((QFED2
+0 QFED_Hg    $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_co.005.$YYYY$MM$DD.nc4   biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s Hg0  54/75 5 2 
+)))QFED2
 
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
@@ -277,6 +294,27 @@ Warnings:                    {WARNINGS}
 111 GFED_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 C xy 1         * - 1 1
 )))GFED_3hourly
 
+#==============================================================================
+# --- FINN biomass burning emissions (Extension 114) 
+#==============================================================================
+(((.not.FINN_daily
+114 FINN_VEGTYP1       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype1 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP2       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype2 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP3       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype3 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP4       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype4 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP5       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype5 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP9       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype9 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+))).not.FINN_daily
+
+(((FINN_daily
+114 FINN_DAILY_VEGTYP1 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype1 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP2 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype2 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP3 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype3 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP4 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype4 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype5 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype9 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+)))FINN_daily
+
 ###############################################################################
 ### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
 ###
@@ -290,7 +328,7 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- Time zones (offset to UTC) ---
 #==============================================================================
-* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
+* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
 
 #==============================================================================
 # --- Oxidant fields (O3, OH) ---
@@ -380,6 +418,15 @@ Warnings:                    {WARNINGS}
 10 NPRI_CONT_0    1.343 - - - xy 1 1
 11 EU_CONT_0      1.396 - - - xy 1 1
 12 CHN_CONT_0     1.400 - - - xy 1 1
+54 COtoHg0_BB     7.16e-7 - - - xy 1 1
+
+#==============================================================================
+# --- QFED2 diurnal scale factors ---
+#
+# Fire diurnal scaling factors (% per hour) from WRAP Report to Project
+# No. 178-6, July 2005
+#==============================================================================
+75 QFED2_TOD 0.1392/0.1392/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.48/0.96/1.68/2.4/3.12/3.84/4.08/2.88/1.68/0.96/0.1368/0.1368/0.1368/0.1368/0.1368 - - - xy unitless 1
 
 ### END SECTION SCALE FACTORS ###
 

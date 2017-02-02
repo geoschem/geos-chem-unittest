@@ -77,6 +77,8 @@ sub doChecks($$$$) {
 #  29 Aug 2013 - R. Yantosca - Now print the base name of the current dir
 #  02 Jul 2014 - R. Yantosca - Now trigger a DIFFERENT result if either 
 #                              $file1 or $file2 is not found on disk
+#  13 Jul 2016 - M. Sulprizio- Obtain run name from the trac_avg filename
+#                              instead of the run directory name
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -95,15 +97,16 @@ sub doChecks($$$$) {
   my $ckSum1    = $NOTFOUND;
   my $ckSum2    = $NOTFOUND;
   my $header    = '#' x 79;
-  my $notDir    = "";
   my $result    = "";
   my $size1     = $NOTFOUND;
   my $size2     = $NOTFOUND;
   my $sizeOK    = $DIFFERENT;
   my $notFound  = $NOTFOUND;
+  my $runstr    = "";
 
   # Arrays
-  my @subStr = ();
+  my @subStr      = ();
+  my @filestrings = ();
 
   #----------------------------------------
   # Test if the file checksums match
@@ -154,16 +157,16 @@ sub doChecks($$$$) {
   # Report the results
   #----------------------------------------
   
-  # First find the name of this directory (skip full path)
-  $cmd = "pwd";
-  chomp( $result = qx( $cmd ) );
-  @subStr = split( '/', $result );
-  $notDir = $subStr[ scalar( @subStr ) - 1 ];
-	
+  # Split filename by periods
+  @filestrings = split( /\./, $file1 );
+
+  # Extract the run name
+  $runstr = "$filestrings[1]";
+
   # Print top header if requested
   if ( $topHdr ) { print '#' x 79; 
 		   print "\n### VALIDATION OF GEOS-CHEM OUTPUT FILES\n"; 
-                   print "### In directory: $notDir\n"; }
+                   print "### In directory: $runstr\n"; }
 
   # Print information
   print "###\n";

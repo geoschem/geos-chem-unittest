@@ -1,0 +1,706 @@
+#------------------------------------------------------------------------------
+#!                  Harvard-NASA Emissions Component (HEMCO)                   !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: HEMCO_Config.template.tagCO
+#
+# !DESCRIPTION: Template file used to create the HEMCO_Config.rc file
+#  for the tagged CO ("tagCO") simulation. 
+#\\
+#\\
+# !REMARKS:
+#  The following tokens will be replaced:
+#  (1) ROOT : Filepath to HEMCO root data directory
+#  (2) MET  : Met field type (from G-C compilation command)
+#  (3) GRID : Horizontal grid type (from G-C compilation command)
+# 
+#  NOTES:
+#  ------
+#  (1) HEMCO by default uses a binary masking (either 0 or 1).  If a grid box
+#      straddles the mask boundary, then HEMCO will count the entire box
+#      as part of the masked region.  You can disable this behavior by
+#      setting "Mask fractions: true" in the settings section below.
+#      But this may lead to some further discrepancies.  It may be best to
+#      use the binary masking but use as fine resolution mask files 
+#      (e.g. 0.5 x 0.5, 0.25 x 0.25) as possible. 
+#
+#  (2) For each file that is read from disk, we add underneath that file
+#      listing an entry to apply a regional mask to the total emissions.
+#
+#  (3) Yevich & Logan biofuels are added into the same CAT & HIER as EDGAR.  
+#      Because other inventories often do not separate biofuels from anthro, 
+#      it makes sense to lump biofuels into anthro.  This will make it easier
+#      for the tagged tracers to sum together.
+#
+#  (4) At present, there is no way to apply regional masks to emissions that
+#      are computed from the GFED or FINN biomass burning emissions (which
+#      are implemented as HEMCO extensions).  For this reason, we the default
+#      biomass burning emissions is the QFED inventory (which is simply read 
+#      from disk, and thus can have be separated into tagged tracers with
+#      regional masks).  Perhaps in a future HEMCO version we will be able 
+#      to apply regional masks to extension-computed emissions.
+#
+#  (5) If you would like to use either GFED or FINN biomass emissions with
+#      the tagged CO simulation, then we recommend that you use the HEMCO
+#      standalone code to archive the total CO emissions for a given set of
+#      met fields (e.g. GEOS-FP, MERRA) and years.  Then you can add entries
+#      to this HEMCO_Config file (following the example of QFED) to apply
+#      the regional masks to the total CO biomass emissions.
+#
+#  (6) We have removed the +LinStratChem+ block around the GMI_PROD_CO
+#      and GMI_LOSS_CO.  +LinStratChem+ is automatically toggled when
+#      stratospheric chemistry is turned on in input.geos.  But for the
+#      tagged CO simulation, we read GMI_PROD_CO and GMI_LOSS_CO directly
+#      from HEMCO without having to invoke the strat chem module.
+#
+# !REVISION HISTORY: 
+#  Use the "gitk" browser to view the Git version history
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+###############################################################################
+### BEGIN SECTION SETTINGS
+###############################################################################
+#
+ROOT:                        {ROOT}
+Logfile:                     HEMCO.log
+DiagnPrefix:                 HEMCO_diagnostics
+DiagnFreq:                   End
+Wildcard:                    *
+Separator:                   /
+Unit tolerance:              1
+Negative values:             0
+Only unitless scale factors: false
+Verbose:                     {VERBOSE}
+Warnings:                    {WARNINGS}
+Mask fractions:              false
+#
+### END SECTION SETTINGS ###
+
+###############################################################################
+### BEGIN SECTION EXTENSION SWITCHES
+###############################################################################
+#
+# ExtNr ExtName           on/off  Species 
+0       Base              : on    *             
+    --> HEMCO_RESTART     :       true
+    --> AEIC              :       true
+    --> BIOFUEL           :       true
+    --> BRAVO             :       true
+    --> CAC               :       true
+    --> C2H6              :       true
+    --> EDGAR             :       true
+    --> HTAP              :       false
+    --> EMEP              :       true
+    --> GEIA              :       true
+    --> NEI2005           :       true
+    --> NEI2011           :       false
+    --> SHIP              :       true
+    --> NEI2011_SHIP      :       false
+    --> MIX               :       true
+    --> STREETS           :       false
+    --> RCP_3PD           :       false 
+    --> RCP_45            :       false
+    --> RCP_60            :       false
+    --> RCP_85            :       false
+    --> QFED2             :       true
+# -----------------------------------------------------------------------------
+108     MEGAN             : on    ISOP/ACET
+    --> Isoprene scaling  :       1.0 
+    --> CO2 inhibition    :       true
+    --> CO2 conc (ppmv)   :       390.0
+109     MEGAN_Mono        : on    MONX
+
+### END SECTION EXTENSION SWITCHES ###
+
+###############################################################################
+### BEGIN SECTION BASE EMISSIONS 
+###############################################################################
+
+# ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
+
+#==============================================================================
+# --- EDGAR v4.2 ---
+#
+# %%% NOTE: Use EDGAR for the global base emissions instead of GEIA %%%
+#
+# Do not include the following sources (meng,3/6/2014)
+#  - Non-road transportation emissions (1A3a_c_d_e). Instead, use
+#    ICOADS/ARCTAS for ship emissions and AEIC for aircraft emisisons.
+#  - Soil emissions of NOx (4C_4D). These emissions are calculated via the 
+#    SoilNOx extension.
+#  - Open biomass burning (4F, 5A_C_D_F_4E). These emissions are obtained from
+#    GFED3 or FINN.
+#==============================================================================
+(((EDGAR
+0 EDGAR_CO_1A1a_6             $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A1a_6.generic.01x01.nc         emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
+0 EDGAR_CO_1A1a_6_us          -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
+0 EDGAR_CO_1A1a_6_eur         -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
+0 EDGAR_CO_1A1a_6_asia        -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
+0 EDGAR_CO_1A1a_6_oth         -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
+
+0 EDGAR_CO_1A2                $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A2.generic.01x01.nc            emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
+0 EDGAR_CO_1A2_us             -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
+0 EDGAR_CO_1A2_eur            -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
+0 EDGAR_CO_1A2_asia           -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
+0 EDGAR_CO_1A2_oth            -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
+
+0 EDGAR_CO_1A3b               $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A3b.generic.01x01.nc           emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
+0 EDGAR_CO_1A3b_us            -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
+0 EDGAR_CO_1A3b_eur           -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
+0 EDGAR_CO_1A3b_asia          -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
+0 EDGAR_CO_1A3b_oth           -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
+
+0 EDGAR_CO_1A4                $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A4.generic.01x01.nc            emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
+0 EDGAR_CO_1A4_us             -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
+0 EDGAR_CO_1A4_eur            -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
+0 EDGAR_CO_1A4_asia           -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
+0 EDGAR_CO_1A4_oth            -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
+
+0 EDGAR_CO_1B2a_c_1A1b_c      $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1B2a_c_1A1b_c.generic.01x01.nc  emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
+0 EDGAR_CO_1B2a_c_1A1b_c_us   -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
+0 EDGAR_CO_1B2a_c_1A1b_c_eur  -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
+0 EDGAR_CO_1B2a_c_1A1b_c_asia -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
+0 EDGAR_CO_1B2a_c_1A1b_c_oth  -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
+
+0 EDGAR_CO_2A_2B_2D           $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_2A_2B_2D.generic.01x01.nc       emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
+0 EDGAR_CO_2A_2B_2D_us        -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
+0 EDGAR_CO_2A_2B_2D_eur       -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
+0 EDGAR_CO_2A_2B_2D_asia      -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
+0 EDGAR_CO_2A_2B_2D_oth       -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
+
+0 EDGAR_CO_2C                 $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_2C.generic.01x01.nc             emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
+0 EDGAR_CO_2C_us              -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
+0 EDGAR_CO_2C_eur             -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
+0 EDGAR_CO_2C_asia            -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
+0 EDGAR_CO_2C_oth             -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
+
+0 EDGAR_CO_7A                 $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_7A.generic.01x01.nc             emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
+0 EDGAR_CO_7A_us              -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
+0 EDGAR_CO_7A_eur             -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
+0 EDGAR_CO_7A_asia            -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
+0 EDGAR_CO_7A_oth             -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
+)))EDGAR
+
+#==============================================================================
+# --- BIOFUEL EMISSIONS (Yevich and Logan, 2003) ---
+#
+# ==> Note that this inventory does not contain emissions over the US!!
+#     Add to EDGAR emissions, i.e assign same category and hierarchy as EDGAR!
+#     Don't read VOCs that are included in RETRO!!
+#
+# ==> It turns out that biofuel SO2 emissions in some regions are very
+#     different (up to a factor of 2 for some grid boxes) when using the
+#     high-resolution biofuel field compared to the 4x5 degrees input file.
+#     For backwards consistency, I'd recommend using the 4x5 biofuel file
+#     instead of the 1x1 file.
+#        -- Christoph Keller (03 Nov 2014)
+#
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# %%% NOTE: We put BIOFUEL into the CATEGORY 1, HIER 2 so that they will  %%%
+# %%% be added in globally with the EDGAR emissions.  This will help to   %%%
+# %%% ensure that the tagged tracers sum together properly.               %%%
+# %%%                                                                     %%%
+# %%% This makes sense because some inventories lump anthro + biofuel     %%%
+# %%% together, so it is difficult to separate these out.                 %%%
+# %%%   -- Bob Yantosca, 16 Mar 2016                                      %%%
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#==============================================================================
+(((BIOFUEL
+0 BIOFUEL_CO     $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_CO 1985/1/1/0 C xy kg/m2/s  CO     53       1 2
+0 BIOFUEL_COus   -                                          -          -          - -  -        COus   53/1100  1 2
+0 BIOFUEL_COeur  -                                          -          -          - -  -        COeur  53/1101  1 2
+0 BIOFUEL_COasia -                                          -          -          - -  -        COasia 53/1102  1 2
+0 BIOFUEL_COoth  -                                          -          -          - -  -        COoth  53/1103  1 2
+)))BIOFUEL
+
+#==============================================================================
+# --- EMEP (Europe) ---
+#==============================================================================
+(((EMEP
+0 EMEP_CO      $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc CO  1990-2012/1/1/0 C xy kg/m2/s  CO       26/33/52/1000      1/2 10 
+0 EMEP_CO_us   -                                       -   -               - -  -        COus     26/33/52/1000/1100 1/2 10 
+0 EMEP_CO_eur  -                                       -   -               - -  -        COeur    26/33/52/1000/1101 1/2 10 
+0 EMEP_CO_asia -                                       -   -               - -  -        COasia   26/33/52/1000/1102 1/2 10 
+0 EMEP_CO_oth  -                                       -   -               - -  -        COoth    26/33/52/1000/1103 1/2 10 
+)))EMEP
+
+#==============================================================================
+# --- BRAVO (Mexico) ---
+#==============================================================================
+(((BRAVO
+0 BRAVO_CO     $ROOT/BRAVO/v2014-07/BRAVO.generic.1x1.nc CO  1999/1/1/0 C xy kg/m2/s CO     6/8/26/52/1001      1/2 20
+0 BRAVO_COus   -                                         -   -          - -  -       COus   6/8/26/52/1001/1100 1/2 20
+0 BRAVO_COoth  -                                         -   -          - -  -       COoth  6/8/26/52/1001/1103 1/2 20
+)))BRAVO
+
+#==============================================================================
+# --- CAC (Canada) ---
+#==============================================================================
+(((CAC
+0 CAC_CO    $ROOT/CAC/v2016-09/CAC.geos.0.1x0.1.nc CO 2002-2008/1/1/0 C xy kg/m2/s CO    6/23/26/52/1002      1/2 30
+0 CAC_COus  -                                      -  -               - -  -       COus  6/23/26/52/1002/1100 1/2 30
+0 CAC_COoth -                                      -  -               - -  -       COoth 6/23/26/52/1002/1103 1/2 30
+)))CAC
+
+#==============================================================================
+# --- NEI 2005 (USA) ---
+#
+# NOTE: Need to apply the GEIA_TOD_FOSSIL scale factor (#26)! 
+# done for CO, need to check others
+#==============================================================================
+(((NEI2005
+0 NEI2005_CO     $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc  CO  2005/1/1/0 C xy kg/m2/s  CO      6/26/17/211/230/1005      1 35
+0 NEI2005_COus   -                                              -   -          - -  -        COus    6/26/17/211/230/1005/1100 1 35
+0 NEI2005_COoth  -                                              -   -          - -  -        COoth   6/26/17/211/230/1005/1103 1 35
+)))NEI2005
+
+#==============================================================================
+# --- NEI 2011 (USA) ---
+#==============================================================================
+(((NEI2011
+# SURFACE INVENTORY
+0 NEI11_SURFACE_CO       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          CO 2006-2013/1-12/1-31/* R xy  kg/m2/s  CO    252/1007       1/2 50
+0 NEI11_SURFACE_CO_us    -                                                               -  -                     - -   -        COus  252/1007/1100  1/2 50
+0 NEI11_SURFACE_CO_eur   -                                                               -  -                     - -   -        COeur 252/1007/1101  1/2 50
+0 NEI11_SURFACE_CO_oth   -                                                               -  -                     - -   -        COoth 252/1007/1103  1/2 50
+
+# ELECTRIC GENERATING UNITS (EGUs)
+0 NEI11_EGU_CO           $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      CO 2006-2013/1-12/1-31/* R xyz kg/m2/s  CO    252/1007       1   50
+0 NEI11_EGU_CO_us        -                                                               -  -                     - -   -        COus  252/1007/1100  1   50
+0 NEI11_EGU_CO_eur       -                                                               -  -                     - -   -        COeur 252/1007/1101  1   50
+0 NEI11_EGU_CO_oth       -                                                               -  -                     - -   -        COoth 252/1007/1103  1   50
+
+# PEAKING ELECTRIC GENERATING UNITS
+0 NEI11_EGUPK_CO         $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    CO 2006-2013/1-12/1-31/* R xyz kg/m2/s  CO    252/1007       1   50
+0 NEI11_EGUPK_CO_us      -                                                               -  -                     - -   -        COus  252/1007/1100  1   50
+0 NEI11_EGUPK_CO_eur     -                                                               -  -                     - -   -        COeur 252/1007/1101  1   50
+0 NEI11_EGUPK_CO_oth     -                                                               -  -                     - -   -        COoth 252/1007/1103  1   50
+
+# OIL & GAS
+0 NEI11_OILGAS_CO        $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   CO 2006-2013/1-12/1-31/* R xyz kg/m2/s  CO    252/1007       1   50
+0 NEI11_OILGAS_CO_us     -                                                               -  -                     - -   -        COus  252/1007/1100  1   50
+0 NEI11_OILGAS_CO_eur    -                                                               -  -                     - -   -        COeur 252/1007/1101  1   50
+0 NEI11_OILGAS_CO_oth    -                                                               -  -                     - -   -        COoth 252/1007/1103  1   50
+
+# OTHER POINT SOURCES
+0 NEI11_OTHPT_CO         $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    CO 2006-2013/1-12/1-31/* R xyz kg/m2/s  CO    252/1007       1   50
+0 NEI11_OTHPT_CO_us      -                                                               -  -                     - -   -        COus  252/1007/1100  1   50
+0 NEI11_OTHPT_CO_eur     -                                                               -  -                     - -   -        COeur 252/1007/1101  1   50
+0 NEI11_OTHPT_CO_oth     -                                                               -  -                     - -   -        COoth 252/1007/1103  1   50
+
+# NON-EGU INDUSTRIAL STACKS
+0 NEI11_PTNONIPM_CO      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc CO 2006-2013/1-12/1-31/* R xyz kg/m2/s  CO    252/1007       1   50
+0 NEI11_PTNONIPM_CO_us   -                                                               -  -                     - -   -        COus  252/1007/1100  1   50
+0 NEI11_PTNONIPM_CO_eur  -                                                               -  -                     - -   -        COeur 252/1007/1101  1   50
+0 NEI11_PTNONIPM_CO_oth  -                                                               -  -                     - -   -        COoth 252/1007/1103  1   50
+)))NEI2011
+
+#==============================================================================
+# --- STREETS SE ASIA (Zhang et al., 2009) ---
+#==============================================================================
+(((STREETS
+0 ZHANG_CO__IND      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_ind  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1/2 40 
+0 ZHANG_CO__IND_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1/2 40 
+0 ZHANG_CO__IND_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1/2 40 
+0 ZHANG_CO__IND_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1/2 40 
+
+0 ZHANG_CO__POW      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_pow  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1/2 40 
+0 ZHANG_CO__POW_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1/2 40 
+0 ZHANG_CO__POW_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1/2 40 
+0 ZHANG_CO__POW_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1/2 40 
+
+0 ZHANG_CO__RES      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_res  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1/2 40 
+0 ZHANG_CO__RES_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1/2 40 
+0 ZHANG_CO__RES_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1/2 40 
+0 ZHANG_CO__RES_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1/2 40 
+
+0 ZHANG_CO__TRA      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_tra  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1/2 40 
+0 ZHANG_CO__TRA_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1/2 40 
+0 ZHANG_CO__TRA_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1/2 40 
+0 ZHANG_CO__TRA_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1/2 40 
+)))STREETS
+
+#==============================================================================
+# --- MIX v1.1 (Asia) ---
+#==============================================================================
+(((MIX
+0 MIX_CO_IND       $ROOT/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc CO_INDUSTRY    2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26/1006       1/2 45
+0 MIX_CO_IND_eur   -                                                 -              -                  - -  -       COeur  6/28/26/1006/1101  1/2 45
+0 MIX_CO_IND_asia  -                                                 -              -                  - -  -       COasia 6/28/26/1006/1102  1/2 45
+0 MIX_CO_IND_oth   -                                                 -              -                  - -  -       COoth  6/28/26/1006/1103  1/2 45
+
+0 MIX_CO_POW       $ROOT/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc CO_POWER       2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26/1006       1/2 45
+0 MIX_CO_POW_eur   -                                                 -              -                  - -  -       COeur  6/28/26/1006/1101  1/2 45
+0 MIX_CO_POW_asia  -                                                 -              -                  - -  -       COasia 6/28/26/1006/1102  1/2 45
+0 MIX_CO_POW_oth   -                                                 -              -                  - -  -       COoth  6/28/26/1006/1103  1/2 45
+
+0 MIX_CO_RES       $ROOT/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc CO_RESIDENTIAL 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26/1006       1/2 45
+0 MIX_CO_RES_eur   -                                                 -              -                  - -  -       COeur  6/28/26/1006/1101  1/2 45
+0 MIX_CO_RES_asia  -                                                 -              -                  - -  -       COasia 6/28/26/1006/1102  1/2 45
+0 MIX_CO_RES_oth   -                                                 -              -                  - -  -       COoth  6/28/26/1006/1103  1/2 45
+
+0 MIX_CO_TRA       $ROOT/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc CO_TRANSPORT   2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26/1006       1/2 45
+0 MIX_CO_TRA_eur   -                                                 -              -                  - -  -       COeur  6/28/26/1006/1101  1/2 45
+0 MIX_CO_TRA_asia  -                                                 -              -                  - -  -       COasia 6/28/26/1006/1102  1/2 45
+0 MIX_CO_TRA_oth   -                                                 -              -                  - -  -       COoth  6/28/26/1006/1103  1/2 45
+)))MIX
+
+#==============================================================================
+# --- Ship emissions ---
+#
+# ==> In the defaults, ARCTAS SO2 has priority over ICOADS, CORBETT, and HTAP.
+#     This can be ovewritten by EMEP over Europe.
+# ==> For CO and NO, ICOADS has priority.
+# ==> Do not use ship emissions from EDGAR v4.2 since they are lumped with
+#     other non-road transportation (aircraft, rail, etc.) emissions
+# ==> Ship NO emissions are used by PARANOx and the extension number must be
+#     adjusted accordingly. If PARANOx is turned off, set the ExtNr back to
+#     zero.
+#==============================================================================
+(((SHIP
+0  ICOADS_SHIP_CO       $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                CO     2002/1-12/1/0       C xy kg/m2/s  CO     6/10          10 1
+0  ICOADS_SHIP_CO_us    -                                                               -      -                   - -  -        COus   6/10/1100     10 1
+0  ICOADS_SHIP_CO_eur   -                                                               -      -                   - -  -        COeur  6/10/1101     10 1
+0  ICOADS_SHIP_CO_asia  -                                                               -      -                   - -  -        COasia 6/10/1102     10 1
+0  ICOADS_SHIP_CO_oth   -                                                               -      -                   - -  -        COoth  6/10/1103     10 1
+
+#0 HTAP_SHIP_CO         $ROOT/HTAP/v2015-03/EDGAR_HTAP_CO_SHIPS.generic.01x01.nc        CO     2008-2010/1/1/0     C xy kg/m2/s  CO     6/28          10 2
+#0 HTAP_SHIP_CO_us      -                                                               -      -                   - -  -        COus   6/28/1100     10 2
+#0 HTAP_SHIP_CO_eur     -                                                               -      -                   - -  -        COeur  6/28/1101     10 2
+#0 HTAP_SHIP_CO_asia    -                                                               -      -                   - -  -        COasia 6/28/1102     10 2
+#0 HTAP_SHIP_CO_oth     -                                                               -      -                   - -  -        COoth  6/28/1103     10 2
+
+(((EMEP
+0 EMEP_SHIP_CO          $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipCO 1990-2012/1/1/0     C xy kg/m2/s  CO     1000          10 2
+0 EMEP_SHIP_CO_us       -                                                               -      -                   - -  -        COus   1000/1100     10 2
+0 EMEP_SHIP_CO_eur      -                                                               -      -                   - -  -        COeur  1000/1101     10 2
+0 EMEP_SHIP_CO_asia     -                                                               -      -                   - -  -        COasia 1000/1102     10 2
+0 EMEP_SHIP_CO_oth      -                                                               -      -                   - -  -        COoth  1000/1103     10 2
+)))EMEP
+
+(((NEI2011_SHIP
+0 NEI11_C3MARINE_CO     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc CO     2006-2013/$MM/$DD/* R xy kg/m2/s  CO     252/1007      10 50
+0 NEI11_C3MARINE_CO_us  -                                                               -      -                   - -  -        COus   252/1007/1100 10 50
+0 NEI11_C3MARINE_CO_eur -                                                               -      -                   - -  -        COeur  252/1007/1101 10 50
+0 NEI11_C3MARINE_CO_oth -                                                               -      -                   - -  -        COoth  252/1007/1103 10 50
+)))NEI2011_SHIP
+
+)))SHIP
+
+#==============================================================================
+# --- AEIC aircraft emissions ---
+#
+# ==> Now emit aircraft BC and OC into hydrophilic tracers BCPI and OCPI.
+#
+# IMPORTANT NOTE: Set units attribute of HC variable to 'kg/m2/s'. This avoids
+#                 any mass conversion by HEMCO.
+#==============================================================================
+(((AEIC
+0 AEIC_CO     $ROOT/AEIC/v2015-01/AEIC.47L.gen.1x1.nc CO 2005/1-12/1/0 C xyz kg/m2/s CO     110       20 1
+0 AEIC_COus   -                                       -  -             - -   -       COus   110/1100  20 1
+0 AEIC_COeur  -                                       -  -             - -   -       COeur  110/1101  20 1
+0 AEIC_COasia -                                       -  -             - -   -       COasia 110/1102  20 1
+0 AEIC_COoth  -                                       -  -             - -   -       COoth  110/1103  20 1
+)))AEIC
+
+#==============================================================================
+# --- RCP future emissions scenarios ---
+#==============================================================================
+(((RCP_3PD
+0 RCP3PD_CO     $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_CO_2005-2100_23474.nc ACCMIP 2005-2100/1/1/0 I xy kg/m2/s CO     -     1 1
+0 RCP3PD_COus   -                                                            -      -               - -  -       COus   1100  1 1
+0 RCP3PD_COeur  -                                                            -      -               - -  -       COeur  1101  1 1
+0 RCP3PD_COasia -                                                            -      -               - -  -       COasia 1102  1 1
+0 RCP3PD_COoth  -                                                            -      -               - -  -       COoth  1103  1 1
+)))RCP_3PD
+
+(((RCP_45
+0 RCP45_CO      $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_CO_2005-2100_27424.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s CO     -     1 1
+0 RCP45_COus    -                                                            -      -               - -  -       COus   1100  1 1
+0 RCP45_COeur   -                                                            -      -               - -  -       COeur  1101  1 1
+0 RCP45_COasia  -                                                            -      -               - -  -       COasia 1102  1 1
+0 RCP45_COoth   -                                                            -      -               - -  -       COoth  1103  1 1
+)))RCP_45
+
+(((RCP_60
+0 RCP60_CO      $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_CO_2005-2100_43190.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s CO     -     1 1
+0 RCP60_COus    -                                                            -      -               - -  -       COus   1100  1 1
+0 RCP60_COeur   -                                                            -      -               - -  -       COeur  1101  1 1
+0 RCP60_COasia  -                                                            -      -               - -  -       COasia 1102  1 1
+0 RCP60_COoth   -                                                            -      -               - -  -       COoth  1103  1 1
+)))RCP_60
+
+(((RCP_85
+0 RCP85_CO      $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_CO_2005-2100_43533.nc  ACCMIP 2005-2100/1/1/0 I xy kg/m2/s CO     -     1 1
+0 RCP85_COus    -                                                            -      -               - -  -       COus   1100  1 1
+0 RCP85_COeur   -                                                            -      -               - -  -       COeur  1101  1 1
+0 RCP85_COasia  -                                                            -      -               - -  -       COasia 1102  1 1
+0 RCP85_COoth   -                                                            -      -               - -  -       COoth  1103  1 1
+)))RCP_85
+
+#==============================================================================
+# --- QFED2 biomass burning ---
+#
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+# %%%   Set QFED2 to category 5 to match CATEGORY_BIOMASS in the  %%%
+# %%%   include file GeosCore/hcoi_gc_diagn_include.H.            %%%
+# %%%     -- Bob Yantosca (17 Mar 2016)                           %%%
+# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#==============================================================================
+(((QFED2
+0 QFED_CO      $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_co.005.$YYYY$MM$DD.nc4 biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s CO      54/75       5 2 
+0 QFED_CObbAm  -                                                               -       -                     - -  -       CObbam  54/75/1104  5 2 
+0 QFED_CObbAf  -                                                               -       -                     - -  -       CObbaf  54/75/1105  5 2 
+0 QFED_CObbAs  -                                                               -       -                     - -  -       CObbas  54/75/1106  5 2 
+0 QFED_CObbOc  -                                                               -       -                     - -  -       CObboc  54/75/1107  5 2 
+0 QFED_CObbEu  -                                                               -       -                     - -  -       CObbeu  54/75/1108  5 2 
+0 QFED_CObbOth -                                                               -       -                     - -  -       CObboth 54/75/1109  5 2 
+)))QFED2
+
+###############################################################################
+### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
+###
+### These fields are needed by the extensions listed above. The assigned ExtNr 
+### must match the ExtNr entry in section 'Extension switches'. These fields 
+### are only read if the extension is enabled.  The fields are imported by the
+### extensions by field name.  The name given here must match the name used 
+### in the extension's source code. 
+###############################################################################
+
+#==============================================================================
+# --- MEGAN biogenic emissions (Extension 108)
+#
+# NOTE: These are the base emissions, which will be converted to kgC/m2/s by 
+# HEMCO. The specified species (OCPI/ISOP/ACET) are required for proper unit 
+# conversion. Since netCDF files are already in mass carbon (ug(C)), the only 
+# important thing is to specify a VOC with a specified MW of 12g/mol. 
+# This is the case for OCPI, ISOP and ACET.
+#
+# We don't need to read EF maps for acetone, a-pinene or myrcene. We now
+# compute those values in the MEGAN extension.
+#==============================================================================
+(((HEMCO_RESTART
+108  T_DAVG                       ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          T_DAVG                  $YYYY/$MM/$DD/$HH E xy K        * - 1 1
+108  T_PREVDAY                    ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          T_PREVDAY               $YYYY/$MM/$DD/$HH E xy K        * - 1 1
+108  LAI_PREVDAY                  ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          LAI_PREVDAY             $YYYY/$MM/$DD/$HH E xy 1        * - 1 1
+108  PARDR_DAVG                   ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          PARDR_DAVG              $YYYY/$MM/$DD/$HH E xy W/m2     * - 1 1
+108  PARDF_DAVG                   ./HEMCO_restart.$YYYY$MM$DD$HH00.nc          PARDF_DAVG              $YYYY/$MM/$DD/$HH E xy W/m2     * - 1 1
+)))HEMCO_RESTART
+108  MEGAN_AEF_ISOP               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_ISOPRENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_MBOX               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_MBO                 1985/1/1/0        C xy kgC/m2/s * - 1 1
+#109 MEGAN_AEF_APIN               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_ALPHA_PINENE        1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_BPIN               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_BETA_PINENE         1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_CARE               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_CARENE              1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_LIMO               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_LIMONENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
+#109 MEGAN_AEF_MYRC               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_MYRCENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_OCIM               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_OCIMENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_SABI               $ROOT/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc AEF_SABINENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
+108  CLM4_PFT_BARE                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BARE                2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_NDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_EVGN_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_NDLF_EVGN_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_EVGN_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_NDLF_DECD_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_NDLF_DECD_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_EVGN_TROP_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_TROP_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_DECD_TROP_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TROP_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_DECD_TMPT_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_DECD_BORL_TREE $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_EVGN_SHRB      $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_EVGN_SHRB      2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_DECD_TMPT_SHRB $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_TMPT_SHRB 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_BDLF_DECD_BORL_SHRB $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_BDLF_DECD_BORL_SHRB 2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_C3_ARCT_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C3_ARCT_GRSS        2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_C3_NARC_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C3_NARC_GRSS        2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_C4_GRSS             $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C4_GRSS             2000/1/1/0        C xy 1        * - 1 1
+108  CLM4_PFT_CROP                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_CROP                2000/1/1/0        C xy 1        * - 1 1
+110  MEGAN_ORVC                   $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc          OCPI                    1990/1-12/1/0     C xy kgC/m2/s * - 1 1
+
+###############################################################################
+### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
+###
+### Non-emissions data. The following fields are read through HEMCO but do 
+### not contain emissions data. The extension number is set to wildcard 
+### character denoting that these fields will not be considered for emission 
+### calculation. A given entry is only read if the assigned species name is 
+### an HEMCO species.
+###############################################################################
+
+#==============================================================================
+# --- Time zones (offset to UTC) ---
+#==============================================================================
+* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
+
+#==============================================================================
+# --- Quantities needed for CH4 chemistry ---
+#==============================================================================
+* GLOBAL_OH  $ROOT/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.geos5.72L.2x25.nc OH  1985/1-12/1/0 C xyz kg/m3 * - 1 1
+
+#==============================================================================
+# --- GMI chemistry: prod/loss rates (for strato-/mesosphere) ---
+#==============================================================================
+* GMI_LOSS_CO  $ROOT/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc  loss     2000/$MM/1/0 C xyz s-1   CO  - 1  1
+* GMI_PROD_CO  $ROOT/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc  prod     2000/$MM/1/0 C xyz v/v/s CO  - 1  1
+
+### END SECTION BASE EMISSIONS ###
+
+###############################################################################
+### BEGIN SECTION SCALE FACTORS 
+###############################################################################
+
+# ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
+
+#==============================================================================
+# --- annual scale factors ---
+#==============================================================================
+1  TOTFUEL_THISYR    $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1985-2010/1/1/0 C xy 1  1
+2  TOTFUEL_1985      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1985/1/1/0      C xy 1 -1
+3  TOTFUEL_1999      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1999/1/1/0      C xy 1 -1
+4  TOTFUEL_2006      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2006/1/1/0      C xy 1 -1
+5  TOTFUEL_2002      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2002/1/1/0      C xy 1 -1
+16 TOTFUEL_2005      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2005/1/1/0      C xy 1 -1
+27 TOTFUEL_2008_2010 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2008-2010/1/1/0 C xy 1 -1
+40 TOTFUEL_1985_2008 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1985-2008/1/1/0 C xy 1 -1
+6  LIQFUEL_THISYR    $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1985-2010/1/1/0 C xy 1  1
+7  LIQFUEL_1985      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1985/1/1/0      C xy 1 -1
+8  LIQFUEL_1999      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1999/1/1/0      C xy 1 -1
+9  LIQFUEL_2006      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2006/1/1/0      C xy 1 -1
+10 LIQFUEL_2002      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2002/1/1/0      C xy 1 -1
+17 LIQFUEL_2005      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2005/1/1/0      C xy 1 -1
+28 LIQFUEL_2008_2010 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2008-2010/1/1/0 C xy 1 -1
+41 LIQFUEL_1985_2008 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1985-2008/1/1/0 C xy 1 -1
+11 SOLFUEL_THISYR    $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1985-2010/1/1/0 C xy 1  1
+12 SOLFUEL_1985      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1985/1/1/0      C xy 1 -1
+13 SOLFUEL_1999      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1999/1/1/0      C xy 1 -1
+14 SOLFUEL_2006      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2006/1/1/0      C xy 1 -1
+15 SOLFUEL_2002      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2002/1/1/0      C xy 1 -1
+18 SOLFUEL_2005      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2005/1/1/0      C xy 1 -1
+19 SOLFUEL_2008      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2008/1/1/0      C xy 1 -1
+29 SOLFUEL_2008_2010 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2008-2010/1/1/0 C xy 1 -1
+42 SOLFUEL_1985_2008 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1985-2008/1/1/0 C xy 1 -1
+23 LIQFUEL_2008      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2008/1/1/0      C xy 1 -1
+24 TOTFUEL_2008      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2008/1/1/0      C xy 1 -1
+
+#==============================================================================
+# --- temporary scale factors for comparisons
+#==============================================================================
+918 CO_ratio $ROOT/AnnualScalar/v2014-07/CO_ratio_2005_1985.nc COscalar 2005/1/1/0 C xy 1 1
+
+#==============================================================================
+# --- day-of-week scale factors ---
+# ==> data is Sun/Mon/.../Sat 
+#==============================================================================
+20 GEIA_DOW_NOX 0.784/1.0706/1.0706/1.0706/1.0706/1.0706/0.863 - - - xy 1 1
+21 GEIA_DOW_CO  0.683/1.1076/1.0706/1.0706/1.0706/1.0706/0.779 - - - xy 1 1
+22 GEIA_DOW_HC  0.671/1.1102/1.1102/1.1102/1.1102/1.1102/0.768 - - - xy 1 1 
+
+#==============================================================================
+# --- diurnal scale factors --- 
+#==============================================================================
+26 GEIA_TOD_FOSSIL 0.45/0.45/0.6/0.6/0.6/0.6/1.45/1.45/1.45/1.45/1.4/1.4/1.4/1.4/1.45/1.45/1.45/1.45/0.65/0.65/0.65/0.65/0.45/0.45 - - - xy 1 1
+
+#==============================================================================
+# --- seasonal scale factors ---
+#==============================================================================
+
+# from EMEP:
+33 EMEP_SEASON_CO   $ROOT/EMEP/v2015-03/EMEP.Seasonal.geos.1x1.nc                               COrat  2005/1-12/1/0 C xy 1 1
+
+# from Streets:
+37 ZHANG_SEASON_CO  $ROOT/STREETS/v2014-07/2006/Streets_2001_CO_MonthFctr_total.generic.1x1.nc  ratio  2001/1-12/1/0 C xy 1 1 
+
+#==============================================================================
+# --- VOC speciations ---
+#==============================================================================
+52 COPROD_FOSSIL    1.02  - - - xy 1 1
+53 COPROD_BIOFUEL   1.086 - - - xy 1 1
+54 COPROD_BIOMASS   1.05  - - - xy 1 1
+
+#==============================================================================
+# --- QFED2 diurnal scale factors ---
+#
+# Fire diurnal scaling factors (% per hour) from WRAP Report to Project
+# No. 178-6, July 2005
+#==============================================================================
+75 QFED2_TOD 0.1392/0.1392/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.48/0.96/1.68/2.4/3.12/3.84/4.08/2.88/1.68/0.96/0.1368/0.1368/0.1368/0.1368/0.1368 - - - xy 1 1
+
+#==============================================================================
+# --- AEIC aircraft emissions ---
+#
+# Sulfur conversion factors are calculated as 
+#     so4 = 3 * a * b and so2 = 2 * a * (1-b)
+#
+# where 
+#     a = fraction by mass (6.0e-4) and 
+#     b = conversion efficiency (2.0e-2).
+#
+# The factors 2 and 3 come from sulfur mass conversions (96/32 and 64/32).
+# All factors are taken from AEIC_mod.F, following Seb Estham's appraoch.
+# Note that all emissions become multiplied by a factor of 1e-3 (except for 
+# the fuelburn emissions) in the original AEIC code. I'm not sure if this 
+# is because the netCDF data is in g instead of kg?
+#==============================================================================
+101 AEICACET 3.693477e-3 - -  - xy 1 1
+102 AEICALD2 4.271822e-2 - -  - xy 1 1
+103 AEICALK4 2.137911e-1 - -  - xy 1 1
+104 AEICC2H6 5.214505e-3 - -  - xy 1 1
+105 AEICC3H8 7.808710e-4 - -  - xy 1 1
+106 AEICCH2O 1.230811e-1 - -  - xy 1 1
+107 AEICPRPE 1.780418e-1 - -  - xy 1 1
+108 AEICMACR 5.362609e-2 - -  - xy 1 1
+109 AEICRCHO 3.676944e-2 - -  - xy 1 1
+110 AEICNOCO 1.000000e-3 - -  - xy 1 1
+111 AEICSO2  1.176000e-3 - -  - xy 1 1
+112 AEICSO4  3.600000e-5 - -  - xy 1 1
+113 AEICBC   3.000000e-5 - -  - xy 1 1
+114 AEICHC   1.160000e-3 - -  - xy 1 1
+115 NO2toNO  6.521739e-1 - -  - xy 1 1
+
+#==============================================================================
+# --- NEI 2005 scale factors ---
+#==============================================================================
+211 NEI99_DOW_CO      $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc      CO 1999/1-12/WD/0 C xy 1 1
+230 NEI99_SEASON_CO   $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc   CO 1999/1-12/1/0 C  xy 1 1
+
+#==============================================================================
+# --- NEI 20011 scale factors ---
+#==============================================================================
+252 NEI11_CO_YRSCALE  1.271/1.227/1.104/0.998/1.019/1.0/0.981/0.962 - 2006-2013/1/1/0 C xy 1 1 
+
+### END SECTION SCALE FACTORS ###
+
+###############################################################################
+### BEGIN SECTION MASKS 
+###############################################################################
+
+# ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
+
+#==============================================================================
+# Country/region masks
+#==============================================================================
+1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc           MASK     2000/1/1/0 C xy unitless 1 -30/30/45/70
+1001 MEXICO_MASK $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc          MASK     2000/1/1/0 C xy unitless 1 -118/17/-95/33
+1002 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc                  MASK     2000/1/1/0 C xy unitless 1 -141/40/-52/85
+1003 SEASIA_MASK $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc              MASK     2000/1/1/0 C xy unitless 1  60/-12/153/55
+1004 NA_MASK     $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc                      MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
+1005 USA_MASK    $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc             MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
+1006 ASIA_MASK   $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc         MASK     2000/1/1/0 C xy unitless 1 46/-12/180/82
+1007 NEI11_MASK  $ROOT/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc LANDMASK 2000/1/1/0 C xy 1        1 -140/20/-50/60
+
+#==============================================================================
+# Tagged CO regions
+#==============================================================================
+1100 TAGCO_USA_MASK   $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_USA_MASK   2000/1/1/0 C xy 1 1 -172/24/-18/88
+1101 TAGCO_EUR_MASK   $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_EUR_MASK   2000/1/1/0 C xy 1 1 -17/36/172/88
+1102 TAGCO_ASIA_MASK  $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_ASIA_MASK  2000/1/1/0 C xy 1 1  70/8/152/44
+1103 TAGCO_OTH_MASK   $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_OTH_MASK   2000/1/1/0 C xy 1 1 -180/-90/180/90
+1104 TAGCO_BBAM_MASK  $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBAM_MASK  2000/1/1/0 C xy 1 1 -112/-56/-33/24
+1105 TAGCO_BBAF_MASK  $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBAF_MASK  2000/1/1/0 C xy 1 1 -17/-48/70/36
+1106 TAGCO_BBAS_MASK  $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBAS_MASK  2000/1/1/0 C xy 1 1  70/8/153/45
+1107 TAGCO_BBOC_MASK  $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBOC_MASK  2000/1/1/0 C xy 1 1  70/8/170/90
+1108 TAGCO_BBEU_MASK  $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBEU_MASK  2000/1/1/0 C xy 1 1 -17/45/173/88
+1109 TAGCO_BBOTH_MASK $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBOTH_MASK 2000/1/1/0 C xy 1 1 -180/-90/180/90
+
+### END SECTION MASKS ###
+ 
+### END OF HEMCO INPUT FILE ###

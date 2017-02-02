@@ -97,6 +97,7 @@ sub getRunDir($$$$) {
 #
 # !REVISION HISTORY:
 #  02 Oct 2015 - E. Lundgren - Initial version, based on gcCopyRunDirs
+#  13 Jul 2016 - M. Sulprizio- Modify runLoc for consolidated run directories
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -104,10 +105,15 @@ sub getRunDir($$$$) {
 # !LOCAL VARIABLES:
 #
   # Run directory string
-  my $runLoc = "{MET}_{GRID}_{SIM}";
+  my $runLoc = "";
 
-  # Append nested grid string if necessary
-  if ( length( $nest ) > 0 ) { $runLoc .= "_{NEST}"; }
+  if ( ( $met =~ m/gcap/ ) || ( $met =~ m/geos4/ ) ) {
+    $runLoc = "{MET}_{GRID}_{SIM}";
+  } elsif ( length( $nest ) > 0 ) {
+    $runLoc = "{MET}_{GRID}_{SIM}_{NEST}";
+  } else {
+    $runLoc = "{GRID}_{SIM}";
+  }
 
   # Replace tokens
   $runLoc =~ s/{MET}/$met/g;
@@ -182,7 +188,7 @@ sub makeInputs($$$$$$$$) {
   else                           { print "$errMsg\n"; exit(1);          }
 
   # Make the input.geos file in the run directory
-  &makeInputGeos( $d0, $h0, $d1, $h1, $DATA_ROOT, $inpTmpl, $inpGeos );
+  &makeInputGeos( $d0, $h0, $d1, $h1, $met, $DATA_ROOT, $inpTmpl, $inpGeos );
 
   # Make the HEMCO_Config.rc file in the run directory
   &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
@@ -283,6 +289,8 @@ sub doCopyDirs($$) {
 #                              with the same initial conditions.  
 #  18 Dec 2015 - R. Yantosca - Add $UT_ROOT global variable
 #  18 Dec 2015 - R. Yantosca - Replace ~ in $COPY_PATH with home directory
+#  23 Aug 2016 - R. Yantosca - Bug fix: Replace {HOME} in $HEMCO_ROOT
+#  13 Sep 2016 - M. Sulprizio- Replace text in new PlotDiff.input file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -290,6 +298,7 @@ sub doCopyDirs($$) {
 # !LOCAL VARIABLES:
 #
   # Scalar
+  my $baseDir = "";
   my $cmd     = "";
   my $copyDir = "";
   my $devDir  = "";
@@ -306,6 +315,10 @@ sub doCopyDirs($$) {
   my $home    = "";
   my $file    = "";
   my $filename= "";
+  my $user    = "";
+  my $date1   = "";
+  my $metType = "";
+  my $nTracers= "";
 
   # Arrays
   my @txt     = ();
@@ -322,6 +335,9 @@ sub doCopyDirs($$) {
 
   # Get home directory
   $home = $ENV{"HOME"};
+
+  # Get home directory
+  $user = $ENV{"USER"};
 
   # Loop thru each line in the file; parse information into global variables
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
@@ -376,9 +392,20 @@ sub doCopyDirs($$) {
       $LOG_DIR    =~ s/{HOME}/$home/g;
       $LOG_DIR    =~ s/{UTROOT}/$UT_ROOT/g;
       $LOG_DIR    =~ s/{VERSION}/$VERSION/g;
+      $HEMCO_ROOT =~ s/{HOME}/$home/g;
       $HEMCO_ROOT =~ s/{DATAROOT}/$DATA_ROOT/g;
       $RUN_DIR    =~ s/{RUNROOT}/$RUN_ROOT/g;
       $RUN_DIR    =~ s/{UTROOT}/$UT_ROOT/g;
+
+      # Replace user token
+      $UT_ROOT    =~ s/{USER}/$user/g;
+      $COPY_PATH  =~ s/{USER}/$user/g;
+      $CODE_REF   =~ s/{USER}/$user/g;
+      $CODE_DEV   =~ s/{USER}/$user/g;
+      $RUN_ROOT   =~ s/{USER}/$user/g;
+      $JOB_DIR    =~ s/{USER}/$user/g;
+      $LOG_DIR    =~ s/{USER}/$user/g;
+      $RUN_DIR    =~ s/{USER}/$user/g;
 
       # Make sure each of these directories exist before proceeding
       &checkDir( $CODE_REF   );
@@ -448,7 +475,8 @@ sub doCopyDirs($$) {
 	  $notDir   = &baseName( $runDir );
 
 	  # Directories in the remote location
-	  $copyDir = "$COPY_PATH/DiffTest\_$sim\_$grid";
+	  $baseDir = "$met\_$grid\_$sim";
+	  $copyDir = "$COPY_PATH/DiffTest\_$baseDir";
 	  $devDir  = "$copyDir/Dev";
 	  $refDir  = "$copyDir/Ref";
 
@@ -475,16 +503,55 @@ sub doCopyDirs($$) {
 	  $cmd = "$COPY_CMD ./difftest $copyDir";
 	  qx/$cmd/;
 
+	  # Get start date in YYYYMMDD format
+          $date1= substr( $start, 0, 8 );
+
+	  # Define met field for IDL plotting routines
+          if ( ( $sim =~ m/standard/ ) || ( $sim =~ m/UCX/ ) ) {
+             $metType = "$met";
+          } else {
+             $metType = "${met}_47L";
+          }
+
+	  # Hardcode number of tracers for several simulations for now
+	  # Eventually, find a better way to obtain these values
+          if    ( $sim =~ m/standard/    ) {
+             $nTracers = "125";
+          } elsif ( $sim =~ m/soa_svpoa/ ) {
+             $nTracers = "102";
+          } elsif ( $sim =~ m/UCX/       ) {
+             $nTracers = "98";
+          } elsif ( $sim =~ m/soa/       ) {
+             $nTracers = "95";
+          } elsif ( $sim =~ m/tropchem/  ) {
+             $nTracers = "68";
+          } elsif ( $sim =~ m/aerosol/   ) {
+             $nTracers = "20";
+          } elsif ( $sim =~ m/POPs/      ) {
+             $nTracers = "5";
+          } elsif ( $sim =~ m/RnPbBe/    ) {
+             $nTracers = "4";
+          } elsif ( $sim =~ m/Hg/        ) {
+             $nTracers = "3";
+          } else {
+             $nTracers = "1";
+          }
+
 	  # Edit the copied Makefile and shell scripts to reflect
           # user settings in DiffTest.input
 	  &replaceText("$copyDir/Makefile",        "CODE_REF_PATH","$CODE_REF");
 	  &replaceText("$copyDir/Makefile",        "CODE_DEV_PATH","$CODE_DEV");
-	  &replaceText("$copyDir/summarizeDiff.sh","MET_GRID_SIM","$notDir");
-	  &replaceText("$copyDir/summarizeDiff.sh","START_DATE",  "${start}00");
-	  &replaceText("$copyDir/summarizeDiff.sh","END_DATE",    "$end");
-	  &replaceText("$copyDir/locateDiff.sh",   "MET_GRID_SIM","$notDir");
-	  &replaceText("$copyDir/locateDiff.sh",   "START_DATE",  "${start}00");
-	  &replaceText("$copyDir/locateDiff.sh",   "END_DATE",    "$end");
+	  &replaceText("$copyDir/summarizeDiagDiffs.sh","MET_GRID_SIM","$baseDir");
+	  &replaceText("$copyDir/summarizeDiagDiffs.sh","START_DATE",  "${start}00");
+	  &replaceText("$copyDir/summarizeDiagDiffs.sh","END_DATE",    "$end");
+	  &replaceText("$copyDir/locateDiagDiffs.sh",   "MET_GRID_SIM","$baseDir");
+	  &replaceText("$copyDir/locateDiagDiffs.sh",   "START_DATE",  "${start}00");
+	  &replaceText("$copyDir/locateDiagDiffs.sh",   "END_DATE",    "$end");
+	  &replaceText("$copyDir/plots/PlotDiffs.input", "MET_GRID_SIM", "$baseDir");
+	  &replaceText("$copyDir/plots/PlotDiffs.input", "START_DATE", "${start}00");
+	  &replaceText("$copyDir/plots/PlotDiffs.input", "DATE1", "$date1");
+	  &replaceText("$copyDir/plots/PlotDiffs.input", "MET_TYPE", "$metType");
+	  &replaceText("$copyDir/plots/PlotDiffs.input", "N_TRACERS", "$nTracers");
 	  
 	  # Copy run directory to DiffTest Dev subdirectory
 	  $cmd = "$COPY_CMD $runDir/* $devDir";

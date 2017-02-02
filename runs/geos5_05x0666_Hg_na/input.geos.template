@@ -4,9 +4,7 @@ GEOS-CHEM UNIT TEST SIMULATION: geos5_05x0666_Hg_na
 Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
 End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : {DATA_ROOT}/GC_RESTARTS/initial_trac_rst.geosfp_4x5_Hg
-Make new restart file?  : T
-Out bpch rst (if using) : trac_rst.geos5_05x0666_Hg_na.YYYYMMDDhhmm
+Input restart file      : {DATA_ROOT}/SPC_RESTARTS/initial_GEOSChem_rst.4x5_Hg.nc
 Root data directory     : {DATA_ROOT}
  => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
@@ -21,17 +19,17 @@ Wait for met fields?    : F
 Use variable tropopause?: T
 Global offsets I0, J0   : 60 200
 ------------------------+------------------------------------------------------
-%%% TRACER MENU %%%     : 
+%%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 11
-Number of Tracers       : 3                     
-Tracer Entries -------> : TR#   Name      g/mole  
-Tracer #1               :   1   Hg0        201.0
-Tracer #2               :   2   Hg2        201.0
-Tracer #3               :   3   HgP        201.0
+Number of Advected Spec.: 3
+Species Entries ------->: Name
+Species #1              : Hg0
+Species #2              : Hg2
+Species #3              : HgP
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
- => Fill Negative Values: T 
+ => Fill Negative Values: T
  => IORD, JORD, KORD    : 3  3  7
 Transport Timestep [min]: 10
 ------------------------+------------------------------------------------------
@@ -39,11 +37,11 @@ Transport Timestep [min]: 10
 Turn on Cloud Conv?     : T
 Turn on PBL Mixing?     : T
  => Use non-local PBL?  : T
-Convect Timestep (min)  : 10
+Convect Timestep [min]  : 10
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
-Emiss timestep (min)    : 20
+Emiss Timestep [min]    : 20
 HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
 Switches for UCX        :---
@@ -95,7 +93,7 @@ Calc. strat. aero. OD?  : F
 Turn on Dry Deposition? : T
 Turn on Wet Deposition? : T
 ------------------------+------------------------------------------------------
-%%% CHEMISTRY MENU %%%  : 
+%%% CHEMISTRY MENU %%%  :
 Turn on Chemistry?      : T
 Use linear. strat. chem?: F
  => Use Linoz for O3?   : F
@@ -103,9 +101,6 @@ Use UCX strat. chem?    : F
 Online CH4 chemistry?   : F
 Active strat. H2O?      : F
 Chemistry Timestep [min]: 20
-Use spec_rst (bpch only): F
- => CSPEC rst filename? : none
-USE solver coded by KPP : F
 Online O3 for FAST-JX?  : F
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
@@ -120,20 +115,18 @@ Radiation Timestep [min]: 180
 Species fluxes          : 0 0 0 0 0 0 0 0 0 1
  ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM]
 ------------------------+------------------------------------------------------
-%%% MERCURY MENU %%%    : 
+%%% MERCURY MENU %%%    :
 Use anthro Hg emiss for : 2006
 Use future emissions?   : PRESENT
 Error check tag/tot Hg? : F
 Use dynamic ocean Hg?   : T
 Preindustrial sim?      : F
-Input ocean Hg restart  : {DATA_ROOT}/GC_RESTARTS/initial_ocean_rst.geos5_05x0666_Hg_na.YYYYMMDDhhmm
-Out ocean Hg rst (bpch) : ./ocean_rst.geos5_4x5_Hg.YYYYMMDDhhmm
 Use GTMM soil model?    : F
 GTMM Hg rst file (bpch) : GTM.totHg.YYYYMMDDhh
 Use Arctic river Hg?    : T
 Tie HgII(aq) red to UVB?: T
 ------------------------+------------------------------------------------------
-%%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH 
+%%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH
 Schedule output for JAN : 3000000000000000000000000000000
 Schedule output for FEB : 30000000000000000000000000000
 Schedule output for MAR : 3000000000000000000000000000000
@@ -151,29 +144,29 @@ Schedule output for DEC : 3000000000000000000000000000000
 diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
-%%% DIAGNOSTIC MENU %%% : 
+%%% DIAGNOSTIC MENU %%% :
 Binary punch file name  : trac_avg.geos5_05x0666_Hg_na.YYYYMMDDhhmm
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
-ND01: Rn/Pb/Be source   :  0   all        
-ND02: Rn/Pb/Be decay    :  0   all             
-ND03: Hg emissions, P/L : 47   all                
-ND04: CO2 Sources       :  0   all                
-ND05: Sulfate prod/loss :  0   all               
-ND06: Dust aer source   :  0   all                
-ND07: Carbon aer source :  0   all                
-ND08: Seasalt aer source:  0   all                
-ND09: -                 :  0   all                
-ND10: -                 :  0   all                
-ND11: Acetone sources   :  0   all                 
-ND12: BL fraction       :  0   all              
-ND13: Sulfur sources    :  0   all                
-ND14: Cld conv mass flx :  0   all                
-ND15: BL mix mass flx   :  0   all                
-ND16: LS/Conv prec frac :  0   all               
-ND17: Rainout fraction  :  0   all            
-ND18: Washout fraction  :  0   all            
-ND19: CH4 loss          :  0   all            
-ND21: Optical depths    :  0   all            
+ND01: Rn/Pb/Be source   :  0   all
+ND02: Rn/Pb/Be decay    :  0   all
+ND03: Hg emissions, P/L : 47   all
+ND04: CO2 Sources       :  0   all
+ND05: Sulfate prod/loss :  0   all
+ND06: Dust aer source   :  0   all
+ND07: Carbon aer source :  0   all
+ND08: Seasalt aer source:  0   all
+ND09: -                 :  0   all
+ND10: -                 :  0   all
+ND11: Acetone sources   :  0   all
+ND12: BL fraction       :  0   all
+ND13: Sulfur sources    :  0   all
+ND14: Cld conv mass flx :  0   all
+ND15: BL mix mass flx   :  0   all
+ND16: LS/Conv prec frac :  0   all
+ND17: Rainout fraction  :  0   all
+ND18: Washout fraction  :  0   all
+ND19: CH4 loss          :  0   all
+ND21: Optical depths    :  0   all
 ND22: J-Values          :  0   all
       => JV time range  :      11 13
 ND24: E/W transpt flx   : 47   all
@@ -183,7 +176,7 @@ ND27: Strat NOx,Ox,HNO3 :  0   all
 ND28: Biomass emissions :  0   all
 ND29: CO sources        :  0   all
 ND30: Land Map          :  0   all
-ND31: Surface pressure  :  0   all
+ND31: Surface pressure  : 48   all
 ND32: NOx sources       :  0   all
 ND33: Column tracer     :  0   all
 ND34: Biofuel emissions :  0   all
@@ -195,9 +188,9 @@ ND39: Wetdep scav loss  : 47   2 3
 ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 :  0   all
-  ==> OH/HO2 time range :       0 24   
+  ==> OH/HO2 time range :       0 24
 ND44: Drydep flx/vel    :  1   all
-ND45: Tracer Conc's     : 47   all 
+ND45: Tracer Conc's     : 47   all
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions:  0   all
 ND47: 24-h avg trc conc :  0   all
@@ -235,7 +228,7 @@ Number of stations      :   0
 %%% ND49 MENU %%%       :
 Turn on ND49 diagnostic : F
 Inst 3-D timeser. file  : ts/Okinawa_tsYYYYMMDD.bpch
-Tracers to include      : 1 2 3 76 77 78 79 94 96 97 98 99 
+Tracers to include      : 1 2 3 76 77 78 79 94 96 97 98 99
 Frequency [min]         :  60
 IMIN, IMAX of region    :  63  63
 JMIN, JMAX of region    :  30  30
@@ -284,14 +277,13 @@ JMIN, JMAX of region    :  23  46
 Turn on P/L (ND65) diag?: F
 # of levels for ND65    : 20
 Save O3 P/L (ND20)?     : F
-Number of P/L families  : 0  
 ------------------------+------------------------------------------------------
-%%% BENCHMARK MENU %%%  :  
+%%% BENCHMARK MENU %%%  :
 Save benchmark output?  : F
 File w/ initial Ox      : Ox.mass.initial
 File w/ final Ox        : Ox.mass.final
 ------------------------+------------------------------------------------------
-%%% NESTED GRID MENU %%%:  
+%%% NESTED GRID MENU %%%:
 Save TPCORE BC's        : F
 Input BCs at 2x2.5?     : F
 Over North America?     : T
@@ -300,8 +292,8 @@ Over Europe?            : F
 TPCORE EU BC directory  : BC_4x5_EU/
 Over China?             : F
 TPCORE CH BC directory  : BC_4x5_CH/
-Over SE Asia region?    : F
-TPCORE SE BC directory  : BC_4x5_SE/
+Over Asia?              : F
+TPCORE AS BC directory  : BC_4x5_AS/
 Over Custom Region?     : F
 TPCORE BC directory     : BC_4x5/
 BC timestep [min]       : 180
@@ -309,8 +301,8 @@ LL box of BC region     :   9  26
 UR box of BC region     :  29  41
 I0_W, J0_W, I0_E, J0_E  :   3   3   3   3
 ------------------------+------------------------------------------------------
-%%% UNIX CMDS MENU %%%  : 
-Background symbol       : & 
+%%% UNIX CMDS MENU %%%  :
+Background symbol       : &
 Redirect symbol         :  >
 Unix remove command     : rm -f
 Unix pathname separator : /

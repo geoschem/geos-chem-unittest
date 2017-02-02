@@ -1,17 +1,15 @@
-This directory is the run directory for the GEOS-Chem unit tester,
-for GEOS-5 met fields, 0.5x0.666 nested NA grid, and the standard
-NOx-Ox-HC-Aer-Br tropospheric chemistry mechanism.
+This is the GEOS-Chem run directory for 0.5x0.666 nested NA tropospheric
+chemistry simulation with GEOS-5 meteorology.
 
-Chemistry files are linked to ../chem_inputs/fullchem and the HEMCO
-configuration file is linked to HEMCO_Config.template.na stored in
-../chem_inputs/fullchem/.  This allows us to keep a single set of these
-files in one location, for convenience.
+Photolysis and aerosol .dat input files are linked to ../chem_inputs/tropchem.
+This allows us to keep a single set of these files in one location, for
+convenience.
 
-The HEMCO restart file is symbolically linked to the ../geos5_4x5_fullchem
-directory, which has been spun up for one month at 4x5. HEMCO will handle
-regridding the restart variables to model resolution.
+The HEMCO configuration file is linked to HEMCO_Config.template also stored in
+../chem_inputs/tropchem.  A new HEMCO_Config.rc file will be created from the
+HEMCO_Config.template file each time the unit tester is run.
 
-A new input.geos file will be created from the input.geos.template file
+A new input.geos file will also be created from the input.geos.template file
 each time the unit tester is run.  This allows the location of the data
 files to be customized for each user.
 

@@ -7,20 +7,12 @@
 #  DiffTest directory from the UnitTester. 
 #\\
 #\\
-# !REMARKS:  
-#  Customize the run directory for your system by specifying these values:
-#  -------------------------------------------------------------------
-#  VERSION     : Version of GEOS-Chem (optional)
-#  DESCRIPTION : A short description of this file's DiffTest configuration
-#  COPY_PATH   : Local path where DiffTest directory will be copied to
-#  CODE_REF    : Local path where reference source code is stored (REF)
-#  CODE_DEV    : Local path where development source code is stored (DEV)
-#  DATA_ROOT   : Root GEOS-Chem data directory
-#  HEMCO_ROOT  : Root directory where HEMCO emissions data files are stored
-#  RUN_ROOT    : Unit test run directories are subdirectories of RUN_ROOT
-#  RUN_DIR     : Individual unit test run directory path
-#  PERL_DIR    : Unit Test perl script directory (i.e. this directory)
-#  COPY_CMD    : Unix copy command with optional tags
+# !REMARKS:
+#  For a complete description of how to customize the settings in the
+#  INPUTS and RUNS sections, see the following wiki posts:
+#
+#   wiki.geos-chem.org/Creating_GEOS-Chem_run_directories#Section_1:_INPUTS
+#   wiki.geos-chem.org/Creating_GEOS-Chem_run_directories#Section_2:_RUNS
 #
 # !REVISION HISTORY: 
 #  01 Oct 2015 - E. Lundgren - Initial version, based on CopyRunDirs.input
@@ -36,7 +28,7 @@
 #
 # %%% Data path and HEMCO settings %%%
 #
-   DATA_ROOT      : /n/seasasfs01/gcgrid/gcdata/ExtData
+   DATA_ROOT      : /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData
    HEMCO_ROOT     : {DATAROOT}/HEMCO
    VERBOSE        : 0
    WARNINGS       : 1
@@ -67,22 +59,22 @@
 #--------|-----------|------|------------|------------|------------|---------|
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE   | EXTRA?  |
 #--------|-----------|------|------------|------------|------------|---------|
-  geosfp   4x5         -      benchmark    2013070100   2013070106   -
-  geosfp   4x5         -      tropchem     2013070100   2013070106   -
-  geosfp   4x5         -      soa          2013070100   2013070106   -
-  geosfp   4x5         -      soa_svpoa    2013070100   2013070106   -
-  geosfp   4x5         -      aciduptake   2013070100   2013070106   -
-  geosfp   4x5         -      UCX          2013070100   2013070106   -
-  geosfp   4x5         -      RRTMG        2013070100   2013070106   -
-  geosfp   4x5         -      RnPbBe       2013070100   2013070106   -
-  geosfp   4x5         -      Hg           2013010100   2013010106   -
-  geosfp   4x5         -      POPs         2013070100   2013070106   -
-  geosfp   4x5         -      TOMAS40      2013070100   2013070106   -
-  geosfp   4x5         -      CH4          2013070100   2013070106   -
-  geosfp   4x5         -      tagO3        2013070100   2013070106   -
-#  geosfp   4x5         -      tagCO        2013070100   2013070106   -
-  geosfp   2x25        -      CO2          2013070100   201307010600 -
-  geosfp   4x5         -      aerosol      2013070100   2013070106   - 
+  geosfp   4x5         -      standard     2013070100   2013070101   -
+#  geosfp   4x5         -      tropchem     2013070100   2013070101   -
+#  geosfp   4x5         -      soa          2013070100   2013070101   -
+#  geosfp   4x5         -      soa_svpoa    2013070100   2013070101   -
+#  geosfp   4x5         -      aciduptake   2013070100   2013070101   -
+#  geosfp   4x5         -      UCX          2013070100   2013070101   -
+#  geosfp   4x5         -      RRTMG        2013070100   2013070101   -
+#  geosfp   4x5         -      RnPbBe       2013070100   2013070101   -
+#  geosfp   4x5         -      Hg           2013010100   2013010101   -
+#  geosfp   4x5         -      POPs         2013070100   2013070101   -
+#  geosfp   4x5         -      TOMAS40      2013070100   2013070101   -
+#  geosfp   4x5         -      CH4          2013070100   2013070101   -
+#  geosfp   4x5         -      tagO3        2013070100   2013070101   -
+#  geosfp   4x5         -      tagCO        2013070100   2013070101   -
+#  geosfp   2x25        -      CO2          2013070100   2013070101   -
+#  geosfp   4x5         -      aerosol      2013070100   2013070101   - 
 #  geosfp   025x03125   ch     tropchem     2013070100   201307010010 -
 #  geosfp   025x03125   na     tropchem     2013070100   201307010010 -
 !END OF RUNS:
