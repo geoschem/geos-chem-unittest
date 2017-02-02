@@ -1,0 +1,20 @@
+  center.template:  '%y4%m2%d2.nc4',
+  center.format:    'CFIO',
+  center.frequency:  010000,
+  center.duration:   240000
+  center.fields:  'TRC_NO',  'GIGCchem',
+                  'TRC_NO2', 'GIGCchem',
+                  'TRC_CO',  'GIGCchem',
+                  'TRC_O3',  'GIGCchem',
+  			  ::
+  regrid.template:  '%y4%m2%d2.nc4',
+  regrid.resolution: 144 91,
+  regrid.format:    'CFIO',
+  regrid.frequency:  010000,
+  regrid.duration:   240000,
+  regrid.mode:       'time-averaged',
+  regrid.fields:  'TRC_NO',  'GIGCchem',
+                  'TRC_NO2', 'GIGCchem',
+                  'TRC_CO',  'GIGCchem',
+                  'TRC_O3',  'GIGCchem',
+  			  ::

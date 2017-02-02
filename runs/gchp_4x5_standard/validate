@@ -1,0 +1,230 @@
+#!/usr/bin/perl -w
+
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: validate
+#
+# !DESCRIPTION: This perl script validates GEOS-Chem output files.  It tests
+#  that the file checksums are identical, and then does a diff on the files.
+#  User-friendly output is printed with the results.
+#\\
+#\\
+# !USES:
+#
+require 5.003;                   # Need this version of Perl or newer
+use English;                     # Use English language
+use Carp;                        # Get detailed error messages
+use strict;                      # Use "IMPLICIT NONE" syntax
+#		
+# !PUBLIC MEMBER FUNCTIONS:
+#  &main()    : Driver routine for gcUnitTest
+#
+# !PRIVATE MEMBER FUNCTIONS:
+#  &doChecks  : Returns the name of the GEOS-Chem run directory
+#
+# !CALLING SEQUENCE:
+#  validate FILE1 FILE2 [ TOPHDR BOTHDR ]
+#    where FILE1 and FILE2 are the files to be checked
+#    Set TOPHDR=1 if you want to print a header at the top of the output
+#    Set BOTHDR=1 if you want to print a header at the bottom of output
+#
+# !REMARKS:
+#  Designed to be used with the GEOS-Chem Unit Tester.
+#  Always returns a value of zero so as not to disrupt the make process.
+#
+# !REVISION HISTORY: 
+#  27 Aug 2013 - R. Yantosca - Initial version
+#  29 Aug 2013 - R. Yantosca - Now print the directory name in the results
+#  24 Mar 2014 - R. Yantosca - Updated ProTeX headers
+#  02 Jul 2014 - R. Yantosca - Improved file checking
+#EOP
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: doChecks
+#
+# !DESCRIPTION: Performs validation checks on GEOS-Chem output files to
+#  test whether they are identical or not.
+#\\
+#\\
+# !INTERFACE:
+#
+sub doChecks($$$$) {
+#
+# !INPUT PARAMETERS:
+#
+  # $file1  : First file to be checked
+  # $file2  : Second file to be checked
+  # $topHdr : Set this = 1 if you want to print a header @ top of output
+  # $botHdr : Set this = 1 if you wnat to print a header @ bottom of output
+  my ( $file1, $file2, $topHdr, $botHdr ) = @_;
+#
+# !CALLING SEQUENCE:
+#  &doChecks( $file1, $file2, $topHdr, $botHdr );
+#
+# !REMARKS:
+#  Performs a checksum and a binary diff on the files.  This is OK as long
+#  as we have bpch files for GEOS-Chem output.  When we migrate to netCDF
+#  output we'll come up with a better test.
+#
+# !REVISION HISTORY:
+#  27 Aug 2013 - R. Yantosca - Initial version
+#  29 Aug 2013 - R. Yantosca - Now print the base name of the current dir
+#  02 Jul 2014 - R. Yantosca - Now trigger a DIFFERENT result if either 
+#                              $file1 or $file2 is not found on disk
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Parameters
+  my $DIFFERENT = "DIFFERENT";
+  my $IDENTICAL = "IDENTICAL";
+  my $NOTFOUND  = "FILE NOT FOUND";
+
+  # Scalars
+  my $ckSumOK   = $DIFFERENT;
+  my $diffOK    = $DIFFERENT;
+  my $cmd       = "";
+  my $ckSum1    = $NOTFOUND;
+  my $ckSum2    = $NOTFOUND;
+  my $header    = '#' x 79;
+  my $notDir    = "";
+  my $result    = "";
+  my $size1     = $NOTFOUND;
+  my $size2     = $NOTFOUND;
+  my $sizeOK    = $DIFFERENT;
+  my $notFound  = $NOTFOUND;
+
+  # Arrays
+  my @subStr = ();
+
+  #----------------------------------------
+  # Test if the file checksums match
+  #----------------------------------------
+
+  # If the 1st file exists, get the CRC checksum and file size
+  if ( -f $file1 ) {
+    $cmd    = "cksum $file1";
+    chomp( $result = qx( $cmd ) );
+    @subStr = split( ' ', $result );
+    $ckSum1 = $subStr[0];
+    $size1  = $subStr[1];
+  }
+
+  # If the 2nd file exists, get the CRC checksum and file size
+  if ( -f $file2 ) {
+    $cmd    = "cksum $file2";
+    chomp( $result = qx( $cmd ) );
+    @subStr = split( ' ', $result );
+    $ckSum2 = $subStr[0];
+    $size2  = $subStr[1];
+  }
+ 
+  # If the file checksums match, then set a flag   
+  if ( !( $ckSum1 eq $NOTFOUND ) && !( $ckSum2 eq "$NOTFOUND" ) ) {
+    if ( $ckSum1  eq $ckSum2   ) { $ckSumOK = $IDENTICAL; }
+  }
+
+  # If the file sizes match, set a flag
+  if ( !( $size1 eq $NOTFOUND ) && !( $size2 eq "$NOTFOUND" ) ) {
+    if ( $size1  eq $size2    ) { $sizeOK  = $IDENTICAL; }
+  }
+
+  #----------------------------------------
+  # Test if the files are identical
+  #----------------------------------------
+  
+  # If both files exist, then take a binary difference w/ Unix "diff" command
+  if ( -f $file1 && -f $file2 ) {
+    $cmd = "diff $file1 $file2";
+    chomp( $result = qx( $cmd ) );
+
+    # If the result is a blank string, they are identical
+    if ( length( $result ) == 0 ) { $diffOK = $IDENTICAL; }
+  }
+
+  #----------------------------------------
+  # Report the results
+  #----------------------------------------
+  
+  # First find the name of this directory (skip full path)
+  $cmd = "pwd";
+  chomp( $result = qx( $cmd ) );
+  @subStr = split( '/', $result );
+  $notDir = $subStr[ scalar( @subStr ) - 1 ];
+	
+  # Print top header if requested
+  if ( $topHdr ) { print '#' x 79; 
+		   print "\n### VALIDATION OF GEOS-CHEM OUTPUT FILES\n"; 
+                   print "### In directory: $notDir\n"; }
+
+  # Print information
+  print "###\n";
+  print "### File 1    : $file1\n";
+  print "### File 2    : $file2\n";
+  print "### Sizes     : $sizeOK ($size1 and $size2)\n";
+  print "### Checksums : $ckSumOK ($ckSum1 and $ckSum2)\n";
+  print "### Diffs     : $diffOK\n";
+
+  # Print bottom header if requested
+  if ( $botHdr ) { print '#' x 79; print "\n"; }
+
+  # Return 0 so as not to hold up the Makefiles
+  return( 0 );
+}
+#EOP
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: main
+#
+# !DESCRIPTION: Driver routine for the validate script.
+#\\
+#\\
+# !INTERFACE:
+#
+sub main() {
+#
+# !CALLING SEQUENCE:
+#  validate FILE1 FILE2 [ TOPHDR BOTHDR ]
+#    where FILE1 and FILE2 are the files to be checked
+#    Set TOPHDR=1 if you want to print a header at the top of the output
+#    Set BOTHDR=1 if you want to print a header at the bottom of output
+#
+# !REVISION HISTORY:
+#  27 Aug 2013 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  my $msg = "Usage: validate FILE1 FILE2 TOPHDR BOTHDR\n";
+
+  # If there is the proper # of args, validate the GEOS-Chem files
+  # Otherwise exit with an error message
+  if    ( scalar( @ARGV ) == 4 ) { &doChecks( @ARGV       ); }
+  elsif ( scalar( @ARGV ) == 3 ) { &doChecks( @ARGV, 0    ); }
+  elsif ( scalar( @ARGV ) == 2 ) { &doChecks( @ARGV, 0, 0 ); }
+  else                           { print "$msg"; exit(1);    }
+
+  # Always return 0 so we don't halt the make process
+  return ( 0 );
+}
+
+#------------------------------------------------------------------------------
+
+# Call the main program
+main();
+
+# Always return zero so we don't halt the make process
+exit( 0 );

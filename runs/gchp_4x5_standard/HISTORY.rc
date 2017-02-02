@@ -11,11 +11,6 @@ COLLECTIONS: 'center',
   center.format:    'CFIO',
   center.frequency:  010000,
   center.duration:   240000
-
- center.template:  '%y4%m2%d2.nc4',
-  center.format:    'CFIO',
-  center.frequency:  050000,
-  center.duration:   240000
   center.fields:  'TEMP', 'GIGCchem',
   		'PRES', 'GIGCchem',
 		'RHUM', 'GIGCchem',
