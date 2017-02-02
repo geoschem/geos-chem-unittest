@@ -23,7 +23,7 @@
 #
 # %%% ID tags %%%
 #
-   VERSION        : v11-01
+   VERSION        : v11-02
    DESCRIPTION    : Create run directory from UnitTest
 #
 # %%% Data path and HEMCO settings %%%
@@ -47,7 +47,7 @@
 #
 # %%% Target directory and copy command %%%
 #
-   COPY_PATH      : {HOME}/GC/DiffTest/v11-01
+   COPY_PATH      : {HOME}/GC/DiffTest/v11-02
    COPY_CMD       : cp -rfL
 #
 # !RUNS:

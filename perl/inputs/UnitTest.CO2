@@ -28,8 +28,8 @@
 #
 # %%% ID tags %%%
 #
-   VERSION          : v11-01
-   DESCRIPTION      : Tests GEOS-Chem v11-01
+   VERSION          : v11-02
+   DESCRIPTION      : Tests GEOS-Chem v11-02
 #
 # %%% Data path and HEMCO settings %%%
 #
@@ -40,7 +40,7 @@
 #
 # %%% Code, compiler, and queue settings %%%
 #
-   CODE_DIR         : {HOME}/GC/Code.v11-01
+   CODE_DIR         : {HOME}/GC/Code.v11-02
    COMPILER         : ifort
    MAKE_CMD         : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
    SUBMIT           : sbatch

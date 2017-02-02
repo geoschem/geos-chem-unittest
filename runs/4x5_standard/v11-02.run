@@ -13,7 +13,7 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !MODULE: v11-01.run
+# !MODULE: v11-02.run
 #
 # !DESCRIPTION: This bash script submits a 1-month benchmark simulation
 #\\
@@ -26,10 +26,10 @@
 #
 # !CALLING SEQUENCE:
 #  To submit run to the SGE batch queue system:
-#   qsub -cwd -b y -j y -r y -pe smp8 8 v11-01.run
+#   qsub -cwd -b y -j y -r y -pe smp8 8 v11-02.run
 #
 #  To run interactively:
-#   v11-01.run
+#   v11-02.run
 #
 # !REVISION HISTORY:
 #  17 Jun 2015 - M. Sulprizio- Initial version
@@ -46,7 +46,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 # Initialize
 #-------------------------------------------------
 # Define version ID
-id="v11-01"
+id="v11-02"
 
 # Define GEOS-Chem log file
 log="$id.log"
