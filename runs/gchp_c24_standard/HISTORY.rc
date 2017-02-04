@@ -1,0 +1,31 @@
+
+EXPID:  OutputDir/GCHP
+EXPDSC: GEOS-Chem_devel
+CoresPerNode: 6
+
+
+COLLECTIONS: 'center',
+#             'regrid',
+             ::
+  center.template:  '%y4%m2%d2.nc4',
+  center.format:    'CFIO',
+  center.frequency:  010000,
+  center.duration:   240000
+  center.fields:  'SPC_NO',    'GIGCchem',
+                  'SPC_O3',    'GIGCchem',
+                  'SPC_HNO3',  'GIGCchem',
+                  'SPC_CH2O',  'GIGCchem',
+                  'SPC_NIT',   'GIGCchem',
+
+  			  ::
+  regrid.template:  '%y4%m2%d2.nc4',
+  regrid.resolution: 72 46,
+  regrid.format:    'CFIO',
+  regrid.frequency:  010000,
+  regrid.duration:   240000,
+  regrid.mode:       'instantaneous',
+  regrid.fields:  'SPC_NO',    'GIGCchem',
+                  'SPC_O3',    'GIGCchem',
+                  'SPC_HNO3',  'GIGCchem',
+                  'SPC_CH2O',  'GIGCchem',
+                  'SPC_NIT',   'GIGCchem',

@@ -14,17 +14,10 @@
 #  . GCHP.ifort15_mvapich2_odyssey.bashrc
 #
 # !REMARKS
-#  To run GCHP with MVAPICH2, you must have the following updates:
-#    (1) In GCHP/GIGC.mk, the OpenMPI lines for setting MPI_LIB are
-#        commented out and the MVAPICH line is uncommented
-#    (2) In GCHP/Makefile, "export ESMF_COMM=openmpi" is commented out
-#        and "export ESMF_COMM=mvapich2" is uncommented
-#    (3) In build.sh within the run directory, BASHRC is set to a
-#        bashrc that includes "mvapich2" in the filename (such as this)
-#        and the ESMF_COMM export is set to mvapich2
 #
 # !REVISION HISTORY:
 #  26 Oct 2016 - S. Eastham - Initial version
+#  03 Feb 2017 - S. Eastham - Updated for GCHP v1
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -43,7 +36,8 @@ module load hdf5/1.8.12-fasrc12
 module load netcdf/4.1.3-fasrc09
 #module load totalview
 
-export MVAPICH2=$( dirname $( dirname $( which mpirun ) ) )
+export ESMF_COMM=mvapich2
+export MPI_ROOT=$( dirname $( dirname $( which mpirun ) ) )
 
 # Made links to all the relevant files somewhere accessible
 export PATH=${NETCDF_HOME}/bin:$PATH
@@ -60,8 +54,8 @@ export GC_BIN="$NETCDF_HOME/bin"
 export GC_INCLUDE="$NETCDF_HOME/include"
 export GC_LIB="$NETCDF_HOME/lib"
 
-# Add NetCDF to path
-export PATH=$PATH:${NETCDF_HOME}/bin
+# Add NetCDF to path (again?)
+#export PATH=$PATH:${NETCDF_HOME}/bin
 
 # Compiler environnment settings
 export FC=ifort                                # Fortran compiler

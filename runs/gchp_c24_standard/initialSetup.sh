@@ -59,26 +59,9 @@ if [[ ${onOdyssey} == "y" ]]; then
   RestartsDir="$baseDir/data/ExtData/NC_RESTARTS"
   ChemDataDir="$baseDir/gcdata/ExtData/CHEM_INPUTS"
   TileFileDir="$baseDir/gcdata/ExtData/GCHP/TileFiles"
-  echo "Valid INPUT resolution choices:"
-  echo "[N] Native (0.25x0.3125) (2015-07-01 to 2015-07-10)"
-  echo "[2] 2x2.5                (2012-05-01 to 2014-12-31)"
-  echo "[4] 4x5                  (2012-05-01 to 2015-07-31)"
-  read -p "Select an INPUT resolution for met data: " resChoice
-
-  if [[ ${resChoice} == "N" || ${resChoice} == "n" ]]; then
-    MetDir=${MetDir}/GEOS_0.25x0.3125/GEOS_0.25x0.3125.d/GEOS_FP
-    cp ExtData_Native.rc ExtData.rc
-  elif [[ ${resChoice} == 4 ]]; then
-    MetDir=${MetDir}/GEOS_4x5/GEOS_FP
-    cp ExtData_4x5.rc ExtData.rc
-  elif [[ ${resChoice} == 2 ]]; then
-    MetDir=${MetDir}/GEOS_2x2.5_GEOS_5/GEOS_FP
-    cp ExtData_2x25.rc ExtData.rc
-  else
-    echo "Invalid resolution selected"
-    unlink CodeDir
-    exit 1
-  fi
+  MetDir=${baseDir}/GEOS_2x2.5_GEOS_5/GEOS_FP
+  # On Odyssey, remove the safety check - holylfs is only visible off the login nodes
+  checkPath=0
 
 # If not on Odyssey, ask the user for the paths
 elif [[ ${onOdyssey} == "n" ]]; then
@@ -87,16 +70,26 @@ elif [[ ${onOdyssey} == "n" ]]; then
   read -p "Enter path to GEOS-Chem restart files: " RestartsDir
   read -p "Enter path to CHEM_INPUTS directory: " ChemDataDir
   read -p "Enter path to tile files: " TileFileDir
-  echo "WARNING: You must replace ExtData.rc with the appropriate template"
-  echo "         file (e.g. ExtData_4x5.rc if using 4x5 met input resolution!"
+  checkPath=1
 else
   echo "Invalid response given"
   unlink CodeDir
   exit 1
 fi
 
+# Check if the target paths exist (if not on Odyssey)
+if [[ $checkPath -eq 1 ]]; then
+  pathOK=0
+  if [[ -d ${MetDir} && -d ${MainDataDir} && -d ${RestartsDir} && -d ${ChemDataDir} && -d ${TileFileDir} ]]; then
+    pathOK=1
+  fi
+else
+  # On Odyssey, assume the paths are OK
+  pathOK=1
+fi
+
 # Set symlinks based on the paths set above
-if [[ -d ${MetDir} && -d ${MainDataDir} && -d ${RestartsDir} && -d ${ChemDataDir} && -d ${TileFileDir} ]]; then
+if [[ $pathOK -eq 1 ]]; then
   ln -s ${MetDir} MetDir
   ln -s ${MainDataDir} MainDataDir
   ln -s ${RestartsDir} RestartsDir
@@ -107,6 +100,7 @@ else
   unlink CodeDir
   exit 1
 fi
+
 echo " "
 echo "IMPORTANT NOTES: You must now set up your environment, compile, and run" 
 echo " "

@@ -15,7 +15,6 @@
 # !REMARKS:
 #  (1) Implemented arguments options include:
 #         help (lists options)
-#         check_mpi
 #         clean_gc
 #         clean_nuclear
 #         clean_all
@@ -39,7 +38,7 @@
 ###  Configurable Settings  ###
 ###############################
 # Ask user to source and export a bashrc, if not already done
-if [[ "x${BASHRC}" == x ]]; then
+if [[ "x${MPI_ROOT}" == x ]]; then
    LIST=`ls -1 *.bashrc*`
    echo "Set up your environment by picking one of the following existing bashrcs,"
    echo "or exit and create your own file ending in '.bashrc':"
@@ -65,29 +64,26 @@ if [[ "x${BASHRC}" == x ]]; then
       n="$((${n}+1))"
    done   
 else 
-   echo "WARNING: You are using settings in ${BASHRC}"
+   echo "Building GCHP with MPI_ROOT=${MPI_ROOT}"
 fi
 
-# Set compiler
-export ESMF_COMPILER=intel
+# Check MPI implementation
+if [[ "x${ESMF_COMM}" == x ]]; then
+   echo "ESMF_COMM and MPI_ROOT must both be set!"
+   exit 2
+fi
 
-# Set MPI implementation
-export ESMF_COMM=openmpi
-#export ESMF_COMM=mvapich2
+# Set compilers. ESMF_COMPILER controls GCHP, and COMPILER controls the GC module.
+if [[ "$FC" == "ifort" ]]; then
+   export ESMF_COMPILER=intel
+   export COMPILER=ifort
+else
+   echo "GCHP not currently configured for non-Intel compilers"
+   exit 3
+fi
 
 # Set ESMF optimization (g=debugging, O=optimized)
 export ESMF_BOPT=g
-
-# WARNING: Code changes are necessary if switching from openmpi to MVAPICH2
-#  To run GCHP with MVAPICH2, you must have the following updates:
-#    (1) In GCHP/GIGC.mk, the OpenMPI lines for setting MPI_LIB are
-#        uncommented out and the MVAPICH line are commented out
-#    (2) In GCHP/Makefile, "export ESMF_COMM=openmpi" is uncommented
-#        and "export ESMF_COMM=mvapich2" are commented out
-#    (3) In build.sh within the run directory, BASHRC is set to a
-#        bashrc that includes "openmpi" in the filename (such as this)
-#        and the ESMF_COMM export is set to openmpi
-#   NOTE: eventually these changes will be automatic
 
 ###############################
 ###       Help              ###
@@ -111,25 +107,16 @@ if [[ $1 == "help" ]]; then
   exit 0
 fi
 
-##########################################
-###  Check MPI settings in source code ###
-##########################################
-if [[ $1 == "check_mpi" ]]; then
-  echo "*** MPI settings in CodeDir/GCHP/GIGC.mk ***"
-  echo " "
-  grep "MPI settings" -A 11 CodeDir/GCHP/GIGC.mk
-  echo "*** MPI settings in CodeDir/GCHP/Makefile ***"
-  echo " "
-  grep "MPI type" -A 4 CodeDir/GCHP/Makefile
-  exit 0
-fi
-
 ###############################
 ###     General Setup       ###
 ###############################
 
 # Set run directory
 runDir=$PWD
+
+# Designed for full chemistry
+UCX=yes
+CHEM=Standard
 
 # Error check
 if [[ ! -e CodeDir ]]; then
@@ -138,9 +125,6 @@ if [[ ! -e CodeDir ]]; then
   exit 1
 elif [[ $# == 0 ]]; then
   echo "Must pass argument to compile.sh"
-  exit 1
-elif [[ ! -f ${BASHRC} ]]; then
-  echo "Bashrc file in build.sh does not exist"
   exit 1
 fi
 
@@ -173,9 +157,9 @@ elif [[ $1 == "clean_mapl" ]]; then
     make realclean
     cd GCHP
     make EXTERNAL_GRID=y  DEVEL=y       DEBUG=y   MET=geos-fp      \
-         GRID=4x5         NO_REDUCED=y  UCX=n     wipeout_fvdycore
+         GRID=4x5         NO_REDUCED=y  UCX=$UCX  wipeout_fvdycore
     make EXTERNAL_GRID=y  DEVEL=y       DEBUG=y   MET=geos-fp      \
-         GRID=4x5         NO_REDUCED=y  UCX=n     wipeout_mapl
+         GRID=4x5         NO_REDUCED=y  UCX=$UCX  wipeout_mapl
     cd ..
 
 # compile_debug
@@ -195,9 +179,9 @@ elif [[ $1 == "compile_mapl" ]]; then
     make realclean
     cd GCHP
     make EXTERNAL_GRID=y  DEVEL=y       DEBUG=y   MET=geos-fp      \
-         GRID=4x5         NO_REDUCED=y  UCX=n     wipeout_fvdycore
+         GRID=4x5         NO_REDUCED=y  UCX=$UCX  wipeout_fvdycore
     make EXTERNAL_GRID=y  DEVEL=y       DEBUG=y   MET=geos-fp      \
-         GRID=4x5         NO_REDUCED=y  UCX=n     wipeout_mapl
+         GRID=4x5         NO_REDUCED=y  UCX=$UCX  wipeout_mapl
     cd ..
 
 # compile_clean
@@ -230,18 +214,18 @@ echo "CPATH is: $CPATH"
 ###       Compile           ###
 ###############################
 if [[ $1 == "compile_debug" ]]; then
-    make -j${SLURM_NTASKS} NC_DIAG=y   CHEM=tropchem  EXTERNAL_GRID=y  \
+    make -j${SLURM_NTASKS} NC_DIAG=y   CHEM=$CHEM     EXTERNAL_GRID=y  \
                            DEBUG=y     DEVEL=y        TRACEBACK=y      \
                            MET=geosfp  GRID=4x5       NO_REDUCED=y     \
-                           UCX=n       BOUNDS=y       FPEX=y           \
+                           UCX=$UCX    BOUNDS=y       FPEX=y           \
                            EXTERNAL_FORCING=y         hpc
 elif [[ $1 == "compile_standard" ]] || \
      [[ $1 == "compile_mapl"     ]] || \
      [[ $1 == "compile_clean"    ]]; then
-    make -j${SLURM_NTASKS} NC_DIAG=y   CHEM=tropchem EXTERNAL_GRID=y   \
-                           DEBUG=y     DEVEL=y       TRACEBACK=y       \
+    make -j${SLURM_NTASKS} NC_DIAG=y   CHEM=$CHEM    EXTERNAL_GRID=y   \
+                           DEBUG=n     DEVEL=y       TRACEBACK=y       \
                            MET=geos-fp GRID=4x5      NO_REDUCED=y      \
-                           UCX=n       hpc
+                           UCX=$UCX    hpc
 fi
 
 ###############################

@@ -1,7 +1,7 @@
          npx: 24
          npy: 24
          npz: 72
-          dt: 1200
+          dt: 600
      n_sponge: -1
    ADIABATIC: .true.
  hydrostatic: .true.
