@@ -86,7 +86,7 @@ ifndef NEST
 endif
 
 ifndef TRACEBACK 
- TRACEBACK   :=n
+ TRACEBACK   :=y
 endif
 
 ifndef BOUNDS
@@ -143,6 +143,10 @@ endif
 
 ifndef TIMERS
  TIMERS      :=0
+endif
+
+ifndef TAU_PROF
+ TAU_PROF    :=n
 endif
 
 ifndef BPCH_RST_IN
@@ -343,6 +347,20 @@ else
  COMPILER_VERSION :=$(word 4, $(COMPILER_VERSION_LONG))
 endif
 
+# Variable to hold the TAU_OPTIONS environment setting
+TAU_OPT     :=""
+
+# If we are compiling for use w/ TAU, then also set TAU_OPTIONS accordingly
+# TAU_SF sets the -optTauSelectFile option for removing throttled files
+REGEXP      :=(^[Yy]|^[Yy][Ee][Ss])
+ifeq ($(shell [[ "$(TAU_PROF)" =~ $(REGEXP) ]] && echo true),true)
+  ifdef TAU_SF 
+    TAU_OPT :="$(TAU_OPTIONS) -optTauSelectFile=$(TAU_SF)"
+  else
+    TAU_OPT :="$(TAU_OPTIONS)"
+  endif
+endif
+
 ###############################################################################
 #####                                                                     #####
 #####                          MAKEFILE TARGETS                           #####
@@ -351,7 +369,7 @@ endif
 
 # PHONY targets don't actually compile anything. They either are
 # synonyms for other targets, they remove files, or they print output.
-.PHONY: all     dataclean  logclean   fileclean  spclean
+.PHONY: all     dataclean  logclean   fileclean  spclean      tauclean
 .PHONY: mpclean spexeclean mpexeclean superclean printallinfo
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -377,7 +395,9 @@ sp:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=no                   \
-                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)   \
+                                TIMERS=$(TIMERS)     TAU_PROF=$(TAU_PROF)     \
+                                TAU_OPTIONS=$(TAU_OPT)                        \
+                                BPCH_DIAG=$(BPCH_DIAG)                        \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                    \
                                 BPCH_RST_OUT=$(BPCH_RST_OUT)                  \
                                 > $(LOG_SP)
@@ -396,7 +416,9 @@ mp:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=yes                  \
-                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)   \
+                                TIMERS=$(TIMERS)     TAU_PROF=$(TAU_PROF)     \
+                                TAU_OPTIONS=$(TAU_OPT)                        \
+                                BPCH_DIAG=$(BPCH_DIAG)                        \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                    \
                                 BPCH_RST_OUT=$(BPCH_RST_OUT)                  \
                                 > $(LOG_MP)
@@ -420,7 +442,9 @@ spbuild:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=no                   \
-                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)   \
+                                TIMERS=$(TIMERS)     TAU_PROF=$(TAU_PROF)     \
+                                TAU_OPTIONS=$(TAU_OPT)                        \
+                                BPCH_DIAG=$(BPCH_DIAG)                        \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                    \
                                 BPCH_RST_OUT=$(BPCH_RST_OUT)                  
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
@@ -436,7 +460,9 @@ mpbuild:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=yes                  \
-                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)   \
+                                TIMERS=$(TIMERS)     TAU_PROF=$(TAU_PROF)     \
+                                TAU_OPTIONS=$(TAU_OPT)                        \
+                                BPCH_DIAG=$(BPCH_DIAG)                        \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                    \
                                 BPCH_RST_OUT=$(BPCH_RST_OUT)                  
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
@@ -530,6 +556,9 @@ mpexeclean:
 	rm -f $(EXE_MP)
 	rm -f $(LOG_COMP).mp
 
+tauclean:
+	@$(MAKE) -C $(CODE_DIR) tauclean
+
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Remove All             %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -564,7 +593,7 @@ realclean:
 #  Clean and Remove All   %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-superclean: fileclean realclean
+superclean: fileclean realclean tauclean
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Print information      %
@@ -624,6 +653,7 @@ printbuildinfo:
 	@echo "  RRTMG        : $(RRTMG)"
 	@echo "  MASSCONS     : $(MASSCONS)"
 	@echo "  TIMERS       : $(TIMERS)"
+	@echo "  TAU_PROF     : $(TAU_PROF)"
 	@echo "  BPCH_RST_IN  : $(BPCH_RST_IN)"
 	@echo "  BPCH_RST_OUT : $(BPCH_RST_OUT)"
 	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"
@@ -738,6 +768,7 @@ help:
 	@echo '%%% CLEAN SOURCE CODE %%%'
 	@echo 'clean             Makes "clean" in source code directory $CODE_DIR'
 	@echo 'realclean         Makes "realclean" in the source code directory $CODE_DIR'
+	@echo 'tauclean          Removes all TAU files in the source code directory $CODE_DIR'
 	@echo ''
 	@echo '%%% CLEAN AND REMOVE ALL %%%'
 	@echo 'superclean        Synonym for: fileclean realclean'
@@ -768,7 +799,7 @@ help:
 	@echo 'DEBUG=y           Compiles GEOS-Chem with various debugging options'
 	@echo 'BOUNDS=y          Compiles GEOS-Chem with out-of-bounds error checks'
 	@echo 'FPE=y             Compiles GEOS-Chem with floating-point math error checks'
-	@echo 'TRACEBACK=y       Compiles GEOS-Chem with traceback error printout'
+	@echo 'TRACEBACK=y       Compiles GEOS-Chem with traceback error printout (this is the default)'
 	@echo 'NO_ISO=y          Compiles GEOS-Chem and turns off ISORROPIA'
 	@echo 'TIMERS=1          Compiles GEOS-Chem with timers turned on'
 	@echo 'BPCH_RST_IN=y     Compiles GEOS-Chem such that binary-punch restart file is input at run-time (default is NetCDF)'

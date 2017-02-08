@@ -80,7 +80,7 @@ ifndef NEST
 endif
 
 ifndef TRACEBACK 
- TRACEBACK   :=n
+ TRACEBACK   :=y
 endif
 
 ifndef BOUNDS
@@ -102,10 +102,6 @@ endif
 # Turn off ISORROPIA for all diff testing
 ifndef NO_ISO
  NO_ISO      :=y
-endif
-
-ifndef COMPILER
- COMPILER    :=ifort
 endif
 
 ifndef NO_REDUCED
@@ -146,6 +142,10 @@ endif
 
 ifndef TIMERS
  TIMERS      :=0
+endif
+
+ifndef TAU_PROF
+ TAU_PROF    :=n
 endif
 
 ifndef BPCH_RST_IN
@@ -212,6 +212,7 @@ endif
 
 ifeq ($(SIM),RRTMG)
  RRTMG       :=y
+ CHEM        :=Tropchem
 endif
 
 ifeq ($(SIM),UCX)
@@ -224,6 +225,7 @@ ifeq ($(SIM),$(filter $(SIM), benchmark, standard))
  UCX         :=y
  CHEM        :=Standard
  NO_REDUCED  :=y
+ TIMERS      :=1
 endif
 
 ifeq ($(SIM),aciduptake)
@@ -251,8 +253,8 @@ ifeq ($(SIM),tropchem)
  CHEM        :=Tropchem
 endif
 
-ifeq ($(SIM),fullchem)
- CHEM        :=Tropchem
+ifeq ($(SIM),custom)
+ CHEM        :=Custom
 endif
 
 ifeq ($(SIM),masscons)
@@ -322,6 +324,26 @@ else
 
 endif
 
+# Compiler information
+# If COMPILER is not defined, default to the $(FC) variable, which
+# is set in your .bashrc, or when you load the compiler module
+ifndef COMPILER
+  COMPILER   :=$(FC)
+endif
+
+# Get compiler version
+COMPILER_VERSION_LONG :=$(shell $(FC) --version))
+COMPILER_VERSION_LONG :=$(sort $(COMPILER_VERSION_LONG))
+
+# For ifort, the 3rd substring of the sorted text is the version number.
+# For pgfortran and gfortran, it's the 4th substring.
+# NOTE: Future compiler updates may break this algorithm.
+ifeq ($(COMPILER),ifort)
+ COMPILER_VERSION :=$(word 3, $(COMPILER_VERSION_LONG))
+else
+ COMPILER_VERSION :=$(word 4, $(COMPILER_VERSION_LONG))
+endif
+
 # Variable to hold the TAU_OPTIONS environment setting
 TAU_OPT     :=""
 
@@ -389,7 +411,9 @@ refonly:
                                 HMCO_RST=$(HMCO_RST)                        \
                                 HMCO_LOG=$(LOG_HMCO)   LOG=$(LOG_REF)       \
                                 START=$(START)         END=$(END)           \
-                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
+                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF) \
+                                TAU_OPTIONS=$(TAU_OPT)                      \
+                                BPCH_DIAG=$(BPCH_DIAG)                      \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                  \
                                 BPCH_RST_OUT=$(BPCH_RST_OUT)
 	@$(MAKE) printbuildinfo > $(RUN_REF)/$(LOG_COMP).Ref
@@ -410,7 +434,9 @@ devonly:
                                 HMCO_RST=$(HMCO_RST)                        \
                                 HMCO_LOG=$(LOG_HMCO)   LOG=$(LOG_DEV)       \
                                 START=$(START)         END=$(END)           \
-                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
+                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF) \
+                                TAU_OPTIONS=$(TAU_OPT)                      \
+                                BPCH_DIAG=$(BPCH_DIAG)                      \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                  \
                                 BPCH_RST_OUT=$(BPCH_RST_OUT)  
 	@$(MAKE) printbuildinfo > $(RUN_DEV)/$(LOG_COMP).Dev
@@ -435,7 +461,8 @@ devlib:
                                 HMCO_RST=$(HMCO_RST)   SPEC_RST=$(SPEC_RST) \
                                 HMCO_LOG=$(LOG_HMCO)   LOG=$(LOG_DEV)       \
                                 START=$(START)         END=$(END)           \
-                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
+                                TIMERS=$(TIMERS)       TAU_OPTIONS=$(TAU_OPT) \
+                                BPCH_DIAG=$(BPCH_DIAG)                      \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                  \
                                 BPCH_RST_OUT=$(BPCH_RST_OUT)  
 	@$(MAKE) printbuildinfo > $(RUN_DEV)/$(LOG_COMP).Dev
@@ -460,7 +487,8 @@ devrun:
                                 HMCO_RST=$(HMCO_RST)   SPEC_RST=$(SPEC_RST) \
                                 HMCO_LOG=$(LOG_HMCO)   LOG=$(LOG_DEV)       \
                                 START=$(START)         END=$(END)           \
-                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
+                                TIMERS=$(TIMERS)       TAU_OPTIONS=$(TAU_OPT) \
+                                BPCH_DIAG=$(BPCH_DIAG)                      \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                  \
                                 BPCH_RST_OUT=$(BPCH_RST_OUT)
 	@$(MAKE) printbuildinfo > $(RUN_DEV)/$(LOG_COMP).Dev
@@ -616,11 +644,12 @@ printbuildinfo:
 	@echo "  RRTMG        : $(RRTMG)"
 	@echo "  MASSCONS     : $(MASSCONS)"
 	@echo "  TIMERS       : $(TIMERS)"
+	@echo "  TAU_PROF     : $(TAU_PROF)"
 	@echo "  BPCH_RST_IN  : $(BPCH_RST_IN)"
 	@echo "  BPCH_RST_OUT : $(BPCH_RST_OUT)"
 	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"
 	@echo "  NC_DIAG      : $(NC_DIAG)"
-	@echo "  COMPILER     : $(COMPILER)"
+	@echo "  COMPILER     : $(COMPILER) $(COMPILER_VERSION)"
 	@echo "  Datetime     : $(TIMESTAMP)"
 
 printallinforef: 
