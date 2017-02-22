@@ -45,6 +45,7 @@ SLP      'hPa'     xy  C N Y F0;003000 none none SLP        ./MetDir/%y4/%m2/GEO
 SNODP    '1'       xy  C N Y F0;003000 none none SNODP      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
 SNOMAS   '1'       xy  C N Y F0;003000 none none SNOMAS     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
 RADSWG   '1'       xy  C N Y F0;003000 none none SWGDN      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
+TO3      'dobson'  xy  C N Y F0;003000 none none TO3        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
 TROPP    '1'       xy  C N Y F0;003000 none none TROPPT     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
 TSKIN    '1'       xy  C N Y F0;003000 none none TS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
 TS       '1'       xy  C N Y F0;003000 none none T2M        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
@@ -723,6 +724,7 @@ SOILNOX_LANDK24   1     xy C N Y F- none none LANDFRAC_K24 ./MainDataDir/SOILNOX
 SOILNOX_ARID      1     xy C N Y F- none none ARID         ./MainDataDir/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc
 SOILNOX_NONARID   1     xy C N Y F- none none NON_ARID     ./MainDataDir/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc
 TIMEZONES         count xy C N V  - none none UTC_OFFSET ./MainDataDir/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc
+UV_ALBEDO         1     xy C Y Y 1985-%m2-01T00:00:00 none none UVALBD ./MainDataDir/UVALBEDO/v2015-03/uvalbedo.geos.2x25.nc
 
 # Don't actually need these yet
 HTAP_NH3_IND      1     xy C N N  - none none HTAP_NH3_IND /dev/null
@@ -978,7 +980,6 @@ GEOSCCM_HOBr_NIGHT 1 xyz C Y N  2007-%m2-01T00:00:00 none none HOBR   ./MainData
 # V11-01A ADDITIONS
 # ----------------
 #
-UV_ALBEDO     1       xy  C Y Y 1985-%m2-01T00:00:00   none none UVALBD ./MainDataDir/UVALBEDO/v2015-03/uvalbedo.geos.2x25.nc
 #====NO O3 DATA=================DEBUG===============================
 #TOMS_O3_COL   dobsons xy  C N N - none none TOMS   /dev/null
 #DTOMS1_O3_COL 1       xy  C N N - none none DTOMS1 /dev/null
