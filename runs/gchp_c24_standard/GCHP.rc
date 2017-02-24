@@ -9,7 +9,7 @@
 
 GEOSChem_CTM: 1
 
-AdvCore_Advection: 1
+AdvCore_Advection: 0
 	DYCORE: OFF
   HEARTBEAT_DT: 600
 
