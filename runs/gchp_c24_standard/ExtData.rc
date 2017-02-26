@@ -598,7 +598,7 @@ SOLFUEL_2008_2010 1 xy C N Y F%y4-01-01T00:00:00   none none SO2scalar ./MainDat
 GEIA_SEASON_NOX   1 xy C Y Y F1985-%m2-01T00:00:00 none none NOXrat    ./MainDataDir/GEIA/v2014-07/GEIA_monthscal.generic.1x1.nc
 GEIA_SEASON_SO2   1 xy C Y Y F1985-%m2-01T00:00:00 none none SO2rat    ./MainDataDir/GEIA/v2014-07/GEIA_monthscal.generic.1x1.nc
 # Need DE0360xPE0180_CFnnnnx6C.bin
-EDGAR_TODNOX      1 xy C N Y F2000-01-01T00:%h2:00 none none NOXscale  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_hourly_NOxScal.nc
+EDGAR_TODNOX      1 xy C N Y F2000-01-01T%h2:00:00 none none NOXscale  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_hourly_NOxScal.nc
 #
 # Need DC0360xPC0181_CFnnnnx6C.bin
 # Single file, single entry
