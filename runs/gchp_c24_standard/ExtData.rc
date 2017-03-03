@@ -381,12 +381,11 @@ RETRO_C2H6    kg_m-2_s-1 xy C Y Y F- none none emission_flux ./MainDataDir/RETRO
 # Single entry
 XIAO_C2H6 kg_m2_s-1 xy C N Y F- none none C2H6 ./MainDataDir/XIAO/v2014-09/C3H8_C2H6_ngas.geos.1x1.nc
 #
-# Need DC0360xPC0181_CFnnnnx6C.bin
 # Files have annual data for 2002-2008 except for NH3, where we have one year of monthly data
-CAC_NO    kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00  none none NO  ./MainDataDir/CAC/v2014-07/CAC.geos.1x1.nc
-CAC_CO    kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00  none none CO  ./MainDataDir/CAC/v2014-07/CAC.geos.1x1.nc
-CAC_SO2   kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00  none none SOx ./MainDataDir/CAC/v2014-07/CAC.geos.1x1.nc
-CAC_NH3   kg_m2_s-1 xy C Y Y F2008-%m2-01T00:00:00 none none NH3 ./MainDataDir/CAC/v2014-07/CAC_NH3.geos.1x1.nc
+CAC_NO    kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00  none none NO   ./MainDataDir/CAC/v2016-09/CAC.geos.0.1x0.1.nc
+CAC_CO    kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00  none none CO   ./MainDataDir/CAC/v2016-09/CAC.geos.0.1x0.1.nc
+CAC_SO2   kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00  none none SOx  ./MainDataDir/CAC/v2016-09/CAC.geos.0.1x0.1.nc
+CAC_NH3   kg_m2_s-1 xy C Y Y F2008-%m2-01T00:00:00 none none NH3 ./MainDataDir/CAC/v2016-09/CAC_NH3.geos.1x1.nc
 #
 # Files have annual data for 1980-2000 (VOCs)/1990-2012 (other)
 EMEP_NO    kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00 none none NO    ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
@@ -980,18 +979,9 @@ GEOSCCM_HOBr_NIGHT 1 xyz C Y N  2007-%m2-01T00:00:00 none none HOBR   ./MainData
 # V11-01A ADDITIONS
 # ----------------
 #
-#====NO O3 DATA=================DEBUG===============================
-#TOMS_O3_COL   dobsons xy  C N N - none none TOMS   /dev/null
-#DTOMS1_O3_COL 1       xy  C N N - none none DTOMS1 /dev/null
-#DTOMS2_O3_COL 1       xy  C N N - none none DTOMS2 /dev/null
-#====NO EXPLICIT REFERENCE TIME=DEBUG===============================
-#TOMS_O3_COL   dobsons xy  C N N %y4-%m2-01T00:00:00 none none TOMS   ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_%y4.geos.1x1.nc
-#DTOMS1_O3_COL 1       xy  C N N %y4-%m2-01T00:00:00 none none DTOMS1 ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_%y4.geos.1x1.nc
-#DTOMS2_O3_COL 1       xy  C N N %y4-%m2-01T00:00:00 none none DTOMS2 ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_%y4.geos.1x1.nc
-#====EXPLICIT REFERENCE TIME====DEBUG===============================
-TOMS_O3_COL   dobsons xy  C N N %y4-%m2-01T00:00:00   none none TOMS   ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_%y4.geos.1x1.nc 1980-01-01T00:00:00P0001-00-00T00:00:00
-DTOMS1_O3_COL 1       xy  C N N %y4-%m2-01T00:00:00   none none DTOMS1 ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_%y4.geos.1x1.nc 1980-01-01T00:00:00P0001-00-00T00:00:00
-DTOMS2_O3_COL 1       xy  C N N %y4-%m2-01T00:00:00   none none DTOMS2 ./MainDataDir/TOMS_SBUV/v2015-03/TOMS_O3col_%y4.geos.1x1.nc 1980-01-01T00:00:00P0001-00-00T00:00:00
+TOMS_O3_COL   dobsons xy  C N N %y4-%m2-01T00:00:00   none none TOMS   ./MainDataDir/TOMS_SBUV/v2016-11/TOMS_O3col_%y4.a.geos.1x1.nc 1980-01-01T00:00:00P0001-00-00T00:00:00
+DTOMS1_O3_COL 1       xy  C N N %y4-%m2-01T00:00:00   none none DTOMS1 ./MainDataDir/TOMS_SBUV/v2016-11/TOMS_O3col_%y4.a.geos.1x1.nc 1980-01-01T00:00:00P0001-00-00T00:00:00
+DTOMS2_O3_COL 1       xy  C N N %y4-%m2-01T00:00:00   none none DTOMS2 ./MainDataDir/TOMS_SBUV/v2016-11/TOMS_O3col_%y4.a.geos.1x1.nc 1980-01-01T00:00:00P0001-00-00T00:00:00
 #==============================================================================
 # --- NEI 2005 scale factors ---
 #==============================================================================
@@ -1339,8 +1329,7 @@ SEASIA_MASK  1 xy C N Y F- none none MASK     ./MainDataDir/MASKS/v2014-07/SE_As
 NA_MASK      1 xy C N Y F- none none MASK     ./MainDataDir/MASKS/v2014-07/NA_mask.geos.1x1.nc
 USA_MASK     1 xy C N Y F- none none MASK     ./MainDataDir/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc
 ASIA_MASK    1 xy C N Y F- none none MASK     ./MainDataDir/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc
-# The tile file for this is not yet available
-NEI11_MASK   1 xy C N N F- none none LANDMASK ./MainDataDir/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.nc
+NEI11_MASK   1 xy C N Y F- none none LANDMASK ./MainDataDir/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc
 %%
 Masks%%
 # ---------|------------------------------------------------------|
