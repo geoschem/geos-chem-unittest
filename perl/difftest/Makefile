@@ -324,13 +324,6 @@ else
 
 endif
 
-# Compiler information
-# If COMPILER is not defined, default to the $(FC) variable, which
-# is set in your .bashrc, or when you load the compiler module
-ifndef COMPILER
-  COMPILER   :=$(FC)
-endif
-
 # Get compiler version
 COMPILER_VERSION_LONG :=$(shell $(FC) --version))
 COMPILER_VERSION_LONG :=$(sort $(COMPILER_VERSION_LONG))
@@ -338,7 +331,8 @@ COMPILER_VERSION_LONG :=$(sort $(COMPILER_VERSION_LONG))
 # For ifort, the 3rd substring of the sorted text is the version number.
 # For pgfortran and gfortran, it's the 4th substring.
 # NOTE: Future compiler updates may break this algorithm.
-ifeq ($(COMPILER),ifort)
+REGEXP      :=(^[Ii][Ff][Oo][Rr][Tt])
+ifeq ($(shell [[ "$(FC)" =~ $(REGEXP) ]] && echo true),true)
  COMPILER_VERSION :=$(word 3, $(COMPILER_VERSION_LONG))
 else
  COMPILER_VERSION :=$(word 4, $(COMPILER_VERSION_LONG))
@@ -649,7 +643,7 @@ printbuildinfo:
 	@echo "  BPCH_RST_OUT : $(BPCH_RST_OUT)"
 	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"
 	@echo "  NC_DIAG      : $(NC_DIAG)"
-	@echo "  COMPILER     : $(COMPILER) $(COMPILER_VERSION)"
+	@echo "  COMPILER     : $(FC) $(COMPILER_VERSION)"
 	@echo "  Datetime     : $(TIMESTAMP)"
 
 printallinforef: 
