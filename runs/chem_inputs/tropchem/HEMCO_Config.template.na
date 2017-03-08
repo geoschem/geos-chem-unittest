@@ -88,80 +88,85 @@ Warnings:                    {WARNINGS}
 ### --> The NAP scale factor is determined as in the original simulation:
 ###     Obtain NAP emissions using scale factor from Hays 2002 ES&T 
 ###     (0.0253 g NAP/kg DM) and Andreae and Merlet 2001 GBC (92 g CO/kg DM)
+###
+### --> You can select either NEI2011_HOURLY or NEI2011_MONMEAN but not both.
+###     The same goes for NEI2011_SHIP_HOURLY and NEI2011_SHIP_MONMEAN.
 ###############################################################################
-# ExtNr ExtName           on/off  Species
-0       Base              : on    *
-    --> HEMCO_RESTART     :       true
-    --> AEIC              :       true
-    --> BIOFUEL           :       true
-    --> BOND              :       true
-    --> BRAVO             :       true
-    --> CAC               :       true
-    --> XIAO              :       true
-    --> EDGAR             :       true
-    --> HTAP              :       false
-    --> EMEP              :       false
-    --> EMEP_SHIP         :       false
-    --> GEIA              :       true
-    --> LIANG_BROMOCARB   :       true
-    --> NEI2005           :       false
-    --> NEI2011           :       true
-    --> RETRO             :       true 
-    --> SHIP              :       true
-    --> NEI2011_SHIP      :       false
-    --> MIX               :       false
-    --> STREETS           :       false
-    --> VOLCANO           :       true
-    --> RCP_3PD           :       false 
-    --> RCP_45            :       false
-    --> RCP_60            :       false
-    --> RCP_85            :       false
-    --> QFED2             :       false
+# ExtNr ExtName              on/off  Species
+0       Base                 : on    *
+    --> HEMCO_RESTART        :       true
+    --> AEIC                 :       true
+    --> BIOFUEL              :       true
+    --> BOND                 :       true
+    --> BRAVO                :       true
+    --> CAC                  :       true
+    --> XIAO                 :       true
+    --> EDGAR                :       true
+    --> HTAP                 :       false
+    --> EMEP                 :       false
+    --> EMEP_SHIP            :       false
+    --> GEIA                 :       true
+    --> LIANG_BROMOCARB      :       true
+    --> NEI2005              :       false
+    --> NEI2011_HOURLY       :       true
+    --> NEI2011_MONMEAN      :       false
+    --> RETRO                :       true 
+    --> SHIP                 :       true
+    --> NEI2011_SHIP_HOURLY  :       false
+    --> NEI2011_SHIP_MONMEAN :       false
+    --> MIX                  :       false
+    --> STREETS              :       false
+    --> VOLCANO              :       true
+    --> RCP_3PD              :       false 
+    --> RCP_45               :       false
+    --> RCP_60               :       false
+    --> RCP_85               :       false
+    --> QFED2                :       false
 # -----------------------------------------------------------------------------
-100     Custom            : off   - 
-101     SeaFlux           : on    DMS/ACET
-102     ParaNOx           : on    NO/NO2/O3/HNO3
-    --> LUT data format   :       nc
-    --> LUT source dir    :       $ROOT/PARANOX/v2015-02
-103     LightNOx          : on    NO
-    --> OTD-LIS factors   :       true
-    --> CDF table         :       $ROOT/LIGHTNOX/v2014-07/light_dist.ott2010.dat
-104     SoilNOx           : on    NO 
-    --> Use fertilizer NOx:       true
-105     DustDead          : on    DST1/DST2/DST3/DST4 
-106     DustGinoux        : off   DST1/DST2/DST3/DST4
-115     DustAlk           : off   DSTAL1/DSTAL2/DSTAL3/DSTAL4
-107     SeaSalt           : on    SALA/SALC/Br2
-    --> SALA lower radius :       0.01 
-    --> SALA upper radius :       0.5
-    --> SALC lower radius :       0.5
-    --> SALC upper radius :       8.0
-    --> Emit Br2          :       true  
-    --> Br2 scaling       :       1.0 
-116     MarinePOA         : off   MOPO/MOPI 
-108     MEGAN             : on    ISOP/ACET/PRPE/C2H4/ALD2
-    --> Isoprene scaling  :       1.0 
-    --> CO2 inhibition    :       true
-    --> CO2 conc (ppmv)   :       390.0
-109     MEGAN_Mono        : on    CO/OCPI/MONX
-110     MEGAN_SOA         : off   MTPA/MTPO/LIMO/SESQ
-111     GFED              : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/NAP
-    --> GFED3             :       false 
-    --> GFED4             :       true
-    --> GFED_daily        :       false
-    --> GFED_3hourly      :       false
-    --> Scaling_CO        :       1.05
-    --> Scaling_POG1      :       1.27
-    --> Scaling_POG2      :       1.27
-    --> Scaling_NAP       :       2.75e-4
-    --> hydrophilic BC    :       0.2
-    --> hydrophilic OC    :       0.5
-    --> fraction POG1     :       0.49
-114     FINN              : off   NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/GLYC/HAC
-    --> FINN_daily        :       false
-    --> Scaling_CO        :       1.0
-    --> hydrophilic BC    :       0.2
-    --> hydrophilic OC    :       0.5
+100     Custom               : off   - 
+101     SeaFlux              : on    DMS/ACET
+102     ParaNOx              : on    NO/NO2/O3/HNO3
+    --> LUT data format      :       nc
+    --> LUT source dir       :       $ROOT/PARANOX/v2015-02
+103     LightNOx             : on    NO
+    --> OTD-LIS factors      :       true
+    --> CDF table            :       $ROOT/LIGHTNOX/v2014-07/light_dist.ott2010.dat
+104     SoilNOx              : on    NO 
+    --> Use fertilizer NOx   :       true
+105     DustDead             : on    DST1/DST2/DST3/DST4 
+106     DustGinoux           : off   DST1/DST2/DST3/DST4
+115     DustAlk              : off   DSTAL1/DSTAL2/DSTAL3/DSTAL4
+107     SeaSalt              : on    SALA/SALC/Br2
+    --> SALA lower radius    :       0.01 
+    --> SALA upper radius    :       0.5
+    --> SALC lower radius    :       0.5
+    --> SALC upper radius    :       8.0
+    --> Emit Br2             :       true  
+    --> Br2 scaling          :       1.0 
+116     MarinePOA            : off   MOPO/MOPI 
+108     MEGAN                : on    ISOP/ACET/PRPE/C2H4/ALD2
+    --> Isoprene scaling     :       1.0 
+    --> CO2 inhibition       :       true
+    --> CO2 conc (ppmv)      :       390.0
+109     MEGAN_Mono           : on    CO/OCPI/MONX
+110     MEGAN_SOA            : off   MTPA/MTPO/LIMO/SESQ
+111     GFED                 : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/NAP
+    --> GFED3                :       false 
+    --> GFED4                :       true
+    --> GFED_daily           :       false
+    --> GFED_3hourly         :       false
+    --> Scaling_CO           :       1.05
+    --> Scaling_POG1         :       1.27
+    --> Scaling_POG2         :       1.27
+    --> Scaling_NAP          :       2.75e-4
+    --> hydrophilic BC       :       0.2
+    --> hydrophilic OC       :       0.5
+    --> fraction POG1        :       0.49
+114     FINN                 : off   NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/GLYC/HAC
+    --> FINN_daily           :       false
+    --> Scaling_CO           :       1.0
+    --> hydrophilic BC       :       0.2
+    --> hydrophilic OC       :       0.5
 
 ### END SECTION EXTENSION SWITCHES ###
 
@@ -469,12 +474,19 @@ Warnings:                    {WARNINGS}
 
 #==============================================================================
 # --- NEI 2011 (USA) ---
+#
+# Users may use either hourly or monthly mean NEI2011 emissions.
 #==============================================================================
-(((NEI2011
+
+#------------------------------------------------
+# HOURLY NEI2011
+#------------------------------------------------
+
+(((NEI2011_HOURLY
 # SURFACE INVENTORY
 0 NEI11_SURFACE_NO     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          NO       2006-2013/1-12/1-31/* C xy  kg/m2/s  NO   251/1007     1/2 50
 0 NEI11_SURFACE_NO2    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          NO2      2006-2013/1-12/1-31/* C xy  kg/m2/s  NO2  251/1007     1/2 50
-0 NEI11_SURFACE_HONO   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          HONO     2006-2013/1-12/1-31/* C xy  kg/m2/s  HNO2 1007         1/2 50
+0 NEI11_SURFACE_HONO   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          HONO     2006-2013/1-12/1-31/* C xy  kg/m2/s  HNO2 251/1007     1/2 50
 0 NEI11_SURFACE_CO     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          CO       2006-2013/1-12/1-31/* C xy  kg/m2/s  CO   252/1007     1/2 50
 0 NEI11_SURFACE_NH3    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          NH3      2006-2013/1-12/1-31/* C xy  kg/m2/s  NH3  253/1007     1/2 50
 0 NEI11_SURFACE_CH2O   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          FORM     2006-2013/1-12/1-31/* C xy  kg/m2/s  CH2O 254/1007     1/2 50
@@ -505,7 +517,7 @@ Warnings:                    {WARNINGS}
 # ELECTRIC GENERATING UNITS (EGUs)
 0 NEI11_EGU_NO         $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      NO       2006-2013/1-12/1-31/* C xyz kg/m2/s  NO   251/1007     1   50
 0 NEI11_EGU_NO2        $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      NO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  NO2  251/1007     1   50
-0 NEI11_EGU_HONO       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      HONO     2006-2013/1-12/1-31/* C xyz kg/m2/s  HNO2 1007         1   50
+0 NEI11_EGU_HONO       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      HONO     2006-2013/1-12/1-31/* C xyz kg/m2/s  HNO2 251/1007     1   50
 0 NEI11_EGU_CO         $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      CO       2006-2013/1-12/1-31/* C xyz kg/m2/s  CO   252/1007     1   50
 #0 NEI11_EGU_NH3       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      NH3      2006-2013/1-12/1-31/* C xyz kg/m2/s  NH3  253/1007     1   50
 0 NEI11_EGU_CH2O       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      FORM     2006-2013/1-12/1-31/* C xyz kg/m2/s  CH2O 254/1007     1   50
@@ -536,7 +548,7 @@ Warnings:                    {WARNINGS}
 # PEAKING ELECTRIC GENERATING UNITS
 0 NEI11_EGUPK_NO       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    NO       2006-2013/1-12/1-31/* C xyz kg/m2/s  NO   251/1007     1   50
 0 NEI11_EGUPK_NO2      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    NO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  NO2  251/1007     1   50
-0 NEI11_EGUPK_HONO     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    HONO     2006-2013/1-12/1-31/* C xyz kg/m2/s  HNO2 1007         1   50
+0 NEI11_EGUPK_HONO     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    HONO     2006-2013/1-12/1-31/* C xyz kg/m2/s  HNO2 251/1007     1   50
 0 NEI11_EGUPK_CO       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    CO       2006-2013/1-12/1-31/* C xyz kg/m2/s  CO   252/1007     1   50
 #0 NEI11_EGUPK_NH3     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    NH3      2006-2013/1-12/1-31/* C xyz kg/m2/s  NH3  253/1007     1   50
 0 NEI11_EGUPK_CH2O     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    FORM     2006-2013/1-12/1-31/* C xyz kg/m2/s  CH2O 254/1007     1   50
@@ -567,7 +579,7 @@ Warnings:                    {WARNINGS}
 # OIL & GAS
 0 NEI11_OILGAS_NO      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   NO       2006-2013/1-12/1-31/* C xyz kg/m2/s  NO   251/1007     1   50
 0 NEI11_OILGAS_NO2     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   NO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  NO2  251/1007     1   50
-0 NEI11_OILGAS_HONO    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   HONO     2006-2013/1-12/1-31/* C xyz kg/m2/s  HNO2 1007         1   50
+0 NEI11_OILGAS_HONO    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   HONO     2006-2013/1-12/1-31/* C xyz kg/m2/s  HNO2 251/1007     1   50
 0 NEI11_OILGAS_CO      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   CO       2006-2013/1-12/1-31/* C xyz kg/m2/s  CO   252/1007     1   50
 0 NEI11_OILGAS_NH3     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   NH3      2006-2013/1-12/1-31/* C xyz kg/m2/s  NH3  253/1007     1   50
 0 NEI11_OILGAS_CH2O    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   FORM     2006-2013/1-12/1-31/* C xyz kg/m2/s  CH2O 254/1007     1   50
@@ -598,7 +610,7 @@ Warnings:                    {WARNINGS}
 # OTHER POINT SOURCES
 0 NEI11_OTHPT_NO       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    NO       2006-2013/1-12/1-31/* C xyz kg/m2/s  NO   251/1007     1   50
 0 NEI11_OTHPT_NO2      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    NO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  NO2  251/1007     1   50
-0 NEI11_OTHPT_HONO     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    HONO     2006-2013/1-12/1-31/* C xyz kg/m2/s  HNO2 1007         1   50
+0 NEI11_OTHPT_HONO     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    HONO     2006-2013/1-12/1-31/* C xyz kg/m2/s  HNO2 251/1007     1   50
 0 NEI11_OTHPT_CO       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    CO       2006-2013/1-12/1-31/* C xyz kg/m2/s  CO   252/1007     1   50
 0 NEI11_OTHPT_NH3      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    NH3      2006-2013/1-12/1-31/* C xyz kg/m2/s  NH3  253/1007     1   50
 0 NEI11_OTHPT_CH2O     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    FORM     2006-2013/1-12/1-31/* C xyz kg/m2/s  CH2O 254/1007     1   50
@@ -629,7 +641,7 @@ Warnings:                    {WARNINGS}
 # NON-EGU INDUSTRIAL STACKS
 0 NEI11_PTNONIPM_NO    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc NO       2006-2013/1-12/1-31/* C xyz kg/m2/s  NO   251/1007     1   50
 0 NEI11_PTNONIPM_NO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc NO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  NO2  251/1007     1   50
-0 NEI11_PTNONIPM_HONO  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc HONO     2006-2013/1-12/1-31/* C xyz kg/m2/s  HNO2 1007         1   50
+0 NEI11_PTNONIPM_HONO  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc HONO     2006-2013/1-12/1-31/* C xyz kg/m2/s  HNO2 251/1007     1   50
 0 NEI11_PTNONIPM_CO    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc CO       2006-2013/1-12/1-31/* C xyz kg/m2/s  CO   252/1007     1   50
 0 NEI11_PTNONIPM_NH3   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc NH3      2006-2013/1-12/1-31/* C xyz kg/m2/s  NH3  253/1007     1   50
 0 NEI11_PTNONIPM_CH2O  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc FORM     2006-2013/1-12/1-31/* C xyz kg/m2/s  CH2O 254/1007     1   50
@@ -656,7 +668,199 @@ Warnings:                    {WARNINGS}
 0 NEI11_PTNONIPM_BCPO  -                                                               -        -                     - -   -        BCPO 256/1007/266 1   50
 0 NEI11_PTNONIPM_OCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc POC      2006-2013/1-12/1-31/* C xyz kg/m2/s  OCPI 257/1007/267 1   50
 0 NEI11_PTNONIPM_OCPO  -                                                               -        -                     - -   -        OCPO 257/1007/268 1   50
-)))NEI2011
+)))NEI2011_HOURLY
+
+#------------------------------------------------
+# MONTHLY MEAN NEI2011
+#------------------------------------------------
+
+(((NEI2011_MONMEAN
+# SURFACE INVENTORY
+0 NEI11_SURFACE_NO     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          NO       2006-2013/1-12/1/0 C xy  kg/m2/s  NO   25/210/251/1007     1/2 50
+0 NEI11_SURFACE_NO2    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          NO2      2006-2013/1-12/1/0 C xy  kg/m2/s  NO2  25/210/251/1007     1/2 50
+0 NEI11_SURFACE_HONO   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          HONO     2006-2013/1-12/1/0 C xy  kg/m2/s  HNO2 25/210/251/1007     1/2 50
+0 NEI11_SURFACE_CO     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          CO       2006-2013/1-12/1/0 C xy  kg/m2/s  CO   26/211/252/1007     1/2 50
+0 NEI11_SURFACE_NH3    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          NH3      2006-2013/1-12/1/0 C xy  kg/m2/s  NH3  26/213/253/1007     1/2 50
+0 NEI11_SURFACE_CH2O   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          FORM     2006-2013/1-12/1/0 C xy  kg/m2/s  CH2O 26/213/254/1007     1/2 50
+0 NEI11_SURFACE_RCHO   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          ALDX     2006-2013/1-12/1/0 C xy  kg/m2/s  RCHO 26/213/254/1007     1/2 50
+0 NEI11_SURFACE_MACR   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          ACROLEIN 2006-2013/1-12/1/0 C xy  kg/m2/s  MACR 26/213/254/1007     1/2 50
+0 NEI11_SURFACE_ACET   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          PAR      2006-2013/1-12/1/0 C xy  kgC/m2/s ACET 26/213/254/1007/260 1/2 50
+0 NEI11_SURFACE_C3H8   -                                                                       -        -                  - -   -        C3H8 26/216/254/1007/261 1/2 50
+0 NEI11_SURFACE_MEK    -                                                                       -        -                  - -   -        MEK  26/214/254/1007/262 1/2 50
+0 NEI11_SURFACE_ALK4   -                                                                       -        -                  - -   -        ALK4 26/212/254/1007/263 1/2 50
+0 NEI11_SURFACE_PRPE   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          OLE      2006-2013/1-12/1/0 C xy  kgC/m2/s PRPE 26/215/254/1007/264 1/2 50
+0 NEI11_SURFACE_PRP2   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          IOLE     2006-2013/1-12/1/0 C xy  kgC/m2/s PRPE 26/215/254/1007/264 1/2 50
+0 NEI11_SURFACE_EOH    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          ETOH     2006-2013/1-12/1/0 C xy  kg/m2/s  EOH  26/213/254/1007     1/2 50
+0 NEI11_SURFACE_MOH    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          MEOH     2006-2013/1-12/1/0 C xy  kg/m2/s  MOH  26/213/254/1007     1/2 50
+0 NEI11_SURFACE_XYLE   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          XYL      2006-2013/1-12/1/0 C xy  kgC/m2/s XYLE 26/213/254/1007     1/2 50
+0 NEI11_SURFACE_TOLU   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          TOL      2006-2013/1-12/1/0 C xy  kgC/m2/s TOLU 26/213/254/1007     1/2 50
+0 NEI11_SURFACE_BENZ   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          BENZENE  2006-2013/1-12/1/0 C xy  kgC/m2/s BENZ 26/213/254/1007     1/2 50
+0 NEI11_SURFACE_SO2    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          SO2      2006-2013/1-12/1/0 C xy  kg/m2/s  SO2  26/218/255/1007     1/2 50
+0 NEI11_SURFACE_SULF   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          SULF     2006-2013/1-12/1/0 C xy  kg/m2/s  SO2  26/218/255/1007     1/2 50
+0 NEI11_SURFACE_SO4    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          PSO4     2006-2013/1-12/1/0 C xy  kg/m2/s  SO4  26/219/255/1007     1/2 50
+0 NEI11_SURFACE_C2H4   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          ETH      2006-2013/1-12/1/0 C xy  kgC/m2/s C2H4 26/213/254/1007     1/2 50
+0 NEI11_SURFACE_C2H6   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          ETHA     2006-2013/1-12/1/0 C xy  kgC/m2/s C2H6 26/217/254/1007     1/2 50
+0 NEI11_SURFACE_ALD2   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          ALD2     2006-2013/1-12/1/0 C xy  kgC/m2/s ALD2 26/213/254/1007     1/2 50
+0 NEI11_SURFACE_BCPI   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          PEC      2006-2013/1-12/1/0 C xy  kg/m2/s  BCPI 26/221/256/1007/265 1/2 50
+0 NEI11_SURFACE_BCPO   -                                                                       -        -                  - -   -        BCPO 26/221/256/1007/266 1/2 50
+0 NEI11_SURFACE_OCPI   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          POC      2006-2013/1-12/1/0 C xy  kg/m2/s  OCPI 26/222/257/1007/267 1/2 50
+0 NEI11_SURFACE_OCPO   -                                                                       -        -                  - -   -        OCPO 26/222/257/1007/268 1/2 50
+
+# ELECTRIC GENERATING UNITS (EGUs)
+0 NEI11_EGU_NO         $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      NO       2006-2013/1-12/1/0 C xyz kg/m2/s  NO   25/210/251/1007     1   50
+0 NEI11_EGU_NO2        $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      NO2      2006-2013/1-12/1/0 C xyz kg/m2/s  NO2  25/210/251/1007     1   50
+0 NEI11_EGU_HONO       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      HONO     2006-2013/1-12/1/0 C xyz kg/m2/s  HNO2 25/210/251/1007     1   50
+0 NEI11_EGU_CO         $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      CO       2006-2013/1-12/1/0 C xyz kg/m2/s  CO   26/211/252/1007     1   50
+#0 NEI11_EGU_NH3       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      NH3      2006-2013/1-12/1/0 C xyz kg/m2/s  NH3  26/213/253/1007     1   50
+0 NEI11_EGU_CH2O       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      FORM     2006-2013/1-12/1/0 C xyz kg/m2/s  CH2O 26/213/254/1007     1   50
+0 NEI11_EGU_RCHO       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      ALDX     2006-2013/1-12/1/0 C xyz kg/m2/s  RCHO 26/213/254/1007     1   50
+0 NEI11_EGU_MACR       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      ACROLEIN 2006-2013/1-12/1/0 C xyz kg/m2/s  MACR 26/213/254/1007     1   50
+0 NEI11_EGU_ACET       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      PAR      2006-2013/1-12/1/0 C xyz kgC/m2/s ACET 26/213/254/1007/260 1   50
+0 NEI11_EGU_C3H8       -                                                                       -        -                  - -   -        C3H8 26/216/254/1007/261 1   50
+0 NEI11_EGU_MEK        -                                                                       -        -                  - -   -        MEK  26/214/254/1007/262 1   50
+0 NEI11_EGU_ALK4       -                                                                       -        -                  - -   -        ALK4 26/212/254/1007/263 1   50
+0 NEI11_EGU_PRPE       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      OLE      2006-2013/1-12/1/0 C xyz kgC/m2/s PRPE 26/215/254/1007/264 1   50
+0 NEI11_EGU_PRP2       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      IOLE     2006-2013/1-12/1/0 C xyz kgC/m2/s PRPE 26/215/254/1007/264 1   50
+0 NEI11_EGU_EOH        $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      ETOH     2006-2013/1-12/1/0 C xyz kg/m2/s  EOH  26/213/254/1007     1   50
+0 NEI11_EGU_MOH        $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      MEOH     2006-2013/1-12/1/0 C xyz kg/m2/s  MOH  26/213/254/1007     1   50
+0 NEI11_EGU_XYLE       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      XYL      2006-2013/1-12/1/0 C xyz kgC/m2/s XYLE 26/213/254/1007     1   50
+0 NEI11_EGU_TOLU       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      TOL      2006-2013/1-12/1/0 C xyz kgC/m2/s TOLU 26/213/254/1007     1   50
+0 NEI11_EGU_BENZ       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      BENZENE  2006-2013/1-12/1/0 C xyz kgC/m2/s BENZ 26/213/254/1007     1   50
+0 NEI11_EGU_SO2        $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
+0 NEI11_EGU_SULF       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
+0 NEI11_EGU_SO4        $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
+0 NEI11_EGU_C2H4       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      ETH      2006-2013/1-12/1/0 C xyz kgC/m2/s C2H4 26/213/254/1007     1   50
+0 NEI11_EGU_C2H6       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      ETHA     2006-2013/1-12/1/0 C xyz kgC/m2/s C2H6 26/217/254/1007     1   50
+0 NEI11_EGU_ALD2       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      ALD2     2006-2013/1-12/1/0 C xyz kgC/m2/s ALD2 26/213/254/1007     1   50
+0 NEI11_EGU_BCPI       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      PEC      2006-2013/1-12/1/0 C xyz kg/m2/s  BCPI 26/221/256/1007/265 1   50
+0 NEI11_EGU_BCPO       -                                                                       -        -                  - -   -        BCPO 26/221/256/1007/266 1   50
+0 NEI11_EGU_OCPI       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      POC      2006-2013/1-12/1/0 C xyz kg/m2/s  OCPI 26/222/257/1007/267 1   50
+0 NEI11_EGU_OCPO       -                                                                       -        -                  - -   -        OCPO 26/222/257/1007/268 1   50
+
+# PEAKING ELECTRIC GENERATING UNITS
+0 NEI11_EGUPK_NO       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    NO       2006-2013/1-12/1/0 C xyz kg/m2/s  NO   25/210/251/1007     1   50
+0 NEI11_EGUPK_NO2      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    NO2      2006-2013/1-12/1/0 C xyz kg/m2/s  NO2  25/210/251/1007     1   50
+0 NEI11_EGUPK_HONO     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    HONO     2006-2013/1-12/1/0 C xyz kg/m2/s  HNO2 25/210/251/1007     1   50
+0 NEI11_EGUPK_CO       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    CO       2006-2013/1-12/1/0 C xyz kg/m2/s  CO   26/211/252/1007     1   50
+#0 NEI11_EGUPK_NH3     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    NH3      2006-2013/1-12/1/0 C xyz kg/m2/s  NH3  26/213/253/1007     1   50
+0 NEI11_EGUPK_CH2O     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    FORM     2006-2013/1-12/1/0 C xyz kg/m2/s  CH2O 26/213/254/1007     1   50
+0 NEI11_EGUPK_RCHO     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    ALDX     2006-2013/1-12/1/0 C xyz kg/m2/s  RCHO 26/213/254/1007     1   50
+0 NEI11_EGUPK_MACR     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    ACROLEIN 2006-2013/1-12/1/0 C xyz kg/m2/s  MACR 26/213/254/1007     1   50
+0 NEI11_EGUPK_ACET     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    PAR      2006-2013/1-12/1/0 C xyz kgC/m2/s ACET 26/213/254/1007/260 1   50
+0 NEI11_EGUPK_C3H8     -                                                                       -        -                  - -   -        C3H8 26/216/254/1007/261 1   50
+0 NEI11_EGUPK_MEK      -                                                                       -        -                  - -   -        MEK  26/214/254/1007/262 1   50
+0 NEI11_EGUPK_ALK4     -                                                                       -        -                  - -   -        ALK4 26/212/254/1007/263 1   50
+0 NEI11_EGUPK_PRPE     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    OLE      2006-2013/1-12/1/0 C xyz kgC/m2/s PRPE 26/215/254/1007/264 1   50
+0 NEI11_EGUPK_PRP2     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    IOLE     2006-2013/1-12/1/0 C xyz kgC/m2/s PRPE 26/215/254/1007/264 1   50
+0 NEI11_EGUPK_EOH      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    ETOH     2006-2013/1-12/1/0 C xyz kg/m2/s  EOH  26/213/254/1007     1   50
+0 NEI11_EGUPK_MOH      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    MEOH     2006-2013/1-12/1/0 C xyz kg/m2/s  MOH  26/213/254/1007     1   50
+0 NEI11_EGUPK_XYLE     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    XYL      2006-2013/1-12/1/0 C xyz kgC/m2/s XYLE 26/213/254/1007     1   50
+0 NEI11_EGUPK_TOLU     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    TOL      2006-2013/1-12/1/0 C xyz kgC/m2/s TOLU 26/213/254/1007     1   50
+0 NEI11_EGUPK_BENZ     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    BENZENE  2006-2013/1-12/1/0 C xyz kgC/m2/s BENZ 26/213/254/1007     1   50
+0 NEI11_EGUPK_SO2      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
+0 NEI11_EGUPK_SULF     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
+0 NEI11_EGUPK_SO4      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
+0 NEI11_EGUPK_C2H4     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    ETH      2006-2013/1-12/1/0 C xyz kgC/m2/s C2H4 26/213/254/1007     1   50
+0 NEI11_EGUPK_C2H6     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    ETHA     2006-2013/1-12/1/0 C xyz kgC/m2/s C2H6 26/217/254/1007     1   50
+0 NEI11_EGUPK_ALD2     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    ALD2     2006-2013/1-12/1/0 C xyz kgC/m2/s ALD2 26/213/254/1007     1   50
+0 NEI11_EGUPK_BCPI     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    PEC      2006-2013/1-12/1/0 C xyz kg/m2/s  BCPI 26/221/256/1007/265 1   50
+0 NEI11_EGUPK_BCPO     -                                                                       -        -                  - -   -        BCPO 26/221/256/1007/266 1   50
+0 NEI11_EGUPK_OCPI     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    POC      2006-2013/1-12/1/0 C xyz kg/m2/s  OCPI 26/222/257/1007/267 1   50
+0 NEI11_EGUPK_OCPO     -                                                                       -        -                  - -   -        OCPO 26/222/257/1007/268 1   50
+
+# OIL & GAS
+0 NEI11_OILGAS_NO      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   NO       2006-2013/1-12/1/0 C xyz kg/m2/s  NO   25/210/251/1007     1   50
+0 NEI11_OILGAS_NO2     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   NO2      2006-2013/1-12/1/0 C xyz kg/m2/s  NO2  25/210/251/1007     1   50
+0 NEI11_OILGAS_HONO    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   HONO     2006-2013/1-12/1/0 C xyz kg/m2/s  HNO2 25/210/251/1007     1   50
+0 NEI11_OILGAS_CO      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   CO       2006-2013/1-12/1/0 C xyz kg/m2/s  CO   26/211/252/1007     1   50
+0 NEI11_OILGAS_NH3     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   NH3      2006-2013/1-12/1/0 C xyz kg/m2/s  NH3  26/213/253/1007     1   50
+0 NEI11_OILGAS_CH2O    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   FORM     2006-2013/1-12/1/0 C xyz kg/m2/s  CH2O 26/213/254/1007     1   50
+0 NEI11_OILGAS_RCHO    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   ALDX     2006-2013/1-12/1/0 C xyz kg/m2/s  RCHO 26/213/254/1007     1   50
+#0 NEI11_OILGAS_MACR   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   ACROLEIN 2006-2013/1-12/1/0 C xyz kg/m2/s  MACR 26/213/254/1007     1   50
+0 NEI11_OILGAS_ACET    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   PAR      2006-2013/1-12/1/0 C xyz kgC/m2/s ACET 26/213/254/1007/260 1   50
+0 NEI11_OILGAS_C3H8    -                                                                       -        -                  - -   -        C3H8 26/216/254/1007/261 1   50
+0 NEI11_OILGAS_MEK     -                                                                       -        -                  - -   -        MEK  26/214/254/1007/262 1   50
+0 NEI11_OILGAS_ALK4    -                                                                       -        -                  - -   -        ALK4 26/212/254/1007/263 1   50
+0 NEI11_OILGAS_PRPE    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   OLE      2006-2013/1-12/1/0 C xyz kgC/m2/s PRPE 26/215/254/1007/264 1   50
+0 NEI11_OILGAS_PRP2    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   IOLE     2006-2013/1-12/1/0 C xyz kgC/m2/s PRPE 26/215/254/1007/264 1   50
+0 NEI11_OILGAS_EOH     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   ETOH     2006-2013/1-12/1/0 C xyz kg/m2/s  EOH  26/213/254/1007     1   50
+0 NEI11_OILGAS_MOH     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   MEOH     2006-2013/1-12/1/0 C xyz kg/m2/s  MOH  26/213/254/1007     1   50
+0 NEI11_OILGAS_XYLE    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   XYL      2006-2013/1-12/1/0 C xyz kgC/m2/s XYLE 26/213/254/1007     1   50
+0 NEI11_OILGAS_TOLU    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   TOL      2006-2013/1-12/1/0 C xyz kgC/m2/s TOLU 26/213/254/1007     1   50
+0 NEI11_OILGAS_BENZ    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   BENZENE  2006-2013/1-12/1/0 C xyz kgC/m2/s BENZ 26/213/254/1007     1   50
+0 NEI11_OILGAS_SO2     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
+0 NEI11_OILGAS_SULF    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
+0 NEI11_OILGAS_SO4     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
+0 NEI11_OILGAS_C2H4    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   ETH      2006-2013/1-12/1/0 C xyz kgC/m2/s C2H4 26/213/254/1007     1   50
+0 NEI11_OILGAS_C2H6    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   ETHA     2006-2013/1-12/1/0 C xyz kgC/m2/s C2H6 26/217/254/1007     1   50
+0 NEI11_OILGAS_ALD2    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   ALD2     2006-2013/1-12/1/0 C xyz kgC/m2/s ALD2 26/213/254/1007     1   50
+0 NEI11_OILGAS_BCPI    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   PEC      2006-2013/1-12/1/0 C xyz kg/m2/s  BCPI 26/221/256/1007/265 1   50
+0 NEI11_OILGAS_BCPO    -                                                                       -        -                  - -   -        BCPO 26/221/256/1007/266 1   50
+0 NEI11_OILGAS_OCPI    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   POC      2006-2013/1-12/1/0 C xyz kg/m2/s  OCPI 26/222/257/1007/267 1   50
+0 NEI11_OILGAS_OCPO    -                                                                       -        -                  - -   -        OCPO 26/222/257/1007/268 1   50
+
+# OTHER POINT SOURCES
+0 NEI11_OTHPT_NO       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    NO       2006-2013/1-12/1/0 C xyz kg/m2/s  NO   25/210/251/1007     1   50
+0 NEI11_OTHPT_NO2      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    NO2      2006-2013/1-12/1/0 C xyz kg/m2/s  NO2  25/210/251/1007     1   50
+0 NEI11_OTHPT_HONO     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    HONO     2006-2013/1-12/1/0 C xyz kg/m2/s  HNO2 25/210/251/1007     1   50
+0 NEI11_OTHPT_CO       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    CO       2006-2013/1-12/1/0 C xyz kg/m2/s  CO   26/211/252/1007     1   50
+0 NEI11_OTHPT_NH3      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    NH3      2006-2013/1-12/1/0 C xyz kg/m2/s  NH3  26/213/253/1007     1   50
+0 NEI11_OTHPT_CH2O     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    FORM     2006-2013/1-12/1/0 C xyz kg/m2/s  CH2O 26/213/254/1007     1   50
+0 NEI11_OTHPT_RCHO     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    ALDX     2006-2013/1-12/1/0 C xyz kg/m2/s  RCHO 26/213/254/1007     1   50
+#0 NEI11_OTHPT_MACR    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    ACROLEIN 2006-2013/1-12/1/0 C xyz kg/m2/s  MACR 26/213/254/1007     1   50
+0 NEI11_OTHPT_ACET     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    PAR      2006-2013/1-12/1/0 C xyz kgC/m2/s ACET 26/213/254/1007/260 1   50
+0 NEI11_OTHPT_C3H8     -                                                                       -        -                  - -   -        C3H8 26/216/254/1007/261 1   50
+0 NEI11_OTHPT_MEK      -                                                                       -        -                  - -   -        MEK  26/214/254/1007/262 1   50
+0 NEI11_OTHPT_ALK4     -                                                                       -        -                  - -   -        ALK4 26/212/254/1007/263 1   50
+0 NEI11_OTHPT_PRPE     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    OLE      2006-2013/1-12/1/0 C xyz kgC/m2/s PRPE 26/215/254/1007/264 1   50
+0 NEI11_OTHPT_PRP2     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    IOLE     2006-2013/1-12/1/0 C xyz kgC/m2/s PRPE 26/215/254/1007/264 1   50
+0 NEI11_OTHPT_EOH      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    ETOH     2006-2013/1-12/1/0 C xyz kg/m2/s  EOH  26/213/254/1007     1   50
+0 NEI11_OTHPT_MOH      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    MEOH     2006-2013/1-12/1/0 C xyz kg/m2/s  MOH  26/213/254/1007     1   50
+0 NEI11_OTHPT_XYLE     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    XYL      2006-2013/1-12/1/0 C xyz kgC/m2/s XYLE 26/213/254/1007     1   50
+0 NEI11_OTHPT_TOLU     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    TOL      2006-2013/1-12/1/0 C xyz kgC/m2/s TOLU 26/213/254/1007     1   50
+0 NEI11_OTHPT_BENZ     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    BENZENE  2006-2013/1-12/1/0 C xyz kgC/m2/s BENZ 26/213/254/1007     1   50
+0 NEI11_OTHPT_SO2      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
+0 NEI11_OTHPT_SULF     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
+0 NEI11_OTHPT_SO4      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
+0 NEI11_OTHPT_C2H4     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    ETH      2006-2013/1-12/1/0 C xyz kgC/m2/s C2H4 26/213/254/1007     1   50
+0 NEI11_OTHPT_C2H6     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    ETHA     2006-2013/1-12/1/0 C xyz kgC/m2/s C2H6 26/217/254/1007     1   50
+0 NEI11_OTHPT_ALD2     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    ALD2     2006-2013/1-12/1/0 C xyz kgC/m2/s ALD2 26/213/254/1007     1   50
+0 NEI11_OTHPT_BCPI     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    PEC      2006-2013/1-12/1/0 C xyz kg/m2/s  BCPI 26/221/256/1007/265 1   50
+0 NEI11_OTHPT_BCPO     -                                                                       -        -                  - -   -        BCPO 26/221/256/1007/266 1   50
+0 NEI11_OTHPT_OCPI     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    POC      2006-2013/1-12/1/0 C xyz kg/m2/s  OCPI 26/222/257/1007/267 1   50
+0 NEI11_OTHPT_OCPO     -                                                                       -        -                  - -   -        OCPO 26/222/257/1007/268 1   50
+
+# NON-EGU INDUSTRIAL STACKS
+0 NEI11_PTNONIPM_NO    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc NO       2006-2013/1-12/1/0 C xyz kg/m2/s  NO   25/210/251/1007     1   50
+0 NEI11_PTNONIPM_NO2   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc NO2      2006-2013/1-12/1/0 C xyz kg/m2/s  NO2  25/210/251/1007     1   50
+0 NEI11_PTNONIPM_HONO  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc HONO     2006-2013/1-12/1/0 C xyz kg/m2/s  HNO2 25/210/251/1007     1   50
+0 NEI11_PTNONIPM_CO    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc CO       2006-2013/1-12/1/0 C xyz kg/m2/s  CO   26/211/252/1007     1   50
+0 NEI11_PTNONIPM_NH3   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc NH3      2006-2013/1-12/1/0 C xyz kg/m2/s  NH3  26/213/253/1007     1   50
+0 NEI11_PTNONIPM_CH2O  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc FORM     2006-2013/1-12/1/0 C xyz kg/m2/s  CH2O 26/213/254/1007     1   50
+0 NEI11_PTNONIPM_RCHO  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc ALDX     2006-2013/1-12/1/0 C xyz kg/m2/s  RCHO 26/213/254/1007     1   50
+#0 NEI11_PTNONIPM_MACR $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc ACROLEIN 2006-2013/1-12/1/0 C xyz kg/m2/s  MACR 26/213/254/1007     1   50
+0 NEI11_PTNONIPM_ACET  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc PAR      2006-2013/1-12/1/0 C xyz kgC/m2/s ACET 26/213/254/1007/260 1   50
+0 NEI11_PTNONIPM_C3H8  -                                                                       -        -                  - -   -        C3H8 26/216/254/1007/261 1   50
+0 NEI11_PTNONIPM_MEK   -                                                                       -        -                  - -   -        MEK  26/214/254/1007/262 1   50
+0 NEI11_PTNONIPM_ALK4  -                                                                       -        -                  - -   -        ALK4 26/212/254/1007/263 1   50
+0 NEI11_PTNONIPM_PRPE  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc OLE      2006-2013/1-12/1/0 C xyz kgC/m2/s PRPE 26/215/254/1007/264 1   50
+0 NEI11_PTNONIPM_PRP2  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc IOLE     2006-2013/1-12/1/0 C xyz kgC/m2/s PRPE 26/215/254/1007/264 1   50
+0 NEI11_PTNONIPM_EOH   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc ETOH     2006-2013/1-12/1/0 C xyz kg/m2/s  EOH  26/213/254/1007     1   50
+0 NEI11_PTNONIPM_MOH   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc MEOH     2006-2013/1-12/1/0 C xyz kg/m2/s  MOH  26/213/254/1007     1   50
+0 NEI11_PTNONIPM_XYLE  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc XYL      2006-2013/1-12/1/0 C xyz kgC/m2/s XYLE 26/213/254/1007     1   50
+0 NEI11_PTNONIPM_TOLU  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc TOL      2006-2013/1-12/1/0 C xyz kgC/m2/s TOLU 26/213/254/1007     1   50
+0 NEI11_PTNONIPM_BENZ  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc BENZENE  2006-2013/1-12/1/0 C xyz kgC/m2/s BENZ 26/213/254/1007     1   50
+0 NEI11_PTNONIPM_SO2   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
+0 NEI11_PTNONIPM_SULF  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
+0 NEI11_PTNONIPM_SO4   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
+0 NEI11_PTNONIPM_C2H4  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc ETH      2006-2013/1-12/1/0 C xyz kgC/m2/s C2H4 26/213/254/1007     1   50
+0 NEI11_PTNONIPM_C2H6  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc ETHA     2006-2013/1-12/1/0 C xyz kgC/m2/s C2H6 26/217/254/1007     1   50
+0 NEI11_PTNONIPM_ALD2  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc ALD2     2006-2013/1-12/1/0 C xyz kgC/m2/s ALD2 26/213/254/1007     1   50
+0 NEI11_PTNONIPM_BCPI  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc PEC      2006-2013/1-12/1/0 C xyz kg/m2/s  BCPI 26/221/256/1007/265 1   50
+0 NEI11_PTNONIPM_BCPO  -                                                                       -        -                  - -   -        BCPO 26/221/256/1007/266 1   50
+0 NEI11_PTNONIPM_OCPI  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc POC      2006-2013/1-12/1/0 C xyz kg/m2/s  OCPI 26/222/257/1007/267 1   50
+0 NEI11_PTNONIPM_OCPO  -                                                                       -        -                  - -   -        OCPO 26/222/257/1007/268 1   50
+)))NEI2011_MONMEAN
 
 #==============================================================================
 # --- STREETS SE ASIA (Zhang et al., 2009) ---
@@ -823,35 +1027,65 @@ Warnings:                    {WARNINGS}
 0 EMEP_SHIP_SO2        $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipSO2         1990-2012/1/1/0        C xy kg/m2/s  SO2  61/1000      10 2
 )))EMEP_SHIP
 
-(((NEI2011_SHIP
-0 NEI11_C3MARINE_HONO  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc HONO            2006-2013/$MM/$DD/* C xy kg/m2/s  HNO2 1007         10 50
-0 NEI11_C3MARINE_CO    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc CO              2006-2013/$MM/$DD/* C xy kg/m2/s  CO   252/1007     10 50
-#0 NEI11_C3MARINE_NH3  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NH3             2006-2013/$MM/$DD/* C xy kg/m2/s  NH3  253/1007     10 50
-0 NEI11_C3MARINE_CH2O  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc FORM            2006-2013/$MM/$DD/* C xy kg/m2/s  CH2O 254/1007     10 50
-0 NEI11_C3MARINE_RCHO  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ALDX            2006-2013/$MM/$DD/* C xy kg/m2/s  RCHO 254/1007     10 50
-#0 NEI11_C3MARINE_MACR $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ACROLEIN        2006-2013/$MM/$DD/* C xy kg/m2/s  MACR 254/1007     10 50
-0 NEI11_C3MARINE_ACET  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc PAR             2006-2013/$MM/$DD/* C xy kgC/m2/s ACET 254/1007/260 10 50
-0 NEI11_C3MARINE_C3H8  -                                                               -               -                   - -  -        C3H8 254/1007/261 10 50
-0 NEI11_C3MARINE_MEK   -                                                               -               -                   - -  -        MEK  254/1007/262 10 50
-0 NEI11_C3MARINE_ALK4  -                                                               -               -                   - -  -        ALK4 254/1007/263 10 50
-0 NEI11_C3MARINE_PRPE  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc OLE             2006-2013/$MM/$DD/* C xy kgC/m2/s PRPE 254/1007/264 10 50
-0 NEI11_C3MARINE_PRP2  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc IOLE            2006-2013/$MM/$DD/* C xy kgC/m2/s PRPE 254/1007/265 10 50
-0 NEI11_C3MARINE_EOH   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ETOH            2006-2013/$MM/$DD/* C xy kg/m2/s  EOH  254/1007     10 50
-0 NEI11_C3MARINE_MOH   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc MEOH            2006-2013/$MM/$DD/* C xy kg/m2/s  MOH  254/1007     10 50
-0 NEI11_C3MARINE_XYLE  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc XYL             2006-2013/$MM/$DD/* C xy kgC/m2/s XYLE 254/1007     10 50
-0 NEI11_C3MARINE_TOLU  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc TOL             2006-2013/$MM/$DD/* C xy kgC/m2/s TOLU 254/1007     10 50
-0 NEI11_C3MARINE_BENZ  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc BENZENE         2006-2013/$MM/$DD/* C xy kgC/m2/s BENZ 254/1007     10 50
-0 NEI11_C3MARINE_SO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc SO2             2006-2013/$MM/$DD/* C xy kg/m2/s  SO2  255/1007     10 50
-0 NEI11_C3MARINE_SULF  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc SULF            2006-2013/$MM/$DD/* C xy kg/m2/s  SO2  255/1007     10 50
-0 NEI11_C3MARINE_SO4   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc PSO4            2006-2013/$MM/$DD/* C xy kg/m2/s  SO4  255/1007     10 50
-0 NEI11_C3MARINE_C2H4  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ETH             2006-2013/$MM/$DD/* C xy kgC/m2/s C2H4 254/1007     10 50
-0 NEI11_C3MARINE_C2H6  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ETHA            2006-2013/$MM/$DD/* C xy kgC/m2/s C2H6 254/1007     10 50
-0 NEI11_C3MARINE_ALD2  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ALD2            2006-2013/$MM/$DD/* C xy kgC/m2/s ALD2 254/1007     10 50
-0 NEI11_C3MARINE_BCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc PEC             2006-2013/$MM/$DD/* C xy kg/m2/s  BCPI 256/1007/265 10 50
-0 NEI11_C3MARINE_BCPO  -                                                               -               -                   - -  -        BCPO 256/1007/266 10 50
-0 NEI11_C3MARINE_OCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc POC             2006-2013/$MM/$DD/* C xy kg/m2/s  OCPI 257/1007/267 10 50
-0 NEI11_C3MARINE_OCPO  -                                                               -               -                   - -  -        OCPO 257/1007/268 10 50
-)))NEI2011_SHIP
+(((NEI2011_SHIP_HOURLY
+0 NEI11_C3MARINE_HONO  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc HONO            2006-2013/1-12/1-31/*  C xy kg/m2/s  HNO2 1007         10 50
+0 NEI11_C3MARINE_CO    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc CO              2006-2013/1-12/1-31/*  C xy kg/m2/s  CO   252/1007     10 50
+#0 NEI11_C3MARINE_NH3  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NH3             2006-2013/1-12/1-31/*  C xy kg/m2/s  NH3  253/1007     10 50
+0 NEI11_C3MARINE_CH2O  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc FORM            2006-2013/1-12/1-31/*  C xy kg/m2/s  CH2O 254/1007     10 50
+0 NEI11_C3MARINE_RCHO  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ALDX            2006-2013/1-12/1-31/*  C xy kg/m2/s  RCHO 254/1007     10 50
+#0 NEI11_C3MARINE_MACR $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ACROLEIN        2006-2013/1-12/1-31/*  C xy kg/m2/s  MACR 254/1007     10 50
+0 NEI11_C3MARINE_ACET  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc PAR             2006-2013/1-12/1-31/*  C xy kgC/m2/s ACET 254/1007/260 10 50
+0 NEI11_C3MARINE_C3H8  -                                                               -               -                      - -  -        C3H8 254/1007/261 10 50
+0 NEI11_C3MARINE_MEK   -                                                               -               -                      - -  -        MEK  254/1007/262 10 50
+0 NEI11_C3MARINE_ALK4  -                                                               -               -                      - -  -        ALK4 254/1007/263 10 50
+0 NEI11_C3MARINE_PRPE  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc OLE             2006-2013/1-12/1-31/*  C xy kgC/m2/s PRPE 254/1007/264 10 50
+0 NEI11_C3MARINE_PRP2  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc IOLE            2006-2013/1-12/1-31/*  C xy kgC/m2/s PRPE 254/1007/265 10 50
+0 NEI11_C3MARINE_EOH   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ETOH            2006-2013/1-12/1-31/*  C xy kg/m2/s  EOH  254/1007     10 50
+0 NEI11_C3MARINE_MOH   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc MEOH            2006-2013/1-12/1-31/*  C xy kg/m2/s  MOH  254/1007     10 50
+0 NEI11_C3MARINE_XYLE  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc XYL             2006-2013/1-12/1-31/*  C xy kgC/m2/s XYLE 254/1007     10 50
+0 NEI11_C3MARINE_TOLU  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc TOL             2006-2013/1-12/1-31/*  C xy kgC/m2/s TOLU 254/1007     10 50
+0 NEI11_C3MARINE_BENZ  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc BENZENE         2006-2013/1-12/1-31/*  C xy kgC/m2/s BENZ 254/1007     10 50
+0 NEI11_C3MARINE_SO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc SO2             2006-2013/1-12/1-31/*  C xy kg/m2/s  SO2  255/1007     10 50
+0 NEI11_C3MARINE_SULF  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc SULF            2006-2013/1-12/1-31/*  C xy kg/m2/s  SO2  255/1007     10 50
+0 NEI11_C3MARINE_SO4   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc PSO4            2006-2013/1-12/1-31/*  C xy kg/m2/s  SO4  255/1007     10 50
+0 NEI11_C3MARINE_C2H4  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ETH             2006-2013/1-12/1-31/*  C xy kgC/m2/s C2H4 254/1007     10 50
+0 NEI11_C3MARINE_C2H6  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ETHA            2006-2013/1-12/1-31/*  C xy kgC/m2/s C2H6 254/1007     10 50
+0 NEI11_C3MARINE_ALD2  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ALD2            2006-2013/1-12/1-31/*  C xy kgC/m2/s ALD2 254/1007     10 50
+0 NEI11_C3MARINE_BCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc PEC             2006-2013/1-12/1-31/*  C xy kg/m2/s  BCPI 256/1007/265 10 50
+0 NEI11_C3MARINE_BCPO  -                                                               -               -                      - -  -        BCPO 256/1007/266 10 50
+0 NEI11_C3MARINE_OCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc POC             2006-2013/1-12/1-31/*  C xy kg/m2/s  OCPI 257/1007/267 10 50
+0 NEI11_C3MARINE_OCPO  -                                                               -               -                      - -  -        OCPO 257/1007/268 10 50
+)))NEI2011_SHIP_HOURLY
+
+(((NEI2011_SHIP_MONMEAN
+0 NEI11_C3MARINE_HONO  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc HONO     2006-2013/1-12/1/0    C xy kg/m2/s  HNO2 1007         10 50
+0 NEI11_C3MARINE_CO    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc CO       2006-2013/1-12/1/0    C xy kg/m2/s  CO   252/1007     10 50
+#0 NEI11_C3MARINE_NH3  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc NH3      2006-2013/1-12/1/0    C xy kg/m2/s  NH3  253/1007     10 50
+0 NEI11_C3MARINE_CH2O  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc FORM     2006-2013/1-12/1/0    C xy kg/m2/s  CH2O 254/1007     10 50
+0 NEI11_C3MARINE_RCHO  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc ALDX     2006-2013/1-12/1/0    C xy kg/m2/s  RCHO 254/1007     10 50
+#0 NEI11_C3MARINE_MACR $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc ACROLEIN 2006-2013/1-12/1/0    C xy kg/m2/s  MACR 254/1007     10 50
+0 NEI11_C3MARINE_ACET  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc PAR      2006-2013/1-12/1/0    C xy kgC/m2/s ACET 254/1007/260 10 50
+0 NEI11_C3MARINE_C3H8  -                                                                       -        -                     - -  -        C3H8 254/1007/261 10 50
+0 NEI11_C3MARINE_MEK   -                                                                       -        -                     - -  -        MEK  254/1007/262 10 50
+0 NEI11_C3MARINE_ALK4  -                                                                       -        -                     - -  -        ALK4 254/1007/263 10 50
+0 NEI11_C3MARINE_PRPE  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc OLE      2006-2013/1-12/1/0    C xy kgC/m2/s PRPE 254/1007/264 10 50
+0 NEI11_C3MARINE_PRP2  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc IOLE     2006-2013/1-12/1/0    C xy kgC/m2/s PRPE 254/1007/265 10 50
+0 NEI11_C3MARINE_EOH   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc ETOH     2006-2013/1-12/1/0    C xy kg/m2/s  EOH  254/1007     10 50
+0 NEI11_C3MARINE_MOH   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc MEOH     2006-2013/1-12/1/0    C xy kg/m2/s  MOH  254/1007     10 50
+0 NEI11_C3MARINE_XYLE  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc XYL      2006-2013/1-12/1/0    C xy kgC/m2/s XYLE 254/1007     10 50
+0 NEI11_C3MARINE_TOLU  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc TOL      2006-2013/1-12/1/0    C xy kgC/m2/s TOLU 254/1007     10 50
+0 NEI11_C3MARINE_BENZ  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc BENZENE  2006-2013/1-12/1/0    C xy kgC/m2/s BENZ 254/1007     10 50
+0 NEI11_C3MARINE_SO2   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc SO2      2006-2013/1-12/1/0    C xy kg/m2/s  SO2  255/1007     10 50
+0 NEI11_C3MARINE_SULF  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc SULF     2006-2013/1-12/1/0    C xy kg/m2/s  SO2  255/1007     10 50
+0 NEI11_C3MARINE_SO4   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc PSO4     2006-2013/1-12/1/0    C xy kg/m2/s  SO4  255/1007     10 50
+0 NEI11_C3MARINE_C2H4  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc ETH      2006-2013/1-12/1/0    C xy kgC/m2/s C2H4 254/1007     10 50
+0 NEI11_C3MARINE_C2H6  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc ETHA     2006-2013/1-12/1/0    C xy kgC/m2/s C2H6 254/1007     10 50
+0 NEI11_C3MARINE_ALD2  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc ALD2     2006-2013/1-12/1/0    C xy kgC/m2/s ALD2 254/1007     10 50
+0 NEI11_C3MARINE_BCPI  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc PEC      2006-2013/1-12/1/0    C xy kg/m2/s  BCPI 256/1007/265 10 50
+0 NEI11_C3MARINE_BCPO  -                                                                       -        -                     - -  -        BCPO 256/1007/266 10 50
+0 NEI11_C3MARINE_OCPI  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc POC      2006-2013/1-12/1/0    C xy kg/m2/s  OCPI 257/1007/267 10 50
+0 NEI11_C3MARINE_OCPO  -                                                                       -        -                     - -  -        OCPO 257/1007/268 10 50
+)))NEI2011_SHIP_MONMEAN
 
 #------------------------------------------------------------------------------
 # ### IF THE PARANOX EXTENSION IS TURNED ON ###
@@ -868,10 +1102,15 @@ Warnings:                    {WARNINGS}
 102 EMEP_SHIP_NO       $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipNO 1990-2012/1/1/0        C xy kg/m2/s  NO   1000     10 10
 )))EMEP_SHIP
 
-(((NEI2011_SHIP
-102 NEI11_C3MARINE_NO  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NO     2006-2013/$MM/$DD/*    C xy kg/m2/s  NO   251/1007 10 50
-102 NEI11_C3MARINE_NO2 $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NO2    2006-2013/$MM/$DD/*    C xy kg/m2/s  NO2  251/1007 10 50
-)))NEI2011_SHIP
+(((NEI2011_SHIP_HOURLY
+102 NEI11_C3MARINE_NO  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NO     2006-2013/1-12/1-31/*  C xy kg/m2/s  NO   251/1007 10 50
+102 NEI11_C3MARINE_NO2 $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NO2    2006-2013/1-12/1-31/*  C xy kg/m2/s  NO2  251/1007 10 50
+)))NEI2011_SHIP_HOURLY
+
+(((NEI2011_SHIP_MONMEAN
+102 NEI11_C3MARINE_NO  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc NO  2006-2013/1-12/1/0 C xy kg/m2/s  NO   251/1007 10 50
+102 NEI11_C3MARINE_NO2 $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc NO2 2006-2013/1-12/1/0 C xy kg/m2/s  NO2  251/1007 10 50
+)))NEI2011_SHIP_MONMEAN
 
 #------------------------------------------------------------------------------
 # ### IF THE PARANOX EXTENSION IS TURNED OFF ###
@@ -887,10 +1126,15 @@ Warnings:                    {WARNINGS}
 0 EMEP_SHIP_NO         $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipNO 1990-2012/1/1/0        C xy kg/m2/s  NO   1000     10 10
 )))EMEP_SHIP
 
-(((NEI2011_SHIP
-0 NEI11_C3MARINE_NO    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NO     2006-2013/$MM/$DD/*    C xy kg/m2/s  NO   251/1007 10 50
-0 NEI11_C3MARINE_NO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NO2    2006-2013/$MM/$DD/*    C xy kg/m2/s  NO2  251/1007 10 50
-)))NEI2011_SHIP
+(((NEI2011_SHIP_HOURLY
+0 NEI11_C3MARINE_NO    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NO     2006-2013/1-12/1-31/*  C xy kg/m2/s  NO   251/1007 10 50
+0 NEI11_C3MARINE_NO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NO2    2006-2013/1-12/1-31/*  C xy kg/m2/s  NO2  251/1007 10 50
+)))NEI2011_SHIP_HOURLY
+
+(((NEI2011_SHIP_MONMEAN
+0 NEI11_C3MARINE_NO    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc NO  2006-2013/1-12/1/0 C xy kg/m2/s  NO   251/1007 10 50
+0 NEI11_C3MARINE_NO2   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc NO2 2006-2013/1-12/1/0 C xy kg/m2/s  NO2  251/1007 10 50
+)))NEI2011_SHIP_MONMEAN
 
 ))).not.ParaNOx
 
