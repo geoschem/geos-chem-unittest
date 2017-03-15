@@ -264,6 +264,8 @@ sub doCopyDirs($$) {
   my $start   = "";
   my $home    = "";
   my $user    = "";
+  my $rstRoot = "";
+  my $rstFile = "";
 
   # Arrays
   my @txt     = ();
@@ -464,7 +466,7 @@ sub doCopyDirs($$) {
 	    $cmd =  "rm -f $copyDir/input.geos.*";
 	    $cmd .= " $copyDir/HEMCO_Config.template";
 	    $cmd .= " $copyDir/trac_avg.*";
-	    $cmd .= " $copyDir/trac_rst.*";
+	    $cmd .= " $copyDir/GEOSChem_restart.*";
 	    $cmd .= " $copyDir/lastbuild*";
 	    $cmd .= " $copyDir/geos.*";
 	    $cmd .= " $copyDir/Ox.mass.*";
@@ -489,6 +491,20 @@ sub doCopyDirs($$) {
             # to prevent deletion when cleaning up directory
 	    $cmd = "[ -f HEMCO_restart* ] && chmod 444 $copyDir/HEMCO_restart.*";
 	    qx/$cmd/;
+
+	    # Create symbolic link to initial GC restart file
+	    $rstRoot = "$DATA_ROOT/SPC_RESTARTS/initial_GEOSChem_rst.";
+	    if ( length( $nest ) > 0 ) {
+	      $rstFile = "$rstRoot$grid\_$sim\_$nest.nc";
+	    } else {
+	      $rstFile = "$rstRoot$notDir.nc";
+	    }
+	    if ( !( -f $rstFile ) ){
+	      print "\nWARNING: File $rstFile does not exist, so a sample restart file will not be included in your run directory. Sample restart files can be found in the SPC_RESTARTS directory or you can use your own restart file.\n\n";
+  	    } else {
+	      $cmd = "ln -s $rstFile $copyDir/GEOSChem_restart.${start}00.nc";
+	      qx/$cmd/;
+            }
 
           }
         }

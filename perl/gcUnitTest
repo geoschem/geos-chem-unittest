@@ -445,6 +445,8 @@ sub doUnitTest($$) {
   my $stdout  = "";
   my $start   = "";
   my $locTime = "";
+  my $rstRoot = "";
+  my $rstFile = "";
 
   # Arrays
   my @cmds    = ();
@@ -665,6 +667,21 @@ sub doUnitTest($$) {
 	  &makeInputs( $start, $end,  $runDir, $met, $grid, $nest, $sim );
    
 	  #-----------------------------------------------------------------
+	  # Set GEOS-Chem restart file path. A symbolic link will be created
+	  # in the run directory pointing to this restart file.
+	  #-----------------------------------------------------------------
+	  $rstRoot = "$DATA_ROOT/SPC_RESTARTS/initial_GEOSChem_rst.";
+	  if ( length( $nest ) > 0 ) {
+	    $rstFile = "$rstRoot$grid\_$sim\_$nest.nc";
+	  } else {
+	    $rstFile = "$rstRoot$notDir.nc";
+	  }
+	  if ( !( -f $rstFile ) ){
+	    print "\nFile $rstFile does not exist!\n";
+	    exit(999)
+  	  }
+
+	  #-----------------------------------------------------------------
 	  # Create the list of comamnds that will execute each requested
 	  # unit test.  Store these commands in the @cmds array.
 	  #-----------------------------------------------------------------
@@ -700,8 +717,10 @@ sub doUnitTest($$) {
 		    "cd $runDir >> $stdout\n\n",
 		    "cp -f input.geos.$met\_$grid\_$sim input.geos >> $stdout\n",
 		    "rm -f input.geos.$met\_$grid\_$sim >> $stdout\n",
- 	            "$makeCmd unittest >> $stdout\n", #);
+		    "ln -s $rstFile GEOSChem_restart.${start}00.nc\n",
+ 	            "$makeCmd unittest >> $stdout\n",
 		    "rm -f Makefile\n",
+		    "rm -f GEOSChem_restart.${start}00.nc\n",
                     "\n\# %%% Create web page w/ unit test matrix %%%\n",
                     "cd $PERL_DIR >> $stdout\n",
                     "./gcUtWeb $RUN_ROOT $RESULTS $TXT_GRID $TEMPLATE $WEB_GRID $WEB_PUSH >>$stdout\n"

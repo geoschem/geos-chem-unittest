@@ -286,9 +286,9 @@ EXE_SP       :=geos.sp
 EXE_MP       :=geos.mp
 
 # Output data files
-TRAC_AVG     :=trac_avg.$(RUNID).$(START)
+GC_DIAG      :=trac_avg.$(RUNID).$(START)
 HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
-TRAC_RST     :=GEOSChem_restart.$(END).nc
+GC_RST       :=GEOSChem_restart.$(END).nc
 
 # Unit test validation script and results file
 VALIDATE     :=/usr/bin/perl $(PERL_DIR)/validate
@@ -490,8 +490,6 @@ dataclean:
 	if [ -f HEMCO_restart.$(START).nc ]; then mv -f HEMCO_restart.$(START).nc HC.nc; fi;
 	rm -f HEMCO_restart.*;
 	if [ -f HC.nc ]; then mv -f HC.nc HEMCO_restart.$(START).nc; fi;
-	rm -f trac_rst*
-	rm -f spec_rst.*
 	rm -f GEOSChem_restart.*
 	rm -f GEOSCHEM_diagnostics.*
 	rm -f trac_avg*
@@ -500,14 +498,14 @@ dataclean:
 	rm -f tracer_mass*.dat
 
 spdataclean:
-	rm -f $(TRAC_AVG)*.sp
-	rm -f $(TRAC_RST)*.sp
+	rm -f $(GC_DIAG)*.sp
+	rm -f $(GC_RST)*.sp
 	rm -f HEMCO_restart*.sp
 	rm -f diaginfo.dat tracerinfo.dat
 
 mpdataclean:
-	rm -f $(TRAC_AVG)*.mp
-	rm -f $(TRAC_RST)*.mp
+	rm -f $(GC_DIAG)*.mp
+	rm -f $(GC_RST)*.mp
 	rm -f HEMCO_restart*.mp
 	rm -f diaginfo.dat tracerinfo.dat
 
@@ -601,8 +599,8 @@ printruninfosp:
 	@echo "  Simulation End      : $(END)"
 	@echo "  HEMCO End           : $(HMCO_END)"
 	@echo "  Version             : $(VERSION)"
-	@echo "  Tracer Data File    : $(TRAC_AVG).sp"
-	@echo "  Tracer Restart File : $(TRAC_RST).sp"
+	@echo "  GC Diagnostic File  : $(GC_DIAG).sp"
+	@echo "  GC Restart File     : $(GC_RST).sp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).sp"
 	@echo "  GC Run Log File     : $(LOG_SP)"
 	@echo "  HEMCO Log File      : $(LOG_HMCO).sp"
@@ -615,8 +613,8 @@ printruninfomp:
 	@echo "  Simulation End      : $(END)"
 	@echo "  HEMCO End           : $(HMCO_END)"
 	@echo "  Version             : $(VERSION)"
-	@echo "  Tracer Data File    : $(TRAC_AVG).mp"
-	@echo "  Tracer Restart File : $(TRAC_RST).mp"
+	@echo "  GC Diagnostic File  : $(GC_DIAG).mp"
+	@echo "  GC Restart File     : $(GC_RST).mp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).mp"
 	@echo "  GC Run Log File     : $(LOG_MP)"
 	@echo "  HEMCO Log File      : $(LOG_HMCO).mp"
@@ -678,20 +676,20 @@ printcodeinfo:
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 addsuffixsp:
-	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).sp; fi;
-	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
+	if [ -f $(GC_DIAG)  ]; then mv -f $(GC_DIAG)  $(GC_DIAG).sp;  fi;
+	if [ -f $(GC_RST)   ]; then mv -f $(GC_RST)   $(GC_RST).sp;   fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
 
 addsuffixmp:
-	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
-	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
+	if [ -f $(GC_DIAG) ];  then mv -f $(GC_DIAG)  $(GC_DIAG).mp;  fi;
+	if [ -f $(GC_RST)   ]; then mv -f $(GC_RST)   $(GC_RST).mp;   fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
 
 check:
-	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
-	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
+	@$(VALIDATE) $(GC_DIAG).sp  $(GC_DIAG).mp  1 0 >> $(RESULTS)
+	@$(VALIDATE) $(GC_RST).sp   $(GC_RST).mp   0 0 >> $(RESULTS)
 	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
 
 ###############################################################################
