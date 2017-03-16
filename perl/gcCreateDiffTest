@@ -591,7 +591,7 @@ sub doCopyDirs($$) {
 	  if ( !( -f $rstFile ) ){
 	    print "\nWARNING: File $rstFile does not exist, so a sample restart file will not be included in your run directory. Sample restart files can be found in the SPC_RESTARTS directory or you can use your own restart file.\n\n";
   	  } else {
-	    $cmd = "ln -s $rstFile $devDir/GEOSChem_restart.${start}00.nc";
+	    $cmd = "ln -sf $rstFile $devDir/GEOSChem_restart.${start}00.nc";
 	    qx/$cmd/;
           }
 

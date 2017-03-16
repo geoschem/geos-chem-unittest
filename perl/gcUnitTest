@@ -717,7 +717,7 @@ sub doUnitTest($$) {
 		    "cd $runDir >> $stdout\n\n",
 		    "cp -f input.geos.$met\_$grid\_$sim input.geos >> $stdout\n",
 		    "rm -f input.geos.$met\_$grid\_$sim >> $stdout\n",
-		    "ln -s $rstFile GEOSChem_restart.${start}00.nc\n",
+		    "ln -sf $rstFile GEOSChem_restart.${start}00.nc\n",
  	            "$makeCmd unittest >> $stdout\n",
 		    "rm -f Makefile\n",
 		    "rm -f GEOSChem_restart.${start}00.nc\n",
