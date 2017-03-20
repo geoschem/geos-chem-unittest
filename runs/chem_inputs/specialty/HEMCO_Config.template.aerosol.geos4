@@ -517,7 +517,7 @@ Warnings:                    {WARNINGS}
 0 EMEP_SHIP_SO2        $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipSO2         1990-2012/1/1/0        C xy kg/m2/s  SO2  61/1000      10 2
 )))EMEP_SHIP
 
-xs(((NEI2011_SHIP_HOURLY
+(((NEI2011_SHIP_HOURLY
 #0 NEI11_C3MARINE_NH3  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NH3             2006-2013/1-12/1-31/* C xy kg/m2/s  NH3  253/1007     10 50
 0 NEI11_C3MARINE_SO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc SO2             2006-2013/1-12/1-31/* C xy kg/m2/s  SO2  255/1007     10 50
 0 NEI11_C3MARINE_SULF  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc SULF            2006-2013/1-12/1-31/* C xy kg/m2/s  SO2  255/1007     10 50
