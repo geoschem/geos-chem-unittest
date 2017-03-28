@@ -9,7 +9,7 @@
 
 GEOSChem_CTM: 1
 
-AdvCore_Advection: 0
+AdvCore_Advection: 1
 	DYCORE: OFF
   HEARTBEAT_DT: 600
 
@@ -39,7 +39,7 @@ BKG_FREQUENCY: 0
 
 # Chemistry/AEROSOL Model Restart Files
 # -------------------------------------
-GIGCchem_INTERNAL_RESTART_FILE:     +gcchem_Regridded_internal_rst_c24.nc
+GIGCchem_INTERNAL_RESTART_FILE:     +initial_GEOSChem_rst.c24_standard.nc
 GIGCchem_INTERNAL_RESTART_TYPE:     pnc4
 GIGCchem_INTERNAL_CHECKPOINT_FILE:  -gcchem_internal_checkpoint_c24.nc
 GIGCchem_INTERNAL_CHECKPOINT_TYPE:  pnc4

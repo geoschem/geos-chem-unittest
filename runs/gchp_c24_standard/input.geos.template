@@ -150,19 +150,19 @@ Species #124            : ASOA2
 Species #125            : ASOA3
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
-Turn on Transport       : F
+Turn on Transport       : T
  => Fill Negative Values: T
  => IORD, JORD, KORD    : 3  3  7
 Transport Timestep [min]: 10
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
-Turn on Cloud Conv?     : F
-Turn on PBL Mixing?     : F
+Turn on Cloud Conv?     : T
+Turn on PBL Mixing?     : T
  => Use non-local PBL?  : T
 Convect Timestep [min]  : 10
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
-Turn on emissions?      : F
+Turn on emissions?      : T
 Emiss Timestep [min]    : 20
 HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
@@ -176,7 +176,7 @@ Switches for UCX        :---
     => Br species?      : F
     => N2O?             : T
  => Set initial glob MRs:---
-    => strat. H2O?      : T
+    => strat. H2O?      : F
     => CH4?             : F
     => OCS?             : F
     => CFCs?            : F
@@ -212,12 +212,12 @@ Perform PSC het. chem.? : T
 Calc. strat. aero. OD?  : T
 ------------------------+------------------------------------------------------
 %%% DEPOSITION MENU %%% :
-Turn on Dry Deposition? : F
-Turn on Wet Deposition? : F
+Turn on Dry Deposition? : T
+Turn on Wet Deposition? : T
 ------------------------+------------------------------------------------------
 %%% CHEMISTRY MENU %%%  :
-Turn on Chemistry?      : F
-Use linear. strat. chem?: F
+Turn on Chemistry?      : T
+Use linear. strat. chem?: T
  => Use Linoz for O3?   : T
 Use UCX strat. chem?    : T
 Online CH4 chemistry?   : T
@@ -234,8 +234,8 @@ Calculate SW fluxes?    : F
 Clear-sky flux?         : F
 All-sky flux?           : F
 Radiation Timestep [min]: 180
-Species fluxes          : 0 0 0 0 0 0 0 0 0 0 1
- ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM]
+Species fluxes          : 0 0 0 0 0 0 0 0 0 1 0
+ ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM,ST]
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH
 Schedule output for JAN : 3000000000000000000000000000000

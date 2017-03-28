@@ -30,7 +30,7 @@
 
 # Check whether symlinks for source code, met, hemco, chem, and restarts 
 # already are set. If yes then exist since setup is not necessary. 
-if [[ -L CodeDir && -L MainDataDir && -L MetDir && -L RestartsDir && -L ChemDataDir && -L TileFiles ]] ; then
+if [[ -L CodeDir && -L MainDataDir && -L MetDir && -L ChemDataDir && -L TileFiles ]] ; then
   echo "Symbolic links already set up"
   exit 1
 fi
@@ -42,6 +42,9 @@ if [[ ! -d ${codePath} ]]; then
   exit 1
 fi
 ln -s ${codePath} CodeDir
+
+# Define the restart filename stored on gcgrid
+RestartsFile="initial_GEOSChem_rst.c24_gchp.nc"
 
 # Define tile file needed to regrid Olson landmap and MODIS LAI to c24 (~4x5)
 tileFile=DE1440xPE0720_CF0024x6C.bin
@@ -56,7 +59,7 @@ if [[ ${onOdyssey} == "y" ]]; then
   baseDir='/n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid'
   MetDir=$baseDir
   MainDataDir="$baseDir/data/ExtData/HEMCO"
-  RestartsDir="$baseDir/data/ExtData/NC_RESTARTS"
+  RestartsDir="$baseDir/data/ExtData/SPC_RESTARTS"
   ChemDataDir="$baseDir/gcdata/ExtData/CHEM_INPUTS"
   TileFileDir="$baseDir/gcdata/ExtData/GCHP/TileFiles"
   MetDir=${baseDir}/GEOS_2x2.5_GEOS_5/GEOS_FP
@@ -92,7 +95,7 @@ fi
 if [[ $pathOK -eq 1 ]]; then
   ln -s ${MetDir} MetDir
   ln -s ${MainDataDir} MainDataDir
-  ln -s ${RestartsDir} RestartsDir
+  ln -s ${RestartsDir}/${RestartsFile} ${RestartsFile}
   ln -s ${ChemDataDir} ChemDataDir
   ln -s ${TileFileDir} TileFiles
 else
