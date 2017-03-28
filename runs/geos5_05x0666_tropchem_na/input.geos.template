@@ -21,7 +21,7 @@ Global offsets I0, J0   : 60 200
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 68
+Number of Advected Spec.: 74
 Species Entries ------->: Name
 Species #1              : NO
 Species #2              : O3
@@ -91,6 +91,12 @@ Species #65             : MAP
 Species #66             : NO2
 Species #67             : NO3
 Species #68             : HNO2
+Species #69             : MTPA
+Species #70             : BENZ
+Species #71             : TOLU
+Species #72             : XYLE
+Species #73             : EOH
+Species #74             : MGLY
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
@@ -227,15 +233,15 @@ ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
 ND26: U/D transpt flx   :  0   all
 ND27: Strat NOx,Ox,HNO3 :  0   1 2 7
-ND28: Biomass emissions :  1   1 4 5 9 10 11 18 19 20 21 26 30 34 35
-ND29: CO sources        :  1   all
+ND28: Biomass emissions : 47   all
+ND29: CO sources        : 47   all
 ND30: Land Map          :  0   all
 ND31: Pressure edges    : 48   all
-ND32: NOx sources       :  1   all
+ND32: NOx sources       : 47   all
 ND33: Column tracer     :  0   all
-ND34: Biofuel emissions :  1   1 4 5 9 10 11 18 19 20 21
+ND34: Biofuel emissions :  1   all
 ND35: Tracers at 500 mb :  0   all
-ND36: Anthro emissions  :  1   1 2 4 5 7 9 10 11 18 19 20 21
+ND36: Anthro emissions  : 47   all
 ND37: Updraft scav frac : 47   all
 ND38: Cld Conv scav loss: 47   all
 ND39: Wetdep scav loss  : 47   all

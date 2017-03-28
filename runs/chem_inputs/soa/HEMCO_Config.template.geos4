@@ -103,6 +103,7 @@ Warnings:                    {WARNINGS}
     --> EMEP                 :       true
     --> EMEP_SHIP            :       true
     --> GEIA                 :       true
+    --> POET                 :       true
     --> LIANG_BROMOCARB      :       true
     --> NEI2005              :       true
     --> NEI2011_HOURLY       :       false
@@ -119,9 +120,10 @@ Warnings:                    {WARNINGS}
     --> RCP_60               :       false
     --> RCP_85               :       false
     --> QFED2                :       false
+    --> DECAYING_PLANTS      :       true
 # -----------------------------------------------------------------------------
 100     Custom               : off   - 
-101     SeaFlux              : on    DMS/ACET
+101     SeaFlux              : on    DMS/ACET/ALD2
 102     ParaNOx              : on    NO/NO2/O3/HNO3
     --> LUT data format      :       nc
     --> LUT source dir       :       $ROOT/PARANOX/v2015-02
@@ -142,13 +144,13 @@ Warnings:                    {WARNINGS}
     --> Emit Br2             :       true  
     --> Br2 scaling          :       1.0 
 116     MarinePOA            : off   MOPO/MOPI 
-108     MEGAN                : on    ISOP/ACET/PRPE/C2H4/ALD2
+108     MEGAN                : on    ISOP/ACET/PRPE/C2H4/ALD2/EOH
     --> Isoprene scaling     :       1.0 
     --> CO2 inhibition       :       true
     --> CO2 conc (ppmv)      :       390.0
 109     MEGAN_Mono           : on    CO/OCPI/MONX
 110     MEGAN_SOA            : on    MTPA/MTPO/LIMO/SESQ
-111     GFED                 : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/NAP
+111     GFED                 : on    NO/CO/PAN/ALK4/HNO3/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/MTPA/BENZ/TOLU/XYLE/NAP/EOH
     --> GFED3                :       false 
     --> GFED4                :       true
     --> GFED_daily           :       false
@@ -204,6 +206,13 @@ Warnings:                    {WARNINGS}
 
 0 GEIA_NH3_NATU $ROOT/NH3/v2014-07/NH3_geos.4x5.nc         NH3_NATU    1990/1-12/1/0 C xy  kg/m2/s NH3 - 3 1
 )))GEIA
+
+#==============================================================================
+# --- POET EOH ---
+#==============================================================================
+(((POET
+0 POET_EOH $ROOT/POET/v2017-03/POET_EOH.geos.2x25.nc EOH 1985/1/1/0 C xy kgC/m2/s EOH 26 1 1
+)))POET
 
 #==============================================================================
 # --- EDGAR v4.2 ---
@@ -347,27 +356,28 @@ Warnings:                    {WARNINGS}
 #        -- Christoph Keller (03 Nov 2014)
 #==============================================================================
 (((BIOFUEL
-0 BIOFUEL_NO   $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_NO   1985/1/1/0 C xy kg/m2/s  NO   -  2 1
-0 BIOFUEL_CO   $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s  CO   53 2 1
-0 BIOFUEL_SO2  -                                          -            -          - -  -        SO2  91 2 1
-0 BIOFUEL_GLYX -                                          -            -          - -  -        GLYX 92 2 1
-0 BIOFUEL_MGLY -                                          -            -          - -  -        MGLY 93 2 1
+0 BIOFUEL_NO   $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_NO   1985/1/1/0 C xy kg/m2/s  NO   -        2 1
+0 BIOFUEL_CO   $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s  CO   53       2 1
+0 BIOFUEL_SO2  -                                          -            -          - -  -        SO2  91       2 1
+0 BIOFUEL_GLYX -                                          -            -          - -  -        GLYX 92       2 1
+0 BIOFUEL_MGLY -                                          -            -          - -  -        MGLY 93       2 1
 0 BIOFUEL_NAP  -                                          -            -          - -  -        NAP  80/81/83 2 1
-0 BIOFUEL_GLYC -                                          -            -          - -  -        GLYC 99 2 1
-0 BIOFUEL_HAC  -                                          -            -          - -  -        HAC  90 2 1
-0 BIOFUEL_BENZ -                                          -            -          - -  -        BENZ 94 2 1
-0 BIOFUEL_TOLU -                                          -            -          - -  -        TOLU 95 2 1
-0 BIOFUEL_XYLE -                                          -            -          - -  -        XYLE 96 2 1
-0 BIOFUEL_C2H4 -                                          -            -          - -  -        C2H4 97 2 1
-0 BIOFUEL_C2H2 -                                          -            -          - -  -        C2H2 98 2 1
-0 BIOFUEL_ALK4 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_ALK4 1985/1/1/0 C xy kgC/m2/s ALK4 -  2 1
-0 BIOFUEL_ACET $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_ACET 1985/1/1/0 C xy kgC/m2/s ACET 56 2 1
-0 BIOFUEL_MEK  $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_MEK  1985/1/1/0 C xy kgC/m2/s MEK  -  2 1
-0 BIOFUEL_ALD2 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_ALD2 1985/1/1/0 C xy kgC/m2/s ALD2 -  2 1
-0 BIOFUEL_PRPE $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_PRPE 1985/1/1/0 C xy kgC/m2/s PRPE -  2 1
-0 BIOFUEL_C3H8 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_C3H8 1985/1/1/0 C xy kgC/m2/s C3H8 -  2 1
-0 BIOFUEL_CH2O $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_CH2O 1985/1/1/0 C xy kg/m2/s  CH2O -  2 1
-0 BIOFUEL_C2H6 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_C2H6 1985/1/1/0 C xy kgC/m2/s C2H6 -  2 1
+0 BIOFUEL_GLYC -                                          -            -          - -  -        GLYC 99       2 1
+0 BIOFUEL_HAC  -                                          -            -          - -  -        HAC  90       2 1
+0 BIOFUEL_BENZ -                                          -            -          - -  -        BENZ 94/270   2 1
+0 BIOFUEL_TOLU -                                          -            -          - -  -        TOLU 95/271   2 1
+0 BIOFUEL_XYLE -                                          -            -          - -  -        XYLE 96/272   2 1
+0 BIOFUEL_C2H4 -                                          -            -          - -  -        C2H4 97       2 1
+0 BIOFUEL_C2H2 -                                          -            -          - -  -        C2H2 98       2 1
+0 BIOFUEL_EOH  -                                          -            -          - -  -        EOH  89       2 1
+0 BIOFUEL_ALK4 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_ALK4 1985/1/1/0 C xy kgC/m2/s ALK4 -        2 1
+0 BIOFUEL_ACET $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_ACET 1985/1/1/0 C xy kgC/m2/s ACET 56       2 1
+0 BIOFUEL_MEK  $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_MEK  1985/1/1/0 C xy kgC/m2/s MEK  -        2 1
+0 BIOFUEL_ALD2 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_ALD2 1985/1/1/0 C xy kgC/m2/s ALD2 -        2 1
+0 BIOFUEL_PRPE $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_PRPE 1985/1/1/0 C xy kgC/m2/s PRPE -        2 1
+0 BIOFUEL_C3H8 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_C3H8 1985/1/1/0 C xy kgC/m2/s C3H8 -        2 1
+0 BIOFUEL_CH2O $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_CH2O 1985/1/1/0 C xy kg/m2/s  CH2O -        2 1
+0 BIOFUEL_C2H6 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_C2H6 1985/1/1/0 C xy kgC/m2/s C2H6 -        2 1
 )))BIOFUEL
 
 #==============================================================================
@@ -376,21 +386,21 @@ Warnings:                    {WARNINGS}
 # NOTE: RETRO lumps biofuel emissions in with the anthro emissions
 #==============================================================================
 (((RETRO
-0 RETRO_ALK4__A $ROOT/RETRO/v2014-07/orig_kgC/butanes_kgC.nc  emission_flux 2000/1-12/1/0 C xy kgC/m2/s ALK4 26    1/2 3  
-0 RETRO_ALK4__B $ROOT/RETRO/v2014-07/orig_kgC/pentanes_kgC.nc emission_flux 2000/1-12/1/0 C xy kgC/m2/s ALK4 26    1/2 3  
-0 RETRO_ALK4__C $ROOT/RETRO/v2014-07/orig_kgC/hexanes_kgC.nc  emission_flux 2000/1-12/1/0 C xy kgC/m2/s ALK4 26    1/2 3 
-0 RETRO_ACET    $ROOT/RETRO/v2014-07/orig_kgC/ketones_kgC.nc  emission_flux 2000/1-12/1/0 C xy kgC/m2/s ACET 26/51 1/2 3 
-0 RETRO_MEK     -                                             -             -             - -  -        MEK  26/50 1/2 3
-0 RETRO_ALD2    $ROOT/RETRO/v2014-07/orig_kgC/alkanals_kgC.nc emission_flux 2000/1-12/1/0 C xy kgC/m2/s ALD2 26    1/2 3 
-0 RETRO_PRPE    $ROOT/RETRO/v2014-07/orig_kgC/propene_kgC.nc  emission_flux 2000/1-12/1/0 C xy kgC/m2/s PRPE 26    1/2 3 
-0 RETRO_C3H8    $ROOT/RETRO/v2014-07/orig_kgC/propane_kgC.nc  emission_flux 2000/1-12/1/0 C xy kgC/m2/s C3H8 26    1/2 3 
-0 RETRO_CH2O    $ROOT/RETRO/v2014-07/orig_kgC/methanal.nc     emission_flux 2000/1-12/1/0 C xy kg/m2/s  CH2O 26    1/2 3 
-0 RETRO_BENZ    $ROOT/RETRO/v2014-07/orig_kgC/benzene_kgC.nc  emission_flux 2000/1-12/1/0 C xy kgC/m2/s BENZ 26    1/2 3 
-0 RETRO_TOLU    $ROOT/RETRO/v2014-07/orig_kgC/toluene_kgC.nc  emission_flux 2000/1-12/1/0 C xy kgC/m2/s TOLU 26    1/2 3 
-0 RETRO_XYLE    $ROOT/RETRO/v2014-07/orig_kgC/xylene_kgC.nc   emission_flux 2000/1-12/1/0 C xy kgC/m2/s XYLE 26    1/2 3 
-0 RETRO_C2H4    $ROOT/RETRO/v2014-07/orig_kgC/ethene_kgC.nc   emission_flux 2000/1-12/1/0 C xy kgC/m2/s C2H4 26    1/2 3 
-0 RETRO_C2H2    $ROOT/RETRO/v2014-07/orig_kgC/ethyne_kgC.nc   emission_flux 2000/1-12/1/0 C xy kgC/m2/s C2H2 26    1/2 3 
-0 RETRO_C2H6    $ROOT/RETRO/v2014-07/orig_kgC/ethane_kgC.nc   emission_flux 2000/1-12/1/0 C xy kgC/m2/s C2H6 26    1/2 3 
+0 RETRO_ALK4__A $ROOT/RETRO/v2014-07/orig_kgC/butanes_kgC.nc  emission_flux 2000/1-12/1/0 C xy kgC/m2/s ALK4 26     1/2 3  
+0 RETRO_ALK4__B $ROOT/RETRO/v2014-07/orig_kgC/pentanes_kgC.nc emission_flux 2000/1-12/1/0 C xy kgC/m2/s ALK4 26     1/2 3  
+0 RETRO_ALK4__C $ROOT/RETRO/v2014-07/orig_kgC/hexanes_kgC.nc  emission_flux 2000/1-12/1/0 C xy kgC/m2/s ALK4 26     1/2 3 
+0 RETRO_ACET    $ROOT/RETRO/v2014-07/orig_kgC/ketones_kgC.nc  emission_flux 2000/1-12/1/0 C xy kgC/m2/s ACET 26/51  1/2 3 
+0 RETRO_MEK     -                                             -             -             - -  -        MEK  26/50  1/2 3
+0 RETRO_ALD2    $ROOT/RETRO/v2014-07/orig_kgC/alkanals_kgC.nc emission_flux 2000/1-12/1/0 C xy kgC/m2/s ALD2 26     1/2 3 
+0 RETRO_PRPE    $ROOT/RETRO/v2014-07/orig_kgC/propene_kgC.nc  emission_flux 2000/1-12/1/0 C xy kgC/m2/s PRPE 26     1/2 3 
+0 RETRO_C3H8    $ROOT/RETRO/v2014-07/orig_kgC/propane_kgC.nc  emission_flux 2000/1-12/1/0 C xy kgC/m2/s C3H8 26     1/2 3 
+0 RETRO_CH2O    $ROOT/RETRO/v2014-07/orig_kgC/methanal.nc     emission_flux 2000/1-12/1/0 C xy kg/m2/s  CH2O 26     1/2 3 
+0 RETRO_BENZ    $ROOT/RETRO/v2014-07/orig_kgC/benzene_kgC.nc  emission_flux 2000/1-12/1/0 C xy kgC/m2/s BENZ 26/270 1/2 3 
+0 RETRO_TOLU    $ROOT/RETRO/v2014-07/orig_kgC/toluene_kgC.nc  emission_flux 2000/1-12/1/0 C xy kgC/m2/s TOLU 26/271 1/2 3 
+0 RETRO_XYLE    $ROOT/RETRO/v2014-07/orig_kgC/xylene_kgC.nc   emission_flux 2000/1-12/1/0 C xy kgC/m2/s XYLE 26/272 1/2 3 
+0 RETRO_C2H4    $ROOT/RETRO/v2014-07/orig_kgC/ethene_kgC.nc   emission_flux 2000/1-12/1/0 C xy kgC/m2/s C2H4 26     1/2 3 
+0 RETRO_C2H2    $ROOT/RETRO/v2014-07/orig_kgC/ethyne_kgC.nc   emission_flux 2000/1-12/1/0 C xy kgC/m2/s C2H2 26     1/2 3 
+0 RETRO_C2H6    $ROOT/RETRO/v2014-07/orig_kgC/ethane_kgC.nc   emission_flux 2000/1-12/1/0 C xy kgC/m2/s C2H6 26     1/2 3 
 )))RETRO
 
 #==============================================================================
@@ -1215,6 +1225,14 @@ Warnings:                    {WARNINGS}
 )))VOLCANO
 
 #==============================================================================
+# --- Emissions from decaying plants ---
+#==============================================================================
+(((DECAYING_PLANTS
+0 ALD2_SEN $ROOT/ALD2/v2017-03/resp.geos.2x25.nc HET_RESP 1985/1-12/1/0 C xy kgC/m2/s ALD2 85 4 1
+0 EOH_SEN  -                                     -        -             - -  -        EOH  86 4 1
+)))DECAYING_PLANTS
+
+#==============================================================================
 # --- RCP future emissions scenarios ---
 #==============================================================================
 (((RCP_3PD
@@ -1358,9 +1376,10 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- Seawater concentrations for oceanic emissions (Extension 101) ---
 #==============================================================================
-#101 CH3I_SEAWATER  $ROOT/CH3I/v2014-07/ocean_ch3i.geos.4x5.nc       CH3I       1985/1-12/1/0 C xy kg/m3 CH3I - 1 1
+#101 CH3I_SEAWATER  $ROOT/CH3I/v2014-07/ocean_ch3i.geos.4x5.nc       CH3I_OCEAN 1985/1-12/1/0 C xy kg/m3 CH3I - 1 1
 101 DMS_SEAWATER    $ROOT/DMS/v2015-07/DMS_lana.geos.1x1.nc          DMS_OCEAN  1985/1-12/1/0 C xy kg/m3 DMS  - 1 1
 101 ACET_SEAWATER   $ROOT/ACET/v2014-07/ACET_seawater.generic.1x1.nc ACET       2005/1/1/0    C xy kg/m3 ACET - 1 1 
+101 ALD2_SEAWATER   $ROOT/ALD2/v2017-03/ALD2_seawater.geos.2x25.nc   ALD2       1985/1-12/1/0 C xy kg/m3 ALD2 - 1 1
 
 #==============================================================================
 # --- LIGHTNOX emissions (Extension 103) ---
@@ -2010,6 +2029,20 @@ Warnings:                    {WARNINGS}
 83 BF_COtoNAP 3.00e-4 - - - xy unitless 1
 
 #==============================================================================
+# --- BIOGENIC EMISSIONS FROM DRY LEAF MATTER ---
+#
+# Use yield of 40ug/dDW.
+# Assume organic matter has molecular formula CH2O (MW 30.03), which
+#  means 0.4 gC / g plant
+# ALD2 MW = 44.05 g/mole ==> 0.55 gC/g ALD2
+#  Therefore 40ug (ALD2) / g (plant) ==> 55 ug C in ALD2 / gC plant
+# EOH MW = 46 g/mole ==> 0.52 gC/g EOH
+#  Therefore 40ug (EOH)  / g (plant) ==> 52 ug C in EOH  / gC plant
+#==============================================================================
+85 YIELD_RESP_ALD2 55.0e-6 - - - xy unitless 1
+86 YIELD_RESP_EOH  52.0e-6 - - - xy unitless 1
+
+#==============================================================================
 # --- Biofuel conversion factors ---
 #==============================================================================
 90 BF_COtoHAC   8.75e-3 - - - xy unitless 1
@@ -2022,6 +2055,7 @@ Warnings:                    {WARNINGS}
 97 BF_COtoC2H4  1.35e-2 - - - xy unitless 1
 98 BF_COtoC2H2  1.63e-2 - - - xy unitless 1
 99 BF_COtoGLYC  7.84e-3 - - - xy unitless 1
+89 BF_COtoEOH   8.70e-5 - - - xy unitless 1
 
 #==============================================================================
 # --- AEIC aircraft emissions ---
@@ -2106,6 +2140,18 @@ Warnings:                    {WARNINGS}
 266 NEI11_BC2BCPO     0.8                                           - -               - xy 1 1
 267 NEI11_OC2OCPI     0.5                                           - -               - xy 1 1
 268 NEI11_OC2OCPO     0.5                                           - -               - xy 1 1
+
+#==============================================================================
+# --- Aromatics scale factors ---
+#
+# Increase aromatics over China to be more in line with measurements
+# for Chinese cities (E. Fischer)
+# Refs: Barletta et al. (2005), Atmos Environ, 39, 5979-5990
+#       Liu et al. (2010), Environ Sci Technol, 44, 7017-7022.
+#==============================================================================
+270 BENZ_CH_SCAL 1.25 - - - xy 1 1 1003
+271 TOLU_CH_SCAL 4.00 - - - xy 1 1 1003
+272 XYLE_CH_SCAL 8.00 - - - xy 1 1 1003
 
 ### END SECTION SCALE FACTORS ###
 

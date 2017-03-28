@@ -138,7 +138,7 @@ Warnings:                    {WARNINGS}
     --> CO2 conc (ppmv)      :       390.0
 109     MEGAN_Mono           : on    CO/OCPI/MONX
 110     MEGAN_SOA            : off   MTPA/MTPO/LIMO/SESQ
-111     GFED                 : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/NAP
+111     GFED                 : on    NO/CO/PAN/ALK4/HNO3/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/MTPA/BENZ/TOLU/XYLE/NAP/EOH
     --> GFED3                :       false 
     --> GFED4                :       true
     --> GFED_daily           :       false
