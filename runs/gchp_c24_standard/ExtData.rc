@@ -378,6 +378,7 @@ RETRO_C2H6 kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./M
 # Need DC0360xPC0181_CFnnnnx6C.bin
 # Single entry
 XIAO_C2H6 kg_m2_s-1 xy C N Y F- none none C2H6 ./MainDataDir/XIAO/v2014-09/C3H8_C2H6_ngas.geos.1x1.nc
+XIAO_C3H8 kg_m2_s-1 xy C N Y F- none none C2H6 ./MainDataDir/XIAO/v2014-09/C3H8_C2H6_ngas.geos.1x1.nc
 #
 # Files have annual data for 2002-2008 except for NH3, where we have one year of monthly data
 CAC_NO    kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00  none none NO   ./MainDataDir/CAC/v2016-09/CAC.geos.0.1x0.1.nc
