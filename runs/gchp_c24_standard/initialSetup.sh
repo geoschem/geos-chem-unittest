@@ -44,7 +44,7 @@ fi
 ln -s ${codePath} CodeDir
 
 # Define the restart filename stored on gcgrid
-RestartsFile="initial_GEOSChem_rst.c24_gchp.nc"
+RestartsFile="initial_GEOSChem_rst.c24_standard.nc"
 
 # Define tile file needed to regrid Olson landmap and MODIS LAI to c24 (~4x5)
 tileFile=DE1440xPE0720_CF0024x6C.bin
