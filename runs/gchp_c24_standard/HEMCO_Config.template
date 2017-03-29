@@ -125,7 +125,7 @@ Warnings:                    {WARNINGS}
 100     Custom            : off   - 
 101     SeaFlux           : on    DMS/ACET
 102     ParaNOx           : on    NO/NO2/O3/HNO3
-    --> LUT data format   :       nc
+    --> LUT data format   :       txt
     --> LUT source dir    :       $ROOT/PARANOX/v2015-02
 103     LightNOx          : on    NO
     --> OTD-LIS scaling   :       0.3281
