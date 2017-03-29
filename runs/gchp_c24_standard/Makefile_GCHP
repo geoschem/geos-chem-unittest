@@ -56,7 +56,7 @@ RUN_DIR :=$(shell pwd)
 
 # Log files that will be written to the log directory
 BUILD_LOG  :="$(RUN_DIR)/compile.log"
-MAPL_LOG   :="$(RUN_DIR)/MAPL.log"
+GCHP_LOG   :="$(RUN_DIR)/GCHP.log"
 LAST_BUILD :="$(RUN_DIR)/last_build_code_info.log"
 
 # Executables
@@ -101,8 +101,8 @@ compile_mapl:
 #%%%%%%%%%%%%%%%%%%%%%%%
 
 run_interactive:
-	if [[ $(MPI) == openmpi ]]; then mpirun -n $(NUM_THREADS) ./$(EXE) 2>&1 | tee $(MAPL_LOG); fi;
-	if [[ $(MPI) == mvapich2 ]]; then srun -n $(NUM_THREADS) --mpi=pmi2 ./$(EXE) 2>&1 | tee $(MAPL_LOG); fi;
+	if [[ $(MPI) == openmpi ]]; then mpirun -n $(NUM_THREADS) ./$(EXE) 2>&1 | tee $(GCHP_LOG); fi;
+	if [[ $(MPI) == mvapich2 ]]; then srun -n $(NUM_THREADS) --mpi=pmi2 ./$(EXE) 2>&1 | tee $(GCHP_LOG); fi;
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Clean up, Build, and Run Interactively  %
@@ -150,7 +150,7 @@ cleanup_logs:
 	rm -f HEMCO.log
 	rm -f PET00000.GEOSCHEMchem.log
 	rm -f logfile.000000.out
-	rm -f MAPL.log
+	rm -f GCHP.log
 	rm -f smv2.log
 	rm -f slurm-*
 	rm -f 1
