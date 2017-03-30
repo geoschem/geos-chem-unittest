@@ -586,7 +586,11 @@ sub doCopyDirs($$) {
 	  if ( length( $nest ) > 0 ) {
 	    $rstFile = "$rstRoot$grid\_$sim\_$nest.nc";
 	  } else {
-	    $rstFile = "$rstRoot$notDir.nc";
+	    if ( ( $sim =~ m/RRTMG/ ) ) {
+	      $rstFile = "$rstRoot$grid\_tropchem.nc";
+	    } else {
+	      $rstFile = "$rstRoot$notDir.nc";
+	    }
 	  }
 	  if ( !( -f $rstFile ) ){
 	    print "\nWARNING: File $rstFile does not exist, so a sample restart file will not be included in your run directory. Sample restart files can be found in the SPC_RESTARTS directory or you can use your own restart file.\n\n";

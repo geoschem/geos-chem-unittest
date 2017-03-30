@@ -674,7 +674,11 @@ sub doUnitTest($$) {
 	  if ( length( $nest ) > 0 ) {
 	    $rstFile = "$rstRoot$grid\_$sim\_$nest.nc";
 	  } else {
-	    $rstFile = "$rstRoot$notDir.nc";
+	    if ( ( $sim =~ m/RRTMG/ ) ) {
+	      $rstFile = "$rstRoot$grid\_tropchem.nc";
+	    } else {
+	      $rstFile = "$rstRoot$notDir.nc";
+	    }
 	  }
 	  if ( !( -f $rstFile ) ){
 	    print "\nFile $rstFile does not exist!\n";
