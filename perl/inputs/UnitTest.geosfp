@@ -119,6 +119,7 @@
   geosfp   2x25        -      marinePOA    2013070100   201307010020   -
   geosfp   2x25        -      UCX          2013070100   201307010020   -
   geosfp   2x25        -      RRTMG        2013070100   201307010040   -
+  geosfp   025x03125   na     CH4          2013070100   201307010010   -
   geosfp   025x03125   ch     tropchem     2013070100   201307010010   -
   geosfp   025x03125   na     tropchem     2013070100   201307010010   -
 !END OF RUNS:
