@@ -22,6 +22,8 @@ DYNAMICS_DT: 600
 SOLARAvrg: 0
 IRRADAvrg: 0
 
+GIGCchem_REFERENCE_TIME: 121000
+
 # Print Resource Parameters (0: Non-Default values, 1: ALL values)
 #-----------------------------------------------------------------
 PRINTRC: 0
