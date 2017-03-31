@@ -255,9 +255,9 @@ Warnings:                    {WARNINGS}
 121 CH4_GWET_YR  $ROOT/CH4/v2014-09/025x03125/GWETTOP.annual.geosfp.025x03125_NA.nc  GWETTOP   2004-2011/1/1/0    C xy 1        *   - 1 1
 121 CH4_GWET_MT  $ROOT/CH4/v2014-09/025x03125/GWETTOP.monthly.geosfp.025x03125_NA.nc GWETTOP   2004-2011/1-12/1/0 C xy 1        *   - 1 1
 121 CH4_MEAN_T   $ROOT/CH4/v2014-09/025x03125/TSKIN.annual.geosfp.025x03125_NA.nc    TSKIN     2004-2011/1/1/0    C xy 1        *   - 1 1
-121 CH4_WETFRAC  $ROOT/CH4/v2014-09/025x03125/Wetfrac.025x03125.nc                   WETFRAC   2000/1/1/0         C xy 1        *   - 1 1
-121 CH4_LITTER_C $ROOT/CH4/v2014-09/025x03125/Carbon_litter.025x03125.nc             CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
-121 CH4_SOIL_C   $ROOT/CH4/v2014-09/025x03125/Carbon_soil.025x03125.nc               CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
+121 CH4_WETFRAC  $ROOT/CH4/v2014-09/025x03125/Wetfrac.025x03125_NA.nc                WETFRAC   2000/1/1/0         C xy 1        *   - 1 1
+121 CH4_LITTER_C $ROOT/CH4/v2014-09/025x03125/Carbon_litter.025x03125_NA.nc          CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
+121 CH4_SOIL_C   $ROOT/CH4/v2014-09/025x03125/Carbon_soil.025x03125_NA.nc            CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
 
 ###############################################################################
 ### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
