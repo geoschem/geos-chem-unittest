@@ -21,7 +21,7 @@ Global offsets I0, J0   : 160 399
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 68
+Number of Advected Spec.: 70
 Species Entries ------->: Name
 Species #1              : NO
 Species #2              : O3
@@ -60,37 +60,39 @@ Species #34             : BCPI
 Species #35             : OCPI
 Species #36             : BCPO
 Species #37             : OCPO
-Species #38             : DST1
-Species #39             : DST2
-Species #40             : DST3
-Species #41             : DST4
-Species #42             : SALA
-Species #43             : SALC
-Species #44             : Br2
-Species #45             : Br
-Species #46             : BrO
-Species #47             : HOBr
-Species #48             : HBr
-Species #49             : BrNO2
-Species #50             : BrNO3
-Species #51             : CHBr3
-Species #52             : CH2Br2
-Species #53             : CH3Br
-Species #54             : MPN
-Species #55             : ISOPND
-Species #56             : ISOPNB
-Species #57             : MOBA
-Species #58             : PROPNN
-Species #59             : HAC
-Species #60             : GLYC
-Species #61             : MVKN
-Species #62             : MACRN
-Species #63             : RIP
-Species #64             : IEPOX
-Species #65             : MAP
-Species #66             : NO2
-Species #67             : NO3
-Species #68             : HNO2
+Species #40             : SOAP
+Species #41             : SOAS
+Species #40             : DST1
+Species #41             : DST2
+Species #42             : DST3
+Species #43             : DST4
+Species #44             : SALA
+Species #45             : SALC
+Species #46             : Br2
+Species #47             : Br
+Species #48             : BrO
+Species #49             : HOBr
+Species #50             : HBr
+Species #51             : BrNO2
+Species #52             : BrNO3
+Species #53             : CHBr3
+Species #54             : CH2Br2
+Species #55             : CH3Br
+Species #56             : MPN
+Species #57             : ISOPND
+Species #58             : ISOPNB
+Species #59             : MOBA
+Species #60             : PROPNN
+Species #61             : HAC
+Species #62             : GLYC
+Species #63             : MVKN
+Species #64             : MACRN
+Species #65             : RIP
+Species #66             : IEPOX
+Species #67             : MAP
+Species #68             : NO2
+Species #69             : NO3
+Species #70             : HNO2
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
