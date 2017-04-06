@@ -2124,34 +2124,34 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- NEI 2005 scale factors ---
 #==============================================================================
-201 VISTAS_SEASON     $ROOT/NEI2005/v2014-09/scaling/Vistas_season.geos.1x1.nc       NOratio      2002/1-12/1/0 C  xy unitless 1
-202 ARP_SEASON        $ROOT/NEI2005/v2014-09/scaling/ARP_season.geos.1x1.nc          NOxrat  1999-2007/1-12/1/0 C  xy unitless 1
-210 NEI99_DOW_NOX     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           NOX          1999/1-12/WD/0 C xy unitless 1
-211 NEI99_DOW_CO      $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           CO           1999/1-12/WD/0 C xy unitless 1
-212 NEI99_DOW_ALK4    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           ALK4         1999/1-12/WD/0 C xy unitless 1
-213 NEI99_DOW_ACET    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           ACET         1999/1-12/WD/0 C xy unitless 1
-214 NEI99_DOW_MEK     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           MEK          1999/1-12/WD/0 C xy unitless 1
-215 NEI99_DOW_PRPE    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           PRPE         1999/1-12/WD/0 C xy unitless 1
-216 NEI99_DOW_C3H8    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           C3H8         1999/1-12/WD/0 C xy unitless 1
-217 NEI99_DOW_C2H6    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           C2H6         1999/1-12/WD/0 C xy unitless 1
-218 NEI99_DOW_SO2     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           SO2          1999/1-12/WD/0 C xy unitless 1
-219 NEI99_DOW_SO4     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           SO4          1999/1-12/WD/0 C xy unitless 1
-220 NEI99_DOW_MSA     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           MSA          1999/1-12/WD/0 C xy unitless 1
-221 NEI99_DOW_BCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           BCPI         1999/1-12/WD/0 C xy unitless 1
-222 NEI99_DOW_OCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           OCPI         1999/1-12/WD/0 C xy unitless 1
-230 NEI99_SEASON_CO   $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        CO           1999/1-12/1/0 C  xy unitless 1
-231 NEI99_SEASON_ALK4 $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        ALK4         1999/1-12/1/0 C  xy unitless 1
-232 NEI99_SEASON_ACET $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        ACET         1999/1-12/1/0 C  xy unitless 1
-233 NEI99_SEASON_MEK  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        MEK          1999/1-12/1/0 C  xy unitless 1
-234 NEI99_SEASON_PRPE $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        PRPE         1999/1-12/1/0 C  xy unitless 1
-235 NEI99_SEASON_C3H8 $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        C3H8         1999/1-12/1/0 C  xy unitless 1
-236 NEI99_SEASON_C2H6 $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        C2H6         1999/1-12/1/0 C  xy unitless 1
-237 NEI99_SEASON_SO2  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        SO2          1999/1-12/1/0 C  xy unitless 1
-238 NEI99_SEASON_SO4  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        SO4          1999/1-12/1/0 C  xy unitless 1
-239 NEI99_SEASON_MSA  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        MSA          1999/1-12/1/0 C  xy unitless 1
-240 NEI99_SEASON_BCPI $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        BCPI         1999/1-12/1/0 C  xy unitless 1
-241 NEI99_SEASON_OCPI $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        OCPI         1999/1-12/1/0 C  xy unitless 1
-242 NEI99_SEASON_NH3  0.216/0.418/0.622/0.815/0.982/0.974/1.0/0.9/0.96/0.6/0.28/0.236 -            -             - xy unitless 1
+201 VISTAS_SEASON     $ROOT/NEI2005/v2014-09/scaling/Vistas_season.geos.1x1.nc       NOratio      2002/1-12/1/0 C  xy 1 1
+202 ARP_SEASON        $ROOT/NEI2005/v2014-09/scaling/ARP_season.geos.1x1.nc          NOxrat  1999-2007/1-12/1/0 C  xy 1 1
+210 NEI99_DOW_NOX     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           NOX          1999/1-12/WD/0 C xy 1 1
+211 NEI99_DOW_CO      $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           CO           1999/1-12/WD/0 C xy 1 1
+212 NEI99_DOW_ALK4    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           ALK4         1999/1-12/WD/0 C xy 1 1
+213 NEI99_DOW_ACET    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           ACET         1999/1-12/WD/0 C xy 1 1
+214 NEI99_DOW_MEK     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           MEK          1999/1-12/WD/0 C xy 1 1
+215 NEI99_DOW_PRPE    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           PRPE         1999/1-12/WD/0 C xy 1 1
+216 NEI99_DOW_C3H8    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           C3H8         1999/1-12/WD/0 C xy 1 1
+217 NEI99_DOW_C2H6    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           C2H6         1999/1-12/WD/0 C xy 1 1
+218 NEI99_DOW_SO2     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           SO2          1999/1-12/WD/0 C xy 1 1
+219 NEI99_DOW_SO4     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           SO4          1999/1-12/WD/0 C xy 1 1
+220 NEI99_DOW_MSA     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           MSA          1999/1-12/WD/0 C xy 1 1
+221 NEI99_DOW_BCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           BCPI         1999/1-12/WD/0 C xy 1 1
+222 NEI99_DOW_OCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           OCPI         1999/1-12/WD/0 C xy 1 1
+230 NEI99_SEASON_CO   $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        CO           1999/1-12/1/0 C  xy 1 1
+231 NEI99_SEASON_ALK4 $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        ALK4         1999/1-12/1/0 C  xy 1 1
+232 NEI99_SEASON_ACET $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        ACET         1999/1-12/1/0 C  xy 1 1
+233 NEI99_SEASON_MEK  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        MEK          1999/1-12/1/0 C  xy 1 1
+234 NEI99_SEASON_PRPE $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        PRPE         1999/1-12/1/0 C  xy 1 1
+235 NEI99_SEASON_C3H8 $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        C3H8         1999/1-12/1/0 C  xy 1 1
+236 NEI99_SEASON_C2H6 $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        C2H6         1999/1-12/1/0 C  xy 1 1
+237 NEI99_SEASON_SO2  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        SO2          1999/1-12/1/0 C  xy 1 1
+238 NEI99_SEASON_SO4  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        SO4          1999/1-12/1/0 C  xy 1 1
+239 NEI99_SEASON_MSA  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        MSA          1999/1-12/1/0 C  xy 1 1
+240 NEI99_SEASON_BCPI $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        BCPI         1999/1-12/1/0 C  xy 1 1
+241 NEI99_SEASON_OCPI $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        OCPI         1999/1-12/1/0 C  xy 1 1
+242 NEI99_SEASON_NH3  0.216/0.418/0.622/0.815/0.982/0.974/1.0/0.9/0.96/0.6/0.28/0.236 -            -             - xy 1 1
 
 #==============================================================================
 # --- NEI 20011 scale factors ---
