@@ -327,6 +327,10 @@ else
 
 endif
 
+# Error check, make sure to strip out " characters from commit string
+# or else GNU Make will think that the string is ending prematurely.
+LAST_COMMIT :=$(shell echo '$(LAST_COMMIT)' | sed 's|"||g')
+
 # Get compiler version
 COMPILER_VERSION_LONG :=$(shell $(FC) --version))
 COMPILER_VERSION_LONG :=$(sort $(COMPILER_VERSION_LONG))
