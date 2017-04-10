@@ -128,13 +128,13 @@ Warnings:                    {WARNINGS}
     --> LUT data format   :       txt
     --> LUT source dir    :       $ROOT/PARANOX/v2015-02
 103     LightNOx          : on    NO
-    --> OTD-LIS scaling   :       0.3281
+    --> OTD-LIS scaling   :       0.319577705439131
     --> OTD-LIS factors   :       false
     --> CDF table         :       $ROOT/LIGHTNOX/v2014-07/light_dist.ott2010.dat
 104     SoilNOx           : on    NO 
     --> Use fertilizer NOx:       true
 105     DustDead          : on    DST1/DST2/DST3/DST4 
-    --> Mass tuning factor:       0.00083286
+    --> Mass tuning factor:       0.000768752630594
 106     DustGinoux        : off   DST1/DST2/DST3/DST4
 115     DustAlk           : off   DSTAL1/DSTAL2/DSTAL3/DSTAL4
 107     SeaSalt           : on    SALA/SALC/Br2
