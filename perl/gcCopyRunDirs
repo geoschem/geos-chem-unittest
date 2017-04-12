@@ -244,6 +244,7 @@ sub doCopyDirs($$) {
 #  18 Dec 2015 - R. Yantosca - Replace ~ in $COPY_PATH with home directory
 #  13 Jul 2016 - M. Sulprizio- Update copyDir to always use $met\_$grid\_$sim
 #  23 Aug 2016 - R. Yantosca - Bug fix: Replace {HOME} in $HEMCO_ROOT
+#  12 Apr 2017 - R. Yantosca - Now replace {VERSION} in $COPY_PATH variable
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -327,6 +328,7 @@ sub doCopyDirs($$) {
       $UT_ROOT    =~ s/{HOME}/$home/g;
       $COPY_PATH  =~ s/{HOME}/$home/g;
       $COPY_PATH  =~ s/\~/$home/g;
+      $COPY_PATH  =~ s/{VERSION}/$VERSION/g;
       $RUN_ROOT   =~ s/{HOME}/$home/g;
       $RUN_ROOT   =~ s/{UTROOT}/$UT_ROOT/g;
       $JOB_DIR    =~ s/{HOME}/$home/g;

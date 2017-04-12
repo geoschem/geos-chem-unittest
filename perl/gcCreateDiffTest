@@ -291,6 +291,7 @@ sub doCopyDirs($$) {
 #  18 Dec 2015 - R. Yantosca - Replace ~ in $COPY_PATH with home directory
 #  23 Aug 2016 - R. Yantosca - Bug fix: Replace {HOME} in $HEMCO_ROOT
 #  13 Sep 2016 - M. Sulprizio- Replace text in new PlotDiff.input file
+#  12 Apr 2017 - R. Yantosca - Now replace {VERSION} in $COPY_PATH variable
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -385,6 +386,7 @@ sub doCopyDirs($$) {
       $UT_ROOT    =~ s/{HOME}/$home/g;
       $COPY_PATH  =~ s/{HOME}/$home/g;
       $COPY_PATH  =~ s/\~/$home/g;
+      $COPY_PATH  =~ s/{VERSION}/$VERSION/g;
       $CODE_REF   =~ s/{HOME}/$home/g;
       $CODE_DEV   =~ s/{HOME}/$home/g;
       $RUN_ROOT   =~ s/{HOME}/$home/g;
