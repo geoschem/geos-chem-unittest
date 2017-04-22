@@ -88,7 +88,7 @@ Warnings:                    {WARNINGS}
 ###############################################################################
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
-    --> HEMCO_RESTART     :       true
+    --> HEMCO_RESTART     :       false
     --> AEIC              :       true
     --> BIOFUEL           :       true
     --> BOND              :       true
