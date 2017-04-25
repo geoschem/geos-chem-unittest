@@ -37,6 +37,12 @@ fi
 #==============================================================================
 # Modules and paths
 #==============================================================================
+
+# Echo info if it's an interactive session
+if [[ $- = *i* ]] ; then
+  echo "Loading modules for GCHP on Glooscap, please wait ..."
+fi
+
 module purge
 module load intel/13.0.0.079 openmpi/intel/1.8.1 netcdf/intel/4.1.3  
 module load git
@@ -47,14 +53,14 @@ module list
 export ESMF_COMM=openmpi
 export MPI_ROOT=$( dirname $( dirname $( which mpirun ) ) )
 
+#==============================================================================
+# Environment variables
+#==============================================================================
+
 # NetCDF library paths for GEOS-Chem
 export GC_BIN="$NETCDF/bin"
 export GC_LIB="$NETCDF/lib"
 export GC_INCLUDE="$NETCDF/include"
-
-#==============================================================================
-# %%%%% Settings for programming languages and applications %%%%%
-#==============================================================================
 
 # Settings for compilers
 export FC=ifort              # Fortran compiler
@@ -65,7 +71,14 @@ export OMPI_FC=$FC           # Tells OpenMPI which Fortran compiler to use
 export OMPI_CC=$CC           # Tells OpenMPI which C compiler to use
 export OMPI_CXX=$CXX         # Tells OpenMPI which C++ compiler to use
 
-# Max out the stack memory for OpenMP
+# Max out the stack memory
 # OMP_STACKSIZE works with all compilers; KMP_STACKSIZE works only w/ Intel
 export OMP_STACKSIZE=500m
  
+# Name of this bashrc file
+export BASHRC=GCHP.ifort13_openmpi_glooscap.bashrc
+
+# Echo info if it's an interactive session
+if [[ $- = *i* ]] ; then
+  echo "Done sourcing $BASHRC"
+fi

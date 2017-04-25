@@ -22,6 +22,15 @@
 #------------------------------------------------------------------------------
 #BOC
 
+#==============================================================================
+# Modules and paths
+#==============================================================================
+
+# Echo info if it's an interactive session
+if [[ $- = *i* ]] ; then
+  echo "Loading modules for GCHP on Odyssey, please wait ..."
+fi
+
 # These modules were defined with the older "module" command but are in the
 # process of being renamed during the transition to "lmod".  We still need
 # these for the GIGC/ESMF/MPI environment, so load them by their old names.
@@ -36,6 +45,11 @@ module load hdf5/1.8.12-fasrc12
 module load netcdf/4.1.3-fasrc09
 #module load totalview
 
+# Display loaded modules if it's an interactive session
+if [[ $- = *i* ]] ; then
+  module list
+fi
+
 export ESMF_COMM=mvapich2
 export MPI_ROOT=$( dirname $( dirname $( which mpirun ) ) )
 
@@ -49,15 +63,12 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_HOME}/lib
 # Environment variables
 #==============================================================================
 
-# Directory paths
+# NetCDF library paths for GEOS-Chem
 export GC_BIN="$NETCDF_HOME/bin"
 export GC_INCLUDE="$NETCDF_HOME/include"
 export GC_LIB="$NETCDF_HOME/lib"
 
-# Add NetCDF to path (again?)
-#export PATH=$PATH:${NETCDF_HOME}/bin
-
-# Compiler environnment settings
+# Settings for compilers
 export FC=ifort                                # Fortran compiler
 export COMPILER=$FC                            # Tell GC which compiler to use
 export F90=$FC                                 # F90 compiler
@@ -68,8 +79,11 @@ export OMPI_FC=$FC                             # Fortran compiler for MPI
 export OMPI_CC=$CC                             # C compiler for MPI
 export OMPI_CXX=$CXX                           # C++ compiler for MPI
 export OMP_NUM_THREADS=$SLURM_NTASKS           # Default # of threads
-# Had to increase this - global 0.25x0.3125 is quite demanding
+
+# Max out the stack memory
+# OMP_STACKSIZE works with all compilers; KMP_STACKSIZE works only w/ Intel
 #export KMP_STACKSIZE=5000000000000000000                 # Kludge for OpenMP
+# Had to increase this - global 0.25x0.3125 is quite demanding
 # Actual maximum
 #export KMP_STACKSIZE=9223372036854775807
 #export KMP_STACKSIZE=9000000000000000000
@@ -80,3 +94,11 @@ export KMP_STACKSIZE=30g
 ulimit -v unlimited              # vmemoryuse
 ulimit -l unlimited              # memorylocked
 ulimit -u unlimited              # maxproc
+
+# Name of this bashrc file
+export BASHRC=GCHP.ifort15_mvapich2_odyssey.bashrc
+
+# Echo info if it's an interactive session
+if [[ $- = *i* ]] ; then
+  echo "Done sourcing $BASHRC"
+fi
