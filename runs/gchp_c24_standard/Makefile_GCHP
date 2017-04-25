@@ -32,9 +32,9 @@ SHELL        :=/bin/bash
 # NOTE: the MPI implementation must match bashrc defined above and in
 # build.sh, and source code if compiling. See remarks section at top of bashrc
 # file for instructions of setting MPI implementation in the source code.
-MPI=openmpi
+MPI=mvapich2
 
-# Number of CPUs for interactive run (make configurable in future!)
+# Number of CPUs for interactive run
 NUM_THREADS=6
 
 ###############################################################################
@@ -245,7 +245,7 @@ help:
 	@echo '  clean_nuclear    Clean everything using build.sh'
 	@echo '  superclean       Remove exe, logs, output, and clean ALL code'
 	@echo ' '
-	@echo 'To compile:'
+	@echo 'To compile (appropriate clean included):'
 	@echo '  compile_clean     Include everything'
 	@echo '  compile_standard  Skip MAPL, FvDyCore, and ESMF; debug off'
 	@echo '  compile_debug     Skip MAPL, FvDyCore, and ESMF; debug on'
