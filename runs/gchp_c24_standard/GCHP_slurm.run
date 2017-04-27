@@ -3,8 +3,8 @@
 #SBATCH -n 6
 #SBATCH -N 1
 #SBATCH -t 0-12:00
-#SBATCH -p jacob
-#SBATCH --mem-per-cpu=4500
+#SBATCH -p regal
+#SBATCH --mem-per-cpu=6000
 #SBATCH --mail-type=ALL
 
 #------------------------------------------------------------------------------
@@ -37,9 +37,6 @@ BASHRC=GCHP.ifort15_mvapich2_odyssey.bashrc
 echo "WARNING: You are using environment settings in $BASHRC"
 source $BASHRC
 
-# GCHP uses MPI instead of OpenMP for all parallelization
-export OMP_NUM_THREADS=1
-
 #-------------------------------------------------
 # Initialize
 #-------------------------------------------------
@@ -52,8 +49,10 @@ log="GCHP.log"
 #-------------------------------------------------
 # Start the simulation
 #-------------------------------------------------
-# Run GCHP. Make sure the # of cpus match those above!!
-time srun -n 6 --mpi=pmi2 ./geos >> $log
+# Run GCHP
+# SLURM_NTASKS is set to #SBATCH -n and
+# SLURM_NNODES is set to #SBATCH -N above
+time srun -n $SLURM_NTASKS -N $SLURM_NNODES --mpi=pmi2 ./geos >> $log
 
 # Echo end fin
 echo '===> Run ended at' `date` >> $log
@@ -61,19 +60,13 @@ echo '===> Run ended at' `date` >> $log
 #-------------------------------------------------
 # Clean up
 #-------------------------------------------------
-## Echo info from computational cores to log file for displaying results
-nodeName=`uname -n`
-# This does not work out so well on MPI (!)
-#echo "# of CPUs: $SLURM_NTASKS"
-#echo "NodeName : $nodeName"
-#grep "vendor_id"  /proc/cpuinfo
-#grep "model name" /proc/cpuinfo
-#grep "cpu MHz"    /proc/cpuinfo
+# Echo info from computational cores to log file for displaying results
+echo "# of CPUs : $SLURM_NTASKS"
+echo "# of nodes: $SLURM_NNODES"
 
 # Clear variable
 unset id
 unset log
-unset nodename
 
 # Exit normally
 exit 0
