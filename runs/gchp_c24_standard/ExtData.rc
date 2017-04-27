@@ -1,15 +1,14 @@
 #
 PrimaryExports%%
-# ---------|--------------|-----|-----|------|----------------------|--------|-------|---------------------------------   
-#  Export  |              |     | V   |      |_______ Refresh ______|____ Factors ___|________ External File __________
-#  Name    |    Units     | Dim | Loc | Clim |     Time Template    | Offset | Scale | Variable |      Template
-# ---------|--------------|-----|-----|------|----------------------|--------|-------|----------|----------------------   
-#
-#                                            --- constant fields ---
-# Name   Units     Dim V C R Timing    Variable   File
-#
+#--------|-------|-----|-----|------|------------|---------------|--------|-------|---------------------|
+# Export |       |     | V   |      |            |___ Refresh ___|____ Factors ___|___ External File ___|
+# Name   | Units | Dim | Loc | Clim |Conservative| Time Template | Offset | Scale | Variable | Template |
+#--------|-------|-----|-----|------|------------|---------------|--------|-------|----------|----------|
+# 
 
+#------------------------
 # Met data
+#------------------------
 ALBD     '1'       xy  C N Y F0;003000 none none ALBEDO     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
 CLDFRC   '1'       xy  C N Y F0;003000 none none CLDTOT     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
 EFLUX    '1'       xy  C N Y F0;003000 none none EFLUX      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.2x25.nc
@@ -81,16 +80,16 @@ PFILSAN  '1'       xyz E N Y F0;013000 none none PFILSAN    ./MetDir/%y4/%m2/GEO
 PFLCU    '1'       xyz E N Y F0;013000 none none PFLCU      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.2x25.nc
 PFLLSAN  '1'       xyz E N Y F0;013000 none none PFLLSAN    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.2x25.nc
 
-#-------------
+#------------------------
 # 2D variables at edge
-#-------------
+#------------------------
 PS1      'hPa'     xy  E N Y 0        none none PS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.2x25.nc
 PS2      'hPa'     xy  E N Y 0;001000 none none PS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.2x25.nc
 #
 
-# ----------------
+#------------------------
 # DRYDEP LAND TYPES
-# ----------------
+#------------------------
 #
 VEGFRAC_1 1 xy C N N - none none VEGFRAC_1 /dev/null
 VEGFRAC_2 1 xy C N N - none none VEGFRAC_2 /dev/null
@@ -101,7 +100,9 @@ VEGFRAC_6 1 xy C N N - none none VEGFRAC_6 /dev/null
 VEGFRAC_7 1 xy C N N - none none VEGFRAC_7 /dev/null
 VEGFRAC_8 1 xy C N N - none none VEGFRAC_8 /dev/null
 
+#-------------------------------------------------------------------
 # Olson land types - conservative frac regridding of OLSON as float
+#-------------------------------------------------------------------
 OLSON00 1 xy C N F;0  - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
 OLSON01 1 xy C N F;1  - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
 OLSON02 1 xy C N F;2  - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
@@ -176,7 +177,9 @@ OLSON70 1 xy C N F;70 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olso
 OLSON71 1 xy C N F;71 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
 OLSON72 1 xy C N F;72 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
 
+#---------------------------------------------------------------------------------------------
 # MODIS Leaf Area Index - values for one land type per variable. Data is available 2005-2008.
+#---------------------------------------------------------------------------------------------
 XLAI00 1 xy C N Y - none none XLAI00 ./ChemDataDir/MODIS_LAI_201204/For_Olson_2001/XLAI_for_GCHP/2008/MODIS_XLAI.025x025.%y4%m2.nc
 XLAI01 1 xy C N Y - none none XLAI01 ./ChemDataDir/MODIS_LAI_201204/For_Olson_2001/XLAI_for_GCHP/2008/MODIS_XLAI.025x025.%y4%m2.nc
 XLAI02 1 xy C N Y - none none XLAI02 ./ChemDataDir/MODIS_LAI_201204/For_Olson_2001/XLAI_for_GCHP/2008/MODIS_XLAI.025x025.%y4%m2.nc
@@ -251,7 +254,9 @@ XLAI70 1 xy C N Y - none none XLAI70 ./ChemDataDir/MODIS_LAI_201204/For_Olson_20
 XLAI71 1 xy C N Y - none none XLAI71 ./ChemDataDir/MODIS_LAI_201204/For_Olson_2001/XLAI_for_GCHP/2008/MODIS_XLAI.025x025.%y4%m2.nc
 XLAI72 1 xy C N Y - none none XLAI72 ./ChemDataDir/MODIS_LAI_201204/For_Olson_2001/XLAI_for_GCHP/2008/MODIS_XLAI.025x025.%y4%m2.nc
 
-## MODIS Chlorophyll-a - values for one land type per variable. Data is available 2005-2013.
+#---------------------------------------------------------------------------------------------
+# MODIS Chlorophyll-a - values for one land type per variable. Data is available 2005-2013.
+#---------------------------------------------------------------------------------------------
 #XCHLR00 1 xy C N Y - none none XCHLR00 ./ChemDataDir/MODIS_LAI_201204/For_Olson_2001/XCHLR_for_GCHP/2013/MODIS_XCHLR.025x025.%y4%m2.nc
 #XCHLR01 1 xy C N Y - none none XCHLR01 ./ChemDataDir/MODIS_LAI_201204/For_Olson_2001/XCHLR_for_GCHP/2013/MODIS_XCHLR.025x025.%y4%m2.nc
 #XCHLR02 1 xy C N Y - none none XCHLR02 ./ChemDataDir/MODIS_LAI_201204/For_Olson_2001/XCHLR_for_GCHP/2013/MODIS_XCHLR.025x025.%y4%m2.nc
@@ -326,10 +331,9 @@ XLAI72 1 xy C N Y - none none XLAI72 ./ChemDataDir/MODIS_LAI_201204/For_Olson_20
 #XCHLR71 1 xy C N Y - none none XCHLR71 ./ChemDataDir/MODIS_LAI_201204/For_Olson_2001/XCHLR_for_GCHP/2013/MODIS_XCHLR.025x025.%y4%m2.nc
 #XCHLR72 1 xy C N Y - none none XCHLR72 ./ChemDataDir/MODIS_LAI_201204/For_Olson_2001/XCHLR_for_GCHP/2013/MODIS_XCHLR.025x025.%y4%m2.nc
 
-#
-# ----------------
+#------------------------
 # EMISSION FIELDS
-# ----------------
+#------------------------
 #
 # Need DC0360xPC0181_CFnnnnx6C.bin
 # One year of monthly data
@@ -732,10 +736,9 @@ HTAP_NH3_TRA      1     xy C N N  - none none HTAP_NH3_TRA /dev/null
 HTAP_NH3_AGR      1     xy C N N  - none none HTAP_NH3_AGR /dev/null
 HTAP_NH3_RES      1     xy C N N  - none none HTAP_NH3_RES /dev/null
 
-# ------------------
+#------------------------
 # STRATOSPHERIC DATA
-# ------------------
-#
+#------------------------
 #--- GMI chemistry: prod/loss rates (for strato-/mesosphere) ---
 GMI_LOSS_A3O2      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.A3O2.geos5.2x25.nc 
 GMI_PROD_A3O2      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.A3O2.geos5.2x25.nc
