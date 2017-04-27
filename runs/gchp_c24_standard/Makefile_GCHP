@@ -28,13 +28,10 @@ SHELL        :=/bin/bash
 #####                                                                     #####
 ###############################################################################
 
-# MPI implementation (openmpi or mvapich2)
-# NOTE: the MPI implementation must match bashrc defined above and in
-# build.sh, and source code if compiling. See remarks section at top of bashrc
-# file for instructions of setting MPI implementation in the source code.
+# MPI implementation (openmpi or mvapich2) and number of cores. Currently 
+# you can only run interactively using the Makefile using one node.
+# NUM_THREADS must be a multiple of six.
 MPI=mvapich2
-
-# Number of CPUs for interactive run
 NUM_THREADS=6
 
 ###############################################################################

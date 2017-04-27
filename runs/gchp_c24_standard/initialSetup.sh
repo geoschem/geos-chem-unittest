@@ -105,6 +105,8 @@ else
 fi
 
 echo " "
-echo "Thank you for using GCHP! Go to http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_HP for documentation on getting started. Send any comments, issues, or questions to Lizzie Lundgren at elundgren@seas.harvard.edu."
+echo "Thank you for using GCHP!"
+echo "Go to http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_HP for documentation."
+echo "Send comments, issues, or questions to Lizzie Lundgren at elundgren@seas.harvard.edu."
 
 exit 0

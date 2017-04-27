@@ -55,16 +55,13 @@ if [[ "x${MPI_ROOT}" == x ]]; then
    n=1
    for f in ${LIST}; do
       if [[ "$answer" == "${n}" ]]; then
-	  echo "Now do the following:"
-	  echo "   1. copy and execute 'source ${f}' if you haven't already"
-          echo "   2. copy and execute 'export BASHRC=${f}'"
-          echo "   3. run again"
+	  echo "Copy and execute 'source ${f}' and try again."
 	  exit 1
       fi
       n="$((${n}+1))"
    done   
 else 
-   echo "Building GCHP with MPI_ROOT=${MPI_ROOT}"
+   echo "MPI_ROOT is set to ${MPI_ROOT}"
 fi
 
 # Check MPI implementation
