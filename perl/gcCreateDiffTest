@@ -291,6 +291,7 @@ sub doCopyDirs($$) {
 #  18 Dec 2015 - R. Yantosca - Replace ~ in $COPY_PATH with home directory
 #  23 Aug 2016 - R. Yantosca - Bug fix: Replace {HOME} in $HEMCO_ROOT
 #  13 Sep 2016 - M. Sulprizio- Replace text in new PlotDiff.input file
+#  03 May 2017 - R. Yantosca - Bug fix: remove spaces from directory paths
 #EOP
 #------------------------------------------------------------------------------
 #BOC
