@@ -381,6 +381,13 @@ sub doCopyDirs($$) {
     #------------------------------------------------------------------------
     elsif ( $txt[$i] =~ "!RUNS"     ) {
 
+      # Strip spaces from directory paths
+      $COPY_PATH  =~ s/ //g;
+      $DATA_ROOT  =~ s/ //g;
+      $HEMCO_ROOT =~ s/ //g;
+      $RUN_ROOT   =~ s/ //g; 
+      $UT_ROOT    =~ s/ //g;
+
       # Replace tokens in a few more variables
       $UT_ROOT    =~ s/{HOME}/$home/g;
       $COPY_PATH  =~ s/{HOME}/$home/g;
