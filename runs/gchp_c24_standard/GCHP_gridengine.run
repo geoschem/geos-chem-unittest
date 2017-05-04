@@ -12,7 +12,7 @@ cat $PE_HOSTFILE
 source GCHP.ifort13_openmpi_glooscap.bashrc
 
 # Define GEOS-Chem log file
-log="MAPL.log"
+log="GCHP.log"
 
 # Run the code
 mpirun ./geos >> $log
