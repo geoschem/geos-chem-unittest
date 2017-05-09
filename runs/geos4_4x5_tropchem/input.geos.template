@@ -1,10 +1,10 @@
 GEOS-CHEM UNIT TEST SIMULATION: geos4_4x5_tropchem
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
-Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
-End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
+Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
+End   YYYYMMDD, hhmmss  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : {DATA_ROOT}/SPC_RESTARTS/initial_GEOSChem_rst.geos4_4x5_tropchem.nc
+Input restart file      : GEOSChem_restart.YYYYMMDDhhmm.nc
 Root data directory     : {DATA_ROOT}
  => GCAP    subdir      : AGRID/YYYY/MM/
  => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
@@ -21,7 +21,7 @@ Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 68
+Number of Advected Spec.: 74
 Species Entries ------->: Name
 Species #1              : NO
 Species #2              : O3
@@ -91,6 +91,12 @@ Species #65             : MAP
 Species #66             : NO2
 Species #67             : NO3
 Species #68             : HNO2
+Species #69             : MTPA
+Species #70             : BENZ
+Species #71             : TOLU
+Species #72             : XYLE
+Species #73             : EOH
+Species #74             : MGLY
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
@@ -227,15 +233,15 @@ ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
 ND26: U/D transpt flx   :  0   all
 ND27: Strat NOx,Ox,HNO3 :  0   1 2 7
-ND28: Biomass emissions :  1   1 4 5 9 10 11 18 19 20 21 26 30 34 35
-ND29: CO sources        :  1   all
+ND28: Biomass emissions : 30   all
+ND29: CO sources        : 30   all
 ND30: Land Map          :  0   all
-ND31: Surface pressure  : 31   all
-ND32: NOx sources       :  1   all
+ND31: Pressure edges    : 31   all
+ND32: NOx sources       : 30   all
 ND33: Column tracer     :  0   all
-ND34: Biofuel emissions :  1   1 4 5 9 10 11 18 19 20 21
+ND34: Biofuel emissions :  1   all
 ND35: Tracers at 500 mb :  0   all
-ND36: Anthro emissions  :  1   1 2 4 5 7 9 10 11 18 19 20 21
+ND36: Anthro emissions  : 30   all
 ND37: Updraft scav frac : 30   all
 ND38: Cld Conv scav loss: 30   all
 ND39: Wetdep scav loss  : 30   all
@@ -277,7 +283,8 @@ Output file name        : plane.log.YYYYMMDD
 Turn on ND48 stations   : F
 Station Timeseries file : stations.YYYYMMDD
 Frequency [min]         :  60
-Number of stations      :   0
+Number of stations      :   1
+Station #1 (I,J,Lmax,N) : 133 29 15 2
 ------------------------+------------------------------------------------------
 %%% ND49 MENU %%%       :
 Turn on ND49 diagnostic : F

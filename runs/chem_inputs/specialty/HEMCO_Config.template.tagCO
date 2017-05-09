@@ -83,35 +83,37 @@ Mask fractions:              false
 ### BEGIN SECTION EXTENSION SWITCHES
 ###############################################################################
 #
-# ExtNr ExtName           on/off  Species 
-0       Base              : on    *             
-    --> HEMCO_RESTART     :       true
-    --> AEIC              :       true
-    --> BIOFUEL           :       true
-    --> BRAVO             :       true
-    --> CAC               :       true
-    --> C2H6              :       true
-    --> EDGAR             :       true
-    --> HTAP              :       false
-    --> EMEP              :       true
-    --> GEIA              :       true
-    --> NEI2005           :       true
-    --> NEI2011           :       false
-    --> SHIP              :       true
-    --> NEI2011_SHIP      :       false
-    --> MIX               :       true
-    --> STREETS           :       false
-    --> RCP_3PD           :       false 
-    --> RCP_45            :       false
-    --> RCP_60            :       false
-    --> RCP_85            :       false
-    --> QFED2             :       true
+# ExtNr ExtName              on/off  Species 
+0       Base                 : on    *             
+    --> HEMCO_RESTART        :       true
+    --> AEIC                 :       true
+    --> BIOFUEL              :       true
+    --> BRAVO                :       true
+    --> CAC                  :       true
+    --> C2H6                 :       true
+    --> EDGAR                :       true
+    --> HTAP                 :       false
+    --> EMEP                 :       true
+    --> GEIA                 :       true
+    --> NEI2005              :       true
+    --> NEI2011_HOURLY       :       false
+    --> NEI2011_MONMEAN      :       false
+    --> SHIP                 :       true
+    --> NEI2011_SHIP_HOURLY  :       false
+    --> NEI2011_SHIP_MONMEAN :       false
+    --> MIX                  :       true
+    --> STREETS              :       false
+    --> RCP_3PD              :       false 
+    --> RCP_45               :       false
+    --> RCP_60               :       false
+    --> RCP_85               :       false
+    --> QFED2                :       true
 # -----------------------------------------------------------------------------
-108     MEGAN             : on    ISOP/ACET
-    --> Isoprene scaling  :       1.0 
-    --> CO2 inhibition    :       true
-    --> CO2 conc (ppmv)   :       390.0
-109     MEGAN_Mono        : on    MONX
+108     MEGAN                : on    ISOP/ACET
+    --> Isoprene scaling     :       1.0 
+    --> CO2 inhibition       :       true
+    --> CO2 conc (ppmv)      :       390.0
+109     MEGAN_Mono           : on    MONX
 
 ### END SECTION EXTENSION SWITCHES ###
 
@@ -259,8 +261,15 @@ Mask fractions:              false
 
 #==============================================================================
 # --- NEI 2011 (USA) ---
+#
+# Users may use either hourly or monthly mean NEI2011 emissions.
 #==============================================================================
-(((NEI2011
+
+#------------------------------------------------
+# HOURLY NEI2011
+#------------------------------------------------
+
+(((NEI2011_HOURLY
 # SURFACE INVENTORY
 0 NEI11_SURFACE_CO       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          CO 2006-2013/1-12/1-31/* R xy  kg/m2/s  CO    252/1007       1/2 50
 0 NEI11_SURFACE_CO_us    -                                                               -  -                     - -   -        COus  252/1007/1100  1/2 50
@@ -296,7 +305,49 @@ Mask fractions:              false
 0 NEI11_PTNONIPM_CO_us   -                                                               -  -                     - -   -        COus  252/1007/1100  1   50
 0 NEI11_PTNONIPM_CO_eur  -                                                               -  -                     - -   -        COeur 252/1007/1101  1   50
 0 NEI11_PTNONIPM_CO_oth  -                                                               -  -                     - -   -        COoth 252/1007/1103  1   50
-)))NEI2011
+)))NEI2011_HOURLY
+
+#------------------------------------------------
+# MONTHLY MEAN NEI2011
+#------------------------------------------------
+
+(((NEI2011_MONMEAN
+# SURFACE INVENTORY
+0 NEI11_SURFACE_CO       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          CO 2006-2013/1-12/1/0 C xy  kg/m2/s  CO    26/211/252/1007       1/2 50
+0 NEI11_SURFACE_CO_us    -                                                                       -  -                  - -   -        COus  26/211/252/1007/1100  1/2 50
+0 NEI11_SURFACE_CO_eur   -                                                                       -  -                  - -   -        COeur 26/211/252/1007/1101  1/2 50
+0 NEI11_SURFACE_CO_oth   -                                                                       -  -                  - -   -        COoth 26/211/252/1007/1103  1/2 50
+
+# ELECTRIC GENERATING UNITS (EGUs)
+0 NEI11_EGU_CO           $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      CO 2006-2013/1-12/1/0 C xyz kg/m2/s  CO    26/211/252/1007       1   50
+0 NEI11_EGU_CO_us        -                                                                       -  -                  - -   -        COus  26/211/252/1007/1100  1   50
+0 NEI11_EGU_CO_eur       -                                                                       -  -                  - -   -        COeur 26/211/252/1007/1101  1   50
+0 NEI11_EGU_CO_oth       -                                                                       -  -                  - -   -        COoth 26/211/252/1007/1103  1   50
+
+# PEAKING ELECTRIC GENERATING UNITS
+0 NEI11_EGUPK_CO         $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    CO 2006-2013/1-12/1/0 C xyz kg/m2/s  CO    26/211/252/1007       1   50
+0 NEI11_EGUPK_CO_us      -                                                                       -  -                  - -   -        COus  26/211/252/1007/1100  1   50
+0 NEI11_EGUPK_CO_eur     -                                                                       -  -                  - -   -        COeur 26/211/252/1007/1101  1   50
+0 NEI11_EGUPK_CO_oth     -                                                                       -  -                  - -   -        COoth 26/211/252/1007/1103  1   50
+
+# OIL & GAS
+0 NEI11_OILGAS_CO        $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   CO 2006-2013/1-12/1/0 C xyz kg/m2/s  CO    26/211/252/1007       1   50
+0 NEI11_OILGAS_CO_us     -                                                                       -  -                  - -   -        COus  26/211/252/1007/1100  1   50
+0 NEI11_OILGAS_CO_eur    -                                                                       -  -                  - -   -        COeur 26/211/252/1007/1101  1   50
+0 NEI11_OILGAS_CO_oth    -                                                                       -  -                  - -   -        COoth 26/211/252/1007/1103  1   50
+
+# OTHER POINT SOURCES
+0 NEI11_OTHPT_CO         $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    CO 2006-2013/1-12/1/0 C xyz kg/m2/s  CO    26/211/252/1007       1   50
+0 NEI11_OTHPT_CO_us      -                                                                       -  -                  - -   -        COus  26/211/252/1007/1100  1   50
+0 NEI11_OTHPT_CO_eur     -                                                                       -  -                  - -   -        COeur 26/211/252/1007/1101  1   50
+0 NEI11_OTHPT_CO_oth     -                                                                       -  -                  - -   -        COoth 26/211/252/1007/1103  1   50
+
+# NON-EGU INDUSTRIAL STACKS
+0 NEI11_PTNONIPM_CO      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc CO 2006-2013/1-12/1/0 C xyz kg/m2/s  CO    26/211/252/1007       1   50
+0 NEI11_PTNONIPM_CO_us   -                                                                       -  -                  - -   -        COus  26/211/252/1007/1100  1   50
+0 NEI11_PTNONIPM_CO_eur  -                                                                       -  -                  - -   -        COeur 26/211/252/1007/1101  1   50
+0 NEI11_PTNONIPM_CO_oth  -                                                                       -  -                  - -   -        COoth 26/211/252/1007/1103  1   50
+)))NEI2011_MONMEAN
 
 #==============================================================================
 # --- STREETS SE ASIA (Zhang et al., 2009) ---
@@ -381,12 +432,19 @@ Mask fractions:              false
 0 EMEP_SHIP_CO_oth      -                                                               -      -                   - -  -        COoth  1000/1103     10 2
 )))EMEP
 
-(((NEI2011_SHIP
+(((NEI2011_SHIP_HOURLY
 0 NEI11_C3MARINE_CO     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc CO     2006-2013/$MM/$DD/* R xy kg/m2/s  CO     252/1007      10 50
 0 NEI11_C3MARINE_CO_us  -                                                               -      -                   - -  -        COus   252/1007/1100 10 50
 0 NEI11_C3MARINE_CO_eur -                                                               -      -                   - -  -        COeur  252/1007/1101 10 50
 0 NEI11_C3MARINE_CO_oth -                                                               -      -                   - -  -        COoth  252/1007/1103 10 50
-)))NEI2011_SHIP
+)))NEI2011_SHIP_HOURLY
+
+(((NEI2011_SHIP_MONMEAN
+0 NEI11_C3MARINE_CO     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc CO 2006-2013/1-12/1/0 C xy kg/m2/s  CO     252/1007      10 50
+0 NEI11_C3MARINE_CO_us  -                                                                       -  -                  - -  -        COus   252/1007/1100 10 50
+0 NEI11_C3MARINE_CO_eur -                                                                       -  -                  - -  -        COeur  252/1007/1101 10 50
+0 NEI11_C3MARINE_CO_oth -                                                                       -  -                  - -  -        COoth  252/1007/1103 10 50
+)))NEI2011_SHIP_MONMEAN
 
 )))SHIP
 

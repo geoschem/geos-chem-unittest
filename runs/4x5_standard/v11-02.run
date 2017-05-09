@@ -6,34 +6,32 @@
 #SBATCH -p jacob
 #SBATCH --mem=6000
 #SBATCH --mail-type=END
-#SBATCH --mail-user=<YOUR_EMAIL>
 
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
 #
-# !MODULE: v11-01.run
+# !MODULE: v11-02.run
 #
 # !DESCRIPTION: This bash script submits a 1-month benchmark simulation
 #\\
 #\\
 # !REMARKS:
-# Designed to be used with the geosfp_4x5_benchmark run directory created
+# Designed to be used with the geosfp_4x5_standard run directory created
 # by the GEOS-Chem Unit Tester. To use this script, you must first compile
 # the GEOS-Chem code using the command "make -j4 mpbuild" to create the
 # geos.mp executable.
 #
 # !CALLING SEQUENCE:
-#  To submit run to the SGE batch queue system:
-#   qsub -cwd -b y -j y -r y -pe smp8 8 v11-01.run
+#  To submit run to the SLURM queue system:
+#   sbatch v11-02.run
 #
 #  To run interactively:
-#   v11-01.run
+#   v11-02.run
 #
 # !REVISION HISTORY:
-#  17 Jun 2015 - M. Sulprizio- Initial version
-#  Check the git history for revision history
+#  Type 'gitk' at the prompt to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -46,7 +44,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 # Initialize
 #-------------------------------------------------
 # Define version ID
-id="v11-01"
+id="v11-02"
 
 # Define GEOS-Chem log file
 log="$id.log"

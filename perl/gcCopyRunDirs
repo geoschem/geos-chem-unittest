@@ -244,6 +244,7 @@ sub doCopyDirs($$) {
 #  18 Dec 2015 - R. Yantosca - Replace ~ in $COPY_PATH with home directory
 #  13 Jul 2016 - M. Sulprizio- Update copyDir to always use $met\_$grid\_$sim
 #  23 Aug 2016 - R. Yantosca - Bug fix: Replace {HOME} in $HEMCO_ROOT
+#  03 May 2017 - R. Yantosca - Bug fix: Strip spaces in directory paths
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -264,6 +265,8 @@ sub doCopyDirs($$) {
   my $start   = "";
   my $home    = "";
   my $user    = "";
+  my $rstRoot = "";
+  my $rstFile = "";
 
   # Arrays
   my @txt     = ();
@@ -320,6 +323,13 @@ sub doCopyDirs($$) {
     # Get information about requested run directories
     #------------------------------------------------------------------------
     elsif ( $txt[$i] =~ "!RUNS"     ) {
+
+      # Strip spaces from directory paths
+      $COPY_PATH  =~ s/ //g;
+      $DATA_ROOT  =~ s/ //g;
+      $HEMCO_ROOT =~ s/ //g;
+      $RUN_ROOT   =~ s/ //g; 
+      $UT_ROOT    =~ s/ //g;
 
       # Replace tokens in a few more variables
       $UT_ROOT    =~ s/{HOME}/$home/g;
@@ -464,7 +474,7 @@ sub doCopyDirs($$) {
 	    $cmd =  "rm -f $copyDir/input.geos.*";
 	    $cmd .= " $copyDir/HEMCO_Config.template";
 	    $cmd .= " $copyDir/trac_avg.*";
-	    $cmd .= " $copyDir/trac_rst.*";
+	    $cmd .= " $copyDir/GEOSChem_restart.*";
 	    $cmd .= " $copyDir/lastbuild*";
 	    $cmd .= " $copyDir/geos.*";
 	    $cmd .= " $copyDir/Ox.mass.*";
@@ -490,12 +500,32 @@ sub doCopyDirs($$) {
 	    $cmd = "[ -f HEMCO_restart* ] && chmod 444 $copyDir/HEMCO_restart.*";
 	    qx/$cmd/;
 
-	    # If the run directory is GCHP, over-write mv Makefile_GCHP
-	    # into Makefile
+	    # If the run directory is GCHP, over-write Makefile_GCHP
+	    # with Makefile
 	    if ( $met eq "gchp" ) {
 	      $cmd = "mv $copyDir/Makefile_GCHP $copyDir/Makefile";
 	      qx/$cmd/;
 	    }
+
+	    # Create symbolic link to initial GC restart file if not gchp
+            if ( $met ne "gchp" ) {
+	       $rstRoot = "$DATA_ROOT/SPC_RESTARTS/initial_GEOSChem_rst.";
+	       if ( length( $nest ) > 0 ) {
+	         $rstFile = "$rstRoot$grid\_$sim\_$nest.nc";
+	       } else {
+	         if ( ( $sim =~ m/RRTMG/ ) ) {
+	       	$rstFile = "$rstRoot$grid\_tropchem.nc";
+	         } else {
+	       	$rstFile = "$rstRoot$notDir.nc";
+	         }
+	       }
+	       if ( !( -f $rstFile ) ){
+	         print "\nWARNING: File $rstFile does not exist, so a sample restart file will not be included in your run directory. Sample restart files can be found in the SPC_RESTARTS directory or you can use your own restart file.\n\n";
+  	       } else {
+	         $cmd = "ln -sf $rstFile $copyDir/GEOSChem_restart.${start}00.nc";
+	         qx/$cmd/;
+               }
+            }
           }
         }
 

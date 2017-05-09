@@ -62,7 +62,7 @@ SHELL        :=/bin/bash
 
 # GEOS-Chem run log filename prefix
 ifndef VERSION
- VERSION     :=v11-01
+ VERSION     :=v11-02
 endif
 
 # Source code location
@@ -86,7 +86,7 @@ ifndef NEST
 endif
 
 ifndef TRACEBACK 
- TRACEBACK   :=n
+ TRACEBACK   :=y
 endif
 
 ifndef BOUNDS
@@ -143,6 +143,10 @@ endif
 
 ifndef TIMERS
  TIMERS      :=0
+endif
+
+ifndef TAU_PROF
+ TAU_PROF    :=n
 endif
 
 ifndef BPCH_RST_IN
@@ -282,9 +286,9 @@ EXE_SP       :=geos.sp
 EXE_MP       :=geos.mp
 
 # Output data files
-TRAC_AVG     :=trac_avg.$(RUNID).$(START)
+GC_DIAG      :=trac_avg.$(RUNID).$(START)
 HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
-TRAC_RST     :=GEOSChem_restart.$(END).nc
+GC_RST       :=GEOSChem_restart.$(END).nc
 
 # Unit test validation script and results file
 VALIDATE     :=/usr/bin/perl $(PERL_DIR)/validate
@@ -323,13 +327,6 @@ else
 
 endif
 
-# Compiler information
-# If COMPILER is not defined, default to the $(FC) variable, which
-# is set in your .bashrc, or when you load the compiler module
-ifndef COMPILER
-  COMPILER   :=$(FC)
-endif
-
 # Get compiler version
 COMPILER_VERSION_LONG :=$(shell $(FC) --version))
 COMPILER_VERSION_LONG :=$(sort $(COMPILER_VERSION_LONG))
@@ -337,10 +334,25 @@ COMPILER_VERSION_LONG :=$(sort $(COMPILER_VERSION_LONG))
 # For ifort, the 3rd substring of the sorted text is the version number.
 # For pgfortran and gfortran, it's the 4th substring.
 # NOTE: Future compiler updates may break this algorithm.
-ifeq ($(COMPILER),ifort)
+REGEXP      :=(^[Ii][Ff][Oo][Rr][Tt])
+ifeq ($(shell [[ "$(FC)" =~ $(REGEXP) ]] && echo true),true)
  COMPILER_VERSION :=$(word 3, $(COMPILER_VERSION_LONG))
 else
  COMPILER_VERSION :=$(word 4, $(COMPILER_VERSION_LONG))
+endif
+
+# Variable to hold the TAU_OPTIONS environment setting
+TAU_OPT     :=""
+
+# If we are compiling for use w/ TAU, then also set TAU_OPTIONS accordingly
+# TAU_SF sets the -optTauSelectFile option for removing throttled files
+REGEXP      :=(^[Yy]|^[Yy][Ee][Ss])
+ifeq ($(shell [[ "$(TAU_PROF)" =~ $(REGEXP) ]] && echo true),true)
+  ifdef TAU_SF 
+    TAU_OPT :="$(TAU_OPTIONS) -optTauSelectFile=$(TAU_SF)"
+  else
+    TAU_OPT :="$(TAU_OPTIONS)"
+  endif
 endif
 
 ###############################################################################
@@ -351,7 +363,7 @@ endif
 
 # PHONY targets don't actually compile anything. They either are
 # synonyms for other targets, they remove files, or they print output.
-.PHONY: all     dataclean  logclean   fileclean  spclean
+.PHONY: all     dataclean  logclean   fileclean  spclean      tauclean
 .PHONY: mpclean spexeclean mpexeclean superclean printallinfo
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -377,7 +389,9 @@ sp:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=no                   \
-                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)   \
+                                TIMERS=$(TIMERS)     TAU_PROF=$(TAU_PROF)     \
+                                TAU_OPTIONS=$(TAU_OPT)                        \
+                                BPCH_DIAG=$(BPCH_DIAG)                        \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                    \
                                 BPCH_RST_OUT=$(BPCH_RST_OUT)                  \
                                 > $(LOG_SP)
@@ -396,7 +410,9 @@ mp:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=yes                  \
-                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)   \
+                                TIMERS=$(TIMERS)     TAU_PROF=$(TAU_PROF)     \
+                                TAU_OPTIONS=$(TAU_OPT)                        \
+                                BPCH_DIAG=$(BPCH_DIAG)                        \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                    \
                                 BPCH_RST_OUT=$(BPCH_RST_OUT)                  \
                                 > $(LOG_MP)
@@ -420,7 +436,9 @@ spbuild:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=no                   \
-                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)   \
+                                TIMERS=$(TIMERS)     TAU_PROF=$(TAU_PROF)     \
+                                TAU_OPTIONS=$(TAU_OPT)                        \
+                                BPCH_DIAG=$(BPCH_DIAG)                        \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                    \
                                 BPCH_RST_OUT=$(BPCH_RST_OUT)                  
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
@@ -436,7 +454,9 @@ mpbuild:
                                 TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
                                 TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
                                 MASSCONS=$(MASSCONS) OMP=yes                  \
-                                TIMERS=$(TIMERS)     BPCH_DIAG=$(BPCH_DIAG)   \
+                                TIMERS=$(TIMERS)     TAU_PROF=$(TAU_PROF)     \
+                                TAU_OPTIONS=$(TAU_OPT)                        \
+                                BPCH_DIAG=$(BPCH_DIAG)                        \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                    \
                                 BPCH_RST_OUT=$(BPCH_RST_OUT)                  
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
@@ -470,8 +490,6 @@ dataclean:
 	if [ -f HEMCO_restart.$(START).nc ]; then mv -f HEMCO_restart.$(START).nc HC.nc; fi;
 	rm -f HEMCO_restart.*;
 	if [ -f HC.nc ]; then mv -f HC.nc HEMCO_restart.$(START).nc; fi;
-	rm -f trac_rst*
-	rm -f spec_rst.*
 	rm -f GEOSChem_restart.*
 	rm -f GEOSCHEM_diagnostics.*
 	rm -f trac_avg*
@@ -480,14 +498,14 @@ dataclean:
 	rm -f tracer_mass*.dat
 
 spdataclean:
-	rm -f $(TRAC_AVG)*.sp
-	rm -f $(TRAC_RST)*.sp
+	rm -f $(GC_DIAG)*.sp
+	rm -f $(GC_RST)*.sp
 	rm -f HEMCO_restart*.sp
 	rm -f diaginfo.dat tracerinfo.dat
 
 mpdataclean:
-	rm -f $(TRAC_AVG)*.mp
-	rm -f $(TRAC_RST)*.mp
+	rm -f $(GC_DIAG)*.mp
+	rm -f $(GC_RST)*.mp
 	rm -f HEMCO_restart*.mp
 	rm -f diaginfo.dat tracerinfo.dat
 
@@ -530,6 +548,9 @@ mpexeclean:
 	rm -f $(EXE_MP)
 	rm -f $(LOG_COMP).mp
 
+tauclean:
+	@$(MAKE) -C $(CODE_DIR) tauclean
+
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Remove All             %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -564,7 +585,7 @@ realclean:
 #  Clean and Remove All   %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-superclean: fileclean realclean
+superclean: fileclean realclean tauclean
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Print information      %
@@ -578,8 +599,8 @@ printruninfosp:
 	@echo "  Simulation End      : $(END)"
 	@echo "  HEMCO End           : $(HMCO_END)"
 	@echo "  Version             : $(VERSION)"
-	@echo "  Tracer Data File    : $(TRAC_AVG).sp"
-	@echo "  Tracer Restart File : $(TRAC_RST).sp"
+	@echo "  GC Diagnostic File  : $(GC_DIAG).sp"
+	@echo "  GC Restart File     : $(GC_RST).sp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).sp"
 	@echo "  GC Run Log File     : $(LOG_SP)"
 	@echo "  HEMCO Log File      : $(LOG_HMCO).sp"
@@ -592,8 +613,8 @@ printruninfomp:
 	@echo "  Simulation End      : $(END)"
 	@echo "  HEMCO End           : $(HMCO_END)"
 	@echo "  Version             : $(VERSION)"
-	@echo "  Tracer Data File    : $(TRAC_AVG).mp"
-	@echo "  Tracer Restart File : $(TRAC_RST).mp"
+	@echo "  GC Diagnostic File  : $(GC_DIAG).mp"
+	@echo "  GC Restart File     : $(GC_RST).mp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).mp"
 	@echo "  GC Run Log File     : $(LOG_MP)"
 	@echo "  HEMCO Log File      : $(LOG_HMCO).mp"
@@ -624,11 +645,12 @@ printbuildinfo:
 	@echo "  RRTMG        : $(RRTMG)"
 	@echo "  MASSCONS     : $(MASSCONS)"
 	@echo "  TIMERS       : $(TIMERS)"
+	@echo "  TAU_PROF     : $(TAU_PROF)"
 	@echo "  BPCH_RST_IN  : $(BPCH_RST_IN)"
 	@echo "  BPCH_RST_OUT : $(BPCH_RST_OUT)"
 	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"
 	@echo "  NC_DIAG      : $(NC_DIAG)"
-	@echo "  COMPILER     : $(COMPILER) $(COMPILER_VERSION)"
+	@echo "  COMPILER     : $(FC) $(COMPILER_VERSION)"
 	@echo "  Datetime     : $(TIMESTAMP)"
 
 printallinfosp: 
@@ -654,20 +676,20 @@ printcodeinfo:
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 addsuffixsp:
-	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).sp; fi;
-	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).sp; fi;
+	if [ -f $(GC_DIAG)  ]; then mv -f $(GC_DIAG)  $(GC_DIAG).sp;  fi;
+	if [ -f $(GC_RST)   ]; then mv -f $(GC_RST)   $(GC_RST).sp;   fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
 
 addsuffixmp:
-	if [ -f $(TRAC_AVG) ]; then mv -f $(TRAC_AVG) $(TRAC_AVG).mp; fi;
-	if [ -f $(TRAC_RST) ]; then mv -f $(TRAC_RST) $(TRAC_RST).mp; fi;
+	if [ -f $(GC_DIAG) ];  then mv -f $(GC_DIAG)  $(GC_DIAG).mp;  fi;
+	if [ -f $(GC_RST)   ]; then mv -f $(GC_RST)   $(GC_RST).mp;   fi;
 	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
 	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
 
 check:
-	@$(VALIDATE) $(TRAC_AVG).sp $(TRAC_AVG).mp 1 0 >> $(RESULTS)
-	@$(VALIDATE) $(TRAC_RST).sp $(TRAC_RST).mp 0 0 >> $(RESULTS)
+	@$(VALIDATE) $(GC_DIAG).sp  $(GC_DIAG).mp  1 0 >> $(RESULTS)
+	@$(VALIDATE) $(GC_RST).sp   $(GC_RST).mp   0 0 >> $(RESULTS)
 	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
 
 ###############################################################################
@@ -738,6 +760,7 @@ help:
 	@echo '%%% CLEAN SOURCE CODE %%%'
 	@echo 'clean             Makes "clean" in source code directory $CODE_DIR'
 	@echo 'realclean         Makes "realclean" in the source code directory $CODE_DIR'
+	@echo 'tauclean          Removes all TAU files in the source code directory $CODE_DIR'
 	@echo ''
 	@echo '%%% CLEAN AND REMOVE ALL %%%'
 	@echo 'superclean        Synonym for: fileclean realclean'
@@ -768,7 +791,7 @@ help:
 	@echo 'DEBUG=y           Compiles GEOS-Chem with various debugging options'
 	@echo 'BOUNDS=y          Compiles GEOS-Chem with out-of-bounds error checks'
 	@echo 'FPE=y             Compiles GEOS-Chem with floating-point math error checks'
-	@echo 'TRACEBACK=y       Compiles GEOS-Chem with traceback error printout'
+	@echo 'TRACEBACK=y       Compiles GEOS-Chem with traceback error printout (this is the default)'
 	@echo 'NO_ISO=y          Compiles GEOS-Chem and turns off ISORROPIA'
 	@echo 'TIMERS=1          Compiles GEOS-Chem with timers turned on'
 	@echo 'BPCH_RST_IN=y     Compiles GEOS-Chem such that binary-punch restart file is input at run-time (default is NetCDF)'

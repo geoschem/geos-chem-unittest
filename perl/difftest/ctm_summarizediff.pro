@@ -220,15 +220,15 @@ pro CTM_SummarizeDiff, File1, File2,                                        $
                Perc   =  100 *  (D2 - D1) / D1
 
                ; ewl: value of largest difference (increase or decrease)
-               if ( ABS( Diff ) > maxDiff ) then begin
+               if ( ABS( Diff ) gt maxDiff ) then begin
                   maxDiff =  Diff 
                endif
 
                ; Update min and max percent difference
-               if ( Perc > 0 and Perc > maxIncr ) then begin
+               if ( Perc gt 0 and Perc gt maxIncr ) then begin
                   maxIncr =  Perc
                endif
-               if ( Perc < 0 and Perc < maxDecr ) then begin
+               if ( Perc lt 0 and Perc lt maxDecr ) then begin
                   maxDecr =  Perc
                endif
 

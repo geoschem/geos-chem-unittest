@@ -1,8 +1,8 @@
 GEOS-CHEM UNIT TEST SIMULATION: gcap_4x5_POPs
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
-Start YYYYMMDD, HHMMSS  : {DATE1} {TIME1}
-End   YYYYMMDD, HHMMSS  : {DATE2} {TIME2}
+Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
+End   YYYYMMDD, hhmmss  : {DATE2} {TIME2}
 Run directory           : ./
 Input restart file      : {DATA_ROOT}/GC_RESTARTS/initial_trac_rst.gcap_4x5_POPs
 Root data directory     : {DATA_ROOT}
@@ -180,7 +180,7 @@ ND27: Strat NOx,Ox,HNO3 :  0   all
 ND28: Biomass emissions :  0   all
 ND29: CO sources        :  0   all
 ND30: Land Map          :  0   all
-ND31: Surface pressure  :  0   all
+ND31: Pressure edges    :  0   all
 ND32: NOx sources       :  0   all
 ND33: Column tracer     :  0   all
 ND34: Biofuel emissions :  0   all
@@ -227,7 +227,8 @@ Output file name        : plane.log.YYYYMMDD
 Turn on ND48 stations   : F
 Station Timeseries file : ctm.bpch.YYYYMMDD
 Frequency [min]         :  60
-Number of stations      :   0
+Number of stations      :   1
+Station #1 (I,J,Lmax,N) : 133 29 15 2
 ------------------------+------------------------------------------------------
 %%% ND49 MENU %%%       :
 Turn on ND49 diagnostic : F

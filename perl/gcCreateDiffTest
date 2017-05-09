@@ -291,6 +291,7 @@ sub doCopyDirs($$) {
 #  18 Dec 2015 - R. Yantosca - Replace ~ in $COPY_PATH with home directory
 #  23 Aug 2016 - R. Yantosca - Bug fix: Replace {HOME} in $HEMCO_ROOT
 #  13 Sep 2016 - M. Sulprizio- Replace text in new PlotDiff.input file
+#  03 May 2017 - R. Yantosca - Bug fix: remove spaces from directory paths
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -319,6 +320,8 @@ sub doCopyDirs($$) {
   my $date1   = "";
   my $metType = "";
   my $nTracers= "";
+  my $rstRoot = "";
+  my $rstFile = "";
 
   # Arrays
   my @txt     = ();
@@ -378,6 +381,13 @@ sub doCopyDirs($$) {
     # Get information about requested run directories
     #------------------------------------------------------------------------
     elsif ( $txt[$i] =~ "!RUNS"     ) {
+
+      # Strip spaces from directory paths
+      $COPY_PATH  =~ s/ //g;
+      $DATA_ROOT  =~ s/ //g;
+      $HEMCO_ROOT =~ s/ //g;
+      $RUN_ROOT   =~ s/ //g; 
+      $UT_ROOT    =~ s/ //g;
 
       # Replace tokens in a few more variables
       $UT_ROOT    =~ s/{HOME}/$home/g;
@@ -568,21 +578,40 @@ sub doCopyDirs($$) {
 	  $cmd =  "rm -f $devDir/input.geos.template";	    
 	  $cmd .= " $devDir/HEMCO_Config.template";
 	  $cmd .= " $devDir/trac_avg.*";
-	  $cmd .= " $devDir/trac_rst.*";
+	  $cmd .= " $devDir/GEOSChem_restart.*";
 	  $cmd .= " $devDir/lastbuild*";
 	  $cmd .= " $devDir/geos.*";
 	  $cmd .= " $devDir/Ox.mass.*";
-          $cmd .= " $devDir/*.log";
+	  $cmd .= " $devDir/*.log";
 	  $cmd .= " $devDir/*.mp";
 	  $cmd .= " $devDir/*~";
 	  $cmd .= " $refDir/*~";
 	  $cmd .= " $copyDir/*~";
    	  qx/$cmd/;
 
+	  # Create symbolic link to initial GC restart file
+	  $rstRoot = "$DATA_ROOT/SPC_RESTARTS/initial_GEOSChem_rst.";
+	  if ( length( $nest ) > 0 ) {
+	    $rstFile = "$rstRoot$grid\_$sim\_$nest.nc";
+	  } else {
+	    if ( ( $sim =~ m/RRTMG/ ) ) {
+	      $rstFile = "$rstRoot$grid\_tropchem.nc";
+	    } else {
+	      $rstFile = "$rstRoot$notDir.nc";
+	    }
+	  }
+	  if ( !( -f $rstFile ) ){
+	    print "\nWARNING: File $rstFile does not exist, so a sample restart file will not be included in your run directory. Sample restart files can be found in the SPC_RESTARTS directory or you can use your own restart file.\n\n";
+  	  } else {
+	    $cmd = "ln -sf $rstFile $devDir/GEOSChem_restart.${start}00.nc";
+	    qx/$cmd/;
+          }
+
 	  # Loop over files in Dev to create symbolic links in Ref
 	  @files = <$copyDir/Dev/*>;
 	  foreach $file (@files) {
-	    if ( $file =~ /\.dat$/i || $file =~ m/HEMCO_restart/ ) {
+	    if ( $file =~ /\.dat$/i || $file =~ m/HEMCO_restart/ ||
+                 $file =~ m/GEOSChem_restart/ ) {
 	      $filename   = &baseName( $file );
 	      $cmd = "ln -s $file $refDir/$filename";
 	      qx/$cmd/;	      

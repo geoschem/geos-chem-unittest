@@ -28,8 +28,8 @@
 #
 # %%% ID tags %%%
 #
-   VERSION          : v11-01
-   DESCRIPTION      : Tests GEOS-Chem v11-01
+   VERSION          : v11-02
+   DESCRIPTION      : Tests GEOS-Chem v11-02
 #
 # %%% Data path and HEMCO settings %%%
 #
@@ -40,7 +40,7 @@
 #
 # %%% Code, compiler, and queue settings %%%
 #
-   CODE_DIR         : {HOME}/GC/Code.v11-01
+   CODE_DIR         : {HOME}/GC/Code.v11-02
    COMPILER         : ifort
    MAKE_CMD         : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
    SUBMIT           : sbatch
@@ -79,9 +79,6 @@
    SLURM_PARTITION  : jacob
    SLURM_CONSTRAINT : intel
    SLURM_MAILTYPE   : END
-   SLURM_MAILUSER   : your-email-address
-   SLURM_STDOUT     : {LOGDIR}/{VERSION}.stdout.log
-   SLURM_STDERR     : {LOGDIR}/{VERSION}.stderr.log
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.
@@ -90,6 +87,10 @@
 #--------|-----------|------|------------|------------|--------------|--------|
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE     | EXTRA? |
 #--------|-----------|------|------------|------------|--------------|--------|
+# ======= GEOS-Chem standard simulation ======================================
+  geosfp   4x5         -      standard     2013070100   201307010020   -
+  merra2   4x5         -      standard     2013070100   201307010020   -
+  geosfp   2x25        -      standard     2013070100   201307010020   -
 # ======= Radon-Lead-Beryllium ===============================================
   geosfp   4x5         -      RnPbBe       2013070100   201307010020   -
   merra2   4x5         -      RnPbBe       2013070100   201307010020   -
@@ -110,7 +111,7 @@
   merra2   2x25        -      Hg           2013010100   201301010020   -
   merra    2x25        -      Hg           2009010100   200901010020   -
   geos5    2x25        -      Hg           2009010100   200901010020   -
-# geos5    05x0666     na     Hg           2008010100   200801010020   -
+  geos5    05x0666     na     Hg           2010010100   201001010020   -
 # ======= Tagged Mercury =====================================================
   geos5    4x5         -      tagHg        2010010100   2010010101     -
 # ======= POPs ===============================================================
@@ -132,6 +133,7 @@
   geosfp   2x25        -      CH4          2013070100   201307010020   -
   merra2   2x25        -      CH4          2013070100   201307010020   -
   geos5    2x25        -      CH4          2006070100   200607010020   -
+  geosfp   025x03125   na     CH4          2013070100   201307010010   -
   merra2   05x0625     na     CH4          2013070100   201307010020   -
   geos5    05x0666     na     CH4          2006070100   200607010020   -
 # ======= Tagged O3 ==========================================================
@@ -161,10 +163,6 @@
   geosfp   2x25        -      aerosol      2013070100   201307010020   -
   merra2   2x25        -      aerosol      2013070100   201307010020   -
   geos5    2x25        -      aerosol      2006070100   200607010020   -
-# ======= GEOS-Chem benchmark ================================================
-  geosfp   4x5         -      standard     2013070100   201307010020   -
-  merra2   4x5         -      standard     2013070100   201307010020   -
-  geosfp   2x25        -      standard     2013070100   201307010020   -
 # ======= Tropchem ===========================================================
   geosfp   4x5         -      tropchem     2013070100   201307010020   -
   merra2   4x5         -      tropchem     2013070100   201307010020   -
