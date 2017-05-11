@@ -638,12 +638,12 @@ Warnings:                    {WARNINGS}
 # --- QFED2 biomass burning ---
 #==============================================================================
 (((QFED2
-0 QFED_BCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_bc.005.$YYYY$MM$DD.nc4   biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s BCPI 70/75 5 2 
+0 QFED_BCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_bc.005.$YYYY$MM$DD.nc4   biomass 2000-2016/1-12/1-31/0 C xy kg/m2/s BCPI 70/75 5 2 
 0 QFED_BCPO  -                                                                 -       -                     - -  -       BCPO 71/75 5 2 
-0 QFED_OCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_oc.005.$YYYY$MM$DD.nc4   biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s OCPI 72/75 5 2 
+0 QFED_OCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_oc.005.$YYYY$MM$DD.nc4   biomass 2000-2016/1-12/1-31/0 C xy kg/m2/s OCPI 72/75 5 2 
 0 QFED_OCPO  -                                                                 -       -                     - -  -       OCPO 73/75 5 2 
-0 QFED_NH3   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_nh3.005.$YYYY$MM$DD.nc4  biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s NH3  75    5 2 
-0 QFED_SO2   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_so2.005.$YYYY$MM$DD.nc4  biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s SO2  75    5 2 
+0 QFED_NH3   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_nh3.005.$YYYY$MM$DD.nc4  biomass 2000-2016/1-12/1-31/0 C xy kg/m2/s NH3  75    5 2 
+0 QFED_SO2   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_so2.005.$YYYY$MM$DD.nc4  biomass 2000-2016/1-12/1-31/0 C xy kg/m2/s SO2  75    5 2 
 )))QFED2
 
 ###############################################################################
@@ -1021,6 +1021,7 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 201 VISTAS_SEASON     $ROOT/NEI2005/v2014-09/scaling/Vistas_season.geos.1x1.nc       NOratio      2002/1-12/1/0  C xy unitless 1
 202 ARP_SEASON        $ROOT/NEI2005/v2014-09/scaling/ARP_season.geos.1x1.nc          NOxrat  1999-2007/1-12/1/0  C xy unitless 1
+213 NEI99_DOW_ACET    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           ACET         1999/1-12/WD/0 C xy unitless 1
 218 NEI99_DOW_SO2     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           SO2          1999/1-12/WD/0 C xy unitless 1
 219 NEI99_DOW_SO4     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           SO4          1999/1-12/WD/0 C xy unitless 1
 220 NEI99_DOW_MSA     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           MSA          1999/1-12/WD/0 C xy unitless 1

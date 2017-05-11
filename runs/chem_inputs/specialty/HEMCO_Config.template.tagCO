@@ -509,7 +509,7 @@ Mask fractions:              false
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #==============================================================================
 (((QFED2
-0 QFED_CO      $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_co.005.$YYYY$MM$DD.nc4 biomass 2000-2013/1-12/1-31/0 C xy kg/m2/s CO      54/75       5 2 
+0 QFED_CO      $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_co.005.$YYYY$MM$DD.nc4 biomass 2000-2016/1-12/1-31/0 C xy kg/m2/s CO      54/75       5 2 
 0 QFED_CObbAm  -                                                               -       -                     - -  -       CObbam  54/75/1104  5 2 
 0 QFED_CObbAf  -                                                               -       -                     - -  -       CObbaf  54/75/1105  5 2 
 0 QFED_CObbAs  -                                                               -       -                     - -  -       CObbas  54/75/1106  5 2 
