@@ -11,6 +11,7 @@ COLLECTIONS: 'center',
   center.format:    'CFIO',
   center.frequency:  010000,
   center.duration:   240000
+  center.mode:      'instantaneous'
   center.fields:  'SPC_ACET',    'GIGCchem',
                   'SPC_ALD2',    'GIGCchem',
                   'SPC_ALK4',    'GIGCchem',
