@@ -11,10 +11,10 @@
 ####   User-specified run settings (all you need to change)    ####
 ###################################################################
 
-CUBE_SPHERE_RES=180    # 24~4x5, 48~2x2.5, etc.
-NUM_NODES=6           
-NUM_CORES_PER_NODE=12  # must be multiple of 6
-DEBUG_LEVEL=1         # 0 is none, output increases with higher values (to 20)
+CUBE_SPHERE_RES=24    # 24~4x5, 48~2x2.5, etc.
+NUM_NODES=1           
+NUM_CORES_PER_NODE=6  # must be multiple of 6
+DEBUG_LEVEL=0         # 0 is none, output increases with higher values (to 20)
 INPUT_MET_RES=2x25    # 4x5, 2x25, etc (warning: not yet implemented)
 
 # NOTE: set start time, end time, and timesteps in input.geos
