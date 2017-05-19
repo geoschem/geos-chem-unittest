@@ -186,6 +186,8 @@ sub getInfo($$) {
       # Return met or grid type
       $runinfo = "$linestrings[1]";
 
+    }
+
   }
 
   # Print the result
