@@ -32,6 +32,7 @@ use Dates qw( &julDay &calDate );   # Get routines from Dates.pm
 #  &parse         : Parses a line separated by ":" and returns the 2nd value
 #  &replaceDate   : Replaces YYYY, MM, DD tokens in a string w/ date values
 #  &makeHemcoCfg  : Creates a new HEMCO_Config.rc from a template file
+#  &makeHcoSaCfg  : Creates a new HEMCO_sa_Config.rc from a template file
 #  &readResults   : Reads unit test results into a Perl hash
 #  &makeTxtMatrix : Summarizes unit test results into an text file
 #  &makeMatrix    : Summarizes unit test results into an HTML file
@@ -48,6 +49,7 @@ use Dates qw( &julDay &calDate );   # Get routines from Dates.pm
 #  24 Mar 2014 - R. Yantosca - Update ProTeX headers
 #  27 Jun 2014 - R. Yantosca - Add &makeHemcoCfg routine
 #  22 Jun 2015 - R. Yantosca - Add &makeTxtMatrix routine; updated comments
+#  19 May 2017 - M. Sulprizio- Add &makeHcoSaCfg routine for HEMCO standalone
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -67,6 +69,7 @@ BEGIN {
                    &cleanDir
                    &fmtStr
                    &makeHemcoCfg        
+                   &makeHcoSaCfg        
                    &makeInputGeos 
                    &parse
                    &replaceDate
@@ -461,6 +464,148 @@ sub makeHemcoCfg($$$$$$$) {
     $line =~ s/{LEVFULL}/$levFull/g;
     $line =~ s/{VERBOSE}/$verbose/g;
     $line =~ s/{WARNINGS}/$warnings/g;
+
+    # Write to output file
+    print O "$line\n";
+  }
+
+  # Close output file
+  close( O );
+
+  # Make the input.geos file chmod 644
+  chmod( 0644, $outFile );
+
+  # Exit
+  return(0);
+}
+#EOC
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: makeHcoSaCfg
+#
+# !DESCRIPTION: Constructs the "HEMCO_sa_Config.rc" file for the HEMCO
+#  standalone.  It reads a pre-defined template file and then just replaces
+#  tokens with the values passed via the argument list.
+#\\
+#\\
+# !INTERFACE:
+#
+sub makeHcoSaCfg($$$$$$$) {
+#
+# !INPUT PARAMETERS:
+#
+  # $infile   : HEMCO_sa_Config template file w/ replaceable tokens
+  # $met      : Met field type  (passed via MET flag in G-C compilation)
+  # $grid     : Horizontal grid (passed via GRID flag in G-C compilation)
+  # $nest     : Nested grid suffix (i.e. CH, EU, NA, AS, etc.)
+  # $simType  : Simulation type (passed via GRID flag in G-C compilation)
+  # $verbose  : HEMCO verbose setting (0=no verbose, 3=most verbose)
+  # $warnings : HEMCO warnings setting (0=no warnings, 3=most warnings)
+  # $rootDir  : Filepath to data directory
+  # $outFile  : HEMCO_sa_Config.rc file w/ all tokens replaced
+  my ( $inFile,  $start,   $met,      $grid,    $nest,   
+       $simType, $verbose, $warnings, $rootDir, $outFile ) = @_;
+#
+# !CALLING SEQUENCE:
+# &makeHcoSaCfg( "HEMCO_sa_Config.template", 20130101, 000000,     
+#                "geosfp",                   "4x5",    "-",      
+#                "tropchem",                 "3",      "3",  
+#                "HEMCO_sa_Config.rc" )
+#                 
+#
+# !REMARKS:
+#
+# !REVISION HISTORY:
+#  19 May 2017 - M. Sulprizio- Initial version based on MakeHemcoCfg
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Strings
+  my @lines      = "";
+  my $line       = "";
+  my $levReduced = "";
+  my $levFull    = "";
+  my $metDir     = "";
+  my $gridDir    = "";
+
+  # Scalars
+  my $date       = 0;
+
+  #-------------------------------------------------------------------------  
+  # Read template file
+  #-------------------------------------------------------------------------
+
+  # Read template "input.geos" file into an array
+  open( I, "$inFile" ) or croak( "Cannot open $inFile!\n" );
+  @lines = <I>;
+  close( I );
+
+  #-------------------------------------------------------------------------
+  # Compute the value used to replace the {LEVRED} and {LEVFULL} tokens in 
+  # file names.  These are needed for certain specialty simulations that 
+  # read archived OH or O3 concentrations.  
+  #-------------------------------------------------------------------------
+  if    ( $met =~ m/gcap/  ) { $levReduced = "23L"; $levFull = "23L"; }
+  elsif ( $met =~ m/geos4/ ) { $levReduced = "30L"; $levFull = "55L"; }
+  else                       { $levReduced = "47L"; $levFull = "72L"; }
+
+  #-------------------------------------------------------------------------
+  # Define met and grid strings used in data directory names
+  #-------------------------------------------------------------------------
+  if ( $met =~ m/geosfp/ ) {
+    $metDir = "GEOS_FP";
+  } elsif ( $met =~ m/geos5/ ) {
+    $metDir = "GEOS_5";
+  } elsif ( $met =~ m/geos4/ ) {
+    $metDir = "GEOS_4";
+  } elsif ( $met =~ m/merra2/ ) {
+    $metDir = "MERRA2";
+  } elsif ( $met =~ m/merra/ ) {
+    $metDir = "MERRA";
+  }
+  if ( $grid =~ m/4x5/ ) {
+    $gridDir = "4x5";
+  } elsif ( $grid =~ m/2x25/ ) {
+    $gridDir = "2x2.5";
+  } elsif ( $grid =~ m/05x0625/ ) {
+    $gridDir = "0.5x0.625". "_" . uc($nest);
+  } elsif ( $grid =~ m/05x0666/ ) {
+    $gridDir = "0.5x0.666". "_" . uc($nest);
+  } elsif ( $grid =~ m/025x03125/ ) {
+    $gridDir = "0.25x0.3125" . "_" . uc($nest);
+  }
+
+  #-------------------------------------------------------------------------
+  # Create HEMCO_Config file
+  #-------------------------------------------------------------------------
+
+  # Open file
+  open( O, ">$outFile") or die "Can't open $outFile\n";
+
+  # Loop thru each line
+  foreach $line ( @lines ) {
+    
+    # Remove newline character
+    chomp( $line );
+
+    # Replace start & end dates
+    $line =~ s/{DATA_ROOT}/$rootDir/g;
+    $line =~ s/{MET}/$met/g;
+    $line =~ s/{GRID}/$grid/g;
+    $line =~ s/{NEST}/$nest/g;
+    $line =~ s/{SIM}/$simType/g;
+    $line =~ s/{LEVRED}/$levReduced/g;
+    $line =~ s/{LEVFULL}/$levFull/g;
+    $line =~ s/{VERBOSE}/$verbose/g;
+    $line =~ s/{WARNINGS}/$warnings/g;
+    $line =~ s/{MET_DIR}/$metDir/g;
+    $line =~ s/{GRID_DIR}/$gridDir/g;
 
     # Write to output file
     print O "$line\n";

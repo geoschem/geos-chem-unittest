@@ -138,6 +138,54 @@ sub getInfo($$) {
       }
 
     }				
+
+  } elsif ( -f "$rundir/HEMCO_sa_Config.rc" ) {
+
+    # Hardcode simulation type to HEMCO for now
+    if ( $id == 2 ) {
+
+       $runinfo = "HEMCO"
+
+    # Hardcode nest to "n" for now
+    } elsif ( $id == 3 ) {
+
+       $runinfo = "n"
+
+    # Get start run time if $id is 4, end run time is $id is 5
+    } elsif ( $id == 4 || $id == 5) {
+
+      if ( -f "$rundir/HEMCO_sa_Time.rc" ) {
+
+	if ($id == 4) { $runstr = "START" }
+	if ($id == 5) { $runstr = "END" }
+
+	# Grep for start and date
+	$line = qx( grep "$runstr" $rundir/HEMCO_sa_Time.rc );
+        chomp( $line );
+
+        # Split by spaces
+        @linestrings = split( ' ', $line );
+
+        # Return start and end times in YYYY-MM-DD hh:mm:ss format
+	$runinfo = "$linestrings[1] $linestrings[2]";
+
+      }
+
+    } else {
+
+      if ($id == 0) { $runstr = "MET:" }
+      if ($id == 1) { $runstr = "RES:" }
+
+      # Grep for input.geos header
+      $line = qx( grep "$runstr" $rundir/HEMCO_sa_Config.rc );
+      chomp( $line );
+      
+      # Split by spaces
+      @linestrings = split( ' ', $line );
+
+      # Return met or grid type
+      $runinfo = "$linestrings[1]";
+
   }
 
   # Print the result

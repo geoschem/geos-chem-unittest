@@ -22,6 +22,7 @@ use Dates   qw( &getLocalTime   );   # Get routines from Dates.pm
 use UtUtils qw( &baseName
                 &checkDir
                 &makeHemcoCfg
+                &makeHcoSaCfg
                 &makeInputGeos
                 &parse          );
 #
@@ -267,6 +268,10 @@ sub doCopyDirs($$) {
   my $user    = "";
   my $rstRoot = "";
   my $rstFile = "";
+  my $hcoTmpl = "";
+  my $hcoCfg  = "";
+  my $hsaTmpl = "";
+  my $hsaCfg  = "";
 
   # Arrays
   my @txt     = ();
@@ -457,6 +462,42 @@ sub doCopyDirs($$) {
 	    # DRY RUN: Only print the copy command
 	    #----------------------------------------
 	    print "\%\%\%  $cmd\n"; 
+
+          } elsif ( $sim =~ m/HEMCO/) {
+
+	    #----------------------------------------
+	    # NOT DRY RUN: Copy the HEMCO directory
+	    #----------------------------------------
+
+	    # Execute the copy command
+	    qx/$cmd/;
+
+	    # Make the HEMCO_Config.rc file from template
+	    $hcoTmpl = "$copyDir/HEMCO_Config.template";
+	    $hcoCfg  = "$copyDir/HEMCO_Config.rc";
+	    $hsaTmpl = "$copyDir/HEMCO_sa_Config.template";
+	    $hsaCfg  = "$copyDir/HEMCO_sa_Config.rc";
+            &makeHemcoCfg( $hcoTmpl, $start,    $met, $grid, $nest, $sim,    
+                           $VERBOSE, $WARNINGS, $HEMCO_ROOT, $hcoCfg );
+
+            &makeHcoSaCfg( $hsaTmpl, $start,    $met, $grid, $nest, $sim,    
+                           $VERBOSE, $WARNINGS, $DATA_ROOT,  $hsaCfg );
+
+
+	    # Remove the output files from the copied run dir
+	    $cmd  = "rm -f $copyDir/HEMCO_Config.template";
+	    $cmd .= " $copyDir/HEMCO_sa_Config.template";
+	    $cmd .= " $copyDir/*.log";
+	    $cmd .= " $copyDir/output/*.nc*";
+	    qx/$cmd/;
+
+            # Copy perl/Makefile to copied run directory
+            $cmd = "cp ./Makefile $copyDir/Makefile";
+            qx/$cmd/;
+
+            # Copy UT/perl/getRunInfo to copied run directory
+            $cmd = "cp ./getRunInfo $copyDir/getRunInfo"; 
+            qx/$cmd/;
 
           } else {
 
