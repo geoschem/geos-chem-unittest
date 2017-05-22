@@ -65,6 +65,8 @@ sub getInfo($$) {
 #  06 Apr 2015 - E. Lundgren - Initial version
 #  27 Apr 2015 - M. Sulprizio- Now use YYYYMMDDhhmm format for start/end time
 #  31 Mar 2015 - E. Lundgren - Add special case of soa_svpoa
+#  22 May 2017 - R. Yantosca - For HEMCO standalone, convert YYYY-MM-DD to
+#                              YYYYMMDD and hh:mm:ss to hhmmss
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -77,8 +79,10 @@ sub getInfo($$) {
   my $runinfo = "";
 
   # Arrays
-  my @linestrings = ();
-  my @runinfoarray = ();
+  my @linestrings   = ();
+  my @dates         = ();
+  my @times         = ();
+  my @runinfoarray  = ();
 
   # Make sure that an input.geos file is found; otherwise print a "";
   if ( -f "$rundir/input.geos" ) {
@@ -166,9 +170,13 @@ sub getInfo($$) {
         # Split by spaces
         @linestrings = split( ' ', $line );
 
-        # Return start and end times in YYYY-MM-DD hh:mm:ss format
-	$runinfo = "$linestrings[1] $linestrings[2]";
+	# Translatet YYYY-MM-DD into YYYYMMDD
+	# and hh:mm:ss to hhmmss
+	@dates = split( '-', $linestrings[1] );
+	@times = split( ':', $linestrings[2] );
 
+        # Return start and end times in YYYYMMDDhhmm format
+	$runinfo = "$dates[0]$dates[1]$dates[2]$times[0]$times[1]";
       }
 
     } else {
