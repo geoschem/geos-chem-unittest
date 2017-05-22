@@ -343,6 +343,8 @@ GEIA_NH3_ANTH  kg_m-2_s-1 xy C Y Y F1990-%m2-01T00:00:00 none none NH3_ANTH    .
 GEIA_NH3_BIOF  kg_m-2_s-1 xy C Y Y F1998-%m2-01T00:00:00 none none NH3_BIOFUEL ./MainDataDir/NH3/v2014-07/NH3_biofuel.geos.4x5.nc
 GEIA_NH3_NATU  kg_m-2_s-1 xy C Y Y F1990-%m2-01T00:00:00 none none NH3_NATU    ./MainDataDir/NH3/v2014-07/NH3_geos.4x5.nc
 #
+# POET EOH
+POET_EOH kgC_m-2_s-1 xy C Y Y - none none EOH ./MainDataDir/POET/v2017-03/POET_EOH.geos.2x25.nc
 # Think this is no longer used?
 #EDGAR_NO       kg_m-2_s-1 xy C N  Y F- none none NO.total     ./MainDataDir/EDGAR.generic.1x1.esmf.nc
 #EDGAR_CO       kg_m-2_s-1 xy C N  Y F- none none CO.total     ./MainDataDir/EDGAR.generic.1x1.esmf.nc
@@ -565,6 +567,10 @@ AEIC_ACET kg_m-2_s-1 xyz C Y Y F2005-%m2-01T00:00:00 none none HC       ./MainDa
 VOLCANO_SO2_ERUPT kg_m-2_s-1 xyz C N Y %y4-%m2-%d2T00:00:00 none none SO2_erupt ./MainDataDir/VOLCANO/v2015-02/%y4/volc_so2_gen.1x1.47L.%y4%m2.nc
 VOLCANO_SO2_DEGAS kg_m-2_s-1 xyz C N Y %y4-%m2-%d2T00:00:00 none none SO2_degas ./MainDataDir/VOLCANO/v2015-02/%y4/volc_so2_gen.1x1.47L.%y4%m2.nc
 #
+# Decaying plants 
+ALD2_SEN kgC_m-2_s-1 xy C Y Y F1985-%m2-01T00:00:00 none none HET_RESP ./MainDataDir/ALD2/v2017-03/resp.geos.2x25.nc
+EOH_SEN kgC_m-2_s-1 xy C Y Y F1985-%m2-01T00:00:00 none none HET_RESP ./MainDataDir/ALD2/v2017-03/resp.geos.2x25.nc
+#
 # Need DC0360xPC0181_CFnnnnx6C.bin
 TOTFUEL_THISYR    1 xy C N Y F%y4-01-01T00:00:00   none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
 TOTFUEL_1985      1 xy C N Y F1985-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
@@ -632,7 +638,9 @@ DMS_SEAWATER  kg/m3 xy C Y Y F1985-%m2-01T00:00:00 none none DMS_OCEAN ./MainDat
 # Single entry
 ACET_SEAWATER kg/m3 xy C N Y -                    none none ACET      ./MainDataDir/ACET/v2014-07/ACET_seawater.generic.1x1.nc
 # 12-month climatology
-CH3I_SEAWATER kg/m3 xy C Y Y F1985-%m2-01T00:00:00 none none CH3I      ./MainDataDir/CH3I/v2014-07/ocean_ch3i.geos.4x5.nc
+#CH3I_SEAWATER kg/m3 xy C Y Y F1985-%m2-01T00:00:00 none none CH3I_OCEAN ./MainDataDir/CH3I/v2014-07/ocean_ch3i.geos.4x5.nc
+ALD2_SEAWATER kg/m3 xy C Y Y F1985-%m2-01T00:00:00 none none ALD2 ./MainDataDir/ALD2/v2017-03/ALD2_seawater.geos.2x25.nc
+
 #
 # Need DC0144xPC0091_CFnnnnx6C.bin
 # Single entry (except VAI)
@@ -668,6 +676,8 @@ GFED_FRAC_DAY 1  xy C N Y %y4-%m2-%d2T00:00:00 none none GFED_FRACDAY  ./MainDat
 GFED_FRAC_3HOUR 1 xy C N Y %y4-%m2-01T%h2:00:00 none none GFED_FRAC3HR ./MainDataDir/GFED4/v2015-10/%y4/GFED4_3hrfrac_gen.025x025.%y4%m2.nc
 #
 LIGHTNOX_OTDLIS 1 xy C Y N %y4-%m2-01T00:00:00 none none OTD ./MainDataDir/LIGHTNOX/v2014-07/OTD-LIS-Local-Redist.CTH.v5.geosfp.2x25.nc
+#
+DEP_RESERVOIR_DEFAULT kg_m-3 xy C N Y - none none DEP_RESERVOIR ./MainDataDir/SOILNOX/v2014-07/DepReservoirDefault.nc
 #
 # Single entry
 MEGAN_AEF_ISOP  kgC/m2/s xy C N Y F- none none AEF_ISOPRENE     ./MainDataDir/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc
