@@ -60,8 +60,8 @@ Species #34             : BCPI
 Species #35             : OCPI
 Species #36             : BCPO
 Species #37             : OCPO
-Species #40             : SOAP
-Species #41             : SOAS
+Species #38             : SOAP
+Species #39             : SOAS
 Species #40             : SALA
 Species #41             : SALC
 Species #42             : Br2
@@ -496,7 +496,7 @@ Online SULFATE AEROSOLS : T
 Online CRYST/AQ AEROSOLS: F
 Online CARBON  AEROSOLS : T
  => Use Brown Carbon?   : F
-Online 2dy ORG AEROSOLS : F
+Online COMPLEX SOA      : F
  => Semivolatile POA?   : F
 Online DUST    AEROSOLS : T
  => Acidic uptake ?     : F

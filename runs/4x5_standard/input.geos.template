@@ -21,7 +21,7 @@ Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 127
+Number of Advected Spec.: 100
 Species Entries ------->: Name
 Species #1              : NO
 Species #2              : O3
@@ -123,33 +123,6 @@ Species #97             : OClO
 Species #98             : Cl2
 Species #99             : Cl2O2
 Species #100            : H2O
-Species #101            : MTPA
-Species #102            : LIMO
-Species #103            : MTPO
-Species #104            : TSOG1
-Species #105            : TSOG2
-Species #106            : TSOG3
-Species #107            : TSOG0
-Species #108            : TSOA1
-Species #109            : TSOA2
-Species #110            : TSOA3
-Species #111            : TSOA0
-Species #112            : ISOG1
-Species #113            : ISOG2
-Species #114            : ISOG3
-Species #115            : ISOA1
-Species #116            : ISOA2
-Species #117            : ISOA3
-Species #118            : BENZ
-Species #119            : TOLU
-Species #120            : XYLE
-Species #121            : ASOG1
-Species #122            : ASOG2
-Species #123            : ASOG3
-Species #124            : ASOAN
-Species #125            : ASOA1
-Species #126            : ASOA2
-Species #127            : ASOA3
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
@@ -196,7 +169,7 @@ Online SULFATE AEROSOLS : T
 Online CRYST/AQ AEROSOLS: F
 Online CARBON  AEROSOLS : T
  => Use Brown Carbon?   : F
-Online 2dy ORG AEROSOLS : T
+Online COMPLEX SOA      : F
  => Semivolatile POA?   : F
 Online DUST    AEROSOLS : T
  => Acidic uptake ?     : F

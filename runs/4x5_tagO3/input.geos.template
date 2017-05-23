@@ -71,7 +71,7 @@ Online SULFATE AEROSOLS : T
 Online CRYST/AQ AEROSOLS: F
 Online CARBON  AEROSOLS : T
  => Use Brown Carbon?   : F
-Online 2dy ORG AEROSOLS : F
+Online COMPLEX SOA      : F
  => Semivolatile POA?   : F
 Online DUST    AEROSOLS : T
  => Acidic uptake ?     : F
