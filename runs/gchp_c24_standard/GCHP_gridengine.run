@@ -1,0 +1,22 @@
+#!/bin/bash
+#$ -l h_rt=01:00:00
+#$ -l h_vmem=50G
+#$ -l h_stack=10G
+#$ -pe ompi* 6
+#$ -cwd
+
+echo "This run using $NSLOTS cores on these hosts:"
+cat $PE_HOSTFILE
+
+# Apply settings for IFORT 13
+source GCHP.ifort13_openmpi_glooscap.bashrc
+
+# Define GEOS-Chem log file
+log="GCHP.log"
+
+# Run the code
+mpirun ./geos >> $log
+
+echo '===> Run ended at' `date` >> $log
+
+trap times EXIT

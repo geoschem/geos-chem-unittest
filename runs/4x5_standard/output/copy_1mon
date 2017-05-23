@@ -39,7 +39,7 @@ fi
 
 # Set variables
 version=$1
-dirq="/as/pub/ftp/gcgrid-rw/geos-chem/1mo_benchmarks/v11-01/$version"
+dirq="/as/pub/ftp/gcgrid-rw/geos-chem/1mo_benchmarks/v11-02/$version"
 
 # Make the directory if it does not exist
 if [ ! -d $dirq ]; then

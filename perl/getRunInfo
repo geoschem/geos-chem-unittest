@@ -65,6 +65,8 @@ sub getInfo($$) {
 #  06 Apr 2015 - E. Lundgren - Initial version
 #  27 Apr 2015 - M. Sulprizio- Now use YYYYMMDDhhmm format for start/end time
 #  31 Mar 2015 - E. Lundgren - Add special case of soa_svpoa
+#  22 May 2017 - R. Yantosca - For HEMCO standalone, convert YYYY-MM-DD to
+#                              YYYYMMDD and hh:mm:ss to hhmmss
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -77,8 +79,10 @@ sub getInfo($$) {
   my $runinfo = "";
 
   # Arrays
-  my @linestrings = ();
-  my @runinfoarray = ();
+  my @linestrings   = ();
+  my @dates         = ();
+  my @times         = ();
+  my @runinfoarray  = ();
 
   # Make sure that an input.geos file is found; otherwise print a "";
   if ( -f "$rundir/input.geos" ) {
@@ -138,6 +142,60 @@ sub getInfo($$) {
       }
 
     }				
+
+  } elsif ( -f "$rundir/HEMCO_sa_Config.rc" ) {
+
+    # Hardcode simulation type to HEMCO for now
+    if ( $id == 2 ) {
+
+       $runinfo = "HEMCO"
+
+    # Hardcode nest to "n" for now
+    } elsif ( $id == 3 ) {
+
+       $runinfo = "n"
+
+    # Get start run time if $id is 4, end run time is $id is 5
+    } elsif ( $id == 4 || $id == 5) {
+
+      if ( -f "$rundir/HEMCO_sa_Time.rc" ) {
+
+	if ($id == 4) { $runstr = "START" }
+	if ($id == 5) { $runstr = "END" }
+
+	# Grep for start and date
+	$line = qx( grep "$runstr" $rundir/HEMCO_sa_Time.rc );
+        chomp( $line );
+
+        # Split by spaces
+        @linestrings = split( ' ', $line );
+
+	# Translatet YYYY-MM-DD into YYYYMMDD
+	# and hh:mm:ss to hhmmss
+	@dates = split( '-', $linestrings[1] );
+	@times = split( ':', $linestrings[2] );
+
+        # Return start and end times in YYYYMMDDhhmm format
+	$runinfo = "$dates[0]$dates[1]$dates[2]$times[0]$times[1]";
+      }
+
+    } else {
+
+      if ($id == 0) { $runstr = "MET:" }
+      if ($id == 1) { $runstr = "RES:" }
+
+      # Grep for input.geos header
+      $line = qx( grep "$runstr" $rundir/HEMCO_sa_Config.rc );
+      chomp( $line );
+      
+      # Split by spaces
+      @linestrings = split( ' ', $line );
+
+      # Return met or grid type
+      $runinfo = "$linestrings[1]";
+
+    }
+
   }
 
   # Print the result

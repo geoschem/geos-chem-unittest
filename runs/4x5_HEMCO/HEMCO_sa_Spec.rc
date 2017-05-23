@@ -1,0 +1,41 @@
+# List species below. For each species, the following entries must be given:
+# ID        : species ID
+# NAME      : species name
+# MW        : molecular weight (g/mol)
+# MWEMIS    : molecular weight of emitted species (g/mol)
+# MOLECRATIO: molecules of emitted species per molecule of species
+# K0        : Henry constant at 298 K (M/atm, liquid over gas)
+# CR        : Henry temperature dependency (-d ln(KH)/d(1/T)
+# pKA       : acid dissociation constant
+
+# ID NAME MW MWEMIS MOLECRATIO K0 CR PKA
+1    CO     28.0  28.0   1.0        0.0    0.0    0.0
+2    NO     30.0  30.0   1.0        0.0    0.0    0.0
+3    SO2    64.0  64.0   1.0        0.0    0.0    0.0
+4    SO4    96.0  96.0   1.0        0.0    0.0    0.0
+5    OCPI   12.0  12.0   1.0        0.0    0.0    0.0
+6    OCPO   12.0  12.0   1.0        0.0    0.0    0.0
+7    BCPI   12.0  12.0   1.0        0.0    0.0    0.0
+8    BCPO   12.0  21.0   1.0        0.0    0.0    0.0
+9    NH3    17.0  17.0   1.0        0.0    0.0    0.0
+10   ALK4   58.1  12.0   4.0        0.0    0.0    0.0
+11   ACET   58.1  12.0   3.0        27.0   5300.0 -999.0
+12   MEK    72.1  12.0   4.0        0.0    0.0    0.0
+13   ALD2   44.0  12.0   2.0        0.0    0.0    0.0
+14   PRPE   42.1  12.0   3.0        0.0    0.0    0.0
+15   C3H8   44.1  12.0   3.0        0.0    0.0    0.0
+16   C2H6   30.1  12.0   2.0        0.0    0.0    0.0
+17   CH2O   30.0  30.0   1.0        0.0    0.0    0.0
+18   CHBr3  253.0 253.0  1.0        0.0    0.0    0.0
+19   CH2Br2 174.0 174.0  1.0        0.0    0.0    0.0
+20   SALA   31.4  31.4   1.0        0.0    0.0    0.0
+21   SALC   31.4  31.4   1.0        0.0    0.0    0.0
+22   Br2    160.0 160.0  1.0        0.0    0.0    0.0
+23   DMS    62.0  62.0   1.0        0.48   3100.0 -999.0
+24   DST1   29.0  29.0   1.0        0.0    0.0    0.0
+25   DST2   29.0  29.0   1.0        0.0    0.0    0.0
+26   DST3   29.0  29.0   1.0        0.0    0.0    0.0
+27   DST4   29.0  29.0   1.0        0.0    0.0    0.0
+28   ISOP   68.1  12.0   5.0        0.0    0.0    0.0
+29   C2H4   28.1  12.0   2.0        0.0    0.0    0.0
+30   NO2    46.0  46.0   1.0        0.0    0.0    0.0

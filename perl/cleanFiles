@@ -166,6 +166,7 @@ sub main() {
 #  14 Apr 2015 - R. Yantosca - Also remove lastbuild* files
 #  15 Apr 2015 - R. Yantosca - Also remove the Makefile in the run directory;
 #                              this gets copied over fresh for each unit test.
+#  16 May 2017 - R. Yantosca - Also remove core files
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -222,7 +223,7 @@ sub main() {
 	  # Remove files in each run directory ...
 	  print "==> Removing files in $runDir\n";
 	  $cmd  = "cd $runDir; ";
-	  $cmd .= "rm -f input.geos HEMCO_Config.rc HEMCO.log HEMCO_diagnostics.* smv2.log Ox.mass.* Makefile lastbuild* *.sp *.mp *info.dat input.geos.g* input.geos.m* GEOSChem_restart*; ";
+	  $cmd .= "rm -f input.geos HEMCO_Config.rc HEMCO.log HEMCO_diagnostics.* smv2.log Ox.mass.* Makefile lastbuild* *.sp *.mp *info.dat input.geos.g* input.geos.m* GEOSChem_restart* core.*; ";
 	  $cmd .= "cd ..";
           #print "$cmd\n";
 	  qx/$cmd/;

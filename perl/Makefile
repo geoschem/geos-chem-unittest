@@ -276,6 +276,7 @@ endif
 LOG_COMP     :="$(RUN_DIR)/lastbuild"
 LOG_SP       :="$(LOG_DIR)/$(VERSION).$(RUNID).log.sp"
 LOG_MP       :="$(LOG_DIR)/$(VERSION).$(RUNID).log.mp"
+LOG_HMCO_SA  :="$(LOG_DIR)/$(VERSION).$(RUNID).log"
 
 # Log files that will be written to the run directory
 # (For copied run directories, the log & run directories are the same)
@@ -284,6 +285,7 @@ LOG_HMCO     :="HEMCO.log"
 # Executables
 EXE_SP       :=geos.sp
 EXE_MP       :=geos.mp
+EXE_HMCO_SA  :=hemco_standalone.x
 
 # Output data files
 GC_DIAG      :=trac_avg.$(RUNID).$(START)
@@ -387,17 +389,14 @@ unittest:
 
 sp:
 	@$(MAKE) spclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET)           GRID=$(GRID)             \
-                                NEST=$(NEST)         UCX=$(UCX)               \
-                                CHEM=$(CHEM)         RRTMG=$(RRTMG)           \
-                                TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
-                                TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
-                                MASSCONS=$(MASSCONS) OMP=no                   \
-                                TIMERS=$(TIMERS)     TAU_PROF=$(TAU_PROF)     \
-                                TAU_OPTIONS=$(TAU_OPT)                        \
-                                BPCH_DIAG=$(BPCH_DIAG)                        \
-                                BPCH_RST_IN=$(BPCH_RST_IN)                    \
-                                BPCH_RST_OUT=$(BPCH_RST_OUT)                  \
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
+                                NEST=$(NEST)           UCX=$(UCX)             \
+                                CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
+                                TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
+                                TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
+                                MASSCONS=$(MASSCONS)   OMP=no                 \
+                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
+                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
                                 > $(LOG_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
@@ -408,17 +407,14 @@ sp:
 
 mp:
 	@$(MAKE) mpclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET)           GRID=$(GRID)             \
-                                NEST=$(NEST)         UCX=$(UCX)               \
-                                CHEM=$(CHEM)         RRTMG=$(RRTMG)           \
-                                TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
-                                TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
-                                MASSCONS=$(MASSCONS) OMP=yes                  \
-                                TIMERS=$(TIMERS)     TAU_PROF=$(TAU_PROF)     \
-                                TAU_OPTIONS=$(TAU_OPT)                        \
-                                BPCH_DIAG=$(BPCH_DIAG)                        \
-                                BPCH_RST_IN=$(BPCH_RST_IN)                    \
-                                BPCH_RST_OUT=$(BPCH_RST_OUT)                  \
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
+                                NEST=$(NEST)           UCX=$(UCX)             \
+                                CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
+                                TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
+                                TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
+                                MASSCONS=$(MASSCONS)   OMP=yes                \
+                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
+                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
                                 > $(LOG_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
@@ -434,17 +430,14 @@ mp:
 spbuild:
 	@$(MAKE) spexeclean
 	@$(MAKE) splogclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET)           GRID=$(GRID)             \
-                                NEST=$(NEST)         UCX=$(UCX)               \
-                                CHEM=$(CHEM)         RRTMG=$(RRTMG)           \
-                                TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
-                                TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
-                                MASSCONS=$(MASSCONS) OMP=no                   \
-                                TIMERS=$(TIMERS)     TAU_PROF=$(TAU_PROF)     \
-                                TAU_OPTIONS=$(TAU_OPT)                        \
-                                BPCH_DIAG=$(BPCH_DIAG)                        \
-                                BPCH_RST_IN=$(BPCH_RST_IN)                    \
-                                BPCH_RST_OUT=$(BPCH_RST_OUT)                  
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
+                                NEST=$(NEST)           UCX=$(UCX)             \
+                                CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
+                                TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
+                                TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
+                                MASSCONS=$(MASSCONS)   OMP=no                 \
+                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
+                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) 
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	@$(MAKE) printbuildinfo
@@ -452,17 +445,14 @@ spbuild:
 mpbuild:
 	@$(MAKE) mpexeclean
 	@$(MAKE) mplogclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET)           GRID=$(GRID)             \
-                                NEST=$(NEST)         UCX=$(UCX)               \
-                                CHEM=$(CHEM)         RRTMG=$(RRTMG)           \
-                                TOMAS12=$(TOMAS12)   TOMAS15=$(TOMAS15)       \
-                                TOMAS30=$(TOMAS30)   TOMAS40=$(TOMAS40)       \
-                                MASSCONS=$(MASSCONS) OMP=yes                  \
-                                TIMERS=$(TIMERS)     TAU_PROF=$(TAU_PROF)     \
-                                TAU_OPTIONS=$(TAU_OPT)                        \
-                                BPCH_DIAG=$(BPCH_DIAG)                        \
-                                BPCH_RST_IN=$(BPCH_RST_IN)                    \
-                                BPCH_RST_OUT=$(BPCH_RST_OUT)                  
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
+                                NEST=$(NEST)           UCX=$(UCX)             \
+                                CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
+                                TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
+                                TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
+                                MASSCONS=$(MASSCONS)   OMP=yes                \
+                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
+                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG)
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	@$(MAKE) printbuildinfo
@@ -484,6 +474,42 @@ mprun:
 	@$(MAKE) addsuffixmp
 	@$(MAKE) printruninfomp >> $(LOG_MP)
 	@$(MAKE) printruninfomp
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%
+#  HEMCO Standalone       %
+#%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+# Synonyms
+hemco:      hco
+hemcobuild: hcobuild
+hemcorun:   hcorun
+
+hco:
+	@$(MAKE) hcobuild
+	@$(MAKE) hcorun
+
+hcobuild:
+	@$(MAKE) hcoexeclean
+	@$(MAKE) hcologclean
+	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
+                                NEST=$(NEST)           UCX=$(UCX)             \
+                                CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
+                                TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
+                                TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
+                                MASSCONS=$(MASSCONS)   OMP=yes                \
+                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
+                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
+                                libhemcosa
+	cp -f $(CODE_DIR)/bin/hemco_standalone.x $(EXE_HMCO_SA)
+	@$(MAKE) printbuildinfo > $(LOG_COMP).hemco
+	@$(MAKE) printbuildinfo
+
+hcorun:
+	@$(MAKE) hcodataclean
+	./$(EXE_HMCO_SA) HEMCO_sa_Config.rc  > $(LOG_HMCO_SA)
+	@$(MAKE) printruninfohco >> $(LOG_HMCO_SA)
+	@$(MAKE) printruninfohco
+
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Remove Output Data     %
@@ -514,6 +540,11 @@ mpdataclean:
 	rm -f HEMCO_restart*.mp
 	rm -f diaginfo.dat tracerinfo.dat
 
+hcodataclean:
+	rm -f HEMCO_restart*
+	rm -f diaginfo.dat tracerinfo.dat
+	rm -f output/*.nc
+
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Remove Logs            %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -521,20 +552,21 @@ mpdataclean:
 logclean: 
 	@$(MAKE) splogclean 
 	@$(MAKE) mplogclean
+	@$(MAKE) hcologclean
 	rm -f $(LOG_HMCO)
 	rm -f *.log
 
 splogclean:
 	rm -f $(LOG_SP)
 	rm -f $(LOG_HMCO).sp
-	rm -f smv2.log
-	rm -f geos.sp.*
 
 mplogclean:
 	rm -f $(LOG_MP)
 	rm -f $(LOG_HMCO).mp
-	rm -f smv2.log
-	rm -f geos.mp.*
+
+hcologclean:
+	rm -f $(LOG_HMCO)
+	rm -f $(LOG_HMCO_SA)
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Remove Executables     %
@@ -552,6 +584,10 @@ spexeclean:
 mpexeclean:
 	rm -f $(EXE_MP)
 	rm -f $(LOG_COMP).mp
+
+hcoexeclean:
+	rm -f $(EXE_HMCO_SA)
+	rm -f $(LOG_COMP).hemco_sa
 
 tauclean:
 	@$(MAKE) -C $(CODE_DIR) tauclean
@@ -623,6 +659,18 @@ printruninfomp:
 	@echo "  HEMCO Restart File  : $(HMCO_RST).mp"
 	@echo "  GC Run Log File     : $(LOG_MP)"
 	@echo "  HEMCO Log File      : $(LOG_HMCO).mp"
+
+printruninfohco:
+	@echo "RUN SETTINGS:"
+	@echo "  Run directory       : $(RUN_DIR)"
+	@echo "  Run ID              : $(RUNID)"
+	@echo "  Simulation Start    : $(START)"
+	@echo "  Simulation End      : $(END)"
+	@echo "  HEMCO End           : $(HMCO_END)"
+	@echo "  Version             : $(VERSION)"
+	@echo "  HEMCO Restart File  : $(HMCO_RST)"
+	@echo "  HEMCO Run Log File  : $(LOG_HMCO_SA)"
+	@echo "  HEMCO Log File      : $(LOG_HMCO)"
 
 printbuildinfo:
 	@echo "LAST BUILD INFORMATION:"
