@@ -11,6 +11,9 @@ cat $PE_HOSTFILE
 # Apply settings for IFORT 13
 source GCHP.ifort13_openmpi_glooscap.bashrc
 
+# Sync all config files with settings in runConfig.sh                           
+./runConfig.sh > runConfig.log
+
 # Define GEOS-Chem log file
 log="GCHP.log"
 

@@ -43,6 +43,9 @@ source $BASHRC
 # Define version ID
 id="GCHP"
 
+# Sync all config files with settings in runConfig.sh                           
+./runConfig.sh > runConfig.log
+
 # Define GEOS-Chem log file
 log="GCHP.log"
 
