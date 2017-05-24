@@ -261,12 +261,12 @@ fi
 
 #### Check that dynamic and convection timesteps are the same
 if [[ ${Chemistry_Timestep_min} -ne ${Emissions_Timestep_min} ]]; then
-    echo "ERROR: convection timestep must be equal to transport timestep"
+    echo "ERROR: chemistry timestep must be equal to emissions timestep"
     exit 1
 fi
 
 #### Check that chem timestep is >= dynamic timestep
-if [[ ${Chemistry_Timestep_min} -lt ${Emissions_Timestep_min} ]]; then
+if [[ ${Chemistry_Timestep_min} -lt ${Transport_Timestep_min} ]]; then
     echo "ERROR: chemistry timestep must be >= dynamic timestep"
     exit 1
 fi
