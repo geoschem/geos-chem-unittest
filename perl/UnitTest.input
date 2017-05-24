@@ -48,7 +48,7 @@
 #
 # %%% Unit tester path names %%%
 #
-   UNIT_TEST_ROOT   : {HOME}/GC/bleeding_edge/ut
+   UNIT_TEST_ROOT   : {HOME}/UT
    RUN_ROOT         : {UTROOT}/runs
    RUN_DIR          : {RUNROOT}/{RUNDIR}
    JOB_DIR          : {UTROOT}/jobs
@@ -76,7 +76,7 @@
    SLURM_CPUS       : 4
    SLURM_NODES      : 1
    SLURM_TIME       : 1-12:00
-   SLURM_MEMORY     : 40000
+   SLURM_MEMORY     : 30000
    SLURM_PARTITION  : jacob
    SLURM_CONSTRAINT : intel
    SLURM_MAILTYPE   : END

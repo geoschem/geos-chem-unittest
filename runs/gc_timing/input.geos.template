@@ -278,10 +278,10 @@ ND37: Updraft scav frac :  0   all
 ND38: Cld Conv scav loss: 72   all
 ND39: Wetdep scav loss  : 72   all
 ND41: Afternoon PBL ht  :  0   all
-ND42: SOA concentrations: 72   all
+ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 : 72   all
   ==> OH/HO2 time range :       0 24
-ND44: Drydep flx/vel    :  1   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 47 48 50 55 56 58 59 60 61 62 63 64 65 66 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 119 120 121 122 123 124 125
+ND44: Drydep flx/vel    :  1   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 47 48 50 55 56 58 59 60 61 62 63 64 65 66
 ND45: Tracer Conc's     : 72   all
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions:  1   all
