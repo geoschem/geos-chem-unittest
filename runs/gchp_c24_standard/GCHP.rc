@@ -40,6 +40,7 @@ NUM_WRITERS: 1
 BKG_FREQUENCY: 0
 
 # Chemistry/AEROSOL Model Restart Files
+# Enter +none for GIGCchem_INTERNAL_RESTART_FILE not use an initial restart file
 # -------------------------------------
 GIGCchem_INTERNAL_RESTART_FILE:     +initial_GEOSChem_rst.c24_standard.nc
 GIGCchem_INTERNAL_RESTART_TYPE:     pnc4
@@ -55,14 +56,11 @@ DYN_INTERNAL_HEADER:          1
 # %%% For reading the input.geos file %%%
 #
 MAX_DIAG:             80
-MAX_TRCS:             130
-MAX_MEMB:             15
-MAX_FAMS:             20
-MAX_DEP:              130
-LINOZ_NFIELDS:         7
-LINOZ_NLAT            18
+MAX_SPC:             500
+MAZ_FAM:              20
 LINOZ_NLEVELS:        25
 LINOZ_NMONTHS:        12
+LINOZ_NFIELDS:         7
 RUN_PHASES:           1
 
 #
@@ -75,6 +73,3 @@ HEMCO_CONFIG:         HEMCO_Config.rc
 #
 STDOUT_LOGFILE:       PET%%%%%.GEOSCHEMchem.log
 STDOUT_LOGLUN:        6
-
-INIT_ZERO: 0
-INIT_GCC:  0
