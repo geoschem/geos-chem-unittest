@@ -12,9 +12,9 @@
 ##########################
 
 #### COMPUTE RESOURCES
-NUM_NODES=2           
-NUM_CORES_PER_NODE=24
-NY=48                  # NY must be an integer and a multiple of 6
+NUM_NODES=1
+NUM_CORES_PER_NODE=6
+NY=6                  # NY must be an integer and a multiple of 6
 NX=1                  # NX*NY must equal total number of cores
                       # Choose NX and NY to optimize NX x NY/6 squareness
                       # within contraint of total # of CPUs
@@ -28,8 +28,8 @@ CUBE_SPHERE_RES=24    # 24~4x5, 48~2x2.5, etc.
 
 #### SIMULATION TIMES
 Start_Time="20130701 000000"
-End_Time="20130801 010000"
-Duration="00000100 000000"
+End_Time="20130701 010000"
+Duration="00000000 010000"
 
 #### TURN COMPONENTS ON/OFF
 Turn_on_Chemistry=T
