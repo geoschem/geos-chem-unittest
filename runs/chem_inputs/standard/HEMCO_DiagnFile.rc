@@ -1,0 +1,169 @@
+# Name            Spec   ExtNr  Cat Hier Dim OutUnit
+#### NO ##############################################################
+EMIS_NO_TOTAL     NO     -1     -1  -1   3   molec/cm2/s
+EMIS_NO_ANTH      NO     0      1   -1   3   molec/cm2/s
+EMIS_NO_BIOF      NO     0      2   -1   2   molec/cm2/s
+EMIS_NO_AIRC      NO     0      20  -1   3   molec/cm2/s
+EMIS_NO_SHIP      NO     102    -1  -1   2   molec/cm2/s
+EMIS_NO_BIOB      NO     111    -1  -1   2   molec/cm2/s
+EMIS_NO_FERT      NO     104    -1  -1   2   molec/cm2/s
+EMIS_NO_SOIL      NO     104    -1  -1   2   molec/cm2/s
+EMIS_NO_LGHTN     NO     103    -1  -1   2   molec/cm2/s
+#### CO ##############################################################
+EMIS_CO_TOTAL     CO     -1     -1  -1   3   molec/cm2/s
+EMIS_CO_ANTH      CO     0      1   -1   3   molec/cm2/s
+EMIS_CO_BIOF      CO     0      2   -1   2   molec/cm2/s
+EMIS_CO_BIOB      CO     111    -1  -1   2   molec/cm2/s
+EMIS_CO_MONO      CO     109    -1  -1   2   molec/cm2/s
+EMIS_CO_SHIP      CO     0      10  -1   2   molec/cm2/s
+#### ALK4 ############################################################
+EMIS_ALK4_TOTAL   ALK4   -1     -1  -1   3   molec/cm2/s
+EMIS_ALK4_ANTH    ALK4   0      1   -1   3   atomsC/cm2/s
+EMIS_ALK4_BIOF    ALK4   0      2   -1   2   atomsC/cm2/s
+EMIS_ALK4_BIOB    ALK4   111    -1  -1   2   atomsC/cm2/s
+#### ACET ############################################################
+EMIS_ACET_TOTAL   ACET   -1     -1  -1   3   molec/cm2/s
+EMIS_ACET_ANTH    ACET   0      1   -1   3   atomsC/cm2/s
+EMIS_ACET_BIOF    ACET   0      2   -1   2   atomsC/cm2/s
+EMIS_ACET_BIOB    ACET   111    -1  -1   2   atomsC/cm2/s
+EMIS_ACET_BIOG    ACET   108    -1  -1   2   atomsC/cm2/s
+EMIS_ACET_MONO    ACET   108    -1  -1   2   atomsC/cm2/s
+EMIS_ACET_MBO     ACET   108    -1  -1   2   atomsC/cm2/s
+EMIS_ACET_DIR     ACET   108    -1  -1   2   atomsC/cm2/s
+EMIS_ACET_OCEAN   ACET   101    -1  -1   2   atomsC/cm2/s
+#### MEK #############################################################
+EMIS_MEK_TOTAL    MEK    -1     -1  -1   3   molec/cm2/s
+EMIS_MEK_ANTH     MEK    0      1   -1   3   atomsC/cm2/s
+EMIS_MEK_BIOF     MEK    0      2   -1   2   atomsC/cm2/s
+EMIS_MEK_BIOB     MEK    111    -1  -1   2   atomsC/cm2/s
+#### ALD2 ############################################################
+EMIS_ALD2_TOTAL   ALD2   -1     -1  -1   3   molec/cm2/s
+EMIS_ALD2_ANTH    ALD2   0      1   -1   3   atomsC/cm2/s
+EMIS_ALD2_BIOF    ALD2   0      2   -1   2   atomsC/cm2/s
+EMIS_ALD2_BIOB    ALD2   111    -1  -1   2   atomsC/cm2/s
+EMIS_ALD2_BIOG    ALD2   108    -1  -1   2   atomsC/cm2/s
+EMIS_ALD2_SEN     ALD2   0      4   -1   2   atomsC/cm2/s
+EMIS_ALD2_OCEAN   ALD2   101    -1  -1   2   atomsC/cm2/s
+#### RCHO ############################################################
+EMIS_RCHO_TOTAL   RCHO   -1     -1  -1   3   molec/cm2/s
+EMIS_RCHO_ANTH    RCHO   0      1   -1   3   atomsC/cm2/s
+EMIS_RCHO_BIOF    RCHO   0      2   -1   2   atomsC/cm2/s
+#### MACR ############################################################
+EMIS_MACR_TOTAL   MACR   -1     -1  -1   3   molec/cm2/s
+EMIS_MACR_ANTH    MACR   0      1   -1   3   atomsC/cm2/s
+EMIS_MACR_BIOF    MACR   0      2   -1   2   atomsC/cm2/s
+#### PRPE ############################################################
+EMIS_PRPE_TOTAL   PRPE   -1     -1  -1   3   molec/cm2/s
+EMIS_PRPE_ANTH    PRPE   0      1   -1   3   atomsC/cm2/s
+EMIS_PRPE_BIOF    PRPE   0      2   -1   2   atomsC/cm2/s
+EMIS_PRPE_BIOB    PRPE   111    -1  -1   2   atomsC/cm2/s
+EMIS_PRPE_BIOG    PRPE   108    -1  -1   2   atomsC/cm2/s
+#### C3H8 ############################################################
+EMIS_C3H8_TOTAL   C3H8   -1     -1  -1   3   molec/cm2/s
+EMIS_C3H8_ANTH    C3H8   0      1   -1   3   atomsC/cm2/s
+EMIS_C3H8_BIOF    C3H8   0      2   -1   2   atomsC/cm2/s
+EMIS_C3H8_BIOB    C3H8   111    -1  -1   2   atomsC/cm2/s
+#### CH2O ############################################################
+EMIS_CH2O_TOTAL   CH2O   -1     -1  -1   3   molec/cm2/s
+EMIS_CH2O_ANTH    CH2O   0      1   -1   3   atomsC/cm2/s
+EMIS_CH2O_BIOF    CH2O   0      2   -1   2   atomsC/cm2/s
+EMIS_CH2O_BIOB    CH2O   111    -1  -1   2   atomsC/cm2/s
+#### C2H6 ############################################################
+EMIS_C2H6_TOTAL   C2H6   -1     -1  -1   3   molec/cm2/s
+EMIS_C2H6_ANTH    C2H6   0      1   -1   3   atomsC/cm2/s
+EMIS_C2H6_BIOF    C2H6   0      2   -1   2   atomsC/cm2/s
+EMIS_C2H6_BIOB    C2H6   111    -1  -1   2   atomsC/cm2/s
+#### ISOP ############################################################
+EMIS_ISOP_BIOG    ISOP   108    -1  -1   2   atomsC/cm2/s
+#### DMS #############################################################
+EMIS_DMS_OCEAN    DMS    101    -1  -1   2   kg
+#### SO2 #############################################################
+EMIS_SO2_TOTAL    SO2    -1     -1  -1   3   kg
+EMIS_SO2_ANTH     SO2    0      1   -1   3   kg
+EMIS_SO2_BIOF     SO2    0      2   -1   2   kg
+EMIS_SO2_AIRC     SO2    0      20  -1   3   kg
+EMIS_SO2_SHIP     SO2    0      10  -1   2   kg
+EMIS_SO2_EVOL     SO2    0      51  -1   2   kg
+EMIS_SO2_NVOL     SO2    0      52  -1   2   kg
+EMIS_SO2_BIOB     SO2    111    -1  -1   2   kg
+#### SO4 #############################################################
+EMIS_SO4_TOTAL    SO4    -1     -1  -1   3   kg
+EMIS_SO4_ANTH     SO4    0      1   -1   3   kg
+EMIS_SO4_BIOF     SO4    0      2   -1   2   kg
+#### NH3 #############################################################
+EMIS_NH3_TOTAL    NH3    -1     -1  -1   3   kg
+EMIS_NH3_ANTH     NH3    0      1   -1   3   kg
+EMIS_NH3_BIOF     NH3    0      2   -1   2   kg
+EMIS_NH3_NATU     NH3    0      3   -1   2   kg
+EMIS_NH3_BIOB     NH3    111    -1  -1   2   kg
+#### BC ##############################################################
+EMIS_BCPI_TOTAL   BCPI   -1     -1  -1   3   kgC
+EMIS_BCPI_ANTH    BCPI   0      1   -1   2   kgC
+EMIS_BCPI_BIOF    BCPI   0      2   -1   2   kgC
+EMIS_BCPI_BIOB    BCPI   111    -1  -1   2   kgC
+EMIS_BCPO_TOTAL   BCPO   -1     -1  -1   3   kgC
+EMIS_BCPO_ANTH    BCPO   0      1   -1   2   kgC
+EMIS_BCPO_BIOF    BCPO   0      2   -1   2   kgC
+EMIS_BCPO_BIOB    BCPO   111    -1  -1   2   kgC
+#### OC ##############################################################
+EMIS_OCPI_TOTAL   OCPI   -1     -1  -1   3   kgC
+EMIS_OCPI_ANTH    OCPI   0      1   -1   2   kgC
+EMIS_OCPI_BIOF    OCPI   0      2   -1   2   kgC
+EMIS_OCPI_BIOB    OCPI   111    -1  -1   2   kgC
+EMIS_OCPI_BIOG    OCPI   109    -1  -1   2   kgC
+EMIS_OCPO_TOTAL   OCPO   -1     -1  -1   3   kgC
+EMIS_OCPO_ANTH    OCPO   0      1   -1   2   kgC
+EMIS_OCPO_BIOF    OCPO   0      2   -1   2   kgC
+EMIS_OCPO_BIOB    OCPO   111    -1  -1   2   kgC
+#### DUST ############################################################
+EMIS_DST1_NATU    DST1   105    -1  -1   2   kg
+EMIS_DST2_NATU    DST2   105    -1  -1   2   kg
+EMIS_DST3_NATU    DST3   105    -1  -1   2   kg
+EMIS_DST4_NATU    DST4   105    -1  -1   2   kg
+#### SEA SALT ########################################################
+EMIS_SALA_NATU    SALA   107    -1  -1   2   kg
+EMIS_SALC_NATU    SALC   107    -1  -1   2   kg
+#### CHBr3 ###########################################################
+EMIS_CHBr3_OCEAN  CHBr3  0      1   -1   2   kg/m2/s
+#### CH2Br2 ##########################################################
+EMIS_CH2Br2_OCEAN CH2Br2 0      1   -1   2   kg/m2/s
+#### Br2 #############################################################
+EMIS_Br2_OCEAN    Br2    107    -1  -1   2   kg/m2/s
+#### NO2 #############################################################
+EMIS_NO2_ANTH     NO2    0      1   -1   3   molec/cm2/s
+#### HNO2 ############################################################
+EMIS_HNO2_ANTH    HNO2   0      1   -1   3   molec/cm2/s
+#### BENZ ############################################################
+EMIS_BENZ_TOTAL   BENZ   -1     -1  -1   3   atomsC/cm2/s
+EMIS_BENZ_ANTH    BENZ   0      1   -1   3   atomsC/cm2/s
+EMIS_BENZ_BIOF    BENZ   0      2   -1   2   atomsC/cm2/s
+EMIS_BENZ_BIOB    BENZ   111    -1  -1   2   atomsC/cm2/s
+#### TOLU ############################################################
+EMIS_TOLU_TOTAL   TOLU   -1     -1  -1   3   atomsC/cm2/s
+EMIS_TOLU_ANTH    TOLU   0      1   -1   3   atomsC/cm2/s
+EMIS_TOLU_BIOF    TOLU   0      2   -1   2   atomsC/cm2/s
+EMIS_TOLU_BIOB    TOLU   111    -1  -1   2   atomsC/cm2/s
+#### XYLE ############################################################
+EMIS_XYLE_TOTAL   XYLE   -1     -1  -1   3   atomsC/cm2/s
+EMIS_XYLE_ANTH    XYLE   0      1   -1   3   atomsC/cm2/s
+EMIS_XYLE_BIOF    XYLE   0      2   -1   2   atomsC/cm2/s
+EMIS_XYLE_BIOB    XYLE   111    -1  -1   2   atomsC/cm2/s
+#### EOH ############################################################
+EMIS_EOH_TOTAL    EOH    -1     -1  -1   3   atomsC/cm2/s
+EMIS_EOH_ANTH     EOH    0      1   -1   3   atomsC/cm2/s
+EMIS_EOH_BIOF     EOH    0      2   -1   2   atomsC/cm2/s
+EMIS_EOH_SEN      EOH    0      4   -1   2   atomsC/cm2/s
+EMIS_EOH_BIOB     EOH    111    -1  -1   2   atomsC/cm2/s
+EMIS_EOH_BIOG     EOH    108    -1  -1   2   atomsC/cm2/s
+### MGLY ############################################################
+EMIS_MGLY_BIOB    MGLY   111    -1  -1   2   atomsC/cm2/s
+#### SOAP ############################################################
+EMIS_SOAP_TOTAL   SOAP    -1    -1  -1   3   atomsC/cm2/s
+EMIS_SOAP_ANTH    SOAP    0     1   -1   3   atomsC/cm2/s
+EMIS_SOAP_BIOF    SOAP    0     2   -1   2   atomsC/cm2/s
+EMIS_SOAP_SHIP    SOAP    0     10  -1   2   atomsC/cm2/s
+EMIS_SOAP_AIRC    SOAP    0     20  -1   2   atomsC/cm2/s
+EMIS_SOAP_BIOB    SOAP    111   -1  -1   2   atomsC/cm2/s
+EMIS_SOAP_BIOG    SOAP    108   -1  -1   2   atomsC/cm2/s
+#### SOAS ############################################################
+EMIS_SOAS_BIOG    SOAS    108   -1  -1   2   atomsC/cm2/s
