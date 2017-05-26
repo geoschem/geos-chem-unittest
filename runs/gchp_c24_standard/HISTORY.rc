@@ -10,8 +10,8 @@ COLLECTIONS: 'center',
   center.template:  '%y4%m2%d2.nc4',
   center.format:    'CFIO',
   center.frequency:  010000,
-  center.duration:   240000
-  center.mode:      'instantaneous'
+  center.duration:   010000
+  center.mode:      'time-averaged'
   center.fields:  'SPC_ACET',    'GIGCchem',
                   'SPC_ALD2',    'GIGCchem',
                   'SPC_ALK4',    'GIGCchem',
@@ -142,8 +142,8 @@ COLLECTIONS: 'center',
   regrid.resolution: 72 46,
   regrid.format:    'CFIO',
   regrid.frequency:  010000,
-  regrid.duration:   240000,
-  regrid.mode:       'instantaneous',
+  regrid.duration:   010000,
+  regrid.mode:       'time-averaged',
   regrid.fields:  'SPC_ACET',    'GIGCchem',
                   'SPC_ALD2',    'GIGCchem',
                   'SPC_ALK4',    'GIGCchem',
