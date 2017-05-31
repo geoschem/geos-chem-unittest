@@ -148,6 +148,7 @@ cleanup_logs:
 	rm -f PET00000.GEOSCHEMchem.log
 	rm -f logfile.000000.out
 	rm -f GCHP.log
+	rm -f runConfig.log
 	rm -f smv2.log
 	rm -f slurm-*
 	rm -f 1
