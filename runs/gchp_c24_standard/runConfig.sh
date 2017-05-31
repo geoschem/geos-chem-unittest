@@ -51,7 +51,7 @@ Emissions_Timestep_min=20
 Chemistry_Timestep_min=20
 
 #### GENERAL
-Use_variable_tropopause=F
+Use_variable_tropopause=T
 Type_of_simulation=3
 
 #### PBL MIXING
