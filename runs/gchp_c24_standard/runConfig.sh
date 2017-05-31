@@ -31,6 +31,14 @@ Start_Time="20130701 000000"
 End_Time="20130701 010000"
 Duration="00000000 010000"
 
+#### OUTPUT
+cs_frequency="010000"
+cs_duration="010000"
+cs_mode="'time-averaged'"
+ll_frequency="010000"
+ll_duration="010000"
+ll_mode="'time-averaged'"
+
 #### TURN COMPONENTS ON/OFF
 Turn_on_Chemistry=T
 Turn_on_emissions=T
@@ -229,6 +237,16 @@ echo "Simulation start, end, duration:"
 replace_val BEG_DATE      "${Start_Time}" CAP.rc
 replace_val END_DATE      "${End_Time}"   CAP.rc
 replace_val JOB_SGMT      "${Duration}"   CAP.rc
+
+#### Set output frequency, duration, and mode
+echo " "
+echo "Output:"
+replace_val center.frequency "${cs_frequency}"  HISTORY.rc
+replace_val center.duration  "${cs_duration}"   HISTORY.rc
+replace_val center.mode      "${cs_mode}"       HISTORY.rc
+replace_val regrid.frequency "${ll_frequency}"  HISTORY.rc
+replace_val regrid.duration  "${ll_duration}"   HISTORY.rc
+replace_val regrid.mode      "${ll_mode}"       HISTORY.rc
 
 #### Set timesteps based on input.geos
 echo " "
