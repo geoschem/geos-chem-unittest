@@ -72,4 +72,4 @@ HEMCO_CONFIG:         HEMCO_Config.rc
 # %%% Log file names for redirecting stdout %%%
 #
 STDOUT_LOGFILE:       PET%%%%%.GEOSCHEMchem.log
-STDOUT_LOGLUN:        6
+STDOUT_LOGLUN:        700
