@@ -1000,20 +1000,19 @@ DTOMS2_O3_COL 1       xy  C N N %y4-%m2-01T00:00:00   none none DTOMS2 ./MainDat
 #==============================================================================
 VISTAS_SEASON 1 xy C Y Y F2002-%m2-01T00:00:00 none none NOratio ./MainDataDir/NEI2005/v2014-09/scaling/Vistas_season.geos.1x1.nc
 ARP_SEASON    1 xy C N Y F%y4-%m2-01T00:00:00  none none NOxrat  ./MainDataDir/NEI2005/v2014-09/scaling/ARP_season.geos.1x1.nc
-# NEI2005 is a low priority, and is the only inventory that requires DOW scale factors. Ignore for now
-NEI99_DOW_NOX     1 xy C N N - none none NOX     /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_CO      1 xy C N N - none none CO      /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_ALK4    1 xy C N N - none none ALK4    /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_ACET    1 xy C N N - none none ACET    /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_MEK     1 xy C N N - none none MEK     /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_PRPE    1 xy C N N - none none PRPE    /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_C3H8    1 xy C N N - none none C3H8    /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_C2H6    1 xy C N N - none none C2H6    /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_SO2     1 xy C N N - none none SO2     /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_SO4     1 xy C N N - none none SO4     /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_MSA     1 xy C N N - none none MSA     /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_BCPI    1 xy C N N - none none BCPI    /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
-NEI99_DOW_OCPI    1 xy C N N - none none OCPI    /dev/null #./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_NOX     1 xy C D N F- none none NOX     ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_CO      1 xy C D N F- none none CO      ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_ALK4    1 xy C D N F- none none ALK4    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_ACET    1 xy C D N F- none none ACET    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_MEK     1 xy C D N F- none none MEK     ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_PRPE    1 xy C D N F- none none PRPE    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_C3H8    1 xy C D N F- none none C3H8    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_C2H6    1 xy C D N F- none none C2H6    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_SO2     1 xy C D N F- none none SO2     ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_SO4     1 xy C D N F- none none SO4     ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_MSA     1 xy C D N F- none none MSA     ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_BCPI    1 xy C D N F- none none BCPI    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_OCPI    1 xy C D N F- none none OCPI    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
 NEI99_SEASON_CO   1 xy C Y N - none none CO      ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
 NEI99_SEASON_ALK4 1 xy C Y N - none none ALK4    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
 NEI99_SEASON_ACET 1 xy C Y N - none none ACET    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
