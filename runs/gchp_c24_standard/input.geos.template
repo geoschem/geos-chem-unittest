@@ -157,7 +157,7 @@ Switches for UCX        :---
     => Br species?      : F
     => N2O?             : T
  => Set initial glob MRs:---
-    => strat. H2O?      : F
+    => strat. H2O?      : T
     => CH4?             : F
     => OCS?             : F
     => CFCs?            : F

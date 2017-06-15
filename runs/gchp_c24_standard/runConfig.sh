@@ -31,6 +31,14 @@ Start_Time="20130701 000000"
 End_Time="20130701 010000"
 Duration="00000000 010000"
 
+#### OUTPUT
+cs_frequency="010000"
+cs_duration="010000"
+cs_mode="'time-averaged'"
+ll_frequency="010000"
+ll_duration="010000"
+ll_mode="'time-averaged'"
+
 #### TURN COMPONENTS ON/OFF
 Turn_on_Chemistry=T
 Turn_on_emissions=T
@@ -51,7 +59,7 @@ Emissions_Timestep_min=20
 Chemistry_Timestep_min=20
 
 #### GENERAL
-Use_variable_tropopause=F
+Use_variable_tropopause=T
 Type_of_simulation=3
 
 #### PBL MIXING
@@ -99,136 +107,6 @@ Use_UCX_strat_chem=T
 Active_strat_H2O=T
 Online_O3_for_FAST_JX=T
 Gamma_HO2=0.2
-
-#### ADVECTED SPECIES
-Number_of_Advected_Spec=127
-Species1=NO
-Species2=O3
-Species3=PAN
-Species4=CO
-Species5=ALK4
-Species6=ISOP
-Species7=HNO3
-Species8=H2O2
-Species9=ACET
-Species10=MEK
-Species11=ALD2
-Species12=RCHO
-Species13=MVK
-Species14=MACR
-Species15=PMN
-Species16=PPN
-Species17=R4N2
-Species18=PRPE
-Species19=C3H8
-Species20=CH2O
-Species21=C2H6
-Species22=N2O5
-Species23=HNO4
-Species24=MP
-Species25=DMS
-Species26=SO2
-Species27=SO4
-Species28=SO4s
-Species29=MSA
-Species30=NH3
-Species31=NH4
-Species32=NIT
-Species33=NITs
-Species34=BCPI
-Species35=OCPI
-Species36=BCPO
-Species37=OCPO
-Species38=DST1
-Species39=DST2
-Species40=DST3
-Species41=DST4
-Species42=SALA
-Species43=SALC
-Species44=Br2
-Species45=Br
-Species46=BrO
-Species47=HOBr
-Species48=HBr
-Species49=BrNO2
-Species50=BrNO3
-Species51=CHBr3
-Species52=CH2Br2
-Species53=CH3Br
-Species54=MPN
-Species55=ISOPND
-Species56=ISOPNB
-Species57=MOBA
-Species58=PROPNN
-Species59=HAC
-Species60=GLYC
-Species61=MVKN
-Species62=MACRN
-Species63=RIP
-Species64=IEPOX
-Species65=MAP
-Species66=NO2
-Species67=NO3
-Species68=HNO2
-Species69=N2O
-Species70=OCS
-Species71=CH4
-Species72=BrCl
-Species73=HCl
-Species74=CCl4
-Species75=CH3Cl
-Species76=CH3CCl3
-Species77=CFC113
-Species78=CFC114
-Species79=CFC115
-Species80=HCFC123
-Species81=HCFC141b
-Species82=HCFC142b
-Species83=CFC11
-Species84=CFC12
-Species85=HCFC22
-Species86=H1211
-Species87=H1301
-Species88=H2402
-Species89=Cl
-Species90=ClO
-Species91=HOCl
-Species92=ClNO3
-Species93=ClNO2
-Species94=ClOO
-Species95=OClO
-Species96=Cl2
-Species97=Cl2O2
-Species98=H2O
-Species99=MTPA
-Species100=LIMO
-Species101=MTPO
-Species102=TSOG1
-Species103=TSOG2
-Species104=TSOG3
-Species105=TSOG0
-Species106=TSOA1
-Species107=TSOA2
-Species108=TSOA3
-Species109=TSOA0
-Species110=ISOG1
-Species111=ISOG2
-Species112=ISOG3
-Species113=ISOA1
-Species114=ISOA2
-Species115=ISOA3
-Species116=BENZ
-Species117=TOLU
-Species118=XYLE
-Species119=ASOG1
-Species120=ASOG2
-Species121=ASOG3
-Species122=ASOAN
-Species123=ASOA1
-Species124=ASOA2
-Species125=ASOA3
-Species126=EOH
-Species127=MGLY
 
 ##################################
 ####   End of Configurables   ####
@@ -360,6 +238,16 @@ replace_val BEG_DATE      "${Start_Time}" CAP.rc
 replace_val END_DATE      "${End_Time}"   CAP.rc
 replace_val JOB_SGMT      "${Duration}"   CAP.rc
 
+#### Set output frequency, duration, and mode
+echo " "
+echo "Output:"
+replace_val center.frequency "${cs_frequency}"  HISTORY.rc
+replace_val center.duration  "${cs_duration}"   HISTORY.rc
+replace_val center.mode      "${cs_mode}"       HISTORY.rc
+replace_val regrid.frequency "${ll_frequency}"  HISTORY.rc
+replace_val regrid.duration  "${ll_duration}"   HISTORY.rc
+replace_val regrid.mode      "${ll_mode}"       HISTORY.rc
+
 #### Set timesteps based on input.geos
 echo " "
 echo "Timesteps:"
@@ -441,138 +329,6 @@ replace_val "Use UCX strat. chem?"    	${Use_UCX_strat_chem}       input.geos
 replace_val "Active strat. H2O?"      	${Active_strat_H2O}         input.geos
 replace_val "Online O3 for FAST-JX?"    ${Online_O3_for_FAST_JX}    input.geos
 replace_val "Gamma HO2"                 ${Gamma_HO2}                input.geos 
-echo " "
-echo "Advected species:"
-replace_val "Number of Advected Spec"  ${Number_of_Advected_Spec} input.geos
-replace_val Species1    ${Species1}   input.geos
-replace_val Species2    ${Species2}   input.geos
-replace_val Species3    ${Species3}   input.geos
-replace_val Species4    ${Species4}   input.geos
-replace_val Species5    ${Species5}   input.geos
-replace_val Species6    ${Species6}   input.geos
-replace_val Species7    ${Species7}   input.geos
-replace_val Species8    ${Species8}   input.geos
-replace_val Species9    ${Species9}   input.geos
-replace_val Species10   ${Species10}  input.geos
-replace_val Species11   ${Species11}  input.geos
-replace_val Species12   ${Species12}  input.geos
-replace_val Species13   ${Species13}  input.geos
-replace_val Species14   ${Species14}  input.geos
-replace_val Species15   ${Species15}  input.geos
-replace_val Species16   ${Species16}  input.geos
-replace_val Species17   ${Species17}  input.geos
-replace_val Species18   ${Species18}  input.geos
-replace_val Species19   ${Species19}  input.geos
-replace_val Species20   ${Species20}  input.geos
-replace_val Species21   ${Species21}  input.geos
-replace_val Species22   ${Species22}  input.geos
-replace_val Species23   ${Species23}  input.geos
-replace_val Species24   ${Species24}  input.geos
-replace_val Species25   ${Species25}  input.geos
-replace_val Species26   ${Species26}  input.geos
-replace_val Species27   ${Species27}  input.geos
-replace_val Species28   ${Species28}  input.geos
-replace_val Species29   ${Species29}  input.geos
-replace_val Species30   ${Species30}  input.geos
-replace_val Species31   ${Species31}  input.geos
-replace_val Species32   ${Species32}  input.geos
-replace_val Species33   ${Species33}  input.geos
-replace_val Species34   ${Species34}  input.geos
-replace_val Species35   ${Species35}  input.geos
-replace_val Species36   ${Species36}  input.geos
-replace_val Species37   ${Species37}  input.geos
-replace_val Species38   ${Species38}  input.geos
-replace_val Species39   ${Species39}  input.geos
-replace_val Species40   ${Species40}  input.geos
-replace_val Species41   ${Species41}  input.geos
-replace_val Species42   ${Species42}  input.geos
-replace_val Species43   ${Species43}  input.geos
-replace_val Species44   ${Species44}  input.geos
-replace_val Species45   ${Species45}  input.geos
-replace_val Species46   ${Species46}  input.geos
-replace_val Species47   ${Species47}  input.geos
-replace_val Species48   ${Species48}  input.geos
-replace_val Species49   ${Species49}  input.geos
-replace_val Species50   ${Species50}  input.geos
-replace_val Species51   ${Species51}  input.geos
-replace_val Species52   ${Species52}  input.geos
-replace_val Species53   ${Species53}  input.geos
-replace_val Species54   ${Species54}  input.geos
-replace_val Species55   ${Species55}  input.geos
-replace_val Species56   ${Species56}  input.geos
-replace_val Species57   ${Species57}  input.geos
-replace_val Species58   ${Species58}  input.geos
-replace_val Species59   ${Species59}  input.geos
-replace_val Species60   ${Species60}  input.geos
-replace_val Species61   ${Species61}  input.geos
-replace_val Species62   ${Species62}  input.geos
-replace_val Species63   ${Species63}  input.geos
-replace_val Species64   ${Species64}  input.geos
-replace_val Species65   ${Species65}  input.geos
-replace_val Species66   ${Species66}  input.geos
-replace_val Species67   ${Species67}  input.geos
-replace_val Species68   ${Species68}  input.geos
-replace_val Species69   ${Species69}  input.geos
-replace_val Species70   ${Species70}  input.geos
-replace_val Species71   ${Species71}  input.geos
-replace_val Species72   ${Species72}  input.geos
-replace_val Species73   ${Species73}  input.geos
-replace_val Species74   ${Species74}  input.geos
-replace_val Species75   ${Species75}  input.geos
-replace_val Species76   ${Species76}  input.geos
-replace_val Species77   ${Species77}  input.geos
-replace_val Species78   ${Species78}  input.geos
-replace_val Species79   ${Species79}  input.geos
-replace_val Species80   ${Species80}  input.geos
-replace_val Species81   ${Species81}  input.geos
-replace_val Species82   ${Species82}  input.geos
-replace_val Species83   ${Species83}  input.geos
-replace_val Species84   ${Species84}  input.geos
-replace_val Species85   ${Species85}  input.geos
-replace_val Species86   ${Species86}  input.geos
-replace_val Species87   ${Species87}  input.geos
-replace_val Species88   ${Species88}  input.geos
-replace_val Species89   ${Species89}  input.geos
-replace_val Species90   ${Species90}  input.geos
-replace_val Species91   ${Species91}  input.geos
-replace_val Species92   ${Species92}  input.geos
-replace_val Species93   ${Species93}  input.geos
-replace_val Species94   ${Species94}  input.geos
-replace_val Species95   ${Species95}  input.geos
-replace_val Species96   ${Species96}  input.geos
-replace_val Species97   ${Species97}  input.geos
-replace_val Species98   ${Species98}  input.geos
-replace_val Species99   ${Species99}  input.geos
-replace_val Species100  ${Species100} input.geos
-replace_val Species101  ${Species101} input.geos
-replace_val Species102  ${Species102} input.geos
-replace_val Species103  ${Species103} input.geos
-replace_val Species104  ${Species104} input.geos
-replace_val Species105  ${Species105} input.geos
-replace_val Species106  ${Species106} input.geos
-replace_val Species107  ${Species107} input.geos
-replace_val Species108  ${Species108} input.geos
-replace_val Species109  ${Species109} input.geos
-replace_val Species110  ${Species110} input.geos
-replace_val Species111  ${Species111} input.geos
-replace_val Species112  ${Species112} input.geos
-replace_val Species113  ${Species113} input.geos
-replace_val Species114  ${Species114} input.geos
-replace_val Species115  ${Species115} input.geos
-replace_val Species116  ${Species116} input.geos
-replace_val Species117  ${Species117} input.geos
-replace_val Species118  ${Species118} input.geos
-replace_val Species119  ${Species119} input.geos
-replace_val Species120  ${Species120} input.geos
-replace_val Species121  ${Species121} input.geos
-replace_val Species122  ${Species122} input.geos
-replace_val Species123  ${Species123} input.geos
-replace_val Species124  ${Species124} input.geos
-replace_val Species125  ${Species125} input.geos
-replace_val Species126  ${Species126} input.geos
-replace_val Species127  ${Species127} input.geos 
-
-	    
 	    
 ################################################
 ###   Print Run Settings to runSettings.log  ###

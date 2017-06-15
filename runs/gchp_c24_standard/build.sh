@@ -74,13 +74,16 @@ fi
 if [[ "$FC" == "ifort" ]]; then
    export ESMF_COMPILER=intel
    export COMPILER=ifort
+elif [[ "$FC" == "gfortran" ]]; then
+   export ESMF_COMPILER=gfortran
+   export COMPILER=gfortran
 else
-   echo "GCHP not currently configured for non-Intel compilers"
+   echo "Command FC=$FC did not give a compiler recognized by/compatible with GCHP"
    exit 3
 fi
 
 # Set ESMF optimization (g=debugging, O=optimized)
-export ESMF_BOPT=g
+export ESMF_BOPT=O
 
 ###############################
 ###       Help              ###
