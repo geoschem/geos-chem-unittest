@@ -413,9 +413,11 @@ Warnings:                    {WARNINGS}
 0 BIOFUEL_MEK  $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_MEK  1985/1/1/0 C xy kgC/m2/s MEK  -        2 1
 0 BIOFUEL_ALD2 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_ALD2 1985/1/1/0 C xy kgC/m2/s ALD2 -        2 1
 0 BIOFUEL_PRPE $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_PRPE 1985/1/1/0 C xy kgC/m2/s PRPE -        2 1
-0 BIOFUEL_C3H8 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_C3H8 1985/1/1/0 C xy kgC/m2/s C3H8 -        2 1
 0 BIOFUEL_CH2O $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_CH2O 1985/1/1/0 C xy kg/m2/s  CH2O -        2 1
+(((.not.XIAO
+0 BIOFUEL_C3H8 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_C3H8 1985/1/1/0 C xy kgC/m2/s C3H8 -        2 1
 0 BIOFUEL_C2H6 $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_C2H6 1985/1/1/0 C xy kgC/m2/s C2H6 -        2 1
+))).not.XIAO
 )))BIOFUEL
 
 #==============================================================================
