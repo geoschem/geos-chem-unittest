@@ -31,44 +31,34 @@
 #------------------------------------------------------------------------------
 #BOC
 
-# Set and source your bashrc
-
-BASHRC=GCHP.ifort15_mvapich2_odyssey.bashrc
-echo "WARNING: You are using environment settings in $BASHRC"
-source $BASHRC
-
-#-------------------------------------------------
-# Initialize
-#-------------------------------------------------
-# Define version ID
-id="GCHP"
-
-# Sync all config files with settings in runConfig.sh                           
-./runConfig.sh > runConfig.log
-
 # Define GEOS-Chem log file
 log="GCHP.log"
 
-#-------------------------------------------------
-# Start the simulation
-#-------------------------------------------------
-# Run GCHP
-# SLURM_NTASKS is set to #SBATCH -n and
-# SLURM_NNODES is set to #SBATCH -N above
-time srun -n $SLURM_NTASKS -N $SLURM_NNODES --mpi=pmi2 ./geos >> $log
+# Sync all config files with settings in runConfig.sh                           
+./runConfig.sh > runConfig.log
+if [[ $? == 0 ]]; then
 
-# Echo end fin
-echo '===> Run ended at' `date` >> $log
+    # Set and source your bashrc
+    BASHRC=GCHP.ifort15_mvapich2_odyssey.bashrc
+    echo "WARNING: You are using environment settings in $BASHRC"
+    source $BASHRC
 
-#-------------------------------------------------
-# Clean up
-#-------------------------------------------------
-# Echo info from computational cores to log file for displaying results
-echo "# of CPUs : $SLURM_NTASKS"
-echo "# of nodes: $SLURM_NNODES"
+    # Start the simulation
+    # SLURM_NTASKS is set to #SBATCH -n and SLURM_NNODES is set to #SBATCH -N above
+    time srun -n $SLURM_NTASKS -N $SLURM_NNODES --mpi=pmi2 ./geos >> $log
+
+    # Echo end fin
+    echo '===> Run ended at' `date` >> $log
+
+    # Echo info from computational cores to log file for displaying results
+    echo "# of CPUs : $SLURM_NTASKS"
+    echo "# of nodes: $SLURM_NNODES"
+
+else
+    cat runConfig.log
+fi
 
 # Clear variable
-unset id
 unset log
 
 # Exit normally
