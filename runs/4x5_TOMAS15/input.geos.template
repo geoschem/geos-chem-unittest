@@ -236,17 +236,17 @@ Species name            : AW15
 Turn on Transport       : T
  => Fill Negative Values: T
  => IORD, JORD, KORD    : 3  3  7
-Transport Timestep [min]: 10
+Transport Timestep [min]: 30
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
 Turn on PBL Mixing?     : T
  => Use non-local PBL?  : F
-Convect Timestep [min]  : 10
+Convect Timestep [min]  : 30
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
-Emiss Timestep [min]    : 20
+Emiss Timestep [min]    : 60
 HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
 Switches for UCX        :---
@@ -305,7 +305,7 @@ Use linear. strat. chem?: F
 Use UCX strat. chem?    : F
 Online CH4 chemistry?   : F
 Active strat. H2O?      : F
-Chemistry Timestep [min]: 20
+Chemistry Timestep [min]: 60
 Online O3 for FAST-JX?  : T
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
