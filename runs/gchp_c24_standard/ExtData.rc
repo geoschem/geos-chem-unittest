@@ -709,7 +709,7 @@ MEGAN_ORVC                   1 xy C Y Y F1990-%m2-01T00:00:00 none none OCPI ./M
 #
 # Need DE0720xPE0360 grid
 # One-year climatology
-SOILNOX_FERT      kg/m3 xy C N Y  2000-%m2-%d2T00:00:00 none none FERT ./MainDataDir/SOILNOX/v2014-07/soilNOx.fert_res.generic.05x05.nc
+SOILNOX_FERT      kg/m3 xy C N Y  2000-%m2-%d2T00:00:00 none none FERT ./MainDataDir/SOILNOX/v2014-07/soilNOx.fert_res.generic.05x05.time_corrected_for_GCHP.nc
 SOILNOX_LANDK1    1     xy C N Y F- none none LANDFRAC_K01 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
 SOILNOX_LANDK2    1     xy C N Y F- none none LANDFRAC_K02 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
 SOILNOX_LANDK3    1     xy C N Y F- none none LANDFRAC_K03 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
