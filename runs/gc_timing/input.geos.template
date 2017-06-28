@@ -37,7 +37,7 @@ Species #11             : ALD2
 Species #12             : RCHO
 Species #13             : MVK
 Species #14             : MACR
-Species #15             : PMN
+Species #15             : NPMN
 Species #16             : PPN
 Species #17             : R4N2
 Species #18             : PRPE
@@ -81,7 +81,7 @@ Species #55             : CH3Br
 Species #56             : MPN
 Species #57             : ISOPND
 Species #58             : ISOPNB
-Species #59             : MOBA
+Species #59             : HC187
 Species #60             : PROPNN
 Species #61             : HAC
 Species #62             : GLYC
@@ -177,6 +177,7 @@ Online CARBON  AEROSOLS : T
  => Use Brown Carbon?   : F
 Online COMPLEX SOA      : F
  => Semivolatile POA?   : F
+Online isoprene Org. Aer: F
 Online DUST    AEROSOLS : T
  => Acidic uptake ?     : F
 Online SEASALT AEROSOLS : T
@@ -259,7 +260,7 @@ ND17: Rainout fraction  :  0   all
 ND18: Washout fraction  :  0   all
 ND19: CH4 loss          :  0   all
 ND21: Optical depths    : 72   all
-ND22: J-Values          : 72   1 2 7 8 9 11 13 14 20 46 48 49 51 52 53 61 62 68 69 71 76 77 85 86 -1
+ND22: J-Values          : 72   all
       => JV time range  :      11 13
 ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
@@ -305,6 +306,7 @@ ND69: Surface area      :  1   all
 ND70: Debug output      :  0   all
 ND71: Hourly max ppbv   :  0   2
 ND72: Radiative output  :  0   all
+ND73: ISORROPIA         :  0   all
 ------------------------+------------------------------------------------------
 %%% PLANEFLIGHT MENU %%%:
 Turn on plane flt diag? : F
