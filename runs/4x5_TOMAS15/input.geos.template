@@ -21,7 +21,7 @@ Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 208
+Number of Advected Spec.: 221
 Species Entries ------->: Name
 Species name            : NO
 Species name            : O3
@@ -77,7 +77,7 @@ Species name            : CH3Br
 Species name            : MPN
 Species name            : ISOPND
 Species name            : ISOPNB
-Species name            : HC187
+Species name            : MOBA
 Species name            : PROPNN
 Species name            : HAC
 Species name            : GLYC
@@ -95,6 +95,19 @@ Species name            : TOLU
 Species name            : XYLE
 Species name            : EOH
 Species name            : MGLY
+Species name            : GLYX
+Species name            : ETHLN
+Species name            : ISN1
+Species name            : HCOOH
+Species name            : ACTA
+Species name            : DHDN
+Species name            : IONITA
+Species name            : MONITA
+Species name            : HPALD
+Species name            : LIMO
+Species name            : MONITS
+Species name            : MONITU
+Species name            : HONIT
 Species name            : H2SO4
 Species name            : NK1
 Species name            : NK2
@@ -389,7 +402,7 @@ ND45: Tracer Conc's     : 47   all
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions:  1   all
 ND47: 24-h avg trc conc :  0   all
-ND52: GAMMA HO2         :  0   all
+ND52: GAMMA values      :  0   all
 ND53: POPs Emissions    :  0   all
 ND54: Time in t'sphere  : 47   all
 ND55: Tropopause height : 47   all
