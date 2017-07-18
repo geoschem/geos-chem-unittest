@@ -394,6 +394,7 @@ sp:
                                 BPCH_DIAG=$(BPCH_DIAG)                        \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                    \
                                 BPCH_RST_OUT=$(BPCH_RST_OUT)                  \
+                                NO_REDUCED=$(NO_REDUCED)                      \
                                 > $(LOG_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
@@ -415,6 +416,7 @@ mp:
                                 BPCH_DIAG=$(BPCH_DIAG)                        \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                    \
                                 BPCH_RST_OUT=$(BPCH_RST_OUT)                  \
+                                NO_REDUCED=$(NO_REDUCED)                      \
                                 > $(LOG_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
@@ -440,7 +442,8 @@ spbuild:
                                 TAU_OPTIONS=$(TAU_OPT)                        \
                                 BPCH_DIAG=$(BPCH_DIAG)                        \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                    \
-                                BPCH_RST_OUT=$(BPCH_RST_OUT)                  
+                                BPCH_RST_OUT=$(BPCH_RST_OUT)                  \
+                                NO_REDUCED=$(NO_REDUCED)                      
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	@$(MAKE) printbuildinfo
@@ -458,7 +461,8 @@ mpbuild:
                                 TAU_OPTIONS=$(TAU_OPT)                        \
                                 BPCH_DIAG=$(BPCH_DIAG)                        \
                                 BPCH_RST_IN=$(BPCH_RST_IN)                    \
-                                BPCH_RST_OUT=$(BPCH_RST_OUT)                  
+                                BPCH_RST_OUT=$(BPCH_RST_OUT)                  \
+                                NO_REDUCED=$(NO_REDUCED)                      
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	@$(MAKE) printbuildinfo
