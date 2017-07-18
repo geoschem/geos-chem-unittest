@@ -21,7 +21,7 @@ Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 102
+Number of Advected Spec.: 105
 Species Entries ------->: Name
 Species name            : NO
 Species name            : O3
@@ -125,6 +125,9 @@ Species name            : MONITU
 Species name            : HONIT
 Species name            : IONITA
 Species name            : MONITA
+Species name            : INDIOL
+Species name            : IPMN
+Species name            : HC187
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
