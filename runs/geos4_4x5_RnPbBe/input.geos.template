@@ -184,7 +184,7 @@ ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 :  0   all
   ==> OH/HO2 time range :       0 24
-ND44: Drydep flx/vel    :  1   2 3
+ND44: Drydep flx/vel    :  1   all
 ND45: Tracer Conc's     : 30   all
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions:  0   all
