@@ -1,0 +1,454 @@
+#------------------------------------------------------------------------------
+#                  Harvard-NASA Emissions Component (HEMCO)                   !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: HEMCO_Config.rc
+#
+# !DESCRIPTION: Contains configuration information for HEMCO. Define the
+#  emissions inventories and corresponding file paths here. Entire 
+#  configuration files can be inserted into this configuration file with
+#  an '>>>include' statement, e.g. '>>>include HEMCO\_Config\_test.rc' 
+#  The settings of include-files will be ignored.
+#\\
+#\\
+# !REMARKS:
+#  The following tokens will be replaced:
+#  (1) ROOT    : Filepath to HEMCO root directory
+#  (2) CFDIR   : Filepath to directory of this configuration file. 
+#  (3) MET     : Met field type (from G-C compilation command)
+#  (4) GRID    : Horizontal grid type (from G-C compilation command)
+#  (5) SIM     : Simulation type (from G-C compilation command)
+#  (6) NEST    : Nested-grid type (CH, EU, NA, SE)
+#  (7) LEVRED  : String w/ the # of levels in the reduced GEOS-Chem grid
+#                as used in some filenames (e.g. "23L", "30L", "47L")
+#  (8) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
+#                as used in some filenames (e.g. "55L", "72L")
+# 
+# !REVISION HISTORY: 
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+###############################################################################
+### BEGIN SECTION SETTINGS
+###############################################################################
+
+ROOT:                        /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData/HEMCO
+Logfile:                     HEMCO.log
+DiagnPrefix:                 HEMCO_diagnostics
+DiagnFreq:                   End
+Wildcard:                    *
+Separator:                   /
+Unit tolerance:              1
+Negative values:             0
+Only unitless scale factors: false
+Verbose:                     0
+Warnings:                    1
+
+### END SECTION SETTINGS ###
+
+###############################################################################
+### BEGIN SECTION EXTENSION SWITCHES
+###############################################################################
+###
+### This section lists all emission extensions available to HEMCO and whether 
+### they shall be used or not. Extension 'base' must have extension number 
+### zero, all other extension numbers can be freely chosen. Data fields in 
+### section 'base emissions' will only be read if the corresponding extension 
+### (identified by ExtNr) is enabled. Similarly, fields grouped into data 
+### collections ('(((CollectionName', ')))CollectionName') are only considered
+### if the corresponding data collection is enabled in this section. Data
+### listed within a disabled extension are always ignored, even if they are
+### grouped in an enabled collection (e.g. GFED-4 data will never be considered
+### if the GFED extension is disabled, even if the GFED4 option is set to true).
+###
+### It is possible to define collections that are only evaluated if a
+### collection name is *not* enabled. This is achieved by leading the
+### collection name with '.not.', e.g. '(((.not.FINN_daily' ...
+### '))).not.FINN_daily' for FINN monthly data (only used if daily data is
+### not being used). 
+###
+### The ExtNr provided in this section must match with the ExtNr assigned to
+### the data listed in the base emissions sections. Otherwise, the listed 
+### files won't be read!
+###############################################################################
+# ExtNr ExtName              on/off  Species
+0       Base                 : on    *
+#    --> HEMCO_RESTART        :       false
+#    --> AEIC                 :       true
+#    --> BIOFUEL              :       true
+#    --> BOND                 :       true
+#    --> BRAVO                :       true
+#    --> CAC                  :       true
+#    --> XIAO                 :       true
+#    --> EDGAR                :       true
+#    --> HTAP                 :       false
+#    --> EMEP                 :       true
+#    --> EMEP_SHIP            :       true
+#    --> GEIA                 :       true
+#    --> POET                 :       true
+#    --> LIANG_BROMOCARB      :       true
+#    --> NEI2005              :       false
+#    --> NEI2011_HOURLY       :       false
+#    --> NEI2011_MONMEAN      :       true
+#    --> RETRO                :       true 
+#    --> SHIP                 :       true
+#    --> NEI2011_SHIP_HOURLY  :       false
+#    --> NEI2011_SHIP_MONMEAN :       false
+#    --> MIX                  :       true
+#    --> STREETS              :       false
+#    --> VOLCANO              :       true
+#    --> RCP_3PD              :       false 
+#    --> RCP_45               :       false
+#    --> RCP_60               :       false
+#    --> RCP_85               :       false
+#    --> QFED2                :       false
+#    --> DECAYING_PLANTS      :       true
+#    --> +UValbedo+           :       true
+#    --> +TOMS_SBUV_O3+       :       true
+#    --> +STATE_PSC+          :       false
+#    --> +LinStratChem+       :       true
+    --> +Olson+              :       true
+    --> +ModisLAI+           :       true
+    --> +ModisCHLR+          :       false
+## -----------------------------------------------------------------------------
+#100     Custom            : off   - 
+#101     SeaFlux           : on    DMS/ACET/ALD2
+#102     ParaNOx           : on    NO/NO2/O3/HNO3
+#    --> LUT data format   :       txt
+#    --> LUT source dir    :       $ROOT/PARANOX/v2015-02
+#103     LightNOx          : on    NO
+#    --> OTD-LIS scaling   :       0.319577705439131
+#    --> OTD-LIS factors   :       false
+#    --> CDF table         :       $ROOT/LIGHTNOX/v2014-07/light_dist.ott2010.dat
+#104     SoilNOx           : on    NO 
+#    --> Use fertilizer NOx:       true
+#105     DustDead          : on    DST1/DST2/DST3/DST4 
+#    --> Mass tuning factor:       0.000768752630594
+#106     DustGinoux        : off   DST1/DST2/DST3/DST4
+#115     DustAlk           : off   DSTAL1/DSTAL2/DSTAL3/DSTAL4
+#107     SeaSalt           : on    SALA/SALC/Br2
+#    --> SALA lower radius :       0.01 
+#    --> SALA upper radius :       0.5
+#    --> SALC lower radius :       0.5
+#    --> SALC upper radius :       8.0
+#    --> Emit Br2          :       true  
+#    --> Br2 scaling       :       1.0 
+#116     MarinePOA         : off   MOPO/MOPI 
+#108     MEGAN             : on    ISOP/ACET/PRPE/C2H4/ALD2/EOH
+#    --> Isoprene scaling  :       1.0 
+#    --> CO2 inhibition    :       true
+#    --> CO2 conc (ppmv)   :       390.0
+#109     MEGAN_Mono        : on    CO/OCPI/MONX
+#110     MEGAN_SOA         : on    MTPA/MTPO/LIMO/SESQ
+#111     GFED              : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/MTPA/BENZ/TOLU/XYLE/NAP/EOH
+#    --> GFED3             :       false 
+#    --> GFED4             :       true
+#    --> GFED_daily        :       false
+#    --> GFED_3hourly      :       false
+#    --> Scaling_CO        :       1.05
+#    --> Scaling_POG1      :       1.27
+#    --> Scaling_POG2      :       1.27
+#    --> Scaling_NAP       :       2.75e-4
+#    --> hydrophilic BC    :       0.2
+#    --> hydrophilic OC    :       0.5
+#    --> fraction POG1     :       0.49
+#114     FINN              : off   NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/GLYC/HAC
+#    --> FINN_daily        :       false
+#    --> Scaling_CO        :       1.0
+#    --> hydrophilic BC    :       0.2
+#    --> hydrophilic OC    :       0.5
+#------------------------------------------------------------------------------
+1001    GC_Rn-Pb-Be       : on    Rn/Be7
+
+### END SECTION EXTENSION SWITCHES ###
+
+###############################################################################
+### BEGIN SECTION BASE EMISSIONS 
+###############################################################################
+
+# ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
+
+###############################################################################
+### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
+###
+### These fields are needed by the extensions listed above. The assigned ExtNr 
+### must match the ExtNr entry in section 'Extension switches'. These fields 
+### are only read if the extension is enabled.  The fields are imported by the
+### extensions by field name.  The name given here must match the name used 
+### in the extension's source code. 
+###############################################################################
+
+###############################################################################
+### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
+###
+### Non-emissions data. The following fields are read through HEMCO but do 
+### not contain emissions data. The extension number is set to wildcard 
+### character denoting that these fields will not be considered for emission 
+### calculation. A given entry is only read if the assigned species name is 
+### an HEMCO species.
+###############################################################################
+
+#==============================================================================
+# --- Time zones (offset to UTC) ---
+#==============================================================================
+* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
+
+# --- Olson land map data ---
+#==============================================================================
+(((+Olson+
+* OLSON00 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON01 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON02 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON03 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON04 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON05 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON06 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON07 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON08 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON09 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON10 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON11 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON12 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON13 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON14 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON15 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON16 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON17 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON18 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON19 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON20 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON21 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON22 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON23 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON24 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON25 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON26 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON27 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON28 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON29 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON30 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON31 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON32 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON33 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON34 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON35 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON36 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON37 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON38 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON39 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON40 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON41 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON42 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON43 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON44 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON45 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON46 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON47 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON48 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON49 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON50 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON51 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON52 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON53 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON54 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON55 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON56 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON57 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON58 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON59 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON60 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON61 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON62 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON63 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON64 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON65 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON66 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON67 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON68 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON69 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON70 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON71 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+* OLSON72 Ignore.nc OLSON 1985/1/1/0 C xy unitless * - 1 1
+)))+Olson+
+
+#==============================================================================
+# --- MODIS LAI data ---
+#==============================================================================
+(((+ModisLAI+
+* XLAI00 Ignore.nc XLAI00 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI01 Ignore.nc XLAI01 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI02 Ignore.nc XLAI02 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI03 Ignore.nc XLAI03 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI04 Ignore.nc XLAI04 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI05 Ignore.nc XLAI05 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI06 Ignore.nc XLAI06 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI07 Ignore.nc XLAI07 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI08 Ignore.nc XLAI08 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI09 Ignore.nc XLAI09 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI10 Ignore.nc XLAI10 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI11 Ignore.nc XLAI11 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI12 Ignore.nc XLAI12 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI13 Ignore.nc XLAI13 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI14 Ignore.nc XLAI14 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI15 Ignore.nc XLAI15 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI16 Ignore.nc XLAI16 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI17 Ignore.nc XLAI17 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI18 Ignore.nc XLAI18 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI19 Ignore.nc XLAI19 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI20 Ignore.nc XLAI20 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI21 Ignore.nc XLAI21 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI22 Ignore.nc XLAI22 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI23 Ignore.nc XLAI23 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI24 Ignore.nc XLAI24 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI25 Ignore.nc XLAI25 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI26 Ignore.nc XLAI26 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI27 Ignore.nc XLAI27 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI28 Ignore.nc XLAI28 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI29 Ignore.nc XLAI29 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI30 Ignore.nc XLAI30 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI31 Ignore.nc XLAI31 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI32 Ignore.nc XLAI32 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI33 Ignore.nc XLAI33 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI34 Ignore.nc XLAI34 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI35 Ignore.nc XLAI35 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI36 Ignore.nc XLAI36 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI37 Ignore.nc XLAI37 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI38 Ignore.nc XLAI38 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI39 Ignore.nc XLAI39 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI40 Ignore.nc XLAI40 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI41 Ignore.nc XLAI41 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI42 Ignore.nc XLAI42 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI43 Ignore.nc XLAI43 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI44 Ignore.nc XLAI44 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI45 Ignore.nc XLAI45 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI46 Ignore.nc XLAI46 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI47 Ignore.nc XLAI47 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI48 Ignore.nc XLAI48 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI49 Ignore.nc XLAI49 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI50 Ignore.nc XLAI50 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI51 Ignore.nc XLAI51 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI52 Ignore.nc XLAI52 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI53 Ignore.nc XLAI53 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI54 Ignore.nc XLAI54 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI55 Ignore.nc XLAI55 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI56 Ignore.nc XLAI56 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI57 Ignore.nc XLAI57 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI58 Ignore.nc XLAI58 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI59 Ignore.nc XLAI59 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI60 Ignore.nc XLAI60 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI61 Ignore.nc XLAI61 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI62 Ignore.nc XLAI62 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI63 Ignore.nc XLAI63 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI64 Ignore.nc XLAI64 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI65 Ignore.nc XLAI65 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI66 Ignore.nc XLAI66 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI67 Ignore.nc XLAI67 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI68 Ignore.nc XLAI68 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI69 Ignore.nc XLAI69 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI70 Ignore.nc XLAI70 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI71 Ignore.nc XLAI71 $YYYY/$MM/15/0 C xy unitless * - 1 1
+* XLAI72 Ignore.nc XLAI72 $YYYY/$MM/15/0 C xy unitless * - 1 1
+)))+ModisLAI+
+
+#==============================================================================
+# --- MODIS Chlorophyll-a data ---
+#==============================================================================
+(((+ModisCHLR+
+* XCHLR00 Ignore.nc XCHLR00 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR01 Ignore.nc XCHLR01 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR02 Ignore.nc XCHLR02 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR03 Ignore.nc XCHLR03 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR04 Ignore.nc XCHLR04 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR05 Ignore.nc XCHLR05 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR06 Ignore.nc XCHLR06 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR07 Ignore.nc XCHLR07 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR08 Ignore.nc XCHLR08 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR09 Ignore.nc XCHLR09 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR10 Ignore.nc XCHLR10 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR11 Ignore.nc XCHLR11 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR12 Ignore.nc XCHLR12 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR13 Ignore.nc XCHLR13 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR14 Ignore.nc XCHLR14 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR15 Ignore.nc XCHLR15 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR16 Ignore.nc XCHLR16 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR17 Ignore.nc XCHLR17 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR18 Ignore.nc XCHLR18 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR19 Ignore.nc XCHLR19 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR20 Ignore.nc XCHLR20 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR21 Ignore.nc XCHLR21 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR22 Ignore.nc XCHLR22 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR23 Ignore.nc XCHLR23 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR24 Ignore.nc XCHLR24 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR25 Ignore.nc XCHLR25 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR26 Ignore.nc XCHLR26 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR27 Ignore.nc XCHLR27 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR28 Ignore.nc XCHLR28 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR29 Ignore.nc XCHLR29 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR30 Ignore.nc XCHLR30 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR31 Ignore.nc XCHLR31 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR32 Ignore.nc XCHLR32 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR33 Ignore.nc XCHLR33 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR34 Ignore.nc XCHLR34 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR35 Ignore.nc XCHLR35 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR36 Ignore.nc XCHLR36 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR37 Ignore.nc XCHLR37 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR38 Ignore.nc XCHLR38 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR39 Ignore.nc XCHLR39 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR40 Ignore.nc XCHLR40 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR41 Ignore.nc XCHLR41 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR42 Ignore.nc XCHLR42 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR43 Ignore.nc XCHLR43 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR44 Ignore.nc XCHLR44 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR45 Ignore.nc XCHLR45 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR46 Ignore.nc XCHLR46 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR47 Ignore.nc XCHLR47 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR48 Ignore.nc XCHLR48 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR49 Ignore.nc XCHLR49 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR50 Ignore.nc XCHLR50 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR51 Ignore.nc XCHLR51 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR52 Ignore.nc XCHLR52 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR53 Ignore.nc XCHLR53 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR54 Ignore.nc XCHLR54 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR55 Ignore.nc XCHLR55 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR56 Ignore.nc XCHLR56 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR57 Ignore.nc XCHLR57 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR58 Ignore.nc XCHLR58 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR59 Ignore.nc XCHLR59 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR60 Ignore.nc XCHLR60 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR61 Ignore.nc XCHLR61 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR62 Ignore.nc XCHLR62 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR63 Ignore.nc XCHLR63 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR64 Ignore.nc XCHLR64 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR65 Ignore.nc XCHLR65 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR66 Ignore.nc XCHLR66 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR67 Ignore.nc XCHLR67 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR68 Ignore.nc XCHLR68 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR69 Ignore.nc XCHLR69 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR70 Ignore.nc XCHLR70 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR71 Ignore.nc XCHLR71 2013/7/15/0 C xy unitless * - 1 1
+* XCHLR72 Ignore.nc XCHLR72 2013/7/15/0 C xy unitless * - 1 1
+)))+ModisCHLR+
+
+### END SECTION BASE EMISSIONS ###
+
+###############################################################################
+### BEGIN SECTION SCALE FACTORS 
+###############################################################################
+
+# ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
+
+### END SECTION SCALE FACTORS ###
+
+###############################################################################
+### BEGIN SECTION MASKS 
+###############################################################################
+
+# ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
+
+### END SECTION MASKS ###
+
+### END OF HEMCO INPUT FILE ###
+#EOC

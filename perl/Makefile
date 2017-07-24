@@ -397,6 +397,7 @@ sp:
                                 MASSCONS=$(MASSCONS)   OMP=no                 \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
                                 TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
+                                NO_REDUCED=$(NO_REDUCED)                      \
                                 > $(LOG_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
@@ -415,6 +416,7 @@ mp:
                                 MASSCONS=$(MASSCONS)   OMP=yes                \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
                                 TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
+                                NO_REDUCED=$(NO_REDUCED)                      \
                                 > $(LOG_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
@@ -438,6 +440,7 @@ spbuild:
                                 MASSCONS=$(MASSCONS)   OMP=no                 \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
                                 TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) 
+                                NO_REDUCED=$(NO_REDUCED)                      
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	@$(MAKE) printbuildinfo
@@ -453,6 +456,7 @@ mpbuild:
                                 MASSCONS=$(MASSCONS)   OMP=yes                \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
                                 TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG)
+                                NO_REDUCED=$(NO_REDUCED)                      
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	@$(MAKE) printbuildinfo
