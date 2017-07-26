@@ -123,7 +123,6 @@ Warnings:                    {WARNINGS}
     --> DECAYING_PLANTS      :       true
     --> +UValbedo+           :       true
     --> +TOMS_SBUV_O3+       :       true
-    --> +STATE_PSC+          :       false
     --> +LinStratChem+       :       true
     --> +Olson+              :       true
     --> +ModisLAI+           :       true
@@ -1664,15 +1663,6 @@ Warnings:                    {WARNINGS}
 * DTOMS1_O3_COL -                                                       DTOMS1 -                  - -  dobsons/day * - 1 1 
 * DTOMS2_O3_COL -                                                       DTOMS2 -                  - -  dobsons/day * - 1 1
 )))+TOMS_SBUV_O3+
-
-#==============================================================================
-# --- PSC state, only needed for UCX ---
-#==============================================================================
-(((+STATE_PSC+
-(((HEMCO_RESTART
-* STATE_PSC  ./HEMCO_restart.$YYYY$MM$DD$HH00.nc STATE_PSC $YYYY/$MM/$DD/$HH E xyz count * - 1 1
-)))HEMCO_RESTART
-)))+STATE_PSC+
 
 #==============================================================================
 # --- Linear stratospheric chemistry fields ---
