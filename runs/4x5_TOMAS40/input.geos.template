@@ -21,7 +21,7 @@ Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 433
+Number of Advected Spec.: 462
 Species Entries ------->: Name
 Species name            : NO
 Species name            : O3
@@ -37,7 +37,7 @@ Species name            : ALD2
 Species name            : RCHO
 Species name            : MVK
 Species name            : MACR
-Species name            : PMN
+Species name            : NPMN
 Species name            : PPN
 Species name            : R4N2
 Species name            : PRPE
@@ -83,18 +83,47 @@ Species name            : HAC
 Species name            : GLYC
 Species name            : MVKN
 Species name            : MACRN
-Species name            : RIP
-Species name            : IEPOX
 Species name            : MAP
 Species name            : NO2
 Species name            : NO3
 Species name            : HNO2
-Species name            : MTPA
 Species name            : BENZ
 Species name            : TOLU
 Species name            : XYLE
 Species name            : EOH
 Species name            : MGLY
+Species name            : GLYX
+Species name            : ACTA
+Species name            : HPALD
+Species name            : DHDN
+Species name            : ETHLN
+Species name            : HCOOH
+Species name            : IEPOXA
+Species name            : IEPOXB
+Species name            : IEPOXD
+Species name            : ISN1
+Species name            : RIPA
+Species name            : RIPB
+Species name            : RIPD
+Species name            : IMAE
+Species name            : SOAIE
+Species name            : SOAME
+Species name            : SOAGX
+Species name            : SOAMG
+Species name            : LVOC
+Species name            : LVOCOA
+Species name            : ISN1OG
+Species name            : ISN1OA
+Species name            : MTPA
+Species name            : LIMO
+Species name            : MONITS
+Species name            : MONITU
+Species name            : HONIT
+Species name            : IONITA
+Species name            : MONITA
+Species name            : INDIOL
+Species name            : IPMN
+Species name            : HC187
 Species name            : H2SO4
 Species name            : NK1
 Species name            : NK2
@@ -504,6 +533,7 @@ Online CARBON  AEROSOLS : T
  => Use Brown Carbon?   : F
 Online COMPLEX SOA      : F
  => Semivolatile POA?   : F
+Online isoprene Org. Aer: F
 Online DUST    AEROSOLS : T
  => Acidic uptake ?     : F
 Online SEASALT AEROSOLS : T
@@ -586,7 +616,7 @@ ND17: Rainout fraction  :  0   all
 ND18: Washout fraction  :  0   all
 ND19: CH4 loss          :  0   all
 ND21: Optical depths    : 47   all
-ND22: J-Values          : 47   1 2 7 8 9 11 13 14 20 46 48 49 51 52 53 61 62 68 69
+ND22: J-Values          : 47   all
       => JV time range  :      11 13
 ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
@@ -608,12 +638,12 @@ ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 : 47   all
   ==> OH/HO2 time range :       0 24
-ND44: Drydep flx/vel    :  1   2 3 7 8 9 11 13 14 15 16 17 20 22 26 27 28 29 30 31 32 33 34 35 36 39 40 41 42 43 44 45 46 49 50 52 57 58 60 61 62 63 64 65 66 67 68
+ND44: Drydep flx/vel    :  1   all
 ND45: Tracer Conc's     : 47   all
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions:  1   all
 ND47: 24-h avg trc conc :  0   all
-ND52: GAMMA HO2         :  0   all
+ND52: GAMMA values      :  0   all
 ND53: POPs Emissions    :  0   all
 ND54: Time in t'sphere  : 47   all
 ND55: Tropopause height : 47   all
@@ -632,6 +662,7 @@ ND69: Surface area      :  1   all
 ND70: Debug output      :  0   all
 ND71: Hourly max ppbv   :  0   2
 ND72: Radiative output  :  0   all
+ND73: ISORROPIA         :  0   all
 ------------------------+------------------------------------------------------
 %%% PLANEFLIGHT MENU %%%:
 Turn on plane flt diag? : F

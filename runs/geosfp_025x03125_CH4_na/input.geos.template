@@ -72,6 +72,7 @@ Online CARBON  AEROSOLS : F
  => Use Brown Carbon?   : F
 Online 2dy ORG AEROSOLS : F
  => Semivolatile POA?   : F
+Online isoprene Org. Aer: F
 Online DUST    AEROSOLS : F
  => Acidic uptake ?     : F
 Online SEASALT AEROSOLS : F
@@ -214,6 +215,7 @@ ND69: Surface area      :  1   all
 ND70: Debug output      :  0   all
 ND71: Hourly max ppbv   :  0   all
 ND72: Radiative output  :  0   all
+ND73: ISORROPIA         :  0   all
 ------------------------+------------------------------------------------------
 %%% PLANEFLIGHT MENU %%%:
 Turn on plane flt diag? : F

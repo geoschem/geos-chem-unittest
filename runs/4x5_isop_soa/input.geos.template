@@ -1,4 +1,4 @@
-GEOS-CHEM UNIT TEST SIMULATION: {MET}_4x5_RRTMG
+GEOS-CHEM UNIT TEST SIMULATION: {MET}_4x5_isop_soa
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
@@ -21,7 +21,7 @@ Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 105
+Number of Advected Spec.: 132
 Species Entries ------->: Name
 Species name            : NO
 Species name            : O3
@@ -57,11 +57,9 @@ Species name            : NH4
 Species name            : NIT
 Species name            : NITs
 Species name            : BCPI
-Species name            : OCPI
+Species name            : POA1
 Species name            : BCPO
-Species name            : OCPO
-Species name            : SOAP
-Species name            : SOAS
+Species name            : POG1
 Species name            : DST1
 Species name            : DST2
 Species name            : DST3
@@ -128,6 +126,35 @@ Species name            : MONITA
 Species name            : INDIOL
 Species name            : IPMN
 Species name            : HC187
+Species name            : MTPO
+Species name            : TSOG1
+Species name            : TSOG2
+Species name            : TSOG3
+Species name            : TSOG0
+Species name            : TSOA1
+Species name            : TSOA2
+Species name            : TSOA3
+Species name            : TSOA0
+Species name            : ISOG1
+Species name            : ISOG2
+Species name            : ISOG3
+Species name            : ISOA1
+Species name            : ISOA2
+Species name            : ISOA3
+Species name            : ASOG1
+Species name            : ASOG2
+Species name            : ASOG3
+Species name            : ASOAN
+Species name            : ASOA1
+Species name            : ASOA2
+Species name            : ASOA3
+Species name            : NAP
+Species name            : POG2
+Species name            : POA2
+Species name            : OPOG1
+Species name            : OPOG2
+Species name            : OPOA1
+Species name            : OPOA2
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
@@ -174,8 +201,8 @@ Online SULFATE AEROSOLS : T
 Online CRYST/AQ AEROSOLS: F
 Online CARBON  AEROSOLS : T
  => Use Brown Carbon?   : F
-Online COMPLEX SOA      : F
- => Semivolatile POA?   : F
+Online COMPLEX SOA      : T
+ => Semivolatile POA?   : T
 Online isoprene Org. Aer: F
 Online DUST    AEROSOLS : T
  => Acidic uptake ?     : F
@@ -209,10 +236,10 @@ Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
 %%% RADIATION MENU %%%  :
 AOD Wavelength (nm)     : 550
-Turn on RRTMG?          : T
-Calculate LW fluxes?    : T
-Calculate SW fluxes?    : T
-Clear-sky flux?         : T
+Turn on RRTMG?          : F
+Calculate LW fluxes?    : F
+Calculate SW fluxes?    : F
+Clear-sky flux?         : F
 All-sky flux?           : F
 Radiation Timestep [min]: 180
 Species fluxes          : 0 0 0 0 0 0 0 0 0 1
@@ -237,7 +264,7 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% :
-Binary punch file name  : trac_avg.{MET}_4x5_RRTMG.YYYYMMDDhhmm
+Binary punch file name  : trac_avg.{MET}_4x5_isop_soa.YYYYMMDDhhmm
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND01: Rn/Pb/Be source   :  0   all
 ND02: Rn/Pb/Be decay    :  0   all
@@ -278,7 +305,7 @@ ND37: Updraft scav frac : 47   all
 ND38: Cld Conv scav loss: 47   all
 ND39: Wetdep scav loss  : 47   all
 ND41: Afternoon PBL ht  :  0   all
-ND42: SOA concentrations:  0   all
+ND42: SOA concentrations: 47   all
 ND43: Chem prod OH, HO2 : 47   all
   ==> OH/HO2 time range :       0 24
 ND44: Drydep flx/vel    :  1   all
@@ -304,7 +331,7 @@ ND68: Airmass/Boxheight : 47   all
 ND69: Surface area      :  1   all
 ND70: Debug output      :  0   all
 ND71: Hourly max ppbv   :  0   2
-ND72: Radiative output  :  1   all
+ND72: Radiative output  :  0   all
 ND73: ISORROPIA         :  0   all
 ------------------------+------------------------------------------------------
 %%% PLANEFLIGHT MENU %%%:
