@@ -439,7 +439,7 @@ spbuild:
                                 TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
                                 MASSCONS=$(MASSCONS)   OMP=no                 \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
-                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) 
+                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
                                 NO_REDUCED=$(NO_REDUCED)                      
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
@@ -455,7 +455,7 @@ mpbuild:
                                 TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
                                 MASSCONS=$(MASSCONS)   OMP=yes                \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
-                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG)
+                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
                                 NO_REDUCED=$(NO_REDUCED)                      
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
