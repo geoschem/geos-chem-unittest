@@ -87,19 +87,6 @@ PS1      'hPa'     xy  E N Y 0        none none PS         ./MetDir/%y4/%m2/GEOS
 PS2      'hPa'     xy  E N Y 0;001000 none none PS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.2x25.nc
 #
 
-#------------------------
-# DRYDEP LAND TYPES
-#------------------------
-#
-VEGFRAC_1 1 xy C N N - none none VEGFRAC_1 /dev/null
-VEGFRAC_2 1 xy C N N - none none VEGFRAC_2 /dev/null
-VEGFRAC_3 1 xy C N N - none none VEGFRAC_3 /dev/null
-VEGFRAC_4 1 xy C N N - none none VEGFRAC_4 /dev/null
-VEGFRAC_5 1 xy C N N - none none VEGFRAC_5 /dev/null
-VEGFRAC_6 1 xy C N N - none none VEGFRAC_6 /dev/null
-VEGFRAC_7 1 xy C N N - none none VEGFRAC_7 /dev/null
-VEGFRAC_8 1 xy C N N - none none VEGFRAC_8 /dev/null
-
 #-------------------------------------------------------------------
 # Olson land types - conservative frac regridding of OLSON as float
 #-------------------------------------------------------------------
