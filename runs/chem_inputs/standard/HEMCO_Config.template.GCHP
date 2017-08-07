@@ -176,12 +176,12 @@ Warnings:                    {WARNINGS}
     --> hydrophilic BC       :       0.2
     --> hydrophilic OC       :       0.5
     --> fraction POG1        :       0.49
-    --> CO to SOAP           :       0.0234
+    --> CO to SOAP           :       0.013
 #see the note near scale factor 281 for the source of this emis factor
 114     FINN                 : off   NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/GLYC/HAC/SOAP
     --> FINN_daily           :       false
     --> Scaling_CO           :       1.0
-    --> Scaling_SOAP         :       0.0234
+    --> Scaling_SOAP         :       0.013
     --> hydrophilic BC       :       0.2
     --> hydrophilic OC       :       0.5
 115     DustAlk              : off   DSTAL1/DSTAL2/DSTAL3/DSTAL4
@@ -2460,14 +2460,8 @@ Warnings:                    {WARNINGS}
 #   0.013 g BBVOC (g CO)−1 (Cubison et al., 2011).
 #   They are both oxidized by OH in the model ... to generate SOA.
 #
-# For our simple mechanism, we use a simple emission factor defined as
-# emisfactor = (mass of SOA) / (mass of stuff emitted)
-# therefore, we multiply these factors by 1.8 to account for the OM:OC ratio, 
-# as our model is based on simple "decomposition" of soa precursor to soa mass
-# rather than VOC + Ox -> SOA, where SOA has a higher molecular wt than VOC
-#==============================================================================
-280 COtoSOAP_anth 0.1242 - - - xy 1 1
-281 COtoSOAP_burn 0.0234 - - - xy 1 1
+280 COtoSOAP_anth 0.069 - - - xy 1 1
+281 COtoSOAP_burn 0.013 - - - xy 1 1
 
 ### END SECTION SCALE FACTORS ###
 

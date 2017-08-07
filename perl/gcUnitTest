@@ -486,8 +486,11 @@ sub doUnitTest($$) {
     if ( !( $txt[$i] =~ m/\#/ ) ) { 
       if    ( $txt[$i] =~ "CODE_DIR"        ) { $CODE_DIR = 
 						  &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "COMPILER"        ) { $COMPILER = 
-						  &parse( $txt[$i] ); } 
+#--------------------------------------------------------------------------
+# GEOS-Chem now uses the $FC env-var for compiler info (bmy, 7/5/17)
+#      elsif ( $txt[$i] =~ "COMPILER"        ) { $COMPILER = 
+#						  &parse( $txt[$i] ); } 
+#--------------------------------------------------------------------------
       elsif ( $txt[$i] =~ "DATA_ROOT"       ) { $DATA_ROOT = 
 						  &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "HEMCO_ROOT"      ) { $HEMCO_ROOT = 
@@ -693,7 +696,7 @@ sub doUnitTest($$) {
 	  # Construct the make command, for single & multi processor.
 	  # MET, GRID, NEST, START, and END are retrieved from
 	  # within Makefile using getRunInfo (ewl, 4/10/15) 
-	  $makeCmd  = "$MAKE_CMD COMPILER=$COMPILER RUN_DIR=$runDir";
+	  $makeCmd  = "$MAKE_CMD RUN_DIR=$runDir";
 	  $makeCmd .= " SIM=$sim VERSION=$VERSION LOG_DIR=$LOG_DIR";
 	  $makeCmd .= " CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR";
  
