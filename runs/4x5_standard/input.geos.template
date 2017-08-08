@@ -371,11 +371,11 @@ LMIN, LMAX of region    :   1   1
 Turn on ND51 diagnostic : F
 LT avg timeseries file  : ts_satellite.YYYYMMDD.bpch
 Output as HDF5?         : F
-Tracers to include      : 82 83 84 85 86 87
+Tracers to include      : 48 154 156
 GMT Hour for disk write :   0
-Avg Period [LT hours]   :  10  12
-IMIN, IMAX of region    :   1 151
-JMIN, JMAX of region    :   1 121
+Avg Period [LT hours]   :   9  11
+IMIN, IMAX of region    :   1  72
+JMIN, JMAX of region    :   1  46
 LMIN, LMAX of region    :   1  40
 -------------------------------------------------------------------------------
 %%% ND51b MENU %%%      :
