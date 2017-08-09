@@ -19,6 +19,10 @@ Wait for met fields?    : F
 Use variable tropopause?: T
 Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
+%%% TIMESTEP MENU %%%   :
+Tran/conv timestep [min]: 10
+Chem/emis timestep [min]: 20
+------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 12
 Number of Advected Spec.: 1
@@ -29,17 +33,14 @@ Species #1              : CO2
 Turn on Transport       : T
  => Fill Negative Values: T
  => IORD, JORD, KORD    : 3  3  7
-Transport Timestep [min]: 10
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
 Turn on PBL Mixing?     : T
  => Use non-local PBL?  : F
-Convect Timestep [min]  : 10
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : F
-Emiss Timestep [min]    : 20
 HEMCO Input file        : HEMCO_Config.rc
  => 1ppt MBL BRO Sim.?  : F
 Switches for UCX        :---
@@ -99,7 +100,6 @@ Use linear. strat. chem?: F
 Use UCX strat. chem?    : F
 Online CH4 chemistry?   : F
 Active strat. H2O?      : F
-Chemistry Timestep [min]: 20
 Online O3 for FAST-JX?  : F
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
