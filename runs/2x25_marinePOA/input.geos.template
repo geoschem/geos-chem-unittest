@@ -25,7 +25,7 @@ Chem/emis timestep [min]: 20
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 137
+Number of Advected Spec.: 157
 Species Entries ------->: Name
 Species name            : NO
 Species name            : O3
@@ -64,8 +64,6 @@ Species name            : BCPI
 Species name            : OCPI
 Species name            : BCPO
 Species name            : OCPO
-Species name            : SOAP
-Species name            : SOAS
 Species name            : DST1
 Species name            : DST2
 Species name            : DST3
@@ -98,6 +96,30 @@ Species name            : HNO2
 Species name            : BENZ
 Species name            : TOLU
 Species name            : XYLE
+Species name            : MTPA
+Species name            : LIMO
+Species name            : MTPO
+Species name            : TSOG1
+Species name            : TSOG2
+Species name            : TSOG3
+Species name            : TSOG0
+Species name            : TSOA1
+Species name            : TSOA2
+Species name            : TSOA3
+Species name            : TSOA0
+Species name            : ISOG1
+Species name            : ISOG2
+Species name            : ISOG3
+Species name            : ISOA1
+Species name            : ISOA2
+Species name            : ISOA3
+Species name            : ASOG1
+Species name            : ASOG2
+Species name            : ASOG3
+Species name            : ASOAN
+Species name            : ASOA1
+Species name            : ASOA2
+Species name            : ASOA3
 Species name            : EOH
 Species name            : MGLY
 Species name            : GLYX
@@ -122,8 +144,6 @@ Species name            : LVOC
 Species name            : LVOCOA
 Species name            : ISN1OG
 Species name            : ISN1OA
-Species name            : MTPA
-Species name            : LIMO
 Species name            : MONITS
 Species name            : MONITU
 Species name            : HONIT
@@ -162,8 +182,8 @@ Species name            : OClO
 Species name            : Cl2
 Species name            : Cl2O2
 Species name            : H2O
-Species #120            : MOPO
-Species #121            : MOPI
+Species name            : MOPO
+Species name            : MOPI
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
@@ -207,9 +227,9 @@ Online SULFATE AEROSOLS : T
 Online CRYST/AQ AEROSOLS: F
 Online CARBON  AEROSOLS : T
  => Use Brown Carbon?   : F
-Online COMPLEX SOA      : F
+Online COMPLEX SOA      : T
  => Semivolatile POA?   : F
-Online isoprene Org. Aer: F
+ => Online Isoprene OA  : T
 Online DUST    AEROSOLS : T
  => Acidic uptake ?     : F
 Online SEASALT AEROSOLS : T
@@ -310,7 +330,7 @@ ND37: Updraft scav frac :  0   all
 ND38: Cld Conv scav loss: 72   all
 ND39: Wetdep scav loss  : 72   all
 ND41: Afternoon PBL ht  :  0   all
-ND42: SOA concentrations:  0   all
+ND42: SOA concentrations: 72   all
 ND43: Chem prod OH, HO2 : 72   all
   ==> OH/HO2 time range :       0 24
 ND44: Drydep flx/vel    :  1   all
@@ -373,11 +393,11 @@ LMIN, LMAX of region    :   1   1
 Turn on ND51 diagnostic : F
 LT avg timeseries file  : ts_satellite.YYYYMMDD.bpch
 Output as HDF5?         : F
-Tracers to include      : 82 83 84 85 86 87
+Tracers to include      : 46 154 156
 GMT Hour for disk write :   0
-Avg Period [LT hours]   :  10  12
-IMIN, IMAX of region    :   1 151
-JMIN, JMAX of region    :   1 121
+Avg Period [LT hours]   :   9  11
+IMIN, IMAX of region    :   1  72
+JMIN, JMAX of region    :   1  46
 LMIN, LMAX of region    :   1  40
 -------------------------------------------------------------------------------
 %%% ND51b MENU %%%      :

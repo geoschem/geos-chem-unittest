@@ -244,8 +244,8 @@ ifeq ($(SIM),marinePOA)
  NO_REDUCED  :=y
 endif
 
-ifeq ($(SIM),soa)
- CHEM        :=SOA
+ifeq ($(SIM),$(filter $(SIM), simpleSOA, SOA))
+ CHEM        :=Tropchem
 endif
 
 ifeq ($(SIM),soa_svpoa)

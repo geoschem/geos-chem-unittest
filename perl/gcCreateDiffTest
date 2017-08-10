@@ -528,13 +528,13 @@ sub doCopyDirs($$) {
 	  # Hardcode number of tracers for several simulations for now
 	  # Eventually, find a better way to obtain these values
           if    ( $sim =~ m/standard/    ) {
-             $nTracers = "106";
+             $nTracers = "155";
           } elsif ( $sim =~ m/soa_svpoa/ ) {
-             $nTracers = "104";
-          } elsif ( $sim =~ m/soa/       ) {
-             $nTracers = "97";
+             $nTracers = "132";
+          } elsif ( $sim =~ m/simpleSOA/ ) {
+             $nTracers = "105";
           } elsif ( $sim =~ m/tropchem/  ) {
-             $nTracers = "76";
+             $nTracers = "125";
           } elsif ( $sim =~ m/aerosol/   ) {
              $nTracers = "22";
           } elsif ( $sim =~ m/POPs/      ) {

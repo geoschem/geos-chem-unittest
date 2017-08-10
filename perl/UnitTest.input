@@ -74,12 +74,10 @@
    SLURM_CPUS       : 4
    SLURM_NODES      : 1
    SLURM_TIME       : 1-12:00
-   SLURM_MEMORY     : 30000
+   SLURM_MEMORY     : 35000
    SLURM_PARTITION  : jacob
    SLURM_CONSTRAINT : intel
    SLURM_MAILTYPE   : END
-   SLURM_STDOUT     : {VERSION}.stdout.log
-   SLURM_STDERR     : {VERSION}.stderr.log
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.
@@ -92,6 +90,7 @@
   geosfp   4x5         -      standard     2013070100   201307010020   -
   merra2   4x5         -      standard     2013070100   201307010020   -
   geosfp   2x25        -      standard     2013070100   201307010020   -
+  merra2   2x25        -      standard     2013070100   201307010020   -
 # ======= Radon-Lead-Beryllium ===============================================
   geosfp   4x5         -      RnPbBe       2013070100   201307010020   -
   merra2   4x5         -      RnPbBe       2013070100   201307010020   -
@@ -102,9 +101,9 @@
   merra2   4x5         -      Hg           2013010100   201301010020   -
   geosfp   2x25        -      Hg           2013010100   201301010020   -
   merra2   2x25        -      Hg           2013010100   201301010020   -
-  merra    2x25        -      Hg           2009010100   200901010020   -
 # ======= Tagged Mercury =====================================================
-  geosfp   4x5         -      tagHg        2013010100   201301010020   -
+  geosfp   4x5         -      tagHg        2013010100   201301010020     -
+  merra2   4x5         -      tagHg        2013010100   201301010020     -
 # ======= POPs ===============================================================
   geosfp   4x5         -      POPs         2013070100   201307010020   -
   merra2   4x5         -      POPs         2013070100   201307010020   -
@@ -140,16 +139,16 @@
   merra2   4x5         -      tropchem     2013070100   201307010020   -
   geosfp   2x25        -      tropchem     2013070100   201307010020   -
   merra2   2x25        -      tropchem     2013070100   201307010020   -
-# ======= SOA (w/o SVPOA) ====================================================
-  geosfp   4x5         -      soa          2013070100   201307010020   -
-  merra2   4x5         -      soa          2013070100   201307010020   -
-  geosfp   2x25        -      soa          2013070100   201307010020   -
-  merra2   2x25        -      soa          2013070100   201307010020   -
-# ======= SOA (w/ SVPOA) =====================================================
+# ======= Complex SOA w/ SVPOA ===============================================
   geosfp   4x5         -      soa_svpoa    2013070100   201307010020   -
   merra2   4x5         -      soa_svpoa    2013070100   201307010020   -
   geosfp   2x25        -      soa_svpoa    2013070100   201307010020   -
   merra2   2x25        -      soa_svpoa    2013070100   201307010020   -
+# ======= Simple SOA =========================================================
+  geosfp   4x5         -      simpleSOA    2013070100   201307010020   -
+  merra2   4x5         -      simpleSOA    2013070100   201307010020   -
+  geosfp   2x25        -      simpleSOA    2013070100   201307010020   -
+  merra2   2x25        -      simpleSOA    2013070100   201307010020   -
 # ======= Acid uptake on dust ================================================
   geosfp   4x5         -      aciduptake   2013070100   201307010020   -
   geosfp   2x25        -      aciduptake   2013070100   201307010020   -
@@ -165,10 +164,10 @@
 # geosfp   2x25        -      RRTMG        2013070100   201307010040   -
 # merra2   2x25        -      RRTMG        2013070100   201307010040   -
 # ======= Nested model runs ==================================================
-# geosfp   025x03125   ch     tropchem     2013070100   201307010010   -
-  geosfp   025x03125   na     tropchem     2013070100   201307010010   -
   merra2   05x0625     as     tropchem     2013070100   201307010020   -
   merra2   05x0625     na     tropchem     2013070100   201307010020   -
+  geosfp   025x03125   ch     tropchem     2013070100   201307010010   -
+  geosfp   025x03125   na     tropchem     2013070100   201307010010   -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

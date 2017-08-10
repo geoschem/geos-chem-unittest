@@ -157,13 +157,3 @@ EMIS_EOH_BIOB     EOH    111    -1  -1   2   atomsC/cm2/s
 EMIS_EOH_BIOG     EOH    108    -1  -1   2   atomsC/cm2/s
 ### MGLY ############################################################
 EMIS_MGLY_BIOB    MGLY   111    -1  -1   2   atomsC/cm2/s
-#### SOAP ############################################################
-EMIS_SOAP_TOTAL   SOAP    -1    -1  -1   3   atomsC/cm2/s
-EMIS_SOAP_ANTH    SOAP    0     1   -1   3   atomsC/cm2/s
-EMIS_SOAP_BIOF    SOAP    0     2   -1   2   atomsC/cm2/s
-EMIS_SOAP_SHIP    SOAP    0     10  -1   2   atomsC/cm2/s
-EMIS_SOAP_AIRC    SOAP    0     20  -1   2   atomsC/cm2/s
-EMIS_SOAP_BIOB    SOAP    111   -1  -1   2   atomsC/cm2/s
-EMIS_SOAP_BIOG    SOAP    108   -1  -1   2   atomsC/cm2/s
-#### SOAS ############################################################
-EMIS_SOAS_BIOG    SOAS    108   -1  -1   2   atomsC/cm2/s

@@ -25,7 +25,7 @@ Chem/emis timestep [min]: 60
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 462
+Number of Advected Spec.: 482
 Species Entries ------->: Name
 Species name            : NO
 Species name            : O3
@@ -64,8 +64,6 @@ Species name            : BCPI
 Species name            : OCPI
 Species name            : BCPO
 Species name            : OCPO
-Species name            : SOAP
-Species name            : SOAS
 Species name            : SALA
 Species name            : SALC
 Species name            : Br2
@@ -94,6 +92,30 @@ Species name            : HNO2
 Species name            : BENZ
 Species name            : TOLU
 Species name            : XYLE
+Species name            : MTPA
+Species name            : LIMO
+Species name            : MTPO
+Species name            : TSOG1
+Species name            : TSOG2
+Species name            : TSOG3
+Species name            : TSOG0
+Species name            : TSOA1
+Species name            : TSOA2
+Species name            : TSOA3
+Species name            : TSOA0
+Species name            : ISOG1
+Species name            : ISOG2
+Species name            : ISOG3
+Species name            : ISOA1
+Species name            : ISOA2
+Species name            : ISOA3
+Species name            : ASOG1
+Species name            : ASOG2
+Species name            : ASOG3
+Species name            : ASOAN
+Species name            : ASOA1
+Species name            : ASOA2
+Species name            : ASOA3
 Species name            : EOH
 Species name            : MGLY
 Species name            : GLYX
@@ -118,8 +140,6 @@ Species name            : LVOC
 Species name            : LVOCOA
 Species name            : ISN1OG
 Species name            : ISN1OA
-Species name            : MTPA
-Species name            : LIMO
 Species name            : MONITS
 Species name            : MONITU
 Species name            : HONIT
@@ -532,9 +552,9 @@ Online SULFATE AEROSOLS : T
 Online CRYST/AQ AEROSOLS: F
 Online CARBON  AEROSOLS : T
  => Use Brown Carbon?   : F
-Online COMPLEX SOA      : F
+Online COMPLEX SOA      : T
  => Semivolatile POA?   : F
-Online isoprene Org. Aer: F
+ => Online Isoprene OA  : T
 Online DUST    AEROSOLS : T
  => Acidic uptake ?     : F
 Online SEASALT AEROSOLS : T
