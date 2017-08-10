@@ -38,11 +38,10 @@
    VERBOSE          : 3
    WARNINGS         : 3
 #
-# %%% Code, compiler, and queue settings %%%
+# %%% Code and queue settings %%%
 #
    CODE_DIR         : {HOME}/GC/Code.v11-02
-   COMPILER         : ifort
-   MAKE_CMD         : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
+   MAKE_CMD         : make -j4 BOUNDS=y DEBUG=y FPEX=y NO_ISO=y
    SUBMIT           : sbatch
 #
 # %%% Unit tester path names %%%
@@ -78,7 +77,7 @@
    SLURM_MEMORY     : 12000
    SLURM_PARTITION  : jacob
    SLURM_CONSTRAINT : intel
-   SLURM_MAILTYPE   : ALL
+   SLURM_MAILTYPE   : END
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.
@@ -89,13 +88,8 @@
 #--------|-----------|------|------------|------------|--------------|--------|
   geosfp   4x5         -      RnPbBe       2013070100   201307010020   -
   merra2   4x5         -      RnPbBe       2013070100   201307010020   -
-  merra    4x5         -      RnPbBe       2006070100   200607010020   -
-  geos5    4x5         -      RnPbBe       2006070100   200607010020   -
-  geos4    4x5         -      RnPbBe       2006070100   200607010020   -
-  gcap     4x5         -      RnPbBe       2005070100   200507010020   -
   geosfp   2x25        -      RnPbBe       2013070100   201307010020   -
   merra2   2x25        -      RnPbBe       2013070100   201307010020   -
-  geos5    2x25        -      RnPbBe       2006070100   200607010020   -
  !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

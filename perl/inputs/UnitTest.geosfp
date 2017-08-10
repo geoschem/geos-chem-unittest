@@ -38,11 +38,10 @@
    VERBOSE          : 3
    WARNINGS         : 3
 #
-# %%% Code, compiler, and queue settings %%%
+# %%% Code and queue settings %%%
 #
    CODE_DIR         : {HOME}/GC/Code.v11-02
-   COMPILER         : ifort
-   MAKE_CMD         : make -j4 BOUNDS=y DEBUG=y FPE=y NO_ISO=y
+   MAKE_CMD         : make -j4 BOUNDS=y DEBUG=y FPEX=y NO_ISO=y
    SUBMIT           : sbatch
 #
 # %%% Unit tester path names %%%
@@ -78,7 +77,7 @@
    SLURM_MEMORY     : 12000
    SLURM_PARTITION  : jacob
    SLURM_CONSTRAINT : intel
-   SLURM_MAILTYPE   : ALL
+   SLURM_MAILTYPE   : END
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.
@@ -96,8 +95,8 @@
   geosfp   4x5         -      aerosol      2013070100   201307010020   -
   geosfp   4x5         -      standard     2013070100   201307010020   -
   geosfp   4x5         -      tropchem     2013070100   201307010020   -
-  geosfp   4x5         -      soa          2013070100   201307010020   -
   geosfp   4x5         -      soa_svpoa    2013070100   201307010020   -
+  geosfp   4x5         -      simpleSOA    2013070100   201307010020   -
   geosfp   4x5         -      aciduptake   2013070100   201307010020   -
   geosfp   4x5         -      marinePOA    2013070100   201307010020   -
   geosfp   4x5         -      TOMAS15      2013070100   201307010030   -
@@ -112,8 +111,8 @@
   geosfp   2x25        -      aerosol      2013070100   201307010020   -
   geosfp   2x25        -      standard     2013070100   201307010020   -
   geosfp   2x25        -      tropchem     2013070100   201307010020   -
-  geosfp   2x25        -      soa          2013070100   201307010020   -
-  geosfp   2x25        -      soa_svpoa    2013070100   201307010030   -
+  geosfp   2x25        -      soa_svpoa    2013070100   201307010020   -
+  geosfp   2x25        -      simpleSOA    2013070100   201307010020   -
   geosfp   2x25        -      aciduptake   2013070100   201307010020   -
   geosfp   2x25        -      marinePOA    2013070100   201307010020   -
   geosfp   2x25        -      RRTMG        2013070100   201307010040   -
