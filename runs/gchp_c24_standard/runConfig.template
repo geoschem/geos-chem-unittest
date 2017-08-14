@@ -27,9 +27,9 @@ INPUT_MET_RES=2x25    # 4x5, 2x25, etc (warning: not yet implemented)
 CUBE_SPHERE_RES=24    # 24~4x5, 48~2x2.5, etc.
 
 #### SIMULATION TIMES
-Start_Time="20130701 000000"
-End_Time="20130801 000000"
-Duration="00000100 000000"
+Start_Time="{DATE1} {TIME1}"
+End_Time="{DATE2} {TIME2}"
+Duration="{dYYYYMMDD} {dHHmmss}"
 
 #### OUTPUT
 cs_frequency="010000"
@@ -60,7 +60,7 @@ Chemistry_Timestep_min=20
 
 #### GENERAL
 Use_variable_tropopause=T
-Type_of_simulation=1
+Type_of_simulation=3
 
 #### PBL MIXING
 Use_nonlocal_PBL=T
@@ -69,43 +69,43 @@ Use_nonlocal_PBL=T
 HEMCO_Input_file=HEMCO_Config.rc
 ppt_MBL_BRO_Sim=F
 Use_CH4_emissions=F
-#sfc_BC_CH4=F  # these need special handling since duplicate text in input.geos
-#sfc_BC_OCS=F  # omit for now
-#sfc_BC_CFCs=F
-#sfc_BC_Cl_species=F
+#sfc_BC_CH4=T  # these need special handling since duplicate text in input.geos
+#sfc_BC_OCS=T  # omit for now
+#sfc_BC_CFCs=T
+#sfc_BC_Cl_species=T
 #sfc_BC_Br_species=F
-#sfc_BC_N2O=F
-initial_MR_strat_H2O=F
+#sfc_BC_N2O=T
+initial_MR_strat_H2O=T
 CFC_emission_year=0
 
 #### AEROSOLS
-Online_SULFATE_AEROSOLS=F
+Online_SULFATE_AEROSOLS=T
 Online_CRYST_AQ_AEROSOLS=F
-Online_CARBON_AEROSOLS=F
+Online_CARBON_AEROSOLS=T
 se_Brown_Carbon=F
-Online_2dy_ORG_AEROSOLS=F
+Online_2dy_ORG_AEROSOLS=T
 Semivolatile_POA=F
-Online_DUST_AEROSOLS=F
+Online_DUST_AEROSOLS=T
 Acidic_uptake=F
-Online_SEASALT_AEROSOLS=F
+Online_SEASALT_AEROSOLS=T
 #SALA_radius_bin_um="0.01 0.5" # requires special handling; omit for now
 #SALC_radius_bin_um="0.5  8.0" # requires special handling; omit for now
 MARINE_ORG_AEROSOLS=F
 Online_dicarb_chem=F
-Settle_strat_aerosols=F
-Online_PSC_AEROSOLS=F
+Settle_strat_aerosols=T
+Online_PSC_AEROSOLS=T
 Allow_homogeneous_NAT=F
 NAT_supercooling_req_K=3.0
 Ice_supersaturation_req=1.2
-Perform_PSC_het_chem=F
-Calc_strat_aero_OD=F
+Perform_PSC_het_chem=T
+Calc_strat_aero_OD=T
 
 #### CHEMISTRY
-Use_linear_strat_chem=F
-Use_Linoz_for_O3=F
-Use_UCX_strat_chem=F
-Active_strat_H2O=F
-Online_O3_for_FAST_JX=F
+Use_linear_strat_chem=T
+Use_Linoz_for_O3=T
+Use_UCX_strat_chem=T
+Active_strat_H2O=T
+Online_O3_for_FAST_JX=T
 Gamma_HO2=0.2
 
 ##################################

@@ -24,6 +24,7 @@ use UtUtils qw( &baseName
                 &makeHemcoCfg
                 &makeHcoSaCfg
                 &makeInputGeos
+                &makeGCHPcfg
                 &parse          );
 #
 # !PUBLIC DATA MEMBERS:
@@ -50,7 +51,8 @@ our $WARNINGS   = "1";               # Warnings setting (0-3)
 #
 # !PRIVATE MEMBER FUNCTIONS:
 #  &getRunDir  : Returns the name of the GEOS-Chem run directory
-#  &makeInputs : Creates the input.geos file the run directory 
+#  &makeInputs : Creates the input.geos file in the run directory 
+#  &makeInputs : Creates the runConfig.sh file for GCHP run directory
 #  &doCopyDirs : Reads user options from a file and starts the copy process
 #
 # !CALLING SEQUENCE:
@@ -171,6 +173,10 @@ sub makeInputs($$$$$$$$) {
   my $h1      = "";
   my $inpTmpl = "$runDir/input.geos.template";
   my $inpGeos = "$runDir/input.geos";
+  my $runcTmpl= "$runDir/runConfig.template";
+  my $runConf = "$runDir/runConfig.sh";
+  my $capTmpl = "$runDir/CAP.template";
+  my $capRc   = "$runDir/CAP.rc";
   my $hcoTmpl = "$runDir/HEMCO_Config.template";
   my $hcoCfg  = "$runDir/HEMCO_Config.rc";
   my $errMsg  = "makeInputs: END must be YYYYMMDDhh or YYYYMMDDhhmm!";
@@ -192,6 +198,12 @@ sub makeInputs($$$$$$$$) {
 
   # Make the input.geos file in the run directory
   &makeInputGeos( $d0, $h0, $d1, $h1, $met, $DATA_ROOT, $inpTmpl, $inpGeos );
+
+  # Make the runConfig.sh and CAP.rc files for GCHP run directories
+  if ( $met eq "gchp" ) {
+    &makeGCHPcfg( $d0, $h0, $d1, $h1, $runcTmpl, $runConf );
+    &makeGCHPcfg( $d0, $h0, $d1, $h1, $capTmpl, $capRc );
+  }
 
   # Make the HEMCO_Config.rc file in the run directory
   &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
@@ -501,6 +513,48 @@ sub doCopyDirs($$) {
             $cmd = "cp ./getRunInfo $copyDir/getRunInfo"; 
             qx/$cmd/;
 
+          } elsif ( $met eq "gchp" ) {
+
+	    #----------------------------------------
+	    # Copy the directories for gchp
+	    #----------------------------------------
+
+	    # Execute the copy command
+	    qx/$cmd/;
+
+	    # Make the input.geos, HEMCO_Config.rc, CAP.rc and RunConfig.sh
+            # files from templates.
+	    &makeInputs( $start, $end,  $copyDir, $met, $grid, $nest, $sim );
+
+	    # Remove any output and template files that might be in the 
+            # copied run dir
+	    $cmd =  "rm -f $copyDir/input.geos.*";
+	    $cmd .= " $copyDir/HEMCO_Config.template";
+	    $cmd .= " $copyDir/runConfig.template";
+	    $cmd .= " $copyDir/CAP.template";
+	    $cmd .= " $copyDir/OutputDir/GCHP.center.*";
+	    $cmd .= " $copyDir/OutputDir/GCHP.regrid.*";
+	    $cmd .= " $copyDir/trac_avg.*";
+	    $cmd .= " $copyDir/tracerinfo.dat";
+	    $cmd .= " $copyDir/diaginfo.dat";
+	    $cmd .= " $copyDir/cap_restart";
+	    $cmd .= " $copyDir/regrid.rcx";
+	    $cmd .= " $copyDir/center.rcx";
+	    $cmd .= " $copyDir/*~";
+	    $cmd .= " $copyDir/HEMCO.log";
+	    $cmd .= " $copyDir/PET*";
+	    $cmd .= " $copyDir/logfile*";
+	    $cmd .= " $copyDir/*.log";
+	    $cmd .= " $copyDir/slurm-*";
+	    $cmd .= " $copyDir/1";
+	    $cmd .= " $copyDir/EGRESS";
+	    $cmd .= " $copyDir/geos";
+      	    qx/$cmd/;
+
+	    # Rename Makefile_GCHP to Makefile
+	    $cmd = "mv $copyDir/Makefile_GCHP $copyDir/Makefile";
+	    qx/$cmd/;
+
           } else {
 
 	    #----------------------------------------
@@ -510,7 +564,8 @@ sub doCopyDirs($$) {
 	    # Execute the copy command
 	    qx/$cmd/;
 
-	    # Make the input.geos and HEMCO_Config.rc file from templates
+	    # Make the input.geos and HEMCO_Config.rc file from templates.
+            # Also makes the CAP.rc and runConfig.sh files for GCHP.
 	    &makeInputs( $start, $end,  $copyDir, $met, $grid, $nest, $sim );
 
 	    # Remove the output files from the copied run dir
@@ -547,6 +602,8 @@ sub doCopyDirs($$) {
 	    # with Makefile
 	    if ( $met eq "gchp" ) {
 	      $cmd = "mv $copyDir/Makefile_GCHP $copyDir/Makefile";
+	      $cmd .= " rm $copyDir/runConfig.template";
+	      $cmd .= " rm $copyDir/CAP.template";
 	      qx/$cmd/;
 	    }
 
