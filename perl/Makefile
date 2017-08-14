@@ -244,7 +244,13 @@ ifeq ($(SIM),marinePOA)
  NO_REDUCED  :=y
 endif
 
-ifeq ($(SIM),$(filter $(SIM), simpleSOA, SOA))
+ifeq ($(SIM),simpleSOA)
+ CHEM        :=Tropchem
+endif
+
+# The SOA option should not be used in v11-02c+, but is left here for backwards
+# compatibility. There is now a complex SOA option (default) and simple SOA option.
+ifeq ($(SIM),soa)
  CHEM        :=Tropchem
 endif
 
