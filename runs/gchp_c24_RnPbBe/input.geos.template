@@ -1,4 +1,4 @@
- GEOS-CHEM UNIT TEST SIMULATION: gchp_4x5_RnPbBe
+../ GEOS-CHEM UNIT TEST SIMULATION: gchp_4x5_RnPbBe
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
@@ -80,6 +80,7 @@ Online CARBON  AEROSOLS : F
  => Use Brown Carbon?   : F
 Online 2dy ORG AEROSOLS : F
  => Semivolatile POA?   : F
+ => Online Isoprene OA  : F
 Online DUST    AEROSOLS : F
  => Acidic uptake ?     : F
 Online SEASALT AEROSOLS : F
