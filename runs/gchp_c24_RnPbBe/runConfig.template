@@ -53,10 +53,8 @@ MAPL_DEBUG_LEVEL=0   # 0 is none, output increases with higher values (to 20)
 #GC_ND70="0 all"     # requires special handling; omit for now
 
 #### TIMESTEPS
-Transport_Timestep_min=10
-Convect_Timestep_min=10
-Emissions_Timestep_min=20
-Chemistry_Timestep_min=20
+TransConv_Timestep_min=10
+ChemEmis_Timestep_min=20
 
 #### GENERAL
 Use_variable_tropopause=T
@@ -85,6 +83,7 @@ Online_CARBON_AEROSOLS=F
 se_Brown_Carbon=F
 Online_2dy_ORG_AEROSOLS=F
 Semivolatile_POA=F
+Online_isoprene_OA=F
 Online_DUST_AEROSOLS=F
 Acidic_uptake=F
 Online_SEASALT_AEROSOLS=F
@@ -121,30 +120,17 @@ Gamma_HO2=0.2
 ################################################################
 ###   Give Warnings and/or Stop if Settings Not Compatible   ###
 ################################################################
-# Check that timesteps make sense (emiss=chem, conv=transport)
-# Give relevant warnings about timesteps in input.geos vs. GCHP (temporary)
+# Give relevant warnings about timesteps in input.geos.
 # Give warnings about CS resolution and timestep compatibility
 # Issue any other warnings/errors regarding input.geos and/or run settings
 # check that the transport settins are consistent
 
 #### Convert timesteps to seconds
-DYN_DT_S=$((${Transport_Timestep_min}*60))
-CHEM_DT_S=$((${Chemistry_Timestep_min}*60))
+DYN_DT_S=$((${TransConv_Timestep_min}*60))
+CHEM_DT_S=$((${ChemEmis_Timestep_min}*60))
 
-#### Check that emissions and chem timesteps are the same
-if [[ ${Convect_Timestep_min} -ne ${Transport_Timestep_min} ]]; then
-    echo "ERROR: convection timestep must be equal to transport timestep"
-    exit 1
-fi
-
-#### Check that dynamic and convection timesteps are the same
-if [[ ${Chemistry_Timestep_min} -ne ${Emissions_Timestep_min} ]]; then
-    echo "ERROR: chemistry timestep must be equal to emissions timestep"
-    exit 1
-fi
-
-#### Check that chem timestep is >= dynamic timestep
-if [[ ${Chemistry_Timestep_min} -lt ${Transport_Timestep_min} ]]; then
+#### Give error if that chem timestep is < dynamic timestep
+if [[ ${ChemEmis_Timestep_min} -lt ${TransConv_Timestep_min} ]]; then
     echo "ERROR: chemistry timestep must be >= dynamic timestep"
     exit 1
 fi
@@ -273,31 +259,29 @@ replace_val AdvCore_Advection "${ADVCORE_ADVECTION}" GCHP.rc
 ##### Set input.geos
 echo " "
 echo "General:"
-replace_val "Use variable tropopause?" ${Use_variable_tropopause} input.geos
-replace_val "Type of simulation"       ${Type_of_simulation}      input.geos
+replace_val "Use variable tropopause?" ${Use_variable_tropopause}   input.geos
+replace_val "Type of simulation"       ${Type_of_simulation}        input.geos
 echo " "
 echo "Components on/off:"
 replace_val "Turn on Chemistry?"        ${Turn_on_Chemistry}        input.geos
-replace_val "Turn on emissions?"	${Turn_on_emissions}      input.geos
-replace_val "Turn on Transport"	        ${Turn_on_Transport}      input.geos
-replace_val "Turn on Cloud Conv?"	${Turn_on_Cloud_Conv}     input.geos
-replace_val "Turn on PBL Mixing?"	${Turn_on_PBL_Mixing}     input.geos
+replace_val "Turn on emissions?"	${Turn_on_emissions}        input.geos
+replace_val "Turn on Transport"	        ${Turn_on_Transport}        input.geos
+replace_val "Turn on Cloud Conv?"	${Turn_on_Cloud_Conv}       input.geos
+replace_val "Turn on PBL Mixing?"	${Turn_on_PBL_Mixing}       input.geos
 replace_val "Turn on Dry Deposition?"   ${Turn_on_Dry_Deposition}   input.geos
 replace_val "Turn on Wet Deposition?"   ${Turn_on_Wet_Deposition}   input.geos
 echo " "
 echo "Timesteps:"
-replace_val "Chemistry Timestep [min]"	${Chemistry_Timestep_min}   input.geos
-replace_val "Emiss Timestep [min]"	${Emissions_Timestep_min} input.geos
-replace_val "Transport Timestep [min]"  ${Transport_Timestep_min} input.geos
-replace_val "Convect Timestep [min]"    ${Convect_Timestep_min}   input.geos
+replace_val "Trans/conv Timestep [min]"	${TransConv_Timestep_min}   input.geos
+replace_val "Chem/emis Timestep [min]"	${ChemEmis_Timestep_min}    input.geos
 echo " "
 echo "Mixing:"
-replace_val "=> Use non-local PBL?"	${Use_nonlocal_PBL}       input.geos
+replace_val "=> Use non-local PBL?"	${Use_nonlocal_PBL}         input.geos
 echo " "
 echo "Emissions:"
-replace_val "HEMCO Input file"	        ${HEMCO_Input_file}       input.geos
-replace_val "=> 1ppt MBL BRO Sim.?"	${ppt_MBL_BRO_Sim}        input.geos
-replace_val "=> strat. H2O?"	      	${initial_MR_strat_H2O}   input.geos
+replace_val "HEMCO Input file"	        ${HEMCO_Input_file}         input.geos
+replace_val "=> 1ppt MBL BRO Sim.?"	${ppt_MBL_BRO_Sim}          input.geos
+replace_val "=> strat. H2O?"	      	${initial_MR_strat_H2O}     input.geos
 replace_val "=> CFC emission year"      ${CFC_emission_year}        input.geos
 echo " "
 echo "Aerosols:"
@@ -307,6 +291,7 @@ replace_val "Online CARBON  AEROSOLS" 	${Online_CARBON_AEROSOLS}   input.geos
 replace_val "=> Use Brown Carbon?"      ${se_Brown_Carbon}          input.geos
 replace_val "Online 2dy ORG AEROSOLS" 	${Online_2dy_ORG_AEROSOLS}  input.geos
 replace_val "=> Semivolatile POA?"      ${Semivolatile_POA}         input.geos
+replace_val "=> Online Isoprene OA"     ${Online_isoprene_OA}       input.geos
 replace_val "Online DUST    AEROSOLS" 	${Online_DUST_AEROSOLS}     input.geos
 replace_val "=> Acidic uptake ?"        ${Acidic_uptake}            input.geos
 replace_val "Online SEASALT AEROSOLS"   ${Online_SEASALT_AEROSOLS}  input.geos
