@@ -555,6 +555,10 @@ sub doCopyDirs($$) {
 	    $cmd = "mv $copyDir/Makefile_GCHP $copyDir/Makefile";
 	    qx/$cmd/;
 
+	    # Set permissions for runConfig.sh
+	    $cmd = "[ -f $copyDir/runConfig.sh ] && chmod 755 $copyDir/runConfig.sh";
+	    qx/$cmd/;
+
           } else {
 
 	    #----------------------------------------
