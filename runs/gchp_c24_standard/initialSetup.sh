@@ -104,9 +104,4 @@ else
   exit 1
 fi
 
-echo " "
-echo "Thank you for using GCHP!"
-echo "Go to http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_HP for documentation."
-echo "Send comments, issues, or questions to Lizzie Lundgren at elundgren@seas.harvard.edu."
-
 exit 0

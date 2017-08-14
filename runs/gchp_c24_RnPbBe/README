@@ -29,18 +29,24 @@ is output to file runSettings.log:
 *NOTE: start time, end time, restart filename, and diagnostics are all 
 ignored in input.geos when using GCHP.
 
-Sample run scripts for submitting jobs to a SLURM or Grid Enginer scheduling
+Sample run scripts for submitting jobs to a SLURM or Grid Engine scheduling
 system are included as examples for running the geos executable. Note that
 all sample run scripts include executing runConfig.sh prior to the simulation.
 
 Output data are stored in the 'OutputDir' directory. The output restart 
 filename is set in GIGC.rc next to GIGCchem_INTERNAL_CHECKPOINT_TYPE and 
-must have '-' at the start. It is set up as '-gcchem_internal_checkpoint_c24.nc'. 
+must have '-' at the start. It is set up by default as 
+'-gcchem_internal_checkpoint_c24.nc'. 
 
 Do 'make cleanup_output' to clean the run directory prior to doing a new run.
-To rerun without deleting your data, delete only file cap_restart. This is required
-in order to avoid a segmentation fault if your configured run duration fits only 
-once between your configured start and end datetimes.
+To rerun without deleting your data, delete only file cap_restart. This is 
+required in order to avoid a segmentation fault if your configured run 
+duration fits only once between your configured start and end datetimes.
+
+To automatically do multiple consecutive runs of the same duration, set
+the START and END fields in CAP.rc (or runConfig.sh to auto set them) to
+the overall start and end. Set duration to the duration of each of the
+individual runs. 
 
 For more information, see the GEOS-Chem High Performance wiki page at
 http://wiki.seas.harvard.edu/geos-chem/index.php/GEOS-Chem_HP
