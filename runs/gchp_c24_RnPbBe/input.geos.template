@@ -27,10 +27,10 @@ Chem/emis timestep [min]: 20
 Type of simulation      : 1
 Number of Advected Spec.: 4
 Species Entries ------->: Name
-Species #1              : Rn
-Species #2              : Pb
-Species #3              : Be7
-Species #4              : PASV
+Species name            : Rn
+Species name            : Pb
+Species name            : Be7
+Species name            : PASV
 ------------------------+------------------------------------------------------
 %%% PASSIVE SPECIES MENU %%%:
 Number of passive spec. : 1
@@ -208,6 +208,7 @@ ND69: Surface area      :  0   all
 ND70: Debug output      :  0   all
 ND71: Hourly max ppbv   :  0   all
 ND72: Radiative output  :  0   all
+ND73: ISORROPIA         :  0   all
 ------------------------+------------------------------------------------------
 %%% PLANEFLIGHT MENU %%%:
 Turn on plane flt diag? : F
