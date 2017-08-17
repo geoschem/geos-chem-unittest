@@ -15,8 +15,8 @@ COLLECTIONS: 'inst',
   inst.template:      '%y4%m2%d2.nc4',
   inst.subsetdims:     72 46 72
   inst.format:        'CFIO',
-  inst.frequency:      010000,
-  inst.duration:       240000
+  inst.frequency:      002000,
+  inst.duration:       002000,
   inst.mode:          'instantaneous',
   inst.fields:        'CHEM_SPC_?ADV?',     'GIGCchem'
                          ::
