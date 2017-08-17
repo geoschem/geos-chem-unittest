@@ -223,9 +223,9 @@ replace_val GIGCchem_INTERNAL_CHECKPOINT_FILE "-gcchem_internal_checkpoint_c${CU
 #### Set simulation start and end datetimes based on input.geos
 echo " "
 echo "Simulation start, end, duration:"
-replace_val BEG_DATE      ${Start_Time} CAP.rc
-replace_val END_DATE      ${End_Time}   CAP.rc
-replace_val JOB_SGMT      ${Duration}   CAP.rc
+replace_val BEG_DATE  "${Start_Time}" CAP.rc
+replace_val END_DATE  "${End_Time}"   CAP.rc
+replace_val JOB_SGMT  "${Duration}"   CAP.rc
 
 #### Set output frequency, duration, and mode
 echo " "
