@@ -142,7 +142,7 @@ if [[ $1 == "clean_gc" ]]; then
 # clean_nuclear
 elif [[ $1 == "clean_nuclear" ]]; then
     cd GCHP
-    make EXTERNAL_GRID=y DEVEL=y the_nuclear_option
+    make EXTERNAL_GRID=y the_nuclear_option
     cd ..
 
 # clean_all
@@ -156,10 +156,10 @@ elif [[ $1 == "clean_all" ]]; then
 elif [[ $1 == "clean_mapl" ]]; then
     make realclean
     cd GCHP
-    make EXTERNAL_GRID=y  DEVEL=y       DEBUG=y   MET=geos-fp      \
-         GRID=4x5         NO_REDUCED=y  UCX=$UCX  wipeout_fvdycore
-    make EXTERNAL_GRID=y  DEVEL=y       DEBUG=y   MET=geos-fp      \
-         GRID=4x5         NO_REDUCED=y  UCX=$UCX  wipeout_mapl
+    make EXTERNAL_GRID=y  DEBUG=y   GRID=4x5      MET=geos-fp      \
+         NO_REDUCED=y     UCX=$UCX  wipeout_fvdycore
+    make EXTERNAL_GRID=y  DEBUG=y   GRID=4x5      MET=geos-fp      \
+         NO_REDUCED=y     UCX=$UCX  wipeout_mapl
     cd ..
 
 # compile_debug
@@ -178,17 +178,17 @@ elif [[ $1 == "compile_standard" ]]; then
 elif [[ $1 == "compile_mapl" ]]; then
     make realclean
     cd GCHP
-    make EXTERNAL_GRID=y  DEVEL=y       DEBUG=y   MET=geos-fp      \
-         GRID=4x5         NO_REDUCED=y  UCX=$UCX  wipeout_fvdycore
-    make EXTERNAL_GRID=y  DEVEL=y       DEBUG=y   MET=geos-fp      \
-         GRID=4x5         NO_REDUCED=y  UCX=$UCX  wipeout_mapl
+    make EXTERNAL_GRID=y  DEBUG=y   GRID=4x5  MET=geos-fp      \
+         NO_REDUCED=y  UCX=$UCX     wipeout_fvdycore
+    make EXTERNAL_GRID=y  DEBUG=y   GRID=4x5  MET=geos-fp      \
+         NO_REDUCED=y  UCX=$UCX     wipeout_mapl
     cd ..
 
 # compile_clean
 elif [[ $1 == "compile_clean" ]]; then
     make HPC=yes realclean
     cd GCHP
-    make EXTERNAL_GRID=y  DEVEL=y  the_nuclear_option
+    make EXTERNAL_GRID=y  the_nuclear_option
     cd ..
 
 else
@@ -215,17 +215,15 @@ echo "CPATH is: $CPATH"
 ###############################
 if [[ $1 == "compile_debug" ]]; then
     make -j${SLURM_NTASKS} NC_DIAG=y   CHEM=$CHEM     EXTERNAL_GRID=y  \
-                           DEBUG=y     DEVEL=y        TRACEBACK=y      \
-                           MET=geosfp  GRID=4x5       NO_REDUCED=y     \
-                           UCX=$UCX    BOUNDS=y       FPEX=y           \
-                           EXTERNAL_FORCING=y         hpc
+                           DEBUG=y     TRACEBACK=y    MET=geosfp       \
+                           GRID=4x5    NO_REDUCED=y   UCX=$UCX         \
+                           BOUNDS=y    FPEX=y         EXTERNAL_FORCING=y  hpc
 elif [[ $1 == "compile_standard" ]] || \
      [[ $1 == "compile_mapl"     ]] || \
      [[ $1 == "compile_clean"    ]]; then
     make -j${SLURM_NTASKS} NC_DIAG=y   CHEM=$CHEM    EXTERNAL_GRID=y   \
-                           DEBUG=n     DEVEL=y       TRACEBACK=y       \
-                           MET=geos-fp GRID=4x5      NO_REDUCED=y      \
-                           UCX=$UCX    hpc
+                           DEBUG=n     TRACEBACK=y   MET=geos-fp       \
+                           GRID=4x5    NO_REDUCED=y  UCX=$UCX    hpc
 fi
 
 ###############################

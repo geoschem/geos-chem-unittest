@@ -100,6 +100,7 @@ sub getRunDir($$$$) {
 # !REVISION HISTORY:
 #  06 Mar 2015 - R. Yantosca - Initial version, based on gcUnitTest
 #  13 Jul 2016 - M. Sulprizio- Modify runLoc for consolidated run directories
+#  16 Aug 2017 - E. Lundgren - Change GCHP rundir to be grid-independent
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -109,8 +110,10 @@ sub getRunDir($$$$) {
   # Run directory string
   my $runLoc = "";
 
-  if ( ( $met =~ m/gcap/ ) || ( $met =~ m/geos4/ ) || ( $met =~ m/gchp/ ) ) {
+  if ( ( $met =~ m/gcap/ ) || ( $met =~ m/geos4/ ) ) {
     $runLoc = "{MET}_{GRID}_{SIM}";
+  } elsif ( ( $met =~ m/gchp/ ) > 0 ) {
+    $runLoc = "{MET}_{SIM}";
   } elsif ( length( $nest ) > 0 ) {
     $runLoc = "{MET}_{GRID}_{SIM}_{NEST}";
   } elsif ( $sim =~ m/gc_timing/) {
@@ -279,15 +282,19 @@ sub doCopyDirs($$) {
   my $start   = "";
   my $home    = "";
   my $user    = "";
+  my $res     = "";
   my $rstRoot = "";
   my $rstFile = "";
+  my $rstPref = "";
+  my $rstName = "";
   my $hcoTmpl = "";
   my $hcoCfg  = "";
   my $hsaTmpl = "";
   my $hsaCfg  = "";
 
   # Arrays
-  my @txt     = ();
+  my @txt         = ();
+  my @resolutions = ();
 
   #---------------------------------------------------------------------------
   # Read options from the input file
@@ -440,7 +447,11 @@ sub doCopyDirs($$) {
 	  $notDir   = &baseName( $runDir );
 
 	  # Directory in the remote location
-	  $copyDir = "$COPY_PATH/$met\_$grid\_$sim";
+	  if ( $met eq "gchp" ) {
+	    $copyDir = "$COPY_PATH/$met\_$sim";
+	  } else {
+	    $copyDir = "$COPY_PATH/$met\_$grid\_$sim";
+	  }
 
 	  # Append nested grid string if necessary
 	  if ( length( $nest ) > 0 ) { $copyDir .= "_$nest"; }
@@ -468,6 +479,10 @@ sub doCopyDirs($$) {
 
 	  # Copy command
 	  $cmd = "$COPY_CMD $runDir $copyDir";
+
+	  # Set path to restart files
+	  $rstRoot = "$DATA_ROOT/SPC_RESTARTS/";
+	  $rstPref = "initial_GEOSChem_rst.";
 
 	  # Test if this is a dry run or not
 	  if ( $dryRun ) { 
@@ -513,7 +528,7 @@ sub doCopyDirs($$) {
             $cmd = "cp ./getRunInfo $copyDir/getRunInfo"; 
             qx/$cmd/;
 
-          } elsif ( $met eq "gchp" ) {
+          } elsif ( $met =~ m/gchp/ ) {
 
 	    #----------------------------------------
 	    # Copy the directories for gchp
@@ -528,42 +543,59 @@ sub doCopyDirs($$) {
 
 	    # Remove any output and template files that might be in the 
             # copied run dir
-	    $cmd =  "rm -f $copyDir/input.geos.*";
-	    $cmd .= " $copyDir/HEMCO_Config.template";
-	    $cmd .= " $copyDir/runConfig.template";
-	    $cmd .= " $copyDir/CAP.template";
-	    $cmd .= " $copyDir/OutputDir/GCHP.center.*";
-	    $cmd .= " $copyDir/OutputDir/GCHP.regrid.*";
-	    $cmd .= " $copyDir/trac_avg.*";
-	    $cmd .= " $copyDir/tracerinfo.dat";
-	    $cmd .= " $copyDir/diaginfo.dat";
-	    $cmd .= " $copyDir/cap_restart";
-	    $cmd .= " $copyDir/regrid.rcx";
-	    $cmd .= " $copyDir/center.rcx";
-	    $cmd .= " $copyDir/*~";
-	    $cmd .= " $copyDir/HEMCO.log";
-	    $cmd .= " $copyDir/PET*";
-	    $cmd .= " $copyDir/logfile*";
-	    $cmd .= " $copyDir/*.log";
-	    $cmd .= " $copyDir/slurm-*";
-	    $cmd .= " $copyDir/1";
-	    $cmd .= " $copyDir/EGRESS";
-	    $cmd .= " $copyDir/geos";
+	    $cmd =  "rm -f ${copyDir}/input.geos.*";
+	    $cmd .= " ${copyDir}/HEMCO_Config.template";
+	    $cmd .= " ${copyDir}/runConfig.template";
+	    $cmd .= " ${copyDir}/CAP.template";
+	    $cmd .= " ${copyDir}/OutputDir/GCHP.center.*";
+	    $cmd .= " ${copyDir}/OutputDir/GCHP.regrid.*";
+	    $cmd .= " ${copyDir}/trac_avg.*";
+	    $cmd .= " ${copyDir}/tracerinfo.dat";
+	    $cmd .= " ${copyDir}/diaginfo.dat";
+	    $cmd .= " ${copyDir}/cap_restart";
+	    $cmd .= " ${copyDir}/regrid.rcx";
+	    $cmd .= " ${copyDir}/center.rcx";
+	    $cmd .= " ${copyDir}/*~";
+	    $cmd .= " ${copyDir}/HEMCO.log";
+	    $cmd .= " ${copyDir}/PET*";
+	    $cmd .= " ${copyDir}/logfile*";
+	    $cmd .= " ${copyDir}/*.log";
+	    $cmd .= " ${copyDir}/slurm-*";
+	    $cmd .= " ${copyDir}/1";
+	    $cmd .= " ${copyDir}/EGRESS";
+	    $cmd .= " ${copyDir}/geos";
       	    qx/$cmd/;
 
 	    # Rename Makefile_GCHP to Makefile
-	    $cmd = "mv $copyDir/Makefile_GCHP $copyDir/Makefile";
+	    $cmd = "mv ${copyDir}/Makefile_GCHP ${copyDir}/Makefile";
 	    qx/$cmd/;
 
 	    # Set permissions for runConfig.sh
-	    $cmd = "[ -f $copyDir/runConfig.sh ] && chmod 755 $copyDir/runConfig.sh";
+	    $cmd = "[ -f ${copyDir}/runConfig.sh ] && chmod 755 ${copyDir}/runConfig.sh";
 	    qx/$cmd/;
+
+	    # Make symbolic links to restart files at 4 resolutions
+	    @resolutions = (24,48,90,180);
+	    foreach my $res (@resolutions) {
+	      if ( $sim =~ m/RnPbBe/ ) {
+		$rstName = "${rstPref}c${res}_${sim}Pasv.nc";
+	      } else {
+		$rstName = "${rstPref}c${res}_${sim}.nc";
+	      }
+	      $rstFile = "${rstRoot}${rstName}";
+	      if ( !( -f $rstFile ) ) {
+ 	        print "\nWARNING: File ${rstFile} does not exist so it cannot be included in your run directory. Sample restart files can be found in the SPC_RESTARTS directory or you can use your own restart file.\n\n";
+ 	      } else {
+	        $cmd = "ln -sf ${rstFile} ${copyDir}/${rstName}";
+	        qx/$cmd/;		
+ 	      }
+	    }
 
           } else {
 
-	    #----------------------------------------
-	    # NOT DRY RUN: Copy the directories
-	    #----------------------------------------
+	    #---------------------------------------------
+	    # NOT DRY RUN: Copy the directories (non-GCHP)
+	    #---------------------------------------------
 
 	    # Execute the copy command
 	    qx/$cmd/;
@@ -602,33 +634,21 @@ sub doCopyDirs($$) {
 	    $cmd = "[ -f HEMCO_restart* ] && chmod 444 $copyDir/HEMCO_restart.*";
 	    qx/$cmd/;
 
-	    # If the run directory is GCHP, over-write Makefile_GCHP
-	    # with Makefile
-	    if ( $met eq "gchp" ) {
-	      $cmd = "mv $copyDir/Makefile_GCHP $copyDir/Makefile";
-	      $cmd .= " rm $copyDir/runConfig.template";
-	      $cmd .= " rm $copyDir/CAP.template";
-	      qx/$cmd/;
+	    # Create symbolic link to the restart file
+	    if ( length( $nest ) > 0 ) {
+	      $rstFile = "$rstRoot$rstPref$grid\_$sim\_$nest.nc";
+	    } else {
+	      if ( ( $sim =~ m/RRTMG/ ) ) {
+	    	$rstFile = "$rstRoot$rstPref$grid\_tropchem.nc";
+	      } else {
+	    	$rstFile = "$rstRoot$rstPref$notDir.nc";
+	      }
 	    }
-
-	    # Create symbolic link to initial GC restart file if not gchp
-            if ( $met ne "gchp" ) {
-	       $rstRoot = "$DATA_ROOT/SPC_RESTARTS/initial_GEOSChem_rst.";
-	       if ( length( $nest ) > 0 ) {
-	         $rstFile = "$rstRoot$grid\_$sim\_$nest.nc";
-	       } else {
-	         if ( ( $sim =~ m/RRTMG/ ) ) {
-	       	$rstFile = "$rstRoot$grid\_tropchem.nc";
-	         } else {
-	       	$rstFile = "$rstRoot$notDir.nc";
-	         }
-	       }
-	       if ( !( -f $rstFile ) ){
-	         print "\nWARNING: File $rstFile does not exist, so a sample restart file will not be included in your run directory. Sample restart files can be found in the SPC_RESTARTS directory or you can use your own restart file.\n\n";
-  	       } else {
-	         $cmd = "ln -sf $rstFile $copyDir/GEOSChem_restart.${start}00.nc";
-	         qx/$cmd/;
-               }
+	    if ( !( -f $rstFile ) ){
+	      print "\nWARNING: File $rstFile does not exist, so a sample restart file will not be included in your run directory. Sample restart files can be found in the SPC_RESTARTS directory or you can use your own restart file.\n\n";
+  	    } else {
+	      $cmd = "ln -sf $rstFile $copyDir/GEOSChem_restart.${start}00.nc";
+	      qx/$cmd/;
             }
           }
         }

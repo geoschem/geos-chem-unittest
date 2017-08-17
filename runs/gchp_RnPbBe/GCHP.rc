@@ -42,7 +42,7 @@ BKG_FREQUENCY: 0
 # Chemistry/AEROSOL Model Restart Files
 # Enter +none for GIGCchem_INTERNAL_RESTART_FILE not use an initial restart file
 # -------------------------------------
-GIGCchem_INTERNAL_RESTART_FILE:     +initial_GEOSChem_rst.c24_RnPbBe.nc
+GIGCchem_INTERNAL_RESTART_FILE:     +initial_GEOSChem_rst.c24_RnPbBePasv.nc
 GIGCchem_INTERNAL_RESTART_TYPE:     pnc4
 GIGCchem_INTERNAL_CHECKPOINT_FILE:  -gcchem_internal_checkpoint_c24.nc
 GIGCchem_INTERNAL_CHECKPOINT_TYPE:  pnc4

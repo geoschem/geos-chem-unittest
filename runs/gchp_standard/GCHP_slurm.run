@@ -2,7 +2,7 @@
 
 #SBATCH -n 6
 #SBATCH -N 1
-#SBATCH -t 0-12:00
+#SBATCH -t 0-1:00
 #SBATCH -p regal
 #SBATCH --mem-per-cpu=6000
 #SBATCH --mail-type=ALL
@@ -18,8 +18,10 @@
 #\\
 #\\
 # !REMARKS:
-# Designed to be used on the Harvard Odyssey system, but may be adapted
-# for other SLURM-based compute clusters.
+# (1) Designed to be used on the Harvard Odyssey system, but may be adapted
+#     for other SLURM-based compute clusters.
+# (2) The memory included by default assumes a c24 run. It will need to be
+#     increased for higher resolutions.
 #
 # !CALLING SEQUENCE:
 #  To submit run to the SLURM system:

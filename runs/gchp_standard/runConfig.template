@@ -1,11 +1,10 @@
 #!/bin/bash
 
-# runSettings.sh: Update select settings in GCHP *.rc files
+# runSettings.sh: Update select settings in *.rc and input.geos config files
 #
 # Usage: ./runSettings.sh
 #
-# NOTE: This script is under development. Add functionality as needed
-# and see ideas for the future at the bottom of the script (ewl, 1/19/16)
+# E. Lundgren, 8/17/2017
 
 ##########################
 ####  Configurables   ####
@@ -21,10 +20,19 @@ NX=1                  # NX*NY must equal total number of cores
                       # e.g., (NX=2,NY=12) if 24 cores, (NX=4,NY=12) if 48
 
 #### INPUT MET RESOLUTION
-INPUT_MET_RES=2x25    # 4x5, 2x25, etc (warning: not yet implemented)
+INPUT_MET_RES=placeholder # not yet implemented
 
 ### INTERNAL CUBED-SPHERE RESOLUTION
-CUBE_SPHERE_RES=24    # 24~4x5, 48~2x2.5, etc.
+# Please note that lightning and dust emissions in GCHP are tuned to c24.
+# Removing the online resolution-dependency of lightning and dust by using
+# offline lightning and dust emissions will be a future update. Until
+# then, running at resolutions other than c24 will have degraded accuracy
+# due to the resolution dependency of emissions. Please contact the GCST
+# for more information.
+CUBE_SPHERE_RES=24    # 24~4x5, 48~2x2.5, 90~1x1.25, 180~0.5x0.625
+
+### INITIAL RESTART FILE
+INITIAL_RESTART=default  # specify default or your own restart filename
 
 #### SIMULATION TIMES
 Start_Time="{DATE1} {TIME1}"
@@ -58,7 +66,7 @@ ChemEmis_Timestep_min=20
 
 #### GENERAL
 Use_variable_tropopause=T
-Type_of_simulation=1
+Type_of_simulation=3
 
 #### PBL MIXING
 Use_nonlocal_PBL=T
@@ -67,59 +75,49 @@ Use_nonlocal_PBL=T
 HEMCO_Input_file=HEMCO_Config.rc
 ppt_MBL_BRO_Sim=F
 Use_CH4_emissions=F
-#sfc_BC_CH4=F  # these need special handling since duplicate text in input.geos
-#sfc_BC_OCS=F  # omit for now
-#sfc_BC_CFCs=F
-#sfc_BC_Cl_species=F
+#sfc_BC_CH4=T  # these need special handling since duplicate text in input.geos
+#sfc_BC_OCS=T  # omit for now
+#sfc_BC_CFCs=T
+#sfc_BC_Cl_species=T
 #sfc_BC_Br_species=F
-#sfc_BC_N2O=F
-initial_MR_strat_H2O=F
+#sfc_BC_N2O=T
+initial_MR_strat_H2O=T
 CFC_emission_year=0
 
 #### AEROSOLS
-Online_SULFATE_AEROSOLS=F
+Online_SULFATE_AEROSOLS=T
 Online_CRYST_AQ_AEROSOLS=F
-Online_CARBON_AEROSOLS=F
+Online_CARBON_AEROSOLS=T
 se_Brown_Carbon=F
-Online_2dy_ORG_AEROSOLS=F
+Online_2dy_ORG_AEROSOLS=T
 Semivolatile_POA=F
-Online_isoprene_OA=F
-Online_DUST_AEROSOLS=F
+Online_isoprene_OA=T
+Online_DUST_AEROSOLS=T
 Acidic_uptake=F
-Online_SEASALT_AEROSOLS=F
+Online_SEASALT_AEROSOLS=T
 #SALA_radius_bin_um="0.01 0.5" # requires special handling; omit for now
 #SALC_radius_bin_um="0.5  8.0" # requires special handling; omit for now
 MARINE_ORG_AEROSOLS=F
 Online_dicarb_chem=F
-Settle_strat_aerosols=F
-Online_PSC_AEROSOLS=F
+Settle_strat_aerosols=T
+Online_PSC_AEROSOLS=T
 Allow_homogeneous_NAT=F
 NAT_supercooling_req_K=3.0
 Ice_supersaturation_req=1.2
-Perform_PSC_het_chem=F
-Calc_strat_aero_OD=F
+Perform_PSC_het_chem=T
+Calc_strat_aero_OD=T
 
 #### CHEMISTRY
-Use_linear_strat_chem=F
-Use_Linoz_for_O3=F
-Use_UCX_strat_chem=F
-Active_strat_H2O=F
-Online_O3_for_FAST_JX=F
+Use_linear_strat_chem=T
+Use_Linoz_for_O3=T
+Use_UCX_strat_chem=T
+Active_strat_H2O=T
+Online_O3_for_FAST_JX=T
 Gamma_HO2=0.2
 
-##################################
-####   End of Configurables   ####
-##################################
-
-#############################################
-###   Extract Info from HEMCO_Config.rc   ###
-#############################################
-
-# placeholder
-
-################################################################
-###   Give Warnings and/or Stop if Settings Not Compatible   ###
-################################################################
+###########################################
+###   Stop if settings not compatible   ###
+###########################################
 # Give relevant warnings about timesteps in input.geos.
 # Give warnings about CS resolution and timestep compatibility
 # Issue any other warnings/errors regarding input.geos and/or run settings
@@ -156,6 +154,12 @@ if [[ ${domain_ratio1} -ge 3 || ${domain_ratio2} -ge 3 ]] ; then
     exit 1
 fi
 
+## Check if restart file exists if using a custom file rather than default
+if [[ "${INITIAL_RESTART}" != 'default' && ! -e ${INITIAL_RESTART} ]]; then
+    printf 'ERROR: Restart file not in run directory: %s\n' ${INITIAL_RESTART}
+    exit 1
+fi
+
 ###############################
 ###   Update .rc Files   ###
 ###############################
@@ -183,7 +187,6 @@ replace_val() {
     VALUE=$2
     FILE=$3
     printf '%-30s : %-20s %-20s\n' "${KEY}" "${VALUE}" "${FILE}"
-    #echo "      ${KEY}    :    ${VALUE}     (${FILE})"
 
     # replace value in line starting with 'whitespace + key + whitespace + : +
     # whitespace + value' where whitespace is variable length including none
@@ -192,9 +195,9 @@ replace_val() {
 }
 
 #### Define transport string for GCHP.rc
-if [[ ${Turn_on_Transport} == "T" ]]; then
+if [[ ${Turn_on_Transport} == 'T' ]]; then
     ADVCORE_ADVECTION=1
-elif [[ ${Turn_on_Transport} == "F" ]]; then
+elif [[ ${Turn_on_Transport} == 'F' ]]; then
     ADVCORE_ADVECTION=0
 else
     echo "ERROR: Incorrect transport setting"
@@ -203,58 +206,64 @@ fi
 
 #### Set # nodes and # cores
 echo "Compute resources:"
-replace_val NX            "${NX}" GCHP.rc
-replace_val NY            "${NY}" GCHP.rc
-replace_val CoresPerNode  "${NUM_CORES_PER_NODE}" HISTORY.rc
+replace_val NX            ${NX}                 GCHP.rc
+replace_val NY            ${NY}                 GCHP.rc
+replace_val CoresPerNode  ${NUM_CORES_PER_NODE} HISTORY.rc
 
 ####  set cubed-sphere resolution
 echo " "
 echo "Cubed-sphere resolution:"
 CS_RES_TIMES_SIX=$((CUBE_SPHERE_RES*6)) # Is there a better term for this?
-replace_val IM            "${CUBE_SPHERE_RES}"  GCHP.rc
-replace_val JM            "${CS_RES_TIMES_SIX}" GCHP.rc
-replace_val npx           "${CUBE_SPHERE_RES}"  fvcore_layout.rc
-replace_val npy           "${CUBE_SPHERE_RES}"  fvcore_layout.rc
-replace_val GRIDNAME "PE${CUBE_SPHERE_RES}x${CS_RES_TIMES_SIX}-CF" GCHP.rc
+replace_val IM            ${CUBE_SPHERE_RES}  GCHP.rc
+replace_val JM            ${CS_RES_TIMES_SIX} GCHP.rc
+replace_val npx           ${CUBE_SPHERE_RES}  fvcore_layout.rc
+replace_val npy           ${CUBE_SPHERE_RES}  fvcore_layout.rc
+replace_val GRIDNAME PE${CUBE_SPHERE_RES}x${CS_RES_TIMES_SIX}-CF GCHP.rc
+if [[ "${INITIAL_RESTART}" == 'default' ]]; then
+    replace_val GIGCchem_INTERNAL_RESTART_FILE "+initial_GEOSChem_rst.c${CUBE_SPHERE_RES}_standard.nc" GCHP.rc
+else
+    replace_val GIGCchem_INTERNAL_RESTART_FILE "+${INITIAL_RESTART}" GCHP.rc
+fi
+replace_val GIGCchem_INTERNAL_CHECKPOINT_FILE "-gcchem_internal_checkpoint_c${CUBE_SPHERE_RES}.nc" GCHP.rc
 
 #### Set simulation start and end datetimes based on input.geos
 echo " "
 echo "Simulation start, end, duration:"
-replace_val BEG_DATE      "${Start_Time}" CAP.rc
-replace_val END_DATE      "${End_Time}"   CAP.rc
-replace_val JOB_SGMT      "${Duration}"   CAP.rc
+replace_val BEG_DATE      ${Start_Time} CAP.rc
+replace_val END_DATE      ${End_Time}   CAP.rc
+replace_val JOB_SGMT      ${Duration}   CAP.rc
 
 #### Set output frequency, duration, and mode
 echo " "
 echo "Output:"
-replace_val center.frequency "${cs_frequency}"  HISTORY.rc
-replace_val center.duration  "${cs_duration}"   HISTORY.rc
-replace_val center.mode      "${cs_mode}"       HISTORY.rc
-replace_val regrid.frequency "${ll_frequency}"  HISTORY.rc
-replace_val regrid.duration  "${ll_duration}"   HISTORY.rc
-replace_val regrid.mode      "${ll_mode}"       HISTORY.rc
+replace_val center.frequency ${cs_frequency}  HISTORY.rc
+replace_val center.duration  ${cs_duration}   HISTORY.rc
+replace_val center.mode      ${cs_mode}       HISTORY.rc
+replace_val regrid.frequency ${ll_frequency}  HISTORY.rc
+replace_val regrid.duration  ${ll_duration}   HISTORY.rc
+replace_val regrid.mode      ${ll_mode}       HISTORY.rc
 
 #### Set timesteps based on input.geos
 echo " "
 echo "Timesteps:"
-replace_val HEARTBEAT_DT  "${DYN_DT_S}"  GCHP.rc
-replace_val SOLAR_DT      "${DYN_DT_S}"  GCHP.rc
-replace_val IRRAD_DT      "${DYN_DT_S}"  GCHP.rc
-replace_val RUN_DT        "${DYN_DT_S}"  GCHP.rc
-replace_val GIGCchem_DT   "${CHEM_DT_S}" GCHP.rc
-replace_val DYNAMICS_DT   "${DYN_DT_S}"  GCHP.rc
-replace_val HEARTBEAT_DT  "${DYN_DT_S}"  CAP.rc
-replace_val dt            "${DYN_DT_S}"  fvcore_layout.rc
+replace_val HEARTBEAT_DT  ${DYN_DT_S}  GCHP.rc
+replace_val SOLAR_DT      ${DYN_DT_S}  GCHP.rc
+replace_val IRRAD_DT      ${DYN_DT_S}  GCHP.rc
+replace_val RUN_DT        ${DYN_DT_S}  GCHP.rc
+replace_val GIGCchem_DT   ${CHEM_DT_S} GCHP.rc
+replace_val DYNAMICS_DT   ${DYN_DT_S}  GCHP.rc
+replace_val HEARTBEAT_DT  ${DYN_DT_S}  CAP.rc
+replace_val dt            ${DYN_DT_S}  fvcore_layout.rc
 
 #### Set debug level
 echo " "
 echo "MAPL Debug Level:"
-replace_val DEBUG_LEVEL "${MAPL_DEBUG_LEVEL}" CAP.rc
+replace_val DEBUG_LEVEL ${MAPL_DEBUG_LEVEL} CAP.rc
 
 #### Set advection on/off based on input.geos
 echo " "
 echo "Advection on/off:"
-replace_val AdvCore_Advection "${ADVCORE_ADVECTION}" GCHP.rc
+replace_val AdvCore_Advection ${ADVCORE_ADVECTION} GCHP.rc
 
 ##### Set input.geos
 echo " "
@@ -315,17 +324,6 @@ replace_val "Active strat. H2O?"      	${Active_strat_H2O}         input.geos
 replace_val "Online O3 for FAST-JX?"    ${Online_O3_for_FAST_JX}    input.geos
 replace_val "Gamma HO2"                 ${Gamma_HO2}                input.geos 
 	    
-################################################
-###   Print Run Settings to runSettings.log  ###
-################################################
 
-# placeholder
-
-
-# Additional notes:
-#
-# Setting values in input.geos from this file:
-#    Use variable tropopause?: T
-#    Type of simulation      : 3
 
 
