@@ -1,14 +1,10 @@
-This directory is the run directory template in the GEOS-Chem unit tester
-for the standard simulation using High Performance GEOS-Chem (GCHP). 
+This directory if for GEOS-Chem (GCHP) with high performance option. 
 
 Set up, compile, and run GCHP by doing the following:
 
-1. Execute bash script initialSetup.sh
-   This creates symbolic links to source code and data referenced in 
-   config file ExtData.rc. Settings in ExtData.rc are for use of input
-   2x2.5 GEOS-FP meteorogoly fields by default. You can use other input
-   met resolutions by simply updating the met paths and filenames in 
-   ExtData.rc.
+1. Set CodeDir symbolic link
+   Run './setCodeDir codepath' on the command line where codepath is the
+   full path to your GEOS-Chem source code without any symbolic links.
 
 2. Set up your environment
    Use files ending in '.bashrc' as a template for environment setup. Set up
@@ -28,20 +24,24 @@ Set up, compile, and run GCHP by doing the following:
 
 4. Set run settings in bash script runConfig.sh 
    Set common settings here to avoid updating the same settings across 
-   multiple config files (*.rc and input.geos). Settings include internal
-   grid resolution, compute resources, and start/end/duration, to name a few.
+   multiple config files (*.rc and input.geos). Settings include restart file,
+   internal grid resolution, compute resources, and start/end/duration, to name a few.
    When runConfig.sh is executed, settings in the following config files 
    will be over-written:
    1. CAP.rc           : simulation start/end/duration; heartbeat; debug level
    2. fvcore_layout.rc : grid res; transport dt
-   3. GCHP.rc          : compute resources; grid res; all dt; transport on/off 
+   3. GCHP.rc          : compute resources; restart; grid res; all dt; transport on/off 
    4. HISTORY.rc       : output frequency, duration, and mode; cores per node
    5. input.geos*      : most settings
-   *NOTE 1: start time, end time, restart filename, and diagnostics are all 
-    ignored in input.geos when using GCHP.
-   *NOTE 2: runConfig.sh is automatically sourced in the sample run scripts.
-    This means if you use one of them then you MUST make updates in runConfig.sh
-    rather than in the individual config files.
+   *NOTES 
+    1: start time, end time, restart filename, and diagnostics are all 
+       ignored in input.geos when using GCHP.
+    2: runConfig.sh is automatically sourced in the sample run scripts.
+       This means if you use one of them then you MUST make updates in runConfig.sh
+       rather than in the individual config files.
+    3: A symbolic link to default restart files for various resolutions are included
+       in the run directory. You can configure usage of other restart files in 
+       runConfig.sh.
 
 5. Submit a run
    Sample run scripts for submitting jobs to a SLURM or Grid Engine scheduling

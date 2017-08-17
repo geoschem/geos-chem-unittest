@@ -29,21 +29,22 @@ use UtUtils qw( &baseName
 #
 # !PUBLIC DATA MEMBERS:
 #
-our $COPY_CMD   = "";                # Command to copy directories
-our $COPY_PATH  = "";                # Path to copy Run directories to
-our $UT_ROOT    = "";                # Root path for the unit tester
-our $DATA_ROOT  = "";                # Root path for GEOS-Chem data directory
-our $DESCRIBE   = "";                # Short description of unit tests
-our $HEMCO_ROOT = "";                # Root path for HEMCO emissions files
-our $JOB_DIR    = "";                # Unit Test job directory
-our $LOG_DIR    = "";                # Unit Test logs directory
-our $RUN_ROOT   = "";                # Unit Test top-level run directory
-our $RUN_DIR    = "";                # Unit Test run directory subdirectory
-our $WEB_GRID   = "";                # Web page w/ unit text matrix
-our $WEB_PUSH   = "";                # Remote server for web page push
-our $VERSION    = "";                # GEOS-Chem version ID
-our $VERBOSE    = "0";               # Verbose setting (0-3)
-our $WARNINGS   = "1";               # Warnings setting (0-3) 
+our $COPY_CMD    = "";                # Command to copy directories
+our $COPY_PATH   = "";                # Path to copy Run directories to
+our $UT_ROOT     = "";                # Root path for the unit tester
+our $GCGRID_ROOT = "";                # Root path for GEOS-Chem data directory
+our $DATA_ROOT   = "";                # Root path for ExtData data directory
+our $DESCRIBE    = "";                # Short description of unit tests
+our $HEMCO_ROOT  = "";                # Root path for HEMCO emissions files
+our $JOB_DIR     = "";                # Unit Test job directory
+our $LOG_DIR     = "";                # Unit Test logs directory
+our $RUN_ROOT    = "";                # Unit Test top-level run directory
+our $RUN_DIR     = "";                # Unit Test run directory subdirectory
+our $WEB_GRID    = "";                # Web page w/ unit text matrix
+our $WEB_PUSH    = "";                # Remote server for web page push
+our $VERSION     = "";                # GEOS-Chem version ID
+our $VERBOSE     = "0";               # Verbose setting (0-3)
+our $WARNINGS    = "1";               # Warnings setting (0-3) 
 
 #		
 # !PUBLIC MEMBER FUNCTIONS:
@@ -180,6 +181,8 @@ sub makeInputs($$$$$$$$) {
   my $runConf = "$runDir/runConfig.sh";
   my $capTmpl = "$runDir/CAP.template";
   my $capRc   = "$runDir/CAP.rc";
+  my $gchpTmpl= "$runDir/GCHP.template";
+  my $GCHPRc  = "$runDir/GCHP.rc";
   my $hcoTmpl = "$runDir/HEMCO_Config.template";
   my $hcoCfg  = "$runDir/HEMCO_Config.rc";
   my $errMsg  = "makeInputs: END must be YYYYMMDDhh or YYYYMMDDhhmm!";
@@ -203,9 +206,10 @@ sub makeInputs($$$$$$$$) {
   &makeInputGeos( $d0, $h0, $d1, $h1, $met, $DATA_ROOT, $inpTmpl, $inpGeos );
 
   # Make the runConfig.sh and CAP.rc files for GCHP run directories
-  if ( $met eq "gchp" ) {
-    &makeGCHPcfg( $d0, $h0, $d1, $h1, $runcTmpl, $runConf );
-    &makeGCHPcfg( $d0, $h0, $d1, $h1, $capTmpl, $capRc );
+  if ( $met =~ m/gchp/ ) {
+    &makeGCHPcfg( $d0, $h0, $d1, $h1, $sim, $runcTmpl, $runConf );
+    &makeGCHPcfg( $d0, $h0, $d1, $h1, $sim, $capTmpl, $capRc );
+    &makeGCHPcfg( $d0, $h0, $d1, $h1, $sim, $gchpTmpl, $GCHPRc );
   }
 
   # Make the HEMCO_Config.rc file in the run directory
@@ -323,11 +327,13 @@ sub doCopyDirs($$) {
     #
     # PLEASE NOTE THAT THE FOLLOWING ORDER MUST BE OBSERVED:
     # (1) VERSION   has to be listed last of all
-    # (2) DATA_ROOT has to be listed before HEMCO_ROOT
-    # (3) UNIT_TEST_ROOT has to be listed befor all other unit test dirs
+    # (2) GCGRID_ROOT has to be listed before DATA_ROOT
+    # (3) DATA_ROOT has to be listed before HEMCO_ROOT
+    # (4) UNIT_TEST_ROOT has to be listed befor all other unit test dirs
     #------------------------------------------------------------------------
     if ( !( $txt[$i] =~ m/\#/ ) ) { 
-      if    ( $txt[$i] =~ "DATA_ROOT"   ) { $DATA_ROOT = &parse( $txt[$i] ); } 
+      if    ( $txt[$i] =~ "GCGRID_ROOT" ) { $GCGRID_ROOT=&parse( $txt[$i] ); } 
+      elsif ( $txt[$i] =~ "DATA_ROOT"   ) { $DATA_ROOT = &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "HEMCO_ROOT"  ) { $HEMCO_ROOT= &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "UNIT_TEST_ROOT") { $UT_ROOT = &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "JOB_DIR"     ) { $JOB_DIR   = &parse( $txt[$i] ); }
@@ -351,6 +357,7 @@ sub doCopyDirs($$) {
 
       # Strip spaces from directory paths
       $COPY_PATH  =~ s/ //g;
+      $GCGRID_ROOT=~ s/ //g;
       $DATA_ROOT  =~ s/ //g;
       $HEMCO_ROOT =~ s/ //g;
       $RUN_ROOT   =~ s/ //g; 
@@ -368,6 +375,8 @@ sub doCopyDirs($$) {
       $LOG_DIR    =~ s/{HOME}/$home/g;
       $LOG_DIR    =~ s/{UTROOT}/$UT_ROOT/g;
       $LOG_DIR    =~ s/{VERSION}/$VERSION/g;
+      $DATA_ROOT  =~ s/{HOME}/$home/g;
+      $DATA_ROOT  =~ s/{GCGRIDROOT}/$GCGRID_ROOT/g;
       $HEMCO_ROOT =~ s/{HOME}/$home/g;
       $HEMCO_ROOT =~ s/{DATAROOT}/$DATA_ROOT/g;
       $RUN_DIR    =~ s/{RUNROOT}/$RUN_ROOT/g;
@@ -381,8 +390,9 @@ sub doCopyDirs($$) {
       $LOG_DIR    =~ s/{USER}/$user/g;
       
       # Make sure each of these directories exist before proceeding
-      &checkDir( $DATA_ROOT  );
-      &checkDir( $HEMCO_ROOT );
+      &checkDir( $GCGRID_ROOT );
+      &checkDir( $DATA_ROOT   );
+      &checkDir( $HEMCO_ROOT  );
 
        # Splash page
       print '%%%%%%%%% GEOS-Chem COPY RUN DIRECTORIES %%%%%%%%%%%%%%%%%%%%%'."\n"; # 
@@ -537,8 +547,8 @@ sub doCopyDirs($$) {
 	    # Execute the copy command
 	    qx/$cmd/;
 
-	    # Make the input.geos, HEMCO_Config.rc, CAP.rc and RunConfig.sh
-            # files from templates.
+	    # Make the input.geos, HEMCO_Config.rc, CAP.rc, runConfig.sh,
+            # and GCHP.rc files from templates.
 	    &makeInputs( $start, $end,  $copyDir, $met, $grid, $nest, $sim );
 
 	    # Remove any output and template files that might be in the 
@@ -547,6 +557,7 @@ sub doCopyDirs($$) {
 	    $cmd .= " ${copyDir}/HEMCO_Config.template";
 	    $cmd .= " ${copyDir}/runConfig.template";
 	    $cmd .= " ${copyDir}/CAP.template";
+	    $cmd .= " ${copyDir}/GCHP.template";
 	    $cmd .= " ${copyDir}/OutputDir/GCHP.center.*";
 	    $cmd .= " ${copyDir}/OutputDir/GCHP.regrid.*";
 	    $cmd .= " ${copyDir}/trac_avg.*";
@@ -590,6 +601,22 @@ sub doCopyDirs($$) {
 	        qx/$cmd/;		
  	      }
 	    }
+
+	    # Make symbolic link to gcgrid for accessing met fields
+	    $cmd = "ln -sf ${GCGRID_ROOT}/GEOS_2x2.5_GEOS_5/GEOS_FP ${copyDir}/MetDir";
+	    qx/$cmd/;		
+
+	    # Make symbolic link to HEMCO emissions directory
+	    $cmd = "ln -sf ${DATA_ROOT}/HEMCO ${copyDir}/MainDataDir";
+	    qx/$cmd/;		
+
+	    # make symbolic link to chemistry data directory
+	    $cmd = "ln -sf ${DATA_ROOT}/CHEM_INPUTS ${copyDir}/ChemDataDir";
+	    qx/$cmd/;		
+
+	    # Make symbolic link to tile files used for lat-lon <-> cubed sphere
+	    $cmd = "ln -sf ${DATA_ROOT}/GCHP/TileFiles ${copyDir}/TileFiles";
+	    qx/$cmd/;		
 
           } else {
 

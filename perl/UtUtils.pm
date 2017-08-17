@@ -241,7 +241,7 @@ sub fmtStr($) {
 #  $dateStr = &fmtStr( 0        );
 # 
 # !REMARKS:
-#  Used by routines &makeInputGeos &makeGCHPcfg below.
+#  Used by routines &makeInputGeos and &makeGCHPcfg below.
 #
 # !REVISION HISTORY:
 #  23 May 2013 - R. Yantosca - Initial version, based on NRT-ARCTAS
@@ -379,7 +379,7 @@ sub makeInputGeos($$$$$$) {
 #\\
 # !INTERFACE:
 #
-sub makeGCHPcfg($$$$$$) {
+sub makeGCHPcfg($$$$$$$) {
 #
 # !INPUT PARAMETERS:
 #
@@ -387,9 +387,10 @@ sub makeGCHPcfg($$$$$$) {
   # $time1    : Starting time for GEOS-Chem model run (e.g. 000000  ) 
   # $date2    : Ending   date for GEOS-Chem model run (e.g. 20040102)
   # $time2    : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
+  # $sim      : Simulation name
   # $template : Path for "template" file
   # $fileName : Path for output file (w/ dates and duration replaced)
-  my ( $date1,  $time1,  $date2, $time2, $inFile, $outFile ) = @_;
+  my ( $date1,  $time1,  $date2, $time2, $sim, $inFile, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
 # &makeGCHPcfg( 20130101, 000000, 
@@ -431,6 +432,22 @@ sub makeGCHPcfg($$$$$$) {
   my $modays = 31;
   my $mo1i = 0;
 
+  #------------------------------  
+  # Read template file
+  #------------------------------ 
+  
+  # Read template "runConfig.sh" file into an array
+  open( I, "$inFile" ) or croak( "Cannot open $inFile!\n" );
+  @lines = <I>;
+  close( I );
+
+  #------------------------------  
+  # Create output file
+  #------------------------------ 
+
+  # Open file
+  open( O, ">$outFile") or die "Can't open $outFile\n";
+  
   #---------------------------------------  
   # Determine run duration as Start - End
   # NOTE: does not handle leap years
@@ -443,22 +460,22 @@ sub makeGCHPcfg($$$$$$) {
   $mo2  = substr( $date2, 4, 2 );
   $yr1  = substr( $date1, 0, 4 );
   $yr2  = substr( $date2, 0, 4 );
-
+  
   # Calculate # hours
   $dhr = int($hr2) - int($hr1);
   if ( $dhr < 0 ) {
     $dhr = 24 + $dhr;
     $ddayoffset = 1;
   }
-
+  
   # Calculate # days
   $dday = int($day2) - int($day1) - $ddayoffset;
   if ( $dday < 0 ) {
     $mo1i = int($mo1);
     if ( $mo1i eq 2 ) {
       if ( ( int($yr1) % 4 eq 0 && int($yr1) % 100 ne 0 ) 
-	   || int($yr1) % 400 eq 0 ) {
-	$modays = 29;
+  	   || int($yr1) % 400 eq 0 ) {
+  	$modays = 29;
       } else {
         $modays = 28;
       }
@@ -468,51 +485,43 @@ sub makeGCHPcfg($$$$$$) {
     $dday = $modays + $dday;
     $dmooffset = 1;
   }
-
+  
   # Calculate # months
   $dmo = int($mo2) - int($mo1) - $dmooffset;
   if ( $dmo < 0 ) {
     $dmo = 12 + int($dmo);
     $dyroffset = 1;
   }
-
+  
   # Calculate # year
   $dyr = int($yr2) - int($yr1) - $dyroffset;
-
+  
   # Set the date and hour strings to be put into the file
   $durStrDate = &fmtStr( int($dyr)*10000 + int($dmo)*100 + int($dday) );
   $durStrDate = "00$durStrDate";
   $durStrTime = &fmtStr( $dhr * 10000 );
-
-  #------------------------------  
-  # Read template file
-  #------------------------------ 
-
-  # Read template "runConfig.sh" file into an array
-  open( I, "$inFile" ) or croak( "Cannot open $inFile!\n" );
-  @lines = <I>;
-  close( I );
-
-  #------------------------------  
-  # Create "runConfig.sh" file
-  #------------------------------ 
-
-  # Open file
-  open( O, ">$outFile") or die "Can't open $outFile\n";
-
+  
   # Loop thru each line
   foreach $line ( @lines ) {
     
     # Remove newline character
     chomp( $line );
-
+  
     # Replace tokens
-    $line =~ s/{DATE1}/$dStr1/g;
-    $line =~ s/{TIME1}/$tStr1/g;
-    $line =~ s/{DATE2}/$dStr2/g; 
-    $line =~ s/{TIME2}/$tStr2/g;
-    $line =~ s/{dYYYYMMDD}/$durStrDate/g;
-    $line =~ s/{dHHmmss}/$durStrTime/g;
+    if ( $outFile =~ m/GCHP.rc/ ) {
+      if  ( $sim =~ m/RnPbBe/ ) {
+	$line =~ s/{SIMULATION}/${sim}Pasv/g;
+    } else {
+	$line =~ s/{SIMULATION}/$sim/g;
+      }      
+    } else {
+      $line =~ s/{DATE1}/$dStr1/g;
+      $line =~ s/{TIME1}/$tStr1/g;
+      $line =~ s/{DATE2}/$dStr2/g; 
+      $line =~ s/{TIME2}/$tStr2/g;
+      $line =~ s/{dYYYYMMDD}/$durStrDate/g;
+      $line =~ s/{dHHmmss}/$durStrTime/g;
+    }    
 
     # Write to output file
     print O "$line\n";

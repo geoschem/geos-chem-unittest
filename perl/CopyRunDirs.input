@@ -28,7 +28,8 @@
 #
 # %%% Data path and HEMCO settings %%%
 #
-   DATA_ROOT      : /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData
+   GCGRID_ROOT    : /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid
+   DATA_ROOT      : {GCGRIDROOT}/data/ExtData
    HEMCO_ROOT     : {DATAROOT}/HEMCO
    VERBOSE        : 0
    WARNINGS       : 1
@@ -42,7 +43,7 @@
 #
 # %%% Target directory and copy command %%%
 # 
-   COPY_PATH      : {HOME}/GC/rundirs
+   COPY_PATH      : {HOME}/regal/GC/testruns/v11-02c
    COPY_CMD       : cp -rfL
 #
 # !RUNS:
