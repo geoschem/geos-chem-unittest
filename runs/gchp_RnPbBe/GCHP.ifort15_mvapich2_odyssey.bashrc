@@ -1,1 +1,0 @@
-../gchp_standard/GCHP.ifort15_mvapich2_odyssey.bashrc

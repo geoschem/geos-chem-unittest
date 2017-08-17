@@ -7,9 +7,11 @@ Set up, compile, and run GCHP by doing the following:
    full path to your GEOS-Chem source code without any symbolic links.
 
 2. Set up your environment
-   Use files ending in '.bashrc' as a template for environment setup. Set up
-   your environment prior to compiling. Make sure your bashrc is sourced
-   within the run script if using to submit your run.
+   Use files located in the bashrcSamples subdirectory as a templates for environment 
+   setup. Set up your environment prior to compiling. Make sure your bashrc is sourced
+   within the run script if using to submit your run. Note that the default run script
+   in the run directory sources the bashrc for ifort15 compiler and mvapich2 MPI on 
+   the Harvard Odyssey compute cluster. 
 
 3. Compile source code
    This creates a 'geos' executable using the Makefile which itself invokes 
@@ -45,9 +47,11 @@ Set up, compile, and run GCHP by doing the following:
 
 5. Submit a run
    Sample run scripts for submitting jobs to a SLURM or Grid Engine scheduling
-   system are included as examples for running the geos executable. Note that
-   all sample run scripts include sourcing a bashrc and executing runConfig.sh 
-   prior to the simulation. 
+   system are included as examples for running the geos executable. See the 
+   runScriptSamples subdirectory. By default, the slurm run script is copied to
+   the run directory and renamed gchp.run. Note that all sample run scripts 
+   include sourcing a bashrc and executing runConfig.sh prior to the simulation. 
+   You will need to update your bashrc filename in your run script.
 
 6. Inspect output data
    Output data are stored in the 'OutputDir' directory. The output restart 

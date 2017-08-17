@@ -1,1 +1,0 @@
-../gchp_standard/GCHP.gfortran_MVAPICH2.bashrc

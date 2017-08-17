@@ -41,7 +41,7 @@ log="GCHP.log"
 if [[ $? == 0 ]]; then
 
     # Set and source your bashrc
-    BASHRC=GCHP.ifort15_mvapich2_odyssey.bashrc
+    BASHRC=bashrcSamples/GCHP.ifort15_mvapich2_odyssey.bashrc
     echo "WARNING: You are using environment settings in $BASHRC"
     source $BASHRC
 
