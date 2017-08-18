@@ -616,7 +616,11 @@ sub doCopyDirs($$) {
 
 	    # Make symbolic link to tile files used for lat-lon <-> cubed sphere
 	    $cmd = "ln -sf ${DATA_ROOT}/GCHP/TileFiles ${copyDir}/TileFiles";
-	    qx/$cmd/;		
+	    qx/$cmd/;	
+
+	    # Copy the slurm script into the run directory by default
+	    $cmd = "cp ${copyDir}/runScriptSamples/GCHP_slurm.run ${copyDir}/gchp.run";
+	    qx/$cmd/;		    
 
           } else {
 
