@@ -619,7 +619,7 @@ sub doCopyDirs($$) {
 	    qx/$cmd/;	
 
 	    # Copy the slurm script into the run directory by default
-	    $cmd = "cp ${copyDir}/runScriptSamples/GCHP_slurm.run ${copyDir}/gchp.run";
+	    $cmd = "cp ${copyDir}/runScriptSamples/gchp_slurm.run ${copyDir}/gchp.run";
 	    qx/$cmd/;		    
 
           } else {
