@@ -133,26 +133,20 @@ gchp_mapl:
 cleanup_output: cleanup_data cleanup_logs
 
 cleanup_data: 
-	rm -f $(RUN_DIR)/OutputDir/GCHP.center.*
-	rm -f $(RUN_DIR)/OutputDir/GCHP.regrid.*
+	rm -f $(RUN_DIR)/OutputDir/GCHP.*
 	rm -f trac_avg.*
 	rm -f tracerinfo.dat
 	rm -f diaginfo.dat
 	rm -f cap_restart
-	rm -f regrid.rcx
-	rm -f center.rcx
+	rm -f *.rcx
 	rm -f *~
 
 cleanup_logs: 
-	rm -f HEMCO.log
-	rm -f PET00000.GEOSCHEMchem.log
+	rm -f *.log
 	rm -f logfile.000000.out
-	rm -f GCHP.log
-	rm -f runConfig.log
-	rm -f smv2.log
 	rm -f slurm-*
 	rm -f 1
-	rm -f EGRESS 
+	rm -f EGRESS
 
 cleanup_exe: 
 	rm -f geos

@@ -1,1 +1,0 @@
-../../gchp_standard/bashrcSamples/GCHP.ifort13_openmpi_glooscap.bashrc

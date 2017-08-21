@@ -8,14 +8,14 @@
 #SBATCH --mail-type=ALL
 
 # Define GEOS-Chem log file
-log="GCHP.log"
+log="gchp.log"
 
 # Sync all config files with settings in runConfig.sh                           
 ./runConfig.sh > runConfig.log
 if [[ $? == 0 ]]; then
 
     # Set and source your bashrc
-    BASHRC=bashrcSamples/GCHP.ifort15_mvapich2_odyssey.bashrc
+    BASHRC=bashrcSamples/gchp.ifort15_mvapich2_odyssey.bashrc
     echo "WARNING: You are using environment settings in $BASHRC"
     source $BASHRC
 

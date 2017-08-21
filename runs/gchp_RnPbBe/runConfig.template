@@ -158,23 +158,6 @@ fi
 ###   Update .rc Files   ###
 ###############################
 
-#### Save backups of originals
-if [ ! -f GCHP.rc.orig ]; then
-    cp GCHP.rc GCHP.rc.orig
-fi
-if [ ! -f CAP.rc.orig ]; then
-    cp CAP.rc CAP.rc.orig
-fi
-if [ ! -f fvcore_layout.rc.orig ]; then
-    cp fvcore_layout.rc fvcore_layout.rc.orig
-fi
-if [ ! -f input.geos.orig ]; then
-    cp input.geos input.geos.orig
-fi
-if [ ! -f HISTORY.rc.orig ]; then
-    cp HISTORY.rc HISTORY.rc.orig
-fi
-
 #### Define function to replace values in .rc files
 replace_val() {
     KEY=$1

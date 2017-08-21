@@ -3,15 +3,15 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !MODULE: GCHP.ifort13.bashrc.glooscap
+# !MODULE: gchp.ifort13.bashrc.glooscap
 #
 # !DESCRIPTION: Use this .bashrc to compile and run GCHP with the Intel 
 #  Fortran Compiler v13 on the glooscap.ace-net.ca cluster.
 #\\
 #\\
 # !CALLING SEQUENCE:
-#  source GCHP.ifort13.bashrc.glooscap  or
-#  . GCHP.ifort13.bashrc.glooscap
+#  source gchp.ifort13.bashrc.glooscap  or
+#  . gchp.ifort13.bashrc.glooscap
 #
 # !REMARKS
 #  To run GCHP with MVAPICH2, you must have the following updates:
@@ -76,7 +76,7 @@ export OMPI_CXX=$CXX         # Tells OpenMPI which C++ compiler to use
 export OMP_STACKSIZE=500m
  
 # Name of this bashrc file
-export BASHRC=GCHP.ifort13_openmpi_glooscap.bashrc
+export BASHRC=gchp.ifort13_openmpi_glooscap.bashrc
 
 # Echo info if it's an interactive session
 if [[ $- = *i* ]] ; then

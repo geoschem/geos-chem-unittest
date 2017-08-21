@@ -3,15 +3,15 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !MODULE: GCHP.ifort15_mvapich2_odyssey.bashrc
+# !MODULE: gchp.ifort15_mvapich2_odyssey.bashrc
 #
 # !DESCRIPTION: Use this .bashrc to compile and run GCHP with the Intel 
 #  Fortran Compiler v15 on the Odyssey.rc.fas.harvard.edu cluster.
 #\\
 #\\
 # !CALLING SEQUENCE:
-#  source GCHP.ifort15_mvapich2_odyssey.bashrc  or
-#  . GCHP.ifort15_mvapich2_odyssey.bashrc
+#  source gchp.ifort15_mvapich2_odyssey.bashrc  or
+#  . gchp.ifort15_mvapich2_odyssey.bashrc
 #
 # !REMARKS
 #
@@ -97,7 +97,7 @@ ulimit -l unlimited              # memorylocked
 ulimit -u unlimited              # maxproc
 
 # Name of this bashrc file
-export BASHRC=GCHP.ifort15_mvapich2_odyssey.bashrc
+export BASHRC=gchp.ifort15_mvapich2_odyssey.bashrc
 
 # Echo info if it's an interactive session
 if [[ $- = *i* ]] ; then
