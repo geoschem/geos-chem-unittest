@@ -54,7 +54,7 @@ RUN_DIR :=$(shell pwd)
 # Log files that will be written to the log directory
 BUILD_LOG  :="$(RUN_DIR)/compile.log"
 GCHP_LOG   :="$(RUN_DIR)/GCHP.log"
-LAST_BUILD :="$(RUN_DIR)/lastbuild.log"
+LAST_BUILD :="$(RUN_DIR)/lastbuild"
 
 # Executables
 EXE :=geos
