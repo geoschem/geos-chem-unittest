@@ -143,6 +143,48 @@ print O "$v1    : $val1\n";
 print O "$v2    : $val2\n";
 print O "% Difference : $pct\n";
 
+#--------------------------------------------
+# Print % difference in O3 STE flux
+#--------------------------------------------
+
+# Log files
+$file1 = "../../$v1/$v1.log";
+$file2 = "../$v2.log";
+
+# Parse log files for the line w/ O3 STE flux
+$line1  = qx( grep " O3:" $file1 );
+$line2  = qx( grep " O3:" $file2 );
+
+# Strip newlines
+chomp( $line1 );
+chomp( $line2 );
+
+# Split results by spaces
+@tmp1 = split( " ", $line1 );
+@tmp2 = split( " ", $line2 );
+
+# Mean OH is the 3rd substring
+$val1 = $tmp1[3];
+$val2 = $tmp2[3];
+
+# Compute percent difference
+$pct  = 100.0 * ( ( $val2 - $val1 ) / $val1 );
+
+# Print results to screen
+print "\n";
+print "O3 STE flux [Tg a-1]\n";
+print '---------------------------------------'."\n";
+print "$v1    : $val1\n";
+print "$v2    : $val2\n";
+print "% Difference : $pct\n";
+
+# Print results to text file
+print O "O3 STE flux [Tg a-1]\n";
+print O '---------------------------------------'."\n";
+print O "$v1    : $val1\n";
+print O "$v2    : $val2\n";
+print O "% Difference : $pct\n";
+
 # Close output file
 close( O );
 
