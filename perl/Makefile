@@ -537,6 +537,7 @@ dataclean:
 	rm -f Ox.mass.*
 	rm -f diaginfo.dat tracerinfo.dat
 	rm -f tracer_mass*.dat
+	rm -f core.*
 
 spdataclean:
 	rm -f $(GC_DIAG)*.sp
