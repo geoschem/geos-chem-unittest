@@ -43,7 +43,7 @@
 #
 # %%% Target directory and copy command %%%
 # 
-   COPY_PATH      : {HOME}/regal/GC/testruns/v11-02c
+   COPY_PATH      : {HOME}/GC/rundirs
    COPY_CMD       : cp -rfL
 #
 # !RUNS:
@@ -55,11 +55,8 @@
 #--------|-----------|------|------------|------------|--------------|--------|
 # MET    | GRID      | NEST | SIMULATION | START DATE | END DATE     | EXTRA? |
 #--------|-----------|------|------------|------------|--------------|--------|
-# ======= GEOS-Chem standard simulation ======================================
-  geosfp   4x5         -      standard     2013070100   2013080100     -
-# merra2   4x5         -      standard     2013070100   2013080100     -
-# geosfp   2x25        -      standard     2013070100   2013080100     -
-# merra2   2x25        -      standard     2013070100   2013080100     -
+# ======= GEOS-Chem benchmark ================================================
+  geosfp   4x5         -      benchmark    2013070100   2013080100     -
 ## ======= GEOS-Chem 7-day time test ===========================================
 # geosfp   4x5         -      gc_timing    2013070100   2013070800     -
 ## ======= Radon-Lead-Beryllium ===============================================
@@ -108,6 +105,11 @@
 # merra2   4x5         -      aerosol      2013070100   2013080100     -
 # geosfp   2x25        -      aerosol      2013070100   2013080100     -
 # merra2   2x25        -      aerosol      2013070100   2013080100     -
+## ======= Standard ============================================================
+# geosfp   4x5         -      standard     2013070100   2013080100     -
+# merra2   4x5         -      standard     2013070100   2013080100     -
+# geosfp   2x25        -      standard     2013070100   2013080100     -
+# merra2   2x25        -      standard     2013070100   2013080100     -
 ## ======= Tropchem ===========================================================
 # geosfp   4x5         -      tropchem     2013070100   2013080100     -
 # merra2   4x5         -      tropchem     2013070100   2013080100     -

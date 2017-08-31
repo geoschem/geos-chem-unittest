@@ -155,7 +155,7 @@ Warnings:                    {WARNINGS}
     --> Monoterp to SOAP     :       0.050
     --> Monoterp to SOAS     :       0.050
 #10% mass yield from monoterpenes to SOA
-110     MEGAN_SOA            : on    SOAP/SOAS
+110     MEGAN_SOA            : on    MTPA/MTPO/LIMO/SESQ/SOAP/SOAS
     --> Othrterp to SOAP     :       0.050
     --> Othrterp to SOAS     :       0.050
 #10% mass yield from other terpenes to SOA

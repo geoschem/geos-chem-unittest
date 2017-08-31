@@ -179,6 +179,7 @@ print "$v2    : $val2\n";
 print "% Difference : $pct\n";
 
 # Print results to text file
+print O "\n";
 print O "O3 STE flux [Tg a-1]\n";
 print O '---------------------------------------'."\n";
 print O "$v1    : $val1\n";

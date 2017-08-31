@@ -25,18 +25,18 @@
 ###############################################################################
 
 ##### Parameters for Model #1 #####
-Version_1   : v11-01-public
+Version_1   : v11-02b
 Model_1     : GEOSFP
 Date_1      : 20130701
-N_Tracers_1 : 125
+N_Tracers_1 : 157
 RunDir_1    : ~/SR/%VERSION_1%
 File_1      : %RUNDIR_1%/trac_avg.%VERSION_1%
 
 ##### Parameters for Model #2 #####
-Version_2   : v11-02a
+Version_2   : v11-02c
 Model_2     : GEOSFP
 Date_2      : 20130701
-N_Tracers_2 : 125
+N_Tracers_2 : 157
 RunDir_2    : ~/SR/%VERSION_2%
 File_2      : %RUNDIR_2%/trac_avg.%VERSION_2%
 InitFile_2  : %RUNDIR_2%/Ox.mass.initial

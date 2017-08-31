@@ -225,7 +225,13 @@ ifeq ($(SIM),UCX)
  NO_REDUCED  :=y
 endif
 
-ifeq ($(SIM),$(filter $(SIM), benchmark, standard))
+ifeq ($(SIM),standard)
+ UCX         :=y
+ CHEM        :=Standard
+ NO_REDUCED  :=y
+endif
+
+ifeq ($(SIM),benchmark)
  UCX         :=y
  CHEM        :=Standard
  NO_REDUCED  :=y
