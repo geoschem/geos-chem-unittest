@@ -1825,8 +1825,10 @@ Warnings:                    {WARNINGS}
 * GMI_PROD_Ox         $ROOT/GMI/v2015-02/gmi.clim.Ox.geos5.2x25.nc             prod    2000/1-12/1/0 C xyz v/v/s Ox       - 1  1
 * GMI_LOSS_PAN        $ROOT/GMI/v2015-02/gmi.clim.PAN.geos5.2x25.nc            loss    2000/1-12/1/0 C xyz s-1   PAN      - 1  1
 * GMI_PROD_PAN        $ROOT/GMI/v2015-02/gmi.clim.PAN.geos5.2x25.nc            prod    2000/1-12/1/0 C xyz v/v/s PAN      - 1  1
-* GMI_LOSS_PMN        $ROOT/GMI/v2015-02/gmi.clim.PMN.geos5.2x25.nc            loss    2000/1-12/1/0 C xyz s-1   PMN      - 1  1
-* GMI_PROD_PMN        $ROOT/GMI/v2015-02/gmi.clim.PMN.geos5.2x25.nc            prod    2000/1-12/1/0 C xyz v/v/s PMN      - 1  1
+* GMI_LOSS_NPMN       $ROOT/GMI/v2015-02/gmi.clim.NPMN.geos5.2x25.nc           loss    2000/1-12/1/0 C xyz s-1   NPMN     - 1  1
+* GMI_PROD_NPMN       $ROOT/GMI/v2015-02/gmi.clim.NPMN.geos5.2x25.nc           prod    2000/1-12/1/0 C xyz v/v/s NPMN     - 1  1
+* GMI_LOSS_IPMN       $ROOT/GMI/v2015-02/gmi.clim.IPMN.geos5.2x25.nc           loss    2000/1-12/1/0 C xyz s-1   IPMN     - 1  1
+* GMI_PROD_IPMN       $ROOT/GMI/v2015-02/gmi.clim.IPMN.geos5.2x25.nc           prod    2000/1-12/1/0 C xyz v/v/s IPMN     - 1  1
 * GMI_LOSS_PO2        $ROOT/GMI/v2015-02/gmi.clim.PO2.geos5.2x25.nc            loss    2000/1-12/1/0 C xyz s-1   PO2      - 1  1
 * GMI_PROD_PO2        $ROOT/GMI/v2015-02/gmi.clim.PO2.geos5.2x25.nc            prod    2000/1-12/1/0 C xyz v/v/s PO2      - 1  1
 * GMI_LOSS_PP         $ROOT/GMI/v2015-02/gmi.clim.PP.geos5.2x25.nc             loss    2000/1-12/1/0 C xyz s-1   PP       - 1  1
@@ -1859,8 +1861,12 @@ Warnings:                    {WARNINGS}
 * GMI_PROD_RCOOH      $ROOT/GMI/v2015-02/gmi.clim.RCOOH.geos5.2x25.nc          prod    2000/1-12/1/0 C xyz v/v/s RCOOH    - 1  1
 * GMI_LOSS_RIO1       $ROOT/GMI/v2015-02/gmi.clim.RIO1.geos5.2x25.nc           loss    2000/1-12/1/0 C xyz s-1   RIO1     - 1  1
 * GMI_PROD_RIO1       $ROOT/GMI/v2015-02/gmi.clim.RIO1.geos5.2x25.nc           prod    2000/1-12/1/0 C xyz v/v/s RIO1     - 1  1
-* GMI_LOSS_RIP        $ROOT/GMI/v2015-02/gmi.clim.RIP.geos5.2x25.nc            loss    2000/1-12/1/0 C xyz s-1   RIP      - 1  1
-* GMI_PROD_RIP        $ROOT/GMI/v2015-02/gmi.clim.RIP.geos5.2x25.nc            prod    2000/1-12/1/0 C xyz v/v/s RIP      - 1  1
+* GMI_LOSS_RIPA       $ROOT/GMI/v2015-02/gmi.clim.RIPA.geos5.2x25.nc           loss    2000/1-12/1/0 C xyz s-1   RIPA     - 1  1
+* GMI_PROD_RIPA       $ROOT/GMI/v2015-02/gmi.clim.RIPA.geos5.2x25.nc           prod    2000/1-12/1/0 C xyz v/v/s RIPA     - 1  1
+* GMI_LOSS_RIPB       $ROOT/GMI/v2015-02/gmi.clim.RIPB.geos5.2x25.nc           loss    2000/1-12/1/0 C xyz s-1   RIPB     - 1  1
+* GMI_PROD_RIPB       $ROOT/GMI/v2015-02/gmi.clim.RIPB.geos5.2x25.nc           prod    2000/1-12/1/0 C xyz v/v/s RIPB     - 1  1
+* GMI_LOSS_RIPD       $ROOT/GMI/v2015-02/gmi.clim.RIPD.geos5.2x25.nc           loss    2000/1-12/1/0 C xyz s-1   RIPD     - 1  1
+* GMI_PROD_RIPD       $ROOT/GMI/v2015-02/gmi.clim.RIPD.geos5.2x25.nc           prod    2000/1-12/1/0 C xyz v/v/s RIPD     - 1  1
 * GMI_LOSS_ROH        $ROOT/GMI/v2015-02/gmi.clim.ROH.geos5.2x25.nc            loss    2000/1-12/1/0 C xyz s-1   ROH      - 1  1
 * GMI_PROD_ROH        $ROOT/GMI/v2015-02/gmi.clim.ROH.geos5.2x25.nc            prod    2000/1-12/1/0 C xyz v/v/s ROH      - 1  1
 * GMI_LOSS_RP         $ROOT/GMI/v2015-02/gmi.clim.RP.geos5.2x25.nc             loss    2000/1-12/1/0 C xyz s-1   RP       - 1  1
