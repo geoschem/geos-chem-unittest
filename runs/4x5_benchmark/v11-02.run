@@ -3,7 +3,7 @@
 #SBATCH -c 24
 #SBATCH -N 1
 #SBATCH -t 0-12:00
-#SBATCH -p jacob
+#SBATCH -p jacob-dev
 #SBATCH --mem=6000
 #SBATCH --mail-type=END
 
@@ -62,8 +62,8 @@ echo '===> Run ended at' `date` >> $log
 # Clean up
 #-------------------------------------------------
 # Rename output file
-if [ -f trac_avg.geosfp_4x5_standard.201307010000 ]; then
-   mv -fv trac_avg.geosfp_4x5_standard.201307010000 trac_avg.$id
+if [ -f trac_avg.geosfp_4x5_benchmark.201307010000 ]; then
+   mv -fv trac_avg.geosfp_4x5_benchmark.201307010000 trac_avg.$id
 fi
 
 # Echo info from computational cores to log file for displaying results
