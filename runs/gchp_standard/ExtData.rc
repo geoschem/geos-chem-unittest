@@ -769,8 +769,10 @@ GMI_LOSS_Ox        s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDa
 GMI_PROD_Ox        v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.Ox.geos5.2x25.nc
 GMI_LOSS_PAN       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PAN.geos5.2x25.nc
 GMI_PROD_PAN       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PAN.geos5.2x25.nc
-GMI_LOSS_PMN       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PMN.geos5.2x25.nc
-GMI_PROD_PMN       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PMN.geos5.2x25.nc
+GMI_LOSS_NPMN      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.NPMN.geos5.2x25.nc
+GMI_PROD_NPMN      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.NPMN.geos5.2x25.nc
+GMI_LOSS_IPMN      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.IPMN.geos5.2x25.nc
+GMI_PROD_IPMN      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.IPMN.geos5.2x25.nc
 GMI_LOSS_PO2       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PO2.geos5.2x25.nc
 GMI_PROD_PO2       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.PO2.geos5.2x25.nc
 GMI_LOSS_PP        s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.PP.geos5.2x25.nc
@@ -803,8 +805,12 @@ GMI_LOSS_RCOOH     s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDa
 GMI_PROD_RCOOH     v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RCOOH.geos5.2x25.nc
 GMI_LOSS_RIO1      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RIO1.geos5.2x25.nc
 GMI_PROD_RIO1      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RIO1.geos5.2x25.nc
-GMI_LOSS_RIP       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RIP.geos5.2x25.nc
-GMI_PROD_RIP       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RIP.geos5.2x25.nc
+GMI_LOSS_RIPA      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RIPA.geos5.2x25.nc
+GMI_PROD_RIPA      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RIPA.geos5.2x25.nc
+GMI_LOSS_RIPB      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RIPB.geos5.2x25.nc
+GMI_PROD_RIPB      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RIPB.geos5.2x25.nc
+GMI_LOSS_RIPD      s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RIPD.geos5.2x25.nc
+GMI_PROD_RIPD      v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.RIPD.geos5.2x25.nc
 GMI_LOSS_ROH       s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.ROH.geos5.2x25.nc
 GMI_PROD_ROH       v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.ROH.geos5.2x25.nc
 GMI_LOSS_RP        s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDataDir/GMI/v2015-02/gmi.clim.RP.geos5.2x25.nc
