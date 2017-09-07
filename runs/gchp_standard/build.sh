@@ -39,27 +39,7 @@
 ###############################
 # Ask user to source and export a bashrc, if not already done
 if [[ "x${MPI_ROOT}" == x ]]; then
-   LIST=`ls -1 *.bashrc*`
-   echo "Set up your environment by picking one of the following existing bashrcs,"
-   echo "or exit and create your own file ending in '.bashrc':"
-   n=1
-   for f in ${LIST}; do
-      echo "  ${n}. $f"
-      n="$((${n}+1))"
-   done
-   echo "Enter an integer in range [1,$((${n}-1))], or 0 to exit:"
-   read answer
-   if [[ "$answer" == "0" ]]; then
-       exit 1
-   fi
-   n=1
-   for f in ${LIST}; do
-      if [[ "$answer" == "${n}" ]]; then
-	  echo "Copy and execute 'source ${f}' and try again."
-	  exit 1
-      fi
-      n="$((${n}+1))"
-   done   
+   echo "Source your environment settings before continuing. See the bashrcSamples subdirectory for examples."
 else 
    echo "MPI_ROOT is set to ${MPI_ROOT}"
 fi
@@ -120,8 +100,9 @@ CHEM=Standard
 
 # Error check
 if [[ ! -e CodeDir ]]; then
-  echo "First set up a softlink to your code directory named CodeDir, e.g."
-  echo " ln -s path/to/code CodeDir"
+  echo "First set up a softlink to your source code directory named CodeDir."
+  echo "You may use the setCodeDir function for this, e.g."
+  echo "   ./setCodeDir /path/to/your/code"
   exit 1
 elif [[ $# == 0 ]]; then
   echo "Must pass argument to compile.sh"
