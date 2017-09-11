@@ -1,4 +1,4 @@
-#!/bin/bash
+s gc#!/bin/bash
 
 # runSettings.sh: Update select settings in *.rc and input.geos config files
 #
@@ -50,64 +50,17 @@ Turn_on_Transport=T
 Turn_on_Cloud_Conv=T
 Turn_on_PBL_Mixing=T
 
-#### DEBUG OPTIONS
-MAPL_DEBUG_LEVEL=0   # 0 is none, output increases with higher values (to 20)
-#GC_ND70="0 all"     # requires special handling; omit for now
-
 #### TIMESTEPS
 TransConv_Timestep_min=10
 ChemEmis_Timestep_min=20
 
-#### GENERAL
-Use_variable_tropopause=T
-Type_of_simulation=1
-
 #### PBL MIXING
 Use_nonlocal_PBL=T
 
-#### EMISSIONS
-HEMCO_Input_file=HEMCO_Config.rc
-ppt_MBL_BRO_Sim=F
-Use_CH4_emissions=F
-#sfc_BC_CH4=F  # these need special handling since duplicate text in input.geos
-#sfc_BC_OCS=F  # omit for now
-#sfc_BC_CFCs=F
-#sfc_BC_Cl_species=F
-#sfc_BC_Br_species=F
-#sfc_BC_N2O=F
-initial_MR_strat_H2O=F
-CFC_emission_year=0
+#### DEBUG OPTIONS
+MAPL_DEBUG_LEVEL=0   # 0 is none, output increases with higher values (to 20)
+#GC_ND70="0 all"     # requires special handling; omit for now
 
-#### AEROSOLS
-Online_SULFATE_AEROSOLS=F
-Online_CRYST_AQ_AEROSOLS=F
-Online_CARBON_AEROSOLS=F
-se_Brown_Carbon=F
-Online_2dy_ORG_AEROSOLS=F
-Semivolatile_POA=F
-Online_isoprene_OA=F
-Online_DUST_AEROSOLS=F
-Acidic_uptake=F
-Online_SEASALT_AEROSOLS=F
-#SALA_radius_bin_um="0.01 0.5" # requires special handling; omit for now
-#SALC_radius_bin_um="0.5  8.0" # requires special handling; omit for now
-MARINE_ORG_AEROSOLS=F
-Online_dicarb_chem=F
-Settle_strat_aerosols=F
-Online_PSC_AEROSOLS=F
-Allow_homogeneous_NAT=F
-NAT_supercooling_req_K=3.0
-Ice_supersaturation_req=1.2
-Perform_PSC_het_chem=F
-Calc_strat_aero_OD=F
-
-#### CHEMISTRY
-Use_linear_strat_chem=F
-Use_Linoz_for_O3=F
-Use_UCX_strat_chem=F
-Active_strat_H2O=F
-Online_O3_for_FAST_JX=F
-Gamma_HO2=0.2
 
 ###########################################
 ###   Stop if settings not compatible   ###
@@ -244,10 +197,6 @@ replace_val AdvCore_Advection ${ADVCORE_ADVECTION} GCHP.rc
 
 ##### Set input.geos
 echo " "
-echo "General:"
-replace_val "Use variable tropopause?" ${Use_variable_tropopause}   input.geos
-replace_val "Type of simulation"       ${Type_of_simulation}        input.geos
-echo " "
 echo "Components on/off:"
 replace_val "Turn on Chemistry?"        ${Turn_on_Chemistry}        input.geos
 replace_val "Turn on emissions?"	${Turn_on_emissions}        input.geos
@@ -263,43 +212,6 @@ replace_val "Chem/emis Timestep [min]"	${ChemEmis_Timestep_min}    input.geos
 echo " "
 echo "Mixing:"
 replace_val "=> Use non-local PBL?"	${Use_nonlocal_PBL}         input.geos
-echo " "
-echo "Emissions:"
-replace_val "HEMCO Input file"	        ${HEMCO_Input_file}         input.geos
-replace_val "=> 1ppt MBL BRO Sim.?"	${ppt_MBL_BRO_Sim}          input.geos
-replace_val "=> strat. H2O?"	      	${initial_MR_strat_H2O}     input.geos
-replace_val "=> CFC emission year"      ${CFC_emission_year}        input.geos
-echo " "
-echo "Aerosols:"
-replace_val "Online SULFATE AEROSOLS"   ${Online_SULFATE_AEROSOLS}  input.geos
-replace_val "Online CRYST/AQ AEROSOLS"  ${Online_CRYST_AQ_AEROSOLS} input.geos
-replace_val "Online CARBON  AEROSOLS" 	${Online_CARBON_AEROSOLS}   input.geos
-replace_val "=> Use Brown Carbon?"      ${se_Brown_Carbon}          input.geos
-replace_val "Online 2dy ORG AEROSOLS" 	${Online_2dy_ORG_AEROSOLS}  input.geos
-replace_val "=> Semivolatile POA?"      ${Semivolatile_POA}         input.geos
-replace_val "=> Online Isoprene OA"     ${Online_isoprene_OA}       input.geos
-replace_val "Online DUST    AEROSOLS" 	${Online_DUST_AEROSOLS}     input.geos
-replace_val "=> Acidic uptake ?"        ${Acidic_uptake}            input.geos
-replace_val "Online SEASALT AEROSOLS"   ${Online_SEASALT_AEROSOLS}  input.geos
-#replace_val "=> SALA radius bin [um]"   ${SALA_radius_bin_um}       input.geos
-#replace_val "=> SALC radius bin [um]"   ${SALC_radius_bin_um}       input.geos
-replace_val "=> MARINE ORG AEROSOLS"    ${MARINE_ORG_AEROSOLS}      input.geos
-replace_val "Online dicarb. chem."      ${Online_dicarb_chem}       input.geos
-replace_val "Settle strat. aerosols"  	${Settle_strat_aerosols}    input.geos
-replace_val "Online PSC AEROSOLS"       ${Online_PSC_AEROSOLS}      input.geos
-replace_val "Allow homogeneous NAT?"  	${Allow_homogeneous_NAT}    input.geos 
-replace_val "NAT supercooling req.(K)"  ${NAT_supercooling_req_K}   input.geos
-replace_val "Ice supersaturation req."  ${Ice_supersaturation_req}  input.geos
-replace_val "Perform PSC het. chem.?"   ${Perform_PSC_het_chem}     input.geos
-replace_val "Calc. strat. aero. OD?"    ${Calc_strat_aero_OD}       input.geos
-echo " "
-echo "Chemistry:"
-replace_val "Use linear. strat. chem?"	${Use_linear_strat_chem}    input.geos
-replace_val "=> Use Linoz for O3?"      ${Use_Linoz_for_O3}         input.geos
-replace_val "Use UCX strat. chem?"    	${Use_UCX_strat_chem}       input.geos
-replace_val "Active strat. H2O?"      	${Active_strat_H2O}         input.geos
-replace_val "Online O3 for FAST-JX?"    ${Online_O3_for_FAST_JX}    input.geos
-replace_val "Gamma HO2"                 ${Gamma_HO2}                input.geos 
 	    
 
 
