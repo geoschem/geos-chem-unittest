@@ -1,4 +1,4 @@
-#------------------------------------------------------------------------------
+3	#------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
 #------------------------------------------------------------------------------
 #BOP
@@ -22,6 +22,15 @@
 #EOP
 #------------------------------------------------------------------------------
 #BOC
+
+#==============================================================================
+# Aliases (edit as needed for your system and preferences)
+#==============================================================================
+
+alias mcs="make compile_standard"    # Recompile GC but not MAPL, ESMF, dycore
+alias mco="make cleanup_output"      # Clean run directory before a new run
+alias gchprun="sbatch gchp.run"      # Run GCHP (SLURM-specific, edit as needed)
+alias tfl="tail --follow gchp.log -n 100"  # Follow log output on screen
 
 #==============================================================================
 # Modules and paths
