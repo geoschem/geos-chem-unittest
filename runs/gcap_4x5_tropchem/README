@@ -1,12 +1,12 @@
 This is the GEOS-Chem run directory for 4x5 tropospheric chemistry simulation
 with GCAP meteorology.
 
-Photolysis and aerosol .dat input files are linked to ../chem_inputs/tropchem.
+Photolysis and aerosol .dat input files are linked to ../chem_inputs/standard/.
 This allows us to keep a single set of these files in one location, for
 convenience.
 
 The HEMCO configuration file is linked to HEMCO_Config.template also stored in
-../chem_inputs/tropchem.  A new HEMCO_Config.rc file will be created from the
+../chem_inputs/standard/.  A new HEMCO_Config.rc file will be created from the
 HEMCO_Config.template file each time the unit tester is run.
 
 A new input.geos file will also be created from the input.geos.template file

@@ -2,12 +2,12 @@ This is the GEOS-Chem run directory for the 2x2.5 RRTMG online radiative
 transfer simulation. This directory can be used with GEOS-5, GEOS-FP, MERRA, or
 MERRA-2 meteorology.
 
-Photolysis and aerosol .dat input files are linked to ../chem_inputs/tropchem.
+Photolysis and aerosol .dat input files are linked to ../chem_inputs/standard/.
 This allows us to keep a single set of these files in one location, for
 convenience.
 
 The HEMCO configuration file is linked to HEMCO_Config.template stored in
-../chem_inputs/fullchem.  A new HEMCO_Config.rc file will be created from the
+../chem_inputs/standard/.  A new HEMCO_Config.rc file will be created from the
 HEMCO_Config.template file each time the unit tester is run.
 
 A new input.geos file will also be created from the input.geos.template file
