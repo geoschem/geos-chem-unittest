@@ -1020,8 +1020,9 @@ sub readResults($$) {
       # Strip white spaces
       $utName =~ s/ //g;
 
-      # Change name of soa_svpoa to soasvpoa to avoid problems
-      if ( $utName =~ m/soa_svpoa/ ) { $utName =~ s/soa_svpoa/svpoa/g; }
+      # Change name of complexSOA_SVPOA to SVPOA to avoid problems
+      if ( $utName =~ m/complexSOA_SVPOA/ ) {
+           $utName =~ s/complexSOA_SVPOA/SVPOA/g; }
 
       # Initialize flags
       $bpch   = 1;

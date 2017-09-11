@@ -250,17 +250,11 @@ ifeq ($(SIM),marinePOA)
  NO_REDUCED  :=y
 endif
 
-ifeq ($(SIM),simpleSOA)
+ifeq ($(SIM),complexSOA)
  CHEM        :=Tropchem
 endif
 
-# The SOA option should not be used in v11-02c+, but is left here for backwards
-# compatibility. There is now a complex SOA option (default) and simple SOA option.
-ifeq ($(SIM),soa)
- CHEM        :=Tropchem
-endif
-
-ifeq ($(SIM),soa_svpoa)
+ifeq ($(SIM),complexSOA_SVPOA)
  CHEM        :=SOA_SVPOA
  NEST        :=n
 endif

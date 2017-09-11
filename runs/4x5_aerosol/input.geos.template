@@ -41,14 +41,14 @@ Species #11             : BCPI
 Species #12             : OCPI
 Species #13             : BCPO
 Species #14             : OCPO
-Species #15             : SOAP
-Species #16             : SOAS
-Species #17             : DST1
-Species #18             : DST2
-Species #19             : DST3
-Species #20             : DST4
-Species #21             : SALA
-Species #22             : SALC
+Species #15             : DST1
+Species #16             : DST2
+Species #17             : DST3
+Species #18             : DST4
+Species #19             : SALA
+Species #20             : SALC
+Species #21             : SOAP
+Species #22             : SOAS
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T

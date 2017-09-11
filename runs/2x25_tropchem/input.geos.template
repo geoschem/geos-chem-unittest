@@ -25,7 +25,7 @@ Chem/emis timestep [min]: 20
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 125
+Number of Advected Spec.: 105
 Species Entries ------->: Name
 Species name            : NO
 Species name            : O3
@@ -98,28 +98,8 @@ Species name            : TOLU
 Species name            : XYLE
 Species name            : MTPA
 Species name            : LIMO
-Species name            : MTPO
-Species name            : TSOG1
-Species name            : TSOG2
-Species name            : TSOG3
-Species name            : TSOG0
-Species name            : TSOA1
-Species name            : TSOA2
-Species name            : TSOA3
-Species name            : TSOA0
-Species name            : ISOG1
-Species name            : ISOG2
-Species name            : ISOG3
-Species name            : ISOA1
-Species name            : ISOA2
-Species name            : ISOA3
-Species name            : ASOG1
-Species name            : ASOG2
-Species name            : ASOG3
-Species name            : ASOAN
-Species name            : ASOA1
-Species name            : ASOA2
-Species name            : ASOA3
+Species name            : SOAP
+Species name            : SOAS
 Species name            : EOH
 Species name            : MGLY
 Species name            : GLYX
@@ -195,9 +175,9 @@ Online SULFATE AEROSOLS : T
 Online CRYST/AQ AEROSOLS: F
 Online CARBON  AEROSOLS : T
  => Use Brown Carbon?   : F
-Online COMPLEX SOA      : T
+Online COMPLEX SOA      : F
  => Semivolatile POA?   : F
- => Online Isoprene OA  : T
+ => Aqueous isoprene OA : F
 Online DUST    AEROSOLS : T
  => Acidic uptake ?     : F
 Online SEASALT AEROSOLS : T

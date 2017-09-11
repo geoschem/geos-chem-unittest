@@ -125,11 +125,11 @@ sub getInfo($$) {
       # used as NEST for non-nested simulations
       if ( $id < 0+@runinfoarray ) {
       
-        # Special case for soa_svpoa
+        # Special case for complexSOA_SVPOA
 	if ( ( $id == 2 || $id == 3 ) && 0+@runinfoarray == 4 ) {
-	  if ( $runinfoarray[3] eq "svpoa" ) {
-	    if ( $id == 2 ) { $runinfo = "soa_svpoa" }  # SIM=soa_svpoa
-	    if ( $id == 3 ) { $runinfo = "n" }          # NEST=n
+	  if ( $runinfoarray[3] eq "SVPOA" ) {
+	    if ( $id == 2 ) { $runinfo = "complexSOA_SVPOA" } # SIM=complexSOA_SVPOA
+	    if ( $id == 3 ) { $runinfo = "n" }                # NEST=n
 	  } else {
 	    $runinfo = "$runinfoarray[$id]"; 
 	  }
