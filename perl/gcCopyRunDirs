@@ -111,9 +111,7 @@ sub getRunDir($$$$) {
   # Run directory string
   my $runLoc = "";
 
-  if ( ( $met =~ m/gcap/ ) || ( $met =~ m/geos4/ ) ) {
-    $runLoc = "{MET}_{GRID}_{SIM}";
-  } elsif ( ( $met =~ m/gchp/ ) > 0 ) {
+  if ( ( $met =~ m/gchp/ ) > 0 ) {
     $runLoc = "{MET}_{SIM}";
   } elsif ( length( $nest ) > 0 ) {
     $runLoc = "{MET}_{GRID}_{SIM}_{NEST}";

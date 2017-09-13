@@ -6,8 +6,7 @@ geos-chem-support@as.harvard.edu
 
 The GEOS-Chem Unit Tester is a package of scripts and Makefiles that will
 compile and run several GEOS-Chem with a set of standard debugging flags.
-The user may select the types of simulations (e.g. GEOS-5, 4x5, fullchem,
-GEOS-5, 2x25, tagged CO, etc) to be tested.
+The user may select the types of simulations to be tested.
 
 For more information, see our page on the GEOS-Chem wiki:
 
@@ -29,7 +28,6 @@ perl/ : Contains the Perl scripts that are used to submit GEOS-Chem Unit Test
 
 runs/ : Contains the various run directories.  Each run directory is named
         according to the met field, horizontal grid, and type of simulation
-        (e.g. geos5_4x5_fullchem, geosfp_2x25_RnPbBe, etc).
 
 
 Using the GEOS-Chem Unit Tester:
