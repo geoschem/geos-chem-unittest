@@ -1,6 +1,6 @@
 This is the GEOS-Chem run directory for the 2x2.5 standard benchmark simulation
-with the marine POA option. This directory can be used with GEOS-5, GEOS-FP,
-MERRA, or MERRA-2 meteorology.
+with the marine POA option. This directory can be used with GEOS-FP or MERRA-2
+meteorology.
 
 Photolysis and aerosol .dat input files are linked to ../chem_inputs/standard.
 This allows us to keep a single set of these files in one location, for
