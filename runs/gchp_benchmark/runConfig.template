@@ -155,7 +155,7 @@ replace_val npx           ${CUBE_SPHERE_RES}  fvcore_layout.rc
 replace_val npy           ${CUBE_SPHERE_RES}  fvcore_layout.rc
 replace_val GRIDNAME PE${CUBE_SPHERE_RES}x${CS_RES_TIMES_SIX}-CF GCHP.rc
 if [[ "${INITIAL_RESTART}" == 'default' ]]; then
-    replace_val GIGCchem_INTERNAL_RESTART_FILE "+initial_GEOSChem_rst.c${CUBE_SPHERE_RES}_standard.nc" GCHP.rc
+    replace_val GIGCchem_INTERNAL_RESTART_FILE "+initial_GEOSChem_rst.c${CUBE_SPHERE_RES}_benchmark.nc" GCHP.rc
 else
     replace_val GIGCchem_INTERNAL_RESTART_FILE "+${INITIAL_RESTART}" GCHP.rc
 fi
