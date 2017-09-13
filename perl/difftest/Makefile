@@ -221,7 +221,13 @@ ifeq ($(SIM),UCX)
  NO_REDUCED  :=y
 endif
 
-ifeq ($(SIM),$(filter $(SIM), benchmark, standard))
+ifeq ($(SIM),standard)
+ UCX         :=y
+ CHEM        :=Standard
+ NO_REDUCED  :=y
+endif
+
+ifeq ($(SIM),benchmark)
  UCX         :=y
  CHEM        :=Standard
  NO_REDUCED  :=y
@@ -240,11 +246,11 @@ ifeq ($(SIM),marinePOA)
  NO_REDUCED  :=y
 endif
 
-ifeq ($(SIM),$(filter $(SIM), simpleSOA, SOA))
+ifeq ($(SIM),complexSOA)
  CHEM        :=Tropchem
 endif
 
-ifeq ($(SIM),soa_svpoa)
+ifeq ($(SIM),complexSOA_SVPOA)
  CHEM        :=SOA_SVPOA
  NEST        :=n
 endif
