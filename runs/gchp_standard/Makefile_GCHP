@@ -196,22 +196,22 @@ printbuildinfo:
 	$(eval COMMIT_USER_GCHP:=$(shell git -C $(CODEDIR_GCHP) log -n 1 --pretty=format:"%cn"))
 	$(eval COMMIT_HASH_GCHP:=$(shell git -C $(CODEDIR_GCHP) log -n 1 --pretty=format:"%h")) 
 	$(eval CODE_STATUS_GCHP:=$(shell git -C $(CODEDIR_GCHP) status -s)) 
-	@echo "LAST BUILD INFORMATION - GEOS-Chem:"
-	@echo "   CODEDIR_GC        : $(CODEDIR_GC)"
-	@echo "   CODE_BRANCH_GC    : $(CODE_BRANCH_GC)"
-	@echo "   LAST_COMMIT_GC    : $(LAST_COMMIT_GC)"
-	@echo "   COMMIT_DATE_GC    : $(COMMIT_DATE_GC)"
-	@echo "   COMMIT_USER_GCHP  : $(COMMIT_USER_GC)"
-	@echo "   COMMIT_HASH_GCHP  : $(COMMIT_HASH_GC)"
-	@echo "   CODE_STATUS_GCHP  : $(CODE_STATUS_GC)"
-	@echo "LAST BUILD INFORMATION - GCHP:"
-	@echo "   CODEDIR_GCHP      : $(CODEDIR_GCHP)"
-	@echo "   CODE_BRANCH_GCHP  : $(CODE_BRANCH_GCHP)"
-	@echo "   LAST_COMMIT_GCHP  : $(LAST_COMMIT_GCHP)"
-	@echo "   COMMIT_DATE_GCHP  : $(COMMIT_DATE_GCHP)"
-	@echo "   COMMIT_USER_GCHP  : $(COMMIT_USER_GCHP)"
-	@echo "   COMMIT_HASH_GCHP  : $(COMMIT_HASH_GCHP)"
-	@echo "   CODE_STATUS_GCHP  : $(CODE_STATUS_GCHP)"
+	@echo "GEOS-Chem repository"
+	@echo "   Path        : $(CODEDIR_GC)"
+	@echo "   Branch      : $(CODE_BRANCH_GC)"
+	@echo "   Last commit : $(LAST_COMMIT_GC)"
+	@echo "   Date        : $(COMMIT_DATE_GC)"
+	@echo "   User        : $(COMMIT_USER_GC)"
+	@echo "   Hash        : $(COMMIT_HASH_GC)"
+	@echo "   Git status  : $(CODE_STATUS_GC)"
+	@echo "GCHP repository"
+	@echo "   Path        : $(CODEDIR_GCHP)"
+	@echo "   Branch      : $(CODE_BRANCH_GCHP)"
+	@echo "   Last commit : $(LAST_COMMIT_GCHP)"
+	@echo "   Date        : $(COMMIT_DATE_GCHP)"
+	@echo "   User        : $(COMMIT_USER_GCHP)"
+	@echo "   Hash        : $(COMMIT_HASH_GCHP)"
+	@echo "   Git status  : $(CODE_STATUS_GCHP)"
 
 help:
 	@echo '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'

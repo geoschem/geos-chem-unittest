@@ -42,6 +42,8 @@ alias mcs="make compile_standard"    # Recompile GC but not MAPL, ESMF, dycore
 alias mco="make cleanup_output"      # Clean run directory before a new run
 alias gchprun="sbatch gchp.run"      # Run GCHP (SLURM-specific, edit as needed)
 alias tfl="tail --follow gchp.log -n 100"  # Follow log output on screen
+alias checkgit="make printbuildinfo" # Show current code git info
+alias checkbuild="cat lastbuild"     # Show build code git info
 
 #==============================================================================
 # Modules and paths
