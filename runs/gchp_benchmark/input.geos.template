@@ -1,4 +1,4 @@
-GEOS-CHEM UNIT TEST SIMULATION: gchp_standard
+iGEOS-CHEM UNIT TEST SIMULATION: gchp_standard
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
@@ -25,7 +25,7 @@ Chem/emis timestep [min]: 20
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 155
+Number of Advected Spec.: 157
 Species Entries ------->: Name
 Species name            : NO
 Species name            : O3
@@ -120,6 +120,8 @@ Species name            : ASOAN
 Species name            : ASOA1
 Species name            : ASOA2
 Species name            : ASOA3
+Species name            : SOAP
+Species name            : SOAS
 Species name            : EOH
 Species name            : MGLY
 Species name            : GLYX
