@@ -6,7 +6,7 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !MODULE: getRunInfo.pl
+# !MODULE: getRunInfo
 #
 # !DESCRIPTION: This script extracts information from the input.geos file
 #  and prints the result. The input arguments are (1) the location of file
@@ -33,7 +33,19 @@ use strict;                      # Use "IMPLICIT NONE" syntax
 # !REMARKS:
 #  Designed for use with the root-level Makefile in a run directory when
 #  using the unit test or a run directory copied from UnitTest.
-# 
+#                                                                             .
+#  ID value   Information returned
+#  -------------------------------------------------------------------
+#  0          Met field type      (geosfp, merra2, etc.             )
+#  1          Horizontal grid     (4x5, 2x25, etc.                  )
+#  2          Simulation type     (standard, benchmark, RnPbBe, etc.)
+#  3          Nested grid option  (na, ch, as, etc.                 )
+#  4          Start date & time   (in YYYYMMDDhhmm format           )
+#  5          End   date & time   (in YYYYMMDDhhmm format           )
+#  6          Root data directory
+#  7          Start date only     (in YYYYMMDD format               )
+#  8          End   date only     (in YYYYMMDD format               )
+#
 # !REVISION HISTORY: 
 #  06 Apr 2015 - E. Lundgren - Initial version
 #EOP
@@ -58,15 +70,14 @@ sub getInfo($$) {
 # !CALLING SEQUENCE:
 #  &getInfo( $rundir, $id );
 #
-# !REMARKS:
-
-#
 # !REVISION HISTORY:
 #  06 Apr 2015 - E. Lundgren - Initial version
 #  27 Apr 2015 - M. Sulprizio- Now use YYYYMMDDhhmm format for start/end time
 #  31 Mar 2015 - E. Lundgren - Add special case of soa_svpoa
 #  22 May 2017 - R. Yantosca - For HEMCO standalone, convert YYYY-MM-DD to
 #                              YYYYMMDD and hh:mm:ss to hhmmss
+#  19 Sep 2017 - R. Yantosca - Add options to return start & end time in just
+#                              YYYYMMDD format (e.g. for use in filenames)
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -87,11 +98,11 @@ sub getInfo($$) {
   # Make sure that an input.geos file is found; otherwise print a "";
   if ( -f "$rundir/input.geos" ) {
   
-    # get start run time if $id is 4, end run time is $id is 5
-    if ( $id == 4 || $id == 5) {
+    # get start run time if $id is 4 or 7, end run time is $id is 5 or 8
+    if ( $id == 4 || $id == 5 || $id == 7 || $id == 8 )  {
         
-      if ($id == 4) { $runstr = "Start" }
-      if ($id == 5) { $runstr = "End" }
+      if    ( $id == 4 || $id == 7 ) { $runstr = "Start"; }
+      elsif ( $id == 5 || $id == 8 ) { $runstr = "End";   }
    
       # Grep for date & time in input.geos
       $line = qx( grep "$runstr.*YYYYMMDD" $rundir/input.geos );
@@ -100,11 +111,12 @@ sub getInfo($$) {
       # Split by spaces
       @linestrings = split( ' ', $line );
   
-      # Place start and end times into YYYYMMDDhhmm format
+      # Place start and end times into YYYYMMDDhhmm format (ID = 4 or 5)
+      # or just YYYYMMDD format (ID = 7 or 8)
       $runinfo = "$linestrings[4]$linestrings[5]";
-      if ($id == 4 ) { $runinfo = substr( $runinfo, 0, 12 ); }
-      if ($id == 5 ) { $runinfo = substr( $runinfo, 0, 12 ); }
-  
+      if    ( $id == 4 || $id == 5 ) { $runinfo = substr( $runinfo, 0, 12 ); } 
+      elsif ( $id == 7 || $id == 8 ) { $runinfo = substr( $runinfo, 0, 8  ); }
+
     } else {
  
       # Grep for input.geos header
@@ -155,13 +167,13 @@ sub getInfo($$) {
 
        $runinfo = "n"
 
-    # Get start run time if $id is 4, end run time is $id is 5
-    } elsif ( $id == 4 || $id == 5) {
+    # Get start run time if $id is 4 or 7, end run time is $id is 5 or 8
+    } elsif ( $id == 4 || $id == 5 || $id == 7 || $id == 8 ) {
 
       if ( -f "$rundir/HEMCO_sa_Time.rc" ) {
 
-	if ($id == 4) { $runstr = "START" }
-	if ($id == 5) { $runstr = "END" }
+	if ( $id == 4 || $id == 7 ) { $runstr = "START"; }
+	if ( $id == 5 || $id == 8 ) { $runstr = "END";   }
 
 	# Grep for start and date
 	$line = qx( grep "$runstr" $rundir/HEMCO_sa_Time.rc );
@@ -175,8 +187,13 @@ sub getInfo($$) {
 	@dates = split( '-', $linestrings[1] );
 	@times = split( ':', $linestrings[2] );
 
-        # Return start and end times in YYYYMMDDhhmm format
-	$runinfo = "$dates[0]$dates[1]$dates[2]$times[0]$times[1]";
+        # Return start and end times in YYYYMMDDhhmm format (ID = 4 or 5)
+	# or just YYYYMMDD format (ID = 7 or 8)
+	if ( $id == 7 || $id == 8 ) { 
+	  $runinfo = "$dates[0]$dates[1]$dates[2]";
+        } elsif ( $id == 4 || $id == 5 ) {
+ 	  $runinfo = "$dates[0]$dates[1]$dates[2]$times[0]$times[1]";
+        }
       }
 
     } else {
@@ -229,10 +246,10 @@ sub main() {
 #
 # !LOCAL VARIABLES:
 #
-  my $msg = "Out of bounds error within getRunInfo";
+  my $msg = "getRunInfo: $ARGV[1] is an invalid value for the ID argument!";
 
   # Exist with an error message if the ID argument is not within valid range
-  if ( scalar( $ARGV[1] ) >= 0 && scalar( $ARGV[1] ) <= 5 ) {
+  if ( scalar( $ARGV[1] ) >= 0 && scalar( $ARGV[1] ) <= 8 ) {
     &getInfo( @ARGV ); 
   } else { 
     print "$msg"; 

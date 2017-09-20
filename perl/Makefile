@@ -149,21 +149,22 @@ ifndef TAU_PROF
  TAU_PROF    :=n
 endif
 
-ifndef BPCH_RST_IN
- BPCH_RST_IN :=n
-endif
-
-ifndef BPCH_RST_OUT
- BPCH_RST_OUT :=n
-endif
-
 ifndef BPCH_DIAG
- BPCH_DIAG :=y
+ BPCH_DIAG   :=y
 endif
 
 ifndef NC_DIAG
- NC_DIAG   :=n
- BPCH_DIAG :=y
+ NC_DIAG     :=n
+endif
+
+# Add a robust check whether or not we are using netCDF diagnostics so that
+# we can also binary-check the History file.  We can remove this when the
+# netCDF diagnostic option is standard in GEOS-Chem. (bmy, 9/20/17)
+REGEXP       :=(^[Yy]|^[Yy][Ee][Ss])
+ifeq ($(shell [[ "$(NC_DIAG)" =~ $(REGEXP) ]] && echo true),true)
+  IS_NC_DIAG := 1
+else
+  IS_NC_DIAG := 0
 endif
 
 ###############################################################################
@@ -189,6 +190,7 @@ SIM          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 2)
 NEST         :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 3)
 START        :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 4)
 END          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 5)
+STARTDATE    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DEV) 7)
 HMCO_END     :=$(END)
 
 # By default, UCX, TOMAS40 and RRTMG are all set to "n".  But if we are doing
@@ -297,6 +299,7 @@ EXE_HMCO_SA  :=hemco_standalone.x
 GC_DIAG      :=trac_avg.$(RUNID).$(START)
 HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
 GC_RST       :=GEOSChem_restart.$(END).nc
+HIST_INS     :=GEOSChem.inst.$(STARTDATE).nc4
 
 # Unit test validation script and results file
 VALIDATE     :=/usr/bin/perl $(PERL_DIR)/validate
@@ -403,7 +406,7 @@ sp:
                                 MASSCONS=$(MASSCONS)   OMP=no                 \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
                                 TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
-                                NO_REDUCED=$(NO_REDUCED)                      \
+                                NO_REDUCED=$(NO_REDUCED) NC_DIAG=$(NC_DIAG)   \
                                 > $(LOG_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
@@ -422,7 +425,7 @@ mp:
                                 MASSCONS=$(MASSCONS)   OMP=yes                \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
                                 TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
-                                NO_REDUCED=$(NO_REDUCED)                      \
+                                NO_REDUCED=$(NO_REDUCED) NC_DIAG=$(NC_DIAG)   \
                                 > $(LOG_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
@@ -446,7 +449,7 @@ spbuild:
                                 MASSCONS=$(MASSCONS)   OMP=no                 \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
                                 TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
-                                NO_REDUCED=$(NO_REDUCED)                      
+                                NO_REDUCED=$(NO_REDUCED) NC_DIAG=$(NC_DIAG)
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	@$(MAKE) printbuildinfo
@@ -462,7 +465,7 @@ mpbuild:
                                 MASSCONS=$(MASSCONS)   OMP=yes                \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
                                 TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
-                                NO_REDUCED=$(NO_REDUCED)                      
+                                NO_REDUCED=$(NO_REDUCED) NC_DIAG=$(NC_DIAG)
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	@$(MAKE) printbuildinfo
@@ -509,7 +512,7 @@ hcobuild:
                                 MASSCONS=$(MASSCONS)   OMP=yes                \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
                                 TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
-                                libhemcosa
+                                NC_DIAG=$(NC_DIAG)     libhemcosa
 	cp -f $(CODE_DIR)/bin/hemco_standalone.x $(EXE_HMCO_SA)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).hemco
 	@$(MAKE) printbuildinfo
@@ -653,6 +656,7 @@ printruninfosp:
 	@echo "  Version             : $(VERSION)"
 	@echo "  GC Diagnostic File  : $(GC_DIAG).sp"
 	@echo "  GC Restart File     : $(GC_RST).sp"
+	@echo "  History file (inst) ; $(HIST_INS).sp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).sp"
 	@echo "  GC Run Log File     : $(LOG_SP)"
 	@echo "  HEMCO Log File      : $(LOG_HMCO).sp"
@@ -667,6 +671,7 @@ printruninfomp:
 	@echo "  Version             : $(VERSION)"
 	@echo "  GC Diagnostic File  : $(GC_DIAG).mp"
 	@echo "  GC Restart File     : $(GC_RST).mp"
+	@echo "  History file (inst) ; $(HIST_INS).mp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).mp"
 	@echo "  GC Run Log File     : $(LOG_MP)"
 	@echo "  HEMCO Log File      : $(LOG_HMCO).mp"
@@ -740,20 +745,25 @@ printcodeinfo:
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 addsuffixsp:
-	if [ -f $(GC_DIAG)  ]; then mv -f $(GC_DIAG)  $(GC_DIAG).sp;  fi;
-	if [ -f $(GC_RST)   ]; then mv -f $(GC_RST)   $(GC_RST).sp;   fi;
-	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
-	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
+	if [[ -f $(GC_DIAG)  ]]; then mv -f $(GC_DIAG)  $(GC_DIAG).sp;  fi;
+	if [[ -f $(GC_RST)   ]]; then mv -f $(GC_RST)   $(GC_RST).sp;   fi;
+	if [[ -f $(HIST_INS) ]]; then mv -f $(HIST_INS) $(HIST_INS).sp; fi;
+	if [[ -f $(HMCO_RST) ]]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
+	if [[ -f $(LOG_HMCO) ]]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
 
 addsuffixmp:
-	if [ -f $(GC_DIAG) ];  then mv -f $(GC_DIAG)  $(GC_DIAG).mp;  fi;
-	if [ -f $(GC_RST)   ]; then mv -f $(GC_RST)   $(GC_RST).mp;   fi;
-	if [ -f $(HMCO_RST) ]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
-	if [ -f $(LOG_HMCO) ]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
+	if [[ -f $(GC_DIAG)  ]]; then mv -f $(GC_DIAG)  $(GC_DIAG).mp; fi;
+	if [[ -f $(GC_RST)   ]]; then mv -f $(GC_RST)   $(GC_RST).mp;   fi;
+	if [[ -f $(HIST_INS) ]]; then mv -f $(HIST_INS) $(HIST_INS).mp; fi;
+	if [[ -f $(HMCO_RST) ]]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
+	if [[ -f $(LOG_HMCO) ]]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
 
 check:
 	@$(VALIDATE) $(GC_DIAG).sp  $(GC_DIAG).mp  1 0 >> $(RESULTS)
 	@$(VALIDATE) $(GC_RST).sp   $(GC_RST).mp   0 0 >> $(RESULTS)
+ifeq ($(IS_NC_DIAG),1)
+	@$(VALIDATE) $(HIST_INS).sp $(HIST_INS).mp 0 0 >> $(RESULTS)
+endif
 	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
 
 ###############################################################################

@@ -56,6 +56,7 @@ run:
 	./$(EXEC) >> $(LOG)
 	if [[ -f $(TRAC_AVG) ]]; then mv -f $(TRAC_AVG) $(TRAC_AVG).Ref; fi;
 	if [[ -f $(TRAC_RST) ]]; then mv -f $(TRAC_RST) $(TRAC_RST).Ref; fi;
+	if [[ -f $(HIST_INS) ]]; then mv -f $(HIST_INS) $(HIST_INS).Ref; fi;
 	if [[ -f $(HMCO_AVG) ]]; then mv -f $(HMCO_AVG) $(HMCO_AVG).Ref; fi;
 	if [[ -f $(HMCO_RST) ]]; then mv -f $(HMCO_RST) $(HMCO_RST).Ref; fi;
 	if [[ -f $(HMCO_LOG) ]]; then mv -f $(HMCO_LOG) $(HMCO_LOG).Ref; fi;
