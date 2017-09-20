@@ -240,18 +240,21 @@ sub main() {
 #
 # !REVISION HISTORY:
 #  07 Apr 2015 - E. Lundgren - Initial version
+#  20 Sep 2017 - R. Yantosca - ID can now be from 0-8
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 #
 # !LOCAL VARIABLES:
 #
-  my $msg = "getRunInfo: $ARGV[1] is an invalid value for the ID argument!";
+  my $nArgs = scalar( @ARGV );
+  my $msg   = "";
 
-  # Exist with an error message if the ID argument is not within valid range
-  if ( scalar( $ARGV[1] ) >= 0 && scalar( $ARGV[1] ) <= 8 ) {
+  # Exits with an error message if the ID argument is not within valid range
+  if ( $nArgs >= 0 && $nArgs <= 8 ) {
     &getInfo( @ARGV ); 
   } else { 
+    $msg = "getRunInfo: $ARGV[1] is an invalid value for the ID argument!";
     print "$msg"; 
     exit(1);    
   }
