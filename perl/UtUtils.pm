@@ -950,8 +950,9 @@ sub readResults($$) {
   # Scalars
   my $bpch     = 1;
   my $rst      = 1;
+  my $ncDiag   = 1;
+  my $isNcDiag = 1;
   my $hemco    = 1;
-  my $psc      = 1;
   my $color    = "";
   my $utName   = "";
   my $version  = "";
@@ -1024,11 +1025,15 @@ sub readResults($$) {
       if ( $utName =~ m/complexSOA_SVPOA/ ) {
            $utName =~ s/complexSOA_SVPOA/SVPOA/g; }
 
+      # Check if the netCDF diagnostics are present
+      if ( $txt[++$i] =~ m/NC_DIAG=y/ ) { $isNcDiag = 1; }
+      else                              { $isNcDiag = 0; }
+
       # Initialize flags
       $bpch   = 1;
+      $ncDiag = 1;
       $rst    = 1;
       $hemco  = 1;
-      $psc    = 1;
 
       # Check the results of the BPCH file    
       for ( my $j = 0; $j < 6; $j++ ) { 
@@ -1038,21 +1043,19 @@ sub readResults($$) {
       # Check the results of the RESTART file    
       for ( my $j = 0; $j < 6; $j++ ) { 
 	if ( $txt[++$i] =~ m/DIFFERENT/ ) { $rst = -1; }
-
       }
+
+      # Check the results of the NETCDF DIAGNOSTICS file (aka "History")
+      if ( $isNcDiag ) { 
+	for ( my $j = 0; $j < 6; $j++ ) { 
+	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $ncDiag = -1; }
+        }
+      } 
 
       # Check the results of the HEMCO restart file    
       for ( my $j = 0; $j < 6; $j++ ) { 
 	if ( $txt[++$i] =~ m/DIFFERENT/ ) { $hemco = -1; }
-
       }
-
-      ## Check the results fo the Hg ocean restart file
-      #if ( $utName =~ m/Hg/ ) {
-#	for ( my $j = 0; $j < 6; $j++ ) { 
-#	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $psc = -1; }
-#        }
-#      }
 
       #-----------------------------------------------------------------------
       # Assign a color to the unit test output
@@ -1061,9 +1064,8 @@ sub readResults($$) {
       # RED    = RESTART FILES DIFFERENT
       #-----------------------------------------------------------------------
       $color = $GREEN;
-      if ( $bpch == -1 || $hemco == -1 || $psc == -1 ) { $color = $YELLOW; }
-      if ( $rst  == -1                               ) { $color = $RED;    }
-      if ( $bpch == -1 && $rst   == -1               ) { $color = $RED;    }
+      if ( $bpch == -1 || $ncDiag == -1 ) { $color = $YELLOW; }
+      if ( $rst  == -1 || $hemco  == -1 ) { $color = $RED;    }
 
       # Add the color to the UNITTEST hash
       $unitTests{ $utName } = $color;

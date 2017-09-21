@@ -190,7 +190,7 @@ SIM          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 2)
 NEST         :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 3)
 START        :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 4)
 END          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 5)
-STARTDATE    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DEV) 7)
+STARTDATE    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 7)
 HMCO_END     :=$(END)
 
 # By default, UCX, TOMAS40 and RRTMG are all set to "n".  But if we are doing
@@ -759,12 +759,16 @@ addsuffixmp:
 	if [[ -f $(LOG_HMCO) ]]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
 
 check:
+ifeq ($(IS_NC_DIAG),1)
+	@$(VALIDATE) $(GC_DIAG).sp  $(GC_DIAG).mp  2 0 >> $(RESULTS)
+	@$(VALIDATE) $(GC_RST).sp   $(GC_RST).mp   0 0 >> $(RESULTS)
+	@$(VALIDATE) $(HIST_INS).sp $(HIST_INS).mp 0 0 >> $(RESULTS)
+	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
+else
 	@$(VALIDATE) $(GC_DIAG).sp  $(GC_DIAG).mp  1 0 >> $(RESULTS)
 	@$(VALIDATE) $(GC_RST).sp   $(GC_RST).mp   0 0 >> $(RESULTS)
-ifeq ($(IS_NC_DIAG),1)
-	@$(VALIDATE) $(HIST_INS).sp $(HIST_INS).mp 0 0 >> $(RESULTS)
-endif
 	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
+endif
 
 ###############################################################################
 #####                                                                     #####

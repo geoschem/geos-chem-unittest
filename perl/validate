@@ -31,6 +31,11 @@ use strict;                      # Use "IMPLICIT NONE" syntax
 #    Set TOPHDR=1 if you want to print a header at the top of the output
 #    Set BOTHDR=1 if you want to print a header at the bottom of output
 #
+#    %%% TEMPORARY MODIFICATION (Bob Yantosca, 20 Sep 2017)
+#    %%% IF TOPHDR=2 THEN THIS DENOTES THAT WE HAVE A NETCDF DIAGNOSTIC
+#    %%% FILE PRESENT AND THAT IT SHOULD BE DIFFERENCED.  WE CAN REMOVE
+#    %%% THIS ONCE THE NETCDF DIAGNOSTICS ARE STANDARDIZED.
+#
 # !REMARKS:
 #  Designed to be used with the GEOS-Chem Unit Tester.
 #  Always returns a value of zero so as not to disrupt the make process.
@@ -79,6 +84,7 @@ sub doChecks($$$$) {
 #                              $file1 or $file2 is not found on disk
 #  13 Jul 2016 - M. Sulprizio- Obtain run name from the trac_avg filename
 #                              instead of the run directory name
+#  20 Sep 2017 - R. Yantosca - Print the number of files being tested
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -164,9 +170,16 @@ sub doChecks($$$$) {
   $runstr = "$filestrings[1]";
 
   # Print top header if requested
-  if ( $topHdr ) { print '#' x 79; 
-		   print "\n### VALIDATION OF GEOS-CHEM OUTPUT FILES\n"; 
-                   print "### In directory: $runstr\n"; }
+  if ( $topHdr > 0 ) {
+    print '#' x 79; 
+    print "\n### VALIDATION OF GEOS-CHEM OUTPUT FILES\n";
+    print "### In directory: $runstr\n";
+  
+    # TEMPORARY MODIFICATION: Print an additional line to denote if
+    # the netCDF diagnostic (aka "History") output is on (bmy, 9/20/17)
+    if ( $topHdr == 2 ) { print "### NC_DIAG=y\n"; }
+    else                { print "### NC_DIAG=n\n"; }
+  }
 
   # Print information
   print "###\n";
@@ -177,7 +190,7 @@ sub doChecks($$$$) {
   print "### Diffs     : $diffOK\n";
 
   # Print bottom header if requested
-  if ( $botHdr ) { print '#' x 79; print "\n"; }
+  if ( $botHdr == 1 ) { print '#' x 79; print "\n"; }
 
   # Return 0 so as not to hold up the Makefiles
   return( 0 );

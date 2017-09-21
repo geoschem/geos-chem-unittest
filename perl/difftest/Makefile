@@ -505,26 +505,37 @@ devcheck:
 	@$(MAKE) check
 
 check:
+ifeq ($(IS_NC_DIAG),1)
+	@$(VALIDATE) $(RUN_REF)/$(TRAC_AVG).Ref                             \
+                     $(RUN_DEV)/$(TRAC_AVG).Dev 2 0 >> $(RESULTS)
+	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
+                     $(RUN_DEV)/$(TRAC_RST).Dev 0 0 >> $(RESULTS)
+	@$(VALIDATE) $(RUN_REF)/$(HIST_INS).Ref                             \
+                     $(RUN_DEV)/$(HIST_INS).Dev 0 0 >> $(RESULTS)
+	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
+                     $(RUN_DEV)/$(HMCO_RST).Dev 0 1 >> $(RESULTS)
+	@$(VALIDATE) $(RUN_REF)/$(TRAC_AVG).Ref                             \
+                     $(RUN_DEV)/$(TRAC_AVG).Dev 2 0
+	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
+                     $(RUN_DEV)/$(TRAC_RST).Dev 0 0
+	@$(VALIDATE) $(RUN_REF)/$(HIST_INS).Ref                             \
+                     $(RUN_DEV)/$(HIST_INS).Dev 0 0
+	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
+                     $(RUN_DEV)/$(HMCO_RST).Dev 0 1
+else
 	@$(VALIDATE) $(RUN_REF)/$(TRAC_AVG).Ref                             \
                      $(RUN_DEV)/$(TRAC_AVG).Dev 1 0 >> $(RESULTS)
 	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
                      $(RUN_DEV)/$(TRAC_RST).Dev 0 0 >> $(RESULTS)
-ifeq ($(IS_NC_DIAG),1)
-	@$(VALIDATE) $(RUN_REF)/$(HIST_INS).Ref                             \
-                     $(RUN_DEV)/$(HIST_INS).Dev 0 0 >> $(RESULTS)
-endif
 	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
                      $(RUN_DEV)/$(HMCO_RST).Dev 0 1 >> $(RESULTS)
 	@$(VALIDATE) $(RUN_REF)/$(TRAC_AVG).Ref                             \
                      $(RUN_DEV)/$(TRAC_AVG).Dev 1 0
 	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
                      $(RUN_DEV)/$(TRAC_RST).Dev 0 0
-ifeq ($(IS_NC_DIAG),1)
-	@$(VALIDATE) $(RUN_REF)/$(HIST_INS).Ref                             \
-                     $(RUN_DEV)/$(HIST_INS).Dev 0 0
-endif
 	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
                      $(RUN_DEV)/$(HMCO_RST).Dev 0 1
+endif
 
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
