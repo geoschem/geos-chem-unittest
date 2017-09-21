@@ -293,6 +293,7 @@ sub doCopyDirs($$) {
 #  13 Sep 2016 - M. Sulprizio- Replace text in new PlotDiff.input file
 #  12 Apr 2017 - R. Yantosca - Now replace {VERSION} in $COPY_PATH variable
 #  03 May 2017 - R. Yantosca - Bug fix: remove spaces from directory paths
+#  21 Sep 2017 - R. Yantosca - Now link to the HISTORY.rc file in Dev/
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -629,6 +630,10 @@ sub doCopyDirs($$) {
           # Copy UT/perl/getRunInfo to Dev directory
           $cmd = "cp ./getRunInfo $devDir"; 
           qx/$cmd/; 
+
+	  # Make a symbolic link in Ref to Dev/HISTORY.rc
+	  $cmd = "ln -s $devDir/HISTORY.rc $refDir/HISTORY.rc";
+	  qx/$cmd/;
 
 	  # Copy UT/perl/validate to Dev directory 
           $cmd = "cp ./validate $devDir"; 
