@@ -5,9 +5,9 @@
 <title>GEOS-Chem Unit Test Results</title>
 <style type="text/css">
 h2          { font-family: Arial, Helvetica, sans-serif;
-              font-size: 24px; }
+              font-size: 22px; }
 th, td      { font-family: Arial, Helvetica, sans-serif;
-              font-size: 14px; }
+              font-size: 12px; }
 .legend     { border-style: solid; 
               border-width: 1px;
               border-color: #000000; 
@@ -43,24 +43,24 @@ th, td      { font-family: Arial, Helvetica, sans-serif;
   <!-- 4x5 -->
   <tr>
     <th scope="col" bgcolor="#CCCCCC" width="150">Unit Tests</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">Standard</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">Trop<br />chem</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">RR<br />TMG</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">complex<br />SOA</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">complex<br/>SOA-SVPOA</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">Acid<br />Uptk</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">Marine<br />POA</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">Rn-<br />Pb-Be</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">Hg</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">TagHg</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">POPs</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">TagCO</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">TagO3</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">CH4</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">CO2</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">Aer-<br />osol</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">TOMAS<br />15</th>
-    <th scope="col" bgcolor="#CCCCCC" width="57">TOMAS<br />40</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">Stan-<br>dard</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">Trop<br />chem</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">RR<br />TMG</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">complex<br />SOA</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">complex<br/>SOA-SVPOA</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">Acid<br />Uptk</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">Marine<br />POA</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">Rn-<br />Pb-Be</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">Hg</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">TagHg</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">POPs</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">TagCO</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">TagO3</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">CH4</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">CO2</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">Aer-<br />osol</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">TOMAS<br />15</th>
+    <th scope="col" bgcolor="#CCCCCC" width="45">TOMAS<br />40</th>
   </tr>
   <tr>
     <td>MERRA-2 @ 4&deg; x 5&deg;</td>
@@ -150,7 +150,30 @@ th, td      { font-family: Arial, Helvetica, sans-serif;
 
 <br/>
 
-<!-- Table for nested-grid unit tests and legend -->
+<!-- Table for benchmark unit tests -->
+<table border="0" cellspacing="0" cellpadding="0" bordercolor="#000000">
+  <tr valign="top">
+
+    <!-- Table for for nested-grid and special unit tests -->
+    <td valign="top">
+      <table border="1" cellspacing="0" cellpadding="5" bordercolor="#000000"> 
+       <tr>
+         <th scope="col" bgcolor="#CCCCCC" width="150">Benchmark<br>Unit Tests</th>
+         <th scope="col" bgcolor="#CCCCCC" width="45">Bench<br />mark</th>
+       </tr>
+       <tr>
+         <td>GEOS-FP @ 4&deg; x 5&deg;</td>
+         <td bgcolor="#FFFFFF">&nbsp;</td> <!-- geosfp_4x5_benchmark -->
+       </tr>
+      </table>
+    </td>
+  </tr>
+</table>
+
+<!-- Spacer column -->
+<td width="40">&nbsp;</td>
+
+<!-- Table for nested-grid unit tests -->
 <table border="0" cellspacing="0" cellpadding="0" bordercolor="#000000">
   <tr valign="top">
 
@@ -159,9 +182,9 @@ th, td      { font-family: Arial, Helvetica, sans-serif;
       <table border="1" cellspacing="0" cellpadding="5" bordercolor="#000000"> 
        <tr>
          <th scope="col" bgcolor="#CCCCCC" width="150">Nested-Grid<br>Unit Tests</th>
-         <th scope="col" bgcolor="#CCCCCC" width="57">Trop<br />chem</th>
-         <th scope="col" bgcolor="#CCCCCC" width="57">CH4</th>
-         <th scope="col" bgcolor="#CCCCCC" width="57">Hg</th>
+         <th scope="col" bgcolor="#CCCCCC" width="45">Trop<br />chem</th>
+         <th scope="col" bgcolor="#CCCCCC" width="45">CH4</th>
+         <th scope="col" bgcolor="#CCCCCC" width="45">Hg</th>
        </tr>
        <tr>
          <td>GEOS-FP NA @<br/>0.25&deg; x 0.3125&deg;</td>
