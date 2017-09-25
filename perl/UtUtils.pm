@@ -610,13 +610,12 @@ sub makeHemcoCfg($$$$$$$) {
   close( I );
 
   #-------------------------------------------------------------------------
-  # Compute the value used to replace the {LEVRED} and {LEVFULL} tokens in 
+  # Define the values used to replace the {LEVRED} and {LEVFULL} tokens in 
   # file names.  These are needed for certain specialty simulations that 
   # read archived OH or O3 concentrations.  
   #-------------------------------------------------------------------------
-  if    ( $met =~ m/gcap/  ) { $levReduced = "23L"; $levFull = "23L"; }
-  elsif ( $met =~ m/geos4/ ) { $levReduced = "30L"; $levFull = "55L"; }
-  else                       { $levReduced = "47L"; $levFull = "72L"; }
+  $levReduced = "47L";
+  $levFull = "72L";
 
   #-------------------------------------------------------------------------
   # Create HEMCO_Config file
@@ -724,36 +723,28 @@ sub makeHcoSaCfg($$$$$$$) {
   close( I );
 
   #-------------------------------------------------------------------------
-  # Compute the value used to replace the {LEVRED} and {LEVFULL} tokens in 
+  # Define the values used to replace the {LEVRED} and {LEVFULL} tokens in 
   # file names.  These are needed for certain specialty simulations that 
   # read archived OH or O3 concentrations.  
   #-------------------------------------------------------------------------
-  if    ( $met =~ m/gcap/  ) { $levReduced = "23L"; $levFull = "23L"; }
-  elsif ( $met =~ m/geos4/ ) { $levReduced = "30L"; $levFull = "55L"; }
-  else                       { $levReduced = "47L"; $levFull = "72L"; }
+  $levReduced = "47L";
+  $levFull = "72L";
 
   #-------------------------------------------------------------------------
   # Define met and grid strings used in data directory names
   #-------------------------------------------------------------------------
   if ( $met =~ m/geosfp/ ) {
     $metDir = "GEOS_FP";
-  } elsif ( $met =~ m/geos5/ ) {
-    $metDir = "GEOS_5";
-  } elsif ( $met =~ m/geos4/ ) {
-    $metDir = "GEOS_4";
   } elsif ( $met =~ m/merra2/ ) {
     $metDir = "MERRA2";
-  } elsif ( $met =~ m/merra/ ) {
-    $metDir = "MERRA";
   }
+
   if ( $grid =~ m/4x5/ ) {
     $gridDir = "4x5";
   } elsif ( $grid =~ m/2x25/ ) {
     $gridDir = "2x2.5";
   } elsif ( $grid =~ m/05x0625/ ) {
     $gridDir = "0.5x0.625". "_" . uc($nest);
-  } elsif ( $grid =~ m/05x0666/ ) {
-    $gridDir = "0.5x0.666". "_" . uc($nest);
   } elsif ( $grid =~ m/025x03125/ ) {
     $gridDir = "0.25x0.3125" . "_" . uc($nest);
   }

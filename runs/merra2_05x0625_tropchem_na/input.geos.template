@@ -6,16 +6,9 @@ End   YYYYMMDD, hhmmss  : {DATE2} {TIME2}
 Run directory           : ./
 Input restart file      : GEOSChem_restart.YYYYMMDDhhmm.nc
 Root data directory     : {DATA_ROOT}
- => GCAP    subdir      : AGRID/YYYY/MM/
- => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
- => GEOS-5  subdir      : GEOS_5/YYYY/MM/
  => GEOS-FP subdir      : GEOS_FP/YYYY/MM/
- => MERRA   subdir      : MERRA/YYYY/MM/
  => MERRA2  subdir      : MERRA2/YYYY/MM/
 Dir w/ 1x1 emissions etc: {DATA_ROOT}/GEOS_NATIVE/
-Temporary directory     : ./
-Unzip met fields?       : F
-Wait for met fields?    : F
 Use variable tropopause?: T
 Global offsets I0, J0   : 64 200
 ------------------------+------------------------------------------------------
@@ -204,7 +197,10 @@ Use linear. strat. chem?: T
 Use UCX strat. chem?    : F
 Online CH4 chemistry?   : F
 Active strat. H2O?      : F
-Online O3 for FAST-JX?  : T
+Overhead O3 for FAST-JX :---
+ => Online O3 from model: F
+ => O3 from met fields  : T
+ => TOMS/SBUV O3        : F
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
 %%% RADIATION MENU %%%  :

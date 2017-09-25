@@ -1,6 +1,5 @@
 This directory is the GEOS-Chem run directory for the 2x2.5 tagged CO
-simulation.  This directory can be used with GEOS-5, GEOS-FP, MERRA, or MERRA-2
-meteorology.
+simulation.  This directory can be used with GEOS-FP or MERRA-2 meteorology.
 
 
 The HEMCO configuration file is linked to HEMCO_Config.template.tagCO stored

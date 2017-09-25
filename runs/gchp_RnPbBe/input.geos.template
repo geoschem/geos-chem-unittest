@@ -6,16 +6,9 @@ End   YYYYMMDD, hhmmss  : {DATE2} {TIME2}
 Run directory           : ./
 Input restart file      : not_used
 Root data directory     : {DATA_ROOT}
- => GCAP    subdir      : AGRID/YYYY/MM/
- => GEOS-4  subdir      : GEOS_4_v4/YYYY/MM/
- => GEOS-5  subdir      : GEOS_5/YYYY/MM/
  => GEOS-FP subdir      : GEOS_FP/YYYY/MM/
- => MERRA   subdir      : MERRA/YYYY/MM/
  => MERRA2  subdir      : MERRA2/YYYY/MM/
 Dir w/ 1x1 emissions etc: {DATA_ROOT}/GEOS_NATIVE/
-Temporary directory     : ./
-Unzip met fields?       : F
-Wait for met fields?    : F
 Use variable tropopause?: T
 Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
@@ -27,10 +20,10 @@ Chem/emis timestep [min]: 20
 Type of simulation      : 1
 Number of Advected Spec.: 4
 Species Entries ------->: Name
-Species name            : Rn
-Species name            : Pb
-Species name            : Be7
-Species name            : PASV
+Species #1              : Rn
+Species #2              : Pb
+Species #3              : Be7
+Species #4              : PASV
 ------------------------+------------------------------------------------------
 %%% PASSIVE SPECIES MENU %%%:
 Number of passive spec. : 1
@@ -78,7 +71,7 @@ Online SULFATE AEROSOLS : F
 Online CRYST/AQ AEROSOLS: F
 Online CARBON  AEROSOLS : F
  => Use Brown Carbon?   : F
-Online 2dy ORG AEROSOLS : F
+Online COMPLEX SOA      : F
  => Semivolatile POA?   : F
  => Aqueous isoprene OA : F
 Online DUST    AEROSOLS : F
@@ -107,7 +100,10 @@ Use linear. strat. chem?: F
 Use UCX strat. chem?    : F
 Online CH4 chemistry?   : F
 Active strat. H2O?      : F
-Online O3 for FAST-JX?  : F
+Overhead O3 for FAST-JX :---
+ => Online O3 from model: F
+ => O3 from met fields  : F
+ => TOMS/SBUV O3        : F
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
 %%% RADIATION MENU %%%  :
@@ -118,8 +114,8 @@ Calculate SW fluxes?    : F
 Clear-sky flux?         : F
 All-sky flux?           : F
 Radiation Timestep [min]: 180
-Species fluxes          : 0 0 0 0 0 0 0 0 0 1 0
- ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM,ST]
+Species fluxes          : 0 0 0 0 0 0 0 0 0 1
+ ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM]
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH
 Schedule output for JAN : 3000000000000000000000000000000
