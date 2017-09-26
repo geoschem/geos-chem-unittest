@@ -227,6 +227,12 @@ ifeq ($(SIM),UCX)
  NO_REDUCED  :=y
 endif
 
+ifeq ($(SIM),halogens)
+ UCX         :=y
+ CHEM        :=Halogens
+ NO_REDUCED  :=y
+endif
+
 ifeq ($(SIM),standard)
  UCX         :=y
  CHEM        :=Standard
