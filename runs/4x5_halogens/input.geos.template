@@ -18,7 +18,7 @@ Chem/emis timestep [min]: 20
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 180
+Number of Advected Spec.: 155
 Species Entries ------->: Name
 Species name            : NO
 Species name            : O3
