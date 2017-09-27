@@ -1071,8 +1071,6 @@ Warnings:                    {WARNINGS}
 
 #==============================================================================
 # --- Very-short-lived (VSL) iodocarbon emissions (cf. Carlos Ordonez) ---
-# SDE 2016-09-29: VSL CH3I now produced from the sea-flux module instead
-# TMS 2017-02-06: restore CH3I from terresterial sources included (ocean masked to not overwrite CH3I from sea-flux)
 #==============================================================================
 (((ORDONEZ_IODOCARB
 0 ORDONEZ_CH3I   Emissions/CH3I_monthly_emissions_Ordonez_2012_COARDS.nc   CH3I   2000/1-12/1/0 C xy kg/m2/s CH3I   - 1 50
@@ -2279,7 +2277,6 @@ Warnings:                    {WARNINGS}
 1005 USA_MASK    $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc             MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
 1006 ASIA_MASK   $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc         MASK     2000/1/1/0 C xy unitless 1 46/-12/180/82
 1007 NEI11_MASK  $ROOT/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc LANDMASK 2000/1/1/0 C xy 1        1 -140/20/-50/60
-1008 OCEAN_MASK  MASKS/Olson_2001_Land_Map.025x025.generic_JUST_BINARY.nc      OLSON    2000/1/1/0 C xy unitless 1 -179.875/-89.875/179.875/89.875
 
 ### END SECTION MASKS ###
 
