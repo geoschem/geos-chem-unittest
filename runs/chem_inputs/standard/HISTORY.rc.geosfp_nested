@@ -1,0 +1,29 @@
+##############################################################################
+#####  Sample HISTORY.rc for unit testing new netCDF diagnostics         #####
+#####  in GEOS-Chem "Classic" simulations.  This will schedule only      #####
+#####  the advected species. (bmy, 8/2/17)                               #####
+#####                                                                    #####
+#####  NOTE: For the GEOS-FP nested-grid simulations, we use an update   #####
+#####  interval (e.g. "inst.frequency") of 10 minutes for unit tests.    #####
+#####  This corresponds to the chemistry timestep setting.  You can, of  #####
+#####  course, change this setting for your runs. (bmy, 9/29/17)         #####
+##############################################################################
+
+# These tags are only used for GCHP
+EXPID:  OutputDir/GCHP
+EXPDSC: GEOS-Chem_devel
+CoresPerNode: 6
+
+
+COLLECTIONS: 'inst',
+             ::
+  inst.template:      '%y4%m2%d2.nc4',
+  inst.subsetdims:     72 46 72
+  inst.format:        'CFIO',
+  inst.frequency:      001000,
+  inst.duration:       240000,
+  inst.mode:          'instantaneous',
+  inst.fields:        'CHEM_SPC_?ADV?',     'GIGCchem'
+                         ::
+
+
