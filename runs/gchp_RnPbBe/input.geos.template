@@ -20,10 +20,10 @@ Chem/emis timestep [min]: 20
 Type of simulation      : 1
 Number of Advected Spec.: 4
 Species Entries ------->: Name
-Species #1              : Rn
-Species #2              : Pb
-Species #3              : Be7
-Species #4              : PASV
+Species name            : Rn
+Species name            : Pb
+Species name            : Be7
+Species name            : PASV
 ------------------------+------------------------------------------------------
 %%% PASSIVE SPECIES MENU %%%:
 Number of passive spec. : 1
@@ -114,8 +114,8 @@ Calculate SW fluxes?    : F
 Clear-sky flux?         : F
 All-sky flux?           : F
 Radiation Timestep [min]: 180
-Species fluxes          : 0 0 0 0 0 0 0 0 0 1
- ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM]
+Species fluxes          : 0 0 0 0 0 0 0 0 0 1 0
+ ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM,ST]
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH
 Schedule output for JAN : 3000000000000000000000000000000
