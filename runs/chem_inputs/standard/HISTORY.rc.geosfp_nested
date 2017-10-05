@@ -17,13 +17,11 @@ CoresPerNode: 6
 
 COLLECTIONS: 'inst',
              ::
-  inst.template:      '%y4%m2%d2.nc4',
-  inst.subsetdims:     72 46 72
-  inst.format:        'CFIO',
+  inst.template:      './GEOSChem.inst.%y4%m2%d2.nc4',
   inst.frequency:      001000,
   inst.duration:       240000,
   inst.mode:          'instantaneous',
-  inst.fields:        'CHEM_SPC_?ADV?',     'GIGCchem'
-                         ::
+  inst.fields:        'SpeciesConc__?ADV?','GIGCchem'
+                       ::
 
 
