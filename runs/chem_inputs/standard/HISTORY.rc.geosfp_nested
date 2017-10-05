@@ -17,7 +17,7 @@ CoresPerNode: 6
 
 COLLECTIONS: 'inst',
              ::
-  inst.template:      './GEOSChem.inst.%y4%m2%d2.nc4',
+  inst.filename:      './GEOSChem.inst.%y4%m2%d2.nc4',
   inst.frequency:      001000,
   inst.duration:       240000,
   inst.mode:          'instantaneous',
