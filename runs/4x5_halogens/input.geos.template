@@ -1,4 +1,4 @@
-GEOS-CHEM UNIT TEST SIMULATION: {MET}_4x5_benchmark
+GEOS-CHEM UNIT TEST SIMULATION: {MET}_4x5_halogens
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
@@ -18,7 +18,7 @@ Chem/emis timestep [min]: 20
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 157
+Number of Advected Spec.: 160
 Species Entries ------->: Name
 Species name            : NO
 Species name            : O3
@@ -91,28 +91,6 @@ Species name            : TOLU
 Species name            : XYLE
 Species name            : MTPA
 Species name            : LIMO
-Species name            : MTPO
-Species name            : TSOG1
-Species name            : TSOG2
-Species name            : TSOG3
-Species name            : TSOG0
-Species name            : TSOA1
-Species name            : TSOA2
-Species name            : TSOA3
-Species name            : TSOA0
-Species name            : ISOG1
-Species name            : ISOG2
-Species name            : ISOG3
-Species name            : ISOA1
-Species name            : ISOA2
-Species name            : ISOA3
-Species name            : ASOG1
-Species name            : ASOG2
-Species name            : ASOG3
-Species name            : ASOAN
-Species name            : ASOA1
-Species name            : ASOA2
-Species name            : ASOA3
 Species name            : SOAP
 Species name            : SOAS
 Species name            : EOH
@@ -177,6 +155,31 @@ Species name            : OClO
 Species name            : Cl2
 Species name            : Cl2O2
 Species name            : H2O
+Species name            : BrSALA
+Species name            : BrSALC
+Species name            : CHCl3
+Species name            : CH2Cl2
+Species name            : CH3I
+Species name            : CH2I2
+Species name            : CH2ICl
+Species name            : CH2IBr
+Species name            : HOI
+Species name            : I2
+Species name            : IBr
+Species name            : ICl
+Species name            : I
+Species name            : IO
+Species name            : HI
+Species name            : OIO
+Species name            : INO
+Species name            : IONO
+Species name            : IONO2
+Species name            : I2O2
+Species name            : I2O3
+Species name            : I2O4
+Species name            : ISALA
+Species name            : ISALC
+Species name            : AERI
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
@@ -220,9 +223,9 @@ Online SULFATE AEROSOLS : T
 Online CRYST/AQ AEROSOLS: F
 Online CARBON  AEROSOLS : T
  => Use Brown Carbon?   : F
-Online COMPLEX SOA      : T
+Online COMPLEX SOA      : F
  => Semivolatile POA?   : F
- => Aqueous isoprene OA : T
+ => Aqueous isoprene OA : F
 Online DUST    AEROSOLS : T
  => Acidic uptake ?     : F
 Online SEASALT AEROSOLS : T
@@ -285,7 +288,7 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% :
-Binary punch file name  : trac_avg.{MET}_4x5_benchmark.YYYYMMDDhhmm
+Binary punch file name  : trac_avg.{MET}_4x5_halogens.YYYYMMDDhhmm
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND01: Rn/Pb/Be source   :  0   all
 ND02: Rn/Pb/Be decay    :  0   all
@@ -389,7 +392,7 @@ LMIN, LMAX of region    :   1   1
 Turn on ND51 diagnostic : F
 LT avg timeseries file  : ts_satellite.YYYYMMDD.bpch
 Output as HDF5?         : F
-Tracers to include      : 46 504 506
+Tracers to include      : 46 154 156
 GMT Hour for disk write :   0
 Avg Period [LT hours]   :   9  11
 IMIN, IMAX of region    :   1  72
