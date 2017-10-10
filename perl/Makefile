@@ -541,16 +541,19 @@ dataclean:
 	rm -f diaginfo.dat tracerinfo.dat
 	rm -f tracer_mass*.dat
 	rm -f core.*
+	rm -f *.nc4
 
 spdataclean:
 	rm -f $(GC_DIAG)*.sp
 	rm -f $(GC_RST)*.sp
+	rm -f *.nc4.sp
 	rm -f HEMCO_restart*.sp
 	rm -f diaginfo.dat tracerinfo.dat
 
 mpdataclean:
 	rm -f $(GC_DIAG)*.mp
 	rm -f $(GC_RST)*.mp
+	rm -f *.nc4.mp
 	rm -f HEMCO_restart*.mp
 	rm -f diaginfo.dat tracerinfo.dat
 
