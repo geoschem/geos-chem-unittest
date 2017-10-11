@@ -560,6 +560,7 @@ fileclean:
 	rm -f $(RUN_REF)/*info.dat
 	rm -f $(RUN_REF)/*.log
 	rm -f $(RUN_REF)/Ox.mass.*
+	rm -f $(RUN_REF)/*.nc4
 	rm -f $(RUN_DEV)/*.Dev
 	rm -f $(RUN_DEV)/core.*
 	rm -f $(RUN_DEV)/GEOSCHEM*.nc*
@@ -567,6 +568,7 @@ fileclean:
 	rm -f $(RUN_DEV)/*info.dat
 	rm -f $(RUN_DEV)/*.log
 	rm -f $(RUN_DEV)/Ox.mass.*
+	rm -f $(RUN_DEV)/*.nc4
 
 reftauclean:
 	@$(MAKE) -C $(CODE_REF) tauclean
