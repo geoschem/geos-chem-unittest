@@ -51,7 +51,7 @@ module load git
 
 # These are for Intel 15 on Odyssey with MVAPICH2 (10/18/2016)
 module load intel/15.0.0-fasrc01
-module load mvapich2/2.3b-fasrc01
+module load mvapich2/2.2-fasrc01
 module load netcdf/4.1.3-fasrc09
 # NOTE: this automatically loads the following
 # zlib/1.2.8-fasrc07
