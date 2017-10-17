@@ -23,53 +23,45 @@
 #------------------------------------------------------------------------------
 #BOC
 
-#==============================================================================
-# Aliases (edit as needed for your system and preferences)
-#==============================================================================
-
-alias mcs="make compile_standard"    # Recompile GC but not MAPL, ESMF, dycore
-alias mco="make cleanup_output"      # Clean run directory before a new run
-alias gchprun="sbatch gchp.run"      # Run GCHP (SLURM-specific, edit as needed)
-alias tfl="tail --follow gchp.log -n 100"  # Follow log output on screen
-alias checkgit="make printbuildinfo" # Show current code git info
-alias checkbuild="cat lastbuild"     # Show build code git info
-
-#==============================================================================
-# Modules and paths
-#==============================================================================
-
 # Echo info if it's an interactive session
 if [[ $- = *i* ]] ; then
   echo "Loading modules for GCHP on Odyssey, please wait ..."
 fi
 
+#==============================================================================
+# Modules and paths
+#==============================================================================
+
 # These modules were defined with the older "module" command but are in the
 # process of being renamed during the transition to "lmod".  We still need
 # these for the GIGC/ESMF/MPI environment, so load them by their old names.
+source new-modules.sh
+
 module purge
 module load git
 
-# These are for Intel 15 on Odyssey with MVAPICH2 (10/18/2016)
+# These are for Intel 15 on Odyssey with MVAPICH2
 module load intel/15.0.0-fasrc01
-module load mvapich2/2.2-fasrc01
+module load zlib/1.2.8-fasrc03
+module unload netcdf
+module load mvapich2/2.3b-fasrc01
+module load hdf5/1.10.1-fasrc01
 module load netcdf/4.1.3-fasrc09
-# NOTE: this automatically loads the following
-# zlib/1.2.8-fasrc07
-# hdf5/1.8.12-fasrc12
 
-# Display loaded modules if it's an interactive session
-if [[ $- = *i* ]] ; then
-  module list
-fi
+# Display loaded modules
+module list
 
+# MPI environment variables
 export ESMF_COMM=mvapich2
+export MVAPICH2=$( dirname $( dirname $( which mpirun ) ) )
 export MPI_ROOT=$( dirname $( dirname $( which mpirun ) ) )
+
+# Suppress MVAPICH2 warning message if OpenMP is used
+export MV2_USE_THREAD_WARNING=0
 
 # Made links to all the relevant files somewhere accessible
 export PATH=${NETCDF_HOME}/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_HOME}/lib
-
-#export CPATH=/n/sw/fasrcsw/apps/MPI/intel/13.0.079-fasrc01/openmpi/1.8.1-fasrc01/netcdf/4.1.3-fasrc01/include:/n/sw/fasrcsw/apps/MPI/intel/13.0.079-fasrc01/openmpi/1.8.1-fasrc01/hdf5/1.8.12-fasrc03/include:/n/sw/fasrcsw/apps/Comp/intel/13.0.079-fasrc01/zlib/1.2.8-fasrc02/include:/n/sw/fasrcsw/apps/Comp/intel/13.0.079-fasrc01/openmpi/1.8.1-fasrc01/include:/n/sw/fasrcsw/apps/Comp/intel/13.0.079-fasrc01/gsl/1.16-fasrc02/include:/n/sw/intel_cluster_studio-2013/composerxe/include/intel64:/n/sw/fasrcsw/apps/Core/nco/4.5.3-fasrc01/include:/n/sw/fasrcsw/apps/Core/antlr/2.7.7-fasrc01/include:/n/sw/fasrcsw/apps/Core/udunits/2.2.18-fasrc01/include
 
 #==============================================================================
 # Environment variables
@@ -114,3 +106,13 @@ export BASHRC=gchp.ifort15_mvapich2_odyssey.bashrc
 if [[ $- = *i* ]] ; then
   echo "Done sourcing $BASHRC"
 fi
+
+#==============================================================================
+# Aliases (edit as needed for your system and preferences)
+#==============================================================================
+alias mcs="make compile_standard"    # Recompile GC but not MAPL, ESMF, dycore
+alias mco="make cleanup_output"      # Clean run directory before a new run
+alias gchprun="sbatch gchp.run"      # Run GCHP (SLURM-specific, edit as needed)
+alias tfl="tail --follow gchp.log -n 100"  # Follow log output on screen
+alias checkgit="make printbuildinfo" # Show current code git info
+alias checkbuild="cat lastbuild"     # Show build code git info
