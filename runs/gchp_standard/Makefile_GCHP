@@ -142,7 +142,10 @@ cleanup_data:
 	rm -f *~
 
 cleanup_logs: 
-	rm -f *.log
+	rm -f gchp.log
+	rm -f HEMCO.log
+	rm -f PET*.log
+	rm -f runConfig.log
 	rm -f logfile.000000.out
 	rm -f slurm-*
 	rm -f 1
