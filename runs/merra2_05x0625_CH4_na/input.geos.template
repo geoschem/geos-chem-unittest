@@ -111,18 +111,11 @@ Species fluxes          : 0 0 0 0 0 0 0 0 0 1
  ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM]
 ------------------------+------------------------------------------------------
 %%% CH4 MENU %%%        :
-Compute CH4 budget?     : F
-Use Gas & Oil emis?     : T
-Use Coal Mine emis?     : T
-Use Livestock emis?     : T
-Use Waste emis?         : T
-Use Biofuel emis?       : T
-Use Rice emis?          : T
-Use Ot. Anthro emis?    : T
-Use Biomass emis?       : T
-Use Wetlands emis?      : T
-Use Soil Absorption?    : T
-Use Ot. Natural?        : T
+Use GOSAT obs operator? : F
+Use TCCON obs operator? : F
+Do analytical inversion?: F 
+ => Emiss perturbation  : 1.5
+ => Current cluster #   : 1
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH
 Schedule output for JAN : 3000000000000000000000000000000

@@ -1,4 +1,4 @@
-GEOS-CHEM UNIT TEST SIMULATION: {MET}_4x5_CH4
+GEOS-CHEM UNIT TEST SIMULATION: {MET}_2x25_tagCH4
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
@@ -18,9 +18,23 @@ Chem/emis timestep [min]: 20
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 9
-Number of Advected Spec.: 1
+Number of Advected Spec.: 15
 Species Entries ------->: Name
-Species #1              : CH4
+Species name            : CH4
+Species name            : CH4_OIL
+Species name            : CH4_GAS
+Species name            : CH4_COL
+Species name            : CH4_LIV
+Species name            : CH4_LDF
+Species name            : CH4_WST
+Species name            : CH4_RIC
+Species name            : CH4_OTA
+Species name            : CH4_BBN
+Species name            : CH4_WTL
+Species name            : CH4_SEE
+Species name            : CH4_LAK
+Species name            : CH4_TER
+Species name            : CH4_SAB
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
@@ -136,7 +150,7 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% :
-Binary punch file name  : trac_avg.{MET}_4x5_CH4.YYYYMMDDhhmm
+Binary punch file name  : trac_avg.{MET}_2x25_tagCH4.YYYYMMDDhhmm
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND01: Rn/Pb/Be source   :  0   all
 ND02: Rn/Pb/Be decay    :  0   all
@@ -280,15 +294,15 @@ File w/ final Ox        : Ox.mass.final
 Save TPCORE BC's        : F
 Input BCs at 2x2.5?     : F
 Over North America?     : F
-TPCORE NA BC directory  : BC_4x5_NA/
+TPCORE NA BC directory  : BC_2x25_NA/
 Over Europe?            : F
-TPCORE EU BC directory  : BC_4x5_EU/
+TPCORE EU BC directory  : BC_2x25_EU/
 Over China?             : F
-TPCORE CH BC directory  : BC_4x5_CH/
+TPCORE CH BC directory  : BC_2x25_CH/
 Over Asia?              : F
-TPCORE AS BC directory  : BC_4x5_AS/
+TPCORE AS BC directory  : BC_2x25_AS/
 Over Custom Region?     : F
-TPCORE BC directory     : BC_4x5/
+TPCORE BC directory     : BC_2x25/
 BC timestep [min]       : 180
 LL box of BC region     :   9  26
 UR box of BC region     :  29  41
