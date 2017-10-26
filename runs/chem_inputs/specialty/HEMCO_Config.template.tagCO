@@ -669,10 +669,14 @@ Mask fractions:              false
 
 #==============================================================================
 # --- VOC speciations ---
+#
+# CO sources are scaled to account for co-emitted VOCs. Fossil fuel and 
+# emissions are scaled by 19% and biomass burning emissions are scaled by 
+# 11%. More information is given in Duncan et al, JGR, 112, D22301 (2007). 
 #==============================================================================
-52 COPROD_FOSSIL    1.02  - - - xy 1 1
-53 COPROD_BIOFUEL   1.086 - - - xy 1 1
-54 COPROD_BIOMASS   1.05  - - - xy 1 1
+52 COPROD_FOSSIL   1.19  - - - xy 1 1
+53 COPROD_BIOFUEL  1.189 - - - xy 1 1
+54 COPROD_BIOMASS  1.11  - - - xy 1 1
 
 #==============================================================================
 # --- QFED2 diurnal scale factors ---
