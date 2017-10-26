@@ -43,9 +43,6 @@ Duration="{dYYYYMMDD} {dHHmmss}"
 cs_frequency="010000"
 cs_duration="010000"
 cs_mode="'time-averaged'"
-ll_frequency="010000"
-ll_duration="010000"
-ll_mode="'time-averaged'"
 
 #### TURN COMPONENTS ON/OFF
 Turn_on_Chemistry=T
@@ -155,7 +152,7 @@ replace_val npx           ${CUBE_SPHERE_RES}  fvcore_layout.rc
 replace_val npy           ${CUBE_SPHERE_RES}  fvcore_layout.rc
 replace_val GRIDNAME PE${CUBE_SPHERE_RES}x${CS_RES_TIMES_SIX}-CF GCHP.rc
 if [[ "${INITIAL_RESTART}" == 'default' ]]; then
-    replace_val GIGCchem_INTERNAL_RESTART_FILE "+initial_GEOSChem_rst.c${CUBE_SPHERE_RES}_standard.nc" GCHP.rc
+    replace_val GIGCchem_INTERNAL_RESTART_FILE "+initial_GEOSChem_rst.c${CUBE_SPHERE_RES}_{SIMULATION}.nc" GCHP.rc
 else
     replace_val GIGCchem_INTERNAL_RESTART_FILE "+${INITIAL_RESTART}" GCHP.rc
 fi
@@ -174,9 +171,6 @@ echo "Output:"
 replace_val center.frequency ${cs_frequency}  HISTORY.rc
 replace_val center.duration  ${cs_duration}   HISTORY.rc
 replace_val center.mode      ${cs_mode}       HISTORY.rc
-replace_val regrid.frequency ${ll_frequency}  HISTORY.rc
-replace_val regrid.duration  ${ll_duration}   HISTORY.rc
-replace_val regrid.mode      ${ll_mode}       HISTORY.rc
 
 #### Set timesteps based on input.geos
 echo " "

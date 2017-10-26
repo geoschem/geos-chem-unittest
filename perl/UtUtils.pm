@@ -508,13 +508,14 @@ sub makeGCHPcfg($$$$$$$) {
     chomp( $line );
   
     # Replace tokens
-    if ( $outFile =~ m/GCHP.rc/ ) {
+    if ( $outFile =~ m/GCHP.rc/ || $outFile =~ m/runConfig.sh/ ) {
       if  ( $sim =~ m/RnPbBe/ ) {
 	$line =~ s/{SIMULATION}/${sim}Pasv/g;
-    } else {
+      } else {
 	$line =~ s/{SIMULATION}/$sim/g;
       }      
-    } else {
+    }
+    if ( !($outFile =~ m/GCHP.rc/) ) {
       $line =~ s/{DATE1}/$dStr1/g;
       $line =~ s/{TIME1}/$tStr1/g;
       $line =~ s/{DATE2}/$dStr2/g; 
