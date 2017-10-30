@@ -42,10 +42,9 @@ module load git
 
 # These are for Intel 15 on Odyssey with MVAPICH2
 module load intel/15.0.0-fasrc01
-module load zlib/1.2.8-fasrc03
-module unload netcdf
-module load mvapich2/2.3b-fasrc01
-module load hdf5/1.10.1-fasrc01
+module load mvapich2/2.2-fasrc01
+module load zlib/1.2.8-fasrc07
+module load hdf5/1.8.12-fasrc12
 module load netcdf/4.1.3-fasrc09
 
 # Display loaded modules
