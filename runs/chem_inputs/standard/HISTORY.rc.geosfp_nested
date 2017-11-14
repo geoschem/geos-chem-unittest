@@ -21,7 +21,7 @@ COLLECTIONS: 'inst',
   inst.frequency:      001000,
   inst.duration:       240000,
   inst.mode:          'instantaneous',
-  inst.fields:        'SpeciesConc__?ADV?','GIGCchem'
+  inst.fields:        'SpeciesConc_?ADV?','GIGCchem'
                        ::
 
 
