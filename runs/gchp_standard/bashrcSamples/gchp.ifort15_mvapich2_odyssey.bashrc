@@ -42,9 +42,7 @@ module load git
 
 # These are for Intel 15 on Odyssey with MVAPICH2
 module load intel/15.0.0-fasrc01
-module load mvapich2/2.2-fasrc01
-module load zlib/1.2.8-fasrc07
-module load hdf5/1.8.12-fasrc12
+module load mvapich2/2.3b-fasrc01
 module load netcdf/4.1.3-fasrc09
 
 # Display loaded modules
@@ -113,5 +111,3 @@ alias mcs="make compile_standard"    # Recompile GC but not MAPL, ESMF, dycore
 alias mco="make cleanup_output"      # Clean run directory before a new run
 alias gchprun="sbatch gchp.run"      # Run GCHP (SLURM-specific, edit as needed)
 alias tfl="tail --follow gchp.log -n 100"  # Follow log output on screen
-alias checkgit="make printbuildinfo" # Show current code git info
-alias checkbuild="cat lastbuild"     # Show build code git info
