@@ -61,7 +61,7 @@
 # geosfp   2x25        -      standard         2013070100   2013080100     -
 # merra2   2x25        -      standard         2013070100   2013080100     -
 # ======= GEOS-Chem benchmark ======================================= =========
-#  geosfp   4x5         -      benchmark        2013070100   2013080100     -
+# geosfp   4x5         -      benchmark        2013070100   2013080100     -
 ## ======= GEOS-Chem 7-day time test ==========================================
 # geosfp   4x5         -      gc_timing        2013070100   2013070800     -
 ## ======= Radon-Lead-Beryllium ===============================================
@@ -124,11 +124,6 @@
 # merra2   4x5         -      complexSOA_SVPOA 2013070100   2013080100     -
 # geosfp   2x25        -      complexSOA_SVPOA 2013070100   2013080100     -
 # merra2   2x25        -      complexSOA_SVPOA 2013070100   2013080100     -
-## ======= Halogens ===========================================================
-# geosfp   4x5         -      halogens         2013070100   2013080100     -
-# merra2   4x5         -      halogens         2013070100   2013080100     -
-# geosfp   2x25        -      halogens         2013070100   2013080100     -
-# merra2   2x25        -      halogens         2013070100   2013080100     -
 ## ======= Acid uptake on dust ================================================
 # geosfp   4x5         -      aciduptake       2013070100   2013080100     -
 # geosfp   2x25        -      aciduptake       2013070100   2013080100     -

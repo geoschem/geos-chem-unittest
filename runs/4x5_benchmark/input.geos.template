@@ -18,7 +18,7 @@ Chem/emis timestep [min]: 20
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 157
+Number of Advected Spec.: 182
 Species Entries ------->: Name
 Species name            : NO
 Species name            : O3
@@ -177,6 +177,31 @@ Species name            : OClO
 Species name            : Cl2
 Species name            : Cl2O2
 Species name            : H2O
+Species name            : BrSALA
+Species name            : BrSALC
+Species name            : CHCl3
+Species name            : CH2Cl2
+Species name            : CH3I
+Species name            : CH2I2
+Species name            : CH2ICl
+Species name            : CH2IBr
+Species name            : HOI
+Species name            : I2
+Species name            : IBr
+Species name            : ICl
+Species name            : I
+Species name            : IO
+Species name            : HI
+Species name            : OIO
+Species name            : INO
+Species name            : IONO
+Species name            : IONO2
+Species name            : I2O2
+Species name            : I2O3
+Species name            : I2O4
+Species name            : ISALA
+Species name            : ISALC
+Species name            : AERI
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T

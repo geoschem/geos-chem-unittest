@@ -126,11 +126,6 @@
 # merra2   4x5         -      complexSOA_SVPOA 2013070100   2013070101     -
 # geosfp   2x25        -      complexSOA_SVPOA 2013070100   2013070101     -
 # merra2   2x25        -      complexSOA_SVPOA 2013070100   2013070101     -
-## ======= Halogens ===========================================================
-# geosfp   4x5         -      halogens         2013070100   2013070101     -
-# merra2   4x5         -      halogens         2013070100   2013070101     -
-# geosfp   2x25        -      halogens         2013070100   2013070101     -
-# merra2   2x25        -      halogens         2013070100   2013070101     -
 ## ======= Acid uptake on dust ================================================
 # geosfp   4x5         -      aciduptake       2013070100   2013070101     -
 # geosfp   2x25        -      aciduptake       2013070100   2013070101     -

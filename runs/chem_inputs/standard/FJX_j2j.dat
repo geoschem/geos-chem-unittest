@@ -113,4 +113,20 @@
  112 MONITS    PHOTON    MEK  NO2                          1.000 /ONIT1 /
  113 MONITU    PHOTON    RCHO NO2                          1.000 /ONIT1 /
  114 HONIT     PHOTON    HAC  NO2                          1.000 /ONIT1 /
+ 115 I2        PHOTON    I         I                       1.000 /I2    /
+ 116 HOI       PHOTON    I         OH                      1.000 /HOI   /
+ 117 IO        PHOTON    I         O                       1.000 /IO    /
+ 118 OIO       PHOTON    I         O2                      1.000 /OIO   /
+ 119 INO       PHOTON    I         NO                      1.000 /INO   /
+ 120 IONO      PHOTON    I         NO2                     1.000 /IONO  /
+ 121 IONO2     PHOTON    I         NO3                     1.000 /IONO2 /
+ 122 I2O2      PHOTON    I         OIO                     1.000 /I2O2  /
+ 123 CH3I      PHOTON    I         PRODUCTS                1.000 /CH3I  /
+ 124 CH2I2     PHOTON    I         I         PRODUCTS      1.000 /CH2I2 /
+ 125 CH2ICl    PHOTON    I         Cl        PRODUCTS      1.000 /CH2ICl/
+ 126 CH2IBr    PHOTON    I         Br        PRODUCTS      1.000 /CH2IBr/
+ 127 I2O4      PHOTON    OIO       OIO                     1.000 /I2O2  /
+ 128 I2O3      PHOTON    OIO       IO                      1.000 /I2O3  /
+ 129 IBr       PHOTON    I         Br                      1.000 /IBr   /
+ 130 ICl       PHOTON    I         Cl                      1.000 /ICl   /
 9999
