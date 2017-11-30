@@ -768,7 +768,5 @@ help:
 	@echo 'TRACEBACK=y       Compiles with traceback error printout'
 	@echo 'NO_ISO=n          Compiles with ISORROPIA on (default is off for diff testing)'
 	@echo 'TIMERS=1          Compiles GEOS-Chem with timers turned on'
-	@echo 'BPCH_RST_IN=y     Compiles GEOS-Chem such that binary-punch restart file is input at run-time (default is NetCDF)'
-	@echo 'BPCH_RST_OUT=y    Compiles GEOS-Chem such that binary-punch restart file is output at run-time (default is NetCDF)'
 	@echo 'NC_DIAG=y         Compiles GEOS-Chem such that diagnostics are output in NetCDF format (default is binary-punch)'
 #EOC
