@@ -1,4 +1,4 @@
-
+ls-
 EXPID:  OutputDir/GCHP
 EXPDSC: GEOS-Chem_devel
 CoresPerNode: 6
@@ -146,6 +146,31 @@ COLLECTIONS: 'center',
                     'SPC_Cl2     ',    'GIGCchem',
                     'SPC_Cl2O2   ',    'GIGCchem',
                     'SPC_H2O     ',    'GIGCchem',
+                    'BrSALA      ',    'GIGCchem',
+                    'BrSALC      ',    'GIGCchem',
+                    'CHCl3	 ',    'GIGCchem',
+                    'CH2Cl2	 ',    'GIGCchem',
+                    'CH3I	 ',    'GIGCchem',
+                    'CH2I2	 ',    'GIGCchem',
+                    'CH2ICl	 ',    'GIGCchem',
+                    'CH2IBr	 ',    'GIGCchem',
+                    'HOI	 ',    'GIGCchem',
+                    'I2		 ',    'GIGCchem',
+                    'IBr	 ',    'GIGCchem',
+                    'ICl	 ',    'GIGCchem',
+                    'I		 ',    'GIGCchem',
+                    'IO		 ',    'GIGCchem',
+                    'HI		 ',    'GIGCchem',
+                    'OIO	 ',    'GIGCchem',
+                    'INO	 ',    'GIGCchem',
+                    'IONO	 ',    'GIGCchem',
+                    'IONO2	 ',    'GIGCchem',
+                    'I2O2	 ',    'GIGCchem',
+                    'I2O3	 ',    'GIGCchem',
+                    'I2O4	 ',    'GIGCchem',
+                    'ISALA	 ',    'GIGCchem',
+                    'ISALC	 ',    'GIGCchem',
+                    'AERI        ',    'GIGCchem', 
   			  ::
 
 
