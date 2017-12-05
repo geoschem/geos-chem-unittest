@@ -227,12 +227,6 @@ ifeq ($(SIM),UCX)
  NO_REDUCED  :=y
 endif
 
-ifeq ($(SIM),halogens)
- UCX         :=y
- CHEM        :=Halogens
- NO_REDUCED  :=y
-endif
-
 ifeq ($(SIM),standard)
  UCX         :=y
  CHEM        :=Standard
@@ -724,8 +718,6 @@ printbuildinfo:
 	@echo "  MASSCONS     : $(MASSCONS)"
 	@echo "  TIMERS       : $(TIMERS)"
 	@echo "  TAU_PROF     : $(TAU_PROF)"
-	@echo "  BPCH_RST_IN  : $(BPCH_RST_IN)"
-	@echo "  BPCH_RST_OUT : $(BPCH_RST_OUT)"
 	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"
 	@echo "  NC_DIAG      : $(NC_DIAG)"
 	@echo "  COMPILER     : $(FC) $(COMPILER_VERSION)"
@@ -881,7 +873,5 @@ help:
 	@echo 'TRACEBACK=y       Compiles GEOS-Chem with traceback error printout (this is the default)'
 	@echo 'NO_ISO=y          Compiles GEOS-Chem and turns off ISORROPIA'
 	@echo 'TIMERS=1          Compiles GEOS-Chem with timers turned on'
-	@echo 'BPCH_RST_IN=y     Compiles GEOS-Chem such that binary-punch restart file is input at run-time (default is NetCDF)'
-	@echo 'BPCH_RST_OUT=y    Compiles GEOS-Chem such that binary-punch restart file is output at run-time (default is NetCDF)'
 	@echo 'NC_DIAG=y       Compiles GEOS-Chem such that diagnostics are output in NetCDF format (default is binary-punch)'
 #EOC
