@@ -11,8 +11,14 @@ COLLECTIONS: 'center',
   center.frequency:  010000
   center.duration:   010000
   center.mode:      'time-averaged'
-  center.fields:  'SPC_Rn',    'GIGCchem',
-                  'SPC_Pb',    'GIGCchem',
-                  'SPC_Be7',    'GIGCchem',
-                  'SPC_PASV',   'GIGCchem',
-  			  ::
+  center.fields:  'SPC_Rn',           'GIGCchem',
+                  'SPC_Pb',           'GIGCchem',
+                  'SPC_Be7',          'GIGCchem',
+                  'SPC_PASV',         'GIGCchem',
+                  #'SpeciesConc_Rn',   'GIGCchem',
+                  #'SpeciesConc_Pb',   'GIGCchem',
+                  #'SpeciesConc_Be7',  'GIGCchem',
+                  #'SpeciesConc_PASV', 'GIGCchem',
+                  #'RadDecay_Rn',     'GIGCchem',
+                  #'RadDecay_Pb',     'GIGCchem',
+                  #'RadDecay_Be7',    'GIGCchem',
