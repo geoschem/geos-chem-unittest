@@ -144,6 +144,49 @@ print O "$v2    : $val2\n";
 print O "% Difference : $pct\n";
 
 #--------------------------------------------
+# Print % difference in CH4 lifetime
+#--------------------------------------------
+
+# Budget files
+$file1 = "../../$v1/output/$v1.budget.fullchem";
+$file2 = "./$v2.budget.fullchem";
+
+# Parse budget files for the line w/ MCF lifetimes
+$line1 = qx( grep 'CH4' $file1 );
+$line2 = qx( grep 'CH4' $file2 );
+
+# Strip newlines
+chomp( $line1 );
+chomp( $line2 );
+
+# Split results by " "
+@tmp1 = split( " ", $line1 );
+@tmp2 = split( " ", $line2 );
+
+# MCF lifetime is 4th substring 
+$val1 = $tmp1[4];
+$val2 = $tmp2[4];
+
+# Compute percent difference
+$pct  = 100.0 * ( ( $val2 - $val1 ) / $val1 );
+
+# Print results to screen
+print "\n";
+print "CH4 LIFETIME w/r/t TROP OH [years]"."\n";
+print '----------------------------------'."\n";
+print "$v1    : $val1\n";
+print "$v2    : $val2\n";
+print "% Difference : $pct\n";
+
+# Print results to text file
+print O "\n";
+print O "CH4 LIFETIME w/r/t TROP OH [years]"."\n";
+print O '----------------------------------'."\n";
+print O "$v1    : $val1\n";
+print O "$v2    : $val2\n";
+print O "% Difference : $pct\n";
+
+#--------------------------------------------
 # Print % difference in O3 STE flux
 #--------------------------------------------
 
