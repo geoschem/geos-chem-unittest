@@ -4,7 +4,7 @@
 #SBATCH -N 1
 #SBATCH -t 0-12:00
 #SBATCH -p jacob-dev
-#SBATCH --mem=6000
+#SBATCH --mem=7000
 #SBATCH --mail-type=END
 
 #------------------------------------------------------------------------------
@@ -35,6 +35,13 @@
 #EOP
 #------------------------------------------------------------------------------
 #BOC
+
+# Load environment modules
+# This will load the IFORT11 compiler. If you use a different compiler, make
+# sure to load the proper modules. Examples of other bash scripts for loading
+# modules can be found in the ~/init/ directory.
+source ~/.bashrc
+source ~/init/init.gc-classic.ifort11
 
 # Set the proper # of threads for OpenMP
 # SLURM_CPUS_PER_TASK ensures this matches the number you set with -c above
