@@ -295,9 +295,11 @@ Warnings:                    {WARNINGS}
 #
 # NOTES:
 # - Use either this inventory or the wetland extension -- not both!
+# - Scale JPL wetland emissions by 9% to better match values in
+#   Kirschke et al., Nature Geoscience, 6, 2013.
 #==============================================================================
 (((JPL_WETCHARTS
-0 JPLW_CH4  $ROOT/CH4/v2017-10/JPL_WetCharts/JPL_WetCharts_$YYYY.Ensemble_Mean.1x1.nc emi_ch4 2009-2015/1-12/1/0 C xy molec/cm2/s CH4 - 10 1
+0 JPLW_CH4  $ROOT/CH4/v2017-10/JPL_WetCharts/JPL_WetCharts_$YYYY.Ensemble_Mean.1x1.nc emi_ch4 2009-2015/1-12/1/0 C xy molec/cm2/s CH4 2 10 1
 )))JPL_WETCHARTS
 
 #==============================================================================
@@ -468,10 +470,10 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- JPL WetCHARTs scale factors ---
 #
-# Scale JPL wetland emissions by 10% to better match values in
+# Scale JPL wetland emissions by 9% to better match values in
 #   Kirschke et al., Nature Geoscience, 6, 2013.
 #==============================================================================
-2 SCALE_WETLANDS  1.1 - - - xy 1 1
+2 SCALE_WETLANDS  1.09 - - - xy 1 1
 
 #==============================================================================
 # --- Seasonal scaling factors ----
