@@ -1,10 +1,10 @@
-iGEOS-CHEM UNIT TEST SIMULATION: gchp_standard
+iGEOS-CHEM UNIT TEST SIMULATION: gchp_benchmark
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
 End   YYYYMMDD, hhmmss  : {DATE2} {TIME2}
 Run directory           : ./
-Input restart file      : {DATA_ROOT}/SPC_RESTARTS/initial_GEOSChem_rst.c24_standard.nc
+Input restart file      : not_used
 Root data directory     : {DATA_ROOT}
  => GEOS-FP subdir      : GEOS_FP/YYYY/MM/
  => MERRA2  subdir      : MERRA2/YYYY/MM/
@@ -310,7 +310,7 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% :
-Binary punch file name  : trac_avg.{MET}_c24_standard.YYYYMMDDhhmm
+Binary punch file name  : trac_avg.not_used_in_gchp
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND01: Rn/Pb/Be source   :  0   all
 ND02: Rn/Pb/Be decay    :  0   all
