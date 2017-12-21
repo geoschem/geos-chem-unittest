@@ -380,10 +380,10 @@ LIANG_CHBR3    kg_m2_s-1  xy C N Y F- none none CHBr3_emission  ./MainDataDir/BR
 LIANG_CH2BR2   kg_m2_s-1  xy C N Y F- none none CH2Br2_emission ./MainDataDir/BROMINE/v2015-02/Bromocarb_Liang2010.nc
 #
 # Very-short-lived (VSL) iodocarbon emissions(cf. Carlos Ordonez)
-ORDONEZ_CH3I   kg_m-2_s-1 xy C N Y F2000-%m2-01T00:00:00 none none CH3I   ./MainDataDir/IODINE/v2017-09/CH3I_monthly_emissions_Ordonez_2012_COARDS.nc
-ORDONEZ_CH2I2  kg_m-2_s-1 xy C N Y F2000-%m2-01T00:00:00 none none CH2I2  ./MainDataDir/IODINE/v2017-09/CH2I2_monthly_emissions_Ordonez_2012_COARDS.nc
-ORDONEZ_CH2ICL kg_m-2_s-1 xy C N Y F2000-%m2-01T00:00:00 none none CH2ICl ./MainDataDir/IODINE/v2017-09/CH2ICl_monthly_emissions_Ordonez_2012_COARDS.nc
-ORDONEZ_CH2IBR kg_m-2_s-1 xy C N Y F2000-%m2-01T00:00:00 none none CH2IBr ./MainDataDir/IODINE/v2017-09/CH2IBr_monthly_emissions_Ordonez_2012_COARDS.nc
+ORDONEZ_CH3I   kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none CH3I   ./MainDataDir/IODINE/v2017-09/CH3I_monthly_emissions_Ordonez_2012_COARDS.nc
+ORDONEZ_CH2I2  kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none CH2I2  ./MainDataDir/IODINE/v2017-09/CH2I2_monthly_emissions_Ordonez_2012_COARDS.nc
+ORDONEZ_CH2ICL kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none CH2ICl ./MainDataDir/IODINE/v2017-09/CH2ICl_monthly_emissions_Ordonez_2012_COARDS.nc
+ORDONEZ_CH2IBR kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none CH2IBr ./MainDataDir/IODINE/v2017-09/CH2IBr_monthly_emissions_Ordonez_2012_COARDS.nc
 #
 # Need DE0360xPE0180_CFnnnnx6C.bin (for all of the following BOND emissions)
 # 12-month climatology
