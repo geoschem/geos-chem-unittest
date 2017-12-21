@@ -10,6 +10,12 @@
 # Define GEOS-Chem log file
 log="gchp.log"
 
+# Disable this if running consecutive jobs with the duration in which case
+# cap_restart is used, i.e. start and end span 1-year but duration is 1-month.
+if [[ -e cap_restart ]]; then
+   rm cap_restart
+fi
+
 # Sync all config files with settings in runConfig.sh                           
 ./runConfig.sh > runConfig.log
 if [[ $? == 0 ]]; then
@@ -19,15 +25,24 @@ if [[ $? == 0 ]]; then
     echo "WARNING: You are using environment settings in $BASHRC"
     source $BASHRC
 
-    # Start the simulation
-    # SLURM_NTASKS is set to #SBATCH -n and SLURM_NNODES is set to #SBATCH -N above
-    time srun -n $SLURM_NTASKS -N $SLURM_NNODES --mpi=pmi2 ./geos >> $log
+    NX=$( grep NX GCHP.rc | awk '{print $2}' )
+    NY=$( grep NY GCHP.rc | awk '{print $2}' )
+    coreCount=$(( $NX * $NY ))
+    # Note that $coreCount can be less than the requested cores in #SBATCH -n
 
-    # Echo end fin
+    # Echo start date
+    echo '===> Run started at' `date` >> $log
+
+    # Start the simulation
+    # SLURM_NTASKS is set to #SBATCH -n and SLURM_NNODES is set to 
+    # #SBATCH -N above
+    time srun -n $coreCount -N $SLURM_NNODES --mpi=pmi2 ./geos >> $log
+
+    # Echo end date
     echo '===> Run ended at' `date` >> $log
 
     # Echo info from computational cores to log file for displaying results
-    echo "# of CPUs : $SLURM_NTASKS"
+    echo "# of CPUs : $coreCount"
     echo "# of nodes: $SLURM_NNODES"
 
 else
