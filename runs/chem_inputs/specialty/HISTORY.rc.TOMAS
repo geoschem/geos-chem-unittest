@@ -3,6 +3,10 @@
 #####  in GEOS-Chem "Classic" simulations.  This will schedule only      #####
 #####  the advected species. (bmy, ewl, mps, 21 Dec 2017)                #####
 #####                                                                    #####
+#####  NOTE: The length of the simulation as specified in input.geos     #####
+#####  must be greater than or equal to the .frequency setting defined   #####
+#####  below.  Otherwise the simulation will halt with an error.         #####
+#####                                                                    #####
 #####  NOTE: For the TOMAS aerosol microphysics simulations, we use an   #####
 #####  update interval (e.g. "inst.frequency") of 30 minutes for unit    #####
 #####  tests.  This corresponds to the dynamic timestep setting.  You    #####
@@ -17,13 +21,13 @@ CoresPerNode: 6
 
 COLLECTIONS: 'inst',
               ::
-  inst.filename:  './GEOSChem.inst.%y4%m2%d2.nc4',
-  inst.frequency:  003000,
+  inst.template:  '%y4%m2%d2.nc4',
+  inst.frequency:  002000,
   inst.duration:   240000,
   inst.mode:      'instantaneous',
   inst.fields:    'SpeciesConc_?ADV?',           'GIGCchem',
                    ::
-
+ 
 ##############################################################################
 # MASTER LIST OF NETCDF DIAGNOSTIC NAMES
 #
@@ -59,28 +63,32 @@ COLLECTIONS: 'inst',
 #  'Chem_phCloud',                'GIGCchem',  # ND05 #19, fullchem/aer-only
 #  'ProdBCPIfromBCPO',            'GIGCchem',  # ND07 #4,  fullchem/aer-only
 #  'ProdOCPIfromOCPO',            'GIGCchem',  # ND07 #9,  fullchem/aer-only
-#  'CloudConvFlux_?ADV?',         'GIGCchem',  # ND14
-#  'Jval_?PHO?',                  'GIGCchem',  # ND22
-#  'JNoonDailyAvg_?PHO?',         'GIGCchem',  # ND22
-#  'JNoonDailyAvg_?PHO?',         'GIGCchem',  # ND22
-#  'AdvFluxZonal_?ADV?',          'GIGCchem',  # ND24
-#  'AdvFluxMerid_?ADV?',          'GIGCchem',  # ND25
-#  'AdvFluxVert_?ADV?',           'GIGCchem',  # ND26
-#  'Met_Pedge',                   'GIGCchem',  # ND31
-#  'WetLossConv_?WET?',           'GIGCchem',  # ND38
-#  'WetLossLS_?WET?',             'GIGCchem',  # ND39
+#  'CloudConvFlux_?ADV?',         'GIGCchem',  # ND14      all simulations
+#  'Jval_?PHO?',                  'GIGCchem',  # ND22      fullchem
+#  'JNoonDailyAvg_?PHO?',         'GIGCchem',  # ND22      fullchem
+#  'JNoonMonthlyAvg_?PHO?',       'GIGCchem',  # ND22      fullchem
+#  'AdvFluxZonal_?ADV?',          'GIGCchem',  # ND24      all simulations
+#  'AdvFluxMerid_?ADV?',          'GIGCchem',  # ND25      all simulations
+#  'AdvFluxVert_?ADV?',           'GIGCchem',  # ND26      all simulations
+#  'Met_Pedge',                   'GIGCchem',  # ND31      all simulations
+#  'WetLossConv_?WET?',           'GIGCchem',  # ND38      all sims w/ wetdep 
+#  'WetLossLS_?WET?',             'GIGCchem',  # ND39      all sims w/ wetdep
+#  'TerpeneSOA',                  'GIGCchem',  # ND42 #1,  fullchem/aer-only
+#  'IsopreneSOA',                 'GIGCchem',  # ND42 #2,  fullchem/aer-only
+#  'AromaticSOA',                 'GIGCchem',  # ND42 #3   fullchem/aer-only
+#  'PM25',                        'GIGCchem',  # ND42 #18  fullchem/aer-only
 #  'OHconcAfterChem',             'GIGCchem',  # ND43 #1,  fullchem
 #  'HO2concAfterChem',            'GIGCchem',  # ND43 #3,  fullchem
 #  'O1DconcAfterChem',            'GIGCchem',  # ND43 #4,  fullchem
 #  'O3PconcAfterChem',            'GIGCchem',  # ND43 #5,  fullchem
-#  'DryDepChm_?DRY?',             'GIGCchem',  # ND44 #1 
-#  'DryDepMix_?DRY?',             'GIGCchem',  # ND44 #1
-#  'DryDepVel_?DRY?',             'GIGCchem',  # ND44 #2
-#  'Met_TropLev',                 'GIGCchem',  # ND55 #1
-#  'Met_TropHt',                  'GIGCchem',  # ND55 #2
-#  'Met_Tropp',                   'GIGCchem',  # ND55 #3
-#  'Loss_?LOS?',                  'GIGCchem',  # ND65
-#  'Prod_?PRD?',                  'GIGCchem',  # ND65
+#  'DryDepChm_?DRY?',             'GIGCchem',  # ND44 #1   all sims w/ drydep
+#  'DryDepMix_?DRY?',             'GIGCchem',  # ND44 #1   all sims w/ drydep
+#  'DryDepVel_?DRY?',             'GIGCchem',  # ND44 #2   all sims w/ drydep
+#  'Met_TropLev',                 'GIGCchem',  # ND55 #1   all simulations
+#  'Met_TropHt',                  'GIGCchem',  # ND55 #2   all simulations
+#  'Met_Tropp',                   'GIGCchem',  # ND55 #3   all simulations
+#  'Loss_?LOS?',                  'GIGCchem',  # ND65      fullchem
+#  'Prod_?PRD?',                  'GIGCchem',  # ND65      fullchem
 #  'Prod_?FAM?'                   'GIGCchem',  # ND65      fullchem/tagO3/tagCO
 #  'Loss_?FAM?'                   'GIGCchem',  # ND65      fullchem/tagO3/tagCO
 #  'Chem_phSav',                  'GIGCchem',  # ND73 #1,  fullchem/aer-only
@@ -94,7 +102,7 @@ COLLECTIONS: 'inst',
 # Not yet implemented (but soon)
 #
 #  'LossCH4byOH'                  'GIGCchem',  # ND19 #1,  CH4 sim
-#  'Met_Landmap',                 'GIGCchem',  # ND30
+#  'Met_Landmap',                 'GIGCchem',  # ND30      all simulations
 #  'UVFluxDiffuse',               'GIGCchem',  # ND64 #1,  fullchem
 #  'UVFluxDirect',                'GIGCchem',  # ND64 #2,  fullchem
 #  'UVFluxNet',                   'GIGCchem',  # ND64 #3,  fullchem
