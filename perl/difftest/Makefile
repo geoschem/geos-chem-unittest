@@ -333,9 +333,13 @@ else
 
 endif
 
-# Error check, make sure to strip out " characters from commit string
+# Error check, make sure to strip out quote characters from each commit string
 # or else GNU Make will think that the string is ending prematurely.
-LAST_COMMIT :=$(shell echo '$(LAST_COMMIT)' | sed 's|"||g')
+# See: https://stackoverflow.com/questions/10424645/how-to-convert-a-quoted-string-to-a-normal-one-in-makefile
+LAST_COMMIT_REF := $(subst $\",,$(LAST_COMMIT_REF))
+LAST_COMMIT_REF := $(subst $\',,$(LAST_COMMIT_REF))
+LAST_COMMIT_DEV := $(subst $\",,$(LAST_COMMIT_DEV))
+LAST_COMMIT_DEV := $(subst $\',,$(LAST_COMMIT_DEV))
 
 # Get compiler version
 COMPILER_VERSION_LONG :=$(shell $(FC) --version))
