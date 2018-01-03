@@ -108,6 +108,7 @@ Warnings:                    {WARNINGS}
     --> GEIA                 :       true
     --> POET                 :       true
     --> LIANG_BROMOCARB      :       true
+    --> ORDONEZ_IODOCARB     :       true
     --> NEI2005              :       false
     --> NEI2011_HOURLY       :       false
     --> NEI2011_MONMEAN      :       true
@@ -137,13 +138,15 @@ Warnings:                    {WARNINGS}
     --> Use fertilizer NOx   :       true
 105     DustDead             : on    DST1/DST2/DST3/DST4 
 106     DustGinoux           : off   DST1/DST2/DST3/DST4
-107     SeaSalt              : on    SALA/SALC/Br2
+107     SeaSalt              : on    SALA/SALC/Br2/BrSALA/BrSALC
     --> SALA lower radius    :       0.01 
     --> SALA upper radius    :       0.5
     --> SALC lower radius    :       0.5
     --> SALC upper radius    :       8.0
-    --> Emit Br2             :       true  
-    --> Br2 scaling          :       1.0 
+    --> Emit Br2             :       false
+    --> Br2 scaling          :       1.0
+    --> Model sea salt Br-   :       false
+    --> Br- mass ratio       :       2.11e-3
 108     MEGAN                : on    ISOP/ACET/PRPE/C2H4/ALD2/EOH/SOAP/SOAS
     --> Isoprene scaling     :       1.0 
     --> CO2 inhibition       :       true
@@ -181,7 +184,10 @@ Warnings:                    {WARNINGS}
     --> hydrophilic OC       :       0.5
 115     DustAlk              : off   DSTAL1/DSTAL2/DSTAL3/DSTAL4
 116     MarinePOA            : off   MOPO/MOPI 
-120     TOMAS_Jeagle         : on    SS1/SS2/SS3/SS4/SS5/SS6/SS7/SS8/SS9/SS10/SS11/SS12/SS13/SS14/SS15/SS16/SS17/SS18/SS19/SS20/SS21/SS22/SS23/SS24/SS25/SS26/SS27/SS28/SS29/SS30/SS31/SS32/SS33/SS34/SS35/SS36/SS37/SS38/SS39/SS40
+120     Inorg_Iodine         : on    HOI/I2
+    --> Emit HOI             :       true
+    --> Emit I2              :       true
+130     TOMAS_Jeagle         : on    SS1/SS2/SS3/SS4/SS5/SS6/SS7/SS8/SS9/SS10/SS11/SS12/SS13/SS14/SS15/SS16/SS17/SS18/SS19/SS20/SS21/SS22/SS23/SS24/SS25/SS26/SS27/SS28/SS29/SS30/SS31/SS32/SS33/SS34/SS35/SS36/SS37/SS38/SS39/SS40
 ### END SECTION EXTENSION SWITCHES ###
 
 ###############################################################################
@@ -1068,6 +1074,16 @@ Warnings:                    {WARNINGS}
 )))LIANG_BROMOCARB
 
 #==============================================================================
+# --- Very-short-lived (VSL) iodocarbon emissions (cf. Carlos Ordonez) ---
+#==============================================================================
+(((ORDONEZ_IODOCARB
+0 ORDONEZ_CH3I   $ROOT/IODINE/v2017-09/CH3I_monthly_emissions_Ordonez_2012_COARDS.nc   CH3I   2000/1-12/1/0 C xy kg/m2/s CH3I   - 1 50
+0 ORDONEZ_CH2I2  $ROOT/IODINE/v2017-09/CH2I2_monthly_emissions_Ordonez_2012_COARDS.nc  CH2I2  2000/1-12/1/0 C xy kg/m2/s CH2I2  - 1 1
+0 ORDONEZ_CH2ICL $ROOT/IODINE/v2017-09/CH2ICl_monthly_emissions_Ordonez_2012_COARDS.nc CH2ICl 2000/1-12/1/0 C xy kg/m2/s CH2ICl - 1 1
+0 ORDONEZ_CH2IBR $ROOT/IODINE/v2017-09/CH2IBr_monthly_emissions_Ordonez_2012_COARDS.nc CH2IBr 2000/1-12/1/0 C xy kg/m2/s CH2IBr - 1 1
+)))ORDONEZ_IODOCARB
+
+#==============================================================================
 # --- Ship emissions ---
 #
 # ==> In the defaults, ARCTAS SO2 has priority over ICOADS, CORBETT, and HTAP.
@@ -1625,6 +1641,11 @@ Warnings:                    {WARNINGS}
 114 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype9 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
 )))FINN_daily
 
+#==============================================================================
+# --- Inorganic iodine emissions (Extension 115) 
+#==============================================================================
+# --- No external data --- 
+
 ###############################################################################
 ### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
 ###
@@ -1941,6 +1962,69 @@ Warnings:                    {WARNINGS}
 * GMI_PROD_VRO2       $ROOT/GMI/v2015-02/gmi.clim.VRO2.geos5.2x25.nc           prod    2000/1-12/1/0 C xyz v/v/s VRO2     - 1  1
 * GMI_LOSS_VRP        $ROOT/GMI/v2015-02/gmi.clim.VRP.geos5.2x25.nc            loss    2000/1-12/1/0 C xyz s-1   VRP      - 1  1
 * GMI_PROD_VRP        $ROOT/GMI/v2015-02/gmi.clim.VRP.geos5.2x25.nc            prod    2000/1-12/1/0 C xyz v/v/s VRP      - 1  1
+
+#------------------------------------------------------------------------------
+#--- UCX chemistry: prod/loss rates (for strato-/mesosphere) ---
+#
+# NOTE: These are needed for certain Cl and I species. In v11-02e we will get
+# all prod/loss rates from UCX instead of GMI.
+#------------------------------------------------------------------------------
+* UCX_PROD_ClNO3      $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PClNO3  2013/1-12/1/0 C xyz molec/cm3/s ClNO3  - 1 1
+* UCX_LOSS_ClNO3      $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LClNO3  2013/1-12/1/0 C xyz molec/cm3/s ClNO3  - 1 1
+* UCX_PROD_ClNO2      $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PClNO2  2013/1-12/1/0 C xyz molec/cm3/s ClNO2  - 1 1
+* UCX_LOSS_ClNO2      $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LClNO2  2013/1-12/1/0 C xyz molec/cm3/s ClNO2  - 1 1
+* UCX_PROD_ClOO       $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PClOO   2013/1-12/1/0 C xyz molec/cm3/s ClOO   - 1 1
+* UCX_LOSS_ClOO       $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LClOO   2013/1-12/1/0 C xyz molec/cm3/s ClOO   - 1 1
+* UCX_PROD_BrSALA     $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PBrSALA 2013/1-12/1/0 C xyz molec/cm3/s BrSALA - 1 1
+* UCX_LOSS_BrSALA     $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LBrSALA 2013/1-12/1/0 C xyz molec/cm3/s BrSALA - 1 1
+* UCX_PROD_BrSALC     $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PBrSALC 2013/1-12/1/0 C xyz molec/cm3/s BrSALC - 1 1
+* UCX_LOSS_BrSALC     $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LBrSALC 2013/1-12/1/0 C xyz molec/cm3/s BrSALC - 1 1
+* UCX_PROD_CHCl3      $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PCHCl3  2013/1-12/1/0 C xyz molec/cm3/s CHCl3  - 1 1
+* UCX_LOSS_CHCl3      $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LCHCl3  2013/1-12/1/0 C xyz molec/cm3/s CHCl3  - 1 1
+* UCX_PROD_CH2Cl2     $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PCH2Cl2 2013/1-12/1/0 C xyz molec/cm3/s CH2Cl2 - 1 1
+* UCX_LOSS_CH2Cl2     $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LCH2Cl2 2013/1-12/1/0 C xyz molec/cm3/s CH2Cl2 - 1 1
+* UCX_PROD_CH3I       $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PCH3I   2013/1-12/1/0 C xyz molec/cm3/s CH3I   - 1 1
+* UCX_LOSS_CH3I       $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LCH3I   2013/1-12/1/0 C xyz molec/cm3/s CH3I   - 1 1
+* UCX_PROD_CH2I2      $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PCH2I2  2013/1-12/1/0 C xyz molec/cm3/s CH2I2  - 1 1
+* UCX_LOSS_CH2I2      $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LCH2I2  2013/1-12/1/0 C xyz molec/cm3/s CH2I2  - 1 1
+* UCX_PROD_CH2ICl     $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PCH2ICl 2013/1-12/1/0 C xyz molec/cm3/s CH2ICl - 1 1
+* UCX_LOSS_CH2ICl     $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LCH2ICl 2013/1-12/1/0 C xyz molec/cm3/s CH2ICl - 1 1
+* UCX_PROD_CH2IBr     $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PCH2IBr 2013/1-12/1/0 C xyz molec/cm3/s CH2IBr - 1 1
+* UCX_LOSS_CH2IBr     $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LCH2IBr 2013/1-12/1/0 C xyz molec/cm3/s CH2IBr - 1 1
+* UCX_PROD_HOI        $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PHOI    2013/1-12/1/0 C xyz molec/cm3/s HOI    - 1 1
+* UCX_LOSS_HOI        $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LHOI    2013/1-12/1/0 C xyz molec/cm3/s HOI    - 1 1
+* UCX_PROD_I2         $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PI2     2013/1-12/1/0 C xyz molec/cm3/s I2     - 1 1
+* UCX_LOSS_I2         $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LI2     2013/1-12/1/0 C xyz molec/cm3/s I2     - 1 1
+* UCX_PROD_IBr        $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PIBr    2013/1-12/1/0 C xyz molec/cm3/s IBr    - 1 1
+* UCX_LOSS_IBr        $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LIBr    2013/1-12/1/0 C xyz molec/cm3/s IBr    - 1 1
+* UCX_PROD_ICl        $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PICl    2013/1-12/1/0 C xyz molec/cm3/s ICl    - 1 1
+* UCX_LOSS_ICl        $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LICl    2013/1-12/1/0 C xyz molec/cm3/s ICl    - 1 1
+* UCX_PROD_I          $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PI      2013/1-12/1/0 C xyz molec/cm3/s I      - 1 1
+* UCX_LOSS_I          $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LI      2013/1-12/1/0 C xyz molec/cm3/s I      - 1 1
+* UCX_PROD_IO         $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PIO     2013/1-12/1/0 C xyz molec/cm3/s IO     - 1 1
+* UCX_LOSS_IO         $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LIO     2013/1-12/1/0 C xyz molec/cm3/s IO     - 1 1
+* UCX_PROD_HI         $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PHI     2013/1-12/1/0 C xyz molec/cm3/s HI     - 1 1
+* UCX_LOSS_HI         $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LHI     2013/1-12/1/0 C xyz molec/cm3/s HI     - 1 1
+* UCX_PROD_OIO        $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__POIO    2013/1-12/1/0 C xyz molec/cm3/s OIO    - 1 1
+* UCX_LOSS_OIO        $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LOIO    2013/1-12/1/0 C xyz molec/cm3/s OIO    - 1 1
+* UCX_PROD_INO        $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PINO    2013/1-12/1/0 C xyz molec/cm3/s INO    - 1 1
+* UCX_LOSS_INO        $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LINO    2013/1-12/1/0 C xyz molec/cm3/s INO    - 1 1
+* UCX_PROD_IONO       $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PIONO   2013/1-12/1/0 C xyz molec/cm3/s IONO   - 1 1
+* UCX_LOSS_IONO       $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LIONO   2013/1-12/1/0 C xyz molec/cm3/s IONO   - 1 1
+* UCX_PROD_IONO2      $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PIONO2  2013/1-12/1/0 C xyz molec/cm3/s IONO2  - 1 1
+* UCX_LOSS_IONO2      $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LIONO2  2013/1-12/1/0 C xyz molec/cm3/s IONO2  - 1 1
+* UCX_PROD_I2O2       $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PI2O2   2013/1-12/1/0 C xyz molec/cm3/s I2O2   - 1 1
+* UCX_LOSS_I2O2       $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LI2O2   2013/1-12/1/0 C xyz molec/cm3/s I2O2   - 1 1
+* UCX_PROD_I2O3       $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PI2O3   2013/1-12/1/0 C xyz molec/cm3/s I2O3   - 1 1
+* UCX_LOSS_I2O3       $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LI2O3   2013/1-12/1/0 C xyz molec/cm3/s I2O3   - 1 1
+* UCX_PROD_I2O4       $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PI2O4   2013/1-12/1/0 C xyz molec/cm3/s I2O4   - 1 1
+* UCX_LOSS_I2O4       $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LI2O4   2013/1-12/1/0 C xyz molec/cm3/s I2O4   - 1 1
+* UCX_PROD_ISALA      $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PISALA  2013/1-12/1/0 C xyz molec/cm3/s ISALA  - 1 1
+* UCX_LOSS_ISALA      $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LISALA  2013/1-12/1/0 C xyz molec/cm3/s ISALA  - 1 1
+* UCX_PROD_ISALC      $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PISALC  2013/1-12/1/0 C xyz molec/cm3/s ISALC  - 1 1
+* UCX_LOSS_ISALC      $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LISALC  2013/1-12/1/0 C xyz molec/cm3/s ISALC  - 1 1
+* UCX_PROD_AERI       $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__PAERI   2013/1-12/1/0 C xyz molec/cm3/s AERI   - 1 1
+* UCX_LOSS_AERI       $ROOT/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc PORL_L_S__LAERI   2013/1-12/1/0 C xyz molec/cm3/s AERI   - 1 1
 
 # Archived OH concentrations. These are always needed, so set species to wildcard (*) to make
 # sure that this entry will always be read. 
