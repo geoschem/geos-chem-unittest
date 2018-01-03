@@ -6,7 +6,7 @@ CoresPerNode: 6
 
 COLLECTIONS: 'center',
              ::
-  center.template:  '%y4%m2%d2.nc4',
+  center.template:  '%y4%m2%d2_%h2%n2z.nc4',
   center.format:    'CFIO',
   center.frequency:  010000
   center.duration:   010000
