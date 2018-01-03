@@ -70,6 +70,9 @@ Turn_on_PBL_Mixing=T
 ####        TransConv_Timestep_min=5
 ####        ChemEmis_Timestep_min=10
 ####    fi
+#### Override these recommendations with GEOS-Chem Classic timestep
+#### settings if benchmarking GCHP as a comparison with GEOS-Chem Classic 
+####
 TransConv_Timestep_min=10
 ChemEmis_Timestep_min=20
 
