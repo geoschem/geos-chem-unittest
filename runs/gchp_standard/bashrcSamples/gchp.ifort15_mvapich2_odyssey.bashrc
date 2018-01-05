@@ -48,21 +48,28 @@ module load netcdf/4.1.3-fasrc09
 # Display loaded modules
 module list
 
+#==============================================================================
+# Environment variables
+#==============================================================================
+
 # MPI environment variables
 export ESMF_COMM=mvapich2
 export MVAPICH2=$( dirname $( dirname $( which mpirun ) ) )
 export MPI_ROOT=$( dirname $( dirname $( which mpirun ) ) )
 
-# Suppress MVAPICH2 warning message if OpenMP is used
+# Suppress MVAPICH2 warning message for if OpenMP is used
 export MV2_USE_THREAD_WARNING=0
 
-# Made links to all the relevant files somewhere accessible
+# Turn off core bindings in MVAPICH2 (use SLURM instead)
+export MV2_ENABLE_AFFINITY=0
+
+# Turn off shared mem pool for bound cores (use SLURM plane in
+# srun instead)
+export MV2_USE_SHARED_MEM=0
+
+# Make links to all the relevant files somewhere accessible
 export PATH=${NETCDF_HOME}/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_HOME}/lib
-
-#==============================================================================
-# Environment variables
-#==============================================================================
 
 # NetCDF library paths for GEOS-Chem
 export GC_BIN="$NETCDF_HOME/bin"
@@ -81,17 +88,8 @@ export OMPI_CC=$CC                             # C compiler for MPI
 export OMPI_CXX=$CXX                           # C++ compiler for MPI
 export OMP_NUM_THREADS=$SLURM_NTASKS           # Default # of threads
 
-# Max out the stack memory
-# OMP_STACKSIZE works with all compilers; KMP_STACKSIZE works only w/ Intel
-#export KMP_STACKSIZE=5000000000000000000                 # Kludge for OpenMP
-# Had to increase this - global 0.25x0.3125 is quite demanding
-# Actual maximum
-#export KMP_STACKSIZE=9223372036854775807
-#export KMP_STACKSIZE=9000000000000000000
-# WARNING: Setting it too large can ALSO cause problems!
+# Memory settings
 export KMP_STACKSIZE=30g
-
-# NEW
 ulimit -v unlimited              # vmemoryuse
 ulimit -l unlimited              # memorylocked
 ulimit -u unlimited              # maxproc
@@ -105,7 +103,7 @@ if [[ $- = *i* ]] ; then
 fi
 
 #==============================================================================
-# Aliases (edit as needed for your system and preferences)
+# Aliases
 #==============================================================================
 alias mcs="make compile_standard"    # Recompile GC but not MAPL, ESMF, dycore
 alias mco="make cleanup_output"      # Clean run directory before a new run
