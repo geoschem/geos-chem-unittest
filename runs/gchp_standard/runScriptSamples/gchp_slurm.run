@@ -4,8 +4,11 @@
 #SBATCH -N 1
 #SBATCH -t 0-1:00
 #SBATCH -p regal
-#SBATCH --mem-per-cpu=7000
+#SBATCH --mem=50000
 #SBATCH --mail-type=ALL
+
+# See SLURM documentation for descriptions of the above settings as well
+# as many other settings you may use.
 
 # Define GEOS-Chem log file
 log="gchp.log"
@@ -27,29 +30,29 @@ if [[ $? == 0 ]]; then
 
     NX=$( grep NX GCHP.rc | awk '{print $2}' )
     NY=$( grep NY GCHP.rc | awk '{print $2}' )
-    coreCount=$(( $NX * $NY ))
+    coreCount=$(( ${NX} * ${NY} ))
     # Note that $coreCount can be less than the requested cores in #SBATCH -n
 
     # Use SLURM to distribute tasks across nodes
-    planeCount=$(( $coreCount / $SLURM_NNODES ))
-    if [[ $(( $coreCount % $SLURM_NNODES )) > 0 ]]; then
-	$planeCount=$(( $planeCount + 1 ))
+    planeCount=$(( ${coreCount} / ${SLURM_NNODES} ))
+    if [[ $(( ${coreCount} % ${SLURM_NNODES} )) > 0 ]]; then
+	${planeCount}=$(( ${planeCount} + 1 ))
     fi
-
-    # Echo start date
-    echo '===> Run started at' `date` >> $log
-
-    # Start the simulation
-    # SLURM_NTASKS is set to #SBATCH -n and SLURM_NNODES is set to 
-    # #SBATCH -N above
-    time srun -n $coreCount -N $SLURM_NNODES -m plane=$planeCount --mpi=pmi2 ./geos >> $log
-
-    # Echo end date
-    echo '===> Run ended at' `date` >> $log
 
     # Echo info from computational cores to log file for displaying results
     echo "# of CPUs : $coreCount"
     echo "# of nodes: $SLURM_NNODES"
+    echo "-m plane  : ${planeCount}"
+
+    # Echo start date
+    echo '===> Run started at' `date` >> ${log}
+
+    # Start the simulation
+    # SLURM_NTASKS is #SBATCH -n and SLURM_NNODES is #SBATCH -N above
+    time srun -n ${coreCount} -N ${SLURM_NNODES} -m plane=${planeCount} --mpi=pmi2 ./geos >> ${log}
+
+    # Echo end date
+    echo '===> Run ended at' `date` >> ${log}
 
 else
     cat runConfig.log
