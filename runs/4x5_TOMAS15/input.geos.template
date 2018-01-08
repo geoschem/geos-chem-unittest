@@ -353,6 +353,9 @@ NAT supercooling req.(K): 3.0
 Ice supersaturation req.: 1.2
 Perform PSC het. chem.? : F
 Calc. strat. aero. OD?  : F
+Enhance BC Absorption?  : T
+ => hydrophilic BC      : 1.5
+ => hydrophobic BC      : 1.0
 ------------------------+------------------------------------------------------
 %%% DEPOSITION MENU %%% :
 Turn on Dry Deposition? : T
