@@ -950,6 +950,7 @@ sub readResults($$) {
   my $version  = "";
   my $dateRan  = "";
   my $describe = "";
+  my $makeCmd  = "";
 
   # HTML color values
   my $WHITE    = "#FFFFFF";
@@ -997,10 +998,18 @@ sub readResults($$) {
       $describe =~ s/^\s+//; 
       $describe =~ s/^\s+$//;
 
+      # Make command
+      ++$i;     
+      @subStr   =  split( '\:', $txt[++$i] );
+      $makeCmd  =  $subStr[1];
+      $makeCmd  =~ s/^\s+//; 
+      $makeCmd  =~ s/^\s+$//;
+
       # Store in the hash
       $unitTests{ "UNIT_TEST_VERSION"  } = $version;
       $unitTests{ "UNIT_TEST_DATE"     } = $dateRan;
       $unitTests{ "UNIT_TEST_DESCRIBE" } = $describe;
+      $unitTests{ "UNIT_TEST_MAKECMD"  } = $makeCmd;
     }
     
     #-------------------------------------------------------------------------
@@ -1138,9 +1147,7 @@ sub makeMatrix($$%) {
     while ( ( $utName, $utColor ) = each( %unitTests ) ) { 
 
       # Text-replace header information
-      if ( ( index ($line, "UNIT_TEST_DESCRIBE") != -1 ) ||
-           ( index ($line, "UNIT_TEST_DATE"    ) != -1 ) ||
-           ( index ($line, "UNIT_TEST_VERSION" ) != -1 ) ) {
+      if ( $line =~ m/UNIT_TEST/ ) {
         $line =~ s/$utName/$utColor/g;
       }
 
