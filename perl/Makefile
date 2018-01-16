@@ -149,10 +149,12 @@ ifndef TAU_PROF
  TAU_PROF    :=n
 endif
 
+# Default: BPCH_DIAG is always turned ON (unless user says otherwise)
 ifndef BPCH_DIAG
  BPCH_DIAG   :=y
 endif
 
+# Default: NC_DIAG is always turned OFF (unless user says otherwise)
 ifndef NC_DIAG
  NC_DIAG     :=n
 endif
@@ -162,10 +164,29 @@ endif
 # netCDF diagnostic option is standard in GEOS-Chem. (bmy, 9/20/17)
 REGEXP       :=(^[Yy]|^[Yy][Ee][Ss])
 ifeq ($(shell [[ "$(NC_DIAG)" =~ $(REGEXP) ]] && echo true),true)
-  IS_NC_DIAG := 1
+  IS_NC_DIAG := 2
 else
   IS_NC_DIAG := 0
 endif
+
+# Add a robust check whether or not we are using bpch diagnostics so that
+# we can also binary-check the History file.  We can remove this when the
+# netCDF diagnostic option is standard in GEOS-Chem. (bmy, 1/16/18)
+REGEXP       :=(^[Yy]|^[Yy][Ee][Ss])
+ifeq ($(shell [[ "$(BPCH_DIAG)" =~ $(REGEXP) ]] && echo true),true)
+  IS_BPCH_DIAG := 4
+else
+  IS_BPCH_DIAG := 0
+endif
+
+# Sum of IS_BPCH_DIAG and IS_NC_DIAG
+# NOTE: GNU Make does not allow for numeric equality test so we have
+# to do this kind of ugly kludge.  See this poste on Stack Overflow:
+#stackoverflow.com/questions/3728372/version-number-comparison-inside-makefile
+DIAGSUM := $$((1 + $(IS_BPCH_DIAG) + $(IS_NC_DIAG) ))
+DIAGSUM_IS_7 := $(shell echo $(DIAGSUM)\==7 | bc)
+DIAGSUM_IS_5 := $(shell echo $(DIAGSUM)\==5 | bc)
+DIAGSUM_IS_3 := $(shell echo $(DIAGSUM)\==3 | bc)
 
 ###############################################################################
 #####                                                                     #####
@@ -381,7 +402,7 @@ endif
 # PHONY targets don't actually compile anything. They either are
 # synonyms for other targets, they remove files, or they print output.
 .PHONY: all     dataclean  logclean   fileclean  spclean      tauclean
-.PHONY: mpclean spexeclean mpexeclean superclean printallinfo
+.PHONY: mpclean spexeclean mpexeclean superclean printallinfo check
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Build and Run          %
@@ -762,15 +783,23 @@ addsuffixmp:
 	if [[ -f $(LOG_HMCO) ]]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
 
 check:
-ifeq ($(IS_NC_DIAG),1)
-	@$(VALIDATE) $(GC_DIAG).sp  $(GC_DIAG).mp  2 0 >> $(RESULTS)
-	@$(VALIDATE) $(GC_RST).sp   $(GC_RST).mp   0 0 >> $(RESULTS)
-	@$(VALIDATE) $(HIST_INS).sp $(HIST_INS).mp 0 0 >> $(RESULTS)
-	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
+ifeq ($(DIAGSUM_IS_7),1)
+	@$(VALIDATE) $(GC_DIAG).sp  $(GC_DIAG).mp  7 0 $(RUNID) >> $(RESULTS)
+	@$(VALIDATE) $(GC_RST).sp   $(GC_RST).mp   0 0          >> $(RESULTS)
+	@$(VALIDATE) $(HIST_INS).sp $(HIST_INS).mp 0 0          >> $(RESULTS)
+	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1          >> $(RESULTS)
 else
-	@$(VALIDATE) $(GC_DIAG).sp  $(GC_DIAG).mp  1 0 >> $(RESULTS)
-	@$(VALIDATE) $(GC_RST).sp   $(GC_RST).mp   0 0 >> $(RESULTS)
-	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1 >> $(RESULTS)
+ifeq ($(DIAGSUM_IS_5),1)
+	@$(VALIDATE) $(GC_DIAG).sp  $(GC_DIAG).mp  5 0 $(RUNID) >> $(RESULTS)
+	@$(VALIDATE) $(GC_RST).sp   $(GC_RST).mp   0 0          >> $(RESULTS)
+	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1          >> $(RESULTS)
+else
+ifeq ($(DIAGSUM_IS_3),1)
+	@$(VALIDATE) $(GC_RST).sp   $(GC_RST).mp   3 0 $(RUNID) >> $(RESULTS)
+	@$(VALIDATE) $(HIST_INS).sp $(HIST_INS).mp 0 0          >> $(RESULTS)
+	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1          >> $(RESULTS)
+endif
+endif
 endif
 
 ###############################################################################

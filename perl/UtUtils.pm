@@ -933,6 +933,7 @@ sub readResults($$) {
 #                              are now consolidated so using 'ls -1 $runRoot'
 #                              to populate unitTests no longer works. Instead
 #                              unitTests is populated when the log file is read.
+#  16 Jan 2018 - R. Yantosca - Updated checks for bpch and netCDF diags
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -944,6 +945,7 @@ sub readResults($$) {
   my $rst      = 1;
   my $ncDiag   = 1;
   my $isNcDiag = 1;
+  my $isBpchDiag=1;
   my $hemco    = 1;
   my $color    = "";
   my $utName   = "";
@@ -985,7 +987,7 @@ sub readResults($$) {
       $version  =~ s/^\s+//; 
       $version  =~ s/^\s+$//;
 
-      # Version number
+      # Date the test ran
       @subStr   =  split( '\@', $txt[++$i] );
       $dateRan  =  $subStr[1];
       $dateRan  =~ s/^\s+//; 
@@ -1026,9 +1028,16 @@ sub readResults($$) {
       if ( $utName =~ m/complexSOA_SVPOA/ ) {
            $utName =~ s/complexSOA_SVPOA/SVPOA/g; }
 
-      # Check if the netCDF diagnostics are present
-      if ( $txt[++$i] =~ m/NC_DIAG=y/ ) { $isNcDiag = 1; }
+      # Increment the line counter
+      ++$i;
+
+      # Check if netCDF diagnostics are activated
+      if ( $txt[$i] =~ m/NC_DIAG=y/   ) { $isNcDiag = 1; }
       else                              { $isNcDiag = 0; }
+
+      # Check if bpch diagnostics are activated
+      if ( $txt[$i] =~ m/BPCH_DIAG=y/ ) { $isBpchDiag = 1; }
+      else                              { $isBpchDiag = 0; }
 
       # Initialize flags
       $bpch   = 1;
@@ -1037,8 +1046,10 @@ sub readResults($$) {
       $hemco  = 1;
 
       # Check the results of the BPCH file    
-      for ( my $j = 0; $j < 6; $j++ ) { 
-	if ( $txt[++$i] =~ m/DIFFERENT/ ) { $bpch = -1; }
+      if ( $isBpchDiag ) {
+	for ( my $j = 0; $j < 6; $j++ ) { 
+	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $bpch = -1; }
+        }
       }
 
       # Check the results of the RESTART file    

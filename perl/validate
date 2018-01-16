@@ -18,6 +18,7 @@ require 5.003;                   # Need this version of Perl or newer
 use English;                     # Use English language
 use Carp;                        # Get detailed error messages
 use strict;                      # Use "IMPLICIT NONE" syntax
+use Cwd;                         # Get current directories
 #		
 # !PUBLIC MEMBER FUNCTIONS:
 #  &main()    : Driver routine for gcUnitTest
@@ -59,7 +60,7 @@ use strict;                      # Use "IMPLICIT NONE" syntax
 #\\
 # !INTERFACE:
 #
-sub doChecks($$$$) {
+sub doChecks($$$$$) {
 #
 # !INPUT PARAMETERS:
 #
@@ -67,7 +68,9 @@ sub doChecks($$$$) {
   # $file2  : Second file to be checked
   # $topHdr : Set this = 1 if you want to print a header @ top of output
   # $botHdr : Set this = 1 if you wnat to print a header @ bottom of output
-  my ( $file1, $file2, $topHdr, $botHdr ) = @_;
+  # $runId  : An ID string describing the run (e.g. "geosfp_4x5_tropchem");
+  #           if this is blank, we will use the directory path
+  my ( $file1, $file2, $topHdr, $botHdr, $runId ) = @_;
 #
 # !CALLING SEQUENCE:
 #  &doChecks( $file1, $file2, $topHdr, $botHdr );
@@ -85,6 +88,7 @@ sub doChecks($$$$) {
 #  13 Jul 2016 - M. Sulprizio- Obtain run name from the trac_avg filename
 #                              instead of the run directory name
 #  20 Sep 2017 - R. Yantosca - Print the number of files being tested
+#  16 Jan 2018 - R. Yantosca - Now accept $runId as the 5th argument
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -97,6 +101,7 @@ sub doChecks($$$$) {
   my $NOTFOUND  = "FILE NOT FOUND";
 
   # Scalars
+  my $nStr      = 0;
   my $ckSumOK   = $DIFFERENT;
   my $diffOK    = $DIFFERENT;
   my $cmd       = "";
@@ -162,24 +167,30 @@ sub doChecks($$$$) {
   #----------------------------------------
   # Report the results
   #----------------------------------------
-  
-  # Split filename by periods
-  @filestrings = split( /\./, $file1 );
-
-  # Extract the run name
-  $runstr = "$filestrings[1]";
 
   # Print top header if requested
   if ( $topHdr > 0 ) {
+
+    # If the run ID string is passed, then use it.  Otherwise, use the 
+    # current directory name (not the full path) as the run ID string.
+    if ( length( $runId ) > 0 ) { $runstr      = $runId;                  }
+    else                        { $runstr      = getcwd();
+                                  @filestrings = split( /\//, $runstr );
+                                  $nStr        = scalar( @filestrings );
+				  $runstr      = $filestrings[$nStr-1];   }
+    
+    # Top header text
     print '#' x 79; 
     print "\n### VALIDATION OF GEOS-CHEM OUTPUT FILES\n";
-    print "### In directory: $runstr\n";
+    print "### Run ID: $runstr\n";
   
-    # TEMPORARY MODIFICATION: Print an additional line to denote if
-    # the netCDF diagnostic (aka "History") output is on (bmy, 9/20/17)
-    if ( $topHdr == 2 ) { print "### NC_DIAG=y\n"; }
-    else                { print "### NC_DIAG=n\n"; }
-  }
+    # Print an additional line to denote if the bpch diagnostics
+    # and/or the netCDF diagnostics are activated (bmy, 1/16/17)
+    if    ( $topHdr == 7 ) { print "### NC_DIAG=y BPCH_DIAG=y\n"; }
+    elsif ( $topHdr == 5 ) { print "### NC_DIAG=n BPCH_DIAG=y\n"; }
+    elsif ( $topHdr == 3 ) { print "### NC_DIAG=y BPCH_DIAG=n\n"; }
+    else                   { print "### NC_DIAG=n BPCH_DIAG=n\n"; }
+  } 
 
   # Print information
   print "###\n";
@@ -228,10 +239,11 @@ sub main() {
 
   # If there is the proper # of args, validate the GEOS-Chem files
   # Otherwise exit with an error message
-  if    ( scalar( @ARGV ) == 4 ) { &doChecks( @ARGV       ); }
-  elsif ( scalar( @ARGV ) == 3 ) { &doChecks( @ARGV, 0    ); }
-  elsif ( scalar( @ARGV ) == 2 ) { &doChecks( @ARGV, 0, 0 ); }
-  else                           { print "$msg"; exit(1);    }
+  if    ( scalar( @ARGV ) == 5 ) { &doChecks( @ARGV            ); }
+  elsif ( scalar( @ARGV ) == 4 ) { &doChecks( @ARGV,       ""  ); }
+  elsif ( scalar( @ARGV ) == 3 ) { &doChecks( @ARGV, 0,    ""  ); }
+  elsif ( scalar( @ARGV ) == 2 ) { &doChecks( @ARGV, 0, 0, ""  ); }
+  else                           { print "$msg"; exit(1);         }
 
   # Always return 0 so we don't halt the make process
   return ( 0 );
