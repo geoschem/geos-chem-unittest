@@ -2030,6 +2030,14 @@ Warnings:                    {WARNINGS}
 * STRAT_OH            $ROOT/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc             species 2000/1-12/1/0 C xyz v/v   *        - 1  1
 )))+LinStratChem+
 
+#==============================================================================
+# --- Spatially varying OM/OC ---
+#==============================================================================
+* OMOC_DJF $ROOT/OMOC/v2018-01/OMOC.DJF.01x01.nc OMOC 2010/1/1/0 C xy 1 * - 1 1
+* OMOC_MAM $ROOT/OMOC/v2018-01/OMOC.MAM.01x01.nc OMOC 2010/1/1/0 C xy 1 * - 1 1
+* OMOC_JJA $ROOT/OMOC/v2018-01/OMOC.JJA.01x01.nc OMOC 2010/1/1/0 C xy 1 * - 1 1
+* OMOC_SON $ROOT/OMOC/v2018-01/OMOC.SON.01x01.nc OMOC 2010/1/1/0 C xy 1 * - 1 1
+
 ### END SECTION BASE EMISSIONS ###
 
 ###############################################################################
