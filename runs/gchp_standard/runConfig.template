@@ -43,11 +43,17 @@ Start_Time="{DATE1} {TIME1}"
 End_Time="{DATE2} {TIME2}"
 Duration="{dYYYYMMDD} {dHHmmss}"
 
-#### OUTPUT (time-averaged "center" collection only. Manually edit others
-#### in HISTORY.rc)
+#### DIAGNOSTIC OUTPUT FREQUENCY AND DURATION
+#### frequency = frequency of diagnostic archiving
+#### duration = frequency of file write
+#### center = time-averaged collection
+#### inst = instantaneous collection
+#### NOTE: manually edit variables for these collections and add and edit
+#### additional collections in HISTORY.rc.
 center_frequency="010000"
 center_duration="010000"
-center_mode="'time-averaged'"
+inst_frequency="010000"
+inst_duration="010000"
 
 #### TURN COMPONENTS ON/OFF
 Turn_on_Chemistry=T
@@ -190,7 +196,8 @@ echo " "
 echo "Output:"
 replace_val center.frequency ${center_frequency}  HISTORY.rc
 replace_val center.duration  ${center_duration}   HISTORY.rc
-replace_val center.mode      ${center_mode}       HISTORY.rc
+replace_val inst.frequency   ${inst_frequency}    HISTORY.rc
+replace_val inst.duration    ${inst_duration}     HISTORY.rc
 
 #### Set timesteps based on input.geos
 echo " "
