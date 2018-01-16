@@ -37,6 +37,45 @@ COLLECTIONS: 'inst',
 #  'RadDecay_Rn',                 'GIGCchem',  # ND02 #1,  Rn sim
 #  'RadDecay_Pb',                 'GIGCchem',  # ND02 #2,  Rn sim
 #  'RadDecay_Be7',                'GIGCchem',  # ND02 #3,  Rn sim
+#  'ProdBCPIfromBCPO',            'GIGCchem',  # ND07 #4,  fullchem/aer-only
+#  'ProdOCPIfromOCPO',            'GIGCchem',  # ND07 #9,  fullchem/aer-only
+#  'CloudConvFlux_?ADV?',         'GIGCchem',  # ND14      all simulations
+#  'Jval_?PHO?',                  'GIGCchem',  # ND22      fullchem
+#  'JNoonDailyAvg_?PHO?',         'GIGCchem',  # ND22      fullchem
+#  'JNoonMonthlyAvg_?PHO?',       'GIGCchem',  # ND22      fullchem
+#  'AdvFluxZonal_?ADV?',          'GIGCchem',  # ND24      all simulations
+#  'AdvFluxMerid_?ADV?',          'GIGCchem',  # ND25      all simulations
+#  'AdvFluxVert_?ADV?',           'GIGCchem',  # ND26      all simulations
+#  'Met_Pedge',                   'GIGCchem',  # ND31      all sims; put in a
+#                                                          a separate collection
+#  'WetLossConv_?WET?',           'GIGCchem',  # ND38      all sims w/ wetdep 
+#  'WetLossLS_?WET?',             'GIGCchem',  # ND39      all sims w/ wetdep
+#  'TerpeneSOA',                  'GIGCchem',  # ND42 #1,  fullchem/aer-only
+#  'IsopreneSOA',                 'GIGCchem',  # ND42 #2,  fullchem/aer-only
+#  'AromaticSOA',                 'GIGCchem',  # ND42 #3   fullchem/aer-only
+#  'PM25',                        'GIGCchem',  # ND42 #18  fullchem/aer-only
+#  'OHconcAfterChem',             'GIGCchem',  # ND43 #1,  fullchem
+#  'HO2concAfterChem',            'GIGCchem',  # ND43 #3,  fullchem
+#  'O1DconcAfterChem',            'GIGCchem',  # ND43 #4,  fullchem
+#  'O3PconcAfterChem',            'GIGCchem',  # ND43 #5,  fullchem
+#  'DryDepChm_?DRY?',             'GIGCchem',  # ND44 #1   all sims w/ drydep
+#  'DryDepMix_?DRY?',             'GIGCchem',  # ND44 #1   all sims w/ drydep
+#  'DryDepVel_?DRY?',             'GIGCchem',  # ND44 #2   all sims w/ drydep
+#  'Met_TropLev',                 'GIGCchem',  # ND55 #1   all simulations
+#  'Met_TropHt',                  'GIGCchem',  # ND55 #2   all simulations
+#  'Met_Tropp',                   'GIGCchem',  # ND55 #3   all simulations
+#  'Loss_?LOS?',                  'GIGCchem',  # ND65      fullchem
+#  'Prod_?PRD?',                  'GIGCchem',  # ND65      fullchem
+#  'Chem_phSav',                  'GIGCchem',  # ND73 #1,  fullchem/aer-only
+#  'Chem_HplusSav',               'GIGCchem',  # ND73 #2,  fullchem/aer-only
+#  'Chem_WaterSav',               'GIGCchem',  # ND73 #3,  fullchem/aer-only
+#  'Chem_SulRatSav',              'GIGCchem',  # ND73 #4,  fullchem/aer-only
+#  'Chem_NaRatSav',               'GIGCchem',  # ND73 #5,  fullchem/aer-only
+#  'Chem_AcidPurSav',             'GIGCchem',  # ND73 #6,  fullchem/aer-only
+#  'Chem_BiSulSav',               'GIGCchem',  # ND73 #7,  fullchem/aer-only
+#
+# Still in progress
+#
 #  'ProdSO2fromDMSandOH',         'GIGCchem',  # ND05 #1,  aer-only
 #  'ProdSO2fromDMSandNO3',        'GIGCchem',  # ND05 #2,  aer-only
 #  'ProdSO2fromDMS',              'GIGCchem',  # ND05 #3   aer-only
@@ -56,43 +95,6 @@ COLLECTIONS: 'inst',
 #  'ProdSO4fromSRHOBr',           'GIGCchem',  # ND05 #17, fullchem/aer-only
 #  'ProdSO4fromO3s',              'GIGCchem',  # ND05 #18, fullchem/aer-only
 #  'Chem_phCloud',                'GIGCchem',  # ND05 #19, fullchem/aer-only
-#  'ProdBCPIfromBCPO',            'GIGCchem',  # ND07 #4,  fullchem/aer-only
-#  'ProdOCPIfromOCPO',            'GIGCchem',  # ND07 #9,  fullchem/aer-only
-#  'CloudConvFlux_?ADV?',         'GIGCchem',  # ND14      all simulations
-#  'Jval_?PHO?',                  'GIGCchem',  # ND22      fullchem
-#  'JNoonDailyAvg_?PHO?',         'GIGCchem',  # ND22      fullchem
-#  'JNoonMonthlyAvg_?PHO?',       'GIGCchem',  # ND22      fullchem
-#  'AdvFluxZonal_?ADV?',          'GIGCchem',  # ND24      all simulations
-#  'AdvFluxMerid_?ADV?',          'GIGCchem',  # ND25      all simulations
-#  'AdvFluxVert_?ADV?',           'GIGCchem',  # ND26      all simulations
-#  'Met_Pedge',                   'GIGCchem',  # ND31      all simulations
-#  'WetLossConv_?WET?',           'GIGCchem',  # ND38      all sims w/ wetdep 
-#  'WetLossLS_?WET?',             'GIGCchem',  # ND39      all sims w/ wetdep
-#  'TerpeneSOA',                  'GIGCchem',  # ND42 #1,  fullchem/aer-only
-#  'IsopreneSOA',                 'GIGCchem',  # ND42 #2,  fullchem/aer-only
-#  'AromaticSOA',                 'GIGCchem',  # ND42 #3   fullchem/aer-only
-#  'PM25',                        'GIGCchem',  # ND42 #18  fullchem/aer-only
-#  'OHconcAfterChem',             'GIGCchem',  # ND43 #1,  fullchem
-#  'HO2concAfterChem',            'GIGCchem',  # ND43 #3,  fullchem
-#  'O1DconcAfterChem',            'GIGCchem',  # ND43 #4,  fullchem
-#  'O3PconcAfterChem',            'GIGCchem',  # ND43 #5,  fullchem
-#  'DryDepChm_?DRY?',             'GIGCchem',  # ND44 #1   all sims w/ drydep
-#  'DryDepMix_?DRY?',             'GIGCchem',  # ND44 #1   all sims w/ drydep
-#  'DryDepVel_?DRY?',             'GIGCchem',  # ND44 #2   all sims w/ drydep
-#  'Met_TropLev',                 'GIGCchem',  # ND55 #1   all simulations
-#  'Met_TropHt',                  'GIGCchem',  # ND55 #2   all simulations
-#  'Met_Tropp',                   'GIGCchem',  # ND55 #3   all simulations
-#  'Loss_?LOS?',                  'GIGCchem',  # ND65      fullchem
-#  'Prod_?PRD?',                  'GIGCchem',  # ND65      fullchem
-#  'Prod_?FAM?'                   'GIGCchem',  # ND65      fullchem/tagO3/tagCO
-#  'Loss_?FAM?'                   'GIGCchem',  # ND65      fullchem/tagO3/tagCO
-#  'Chem_phSav',                  'GIGCchem',  # ND73 #1,  fullchem/aer-only
-#  'Chem_HplusSav',               'GIGCchem',  # ND73 #2,  fullchem/aer-only
-#  'Chem_WaterSav',               'GIGCchem',  # ND73 #3,  fullchem/aer-only
-#  'Chem_SulRatSav',              'GIGCchem',  # ND73 #4,  fullchem/aer-only
-#  'Chem_NaRatSav',               'GIGCchem',  # ND73 #5,  fullchem/aer-only
-#  'Chem_AcidPurSav',             'GIGCchem',  # ND73 #6,  fullchem/aer-only
-#  'Chem_BiSulSav',               'GIGCchem',  # ND73 #7,  fullchem/aer-only
 #
 # Not yet implemented (but soon)
 #
