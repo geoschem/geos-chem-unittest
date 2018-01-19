@@ -2042,6 +2042,11 @@ Warnings:                    {WARNINGS}
 * OMOC_JJA $ROOT/OMOC/v2018-01/OMOC.JJA.01x01.nc OMOC 2010/1/1/0 C xy 1 * - 1 1
 * OMOC_SON $ROOT/OMOC/v2018-01/OMOC.SON.01x01.nc OMOC 2010/1/1/0 C xy 1 * - 1 1
 
+#==============================================================================
+# --- NOAA GMD monthly mean surface CH4 ---
+#==============================================================================
+* NOAA_GMD_CH4 $ROOT/NOAA_GMD/v2018-01/monthly.gridded.surface.methane.1979-2020.1x1.nc SFC_CH4 1979-2020/1-12/1/0 C xy ppbv * - 1 1 
+
 ### END SECTION BASE EMISSIONS ###
 
 ###############################################################################

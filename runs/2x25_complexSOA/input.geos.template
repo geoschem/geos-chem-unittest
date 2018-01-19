@@ -18,7 +18,7 @@ Chem/emis timestep [min]: 20
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
-Number of Advected Spec.: 162
+Number of Advected Spec.: 163
 Species Entries ------->: Name
 Species name            : NO
 Species name            : O3
@@ -145,6 +145,7 @@ Species name            : MONITA
 Species name            : INDIOL
 Species name            : IPMN
 Species name            : HC187
+Species name            : CH4
 Species name            : BrCl
 Species name            : HCl
 Species name            : CH3Cl
