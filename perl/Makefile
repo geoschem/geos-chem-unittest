@@ -83,6 +83,11 @@ endif
 
 ifndef NEST
  NEST        :=n
+else
+ # NOTE: If Nest is passed, then also set BPCH_DIAG=y.  We have to activate
+ # the bpch I/O code to read the nested boundary conditions.  We can remove
+ # this ELSE block once the bpch diagnostics have been from GC. (bmy, 1/22/18)
+ BPCH_DIAG   :=y
 endif
 
 ifndef TRACEBACK 
