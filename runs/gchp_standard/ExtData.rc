@@ -379,6 +379,12 @@ MIX_PRPE_TRA kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none PRPE_TRANSPORT   
 LIANG_CHBR3    kg_m2_s-1  xy C N Y F- none none CHBr3_emission  ./MainDataDir/BROMINE/v2015-02/Bromocarb_Liang2010.nc
 LIANG_CH2BR2   kg_m2_s-1  xy C N Y F- none none CH2Br2_emission ./MainDataDir/BROMINE/v2015-02/Bromocarb_Liang2010.nc
 #
+# Very-short-lived (VSL) iodocarbon emissions(cf. Carlos Ordonez)
+ORDONEZ_CH3I   kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none CH3I   ./MainDataDir/IODINE/v2017-09/CH3I_monthly_emissions_Ordonez_2012_COARDS.nc
+ORDONEZ_CH2I2  kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none CH2I2  ./MainDataDir/IODINE/v2017-09/CH2I2_monthly_emissions_Ordonez_2012_COARDS.nc
+ORDONEZ_CH2ICL kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none CH2ICl ./MainDataDir/IODINE/v2017-09/CH2ICl_monthly_emissions_Ordonez_2012_COARDS.nc
+ORDONEZ_CH2IBR kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none CH2IBr ./MainDataDir/IODINE/v2017-09/CH2IBr_monthly_emissions_Ordonez_2012_COARDS.nc
+#
 # Need DE0360xPE0180_CFnnnnx6C.bin (for all of the following BOND emissions)
 # 12-month climatology
 BOND_ANTH_BCPI kg_m2_s-1  xy C Y Y F2000-%m2-01T00:00:00 none none BC ./MainDataDir/BCOC_BOND/v2014-07/Bond_fossil.nc
@@ -826,7 +832,67 @@ GMI_LOSS_H1211     s-1   xyz C Y N  2005-%m2-01T00:00:00 none none loss ./MainDa
 GMI_PROD_H1211     v/v/s xyz C Y N  2005-%m2-01T00:00:00 none none prod ./MainDataDir/GMI/v2015-02/gmi.clim.CF2ClBr.geos5.2x25.nc
 
 STRAT_OH           v/v   xyz C Y N  2005-%m2-01T00:00:00 none none species ./MainDataDir/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc
-
+# 
+# UCX chemistry: prod/loss rates (for strato-/mesosphere)
+UCX_PROD_ClNO3 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PClNO3 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ClNO3 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LClNO3 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ClNO2 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PClNO2 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ClNO2 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LClNO2 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ClOO molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PClOO ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ClOO molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LClOO ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_BrSALA molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PBrSALA ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_BrSALA molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LBrSALA ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_BrSALC molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PBrSALC ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_BrSALC molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LBrSALC ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CHCl3 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PCHCl3 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CHCl3 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LCHCl3 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH2Cl2 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PCH2Cl2 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH2Cl2 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LCH2Cl2 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH3I molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PCH3I ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH3I molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LCH3I ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH2I2 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PCH2I2 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH2I2 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LCH2I2 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH2I2 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PCH2I2 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH2I2 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LCH2I2 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH2ICl molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PCH2ICl ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH2ICl molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LCH2ICl ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH2IBr molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PCH2IBr ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH2IBr molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LCH2IBr ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HI molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PHI ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HI molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LHI ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HOI molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PHOI ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HOI molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LHOI ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_I2 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PI2 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_I2 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LI2 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_IBr molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PIBr ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_IBr molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LIBr ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ICl molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PICl ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ICl molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LICl ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_I molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PI ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_I molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LI ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_IO molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PIO ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_IO molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LIO ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_OIO molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__POIO ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_OIO molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LOIO ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_INO molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PINO ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_INO molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LINO ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_IONO molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PIONO ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_IONO molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LIONO ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_IONO2 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PIONO2 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_IONO2 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LIONO2 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_I2O2 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PI2O2 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_I2O2 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LI2O2 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_I2O3 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PI2O3 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_I2O3 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LI2O3 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_I2O4 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PI2O4 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_I2O4 molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LI2O4 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ISALA molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PISALA ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ISALA molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LISALA ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ISALC molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PISALC ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ISALC molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LISALC ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_AERI molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__PAERI ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_AERI molec_cm-3_s-1 xyz C Y Y 2013-%m2-01T00:00:00 none none PORL_L_S__LAERI ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+#
 # --- Stratospheric Bry data ---
 GEOSCCM_Br_DAY      1 xyz C Y N 2007-%m2-01T00:00:00 none none BR     ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.day.nc 
 GEOSCCM_Br2_DAY     1 xyz C Y N 2007-%m2-01T00:00:00 none none BRCL   ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.day.nc

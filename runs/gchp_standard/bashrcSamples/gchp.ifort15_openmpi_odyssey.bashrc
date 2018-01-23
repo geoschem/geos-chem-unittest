@@ -3,27 +3,29 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !MODULE: gchp.ifort15_mvapich2_odyssey.bashrc
+# !MODULE: gchp.ifort15_openmpi_odyssey.bashrc
 #
 # !DESCRIPTION: Use this .bashrc to compile and run GCHP with the Intel 
-#  Fortran Compiler v15 on the Odyssey.rc.fas.harvard.edu cluster.
+#  Fortran Compiler v15 on the Odyssey.rc.fas.harvard.edu cluster using
+#  the MPI implementation OpenMPI. You may adapt it for use on your own
+#  compute cluster.
 #\\
 #\\
 # !CALLING SEQUENCE:
-#  source gchp.ifort15_mvapich2_odyssey.bashrc  or
-#  . gchp.ifort15_mvapich2_odyssey.bashrc
+#  source gchp.ifort15_openmpi_odyssey.bashrc  or
+#  . gchp.ifort15_openmpi_odyssey.bashrc
 #
 # !REMARKS
 #
 # !REVISION HISTORY:
-#  26 Oct 2016 - S. Eastham - Initial version
-#  03 Feb 2017 - S. Eastham - Updated for GCHP v1
+#  26 Oct 2016 - S. Eastham  - Initial version
+#  03 Feb 2017 - S. Eastham  - Updated for GCHP v1
+#  05 Jan 2018 - E. Lundgren - Initial commit
 #  See git commit history for subsequent revisions
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 
-# Echo info if it's an interactive session
 if [[ $- = *i* ]] ; then
   echo "Loading modules for GCHP on Odyssey, please wait ..."
 fi
@@ -40,9 +42,11 @@ source new-modules.sh
 module purge
 module load git
 
-# These are for Intel 15 on Odyssey with MVAPICH2
+# These are for Intel 15 with OpenMPI
 module load intel/15.0.0-fasrc01
-module load mvapich2/2.3b-fasrc01
+module load openmpi/1.10.3-fasrc01
+module load zlib/1.2.8-fasrc03
+module load hdf5/1.8.12-fasrc12
 module load netcdf/4.1.3-fasrc09
 
 # Display loaded modules
@@ -53,19 +57,8 @@ module list
 #==============================================================================
 
 # MPI environment variables
-export ESMF_COMM=mvapich2
-export MVAPICH2=$( dirname $( dirname $( which mpirun ) ) )
+export ESMF_COMM=openmpi
 export MPI_ROOT=$( dirname $( dirname $( which mpirun ) ) )
-
-# Suppress MVAPICH2 warning message for if OpenMP is used
-export MV2_USE_THREAD_WARNING=0
-
-# Turn off core bindings in MVAPICH2 (use SLURM instead)
-export MV2_ENABLE_AFFINITY=0
-
-# Turn off shared mem pool for bound cores (use SLURM plane in
-# srun instead)
-export MV2_USE_SHARED_MEM=0
 
 # Make links to all the relevant files somewhere accessible
 export PATH=${NETCDF_HOME}/bin:$PATH
@@ -95,7 +88,7 @@ ulimit -l unlimited              # memorylocked
 ulimit -u unlimited              # maxproc
 
 # Name of this bashrc file
-export BASHRC=gchp.ifort15_mvapich2_odyssey.bashrc
+export BASHRC=gchp.ifort15_openmpi_odyssey.bashrc
 
 # Echo info if it's an interactive session
 if [[ $- = *i* ]] ; then

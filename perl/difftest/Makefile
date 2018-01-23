@@ -153,10 +153,12 @@ ifndef TAU_PROF
  TAU_PROF    :=n
 endif
 
+# Default: BPCH_DIAG is always turned ON (unless user says otherwise)
 ifndef BPCH_DIAG
  BPCH_DIAG   :=y
 endif
 
+# Default: NC_DIAG is always turned OFF (unless user says otherwise)
 ifndef NC_DIAG
  NC_DIAG     :=n
 endif
@@ -166,10 +168,29 @@ endif
 # netCDF diagnostic option is standard in GEOS-Chem. (bmy, 9/20/17)
 REGEXP       :=(^[Yy]|^[Yy][Ee][Ss])
 ifeq ($(shell [[ "$(NC_DIAG)" =~ $(REGEXP) ]] && echo true),true)
-  IS_NC_DIAG := 1
+  IS_NC_DIAG := 2
 else
   IS_NC_DIAG := 0
 endif
+
+# Add a robust check whether or not we are using bpch diagnostics so that
+# we can also binary-check the History file.  We can remove this when the
+# netCDF diagnostic option is standard in GEOS-Chem. (bmy, 1/16/18)
+REGEXP       :=(^[Yy]|^[Yy][Ee][Ss])
+ifeq ($(shell [[ "$(BPCH_DIAG)" =~ $(REGEXP) ]] && echo true),true)
+  IS_BPCH_DIAG := 4
+else
+  IS_BPCH_DIAG := 0
+endif
+
+# Sum of IS_BPCH_DIAG and IS_NC_DIAG
+# NOTE: GNU Make does not allow for numeric equality test so we have
+# to do this kind of ugly kludge.  See this poste on Stack Overflow:
+#stackoverflow.com/questions/3728372/version-number-comparison-inside-makefile
+DIAGSUM := $$((1 + $(IS_BPCH_DIAG) + $(IS_NC_DIAG) ))
+DIAGSUM_IS_7 := $(shell echo $(DIAGSUM)\==7 | bc)
+DIAGSUM_IS_5 := $(shell echo $(DIAGSUM)\==5 | bc)
+DIAGSUM_IS_3 := $(shell echo $(DIAGSUM)\==3 | bc)
 
 ###############################################################################
 #####                                                                     #####
@@ -338,9 +359,13 @@ else
 
 endif
 
-# Error check, make sure to strip out " characters from commit string
+# Error check, make sure to strip out quote characters from each commit string
 # or else GNU Make will think that the string is ending prematurely.
-LAST_COMMIT :=$(shell echo '$(LAST_COMMIT)' | sed 's|"||g')
+# See: https://stackoverflow.com/questions/10424645/how-to-convert-a-quoted-string-to-a-normal-one-in-makefile
+LAST_COMMIT_REF := $(subst $\",,$(LAST_COMMIT_REF))
+LAST_COMMIT_REF := $(subst $\',,$(LAST_COMMIT_REF))
+LAST_COMMIT_DEV := $(subst $\",,$(LAST_COMMIT_DEV))
+LAST_COMMIT_DEV := $(subst $\',,$(LAST_COMMIT_DEV))
 
 # Get compiler version
 COMPILER_VERSION_LONG :=$(shell $(FC) --version))
@@ -510,17 +535,17 @@ devcheck:
 	@$(MAKE) check
 
 check:
-ifeq ($(IS_NC_DIAG),1)
+ifeq ($(DIAGSUM_IS_7),1)
 	@$(VALIDATE) $(RUN_REF)/$(TRAC_AVG).Ref                             \
-                     $(RUN_DEV)/$(TRAC_AVG).Dev 2 0 >> $(RESULTS)
+                     $(RUN_DEV)/$(TRAC_AVG).Dev 7 0 $(RUNID) >> $(RESULTS)
 	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
-                     $(RUN_DEV)/$(TRAC_RST).Dev 0 0 >> $(RESULTS)
+                     $(RUN_DEV)/$(TRAC_RST).Dev 0 0          >> $(RESULTS)
 	@$(VALIDATE) $(RUN_REF)/$(HIST_INS).Ref                             \
-                     $(RUN_DEV)/$(HIST_INS).Dev 0 0 >> $(RESULTS)
+                     $(RUN_DEV)/$(HIST_INS).Dev 0 0          >> $(RESULTS)
 	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
-                     $(RUN_DEV)/$(HMCO_RST).Dev 0 1 >> $(RESULTS)
+                     $(RUN_DEV)/$(HMCO_RST).Dev 0 1          >> $(RESULTS)
 	@$(VALIDATE) $(RUN_REF)/$(TRAC_AVG).Ref                             \
-                     $(RUN_DEV)/$(TRAC_AVG).Dev 2 0
+                     $(RUN_DEV)/$(TRAC_AVG).Dev 7 0 $(RUNID)
 	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
                      $(RUN_DEV)/$(TRAC_RST).Dev 0 0
 	@$(VALIDATE) $(RUN_REF)/$(HIST_INS).Ref                             \
@@ -528,20 +553,36 @@ ifeq ($(IS_NC_DIAG),1)
 	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
                      $(RUN_DEV)/$(HMCO_RST).Dev 0 1
 else
+ifeq ($(DIAGSUM_IS_5),1)
 	@$(VALIDATE) $(RUN_REF)/$(TRAC_AVG).Ref                             \
-                     $(RUN_DEV)/$(TRAC_AVG).Dev 1 0 >> $(RESULTS)
+                     $(RUN_DEV)/$(TRAC_AVG).Dev 5 0 $(RUNID) >> $(RESULTS)
 	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
-                     $(RUN_DEV)/$(TRAC_RST).Dev 0 0 >> $(RESULTS)
+                     $(RUN_DEV)/$(TRAC_RST).Dev 0 0          >> $(RESULTS)
 	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
-                     $(RUN_DEV)/$(HMCO_RST).Dev 0 1 >> $(RESULTS)
+                     $(RUN_DEV)/$(HMCO_RST).Dev 0 1          >> $(RESULTS)
 	@$(VALIDATE) $(RUN_REF)/$(TRAC_AVG).Ref                             \
-                     $(RUN_DEV)/$(TRAC_AVG).Dev 1 0
+                     $(RUN_DEV)/$(TRAC_AVG).Dev 5 0 $(RUNID)
 	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
                      $(RUN_DEV)/$(TRAC_RST).Dev 0 0
 	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
                      $(RUN_DEV)/$(HMCO_RST).Dev 0 1
+else
+ifeq ($(DIAGSUM_IS_3),1)
+	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
+                     $(RUN_DEV)/$(TRAC_RST).Dev 3 0 $(RUNID) >> $(RESULTS)
+	@$(VALIDATE) $(RUN_REF)/$(HIST_INS).Ref                             \
+                     $(RUN_DEV)/$(HIST_INS).Dev 0 0          >> $(RESULTS)
+	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
+                     $(RUN_DEV)/$(HMCO_RST).Dev 0 1          >> $(RESULTS)
+	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
+                     $(RUN_DEV)/$(TRAC_RST).Dev 3 0 $(RUNID)
+	@$(VALIDATE) $(RUN_REF)/$(HIST_INS).Ref                             \
+                     $(RUN_DEV)/$(HIST_INS).Dev 0 0
+	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
+                     $(RUN_DEV)/$(HMCO_RST).Dev 0 1
 endif
-
+endif
+endif
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Remove Output Data     %

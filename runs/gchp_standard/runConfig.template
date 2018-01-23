@@ -30,6 +30,10 @@ INPUT_MET_RES=placeholder # not yet implemented
 # due to the resolution dependency of emissions. Please contact the GCST
 # for more information.
 CUBE_SPHERE_RES=24    # 24~4x5, 48~2x2.5, 90~1x1.25, 180~0.5x0.625
+# ***IMPORTANT NOTE***
+# Set read frequency of SPHU2, TMPU2, and PS2 in ExtData to match the
+# dynamic timestep set below based on the run grid resolution
+# (e.g. 30 minutes for c24, 10 minutes for c90, 5 minutes for c180+ )
 
 ### INITIAL RESTART FILE
 INITIAL_RESTART=default  # specify default or your own restart filename
@@ -39,10 +43,17 @@ Start_Time="{DATE1} {TIME1}"
 End_Time="{DATE2} {TIME2}"
 Duration="{dYYYYMMDD} {dHHmmss}"
 
-#### OUTPUT
-cs_frequency="010000"
-cs_duration="010000"
-cs_mode="'time-averaged'"
+#### DIAGNOSTIC OUTPUT FREQUENCY AND DURATION
+#### frequency = frequency of diagnostic archiving
+#### duration = frequency of file write
+#### center = time-averaged collection
+#### inst = instantaneous collection
+#### NOTE: manually edit variables for these collections and add and edit
+#### additional collections in HISTORY.rc.
+center_frequency="010000"
+center_duration="010000"
+inst_frequency="010000"
+inst_duration="010000"
 
 #### TURN COMPONENTS ON/OFF
 Turn_on_Chemistry=T
@@ -54,6 +65,20 @@ Turn_on_Cloud_Conv=T
 Turn_on_PBL_Mixing=T
 
 #### TIMESTEPS
+#### Recommendation based on grid resolution:
+####    if [[ $CUBE_SPHERE_RES -lt 90 ]]; then
+####        TransConv_Timestep_min=30
+####        ChemEmis_Timestep_min=60
+####    elif [[ $CUBE_SPHERE_RES -lt 180 ]]; then
+####        TransConv_Timestep_min=10
+####        ChemEmis_Timestep_min=20
+####    else
+####        TransConv_Timestep_min=5
+####        ChemEmis_Timestep_min=10
+####    fi
+#### Override these recommendations with GEOS-Chem Classic timestep
+#### settings if benchmarking GCHP as a comparison with GEOS-Chem Classic 
+####
 TransConv_Timestep_min=10
 ChemEmis_Timestep_min=20
 
@@ -62,7 +87,8 @@ Use_nonlocal_PBL=T
 
 #### DEBUG OPTIONS
 MAPL_DEBUG_LEVEL=0   # 0 is none, output increases with higher values (to 20)
-#GC_ND70="0 all"     # requires special handling; omit for now
+#GC_ND70="0 all"     # requires special handling; omit for now and manually
+                     # turn on ND70 in input.geos for debugging prints
 
 ###########################################
 ###   Stop if settings not compatible   ###
@@ -82,10 +108,10 @@ if [[ ${ChemEmis_Timestep_min} -lt ${TransConv_Timestep_min} ]]; then
     exit 1
 fi
 
-#### Check that NX*NY is equal to number of cores
+#### Check that NX*NY is less than or equal to number of cores
 num_cores=$((  ))
-if (( $NX*$NY != $NUM_NODES*$NUM_CORES_PER_NODE )); then
-    echo "ERROR: NX*NY must equal number of nodes times cores per node"
+if (( $NX*$NY > $NUM_NODES*$NUM_CORES_PER_NODE )); then
+    echo "ERROR: NX*NY must not exceed number of nodes times cores per node"
     exit 1    
 fi
 
@@ -168,9 +194,10 @@ replace_val JOB_SGMT  "${Duration}"   CAP.rc
 #### Set output frequency, duration, and mode
 echo " "
 echo "Output:"
-replace_val center.frequency ${cs_frequency}  HISTORY.rc
-replace_val center.duration  ${cs_duration}   HISTORY.rc
-replace_val center.mode      ${cs_mode}       HISTORY.rc
+replace_val center.frequency ${center_frequency}  HISTORY.rc
+replace_val center.duration  ${center_duration}   HISTORY.rc
+replace_val inst.frequency   ${inst_frequency}    HISTORY.rc
+replace_val inst.duration    ${inst_duration}     HISTORY.rc
 
 #### Set timesteps based on input.geos
 echo " "
