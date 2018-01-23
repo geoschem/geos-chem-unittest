@@ -15,7 +15,6 @@ CoresPerNode: 6
 
 
 COLLECTIONS: 'inst',
-             ::
               ::
   inst.template:  '%y4%m2%d2.nc4',
   inst.frequency:  002000,
