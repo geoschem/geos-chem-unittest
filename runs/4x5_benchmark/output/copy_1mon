@@ -7,22 +7,17 @@
 #
 # !MODULE: copy_1mon
 #
-# !DESCRIPTION: Copies the 1-month plots and model output files to 
-#  two locations: (1) The regular FTP site (updated 1x/day) and (2) a 
-#  "quick-look" FTP site (updated hourly).  This will allow GEOS-Chem 
-#  developers to examine outputs from the 1-month benchmark simulations.
+# !DESCRIPTION: Copies the 1-month benchmark run directories to GcGrid for
+#  permanent storage. This will sync with the AS ftp site approximately every
+#  hour so that the GEOS-Chem Steering Committee and developers can examine
+#  outputs from the 1-month benchmark simulations in a browser.
 #\\
 #\\
 # !CALLING SEQUENCE:
-#  copy_1month v10-01h  (or whatever the version # is)
+#  ./copy_1month VERSION
 #
 # !REVISION HISTORY: 
-#  15 Jun 2011 - R. Yantosca - Initial version
-#  01 Aug 2011 - R. Yantosca - Also copy the README file
-#  15 Feb 2012 - M. Payer    - Comment out references to dir in my copy_1mon --
-#                              Only Bob has permission to write to that dir.
-#  24 Mar 2015 - M. Sulprizio- Now a bash script
-#  For all revisions after this date, see the GEOS-Chem UnitTest git history
+#  See the GEOS-Chem UnitTest git history
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -34,58 +29,55 @@ if [ $# != 1 ]; then
 fi
 
 #----------------------------------------------------------------------------
-# Copy output to "quick look" ftp site 
+# Copy output to gcgrid for permanent storage
 #----------------------------------------------------------------------------
 
 # Set variables
 version=$1
-dirq="/n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/geos-chem/1mo_benchmarks/v11-02/$version"
+dir="/n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/geos-chem/1mo_benchmarks/v11-02/"
 
-# Make the directory if it does not exist
-if [ ! -d $dirq ]; then
-  echo "Creating $dirq"
-  mkdir $dirq
-fi
+echo "======================================================================="
+echo "Copying 1-month benchmark output to $dir$version"
+echo "======================================================================="
+echo " "
 
-echo "Copying 1-month benchmark output to $dirq"
+# Copy entire contents of 1-month benchmark run directory
+cp -avL ../../$version $dir
 
-# Copy 1-month benchmark output
-cp -f $version.*.fullchem          $dirq
-cp -f $version.*.pdf               $dirq
-cp -f $version.results.html        $dirq
-cp -rf emission_maps               $dirq
-cp -rf emission_differences        $dirq
-cp -rf emission_ratios             $dirq
-
-# Copy output files from model
-cp -f ../trac_avg.$version         $dirq
-cp -f ../Ox.mass*                  $dirq  
-cp -f ../*info.dat                 $dirq
-cp -f ../$version.log              $dirq
-cp -f ../HEMCO.log                 $dirq
-cp -f ../README                    $dirq
+# Remove large files not needed for permanent storage
+rm -v $dir$version/geos.mp
+rm -v $dir$version/*2013080100*
 
 # Change group name of new directories and files
-chgrp jacob_gcst $dirq
-chgrp jacob_gcst $dirq/*
-chgrp jacob_gcst $dirq/emission_ratios/*
-chgrp jacob_gcst $dirq/emission_maps/*
-chgrp jacob_gcst $dirq/emission_differences/*
+chgrp jacob_gcst $dir$version
+chgrp jacob_gcst $dir$version/*
+chgrp jacob_gcst $dir$version/output/*
+chgrp jacob_gcst $dir$version/output/*/*
 
 # Change permissions of new directory and files
-chmod 775 $dirq
-chmod 664 $dirq/*
-chmod 775 $dirq/emission_maps
-chmod 664 $dirq/emission_maps/*
-chmod 775 $dirq/emission_differences
-chmod 664 $dirq/emission_differences/*
-chmod 775 $dirq/emission_ratios
-chmod 664 $dirq/emission_ratios/*
+chmod 775 $dir$version
+chmod 664 $dir$version/*
+chmod 775 $dir$version/output
+chmod 664 $dir$version/output/*
+chmod 775 $dir$version/output/emission_*
+chmod 664 $dir$version/output/emission_*/*
+chmod 775 $dir$version/getRunInfo
+chmod 775 $dir$version/Makefile
+chmod 775 $dir$version/$version.run
+chmod 775 $dir$version/validate
+
+# Print reminders to screen
+echo " "
+echo "======================================================================="
+echo "Done copying 1-month benchmark output to $dir$version"
+echo " "
+echo "*** REMINDERS ***"
+echo " - Update README file to reflect version updates"
+echo " - Copy $version.results.* from UT to output directory"
+echo "======================================================================="
 
 # Clear variables
 unset version
-unset root
-unset dirq
 unset dir
 
 # Exit normally
