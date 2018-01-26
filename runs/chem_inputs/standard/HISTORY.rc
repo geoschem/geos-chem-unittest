@@ -37,6 +37,23 @@ COLLECTIONS: 'inst',
 #  'RadDecay_Rn',                 'GIGCchem',  # ND02 #1,  Rn sim
 #  'RadDecay_Pb',                 'GIGCchem',  # ND02 #2,  Rn sim
 #  'RadDecay_Be7',                'GIGCchem',  # ND02 #3,  Rn sim
+#  'ProdSO2fromDMSandOH',         'GIGCchem',  # ND05 #1,  aer-only
+#  'ProdSO2fromDMSandNO3',        'GIGCchem',  # ND05 #2,  aer-only
+#  'ProdSO2fromDMS',              'GIGCchem',  # ND05 #3   aer-only
+#  'ProdMSAfromDMS',              'GIGCchem',  # ND05 #4   aer-only
+#  'ProdSO4fromGasPhase',         'GIGCchem',  # ND05 #5,  aer-only
+#  'ProdSO4fromH2O2inCloud'       'GIGCchem',  # ND05 #6,  fullchem/aer-only
+#  'ProdSO4fromO3inCloud',        'GIGCchem',  # ND05 #7,  fullchem/aer-only
+#  'ProdSO4fromO3inSeaSalt',      'GIGCchem',  # ND05 #8,  fullchem/aer-only
+#  'ProdSO4fromOxidationOnDust',  'GIGCchem',  # ND05 #11, acid uptake
+#  'ProdNITfromHNO3UptakeOnDust', 'GIGCchem',  # ND05 #12, acid uptake
+#  'ProdSO4fromUptakeOfH2SO4g',   'GIGCchem',  # ND05 #13, acid uptake
+#  'LossHNO3onSeaSalt',           'GIGCchem',  # ND05 #14  acid uptake
+#  'ProdSO4fromHOBrInCloud',      'GIGCchem',  # ND05 #15, fullchem
+#  'ProdSO4fromSRO3',             'GIGCchem',  # ND05 #16, fullchem/aer-only
+#  'ProdSO4fromSRHOBr',           'GIGCchem',  # ND05 #17, fullchem
+#  'ProdSO4fromO3s',              'GIGCchem',  # ND05 #18, fullchem/aer-only
+#  'HPlus',                       'GIGCchem',  # ND05 #19, fullchem/aer-only
 #  'ProdBCPIfromBCPO',            'GIGCchem',  # ND07 #4,  fullchem/aer-only
 #  'ProdOCPIfromOCPO',            'GIGCchem',  # ND07 #9,  fullchem/aer-only
 #  'CloudConvFlux_?ADV?',         'GIGCchem',  # ND14      all simulations
@@ -75,25 +92,6 @@ COLLECTIONS: 'inst',
 #
 # Still in progress
 #
-#  'ProdSO2fromDMSandOH',         'GIGCchem',  # ND05 #1,  aer-only
-#  'ProdSO2fromDMSandNO3',        'GIGCchem',  # ND05 #2,  aer-only
-#  'ProdSO2fromDMS',              'GIGCchem',  # ND05 #3   aer-only
-#  'ProdMSAfromDMS',              'GIGCchem',  # ND05 #4   aer-only
-#  'ProdSO4fromGasPhase',         'GIGCchem',  # ND05 #5,  fullchem/aer-only
-#  'ProdSO4fromH2O2inCloud'       'GIGCchem',  # ND05 #6,  fullchem/aer-only
-#  'ProdSO4fromO3inCloud',        'GIGCchem',  # ND05 #7,  fullchem/aer-only
-#  'ProdSO4fromO3inSeaSalt',      'GIGCchem',  # ND05 #8,  fullchem/aer-only
-#  'LossOHbyDMS',                 'GIGCchem',  # ND05 #9   aer-only
-#  'LossNO3byDMS',                'GIGCchem',  # ND05 #10  aer-only
-#  'ProdSO4fromOxidationOnDust',  'GIGCchem',  # ND05 #11, dust uptake
-#  'ProdNITfromHNO3UptakeOnDust', 'GIGCchem',  # ND05 #12, dust uptake
-#  'ProdSO4fromUptakeOfH2SO4g',   'GIGCchem',  # ND05 #13, dust uptake
-#  'LossHNO3onSeaSalt',           'GIGCchem',  # ND05 #14  dust uptake
-#  'ProdSO4fromHOBrInCloud',      'GIGCchem',  # ND05 #15, fullchem/aer-only
-#  'ProdSO4fromSRO3',             'GIGCchem',  # ND05 #16, fullchem/aer-only
-#  'ProdSO4fromSRHOBr',           'GIGCchem',  # ND05 #17, fullchem/aer-only
-#  'ProdSO4fromO3s',              'GIGCchem',  # ND05 #18, fullchem/aer-only
-#  'Chem_phCloud',                'GIGCchem',  # ND05 #19, fullchem/aer-only
 #
 # Not yet implemented (but soon)
 #
