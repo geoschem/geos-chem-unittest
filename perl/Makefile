@@ -18,7 +18,7 @@
 #                                                                             .
 #  (2) MET and GRID are read from input.geos using perl script
 #      getRunInfo and are automatically passed to the make command. 
-#      Simulation-dependent optional flags NEST, TOMAS40, UCX, and RRTMG
+#      Simulation-dependent optional flags NEST, TOMAS40, and RRTMG
 #      are also automatically passed. 
 #                                                                             .
 #  (3) There are two processing modes available: sp and mp. sp uses a single
@@ -125,10 +125,6 @@ ifndef TOMAS40
  TOMAS40     :=n
 endif
 
-ifndef UCX
- UCX         :=n
-endif
-
 ifndef RRTMG
  RRTMG       :=n
 endif
@@ -193,7 +189,7 @@ END          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 5)
 STARTDATE    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 7)
 HMCO_END     :=$(END)
 
-# By default, UCX, TOMAS40 and RRTMG are all set to "n".  But if we are doing
+# By default, TOMAS40 and RRTMG are set to "n".  But if we are doing
 # one of thess simulations, reset the corresponding makefile variable to "y".
 # Also define the proper setting for CHEM, which picks the correct KPP files.
 ifeq ($(SIM),TOMAS12)
@@ -221,33 +217,23 @@ ifeq ($(SIM),RRTMG)
  CHEM        :=Tropchem
 endif
 
-ifeq ($(SIM),UCX)
- UCX         :=y
- CHEM        :=UCX
- NO_REDUCED  :=y
-endif
-
 ifeq ($(SIM),standard)
- UCX         :=y
  CHEM        :=Standard
  NO_REDUCED  :=y
 endif
 
 ifeq ($(SIM),benchmark)
- UCX         :=y
  CHEM        :=Standard
  NO_REDUCED  :=y
  TIMERS      :=1
 endif
 
 ifeq ($(SIM),aciduptake)
- UCX         :=y
  CHEM        :=Standard
  NO_REDUCED  :=y
 endif
 
 ifeq ($(SIM),marinePOA)
- UCX         :=y
  CHEM        :=Standard
  NO_REDUCED  :=y
 endif
@@ -267,6 +253,7 @@ endif
 
 ifeq ($(SIM),custom)
  CHEM        :=Custom
+ NO_REDUCED  :=y
 endif
 
 ifeq ($(SIM),masscons)
@@ -401,7 +388,7 @@ unittest:
 sp:
 	@$(MAKE) spclean
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)           UCX=$(UCX)             \
+                                NEST=$(NEST)                                  \
                                 CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
                                 TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
                                 TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
@@ -420,7 +407,7 @@ sp:
 mp:
 	@$(MAKE) mpclean
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)           UCX=$(UCX)             \
+                                NEST=$(NEST)                                  \
                                 CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
                                 TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
                                 TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
@@ -444,7 +431,7 @@ spbuild:
 	@$(MAKE) spexeclean
 	@$(MAKE) splogclean
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)           UCX=$(UCX)             \
+                                NEST=$(NEST)                                  \
                                 CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
                                 TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
                                 TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
@@ -460,7 +447,7 @@ mpbuild:
 	@$(MAKE) mpexeclean
 	@$(MAKE) mplogclean
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)           UCX=$(UCX)             \
+                                NEST=$(NEST)                                  \
                                 CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
                                 TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
                                 TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
@@ -507,7 +494,7 @@ hcobuild:
 	@$(MAKE) hcoexeclean
 	@$(MAKE) hcologclean
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)           UCX=$(UCX)             \
+                                NEST=$(NEST)                                  \
                                 CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
                                 TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
                                 TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
@@ -711,7 +698,6 @@ printbuildinfo:
 	@echo "  NO_ISO       : $(NO_ISO)"	
 	@echo "  NO_REDUCED   : $(NO_REDUCED)"
 	@echo "  CHEM         : $(CHEM)"
-	@echo "  UCX          : $(UCX)"
 	@echo "  TOMAS12      : $(TOMAS12)"	
 	@echo "  TOMAS15      : $(TOMAS15)"
 	@echo "  TOMAS30      : $(TOMAS30)"

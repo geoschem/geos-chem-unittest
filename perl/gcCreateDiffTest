@@ -518,7 +518,7 @@ sub doCopyDirs($$) {
           $date1= substr( $start, 0, 8 );
 
 	  # Define met field for IDL plotting routines
-          if ( ( $sim =~ m/standard/ ) || ( $sim =~ m/UCX/ ) ) {
+          if ( ( $sim =~ m/standard/ ) || ( $sim =~ m/benchmark/ ) ) {
              $metType = "$met";
           } else {
              $metType = "${met}_47L";
