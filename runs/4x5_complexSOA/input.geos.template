@@ -206,16 +206,6 @@ Switches for UCX        :---
     => N2O?             : F
  => Set initial glob MRs:---
     => strat. H2O?      : F
-    => CH4?             : F
-    => OCS?             : F
-    => CFCs?            : F
-    => Cl species?      : F
-    => strat Bry (GCCM)?: F
-    => Br species?      : F
-    => strat. Br?       : F
-    => strat. NOx/HNO3? : F
-    => N2O?             : F
-    => strat. SO4?      : F
  => CFC emission year   : 0
 ------------------------+------------------------------------------------------
 %%% AEROSOL MENU %%%    :
