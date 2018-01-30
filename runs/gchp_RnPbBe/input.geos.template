@@ -8,8 +8,6 @@ Input restart file      : not_used
 Root data directory     : {DATA_ROOT}
  => GEOS-FP subdir      : GEOS_FP/YYYY/MM/
  => MERRA2  subdir      : MERRA2/YYYY/MM/
-Dir w/ 1x1 emissions etc: {DATA_ROOT}/GEOS_NATIVE/
-Use variable tropopause?: T
 Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% TIMESTEP MENU %%%   :
@@ -18,7 +16,6 @@ Chem/emis timestep [min]: 20
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 1
-Number of Advected Spec.: 4
 Species Entries ------->: Name
 Species name            : Rn
 Species name            : Pb
@@ -68,7 +65,6 @@ Switches for UCX        :---
 ------------------------+------------------------------------------------------
 %%% AEROSOL MENU %%%    :
 Online SULFATE AEROSOLS : F
-Online CRYST/AQ AEROSOLS: F
 Online CARBON  AEROSOLS : F
  => Use Brown Carbon?   : F
 Online COMPLEX SOA      : F
@@ -80,7 +76,6 @@ Online SEASALT AEROSOLS : F
  => SALA radius bin [um]: 0.01 0.5
  => SALC radius bin [um]: 0.5  8.0
  => MARINE ORG AEROSOLS : F
-Online dicarb. chem.    : F
 Settle strat. aerosols  : F
 Online PSC AEROSOLS     : F
 Allow homogeneous NAT?  : F
@@ -296,15 +291,6 @@ BC timestep [min]       : 180
 LL box of BC region     :   9  26
 UR box of BC region     :  29  41
 I0_W, J0_W, I0_E, J0_E  :   3   3   3   3
-------------------------+------------------------------------------------------
-%%% UNIX CMDS MENU %%%  :
-Background symbol       : &
-Redirect symbol         :  >
-Unix remove command     : rm -f
-Unix pathname separator : /
-Unix wildcard character : *
-Unix unzip command      : gzip -dc
-Zip file suffix         : .gz
 ------------------------+------------------------------------------------------
 END OF FILE             :
 ------------------------+------------------------------------------------------
