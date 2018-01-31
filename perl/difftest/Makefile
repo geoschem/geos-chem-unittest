@@ -128,10 +128,6 @@ ifndef RRTMG
  RRTMG       :=n
 endif
 
-ifndef CHEM
- CHEM        :=Standard
-endif
-
 ifndef MASSCONS 
  MASSCONS    :=n
 endif
