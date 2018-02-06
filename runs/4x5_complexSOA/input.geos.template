@@ -211,6 +211,7 @@ Switches for UCX        :---
 ------------------------+------------------------------------------------------
 %%% AEROSOL MENU %%%    :
 Online SULFATE AEROSOLS : T
+ => Metal cat. SO2 ox.? : T
 Online CARBON  AEROSOLS : T
  => Use Brown Carbon?   : F
 Online COMPLEX SOA      : T
