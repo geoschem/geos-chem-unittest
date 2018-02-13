@@ -11,8 +11,8 @@ Root data directory     : {DATA_ROOT}
 Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% TIMESTEP MENU %%%   :
-Tran/conv timestep [min]: 10
-Chem/emis timestep [min]: 20
+Tran/conv timestep [sec]: 600
+Chem/emis timestep [sec]: 1200
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 9
@@ -95,7 +95,7 @@ Calculate LW fluxes?    : F
 Calculate SW fluxes?    : F
 Clear-sky flux?         : F
 All-sky flux?           : F
-Radiation Timestep [min]: 180
+Radiation Timestep [sec]: 10800
 Species fluxes          : 0 0 0 0 0 0 0 0 0 1 0
  ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM,ST]
 ------------------------+------------------------------------------------------
@@ -210,7 +210,7 @@ Output file name        : plane.log.YYYYMMDD
 %%% ND48 MENU %%%       :
 Turn on ND48 stations   : F
 Station Timeseries file : stations.YYYYMMDD
-Frequency [min]         :  60
+Frequency [sec]         : 3600
 Number of stations      :   1
 Station #1 (I,J,Lmax,N) : 133 29 15 2
 ------------------------+------------------------------------------------------
@@ -218,7 +218,7 @@ Station #1 (I,J,Lmax,N) : 133 29 15 2
 Turn on ND49 diagnostic : F
 Inst 3-D timeser. file  : tsYYYYMMDD.bpch
 Tracers to include      : 94
-Frequency [min]         : 120
+Frequency [sec]         : 7200
 IMIN, IMAX of region    :  70  30
 JMIN, JMAX of region    :  23  46
 LMIN, LMAX of region    :   1   1
@@ -258,7 +258,7 @@ LMIN, LMAX of region    :   1   1
 Turn on ND63 diagnostic : F
 Inst 3-D timeser. file  : paranox_ts.YYYYMMDD.bpch
 Tracers to include      : 1
-Frequency [min]         : 120
+Frequency [sec]         : 7200
 IMIN, IMAX of region    :  70  30
 JMIN, JMAX of region    :  23  46
 -------------------------------------------------------------------------------
@@ -285,7 +285,7 @@ Over Asia?              : F
 TPCORE AS BC directory  : BC_2x25_AS/
 Over Custom Region?     : F
 TPCORE BC directory     : BC_2x25/
-BC timestep [min]       : 180
+BC timestep [sec]       : 10800
 LL box of BC region     :   9  26
 UR box of BC region     :  29  41
 I0_W, J0_W, I0_E, J0_E  :   3   3   3   3
