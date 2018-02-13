@@ -256,6 +256,10 @@ ifeq ($(SIM),masscons)
  MASSCONS    :=y
 endif
 
+ifeq ($(SIM),RnPbBe)
+ NO_REDUCED  :=y
+endif
+
 # General run information
 TIMESTAMP    :=$(shell date +"%Y/%m/%d %H:%M")	
 RUNID        :=$(MET)_$(GRID)_$(SIM)
