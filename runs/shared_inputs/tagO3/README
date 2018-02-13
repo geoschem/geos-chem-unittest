@@ -1,0 +1,9 @@
+This folder (runs/shared_inputs/tagO3) contains input files
+for GEOS-Chem TAGGED O3 simulations, namely:
+
+(1) HEMCO configuration files
+(2) A HISTORY.rc file for netCDF diagnostics
+
+-- GEOS-Chem Support Team
+   geos-chem-support@as.harvard.edu
+   13 Feb 2018

@@ -1,0 +1,15 @@
+NOTE: The GCHP configuration files stored in this runs/shared_inputs/gchp
+folder are common to all GEOS-Chem full-chemistry simulations.  
+
+These files are symbolically linked to the following folders:
+
+  ../benchmark
+  ../RnPbBe
+  ../standard
+
+If you have to edit these GCHP configuration files, edit them in this folder,
+and the changes will propagate to the other folders via the symlinks.
+
+-- GEOS-Chem Support Team
+   geos-chem-support@as.harvard.edu
+   13 Feb 2018

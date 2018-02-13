@@ -1,385 +1,480 @@
+###############################################################################
+###  HISTORY.rc file for GEOS-Chem                                          ###
+###  Contact: GEOS-Chem Support Team (geos-chem-support@as.harvard.edu)     ###
+###############################################################################
 
+# The following settings are used for only for GCHP simulations
 EXPID:  OutputDir/GCHP
 EXPDSC: GEOS-Chem_devel
 CoresPerNode: 6
 
+#==============================================================================
+# %%%%% COLLECTION NAME DECLARATIONS %%%%%
+#
+# To disable a collection, place a "#" character in front of its name
+#
+# NOTE: These are the "default" collections for GEOS-Chem.  But you can create
+# your own custom diagnostic collections below by following th e
+#==============================================================================
+COLLECTIONS: 'SpeciesConc',
+             'AerosolMass',
+             'Aerosols',
+             'CloudConvFlux',
+             'ConcAfterChem',
+             'DryDep',
+             'JValues',
+             'JValuesLocalNoon',
+             'LevelEdgeDiags',      
+             'ProdLoss',
+             'RadioNuclide',
+             'StateChm',     
+             'StateMet',      
+             'WetLossConv',
+             'WetLossLS',
+::
+###############################################################################
+### The rest of this file consists of collection definitions.               ###
+### Above collections whose declarations are commented out will be ignored. ###
+### Make sure that each collection definition, as well as the list of       ###
+### collections above, ends with a double-colon ("::").                     ###
+###############################################################################
 
-COLLECTIONS: 'center',
-             #'inst',
-             ::
-  center.template:  '%y4%m2%d2_%h2%n2z.nc4',
-  center.format:    'CFIO',
-  center.frequency:  010000
-  center.duration:   010000
-  center.mode:      'time-averaged'
-  center.fields:    'SPC_NO      ',    'GIGCchem',
-                    'SPC_O3      ',    'GIGCchem',
-                    'SPC_PAN     ',    'GIGCchem',
-                    'SPC_CO      ',    'GIGCchem',
-                    'SPC_ALK4    ',    'GIGCchem',
-                    'SPC_ISOP    ',    'GIGCchem',
-                    'SPC_HNO3    ',    'GIGCchem',
-                    'SPC_H2O2    ',    'GIGCchem',
-                    'SPC_ACET    ',    'GIGCchem',
-                    'SPC_MEK     ',    'GIGCchem',
-                    'SPC_ALD2    ',    'GIGCchem',
-                    'SPC_RCHO    ',    'GIGCchem',
-                    'SPC_MVK     ',    'GIGCchem',
-                    'SPC_MACR    ',    'GIGCchem',
-                    'SPC_NPMN    ',    'GIGCchem',
-                    'SPC_PPN     ',    'GIGCchem',
-                    'SPC_R4N2    ',    'GIGCchem',
-                    'SPC_PRPE    ',    'GIGCchem',
-                    'SPC_C3H8    ',    'GIGCchem',
-                    'SPC_CH2O    ',    'GIGCchem',
-                    'SPC_C2H6    ',    'GIGCchem',
-                    'SPC_N2O5    ',    'GIGCchem',
-                    'SPC_HNO4    ',    'GIGCchem',
-                    'SPC_MP      ',    'GIGCchem',
-                    'SPC_DMS     ',    'GIGCchem',
-                    'SPC_SO2     ',    'GIGCchem',
-                    'SPC_SO4     ',    'GIGCchem',
-                    'SPC_SO4s    ',    'GIGCchem',
-                    'SPC_MSA     ',    'GIGCchem',
-                    'SPC_NH3     ',    'GIGCchem',
-                    'SPC_NH4     ',    'GIGCchem',
-                    'SPC_NIT     ',    'GIGCchem',
-                    'SPC_NITs    ',    'GIGCchem',
-                    'SPC_BCPI    ',    'GIGCchem',
-                    'SPC_OCPI    ',    'GIGCchem',
-                    'SPC_BCPO    ',    'GIGCchem',
-                    'SPC_OCPO    ',    'GIGCchem',
-                    'SPC_DST1    ',    'GIGCchem',
-                    'SPC_DST2    ',    'GIGCchem',
-                    'SPC_DST3    ',    'GIGCchem',
-                    'SPC_DST4    ',    'GIGCchem',
-                    'SPC_SALA    ',    'GIGCchem',
-                    'SPC_SALC    ',    'GIGCchem',
-                    'SPC_Br2     ',    'GIGCchem',
-                    'SPC_Br      ',    'GIGCchem',
-                    'SPC_BrO     ',    'GIGCchem',
-                    'SPC_HOBr    ',    'GIGCchem',
-                    'SPC_HBr     ',    'GIGCchem',
-                    'SPC_BrNO2   ',    'GIGCchem',
-                    'SPC_BrNO3   ',    'GIGCchem',
-                    'SPC_CHBr3   ',    'GIGCchem',
-                    'SPC_CH2Br2  ',    'GIGCchem',
-                    'SPC_CH3Br   ',    'GIGCchem',
-                    'SPC_MPN     ',    'GIGCchem',
-                    'SPC_ISOPND  ',    'GIGCchem',
-                    'SPC_ISOPNB  ',    'GIGCchem',
-                    'SPC_MOBA    ',    'GIGCchem',
-                    'SPC_PROPNN  ',    'GIGCchem',
-                    'SPC_HAC     ',    'GIGCchem',
-                    'SPC_GLYC    ',    'GIGCchem',
-                    'SPC_MVKN    ',    'GIGCchem',
-                    'SPC_MACRN   ',    'GIGCchem',
-                    'SPC_MAP     ',    'GIGCchem',
-                    'SPC_NO2     ',    'GIGCchem',
-                    'SPC_NO3     ',    'GIGCchem',
-                    'SPC_HNO2    ',    'GIGCchem',
-                    'SPC_BENZ    ',    'GIGCchem',
-                    'SPC_TOLU    ',    'GIGCchem',
-                    'SPC_XYLE    ',    'GIGCchem',
-                    'SPC_MTPA    ',    'GIGCchem',
-                    'SPC_LIMO    ',    'GIGCchem',
-                    'SPC_MTPO    ',    'GIGCchem',
-                    'SPC_TSOG1   ',    'GIGCchem',
-                    'SPC_TSOG2   ',    'GIGCchem',
-                    'SPC_TSOG3   ',    'GIGCchem',
-                    'SPC_TSOG0   ',    'GIGCchem',
-                    'SPC_TSOA1   ',    'GIGCchem',
-                    'SPC_TSOA2   ',    'GIGCchem',
-                    'SPC_TSOA3   ',    'GIGCchem',
-                    'SPC_TSOA0   ',    'GIGCchem',
-                    'SPC_ISOG1   ',    'GIGCchem',
-                    'SPC_ISOG2   ',    'GIGCchem',
-                    'SPC_ISOG3   ',    'GIGCchem',
-                    'SPC_ISOA1   ',    'GIGCchem',
-                    'SPC_ISOA2   ',    'GIGCchem',
-                    'SPC_ISOA3   ',    'GIGCchem',
-                    'SPC_ASOG1   ',    'GIGCchem',
-                    'SPC_ASOG2   ',    'GIGCchem',
-                    'SPC_ASOG3   ',    'GIGCchem',
-                    'SPC_ASOAN   ',    'GIGCchem',
-                    'SPC_ASOA1   ',    'GIGCchem',
-                    'SPC_ASOA2   ',    'GIGCchem',
-                    'SPC_ASOA3   ',    'GIGCchem',
-                    'SPC_SOAP    ',    'GIGCchem',
-                    'SPC_SOAS    ',    'GIGCchem',
-                    'SPC_EOH     ',    'GIGCchem',
-                    'SPC_MGLY    ',    'GIGCchem',
-                    'SPC_GLYX    ',    'GIGCchem',
-                    'SPC_ACTA    ',    'GIGCchem',
-                    'SPC_HPALD   ',    'GIGCchem',
-                    'SPC_DHDN    ',    'GIGCchem',
-                    'SPC_ETHLN   ',    'GIGCchem',
-                    'SPC_HCOOH   ',    'GIGCchem',
-                    'SPC_IEPOXA  ',    'GIGCchem',
-                    'SPC_IEPOXB  ',    'GIGCchem',
-                    'SPC_IEPOXD  ',    'GIGCchem',
-                    'SPC_ISN1    ',    'GIGCchem',
-                    'SPC_RIPA    ',    'GIGCchem',
-                    'SPC_RIPB    ',    'GIGCchem',
-                    'SPC_RIPD    ',    'GIGCchem',
-                    'SPC_IMAE    ',    'GIGCchem',
-                    'SPC_SOAIE   ',    'GIGCchem',
-                    'SPC_SOAME   ',    'GIGCchem',
-                    'SPC_SOAGX   ',    'GIGCchem',
-                    'SPC_SOAMG   ',    'GIGCchem',
-                    'SPC_LVOC    ',    'GIGCchem',
-                    'SPC_LVOCOA  ',    'GIGCchem',
-                    'SPC_ISN1OG  ',    'GIGCchem',
-                    'SPC_ISN1OA  ',    'GIGCchem',
-                    'SPC_MONITS  ',    'GIGCchem',
-                    'SPC_MONITU  ',    'GIGCchem',
-                    'SPC_HONIT   ',    'GIGCchem',
-                    'SPC_IONITA  ',    'GIGCchem',
-                    'SPC_MONITA  ',    'GIGCchem',
-                    'SPC_INDIOL  ',    'GIGCchem',
-                    'SPC_IPMN    ',    'GIGCchem',
-                    'SPC_HC187   ',    'GIGCchem',
-                    'SPC_N2O     ',    'GIGCchem',
-                    'SPC_OCS     ',    'GIGCchem',
-                    'SPC_CH4     ',    'GIGCchem',
-                    'SPC_BrCl    ',    'GIGCchem',
-                    'SPC_HCl     ',    'GIGCchem',
-                    'SPC_CCl4    ',    'GIGCchem',
-                    'SPC_CH3Cl   ',    'GIGCchem',
-                    'SPC_CH3CCl3 ',    'GIGCchem',
-                    'SPC_CFC113  ',    'GIGCchem',
-                    'SPC_CFC114  ',    'GIGCchem',
-                    'SPC_CFC115  ',    'GIGCchem',
-                    'SPC_HCFC123 ',    'GIGCchem',
-                    'SPC_HCFC141b',    'GIGCchem',
-                    'SPC_HCFC142b',    'GIGCchem',
-                    'SPC_CFC11   ',    'GIGCchem',
-                    'SPC_CFC12   ',    'GIGCchem',
-                    'SPC_HCFC22  ',    'GIGCchem',
-                    'SPC_H1211   ',    'GIGCchem',
-                    'SPC_H1301   ',    'GIGCchem',
-                    'SPC_H2402   ',    'GIGCchem',
-                    'SPC_Cl      ',    'GIGCchem',
-                    'SPC_ClO     ',    'GIGCchem',
-                    'SPC_HOCl    ',    'GIGCchem',
-                    'SPC_ClNO3   ',    'GIGCchem',
-                    'SPC_ClNO2   ',    'GIGCchem',
-                    'SPC_ClOO    ',    'GIGCchem',
-                    'SPC_OClO    ',    'GIGCchem',
-                    'SPC_Cl2     ',    'GIGCchem',
-                    'SPC_Cl2O2   ',    'GIGCchem',
-                    'SPC_H2O     ',    'GIGCchem',
-                    'SPC_BrSALA  ',    'GIGCchem',
-                    'SPC_BrSALC  ',    'GIGCchem',
-                    'SPC_CHCl3   ',    'GIGCchem',
-                    'SPC_CH2Cl2  ',    'GIGCchem',
-                    'SPC_CH3I    ',    'GIGCchem',
-                    'SPC_CH2I2   ',    'GIGCchem',
-                    'SPC_CH2ICl  ',    'GIGCchem',
-                    'SPC_CH2IBr  ',    'GIGCchem',
-                    'SPC_HOI     ',    'GIGCchem',
-                    'SPC_I2      ',    'GIGCchem',
-                    'SPC_IBr     ',    'GIGCchem',
-                    'SPC_ICl     ',    'GIGCchem',
-                    'SPC_I       ',    'GIGCchem',
-                    'SPC_IO      ',    'GIGCchem',
-                    'SPC_HI      ',    'GIGCchem',
-                    'SPC_OIO     ',    'GIGCchem',
-                    'SPC_INO     ',    'GIGCchem',
-                    'SPC_IONO    ',    'GIGCchem',
-                    'SPC_IONO2   ',    'GIGCchem',
-                    'SPC_I2O2    ',    'GIGCchem',
-                    'SPC_I2O3    ',    'GIGCchem',
-                    'SPC_I2O4    ',    'GIGCchem',
-                    'SPC_ISALA   ',    'GIGCchem',
-                    'SPC_ISALC   ',    'GIGCchem',
-                    'SPC_AERI    ',    'GIGCchem',
-       ::
-  inst.template:      '%y4%m2%d2_%h2%n2z.nc4',
-  inst.format:        'CFIO',
-  inst.frequency:      010000
-  inst.duration:       010000
-  inst.mode:          'instantaneous'
-  inst.fields:      'SPC_NO      ',    'GIGCchem',
-                    'SPC_O3      ',    'GIGCchem',
-                    'SPC_PAN     ',    'GIGCchem',
-                    'SPC_CO      ',    'GIGCchem',
-                    'SPC_ALK4    ',    'GIGCchem',
-                    'SPC_ISOP    ',    'GIGCchem',
-                    'SPC_HNO3    ',    'GIGCchem',
-                    'SPC_H2O2    ',    'GIGCchem',
-                    'SPC_ACET    ',    'GIGCchem',
-                    'SPC_MEK     ',    'GIGCchem',
-                    'SPC_ALD2    ',    'GIGCchem',
-                    'SPC_RCHO    ',    'GIGCchem',
-                    'SPC_MVK     ',    'GIGCchem',
-                    'SPC_MACR    ',    'GIGCchem',
-                    'SPC_NPMN    ',    'GIGCchem',
-                    'SPC_PPN     ',    'GIGCchem',
-                    'SPC_R4N2    ',    'GIGCchem',
-                    'SPC_PRPE    ',    'GIGCchem',
-                    'SPC_C3H8    ',    'GIGCchem',
-                    'SPC_CH2O    ',    'GIGCchem',
-                    'SPC_C2H6    ',    'GIGCchem',
-                    'SPC_N2O5    ',    'GIGCchem',
-                    'SPC_HNO4    ',    'GIGCchem',
-                    'SPC_MP      ',    'GIGCchem',
-                    'SPC_DMS     ',    'GIGCchem',
-                    'SPC_SO2     ',    'GIGCchem',
-                    'SPC_SO4     ',    'GIGCchem',
-                    'SPC_SO4s    ',    'GIGCchem',
-                    'SPC_MSA     ',    'GIGCchem',
-                    'SPC_NH3     ',    'GIGCchem',
-                    'SPC_NH4     ',    'GIGCchem',
-                    'SPC_NIT     ',    'GIGCchem',
-                    'SPC_NITs    ',    'GIGCchem',
-                    'SPC_BCPI    ',    'GIGCchem',
-                    'SPC_OCPI    ',    'GIGCchem',
-                    'SPC_BCPO    ',    'GIGCchem',
-                    'SPC_OCPO    ',    'GIGCchem',
-                    'SPC_DST1    ',    'GIGCchem',
-                    'SPC_DST2    ',    'GIGCchem',
-                    'SPC_DST3    ',    'GIGCchem',
-                    'SPC_DST4    ',    'GIGCchem',
-                    'SPC_SALA    ',    'GIGCchem',
-                    'SPC_SALC    ',    'GIGCchem',
-                    'SPC_Br2     ',    'GIGCchem',
-                    'SPC_Br      ',    'GIGCchem',
-                    'SPC_BrO     ',    'GIGCchem',
-                    'SPC_HOBr    ',    'GIGCchem',
-                    'SPC_HBr     ',    'GIGCchem',
-                    'SPC_BrNO2   ',    'GIGCchem',
-                    'SPC_BrNO3   ',    'GIGCchem',
-                    'SPC_CHBr3   ',    'GIGCchem',
-                    'SPC_CH2Br2  ',    'GIGCchem',
-                    'SPC_CH3Br   ',    'GIGCchem',
-                    'SPC_MPN     ',    'GIGCchem',
-                    'SPC_ISOPND  ',    'GIGCchem',
-                    'SPC_ISOPNB  ',    'GIGCchem',
-                    'SPC_MOBA    ',    'GIGCchem',
-                    'SPC_PROPNN  ',    'GIGCchem',
-                    'SPC_HAC     ',    'GIGCchem',
-                    'SPC_GLYC    ',    'GIGCchem',
-                    'SPC_MVKN    ',    'GIGCchem',
-                    'SPC_MACRN   ',    'GIGCchem',
-                    'SPC_MAP     ',    'GIGCchem',
-                    'SPC_NO2     ',    'GIGCchem',
-                    'SPC_NO3     ',    'GIGCchem',
-                    'SPC_HNO2    ',    'GIGCchem',
-                    'SPC_BENZ    ',    'GIGCchem',
-                    'SPC_TOLU    ',    'GIGCchem',
-                    'SPC_XYLE    ',    'GIGCchem',
-                    'SPC_MTPA    ',    'GIGCchem',
-                    'SPC_LIMO    ',    'GIGCchem',
-                    'SPC_MTPO    ',    'GIGCchem',
-                    'SPC_TSOG1   ',    'GIGCchem',
-                    'SPC_TSOG2   ',    'GIGCchem',
-                    'SPC_TSOG3   ',    'GIGCchem',
-                    'SPC_TSOG0   ',    'GIGCchem',
-                    'SPC_TSOA1   ',    'GIGCchem',
-                    'SPC_TSOA2   ',    'GIGCchem',
-                    'SPC_TSOA3   ',    'GIGCchem',
-                    'SPC_TSOA0   ',    'GIGCchem',
-                    'SPC_ISOG1   ',    'GIGCchem',
-                    'SPC_ISOG2   ',    'GIGCchem',
-                    'SPC_ISOG3   ',    'GIGCchem',
-                    'SPC_ISOA1   ',    'GIGCchem',
-                    'SPC_ISOA2   ',    'GIGCchem',
-                    'SPC_ISOA3   ',    'GIGCchem',
-                    'SPC_ASOG1   ',    'GIGCchem',
-                    'SPC_ASOG2   ',    'GIGCchem',
-                    'SPC_ASOG3   ',    'GIGCchem',
-                    'SPC_ASOAN   ',    'GIGCchem',
-                    'SPC_ASOA1   ',    'GIGCchem',
-                    'SPC_ASOA2   ',    'GIGCchem',
-                    'SPC_ASOA3   ',    'GIGCchem',
-                    'SPC_SOAP    ',    'GIGCchem',
-                    'SPC_SOAS    ',    'GIGCchem',
-                    'SPC_EOH     ',    'GIGCchem',
-                    'SPC_MGLY    ',    'GIGCchem',
-                    'SPC_GLYX    ',    'GIGCchem',
-                    'SPC_ACTA    ',    'GIGCchem',
-                    'SPC_HPALD   ',    'GIGCchem',
-                    'SPC_DHDN    ',    'GIGCchem',
-                    'SPC_ETHLN   ',    'GIGCchem',
-                    'SPC_HCOOH   ',    'GIGCchem',
-                    'SPC_IEPOXA  ',    'GIGCchem',
-                    'SPC_IEPOXB  ',    'GIGCchem',
-                    'SPC_IEPOXD  ',    'GIGCchem',
-                    'SPC_ISN1    ',    'GIGCchem',
-                    'SPC_RIPA    ',    'GIGCchem',
-                    'SPC_RIPB    ',    'GIGCchem',
-                    'SPC_RIPD    ',    'GIGCchem',
-                    'SPC_IMAE    ',    'GIGCchem',
-                    'SPC_SOAIE   ',    'GIGCchem',
-                    'SPC_SOAME   ',    'GIGCchem',
-                    'SPC_SOAGX   ',    'GIGCchem',
-                    'SPC_SOAMG   ',    'GIGCchem',
-                    'SPC_LVOC    ',    'GIGCchem',
-                    'SPC_LVOCOA  ',    'GIGCchem',
-                    'SPC_ISN1OG  ',    'GIGCchem',
-                    'SPC_ISN1OA  ',    'GIGCchem',
-                    'SPC_MONITS  ',    'GIGCchem',
-                    'SPC_MONITU  ',    'GIGCchem',
-                    'SPC_HONIT   ',    'GIGCchem',
-                    'SPC_IONITA  ',    'GIGCchem',
-                    'SPC_MONITA  ',    'GIGCchem',
-                    'SPC_INDIOL  ',    'GIGCchem',
-                    'SPC_IPMN    ',    'GIGCchem',
-                    'SPC_HC187   ',    'GIGCchem',
-                    'SPC_N2O     ',    'GIGCchem',
-                    'SPC_OCS     ',    'GIGCchem',
-                    'SPC_CH4     ',    'GIGCchem',
-                    'SPC_BrCl    ',    'GIGCchem',
-                    'SPC_HCl     ',    'GIGCchem',
-                    'SPC_CCl4    ',    'GIGCchem',
-                    'SPC_CH3Cl   ',    'GIGCchem',
-                    'SPC_CH3CCl3 ',    'GIGCchem',
-                    'SPC_CFC113  ',    'GIGCchem',
-                    'SPC_CFC114  ',    'GIGCchem',
-                    'SPC_CFC115  ',    'GIGCchem',
-                    'SPC_HCFC123 ',    'GIGCchem',
-                    'SPC_HCFC141b',    'GIGCchem',
-                    'SPC_HCFC142b',    'GIGCchem',
-                    'SPC_CFC11   ',    'GIGCchem',
-                    'SPC_CFC12   ',    'GIGCchem',
-                    'SPC_HCFC22  ',    'GIGCchem',
-                    'SPC_H1211   ',    'GIGCchem',
-                    'SPC_H1301   ',    'GIGCchem',
-                    'SPC_H2402   ',    'GIGCchem',
-                    'SPC_Cl      ',    'GIGCchem',
-                    'SPC_ClO     ',    'GIGCchem',
-                    'SPC_HOCl    ',    'GIGCchem',
-                    'SPC_ClNO3   ',    'GIGCchem',
-                    'SPC_ClNO2   ',    'GIGCchem',
-                    'SPC_ClOO    ',    'GIGCchem',
-                    'SPC_OClO    ',    'GIGCchem',
-                    'SPC_Cl2     ',    'GIGCchem',
-                    'SPC_Cl2O2   ',    'GIGCchem',
-                    'SPC_H2O     ',    'GIGCchem',
-                    'SPC_BrSALA  ',    'GIGCchem',
-                    'SPC_BrSALC  ',    'GIGCchem',
-                    'SPC_CHCl3   ',    'GIGCchem',
-                    'SPC_CH2Cl2  ',    'GIGCchem',
-                    'SPC_CH3I    ',    'GIGCchem',
-                    'SPC_CH2I2   ',    'GIGCchem',
-                    'SPC_CH2ICl  ',    'GIGCchem',
-                    'SPC_CH2IBr  ',    'GIGCchem',
-                    'SPC_HOI     ',    'GIGCchem',
-                    'SPC_I2      ',    'GIGCchem',
-                    'SPC_IBr     ',    'GIGCchem',
-                    'SPC_ICl     ',    'GIGCchem',
-                    'SPC_I       ',    'GIGCchem',
-                    'SPC_IO      ',    'GIGCchem',
-                    'SPC_HI      ',    'GIGCchem',
-                    'SPC_OIO     ',    'GIGCchem',
-                    'SPC_INO     ',    'GIGCchem',
-                    'SPC_IONO    ',    'GIGCchem',
-                    'SPC_IONO2   ',    'GIGCchem',
-                    'SPC_I2O2    ',    'GIGCchem',
-                    'SPC_I2O3    ',    'GIGCchem',
-                    'SPC_I2O4    ',    'GIGCchem',
-                    'SPC_ISALA   ',    'GIGCchem',
-                    'SPC_ISALC   ',    'GIGCchem',
-                    'SPC_AERI    ',    'GIGCchem',
-       ::
+#==============================================================================
+# %%%%% THE SpeciesConc COLLECTION %%%%%
+#
+# GEOS-Chem species concentrations (default = advected species)
+#
+# Available for all simulations
+#==============================================================================
+  SpeciesConc.template:       '%y4%m2%d2_%h2%n2z.nc4',
+  SpeciesConc.format:         'CFIO',
+  SpeciesConc.frequency:      010000
+  SpeciesConc.duration:       240000
+  SpeciesConc.mode:           'time-averaged'
+  SpeciesConc.fields:         'SpeciesConc_?ADV?             ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE AerosolMass COLLECTION %%%%%
+#
+# Aerosol and PM2.5 mass
+#
+# Available for full-chemistry and aerosol-only simulations
+#==============================================================================
+  AerosolMass.template:       '%y4%m2%d2_%h2%n2z.nc4',
+  AerosolMass.format:         'CFIO',
+  AerosolMass.frequency:      010000
+  AerosolMass.duration:       240000
+  AerosolMass.mode:           'time-averaged'
+  AerosolMass.fields:         'AerMassASOA                  ', 'GIGCchem',
+                              'AerMassINDIOL                ', 'GIGCchem',
+                              'AerMassISN1OA                ', 'GIGCchem',
+                              'AerMassISOA                  ', 'GIGCchem',
+                              'AerMassLVOCOA                ', 'GIGCchem',
+                              'AerMassNH4                   ', 'GIGCchem',
+                              'AerMassNIT                   ', 'GIGCchem',
+                              'AerMassOPOA                  ', 'GIGCchem',
+                              'AerMassPOA                   ', 'GIGCchem',
+                              'AerMassSAL                   ', 'GIGCchem',
+                              'AerMassSOAGX                 ', 'GIGCchem',
+                              'AerMassSOAIE                 ', 'GIGCchem',
+                              'AerMassSOAME                 ', 'GIGCchem',
+                              'AerMassSOAMG                 ', 'GIGCchem',
+                              'AerMassTSOA                  ', 'GIGCchem',
+                              'BetaNO                       ', 'GIGCchem',
+                              'PM25                         ', 'GIGCchem',
+                              'TotalBiogenicOA              ', 'GIGCchem',
+                              'TotalOA                      ', 'GIGCchem',
+                              'TotalOC                      ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% The Aerosols COLLECTION %%%%%
+#
+# Aerosol optical depth, surface area, number density, and hygroscopic growth
+#
+# Available for full-chemistry or aerosol-only simulations
+#==============================================================================
+  Aerosols.template:          '%y4%m2%d2_%h2%n2z.nc4',
+  Aerosols.format:            'CFIO',
+  Aerosols.frequency:         010000
+  Aerosols.duration:          240000
+  Aerosols.mode:              'time-averaged'
+  Aerosols.fields:            'AODDust                       ', 'GIGCchem',
+                              'AODDustWL1_?DUSTBIN?          ', 'GIGCchem',
+                              'AODHygWL1_?HYG?               ', 'GIGCchem',
+                              'AODSOAfromAqIsopreneWL1       ', 'GIGCchem',
+                              'AODStratLiquidAerWL1          ', 'GIGCchem',
+                              'AODPolarStratCloudWL1         ', 'GIGCchem',
+                              'AerHygroscopicGrowth_?HYG?    ', 'GIGCchem',
+                              'AerNumDensityStratLiquid      ', 'GIGCchem',
+                              'AerNumDensityStratParticulate ', 'GIGCchem',
+                              'AerAqueousVolume              ', 'GIGCchem',
+                              'AerSurfAreaDust               ', 'GIGCchem',
+                              'AerSurfAreaHyg_?HYG?          ', 'GIGCchem',
+                              'AerSurfAreaStratLiquid        ', 'GIGCchem',
+                              'AerSurfAreaPolarStratCloud    ', 'GIGCchem',
+                              'Chem_AeroAreaMDUST1           ', 'GIGCchem',
+                              'Chem_AeroAreaMDUST2           ', 'GIGCchem',
+                              'Chem_AeroAreaMDUST3'          ', 'GIGCchem',
+                              'Chem_AeroAreaMDUST4           ', 'GIGCchem',
+                              'Chem_AeroAreaMDUST5           ', 'GIGCchem',
+                              'Chem_AeroAreaMDUST6           ', 'GIGCchem',
+                              'Chem_AeroAreaMDUST7           ', 'GIGCchem',
+                              'Chem_AeroAreaSULF             ', 'GIGCchem',
+                              'Chem_AeroAreaBC               ', 'GIGCchem',
+                              'Chem_AeroAreaOC               ', 'GIGCchem',
+                              'Chem_AeroAreaSSA              ', 'GIGCchem',
+                              'Chem_AeroAreaSSC              ', 'GIGCchem',
+                              'Chem_AeroAreaBGSULF           ', 'GIGCchem',
+                              'Chem_AeroAreaICEI             ', 'GIGCchem',
+                              'Chem_AeroRadiMDUST1           ', 'GIGCchem',
+                              'Chem_AeroRadiMDUST2           ', 'GIGCchem',
+                              'Chem_AeroRadiMDUST3           ', 'GIGCchem',
+                              'Chem_AeroRadiMDUST4           ', 'GIGCchem',
+                              'Chem_AeroRadiMDUST5           ', 'GIGCchem',
+                              'Chem_AeroRadiMDUST6           ', 'GIGCchem',
+                              'Chem_AeroRadiMDUST7           ', 'GIGCchem',
+                              'Chem_AeroRadiSULF             ', 'GIGCchem',
+                              'Chem_AeroRadiBC               ', 'GIGCchem',
+                              'Chem_AeroRadiOC               ', 'GIGCchem',
+                              'Chem_AeroRadiSSA              ', 'GIGCchem',
+                              'Chem_AeroRadiSSC              ', 'GIGCchem',
+                              'Chem_AeroRadiBGSULF           ', 'GIGCchem',
+                              'Chem_AeroRadiICEI             ', 'GIGCchem',
+                              'Chem_WetAeroAreaMDUST1        ', 'GIGCchem',
+                              'Chem_WetAeroAreaMDUST2        ', 'GIGCchem',
+                              'Chem_WetAeroAreaMDUST3        ', 'GIGCchem',
+                              'Chem_WetAeroAreaMDUST4        ', 'GIGCchem',
+                              'Chem_WetAeroAreaMDUST5        ', 'GIGCchem',
+                              'Chem_WetAeroAreaMDUST6        ', 'GIGCchem',
+                              'Chem_WetAeroAreaMDUST7        ', 'GIGCchem',
+                              'Chem_WetAeroAreaSULF          ', 'GIGCchem',
+                              'Chem_WetAeroAreaBC            ', 'GIGCchem',
+                              'Chem_WetAeroAreaOC            ', 'GIGCchem',
+                              'Chem_WetAeroAreaSSA           ', 'GIGCchem',
+                              'Chem_WetAeroAreaSSC           ', 'GIGCchem',
+                              'Chem_WetAeroAreaBGSULF        ', 'GIGCchem',
+                              'Chem_WetAeroAreaICEI          ', 'GIGCchem',
+                              'Chem_WetAeroRadiMDUST1        ', 'GIGCchem',
+                              'Chem_WetAeroRadiMDUST2        ', 'GIGCchem',
+                              'Chem_WetAeroRadiMDUST3        ', 'GIGCchem',
+                              'Chem_WetAeroRadiMDUST4        ', 'GIGCchem',
+                              'Chem_WetAeroRadiMDUST5        ', 'GIGCchem',
+                              'Chem_WetAeroRadiMDUST6        ', 'GIGCchem',
+                              'Chem_WetAeroRadiMDUST7        ', 'GIGCchem',
+                              'Chem_WetAeroRadiSULF          ', 'GIGCchem',
+                              'Chem_WetAeroRadiBC            ', 'GIGCchem',
+                              'Chem_WetAeroRadiOC            ', 'GIGCchem',
+                              'Chem_WetAeroRadiSSA           ', 'GIGCchem',
+                              'Chem_WetAeroRadiSSC           ', 'GIGCchem',
+                              'Chem_WetAeroRadiBGSULF        ', 'GIGCchem',
+                              'Chem_WetAeroRadiICEI          ', 'GIGCchem',
+                              'Chem_StatePSC                 ', 'GIGCchem',
+                              'Chem_KhetiSLAN2O5H2O          ', 'GIGCchem',
+                              'Chem_KhetiSLAN2O5HCl          ', 'GIGCchem',
+                              'Chem_KhetiSLAClNO3H2O         ', 'GIGCchem',
+                              'Chem_KhetiSLAClNO3HCl         ', 'GIGCchem',
+                              'Chem_KhetiSLAClNO3HBr         ', 'GIGCchem',
+                              'Chem_KhetiSLABrNO3H2O         ', 'GIGCchem',
+                              'Chem_KhetiSLABrNO3HCl         ', 'GIGCchem',
+                              'Chem_KhetiSLAHOClHCl          ', 'GIGCchem',
+                              'Chem_KhetiSLAHOClHBr          ', 'GIGCchem',
+                              'Chem_KhetiSLAHOBrHCl          ', 'GIGCchem',
+                              'Chem_KhetiSLAHOBrHBr          ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE CloudConvFlux COLLECTION %%%%%
+#
+# Cloud convective flux (default = advected species)
+#
+# Available for all simulations
+#==============================================================================
+  CloudConvFlux.template:     '%y4%m2%d2_%h2%n2z.nc4',
+  CloudConvFlux.format:       'CFIO',
+  CloudConvFlux.frequency:    010000
+  CloudConvFlux.duration:     240000
+  CloudConvFlux.mode:         'time-averaged'
+  CloudConvFlux.fields:       'CloudConvFlux_?ADV?           ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE ConcAfterChem COLLECTION %%%%%
+#
+# Concentrations of OH, HO2, O1D, O3P immediately after exiting the KPP solver
+# or OH after the CH4 specialty-simulation chemistry routine.
+#
+# OH:       Available for all full-chemistry simulations and CH4 specialty sim
+# HO2:      Available for all full-chemistry simulations
+# O1D, O3P: Availalbe for full-chemistry simulations using UCX mechanism
+#==============================================================================
+  ConcAfterChem.template:     '%y4%m2%d2_%h2%n2z.nc4',
+  ConcAfterChem.format:       'CFIO',
+  ConcAfterChem.frequency:    010000
+  ConcAfterChem.duration:     240000
+  ConcAfterChem.mode:         'time-averaged'
+  ConcAfterChem.fields:       'OHconcAfterChem               ', 'GIGCchem',  
+                              'HO2concAfterChem              ', 'GIGCchem',  
+                              'O1DconcAfterChem              ', 'GIGCchem',  
+                              'O3PconcAfterChem              ', 'GIGCchem',  
+::
+#==============================================================================
+# %%%%% THE DryDep COLLECTION %%%%%
+#
+# Dry depositon fluxes and velocities (for all dry-depositing species)
+#
+# Available for all simuations that have dry-depositing species
+#==============================================================================
+  DryDep.template:            '%y4%m2%d2_%h2%n2z.nc4',
+  DryDep.format:              'CFIO',
+  DryDep.frequency:           010000
+  DryDep.duration:            240000
+  DryDep.mode:                'time-averaged'
+  DryDep.fields:              'DryDepVel_?DRY?               ', 'GIGCchem',
+                              'DryDepMix_?DRY?               ', 'GIGCchem',
+                              'DryDepChm_?DRY?               ', 'GIGCchem',
+                              'DryDep_?DRY?                  ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE JValues COLLECTION %%%%%
+#
+# Photolysis rates (from the FAST-JX photolysis module)
+#
+# Available for all full-chemistry simulations
+#==============================================================================
+  JValues.template:           '%y4%m2%d2_%h2%n2z.nc4',
+  JValues.format:             'CFIO',
+  JValues.frequency:          010000
+  JValues.duration:           240000
+  JValues.mode:               'time-averaged'
+  JValues.fields:             'Jval_?PHO?                    ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE JValuesLocalNoon COLLECTION %%%%%
+#
+# Photolysis rates at local solar noon (from the FAST-JX photolysis module)
+#
+# Available for all full-chemistry simulations
+#==============================================================================
+  JValuesLocalNoon.template:  '%y4%m2%d2_%h2%n2z.nc4',
+  JValuesLocalNoon.format:    'CFIO',
+  JValuesLocalNoon.frequency: 010000
+  JValuesLocalNoon.duration:  240000
+  JValuesLocalNoon.mode:      'instantaneous'
+  JValuesLocalNoon.fields:    'JNoon_?PHO?                   ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE LevelEdgeDiags COLLECTION %%%%%
+#
+# Diagnostics that are defined on grid box level edges
+#
+# Available for all simulations
+#==============================================================================
+  LevelEdgeDiags.template:    '%y4%m2%d2_%h2%n2z.nc4',
+  LevelEdgeDiags.format:      'CFIO',
+  LevelEdgeDiags.frequency:   010000
+  LevelEdgeDiags.duration:    240000
+  LevelEdgeDiags.mode:        'time-averaged'
+  LevelEdgeDiags.fields:      'Met_CMFMC                     ', 'GIGCchem',
+                              'Met_PEDGE                     ', 'GIGCchem',
+                              'Met_PEDGEDRY                  ', 'GIGCchem',
+                              'Met_PFICU                     ', 'GIGCchem',
+                              'Met_PFILSAN                   ', 'GIGCchem',
+                              'Met_PFLCU                     ', 'GIGCchem',
+                              'Met_PFLLSAN                   ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE ProdLoss COLLECTION %%%%%
+#
+# Chemical production and loss rates
+#
+# Available for full-chemistry, aerosol-only, tagO3, and tagCO simulations
+#==============================================================================
+  ProdLoss.template:          '%y4%m2%d2_%h2%n2z.nc4',
+  ProdLoss.format:            'CFIO',
+  ProdLoss.frequency:         010000
+  ProdLoss.duration:          240000
+  ProdLoss.mode:              'time-averaged'
+  ProdLoss.fields:            'Prod_?PRD?                    ', 'GIGCchem', 
+                              'ProdBCPIfromBCPO              ', 'GIGCchem', 
+                              'ProdOCPIfromOCPO              ', 'GIGCchem',
+                              'ProdSO4fromH2O2inCloud        ', 'GIGCchem',
+                              'ProdSO4fromO3inCloud          ', 'GIGCchem',
+                              'ProdSO4fromO3inSeaSalt        ', 'GIGCchem',
+                              'ProdSO4fromHOBrInCloud        ', 'GIGCchem',
+                              'ProdSO4fromSRO3               ', 'GIGCchem',
+                              'ProdSO4fromSRHObr             ', 'GIGCchem',
+                              'ProdSO4fromO3s                ', 'GIGCchem',
+                              'Loss_?LOS?                    ', 'GIGCchem',
+                              'LossHNO3onSeaSalt             ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE RadioNuclide COLLECTION %%%%%
+#
+# Fields of the State_Chm object (see also Aerosols collection)
+#
+# Available for full-chemistry and aerosols-only simulations
+#==============================================================================
+  RadioNuclide.template:      '%y4%m2%d2_%h2%n2z.nc4',
+  RadioNuclide.format:        'CFIO',
+  RadioNuclide.frequency:     010000
+  RadioNuclide.duration:      240000
+  RadioNuclide.mode:          'time-averaged'
+  RadioNuclide.fields:        'Chem_phSav                    ', 'GIGCchem',  
+                              'Chem_HplusSav                 ', 'GIGCchem',  
+                              'Chem_WaterSav                 ', 'GIGCchem',  
+                              'Chem_SulRatSav                ', 'GIGCchem',  
+                              'Chem_NaRatSav                 ', 'GIGCchem',  
+                              'Chem_AcidPurSav               ', 'GIGCchem',  
+                              'Chem_BiSulSav                 ', 'GIGCchem',
+                              'Chem_pHCloud                  ', 'GIGCchem',
+                              'Chem_SSAlk',                  ', 'GIGCchem',
+                              'Chem_HSO3AQ                   ', 'GIGCchem',
+                              'Chem_SO3AQ                    ', 'GIGCchem',
+                              'Chem_fupdateHOBr              ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE StateChm COLLECTION %%%%%
+#
+# Fields of the State_Chm object (see also Aerosols collection)
+#
+# Available for full-chemistry and aerosols-only simulations
+#==============================================================================
+  StateChm.template:          '%y4%m2%d2_%h2%n2z.nc4',
+  StateChm.format:            'CFIO',
+  StateChm.frequency:         010000
+  StateChm.duration:          240000
+  StateChm.mode:              'time-averaged'
+  StateChm.fields:            'Chem_phSav                    ', 'GIGCchem',  
+                              'Chem_HplusSav                 ', 'GIGCchem',  
+                              'Chem_WaterSav                 ', 'GIGCchem',  
+                              'Chem_SulRatSav                ', 'GIGCchem',  
+                              'Chem_NaRatSav                 ', 'GIGCchem',  
+                              'Chem_AcidPurSav               ', 'GIGCchem',  
+                              'Chem_BiSulSav                 ', 'GIGCchem',
+                              'Chem_pHCloud                  ', 'GIGCchem',
+                              'Chem_SSAlk',                  ', 'GIGCchem',
+                              'Chem_HSO3AQ                   ', 'GIGCchem',
+                              'Chem_SO3AQ                    ', 'GIGCchem',
+                              'Chem_fupdateHOBr              ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% The StateMet COLLECTION %%%%%
+#
+# Fields of the State_Met object (also see the LevelEdgeDiags collection)
+#
+# Available for all simulations
+#==============================================================================
+  StateMet.template:          '%y4%m2%d2_%h2%n2z.nc4',
+  StateMet.format:            'CFIO',
+  StateMet.frequency:         010000
+  StateMet.duration:          240000
+  StateMet.mode:              'time-averaged'
+  StateMet.fields:            'Met_AD                        ', 'GIGCchem',
+                              'Met_AIRDEN                    ', 'GIGCchem',
+                              'Met_AIRVOL                    ', 'GIGCchem',
+                              'Met_ALBD                      ', 'GIGCchem',
+                              'Met_AREAM2                    ', 'GIGCchem',
+                              'Met_AVGW                      ', 'GIGCchem',
+                              'Met_BXHEIGHT                  ', 'GIGCchem',
+                              'Met_ChemGridLev               ', 'GIGCchem',
+                              'Met_CLDF                      ', 'GIGCchem',
+                              'Met_CLDFRC                    ', 'GIGCchem',
+                              'Met_CLDTOPS                   ', 'GIGCchem',
+                              'Met_DELP                      ', 'GIGCchem',
+                              'Met_DQRCU                     ', 'GIGCchem',
+                              'Met_DQRLSAN                   ', 'GIGCchem',
+                              'Met_DTRAIN                    ', 'GIGCchem',
+                              'Met_EFLUX                     ', 'GIGCchem',
+                              'Met_FRCLND                    ', 'GIGCchem',
+                              'Met_FRLAKE                    ', 'GIGCchem',
+                              'Met_FRLAND                    ', 'GIGCchem',
+                              'Met_FRLANDIC                  ', 'GIGCchem',
+                              'Met_FROCEAN                   ', 'GIGCchem',
+                              'Met_FRSEAICE                  ', 'GIGCchem',
+                              'Met_FRSNO                     ', 'GIGCchem',
+                              'Met_GWETROOT                  ', 'GIGCchem',
+                              'Met_GWETTOP                   ', 'GIGCchem',
+                              'Met_HFLUX                     ', 'GIGCchem',
+                              'Met_LAI                       ', 'GIGCchem',
+                              'Met_LWI                       ', 'GIGCchem',
+                              'Met_PARDR                     ', 'GIGCchem',
+                              'Met_PARDF                     ', 'GIGCchem',
+                              'Met_PBLTOPL                   ', 'GIGCchem',
+                              'Met_PBLH                      ', 'GIGCchem',
+                              'Met_PHIS                      ', 'GIGCchem',
+                              'Met_PMID                      ', 'GIGCchem',
+                              'Met_PMIDDRY                   ', 'GIGCchem',
+                              'Met_PRECANV                   ', 'GIGCchem',
+                              'Met_PRECCON                   ', 'GIGCchem',
+                              'Met_PRECLSC                   ', 'GIGCchem',
+                              'Met_PRECTOT                   ', 'GIGCchem',
+                              'Met_PS1DRY                    ', 'GIGCchem',
+                              'Met_PS1WET                    ', 'GIGCchem',
+                              'Met_PS2DRY                    ', 'GIGCchem',
+                              'Met_PS2WET                    ', 'GIGCchem',
+                              'Met_PSC2WET                   ', 'GIGCchem',
+                              'Met_PSC2DRY                   ', 'GIGCchem',
+                              'Met_QI                        ', 'GIGCchem',
+                              'Met_QL                        ', 'GIGCchem',
+                              'Met_OMEGA                     ', 'GIGCchem',
+                              'Met_OPTD                      ', 'GIGCchem',
+                              'Met_REEVAPCN                  ', 'GIGCchem',
+                              'Met_REEVAPLS                  ', 'GIGCchem',
+                              'Met_SLP                       ', 'GIGCchem',
+                              'Met_SNODP                     ', 'GIGCchem',
+                              'Met_SNOMAS                    ', 'GIGCchem',
+                              'Met_SPHU                      ', 'GIGCchem',
+                              'Met_SPHU1                     ', 'GIGCchem',
+                              'Met_SPHU2                     ', 'GIGCchem',
+                              'Met_SUNCOS                    ', 'GIGCchem',
+                              'Met_SUNCOSmid                 ', 'GIGCchem',
+                              'Met_SWGDN                     ', 'GIGCchem',
+                              'Met_T                         ', 'GIGCchem',
+                              'Met_TAUCLI                    ', 'GIGCchem',
+                              'Met_TAUCLW                    ', 'GIGCchem',
+                              'Met_THETA                     ', 'GIGCchem',
+                              'Met_TMPU1                     ', 'GIGCchem',
+                              'Met_TMPU2                     ', 'GIGCchem',
+                              'Met_TO3                       ', 'GIGCchem',
+                              'Met_TropHt                    ', 'GIGCchem',
+                              'Met_TropLev                   ', 'GIGCchem',
+                              'Met_TropP                     ', 'GIGCchem',
+                              'Met_TS                        ', 'GIGCchem',
+                              'Met_TSKIN                     ', 'GIGCchem',
+                              'Met_TV                        ', 'GIGCchem',
+                              'Met_U                         ', 'GIGCchem',
+                              'Met_U10M                      ', 'GIGCchem',
+                              'Met_USTAR                     ', 'GIGCchem',
+                              'Met_UVALBEDO                  ', 'GIGCchem',
+                              'Met_V                         ', 'GIGCchem',
+                              'Met_V10M                      ', 'GIGCchem',
+                              'Met_Z0                        ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE WetLossConv COLLECTION %%%%%
+#
+# Loss of soluble species in convective updrafts
+#
+# Available for all simulations that have soluble species
+#==============================================================================
+  WetLossConv.template:       '%y4%m2%d2_%h2%n2z.nc4',
+  WetLossConv.format:         'CFIO',
+  WetLossConv.frequency:      010000
+  WetLossConv.duration:       240000
+  WetLossConv.mode:           'time-averaged'
+  WetLossConv.fields:         'WetLossConv_?WET?             ', 'GIGCchem',
+                              'WetLossConvFrac_?WET?         ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE WetLossLS COLLECTION %%%%%
+#
+# Loss of soluble species in large-scale wetdep (i.e. rainout and washout)
+#
+# Available for all simulations that have soluble species
+#==============================================================================
+# Loss due to rainout and washout (per deposited species)
+  WetLossLS.template:         '%y4%m2%d2_%h2%n2z.nc4',
+  WetLossLS.format:           'CFIO',
+  WetLossLS.frequency:        010000
+  WetLossLS.duration:         240000
+  WetLossLS.mode:             'time-averaged'
+  WetLossLS.fields:           'WetLossLS_?WET?               ', 'GIGCchem',
+::

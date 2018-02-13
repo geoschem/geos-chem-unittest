@@ -1,15 +1,16 @@
 This directory is the GEOS-Chem run directory for 0.25x0.3125 nested NA CH4
 simulation with GEOS-FP meteorology.
 
-The HEMCO configuration file is linked to HEMCO_Config.template.CH4 stored
-in ../chem_inputs/specialty.  This allows us to keep a single set of these
-files in one location, for convenience.  A new HEMCO_Config.rc file will be
-created from the HEMCO_Config.template file each time the unit tester is run.
+The various input files (e.g. HEMCO_Config.template, HISTORY.rc, etc.) are
+stored in ../shared_inputs/CH4.  This allows us to keep a single set of 
+these files in one location, for convenience.  A new HEMCO_Config.rc file will 
+be created from the HEMCO_Config.template file each time the unit tester is 
+run.
 
 A new input.geos file will also be created from the input.geos.template file
 each time the unit tester is run.  This allows the location of the data
 files to be customized for each user.
 
-30 Mar 2017
+13 Feb 2018
 GEOS-Chem Support Team
 geos-chem-support@as.harvard.edu

@@ -1,8 +1,0 @@
-This directory contains the chemistry input files for the GEOS-Chem benchmark
-simulation. This simulation includes the standard NOx-Ox-HC-Aer-Br, UCX, and
-SOA chemistry mechanisms.  We keep the files here so that they can be 
-symbolically linked to other directories.
-
-22 May 2015
-GEOS-Chem Support Team
-geos-chem-support@as.harvard.edu

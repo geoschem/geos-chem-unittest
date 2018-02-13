@@ -1,0 +1,34 @@
+README -- describes contents of runs/shared_inputs
+13 Feb 2018
+GEOS-Chem Support Team
+geos-chem-support@as.harvard.edu
+
+The sub-folders of runs/shared_inputs contain input files for the different
+types of GEOS-Chem simulations.  The following files are provided for all
+GEOS-Chem simulations:
+
+(1 ) HEMCO_Config.template : Configuration file for HEMCO emissions, 
+                              customized for the specific GEOS-Chem simulation
+
+(2 ) HISTORY.rc            : Configuration file for netCDF diagnostic output,
+                              customized for the specific GEOS-Chem simulation
+
+
+For full-chemistry and aerosol-only simulations, the following additional
+files are symbolically linked to originals in the shared_inputs/fast_jx 
+folder:
+
+(3 ) FJX_j2j.dat           : Mapping from FAST-JX species to GEOS-Chem species
+(4 ) FJX_spec.dat          : Wavelengths, quantum yields for photolysis species
+(5 ) jv_spec_mie.dat       : Mie scattering properties at 5 wavelengths
+(6 ) brc.dat               : Additional optical properties for BROWN CARBON
+(7 ) dust.dat 		   : Additional optical properties for MINERAL DUST
+(8 ) h2so4.dat		   : Additional optical properties for H2SO4 
+(9 ) org.dat		   : Additional optical properties for ORGANIC CARBON
+(10) so4.dat		   : Additional optical properties for SO4
+(11) soot.dat		   : Additional optical properties for BLACK SOOT
+(12) ssa.dat		   : Additional optical properties for SEA SALT, ACCUM 
+(13) ssc.dat               : Additional optical properties for SEA SALT, COARSE
+
+
+
