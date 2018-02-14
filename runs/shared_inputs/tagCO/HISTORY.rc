@@ -89,8 +89,7 @@ COLLECTIONS: 'SpeciesConc',
   ProdLoss.frequency:         010000
   ProdLoss.duration:          240000
   ProdLoss.mode:              'time-averaged'
-  ProdLoss.fields:            'Prod_?PRD?                    ', 'GIGCchem', 
-                              'Loss_?LOS?                    ', 'GIGCchem',
+  ProdLoss.fields:            'Loss_?LOS?                    ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% The StateMet COLLECTION %%%%%

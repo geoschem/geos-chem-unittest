@@ -286,7 +286,7 @@ COLLECTIONS: 'SpeciesConc',
                               'ProdBCPIfromBCPO              ', 'GIGCchem', 
                               'ProdOCPIfromOCPO              ', 'GIGCchem',
                               'ProdSO4fromH2O2inCloud        ', 'GIGCchem',
-                              'ProdSO4fromO2inCloudMetal     ', 'GIGCchem',
+#                              'ProdSO4fromO2inCloudMetal     ', 'GIGCchem',
                               'ProdSO4fromO3inCloud          ', 'GIGCchem',
                               'ProdSO4fromO3inSeaSalt        ', 'GIGCchem',
                               'ProdSO4fromHOBrInCloud        ', 'GIGCchem',
@@ -295,31 +295,6 @@ COLLECTIONS: 'SpeciesConc',
                               'ProdSO4fromO3s                ', 'GIGCchem',
                               'Loss_?LOS?                    ', 'GIGCchem',
                               'LossHNO3onSeaSalt             ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE RadioNuclide COLLECTION %%%%%
-#
-# Fields of the State_Chm object (see also Aerosols collection)
-#
-# Available for full-chemistry and aerosols-only simulations
-#==============================================================================
-  RadioNuclide.template:      '%y4%m2%d2_%h2%n2z.nc4',
-  RadioNuclide.format:        'CFIO',
-  RadioNuclide.frequency:     010000
-  RadioNuclide.duration:      240000
-  RadioNuclide.mode:          'time-averaged'
-  RadioNuclide.fields:        'Chem_phSav                    ', 'GIGCchem',  
-                              'Chem_HplusSav                 ', 'GIGCchem',  
-                              'Chem_WaterSav                 ', 'GIGCchem',  
-                              'Chem_SulRatSav                ', 'GIGCchem',  
-                              'Chem_NaRatSav                 ', 'GIGCchem',  
-                              'Chem_AcidPurSav               ', 'GIGCchem',  
-                              'Chem_BiSulSav                 ', 'GIGCchem',
-                              'Chem_pHCloud                  ', 'GIGCchem',
-                              'Chem_SSAlk',                  ', 'GIGCchem',
-                              'Chem_HSO3AQ                   ', 'GIGCchem',
-                              'Chem_SO3AQ                    ', 'GIGCchem',
-                              'Chem_fupdateHOBr              ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE StateChm COLLECTION %%%%%
