@@ -1,0 +1,10 @@
+This folder (runs/shared_inputs/tropchem) contains input files 
+for GEOS-Chem TOMAS AEROSOL MICROPHYSICS SIMULATIONS, namely:
+
+(1) FAST-JX input files (symbolically linked from ../fast_jx)
+(2) HEMCO configuration files
+(3) A HISTORY.rc file for netCDF diagnostics
+
+-- GEOS-Chem Support Team
+   geos-chem-support@as.harvard.edu
+   13 Feb 2018
