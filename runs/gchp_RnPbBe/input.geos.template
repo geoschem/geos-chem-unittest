@@ -214,7 +214,7 @@ Tracers to include      : 4
 Frequency [sec]         : 21600
 IMIN, IMAX of region    :   1  72
 JMIN, JMAX of region    :   1  46
-LMIN, LMAX of region    :   1  47
+LMIN, LMAX of region    :   1  72
 -------------------------------------------------------------------------------
 %%% ND50 MENU %%%       :
 Turn on ND50 diagnostic : F
@@ -257,7 +257,7 @@ JMIN, JMAX of region    :  23  46
 -------------------------------------------------------------------------------
 %%% PROD & LOSS MENU %%%:
 Turn on P/L (ND65) diag?: F
-# of levels for ND65    : 47
+# of levels for ND65    : 72
 Save O3 P/L (ND20)?     : F
 ------------------------+------------------------------------------------------
 %%% BENCHMARK MENU %%%  :
