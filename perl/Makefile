@@ -164,35 +164,6 @@ ifndef NC_DIAG
  NC_DIAG     :=n
 endif
 
-# Add a robust check whether or not we are using netCDF diagnostics so that
-# we can also binary-check the History file.  We can remove this when the
-# netCDF diagnostic option is standard in GEOS-Chem. (bmy, 9/20/17)
-REGEXP       :=(^[Yy]|^[Yy][Ee][Ss])
-ifeq ($(shell [[ "$(NC_DIAG)" =~ $(REGEXP) ]] && echo true),true)
-  IS_NC_DIAG := 2
-else
-  IS_NC_DIAG := 0
-endif
-
-# Add a robust check whether or not we are using bpch diagnostics so that
-# we can also binary-check the History file.  We can remove this when the
-# netCDF diagnostic option is standard in GEOS-Chem. (bmy, 1/16/18)
-REGEXP       :=(^[Yy]|^[Yy][Ee][Ss])
-ifeq ($(shell [[ "$(BPCH_DIAG)" =~ $(REGEXP) ]] && echo true),true)
-  IS_BPCH_DIAG := 4
-else
-  IS_BPCH_DIAG := 0
-endif
-
-# Sum of IS_BPCH_DIAG and IS_NC_DIAG
-# NOTE: GNU Make does not allow for numeric equality test so we have
-# to do this kind of ugly kludge.  See this poste on Stack Overflow:
-#stackoverflow.com/questions/3728372/version-number-comparison-inside-makefile
-DIAGSUM := $$((1 + $(IS_BPCH_DIAG) + $(IS_NC_DIAG) ))
-DIAGSUM_IS_7 := $(shell echo $(DIAGSUM)\==7 | bc)
-DIAGSUM_IS_5 := $(shell echo $(DIAGSUM)\==5 | bc)
-DIAGSUM_IS_3 := $(shell echo $(DIAGSUM)\==3 | bc)
-
 ###############################################################################
 #####                                                                     #####
 #####  RUN OPTIONS: Get various settings from the run directory name,     #####
@@ -325,10 +296,9 @@ EXE_HMCO_SA  :=hemco_standalone.x
 GC_DIAG      :=trac_avg.$(RUNID).$(START)
 HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
 GC_RST       :=GEOSChem_restart.$(END).nc
-HIST_INS     :=GEOSChem.inst.$(STARTDATE).nc4
 
 # Unit test validation script and results file
-VALIDATE     :=/usr/bin/perl $(PERL_DIR)/validate
+VALIDATE     :=/usr/bin/perl $(PERL_DIR)/validate.pl
 RESULTS      :=$(LOG_DIR)/$(VERSION).results.log
 
 # Get information about the Git version, because some features
@@ -774,44 +744,53 @@ printcodeinfo:
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 addsuffixsp:
-	if [[ -f $(GC_DIAG)  ]]; then mv -f $(GC_DIAG)  $(GC_DIAG).sp;  fi;
-	if [[ -f $(GC_RST)   ]]; then mv -f $(GC_RST)   $(GC_RST).sp;   fi;
-	if [[ -f $(HIST_INS) ]]; then mv -f $(HIST_INS) $(HIST_INS).sp; fi;
-	if [[ -f $(HMCO_RST) ]]; then mv -f $(HMCO_RST) $(HMCO_RST).sp; fi;
-	if [[ -f $(LOG_HMCO) ]]; then mv -f $(LOG_HMCO) $(LOG_HMCO).sp; fi;
+	@for f in ./$(GC_RST); do                      \
+           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi; \
+        done
+	@for f in ./$(GC_DIAG); do                     \
+           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi; \
+        done
+	@for f in ./HEMCO_restart*.nc; do              \
+           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi; \
+        done
+	@for f in ./HEMCO_diagnostics*.nc; do          \
+           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi; \
+        done
+	@for f in ./HEMCO.log; do                      \
+           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi; \
+        done
+	@for f in ./GEOSChem*.nc4; do                  \
+           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi; \
+        done
 
 addsuffixmp:
-	if [[ -f $(GC_DIAG)  ]]; then mv -f $(GC_DIAG)  $(GC_DIAG).mp; fi;
-	if [[ -f $(GC_RST)   ]]; then mv -f $(GC_RST)   $(GC_RST).mp;   fi;
-	if [[ -f $(HIST_INS) ]]; then mv -f $(HIST_INS) $(HIST_INS).mp; fi;
-	if [[ -f $(HMCO_RST) ]]; then mv -f $(HMCO_RST) $(HMCO_RST).mp; fi;
-	if [[ -f $(LOG_HMCO) ]]; then mv -f $(LOG_HMCO) $(LOG_HMCO).mp; fi;
+	@for f in ./$(GC_RST); do                      \
+           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi; \
+        done
+	@for f in ./$(GC_DIAG); do                     \
+           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi; \
+        done
+	@for f in ./HEMCO_restart*.nc; do              \
+           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi; \
+        done
+	@for f in ./HEMCO_diagnostics*.nc; do          \
+           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi; \
+        done
+	@for f in ./HEMCO.log; do                      \
+           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi; \
+        done
+	@for f in ./GEOSChem*.nc4; do                  \
+           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi; \
+        done
 
 check:
-ifeq ($(DIAGSUM_IS_7),1)
-	@$(VALIDATE) $(GC_DIAG).sp  $(GC_DIAG).mp  7 0 $(RUNID) >> $(RESULTS)
-	@$(VALIDATE) $(GC_RST).sp   $(GC_RST).mp   0 0          >> $(RESULTS)
-	@$(VALIDATE) $(HIST_INS).sp $(HIST_INS).mp 0 0          >> $(RESULTS)
-	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1          >> $(RESULTS)
-else
-ifeq ($(DIAGSUM_IS_5),1)
-	@$(VALIDATE) $(GC_DIAG).sp  $(GC_DIAG).mp  5 0 $(RUNID) >> $(RESULTS)
-	@$(VALIDATE) $(GC_RST).sp   $(GC_RST).mp   0 0          >> $(RESULTS)
-	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1          >> $(RESULTS)
-else
-ifeq ($(DIAGSUM_IS_3),1)
-	@$(VALIDATE) $(GC_RST).sp   $(GC_RST).mp   3 0 $(RUNID) >> $(RESULTS)
-	@$(VALIDATE) $(HIST_INS).sp $(HIST_INS).mp 0 0          >> $(RESULTS)
-	@$(VALIDATE) $(HMCO_RST).sp $(HMCO_RST).mp 0 1          >> $(RESULTS)
-endif
-endif
-endif
+	@$(VALIDATE) $(RUNID) . . ut >> $(RESULTS)
 
 ###############################################################################
 #####                                                                     #####
 #####                             HELP SCREEN                             #####
 #####                                                                     #####
-################################################################################
+###############################################################################
 
 help:
 	@echo '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'

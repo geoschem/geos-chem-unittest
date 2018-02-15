@@ -163,35 +163,6 @@ ifndef NC_DIAG
  NC_DIAG     :=n
 endif
 
-# Add a robust check whether or not we are using netCDF diagnostics so that
-# we can also binary-check the History file.  We can remove this when the
-# netCDF diagnostic option is standard in GEOS-Chem. (bmy, 9/20/17)
-REGEXP       :=(^[Yy]|^[Yy][Ee][Ss])
-ifeq ($(shell [[ "$(NC_DIAG)" =~ $(REGEXP) ]] && echo true),true)
-  IS_NC_DIAG := 2
-else
-  IS_NC_DIAG := 0
-endif
-
-# Add a robust check whether or not we are using bpch diagnostics so that
-# we can also binary-check the History file.  We can remove this when the
-# netCDF diagnostic option is standard in GEOS-Chem. (bmy, 1/16/18)
-REGEXP       :=(^[Yy]|^[Yy][Ee][Ss])
-ifeq ($(shell [[ "$(BPCH_DIAG)" =~ $(REGEXP) ]] && echo true),true)
-  IS_BPCH_DIAG := 4
-else
-  IS_BPCH_DIAG := 0
-endif
-
-# Sum of IS_BPCH_DIAG and IS_NC_DIAG
-# NOTE: GNU Make does not allow for numeric equality test so we have
-# to do this kind of ugly kludge.  See this poste on Stack Overflow:
-#stackoverflow.com/questions/3728372/version-number-comparison-inside-makefile
-DIAGSUM := $$((1 + $(IS_BPCH_DIAG) + $(IS_NC_DIAG) ))
-DIAGSUM_IS_7 := $(shell echo $(DIAGSUM)\==7 | bc)
-DIAGSUM_IS_5 := $(shell echo $(DIAGSUM)\==5 | bc)
-DIAGSUM_IS_3 := $(shell echo $(DIAGSUM)\==3 | bc)
-
 ###############################################################################
 #####                                                                     #####
 #####  RUN OPTIONS: Get various settings from the run directory name,     #####
@@ -320,10 +291,9 @@ TRAC_AVG     :=trac_avg.$(RUNID).$(START)
 HMCO_AVG     :=HEMCO_diagnostics.$(END).nc
 HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
 TRAC_RST     :=GEOSChem_restart.$(END).nc
-HIST_INS     :=GEOSChem.inst.$(STARTDATE).nc4
 
 # Diff test validation script and results file
-VALIDATE     :=/usr/bin/perl $(RUN_DEV)/validate
+VALIDATE     :=/usr/bin/perl $(RUN_DEV)/validate.pl
 RESULTS      :=$(LOG_DIR)/log.$(RUNID).Results
 
 # Get information about the Git version, because some features
@@ -535,54 +505,8 @@ devcheck:
 	@$(MAKE) check
 
 check:
-ifeq ($(DIAGSUM_IS_7),1)
-	@$(VALIDATE) $(RUN_REF)/$(TRAC_AVG).Ref                             \
-                     $(RUN_DEV)/$(TRAC_AVG).Dev 7 0 $(RUNID) >> $(RESULTS)
-	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
-                     $(RUN_DEV)/$(TRAC_RST).Dev 0 0          >> $(RESULTS)
-	@$(VALIDATE) $(RUN_REF)/$(HIST_INS).Ref                             \
-                     $(RUN_DEV)/$(HIST_INS).Dev 0 0          >> $(RESULTS)
-	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
-                     $(RUN_DEV)/$(HMCO_RST).Dev 0 1          >> $(RESULTS)
-	@$(VALIDATE) $(RUN_REF)/$(TRAC_AVG).Ref                             \
-                     $(RUN_DEV)/$(TRAC_AVG).Dev 7 0 $(RUNID)
-	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
-                     $(RUN_DEV)/$(TRAC_RST).Dev 0 0
-	@$(VALIDATE) $(RUN_REF)/$(HIST_INS).Ref                             \
-                     $(RUN_DEV)/$(HIST_INS).Dev 0 0
-	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
-                     $(RUN_DEV)/$(HMCO_RST).Dev 0 1
-else
-ifeq ($(DIAGSUM_IS_5),1)
-	@$(VALIDATE) $(RUN_REF)/$(TRAC_AVG).Ref                             \
-                     $(RUN_DEV)/$(TRAC_AVG).Dev 5 0 $(RUNID) >> $(RESULTS)
-	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
-                     $(RUN_DEV)/$(TRAC_RST).Dev 0 0          >> $(RESULTS)
-	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
-                     $(RUN_DEV)/$(HMCO_RST).Dev 0 1          >> $(RESULTS)
-	@$(VALIDATE) $(RUN_REF)/$(TRAC_AVG).Ref                             \
-                     $(RUN_DEV)/$(TRAC_AVG).Dev 5 0 $(RUNID)
-	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
-                     $(RUN_DEV)/$(TRAC_RST).Dev 0 0
-	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
-                     $(RUN_DEV)/$(HMCO_RST).Dev 0 1
-else
-ifeq ($(DIAGSUM_IS_3),1)
-	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
-                     $(RUN_DEV)/$(TRAC_RST).Dev 3 0 $(RUNID) >> $(RESULTS)
-	@$(VALIDATE) $(RUN_REF)/$(HIST_INS).Ref                             \
-                     $(RUN_DEV)/$(HIST_INS).Dev 0 0          >> $(RESULTS)
-	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
-                     $(RUN_DEV)/$(HMCO_RST).Dev 0 1          >> $(RESULTS)
-	@$(VALIDATE) $(RUN_REF)/$(TRAC_RST).Ref                             \
-                     $(RUN_DEV)/$(TRAC_RST).Dev 3 0 $(RUNID)
-	@$(VALIDATE) $(RUN_REF)/$(HIST_INS).Ref                             \
-                     $(RUN_DEV)/$(HIST_INS).Dev 0 0
-	@$(VALIDATE) $(RUN_REF)/$(HMCO_RST).Ref                             \
-                     $(RUN_DEV)/$(HMCO_RST).Dev 0 1
-endif
-endif
-endif
+	@$(VALIDATE) $(RUNID) ./Ref ./Dev dt >> $(RESULTS)
+	@$(VALIDATE) $(RUNID) ./Ref ./Dev dt
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Remove Output Data     %

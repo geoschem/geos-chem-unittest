@@ -657,8 +657,8 @@ sub doCopyDirs($$) {
             $cmd = "cp ./getRunInfo $copyDir/getRunInfo"; 
             qx/$cmd/;
 
-	    # Copy perl/validate to copied run directory 
-            $cmd = "cp ./validate $copyDir/validate"; 
+	    # Copy perl/validate.pl to copied run directory 
+            $cmd = "cp ./validate.pl $copyDir/validate.pl"; 
             qx/$cmd/;
           
 	    # Set permissions for HEMCO restart file to read-only

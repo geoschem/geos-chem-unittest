@@ -54,12 +54,27 @@ lib:
 
 run:
 	./$(EXEC) >> $(LOG)
-	if [[ -f $(TRAC_AVG) ]]; then mv -f $(TRAC_AVG) $(TRAC_AVG).Ref; fi;
-	if [[ -f $(TRAC_RST) ]]; then mv -f $(TRAC_RST) $(TRAC_RST).Ref; fi;
-	if [[ -f $(HIST_INS) ]]; then mv -f $(HIST_INS) $(HIST_INS).Ref; fi;
-	if [[ -f $(HMCO_AVG) ]]; then mv -f $(HMCO_AVG) $(HMCO_AVG).Ref; fi;
-	if [[ -f $(HMCO_RST) ]]; then mv -f $(HMCO_RST) $(HMCO_RST).Ref; fi;
-	if [[ -f $(HMCO_LOG) ]]; then mv -f $(HMCO_LOG) $(HMCO_LOG).Ref; fi;
+	@$(MAKE) addsuffixref
+
+addsuffixref:
+	@for f in ./$(TRAC_RST); do                     \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi; \
+        done
+	@for f in ./trac_avg*; do                       \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi; \
+        done
+	@for f in ./HEMCO_restart*.nc; do               \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi; \
+        done
+	@for f in ./HEMCO_diagnostics*.nc; do           \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi; \
+        done
+	@for f in ./HEMCO.log; do                       \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi; \
+        done
+	@for f in ./GEOSChem*.nc4; do                   \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi; \
+        done
 
 clean:
 	@$(MAKE) -C $(CODE) clean

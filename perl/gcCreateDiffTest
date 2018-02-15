@@ -634,7 +634,7 @@ sub doCopyDirs($$) {
 	  qx/$cmd/;
 
 	  # Copy UT/perl/validate to Dev directory 
-          $cmd = "cp ./validate $devDir"; 
+          $cmd = "cp ./validate.pl $devDir"; 
           qx/$cmd/;  
         }
 
