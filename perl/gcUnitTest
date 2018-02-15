@@ -683,7 +683,7 @@ sub doUnitTest($$) {
 	    if ( ( $sim =~ m/RRTMG/ ) ) {
 	      $rstFile = "$rstRoot$grid\_tropchem.nc";
 	    } elsif ( $sim =~ m/RnPbBe/ ) {
-	      $rstFile = "$rstRoot$rstPref$grid\_RnPbBePasv_72L.nc";
+	      $rstFile = "$rstRoot$grid\_RnPbBePasv_72L.nc";
 	    } else {
 	      $rstFile = "$rstRoot$notDir.nc";
 	    }
