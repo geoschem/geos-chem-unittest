@@ -37,6 +37,7 @@
 
 ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
+DiagnFile:                   HEMCO_Diagn.rc
 DiagnPrefix:                 HEMCO_diagnostics
 DiagnFreq:                   End
 Wildcard:                    *
