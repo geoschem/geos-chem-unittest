@@ -127,8 +127,8 @@ tracerinfo.dat path     : tracerinfo.dat
 %%% DIAGNOSTIC MENU %%% :
 Binary punch file name  : trac_avg.{MET}_2x25_RnPbBe.YYYYMMDDhhmm
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
-ND01: Rn/Pb/Be source   : 47   1 2 3
-ND02: Rn/Pb/Be decay    : 47   1 2 3
+ND01: Rn/Pb/Be source   : 72   1 2 3
+ND02: Rn/Pb/Be decay    : 72   1 2 3
 ND03: Hg emissions, P/L :  0   all
 ND04: CO2 Sources       :  0   all
 ND05: Sulfate prod/loss :  0   all
@@ -142,9 +142,9 @@ ND12: BL fraction       :  0   all
 ND13: Sulfur sources    :  0   all
 ND14: Cld conv mass flx :  0   all
 ND15: BL mix mass flx   :  0   all
-ND16: LS/Conv prec frac : 47   2 3
-ND17: Rainout fraction  : 47   2 3
-ND18: Washout fraction  : 47   2 3
+ND16: LS/Conv prec frac : 72   2 3
+ND17: Rainout fraction  : 72   2 3
+ND18: Washout fraction  : 72   2 3
 ND19: CH4 loss          :  0   all
 ND21: Optical depths    :  0   all
 ND22: J-Values          :  0   all
@@ -162,15 +162,15 @@ ND33: Column tracer     :  0   all
 ND34: Biofuel emissions :  0   all
 ND35: Tracers at 500 mb :  0   all
 ND36: Anthro emissions  :  0   all
-ND37: Updraft scav frac : 47   2 3
-ND38: Cld Conv scav loss: 47   2 3
-ND39: Wetdep scav loss  : 47   2 3
+ND37: Updraft scav frac : 72   2 3
+ND38: Cld Conv scav loss: 72   2 3
+ND39: Wetdep scav loss  : 72   2 3
 ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 :  0   all
   ==> OH/HO2 time range :       0 24
 ND44: Drydep flx/vel    :  1   all
-ND45: Tracer Conc's     : 47   all
+ND45: Tracer Conc's     : 72   all
   ==> ND45 Time range   :       0 24
 ND46: Biogenic emissions:  0   all
 ND47: 24-h avg trc conc :  0   all
@@ -186,9 +186,9 @@ ND60: Wetland Frac      :  0   all
 ND61: TOMAS 3D rate     :  0   all
 ND62: Inst column maps  :  0   all
 ND64: Radiative flux    :  0   all
-ND66: DAO 3-D fields    : 47   all
-ND67: DAO 2-D fields    : 47   all
-ND68: Airmass/Boxheight : 47   all
+ND66: DAO 3-D fields    : 72   all
+ND67: DAO 2-D fields    : 72   all
+ND68: Airmass/Boxheight : 72   all
 ND69: Surface area      :  1   all
 ND70: Debug output      :  0   all
 ND71: Hourly max ppbv   :  0   all
@@ -214,7 +214,7 @@ Tracers to include      : 4
 Frequency [min]         : 360
 IMIN, IMAX of region    :   1  72
 JMIN, JMAX of region    :   1  46
-LMIN, LMAX of region    :   1  47
+LMIN, LMAX of region    :   1  72
 -------------------------------------------------------------------------------
 %%% ND50 MENU %%%       :
 Turn on ND50 diagnostic : F
@@ -257,7 +257,7 @@ JMIN, JMAX of region    :  23  46
 -------------------------------------------------------------------------------
 %%% PROD & LOSS MENU %%%:
 Turn on P/L (ND65) diag?: F
-# of levels for ND65    : 47
+# of levels for ND65    : 72
 Save O3 P/L (ND20)?     : F
 ------------------------+------------------------------------------------------
 %%% BENCHMARK MENU %%%  :
