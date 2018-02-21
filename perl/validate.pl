@@ -71,8 +71,8 @@ sub getCheckSums($$$$) {
 # !LOCAL VARIABLES:
 #
   # Scalars
-  my $ckSum1   = "NOT FOUND";
-  my $ckSum2   = "NOT FOUND";
+  my $ckSum1   = "MISSING";
+  my $ckSum2   = "MISSING";
   my $status   = "";
   my $result   = "";
 
@@ -94,10 +94,10 @@ sub getCheckSums($$$$) {
   }
 
   # Create the return string
-  if    ( $ckSum1 eq "NOT FOUND" ) { $status = "NOT FOUND : $file1";    }
-  elsif ( $ckSum2 eq "NOT FOUND" ) { $status = "NOT FOUND : $file2";    }
-  elsif ( $ckSum1 eq $ckSum2     ) { $status = "IDENTICAL : $combName"; }
-  else                             { $status = "DIFFERENT : $combName"; }
+  if    ( $ckSum1 eq "MISSING" ) { $status = "MISSING   : $file1";    }
+  elsif ( $ckSum2 eq "MISSING" ) { $status = "MISSING   : $file2";    }
+  elsif ( $ckSum1 eq $ckSum2   ) { $status = "IDENTICAL : $combName"; }
+  else                           { $status = "DIFFERENT : $combName"; }
 
   # Return status string to calling program
   return( $status );
@@ -179,7 +179,7 @@ sub checkTheFiles($$$$) {
   #=========================================================================
   # Test if files are identical
   #=========================================================================
-  foreach $file ( @files ) {
+  foreach $file ( sort( @files ) ) {
 
     # Strip new lines
     chomp( $file );

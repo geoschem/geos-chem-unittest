@@ -934,6 +934,8 @@ sub readResults($$) {
 #                              to populate unitTests no longer works. Instead
 #                              unitTests is populated when the log file is read.
 #  16 Jan 2018 - R. Yantosca - Updated checks for bpch and netCDF diags
+#  21 Feb 2018 - R. Yantosca - Now checks all netCDF and bpch files, using
+#                              the new format from the validate.pl script.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -941,28 +943,29 @@ sub readResults($$) {
 # !LOCAL VARIABLES:
 #
   # Scalars
-  my $bpch     = 1;
-  my $rst      = 1;
-  my $ncDiag   = 1;
-  my $isNcDiag = 1;
-  my $isBpchDiag=1;
-  my $hemco    = 1;
-  my $color    = "";
-  my $utName   = "";
-  my $version  = "";
-  my $dateRan  = "";
-  my $describe = "";
-  my $makeCmd  = "";
+  my $i                =  0;
+  my $j                =  0;
+  my $isResultsSection = -1;
+
+  # Strings
+  my $color            = "";
+  my $utName           = "";
+  my $version          = "";
+  my $dateRan          = "";
+  my $describe         = "";
+  my $makeCmd          = "";
 
   # HTML color values
-  my $WHITE    = "#FFFFFF";
-  my $RED      = "#FF0000";
-  my $GREEN    = "#00FF00";
-  my $YELLOW   = "#FFFF00";
+  my $WHITE            = "#FFFFFF";
+  my $RED              = "#FF0000";
+  my $GREEN            = "#00FF00";
+  my $YELLOW           = "#FFFF00";
 
   # Arrays
-  my @txt      = ();
-  my @subStr   = ();
+  my @txt              = ();
+  my @subStr           = ();
+  my @file             = ();
+  my @status           = ();
 
   #---------------------------------------------------------------------------
   # Read the results.log file
@@ -977,7 +980,7 @@ sub readResults($$) {
   for ( my $i = 0; $i < scalar( @txt ); $i++ ) {
 
     #-------------------------------------------------------------------------
-    # Get the version number and date submitted
+    # Get the version number, date submitted, description, and make command
     #-------------------------------------------------------------------------
     if ( $txt[$i] =~ m/GEOS-CHEM UNIT TEST RESULTS FOR VERSION/ ) {
 
@@ -1015,8 +1018,10 @@ sub readResults($$) {
     }
     
     #-------------------------------------------------------------------------
-    # Get the name of the each unit test run directory
+    # Determine if each unit test in the results log file passed or failed
     #-------------------------------------------------------------------------
+
+    # Get the name of the unit test
     if ( $txt[$i] =~ m/VALIDATION OF GEOS-CHEM OUTPUT FILES/ ) {
       @subStr = split( ':', $txt[++$i] );
       $utName = $subStr[1];
@@ -1026,65 +1031,69 @@ sub readResults($$) {
 
       # Change name of complexSOA_SVPOA to SVPOA to avoid problems
       if ( $utName =~ m/complexSOA_SVPOA/ ) {
-           $utName =~ s/complexSOA_SVPOA/SVPOA/g; }
-
-      # Increment the line counter
-      ++$i;
-
-      # Check if netCDF diagnostics are activated
-      if ( $txt[$i] =~ m/NC_DIAG=y/   ) { $isNcDiag = 1; }
-      else                              { $isNcDiag = 0; }
-
-      # Check if bpch diagnostics are activated
-      if ( $txt[$i] =~ m/BPCH_DIAG=y/ ) { $isBpchDiag = 1; }
-      else                              { $isBpchDiag = 0; }
-
-      # Initialize flags
-      $bpch   = 1;
-      $ncDiag = 1;
-      $rst    = 1;
-      $hemco  = 1;
-
-      # Check the results of the BPCH file    
-      if ( $isBpchDiag ) {
-	for ( my $j = 0; $j < 6; $j++ ) { 
-	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $bpch = -1; }
-        }
+	$utName =~ s/complexSOA_SVPOA/SVPOA/g;
       }
 
-      # Check the results of the RESTART file    
-      for ( my $j = 0; $j < 6; $j++ ) { 
-	if ( $txt[++$i] =~ m/DIFFERENT/ ) { $rst = -1; }
-      }
+      #---------------------------------------------------------------------
+      # Check each bpch or netCDF file and save its status
+      #---------------------------------------------------------------------
+      if ( $txt[++$i] =~ m/\#\#\@/ ) { $isResultsSection = 1; ++$i }
 
-      # Check the results of the NETCDF DIAGNOSTICS file (aka "History")
-      if ( $isNcDiag ) { 
-	for ( my $j = 0; $j < 6; $j++ ) { 
-	  if ( $txt[++$i] =~ m/DIFFERENT/ ) { $ncDiag = -1; }
-        }
-      } 
+      # While we are in the results section
+      while( $isResultsSection == 1 ) {
 
-      # Check the results of the HEMCO restart file    
-      for ( my $j = 0; $j < 6; $j++ ) { 
-	if ( $txt[++$i] =~ m/DIFFERENT/ ) { $hemco = -1; }
+	# Get the file name and file status and store into arrays
+	@subStr = split( ' ', $txt[$i] );
+	@file   = ( @file,   $subStr[3] );
+	@status = ( @status, $subStr[1] );
+
+	# Test if the next line is the end marker of the results section
+	if ( $txt[++$i] =~ m/\#\#\%/ ) { $isResultsSection = -1; }
       }
 
       #-----------------------------------------------------------------------
-      # Assign a color to the unit test output
+      # Parse the results and assign the corresponding color
+      #
       # GREEN  = IDENTICAL
-      # YELLOW = RESTART FILES IDENTICAL, BUT BPCH FILES DIFFERENT
+      # YELLOW = RESTART FILES IDENTICAL, BUT DIAGNOSTIC FILES DIFFERENT
       # RED    = RESTART FILES DIFFERENT
       #-----------------------------------------------------------------------
-      $color = $GREEN;
-      if ( $bpch == -1 || $ncDiag == -1 ) { $color = $YELLOW; }
-      if ( $rst  == -1 || $hemco  == -1 ) { $color = $RED;    }
 
-      # Add the color to the UNITTEST hash
+      # Assume success until otherwise proven
+      $color = $GREEN;
+
+      # Loop over the number of files being checked
+      for ( $j=0; $j < scalar( @status ); $j++ ) {
+
+	# If a file has status MISSING, the unit test has FAILED
+	if ( $status[$j] =~ m/MISSING/   ) {
+	  $color = $RED;
+          goto SaveColorIntoHash;
+        }
+
+	# If a file has status DIFFERENT, then:
+	# (1) If it's a restart file,    the test has FAILED
+	# (2) If it's a diagnostic file, the test has PASSED WITH WARNINGS
+	elsif ( $status[$j] =~ m/DIFFERENT/ ) {
+	  if ( $file[$j] =~ m/[Rr][Ee][Ss][Tt][Aa][Rr][Tt]/ ) {
+	    $color = $RED;
+	    goto SaveColorIntoHash;
+          } else {
+	    $color = $YELLOW;
+          }
+	}
+
+      }			      
+
+      #-----------------------------------------------------------------------
+      # Save the proper color to the unit test output
+      #-----------------------------------------------------------------------
+SaveColorIntoHash:
       $unitTests{ $utName } = $color;
     }	
   }				
 
-  # Return normally
+  # Return the hash to the calling program
   return( %unitTests );
 }
 #EOC
