@@ -25,6 +25,7 @@ use UtUtils qw( &baseName
                 &makeHcoSaCfg
                 &makeInputGeos
                 &makeGCHPcfg
+                &makeHistoryRc
                 &parse          );
 #
 # !PUBLIC DATA MEMBERS:
@@ -169,30 +170,32 @@ sub makeInputs($$$$$$$$) {
 # !LOCAL VARIABLES:
 #
   # Strings
-  my $d0      = "";
-  my $h0      = "";
-  my $d1      = "";
-  my $h1      = "";
-  my $inpTmpl = "$runDir/input.geos.template";
-  my $inpGeos = "$runDir/input.geos";
-  my $runcTmpl= "$runDir/runConfig.template";
-  my $runConf = "$runDir/runConfig.sh";
-  my $capTmpl = "$runDir/CAP.template";
-  my $capRc   = "$runDir/CAP.rc";
-  my $gchpTmpl= "$runDir/GCHP.template";
-  my $GCHPRc  = "$runDir/GCHP.rc";
-  my $hcoTmpl = "$runDir/HEMCO_Config.template";
-  my $hcoCfg  = "$runDir/HEMCO_Config.rc";
-  my $errMsg  = "makeInputs: END must be YYYYMMDDhh or YYYYMMDDhhmm!";
-  my $hcoEnd  = ""; 
+  my $d0       = "";
+  my $h0       = "";
+  my $d1       = "";
+  my $h1       = "";
+  my $inpTmpl  = "$runDir/input.geos.template";
+  my $inpGeos  = "$runDir/input.geos";
+  my $runcTmpl = "$runDir/runConfig.template";
+  my $runConf  = "$runDir/runConfig.sh";
+  my $capTmpl  = "$runDir/CAP.template";
+  my $capRc    = "$runDir/CAP.rc";
+  my $gchpTmpl = "$runDir/GCHP.template";
+  my $GCHPRc   = "$runDir/GCHP.rc";
+  my $hcoTmpl  = "$runDir/HEMCO_Config.template";
+  my $hcoCfg   = "$runDir/HEMCO_Config.rc";
+  my $histTmpl = "$runDir/HISTORY.rc.template";
+  my $histRc   = "$runDir/HISTORY.rc";
+  my $errMsg   = "makeInputs: END must be YYYYMMDDhh or YYYYMMDDhhmm!";
+  my $hcoEnd   = ""; 
 
   # Get start date and hour
-  $d0         = substr( $start, 0, 8 );
-  $h0         = substr( $start, 8, 2 );
-  $h0        .= "0000";
+  $d0          = substr( $start, 0, 8 );
+  $h0          = substr( $start, 8, 2 );
+  $h0         .= "0000";
 
   # Get end date and hour
-  $d1         = substr( $end,   0, 8 );
+  $d1          = substr( $end,   0, 8 );
 
   # Compute the ending hour (hhmmss) from the ending string, 
   # which may be in either YYYYMMDDhhmm or YYYYMMDDhh format
@@ -213,6 +216,9 @@ sub makeInputs($$$$$$$$) {
   # Make the HEMCO_Config.rc file in the run directory
   &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
                  $sim,     $VERBOSE, $WARNINGS, $HEMCO_ROOT, $hcoCfg );
+
+  # Make the HISTORY.rc file in the run directory
+  &makeHistoryRc( $histTmpl, $h1, $histRc ); 
 
   # Return 
   return( $? );
@@ -545,8 +551,8 @@ sub doCopyDirs($$) {
 	    # Execute the copy command
 	    qx/$cmd/;
 
-	    # Make the input.geos, HEMCO_Config.rc, CAP.rc, runConfig.sh,
-            # and GCHP.rc files from templates.
+	    # Make the input.geos, HEMCO_Config.rc, HISTORY.rc, CAP.rc, 
+            # runConfig.sh, and GCHP.rc files from templates.
 	    &makeInputs( $start, $end,  $copyDir, $met, $grid, $nest, $sim );
 
 	    # Remove any output and template files that might be in the 
@@ -638,15 +644,16 @@ sub doCopyDirs($$) {
 
 	    # Remove the output files from the copied run dir
 	    $cmd =  "rm -f $copyDir/input.geos.*";
-	    $cmd .= " $copyDir/HEMCO_Config.template";
-	    $cmd .= " $copyDir/trac_avg.*";
-	    $cmd .= " $copyDir/GEOSChem_restart.*";
-	    $cmd .= " $copyDir/lastbuild*";
-	    $cmd .= " $copyDir/geos.*";
-	    $cmd .= " $copyDir/Ox.mass.*";
-            $cmd .= " $copyDir/*.log";
-	    $cmd .= " $copyDir/*.mp";
-	    $cmd .= " $copyDir/*.sp";
+	    $cmd .= " ${copyDir}/HISTORY.rc.template";
+	    $cmd .= " ${copyDir}/HEMCO_Config.template";
+	    $cmd .= " ${copyDir}/trac_avg.*";
+	    $cmd .= " ${copyDir}/GEOSChem_restart.*";
+	    $cmd .= " ${copyDir}/lastbuild*";
+	    $cmd .= " ${copyDir}/geos.*";
+	    $cmd .= " ${copyDir}/Ox.mass.*";
+            $cmd .= " ${copyDir}/*.log";
+	    $cmd .= " ${copyDir}/*.mp";
+	    $cmd .= " ${copyDir}/*.sp";
       	    qx/$cmd/;
 
             # Copy perl/Makefile to copied run directory

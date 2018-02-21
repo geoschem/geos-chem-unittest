@@ -24,6 +24,7 @@ use UtUtils qw( &baseName
                 &checkDir
                 &makeHemcoCfg
                 &makeInputGeos
+                &makeHistoryRc
                 &parse          );
 #
 # !PUBLIC DATA MEMBERS:
@@ -160,24 +161,26 @@ sub makeInputs($$$$$$$$) {
 # !LOCAL VARIABLES:
 #
   # Strings
-  my $d0      = "";
-  my $h0      = "";
-  my $d1      = "";
-  my $h1      = "";
-  my $inpTmpl = "$runDir/input.geos.template";
-  my $inpGeos = "$runDir/input.geos";
-  my $hcoTmpl = "$runDir/HEMCO_Config.template";
-  my $hcoCfg  = "$runDir/HEMCO_Config.rc";
-  my $errMsg  = "makeInputs: END must be YYYYMMDDhh or YYYYMMDDhhmm!";
-  my $hcoEnd  = ""; 
+  my $d0       = "";
+  my $h0       = "";
+  my $d1       = "";
+  my $h1       = "";
+  my $inpTmpl  = "$runDir/input.geos.template";
+  my $inpGeos  = "$runDir/input.geos";
+  my $hcoTmpl  = "$runDir/HEMCO_Config.template";
+  my $hcoCfg   = "$runDir/HEMCO_Config.rc";
+  my $histTmpl = "$runDir/HISTORY.rc.template";
+  my $histRc   = "$runDir/HISTORY.rc";
+  my $errMsg   = "makeInputs: END must be YYYYMMDDhh or YYYYMMDDhhmm!";
+  my $hcoEnd   = ""; 
 
   # Get start date and hour
-  $d0         = substr( $start, 0, 8 );
-  $h0         = substr( $start, 8, 2 );
-  $h0        .= "0000";
+  $d0          = substr( $start, 0, 8 );
+  $h0          = substr( $start, 8, 2 );
+  $h0         .= "0000";
 
   # Get end date and hour
-  $d1         = substr( $end,   0, 8 );
+  $d1          = substr( $end,   0, 8 );
 
   # Compute the ending hour (hhmmss) from the ending string, 
   # which may be in either YYYYMMDDhhmm or YYYYMMDDhh format
@@ -191,6 +194,9 @@ sub makeInputs($$$$$$$$) {
   # Make the HEMCO_Config.rc file in the run directory
   &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
                  $sim,     $VERBOSE, $WARNINGS, $HEMCO_ROOT, $hcoCfg );
+
+  # Make the HISTORY.rc file in the run directory
+  &makeHistoryRc( $histTmpl, $h1, $histRc );
 
   # Return 
   return( $? );
@@ -551,11 +557,11 @@ sub doCopyDirs($$) {
 	  &replaceText("$copyDir/Makefile",        "CODE_REF_PATH","$CODE_REF");
 	  &replaceText("$copyDir/Makefile",        "CODE_DEV_PATH","$CODE_DEV");
 	  &replaceText("$copyDir/summarizeDiagDiffs.sh","MET_GRID_SIM","$baseDir");
-	  &replaceText("$copyDir/summarizeDiagDiffs.sh","START_DATE",  "${start}00");
-	  &replaceText("$copyDir/summarizeDiagDiffs.sh","END_DATE",    "$end");
-	  &replaceText("$copyDir/locateDiagDiffs.sh",   "MET_GRID_SIM","$baseDir");
-	  &replaceText("$copyDir/locateDiagDiffs.sh",   "START_DATE",  "${start}00");
-	  &replaceText("$copyDir/locateDiagDiffs.sh",   "END_DATE",    "$end");
+	  &replaceText("$copyDir/summarizeDiagDiffs.sh", "START_DATE",  "${start}00");
+	  &replaceText("$copyDir/summarizeDiagDiffs.sh", "END_DATE",    "$end");
+	  &replaceText("$copyDir/locateDiagDiffs.sh",    "MET_GRID_SIM","$baseDir");
+	  &replaceText("$copyDir/locateDiagDiffs.sh",    "START_DATE",  "${start}00");
+	  &replaceText("$copyDir/locateDiagDiffs.sh",    "END_DATE",    "$end");
 	  &replaceText("$copyDir/plots/PlotDiffs.input", "MET_GRID_SIM", "$baseDir");
 	  &replaceText("$copyDir/plots/PlotDiffs.input", "START_DATE", "${start}00");
 	  &replaceText("$copyDir/plots/PlotDiffs.input", "DATE1", "$date1");
@@ -571,10 +577,11 @@ sub doCopyDirs($$) {
 	  qx/$cmd/;
 
 	  # Make the input.geos and HEMCO_Config.rc file from templates
-	  &makeInputs( $start, $end,  $devDir, $met, $grid, $nest, $sim );
+	  &makeInputs( $start, $end, $devDir, $met, $grid, $nest, $sim );
 
 	  # Remove the output files from the copied run dir
 	  $cmd =  "rm -f $devDir/input.geos.template";	    
+	  $cmd .= " $devDir/HISTORY.rc.template";
 	  $cmd .= " $devDir/HEMCO_Config.template";
 	  $cmd .= " $devDir/trac_avg.*";
 	  $cmd .= " $devDir/GEOSChem_restart.*";

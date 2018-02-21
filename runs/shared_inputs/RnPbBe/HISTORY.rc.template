@@ -1,5 +1,5 @@
 ###############################################################################
-###  HISTORY.rc file for GEOS-Chem POPs specialty simulations               ###
+###  HISTORY.rc file for GEOS-Chem Rn-Pb-Be specialty simulations           ###
 ###  Contact: GEOS-Chem Support Team (geos-chem-support@as.harvard.edu)     ###
 ###############################################################################
 
@@ -13,13 +13,14 @@ CoresPerNode: 6
 #
 # To disable a collection, place a "#" character in front of its name
 #
-# NOTE: These are the "default" collections for GEOS-Chem.  But you can create
-# your own custom diagnostic collections below by following th e
+# NOTE: These are the "default" collections for GEOS-Chem.
+# But you can create your own customized diagnostic collections as well.
 #==============================================================================
 COLLECTIONS: 'SpeciesConc',
              'CloudConvFlux',
              'DryDep',
              'LevelEdgeDiags',      
+             'RadioNuclide',
              'StateMet',      
              'WetLossConv',
              'WetLossLS',
@@ -40,7 +41,7 @@ COLLECTIONS: 'SpeciesConc',
 #==============================================================================
   SpeciesConc.template:       '%y4%m2%d2_%h2%n2z.nc4',
   SpeciesConc.format:         'CFIO',
-  SpeciesConc.frequency:      010000
+  SpeciesConc.frequency:      {FREQUENCY}
   SpeciesConc.duration:       240000
   SpeciesConc.mode:           'time-averaged'
   SpeciesConc.fields:         'SpeciesConc_?ADV?             ', 'GIGCchem',
@@ -54,7 +55,7 @@ COLLECTIONS: 'SpeciesConc',
 #==============================================================================
   CloudConvFlux.template:     '%y4%m2%d2_%h2%n2z.nc4',
   CloudConvFlux.format:       'CFIO',
-  CloudConvFlux.frequency:    010000
+  CloudConvFlux.frequency:    {FREQUENCY}
   CloudConvFlux.duration:     240000
   CloudConvFlux.mode:         'time-averaged'
   CloudConvFlux.fields:       'CloudConvFlux_?ADV?           ', 'GIGCchem',
@@ -68,7 +69,7 @@ COLLECTIONS: 'SpeciesConc',
 #==============================================================================
   DryDep.template:            '%y4%m2%d2_%h2%n2z.nc4',
   DryDep.format:              'CFIO',
-  DryDep.frequency:           010000
+  DryDep.frequency:           {FREQUENCY}
   DryDep.duration:            240000
   DryDep.mode:                'time-averaged'
   DryDep.fields:              'DryDepVel_?DRY?               ', 'GIGCchem',
@@ -85,7 +86,7 @@ COLLECTIONS: 'SpeciesConc',
 #==============================================================================
   LevelEdgeDiags.template:    '%y4%m2%d2_%h2%n2z.nc4',
   LevelEdgeDiags.format:      'CFIO',
-  LevelEdgeDiags.frequency:   010000
+  LevelEdgeDiags.frequency:   {FREQUENCY}
   LevelEdgeDiags.duration:    240000
   LevelEdgeDiags.mode:        'time-averaged'
   LevelEdgeDiags.fields:      'Met_CMFMC                     ', 'GIGCchem',
@@ -97,6 +98,23 @@ COLLECTIONS: 'SpeciesConc',
                               'Met_PFLLSAN                   ', 'GIGCchem',
 ::
 #==============================================================================
+# %%%%% THE RadioNuclide COLLECTION %%%%%
+#
+# Fields of the State_Chm object (see also Aerosols collection)
+#
+# Available for full-chemistry and aerosols-only simulations
+#==============================================================================
+  RadioNuclide.template:      '%y4%m2%d2_%h2%n2z.nc4',
+  RadioNuclide.format:        'CFIO',
+  RadioNuclide.frequency:     {FREQUENCY}
+  RadioNuclide.duration:      240000
+  RadioNuclide.mode:          'time-averaged'
+  RadioNuclide.fields:        'PbFromRnDecay                 ', 'GIGCchem',  
+                              'RadDecay_Rn                   ', 'GIGCchem',  
+                              'RadDecay_Pb                   ', 'GIGCchem',  
+                              'RadDecay_Be7                  ', 'GIGCchem',  
+::
+#==============================================================================
 # %%%%% The StateMet COLLECTION %%%%%
 #
 # Fields of the State_Met object (also see the LevelEdgeDiags collection)
@@ -105,7 +123,7 @@ COLLECTIONS: 'SpeciesConc',
 #==============================================================================
   StateMet.template:          '%y4%m2%d2_%h2%n2z.nc4',
   StateMet.format:            'CFIO',
-  StateMet.frequency:         010000
+  StateMet.frequency:         {FREQUENCY}
   StateMet.duration:          240000
   StateMet.mode:              'time-averaged'
   StateMet.fields:            'Met_AD                        ', 'GIGCchem',
@@ -198,7 +216,7 @@ COLLECTIONS: 'SpeciesConc',
 #==============================================================================
   WetLossConv.template:       '%y4%m2%d2_%h2%n2z.nc4',
   WetLossConv.format:         'CFIO',
-  WetLossConv.frequency:      010000
+  WetLossConv.frequency:      {FREQUENCY}
   WetLossConv.duration:       240000
   WetLossConv.mode:           'time-averaged'
   WetLossConv.fields:         'WetLossConv_?WET?             ', 'GIGCchem',
@@ -211,10 +229,9 @@ COLLECTIONS: 'SpeciesConc',
 #
 # Available for all simulations that have soluble species
 #==============================================================================
-# Loss due to rainout and washout (per deposited species)
   WetLossLS.template:         '%y4%m2%d2_%h2%n2z.nc4',
   WetLossLS.format:           'CFIO',
-  WetLossLS.frequency:        010000
+  WetLossLS.frequency:        {FREQUENCY}
   WetLossLS.duration:         240000
   WetLossLS.mode:             'time-averaged'
   WetLossLS.fields:           'WetLossLS_?WET?               ', 'GIGCchem',

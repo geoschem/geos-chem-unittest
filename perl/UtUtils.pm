@@ -50,6 +50,7 @@ use Dates qw( &julDay &calDate );   # Get routines from Dates.pm
 #  27 Jun 2014 - R. Yantosca - Add &makeHemcoCfg routine
 #  22 Jun 2015 - R. Yantosca - Add &makeTxtMatrix routine; updated comments
 #  19 May 2017 - M. Sulprizio- Add &makeHcoSaCfg routine for HEMCO standalone
+#  21 Feb 2018 - R. Yantosca - Add &makeHistoryRc routine for netCDF diags
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -72,6 +73,7 @@ BEGIN {
                    &makeHcoSaCfg        
                    &makeInputGeos 
                    &makeGCHPcfg
+                   &makeHistoryRc
                    &parse
                    &replaceDate
                    &readResults
@@ -775,6 +777,85 @@ sub makeHcoSaCfg($$$$$$$) {
     $line =~ s/{WARNINGS}/$warnings/g;
     $line =~ s/{MET_DIR}/$metDir/g;
     $line =~ s/{GRID_DIR}/$gridDir/g;
+
+    # Write to output file
+    print O "$line\n";
+  }
+
+  # Close output file
+  close( O );
+
+  # Make the input.geos file chmod 644
+  chmod( 0644, $outFile );
+
+  # Exit
+  return(0);
+}
+#EOC
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: makeHemcoCfg
+#
+# !DESCRIPTION: Constructs the "HEMCO_Config.rc" file for GEOS-Chem.  It reads 
+#  a pre-defined template file and then just replaces tokens with the values
+#  passed via the argument list.
+#\\
+#\\
+# !INTERFACE:
+#
+sub makeHistoryRc($$$$$$$) {
+#
+# !INPUT PARAMETERS:
+#
+  # $infile   : HISTORY.rc.template file w/ replaceable tokens
+  # $freq     : Frequency setting (should match the end time in input.geos)
+  # $outFile  : HISTORY.rc file w/ all tokens replaced
+  my ( $inFile, $freq, $outFile ) = @_;
+#
+# !CALLING SEQUENCE:
+# &makeHemcoCfg( "HISTORY.rc.template", 002000, "HISTORY.rc" );
+#                 
+# !REMARKS:
+#
+# !REVISION HISTORY:
+#  21 Feb 2018 - R. Yantosca - Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  # Strings
+  my @lines = "";
+  my $line  = "";
+
+  #-------------------------------------------------------------------------  
+  # Read template file
+  #-------------------------------------------------------------------------
+
+  # Read template "input.geos" file into an array
+  open( I, "$inFile" ) or croak( "Cannot open $inFile!\n" );
+  @lines = <I>;
+  close( I );
+
+  #-------------------------------------------------------------------------
+  # Create HEMCO_Config file
+  #-------------------------------------------------------------------------
+
+  # Open file
+  open( O, ">$outFile") or die "Can't open $outFile\n";
+
+  # Loop thru each line
+  foreach $line ( @lines ) {
+    
+    # Remove newline character
+    chomp( $line );
+
+    # Replace start & end dates
+    $line =~ s/{FREQUENCY}/$freq/g;
 
     # Write to output file
     print O "$line\n";
