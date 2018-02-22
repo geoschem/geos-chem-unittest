@@ -767,6 +767,8 @@ echo "%%%  job sent to queue @ $locTime"                       >> $logRslt
 echo "%%%"                                                     >> $logRslt
 echo "%%%  DESCRIPTION: $DESCRIBE"                             >> $logRslt
 echo "%%%"                                                     >> $logRslt
+echo "%%%  BUILT WITH: $MAKE_CMD"                              >> $logRslt
+echo "%%%"                                                     >> $logRslt
 echo "%%%  This is the main log file, which shows output from" >> $logRslt
 echo "%%%  each individual phase of the unit test sequence."   >> $logRslt
 echo "%%%"                                                     >> $logRslt

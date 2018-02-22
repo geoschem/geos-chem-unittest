@@ -198,13 +198,15 @@ if [[ $1 == "compile_debug" ]]; then
     make -j${SLURM_NTASKS} NC_DIAG=y   CHEM=$CHEM     EXTERNAL_GRID=y  \
                            DEBUG=y     TRACEBACK=y    MET=geosfp       \
                            GRID=4x5    NO_REDUCED=y   UCX=$UCX         \
-                           BOUNDS=y    FPEX=y         hpc
+                           BOUNDS=y    FPEX=y         BPCH_DIAG=n      \
+                           hpc
 elif [[ $1 == "compile_standard" ]] || \
      [[ $1 == "compile_mapl"     ]] || \
      [[ $1 == "compile_clean"    ]]; then
     make -j${SLURM_NTASKS} NC_DIAG=y   CHEM=$CHEM    EXTERNAL_GRID=y   \
                            DEBUG=n     TRACEBACK=y   MET=geos-fp       \
-                           GRID=4x5    NO_REDUCED=y  UCX=$UCX    hpc
+                           GRID=4x5    NO_REDUCED=y  UCX=$UCX          \
+                           BPCH_DIAG=n hpc
 fi
 
 ###############################

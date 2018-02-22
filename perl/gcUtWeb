@@ -179,7 +179,7 @@ sub main(@) {
 #------------------------------------------------------------------------------
 #BOC
 
-  # Return unless we are getting 4 arguments
+  # Return unless we are getting 6 arguments
   if ( scalar( @ARGV ) != 6 ) { 
     print "Usage: gcUtWeb RUNROOT RESULTS TXTFILE TEMPLATE WEBFILE WEBPUSH\n"; 
     exit(1);
