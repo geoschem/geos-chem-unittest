@@ -1341,6 +1341,13 @@ sub getDuration($$$$) {
   # $time2 : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
   my ( $date1, $time1,  $date2, $time2 ) = @_;
 #
+# !RETURN VALUE:
+#
+  # $durStrDate : Duration string, YYYYMMDD format
+  # $durStrTime : Duration string, hhmmss   format
+  my $durStrDate = ""; 
+  my $durStrTime = "";
+#
 # !CALLING SEQUENCE:
 # &makeGCHPcfg( 20130101, 000000, 
 #                 20130102, 000000, 
@@ -1348,36 +1355,35 @@ sub getDuration($$$$) {
 #
 # !REVISION HISTORY:
 #  09 Aug 2017 - E. Lundgren - Initial version, adapted from makeInputGeos
+#  22 Feb 2018 - R. Yantosca - Updated to take minutes into account
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 #
 # !LOCAL VARIABLES:
 #
-  my $dStr1  = &fmtStr( $date1 );
-  my $dStr2  = &fmtStr( $date2 );
-  my $tStr1  = &fmtStr( $time1 );
-  my $tStr2  = &fmtStr( $time2 );
-  my $durStrDate = ""; 
-  my $durStrTime = "";
-
-  my $yr1 = 0;
-  my $mo1 = 0;
-  my $day1 = 0;
-  my $hr1 = 0;
-  my $yr2 = 0;
-  my $mo2 = 0;
-  my $day2 = 0;
-  my $hr2 = 0;
-  my $dyr = 0;
-  my $dmo = 0;
-  my $dday = 0;
-  my $dhr = 0;
+  # Scalars
+  my $yr1        = 0;
+  my $mo1        = 0;
+  my $day1       = 0;
+  my $hr1        = 0;
+  my $min1       = 0;
+  my $yr2        = 0;
+  my $mo2        = 0;
+  my $day2       = 0;
+  my $hr2        = 0;
+  my $min2       = 0;
+  my $dyr        = 0;
+  my $dmo        = 0;
+  my $dday       = 0;
+  my $dhr        = 0;
+  my $dmin       = 0;
+  my $dhroffset  = 0;
   my $ddayoffset = 0;
-  my $dmooffset = 0;
-  my $dyroffset = 0;
-  my $modays = 31;
-  my $mo1i = 0;
+  my $dmooffset  = 0;
+  my $dyroffset  = 0;
+  my $modays     = 31;
+  my $mo1i       = 0;
   
   #---------------------------------------  
   # Determine run duration as Start - End
@@ -1385,6 +1391,8 @@ sub getDuration($$$$) {
   #---------------------------------------
   $hr1  = substr( $time1, 0, 2 );
   $hr2  = substr( $time2, 0, 2 );
+  $min1 = substr( $time1, 2, 2 );
+  $min2 = substr( $time2, 2, 2 );
   $day1 = substr( $date1, 6, 2 );
   $day2 = substr( $date2, 6, 2 );
   $mo1  = substr( $date1, 4, 2 );
@@ -1392,8 +1400,15 @@ sub getDuration($$$$) {
   $yr1  = substr( $date1, 0, 4 );
   $yr2  = substr( $date2, 0, 4 );
   
+  # Calculate # minutes
+  $dmin = int($min2) - int($min1);
+  if ( $dmin < 0 ) {
+    $dmin      += 60;
+    $dhroffset = 1;
+  }
+
   # Calculate # hours
-  $dhr = int($hr2) - int($hr1);
+  $dhr = int($hr2) - int($hr1); - $dhroffset;
   if ( $dhr < 0 ) {
     $dhr = 24 + $dhr;
     $ddayoffset = 1;
@@ -1430,10 +1445,10 @@ sub getDuration($$$$) {
   # Set the date and hour strings to be put into the file
   $durStrDate = &fmtStr( int($dyr)*10000 + int($dmo)*100 + int($dday) );
   $durStrDate = "00$durStrDate";
-  $durStrTime = &fmtStr( $dhr * 10000 );
+  $durStrTime = &fmtStr( ( $dhr * 10000 ) + ( $dmin * 100 ) );
 
   # Return to calling program
-  return( $durStrDate, $durStrTime )
+  return( $durStrDate, $durStrTime );
 }
 #EOC
 #------------------------------------------------------------------------------
