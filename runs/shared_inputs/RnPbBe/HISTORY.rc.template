@@ -109,7 +109,7 @@ COLLECTIONS: 'SpeciesConc',
   RadioNuclide.frequency:     {FREQUENCY}
   RadioNuclide.duration:      {DURATION}
   RadioNuclide.mode:          'time-averaged'
-  RadioNuclide.fields:        'PbFromRadDecay                ', 'GIGCchem',  
+  RadioNuclide.fields:        'PbFromRnDecay                 ', 'GIGCchem',  
                               'RadDecay_Rn                   ', 'GIGCchem',  
                               'RadDecay_Pb                   ', 'GIGCchem',  
                               'RadDecay_Be7                  ', 'GIGCchem',  
