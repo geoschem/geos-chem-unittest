@@ -30,3 +30,5 @@ tracer*mass*.dat
 *.mp
 *.sp
 core.*
+HISTORY.rc
+GEOSChem.*nc4*

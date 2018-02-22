@@ -185,7 +185,7 @@ sub checkTheFiles($$$$) {
     chomp( $file );
 
     # Only consider files that are bpch or netCDF
-    if ( ( $file =~ m/trac_avg/ ) || ( $file =~ m/\.nc/ ) ) {
+    if ( ( $file =~ m/trac_avg.$sim/ ) || ( $file =~ m/\.nc/ ) ) {
 	 
       # Look for the first file
       if ( $file =~ m/$suf1/ ) {
