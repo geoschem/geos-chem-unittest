@@ -218,8 +218,10 @@ sub makeInputs($$$$$$$$) {
                  $sim,     $VERBOSE, $WARNINGS, $HEMCO_ROOT, $hcoCfg );
 
   # Make the HISTORY.rc file in the run directory
-  &makeHistoryRc( $histTmpl, $h1, $histRc ); 
-
+  if ( -f $histTmpl ) {
+    &makeHistoryRc( $histTmpl, $d0, $h0, $d1, $h1, $histRc ); 
+  }
+    
   # Return 
   return( $? );
 }

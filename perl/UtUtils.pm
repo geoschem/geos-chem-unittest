@@ -51,6 +51,7 @@ use Dates qw( &julDay &calDate );   # Get routines from Dates.pm
 #  22 Jun 2015 - R. Yantosca - Add &makeTxtMatrix routine; updated comments
 #  19 May 2017 - M. Sulprizio- Add &makeHcoSaCfg routine for HEMCO standalone
 #  21 Feb 2018 - R. Yantosca - Add &makeHistoryRc routine for netCDF diags
+#  22 Feb 2018 - R. Yantosca - Add &getDuration routine for HISTORY.rc file
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -69,11 +70,12 @@ BEGIN {
                    &checkDir
                    &cleanDir
                    &fmtStr
-                   &makeHemcoCfg        
-                   &makeHcoSaCfg        
-                   &makeInputGeos 
+                   &getDuration
                    &makeGCHPcfg
+                   &makeHcoSaCfg        
+                   &makeHemcoCfg        
                    &makeHistoryRc
+                   &makeInputGeos 
                    &parse
                    &replaceDate
                    &readResults
@@ -258,8 +260,8 @@ sub fmtStr($) {
 
   # Pad w/ proper # of leading zeroes (if necessary)
   if    ( $tmp == 0                      ) { $str = "000000";    }
-  elsif ( $tmp >= 1   && $tmp < 10       ) { $str = "00000$tmp";   }
-  elsif ( $tmp >= 10   && $tmp < 100     ) { $str = "0000$tmp";   }
+  elsif ( $tmp >= 1     && $tmp < 10     ) { $str = "00000$tmp"; }
+  elsif ( $tmp >= 10    && $tmp < 100    ) { $str = "0000$tmp";  }
   elsif ( $tmp >= 100   && $tmp < 1000   ) { $str = "000$tmp";   }
   elsif ( $tmp >= 1000  && $tmp < 10000  ) { $str = "00$tmp";    }
   elsif ( $tmp >= 10000 && $tmp < 100000 ) { $str = "0$tmp";     }
@@ -401,38 +403,21 @@ sub makeGCHPcfg($$$$$$$) {
 #
 # !REVISION HISTORY:
 #  09 Aug 2017 - E. Lundgren - Initial version, adapted from makeInputGeos
+#  22 Feb 2018 - R. Yantosca - Now call &getDuration to get duration date/time
 #EOP
 #------------------------------------------------------------------------------
 #BOC
 #
 # !LOCAL VARIABLES:
 #
-  my @lines  = "";
-  my $line   = "";
-  my $dStr1  = &fmtStr( $date1 );
-  my $dStr2  = &fmtStr( $date2 );
-  my $tStr1  = &fmtStr( $time1 );
-  my $tStr2  = &fmtStr( $time2 );
-  my $durStrDate = ""; 
-  my $durStrTime = "";
-
-  my $yr1 = 0;
-  my $mo1 = 0;
-  my $day1 = 0;
-  my $hr1 = 0;
-  my $yr2 = 0;
-  my $mo2 = 0;
-  my $day2 = 0;
-  my $hr2 = 0;
-  my $dyr = 0;
-  my $dmo = 0;
-  my $dday = 0;
-  my $dhr = 0;
-  my $ddayoffset = 0;
-  my $dmooffset = 0;
-  my $dyroffset = 0;
-  my $modays = 31;
-  my $mo1i = 0;
+  # Strings
+  my @lines                      = "";
+  my $line                       = "";
+  my $dStr1                      = &fmtStr( $date1 );
+  my $dStr2                      = &fmtStr( $date2 );
+  my $tStr1                      = &fmtStr( $time1 );
+  my $tStr2                      = &fmtStr( $time2 );
+  my ( $durStrDate,$durStrTime ) = &getDuration( $date1,$time1,$date2,$time2 );
 
   #------------------------------  
   # Read template file
@@ -450,58 +435,7 @@ sub makeGCHPcfg($$$$$$$) {
   # Open file
   open( O, ">$outFile") or die "Can't open $outFile\n";
   
-  #---------------------------------------  
-  # Determine run duration as Start - End
-  # NOTE: does not handle leap years
-  #---------------------------------------
-  $hr1  = substr( $time1, 0, 2 );
-  $hr2  = substr( $time2, 0, 2 );
-  $day1 = substr( $date1, 6, 2 );
-  $day2 = substr( $date2, 6, 2 );
-  $mo1  = substr( $date1, 4, 2 );
-  $mo2  = substr( $date2, 4, 2 );
-  $yr1  = substr( $date1, 0, 4 );
-  $yr2  = substr( $date2, 0, 4 );
-  
-  # Calculate # hours
-  $dhr = int($hr2) - int($hr1);
-  if ( $dhr < 0 ) {
-    $dhr = 24 + $dhr;
-    $ddayoffset = 1;
-  }
-  
-  # Calculate # days
-  $dday = int($day2) - int($day1) - $ddayoffset;
-  if ( $dday < 0 ) {
-    $mo1i = int($mo1);
-    if ( $mo1i eq 2 ) {
-      if ( ( int($yr1) % 4 eq 0 && int($yr1) % 100 ne 0 ) 
-  	   || int($yr1) % 400 eq 0 ) {
-  	$modays = 29;
-      } else {
-        $modays = 28;
-      }
-    } elsif ( $mo1i eq 4 || $mo1i eq 6 || $mo1i eq 9 || $mo1i eq 11 ) {
-      $modays = 30;
-    }
-    $dday = $modays + $dday;
-    $dmooffset = 1;
-  }
-  
-  # Calculate # months
-  $dmo = int($mo2) - int($mo1) - $dmooffset;
-  if ( $dmo < 0 ) {
-    $dmo = 12 + int($dmo);
-    $dyroffset = 1;
-  }
-  
-  # Calculate # year
-  $dyr = int($yr2) - int($yr1) - $dyroffset;
-  
-  # Set the date and hour strings to be put into the file
-  $durStrDate = &fmtStr( int($dyr)*10000 + int($dmo)*100 + int($dday) );
-  $durStrDate = "00$durStrDate";
-  $durStrTime = &fmtStr( $dhr * 10000 );
+  # Get the formatted duration string and time
   
   # Loop thru each line
   foreach $line ( @lines ) {
@@ -806,17 +740,21 @@ sub makeHcoSaCfg($$$$$$$) {
 #\\
 # !INTERFACE:
 #
-sub makeHistoryRc($$$$$$$) {
+sub makeHistoryRc($$$$$$) {
 #
 # !INPUT PARAMETERS:
 #
   # $infile   : HISTORY.rc.template file w/ replaceable tokens
-  # $freq     : Frequency setting (should match the end time in input.geos)
+  # $date1    : Starting date for GEOS-Chem model run (e.g. 20040101) 
+  # $time1    : Starting time for GEOS-Chem model run (e.g. 000000  ) 
+  # $date2    : Ending   date for GEOS-Chem model run (e.g. 20040102)
+  # $time2    : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
   # $outFile  : HISTORY.rc file w/ all tokens replaced
-  my ( $inFile, $freq, $outFile ) = @_;
+  my ( $inFile, $date1, $time1, $date2, $time2, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
-# &makeHemcoCfg( "HISTORY.rc.template", 002000, "HISTORY.rc" );
+# &makeHistoryRc( "HISTORY.rc.template", 20130101, 000000, 
+#                 20130102               000000,   "HISTORY.rc" );
 #                 
 # !REMARKS:
 #
@@ -829,8 +767,14 @@ sub makeHistoryRc($$$$$$$) {
 # !LOCAL VARIABLES:
 #
   # Strings
-  my @lines = "";
-  my $line  = "";
+  my @lines           = "";
+  my $line            = "";
+  my $durationStr     = "";
+  my ( $date, $time ) = &getDuration( $date1, $time1, $date2, $time2 );
+
+  # Create the string for the freuqency and duration
+  if ( $date =~ m/00000000/ ) { $durationStr = "$time";       }
+  else                        { $durationStr = "$date $time"; }
 
   #-------------------------------------------------------------------------  
   # Read template file
@@ -855,7 +799,8 @@ sub makeHistoryRc($$$$$$$) {
     chomp( $line );
 
     # Replace start & end dates
-    $line =~ s/{FREQUENCY}/$freq/g;
+    $line =~ s/{FREQUENCY}/$durationStr/g;
+    $line =~ s/{DURATION}/$durationStr/g;
 
     # Write to output file
     print O "$line\n";
@@ -1372,6 +1317,123 @@ sub makeTxtMatrix($%) {
 
   # Return normally
   return( $? );
+}
+#EOC
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !IROUTINE: getDuration
+#
+# !DESCRIPTION: Gets the duration string for GEOS-Chem.
+#\\
+#\\
+# !INTERFACE:
+#
+sub getDuration($$$$) {
+#
+# !INPUT PARAMETERS:
+#
+  # $date1 : Starting date for GEOS-Chem model run (e.g. 20040101) 
+  # $time1 : Starting time for GEOS-Chem model run (e.g. 000000  ) 
+  # $date2 : Ending   date for GEOS-Chem model run (e.g. 20040102)
+  # $time2 : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
+  my ( $date1, $time1,  $date2, $time2 ) = @_;
+#
+# !CALLING SEQUENCE:
+# &makeGCHPcfg( 20130101, 000000, 
+#                 20130102, 000000, 
+#                "runConfig.template", "runConfig.sh" );
+#
+# !REVISION HISTORY:
+#  09 Aug 2017 - E. Lundgren - Initial version, adapted from makeInputGeos
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+#
+# !LOCAL VARIABLES:
+#
+  my $dStr1  = &fmtStr( $date1 );
+  my $dStr2  = &fmtStr( $date2 );
+  my $tStr1  = &fmtStr( $time1 );
+  my $tStr2  = &fmtStr( $time2 );
+  my $durStrDate = ""; 
+  my $durStrTime = "";
+
+  my $yr1 = 0;
+  my $mo1 = 0;
+  my $day1 = 0;
+  my $hr1 = 0;
+  my $yr2 = 0;
+  my $mo2 = 0;
+  my $day2 = 0;
+  my $hr2 = 0;
+  my $dyr = 0;
+  my $dmo = 0;
+  my $dday = 0;
+  my $dhr = 0;
+  my $ddayoffset = 0;
+  my $dmooffset = 0;
+  my $dyroffset = 0;
+  my $modays = 31;
+  my $mo1i = 0;
+  
+  #---------------------------------------  
+  # Determine run duration as Start - End
+  # NOTE: does not handle leap years
+  #---------------------------------------
+  $hr1  = substr( $time1, 0, 2 );
+  $hr2  = substr( $time2, 0, 2 );
+  $day1 = substr( $date1, 6, 2 );
+  $day2 = substr( $date2, 6, 2 );
+  $mo1  = substr( $date1, 4, 2 );
+  $mo2  = substr( $date2, 4, 2 );
+  $yr1  = substr( $date1, 0, 4 );
+  $yr2  = substr( $date2, 0, 4 );
+  
+  # Calculate # hours
+  $dhr = int($hr2) - int($hr1);
+  if ( $dhr < 0 ) {
+    $dhr = 24 + $dhr;
+    $ddayoffset = 1;
+  }
+  
+  # Calculate # days
+  $dday = int($day2) - int($day1) - $ddayoffset;
+  if ( $dday < 0 ) {
+    $mo1i = int($mo1);
+    if ( $mo1i eq 2 ) {
+      if ( ( int($yr1) % 4 eq 0 && int($yr1) % 100 ne 0 ) 
+  	   || int($yr1) % 400 eq 0 ) {
+  	$modays = 29;
+      } else {
+        $modays = 28;
+      }
+    } elsif ( $mo1i eq 4 || $mo1i eq 6 || $mo1i eq 9 || $mo1i eq 11 ) {
+      $modays = 30;
+    }
+    $dday = $modays + $dday;
+    $dmooffset = 1;
+  }
+  
+  # Calculate # months
+  $dmo = int($mo2) - int($mo1) - $dmooffset;
+  if ( $dmo < 0 ) {
+    $dmo = 12 + int($dmo);
+    $dyroffset = 1;
+  }
+  
+  # Calculate # year
+  $dyr = int($yr2) - int($yr1) - $dyroffset;
+  
+  # Set the date and hour strings to be put into the file
+  $durStrDate = &fmtStr( int($dyr)*10000 + int($dmo)*100 + int($dday) );
+  $durStrDate = "00$durStrDate";
+  $durStrTime = &fmtStr( $dhr * 10000 );
+
+  # Return to calling program
+  return( $durStrDate, $durStrTime )
 }
 #EOC
 #------------------------------------------------------------------------------
