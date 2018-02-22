@@ -18,11 +18,8 @@ CoresPerNode: 6
 #==============================================================================
 COLLECTIONS: 'SpeciesConc',
              'CloudConvFlux',
-             'ConcAfterChem',
              'LevelEdgeDiags',      
              'StateMet',      
-             'WetLossConv',
-             'WetLossLS',
 ::
 ###############################################################################
 ### The rest of this file consists of collection definitions.               ###
@@ -78,56 +75,6 @@ COLLECTIONS: 'SpeciesConc',
                               'Met_PFILSAN                   ', 'GIGCchem',
                               'Met_PFLCU                     ', 'GIGCchem',
                               'Met_PFLLSAN                   ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE ProdLoss COLLECTION %%%%%
-#
-# Chemical production and loss rates
-#
-# Available for full-chemistry, aerosol-only, tagO3, and tagCO simulations
-#==============================================================================
-  ProdLoss.template:          '%y4%m2%d2_%h2%n2z.nc4',
-  ProdLoss.format:            'CFIO',
-  ProdLoss.frequency:         {FREQUENCY}
-  ProdLoss.duration:          {DURATION}
-  ProdLoss.mode:              'time-averaged'
-  ProdLoss.fields:            'Prod_?PRD?                    ', 'GIGCchem', 
-                              'ProdBCPIfromBCPO              ', 'GIGCchem', 
-                              'ProdOCPIfromOCPO              ', 'GIGCchem',
-                              'ProdSO4fromH2O2inCloud        ', 'GIGCchem',
-                              'ProdSO4fromO3inCloud          ', 'GIGCchem',
-                              'ProdSO4fromO3inSeaSalt        ', 'GIGCchem',
-                              'ProdSO4fromHOBrInCloud        ', 'GIGCchem',
-                              'ProdSO4fromSRO3               ', 'GIGCchem',
-                              'ProdSO4fromSRHObr             ', 'GIGCchem',
-                              'ProdSO4fromO3s                ', 'GIGCchem',
-                              'Loss_?LOS?                    ', 'GIGCchem',
-                              'LossHNO3onSeaSalt             ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE RadioNuclide COLLECTION %%%%%
-#
-# Fields of the State_Chm object (see also Aerosols collection)
-#
-# Available for full-chemistry and aerosols-only simulations
-#==============================================================================
-  RadioNuclide.template:      '%y4%m2%d2_%h2%n2z.nc4',
-  RadioNuclide.format:        'CFIO',
-  RadioNuclide.frequency:     {FREQUENCY}
-  RadioNuclide.duration:      {DURATION}
-  RadioNuclide.mode:          'time-averaged'
-  RadioNuclide.fields:        'Chem_phSav                    ', 'GIGCchem',  
-                              'Chem_HplusSav                 ', 'GIGCchem',  
-                              'Chem_WaterSav                 ', 'GIGCchem',  
-                              'Chem_SulRatSav                ', 'GIGCchem',  
-                              'Chem_NaRatSav                 ', 'GIGCchem',  
-                              'Chem_AcidPurSav               ', 'GIGCchem',  
-                              'Chem_BiSulSav                 ', 'GIGCchem',
-                              'Chem_pHCloud                  ', 'GIGCchem',
-                              'Chem_SSAlk',                  ', 'GIGCchem',
-                              'Chem_HSO3AQ                   ', 'GIGCchem',
-                              'Chem_SO3AQ                    ', 'GIGCchem',
-                              'Chem_fupdateHOBr              ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% The StateMet COLLECTION %%%%%

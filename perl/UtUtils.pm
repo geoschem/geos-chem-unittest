@@ -1408,7 +1408,7 @@ sub getDuration($$$$) {
   }
 
   # Calculate # hours
-  $dhr = int($hr2) - int($hr1); - $dhroffset;
+  $dhr = int($hr2) - int($hr1) - $dhroffset;
   if ( $dhr < 0 ) {
     $dhr = 24 + $dhr;
     $ddayoffset = 1;
