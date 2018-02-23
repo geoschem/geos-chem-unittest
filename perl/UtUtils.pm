@@ -962,6 +962,8 @@ sub readResults($$) {
 #  16 Jan 2018 - R. Yantosca - Updated checks for bpch and netCDF diags
 #  21 Feb 2018 - R. Yantosca - Now checks all netCDF and bpch files, using
 #                              the new format from the validate.pl script.
+#  23 Feb 2018 - R. Yantosca - Bug fix, need to zero file and status arrays
+#                              in each unit test section
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -1049,10 +1051,14 @@ sub readResults($$) {
 
     # Get the name of the unit test
     if ( $txt[$i] =~ m/VALIDATION OF GEOS-CHEM OUTPUT FILES/ ) {
+
+      # Zero arrays
+      @file   = ();
+      @status = ();
+
+      # Get the unit test name (skip whitespace)
       @subStr = split( ':', $txt[++$i] );
       $utName = $subStr[1];
-
-      # Strip white spaces
       $utName =~ s/ //g;
 
       # Change name of complexSOA_SVPOA to SVPOA to avoid problems
@@ -1085,21 +1091,21 @@ sub readResults($$) {
       # RED    = RESTART FILES DIFFERENT
       #-----------------------------------------------------------------------
 
-      # Assume success until otherwise proven
+      # Assume the unit test passed unless proven different
       $color = $GREEN;
 
-      # Loop over the number of files being checked
+      # Loop over all of the files being checked
       for ( $j=0; $j < scalar( @status ); $j++ ) {
 
-	# If a file has status MISSING, the unit test has FAILED
+        # If a file has status MISSING, the unit test has FAILED
 	if ( $status[$j] =~ m/MISSING/   ) {
 	  $color = $RED;
           goto SaveColorIntoHash;
         }
 
-	# If a file has status DIFFERENT, then:
-	# (1) If it's a restart file,    the test has FAILED
-	# (2) If it's a diagnostic file, the test has PASSED WITH WARNINGS
+        # If a file has status DIFFERENT, then:
+        # (1) If it's a restart file,    the test has FAILED
+        # (2) If it's a diagnostic file, the test has PASSED WITH WARNINGS
 	elsif ( $status[$j] =~ m/DIFFERENT/ ) {
 	  if ( $file[$j] =~ m/[Rr][Ee][Ss][Tt][Aa][Rr][Tt]/ ) {
 	    $color = $RED;
@@ -1108,7 +1114,6 @@ sub readResults($$) {
 	    $color = $YELLOW;
           }
 	}
-
       }			      
 
       #-----------------------------------------------------------------------
