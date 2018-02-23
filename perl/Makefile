@@ -540,6 +540,8 @@ dataclean:
 	rm -f tracer_mass*.dat
 	rm -f core.*
 	rm -f *.nc4
+	rm -f *.nc4.sp
+	rm -f *.nc4.mp
 
 spdataclean:
 	rm -f $(GC_DIAG)*.sp
