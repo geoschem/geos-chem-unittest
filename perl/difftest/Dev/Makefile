@@ -57,23 +57,24 @@ run:
 	@$(MAKE) addsuffixdev
 
 addsuffixdev:
-	@for f in ./$(TRAC_RST); do                     \
-           if [[ -f $$f ]]; then mv -f $$f $$f.Dev; fi; \
+	@for f in ./$(TRAC_RST); do                                 \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Dev; fi;             \
         done
-	@for f in ./trac_avg*; do                       \
-           if [[ -f $$f ]]; then mv -f $$f $$f.Dev; fi; \
+	@for f in ./trac_avg*; do                                   \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Dev; fi;             \
         done
-	@for f in ./HEMCO_restart*.nc; do               \
-           if [[ -f $$f ]]; then mv -f $$f $$f.Dev; fi; \
+	@for f in ./HEMCO_restart*.nc; do                           \
+           if [[ "$$f" != "./HEMCO_restart.$(STARTDATE)0000.nc" ]]; \
+              then mv -f $$f $$f.Dev; fi;                           \
         done
-	@for f in ./HEMCO_diagnostics*.nc; do           \
-           if [[ -f $$f ]]; then mv -f $$f $$f.Dev; fi; \
+	@for f in ./HEMCO_diagnostics*.nc; do                       \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Dev; fi;             \
         done
-	@for f in ./HEMCO.log; do                       \
-           if [[ -f $$f ]]; then mv -f $$f $$f.Dev; fi; \
+	@for f in ./HEMCO.log; do                                   \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Dev; fi;             \
         done
-	@for f in ./GEOSChem*.nc4; do                   \
-           if [[ -f $$f ]]; then mv -f $$f $$f.Dev; fi; \
+	@for f in ./GEOSChem*.nc4; do                               \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Dev; fi;             \
         done
 
 clean:

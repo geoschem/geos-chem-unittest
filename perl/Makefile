@@ -746,43 +746,45 @@ printcodeinfo:
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 addsuffixsp:
-	@for f in ./$(GC_RST); do                      \
-           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi; \
+	@for f in ./$(GC_RST); do                                   \
+           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
         done
-	@for f in ./$(GC_DIAG); do                     \
-           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi; \
+	@for f in ./$(GC_DIAG); do                                  \
+           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
         done
-	@for f in ./HEMCO_restart*.nc; do              \
-           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi; \
+	@for f in ./HEMCO_restart*.nc; do                           \
+           if [[ "$$f" != "./HEMCO_restart.$(STARTDATE)0000.nc" ]]; \
+              then mv -f $$f $$f.sp; fi;                            \
         done
-	@for f in ./HEMCO_diagnostics*.nc; do          \
-           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi; \
+	@for f in ./HEMCO_diagnostics*.nc; do                       \
+           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
         done
-	@for f in ./HEMCO.log; do                      \
-           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi; \
+	@for f in ./HEMCO.log; do                                   \
+           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
         done
-	@for f in ./GEOSChem*.nc4; do                  \
-           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi; \
+	@for f in ./GEOSChem*.nc4; do                               \
+           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
         done
 
 addsuffixmp:
-	@for f in ./$(GC_RST); do                      \
-           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi; \
+	@for f in ./$(GC_RST); do                                   \
+           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
         done
-	@for f in ./$(GC_DIAG); do                     \
-           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi; \
+	@for f in ./$(GC_DIAG); do                                  \
+           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
         done
-	@for f in ./HEMCO_restart*.nc; do              \
-           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi; \
+	@for f in ./HEMCO_restart*.nc; do                           \
+           if [[ "$$f" != "./HEMCO_restart.$(STARTDATE)0000.nc" ]]; \
+              then  mv -f $$f $$f.mp; fi;                           \
         done
-	@for f in ./HEMCO_diagnostics*.nc; do          \
-           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi; \
+	@for f in ./HEMCO_diagnostics*.nc; do                       \
+           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
         done
-	@for f in ./HEMCO.log; do                      \
-           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi; \
+	@for f in ./HEMCO.log; do                                   \
+           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
         done
-	@for f in ./GEOSChem*.nc4; do                  \
-           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi; \
+	@for f in ./GEOSChem*.nc4; do                               \
+           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
         done
 
 check:
