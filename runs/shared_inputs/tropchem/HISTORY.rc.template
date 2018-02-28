@@ -226,7 +226,7 @@ COLLECTIONS: 'SpeciesConc',
   JValuesLocalNoon.format:    'CFIO',
   JValuesLocalNoon.frequency: {FREQUENCY}
   JValuesLocalNoon.duration:  {DURATION}
-  JValuesLocalNoon.mode:      'instantaneous'
+  JValuesLocalNoon.mode:      'time-averaged'
   JValuesLocalNoon.fields:    'JNoon_?PHO?                   ', 'GIGCchem',
 ::
 #==============================================================================
