@@ -597,8 +597,13 @@ Mask fractions:              false
 #==============================================================================
 # --- GMI chemistry: prod/loss rates (for strato-/mesosphere) ---
 #==============================================================================
-* GMI_LOSS_CO  $ROOT/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc  loss     2000/$MM/1/0 C xyz s-1   CO  - 1  1
-* GMI_PROD_CO  $ROOT/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc  prod     2000/$MM/1/0 C xyz v/v/s CO  - 1  1
+* GMI_LOSS_CO  $ROOT/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc  loss     2000/1-12/1/0 C xyz s-1   CO  - 1  1
+* GMI_PROD_CO  $ROOT/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc  prod     2000/1-12/1/0 C xyz v/v/s CO  - 1  1
+
+#==============================================================================
+# --- NOAA GMD monthly mean surface CH4 ---
+#==============================================================================
+* NOAA_GMD_CH4 $ROOT/NOAA_GMD/v2018-01/monthly.gridded.surface.methane.1979-2020.1x1.nc SFC_CH4 1979-2020/1-12/1/0 C xy ppbv * - 1 1 
 
 ### END SECTION BASE EMISSIONS ###
 

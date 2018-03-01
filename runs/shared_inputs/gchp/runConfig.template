@@ -4,7 +4,7 @@
 #
 # Usage: ./runSettings.sh
 #
-# E. Lundgren, 8/17/2017
+# Initial version: E. Lundgren, 8/17/2017
 
 ##########################
 ####  Configurables   ####
@@ -29,7 +29,7 @@ INPUT_MET_RES=placeholder # not yet implemented
 # then, running at resolutions other than c24 will have degraded accuracy
 # due to the resolution dependency of emissions. Please contact the GCST
 # for more information.
-CUBE_SPHERE_RES=24    # 24~4x5, 48~2x2.5, 90~1x1.25, 180~0.5x0.625
+CS_RES=24    # 24~4x5, 48~2x2.5, 90~1x1.25, 180~0.5x0.625
 # ***IMPORTANT NOTE***
 # Set read frequency of SPHU2, TMPU2, and PS2 in ExtData to match the
 # dynamic timestep set below based on the run grid resolution
@@ -63,27 +63,25 @@ Turn_on_Wet_Deposition=T
 Turn_on_Transport=T
 Turn_on_Cloud_Conv=T
 Turn_on_PBL_Mixing=T
+Turn_on_Non_Local_Mixing=T
 
 #### TIMESTEPS
 #### Recommendation based on grid resolution:
-####    if [[ $CUBE_SPHERE_RES -lt 90 ]]; then
-####        TransConv_Timestep_min=30
-####        ChemEmis_Timestep_min=60
-####    elif [[ $CUBE_SPHERE_RES -lt 180 ]]; then
-####        TransConv_Timestep_min=10
-####        ChemEmis_Timestep_min=20
+####    if [[ $CS_RES -lt 90 ]]; then
+####        TransConv_Timestep_sec=1800
+####        ChemEmiss_Timestep_sec=3600
+####    elif [[ $CS_RES -lt 180 ]]; then
+####        TransConv_Timestep_sec=600
+####        ChemEmiss_Timestep_sec=1200
 ####    else
-####        TransConv_Timestep_min=5
-####        ChemEmis_Timestep_min=10
+####        TransConv_Timestep_sec=300
+####        ChemEmiss_Timestep_sec=600
 ####    fi
 #### Override these recommendations with GEOS-Chem Classic timestep
 #### settings if benchmarking GCHP as a comparison with GEOS-Chem Classic 
 ####
-TransConv_Timestep_min=10
-ChemEmis_Timestep_min=20
-
-#### PBL MIXING
-Use_nonlocal_PBL=T
+TransConv_Timestep_sec=600
+ChemEmiss_Timestep_sec=1200
 
 #### DEBUG OPTIONS
 MAPL_DEBUG_LEVEL=0   # 0 is none, output increases with higher values (to 20)
@@ -98,12 +96,8 @@ MAPL_DEBUG_LEVEL=0   # 0 is none, output increases with higher values (to 20)
 # Issue any other warnings/errors regarding input.geos and/or run settings
 # check that the transport settins are consistent
 
-#### Convert timesteps to seconds
-DYN_DT_S=$((${TransConv_Timestep_min}*60))
-CHEM_DT_S=$((${ChemEmis_Timestep_min}*60))
-
 #### Give error if that chem timestep is < dynamic timestep
-if [[ ${ChemEmis_Timestep_min} -lt ${TransConv_Timestep_min} ]]; then
+if [[ ${ChemEmiss_Timestep_sec} -lt ${TransConv_Timestep_sec} ]]; then
     echo "ERROR: chemistry timestep must be >= dynamic timestep"
     exit 1
 fi
@@ -171,18 +165,18 @@ replace_val CoresPerNode  ${NUM_CORES_PER_NODE} HISTORY.rc
 ####  set cubed-sphere resolution
 echo " "
 echo "Cubed-sphere resolution:"
-CS_RES_TIMES_SIX=$((CUBE_SPHERE_RES*6)) # Is there a better term for this?
-replace_val IM            ${CUBE_SPHERE_RES}  GCHP.rc
-replace_val JM            ${CS_RES_TIMES_SIX} GCHP.rc
-replace_val npx           ${CUBE_SPHERE_RES}  fvcore_layout.rc
-replace_val npy           ${CUBE_SPHERE_RES}  fvcore_layout.rc
-replace_val GRIDNAME PE${CUBE_SPHERE_RES}x${CS_RES_TIMES_SIX}-CF GCHP.rc
+CS_RES_x_6=$((CS_RES*6)) # Is there a better term for this?
+replace_val IM        ${CS_RES}                     GCHP.rc
+replace_val JM        ${CS_RES_x_6}                 GCHP.rc
+replace_val npx       ${CS_RES}                     fvcore_layout.rc
+replace_val npy       ${CS_RES}                     fvcore_layout.rc
+replace_val GRIDNAME  PE${CS_RES}x${CS_RES_x_6}-CF  GCHP.rc
 if [[ "${INITIAL_RESTART}" == 'default' ]]; then
-    replace_val GIGCchem_INTERNAL_RESTART_FILE "+initial_GEOSChem_rst.c${CUBE_SPHERE_RES}_{SIMULATION}.nc" GCHP.rc
+    replace_val GIGCchem_INTERNAL_RESTART_FILE "+initial_GEOSChem_rst.c${CS_RES}_{SIMULATION}.nc" GCHP.rc
 else
     replace_val GIGCchem_INTERNAL_RESTART_FILE "+${INITIAL_RESTART}" GCHP.rc
 fi
-replace_val GIGCchem_INTERNAL_CHECKPOINT_FILE "-gcchem_internal_checkpoint_c${CUBE_SPHERE_RES}.nc" GCHP.rc
+replace_val GIGCchem_INTERNAL_CHECKPOINT_FILE "-gcchem_internal_checkpoint_c${CS_RES}.nc" GCHP.rc
 
 #### Set simulation start and end datetimes based on input.geos
 echo " "
@@ -202,14 +196,14 @@ replace_val inst.duration    ${inst_duration}     HISTORY.rc
 #### Set timesteps based on input.geos
 echo " "
 echo "Timesteps:"
-replace_val HEARTBEAT_DT  ${DYN_DT_S}  GCHP.rc
-replace_val SOLAR_DT      ${DYN_DT_S}  GCHP.rc
-replace_val IRRAD_DT      ${DYN_DT_S}  GCHP.rc
-replace_val RUN_DT        ${DYN_DT_S}  GCHP.rc
-replace_val GIGCchem_DT   ${CHEM_DT_S} GCHP.rc
-replace_val DYNAMICS_DT   ${DYN_DT_S}  GCHP.rc
-replace_val HEARTBEAT_DT  ${DYN_DT_S}  CAP.rc
-replace_val dt            ${DYN_DT_S}  fvcore_layout.rc
+replace_val HEARTBEAT_DT  ${TransConv_Timestep_sec}  GCHP.rc
+replace_val SOLAR_DT      ${TransConv_Timestep_sec}  GCHP.rc
+replace_val IRRAD_DT      ${TransConv_Timestep_sec}  GCHP.rc
+replace_val RUN_DT        ${TransConv_Timestep_sec}  GCHP.rc
+replace_val GIGCchem_DT   ${ChemEmiss_Timestep_sec}   GCHP.rc
+replace_val DYNAMICS_DT   ${TransConv_Timestep_sec}  GCHP.rc
+replace_val HEARTBEAT_DT  ${TransConv_Timestep_sec}  CAP.rc
+replace_val dt            ${TransConv_Timestep_sec}  fvcore_layout.rc
 
 #### Set debug level
 echo " "
@@ -228,15 +222,13 @@ replace_val "Turn on emissions?"	${Turn_on_emissions}        input.geos
 replace_val "Turn on Transport"	        ${Turn_on_Transport}        input.geos
 replace_val "Turn on Cloud Conv?"	${Turn_on_Cloud_Conv}       input.geos
 replace_val "Turn on PBL Mixing?"	${Turn_on_PBL_Mixing}       input.geos
+replace_val " => Use non-local PBL?"	${Turn_on_Non_Local_Mixing} input.geos
 replace_val "Turn on Dry Deposition?"   ${Turn_on_Dry_Deposition}   input.geos
 replace_val "Turn on Wet Deposition?"   ${Turn_on_Wet_Deposition}   input.geos
 echo " "
 echo "Timesteps:"
-replace_val "Trans/conv Timestep [min]"	${TransConv_Timestep_min}   input.geos
-replace_val "Chem/emis Timestep [min]"	${ChemEmis_Timestep_min}    input.geos
-echo " "
-echo "Mixing:"
-replace_val "=> Use non-local PBL?"	${Use_nonlocal_PBL}         input.geos
+replace_val "Trans/conv Timestep [sec]"	${TransConv_Timestep_sec}   input.geos
+replace_val "Chem/emis Timestep [sec]"	${ChemEmiss_Timestep_sec}   input.geos
 	    
 
 

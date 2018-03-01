@@ -284,26 +284,37 @@ Warnings:                    {WARNINGS}
 0 EDGAR_SOAP_7A            -                                                                              -       -               - -  -       SOAP 6/41/26/52/280 1   2
 0 EDGAR_SO2_1A1a_6C        $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A1a_6C.generic.01x01.nc        emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
 0 EDGAR_SO4_1A1a_6C        -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
+0 EDGAR_pFe_1A1a_6C        -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
 0 EDGAR_SO2_1A2            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A2.generic.01x01.nc            emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
 0 EDGAR_SO4_1A2            -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
+0 EDGAR_pFe_1A2            -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
 #0 EDGAR_SO2_1A3a_c_d_e    $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3a_c_d_e.generic.01x01.nc     emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
 #0 EDGAR_SO4_1A3a_c_d_e    -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
+#0 EDGAR_pFe_1A3a_c_d_e    -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
 0 EDGAR_SO2_1A3b           $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3b.generic.01x01.nc           emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
 0 EDGAR_SO4_1A3b           -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
+0 EDGAR_pFe_1A3b           -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
 0 EDGAR_SO2_1A4            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A4.generic.01x01.nc            emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1/2 2
 0 EDGAR_SO4_1A4            -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1/2 2 
+0 EDGAR_pFe_1A4            -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1/2 2 
 0 EDGAR_SO2_1B1_1B2_1A1b_c $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1B1_1B2_1A1b_c.generic.01x01.nc emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
 0 EDGAR_SO4_1B1_1B2_1A1b_c -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
+0 EDGAR_pFe_1B1_1B2_1A1b_c -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
 0 EDGAR_SO2_2B_2D          $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2B_2D.generic.01x01.nc          emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
 0 EDGAR_SO4_2B_2D          -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
+0 EDGAR_pFe_2B_2D          -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
 0 EDGAR_SO2_2C             $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2C.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
 0 EDGAR_SO4_2C             -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
+0 EDGAR_pFe_2C             -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
 #0 EDGAR_SO2_4F            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_4F.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
 #0 EDGAR_SO4_4F            -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
+#0 EDGAR_pFe_4F            -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
 #0 EDGAR_SO2_5A_C_D_F_4E   $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_5A_C_D_F_4E.generic.01x01.nc    emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
 #0 EDGAR_SO4_5A_C_D_F_4E   -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
+#0 EDGAR_pFe_5A_C_D_F_4E   -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
 0 EDGAR_SO2_7A             $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_7A.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
 0 EDGAR_SO4_7A             -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
+0 EDGAR_pFe_7A             -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
 0 EDGAR_NH3_1A1a_6         $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1a_6.generic.01x01.nc         emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3  38             1   2
 0 EDGAR_NH3_1A1b_c         $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1b_c.generic.01x01.nc         emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3  38             1   2
 0 EDGAR_NH3_1A2            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A2.generic.01x01.nc            emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3  38             1   2
@@ -359,18 +370,25 @@ Warnings:                    {WARNINGS}
 #0 HTAP_SOAP_CO  -                                                                   -       -                  - -  -       SOAP 6/28/26/280  1/2 4
 0 HTAP_SO2_IND   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_INDUSTRY.generic.01x01.nc    emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2  11/29        1/2 4
 0 HTAP_SO4_IND   -                                                                   -       -                  - -  -       SO4  11/29/63     1/2 4
+0 HTAP_pFe_IND   -                                                                   -       -                  - -  -       pFe  11/29/66     1/2 4
 0 HTAP_SO2_POW   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_ENERGY.generic.01x01.nc      emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2  11/29        1/2 4
 0 HTAP_SO4_POW   -                                                                   -       -                  - -  -       SO4  11/29/63     1/2 4
+0 HTAP_pFe_POW   -                                                                   -       -                  - -  -       pFe  11/29/66     1/2 4
 0 HTAP_SO2_RES   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_RESIDENTIAL.generic.01x01.nc emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2  11/29        1/2 4
 0 HTAP_SO4_RES   -                                                                   -       -                  - -  -       SO4  11/29/63     1/2 4
+0 HTAP_pFe_RES   -                                                                   -       -                  - -  -       pFe  11/29/66     1/2 4
 0 HTAP_SO2_TRA   $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_TRANSPORT.generic.01x01.nc   emi_so2 2008-2010/1-12/1/0 C xy kg/m2/s SO2  11/29        1/2 4
 0 HTAP_SO4_TRA   -                                                                   -       -                  - -  -       SO4  11/29/63     1/2 4
+0 HTAP_pFe_TRA   -                                                                   -       -                  - -  -       pFe  11/29/66     1/2 4
 #0 HTAP_SO2_AIR1 $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_AIR_LTO.generic.01x01.nc     emi_so2 2008-2010/1/1/0    C xy kg/m2/s SO2  11/29        1/2 4
 #0 HTAP_SO4_AIR1 -                                                                   -       -                  - -  -       SO4  11/29/63     1/2 4
+#0 HTAP_pFe_AIR1 -                                                                   -       -                  - -  -       pFe  11/29/66     1/2 4
 #0 HTAP_SO2_AIR2 $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_AIR_CDS.generic.01x01.nc     emi_so2 2008-2010/1/1/0    C xy kg/m2/s SO2  11/29        1/2 4
 #0 HTAP_SO4_AIR2 -                                                                   -       -                  - -  -       SO4  11/29/63     1/2 4
+#0 HTAP_pFe_AIR2 -                                                                   -       -                  - -  -       pFe  11/29/66     1/2 4
 #0 HTAP_SO2_AIR3 $ROOT/HTAP/v2015-03/SO2/EDGAR_HTAP_SO2_AIR_CRS.generic.01x01.nc     emi_so2 2008-2010/1/1/0    C xy kg/m2/s SO2  11/29        1/2 4
 #0 HTAP_SO4_AIR3 -                                                                   -       -                  - -  -       SO4  11/29/63     1/2 4
+#0 HTAP_pFe_AIR3 -                                                                   -       -                  - -  -       pFe  11/29/66     1/2 4
 0 HTAP_NH3_IND   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_INDUSTRY.generic.01x01.nc    emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3  -            1/2 4
 0 HTAP_NH3_POW   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_ENERGY.generic.01x01.nc      emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3  -            1/2 4
 0 HTAP_NH3_RES   $ROOT/HTAP/v2015-03/NH3/EDGAR_HTAP_NH3_RESIDENTIAL.generic.01x01.nc emi_nh3 2008-2010/1-12/1/0 C xy kg/m2/s NH3  -            1/2 4
@@ -467,6 +485,7 @@ Warnings:                    {WARNINGS}
 0 EMEP_SOAP -                                       -    -               - -  -        SOAP 26/33/52/1000/280 1/2 10 
 0 EMEP_SO2  $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc SO2  1990-2012/1/1/0 C xy kg/m2/s  SO2  61/35/1000        1/2 10
 0 EMEP_SO4  -                                       -    -               - -  -        SO4  64/35/1000        1/2 10
+0 EMEP_pFe  -                                       -    -               - -  -        pFe  67/35/1000        1/2 10
 0 EMEP_ALK4 $ROOT/EMEP/v2015-03/EMEP.geos.1x1.nc    ALK4 1980-2000/1/1/0 C xy kgC/m2/s ALK4 26/1000           1/2 10
 0 EMEP_ALD2 $ROOT/EMEP/v2015-03/EMEP.geos.1x1.nc    ALD2 1980-2000/1/1/0 C xy kgC/m2/s ALD2 26/1000           1/2 10
 0 EMEP_PRPE $ROOT/EMEP/v2015-03/EMEP.geos.1x1.nc    PRPE 1980-2000/1/1/0 C xy kgC/m2/s PRPE 26/1000           1/2 10
@@ -483,6 +502,7 @@ Warnings:                    {WARNINGS}
 0 BRAVO_SOAP -                                         -    -         - -  -       SOAP 6/8/26/52/1001/280 1/2 20
 0 BRAVO_SO2  $ROOT/BRAVO/v2014-07/BRAVO.generic.1x1.nc SO2 1999/1/1/0 C xy kg/m2/s SO2  11/13/1001         1/2 20
 0 BRAVO_SO4  -                                         -   -          - -  -       SO4  11/13/65/1001      1/2 20
+0 BRAVO_pFe  -                                         -   -          - -  -       pFe  11/13/68/1001      1/2 20
 )))BRAVO
 
 #==============================================================================
@@ -494,6 +514,7 @@ Warnings:                    {WARNINGS}
 0 CAC_SOAP  -                                    -   -               - -  -        SOAP 6/23/26/52/1002/280 1/2 30
 0 CAC_SO2  $ROOT/CAC/v2016-09/CAC.geos.0.1x0.1.nc SOx 2002-2008/1/1/0 C xy kg/m2/s SO2  11/19/60/1002       1/2 30
 0 CAC_SO4  -                                      -   -               - -  -       SO4  60/65/1002          1/2 30
+0 CAC_pFe  -                                      -   -               - -  -       pFe  60/68/1002          1/2 30
 0 CAC_NH3  $ROOT/CAC/v2016-09/CAC_NH3.geos.1x1.nc NH3 2008/1-12/1/0   C xy kg/m2/s NH3  1002                1/2 30
 )))CAC
 
@@ -509,6 +530,7 @@ Warnings:                    {WARNINGS}
 0 NEI2005_SOAP -                                                -    -          - -  -        SOAP 6/26/17/211/230/1005/280 1 35
 0 NEI2005_SO2  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    SO2  2005/1/1/0 C xy kg/m2/s  SO2  11/18/218/237/1005       1 35
 0 NEI2005_SO4  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    SO4  2005/1/1/0 C xy kg/m2/s  SO4  11/18/219/238/1005       1 35
+0 NEI2005_pFe  -                                                -    -          - -  -        pFe  11/18/219/238/1005/69    1 35
 0 NEI2005_NH3  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    NH3  2005/1/1/0 C xy kg/m2/s  NH3  242/1005                 1 35
 0 NEI2005_ACET $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    ACET 2005/1/1/0 C xy kgC/m2/s ACET 213/232/1005             1 35
 0 NEI2005_ALK4 $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc    ALK4 2005/1/1/0 C xy kgC/m2/s ALK4 212/231/1005             1 35
@@ -557,6 +579,7 @@ Warnings:                    {WARNINGS}
 0 NEI11_SURFACE_SO2    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          SO2      2006-2013/1-12/1-31/* C xy  kg/m2/s  SO2  255/1007     1/2 50
 0 NEI11_SURFACE_SULF   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          SULF     2006-2013/1-12/1-31/* C xy  kg/m2/s  SO2  255/1007     1/2 50
 0 NEI11_SURFACE_SO4    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          PSO4     2006-2013/1-12/1-31/* C xy  kg/m2/s  SO4  255/1007     1/2 50
+0 NEI11_SURFACE_pFe    -                                                               -        -                     - -   -        pFe  255/1007/69  1/2 50
 0 NEI11_SURFACE_C2H4   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          ETH      2006-2013/1-12/1-31/* C xy  kgC/m2/s C2H4 254/1007     1/2 50
 0 NEI11_SURFACE_C2H6   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          ETHA     2006-2013/1-12/1-31/* C xy  kgC/m2/s C2H6 254/1007     1/2 50
 0 NEI11_SURFACE_ALD2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          ALD2     2006-2013/1-12/1-31/* C xy  kgC/m2/s ALD2 254/1007     1/2 50
@@ -589,6 +612,7 @@ Warnings:                    {WARNINGS}
 0 NEI11_EGU_SO2        $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      SO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
 0 NEI11_EGU_SULF       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      SULF     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
 0 NEI11_EGU_SO4        $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      PSO4     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO4  255/1007     1   50
+0 NEI11_EGU_pFe        -                                                               -        -                     - -   -        pFe  255/1007/69  1   50
 0 NEI11_EGU_C2H4       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      ETH      2006-2013/1-12/1-31/* C xyz kgC/m2/s C2H4 254/1007     1   50
 0 NEI11_EGU_C2H6       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      ETHA     2006-2013/1-12/1-31/* C xyz kgC/m2/s C2H6 254/1007     1   50
 0 NEI11_EGU_ALD2       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      ALD2     2006-2013/1-12/1-31/* C xyz kgC/m2/s ALD2 254/1007     1   50
@@ -621,6 +645,7 @@ Warnings:                    {WARNINGS}
 0 NEI11_EGUPK_SO2      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    SO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
 0 NEI11_EGUPK_SULF     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    SULF     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
 0 NEI11_EGUPK_SO4      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    PSO4     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO4  255/1007     1   50
+0 NEI11_EGUPK_pFe      -                                                               -        -                     - -   -        pFe  255/1007/69  1   50
 0 NEI11_EGUPK_C2H4     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    ETH      2006-2013/1-12/1-31/* C xyz kgC/m2/s C2H4 254/1007     1   50
 0 NEI11_EGUPK_C2H6     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    ETHA     2006-2013/1-12/1-31/* C xyz kgC/m2/s C2H6 254/1007     1   50
 0 NEI11_EGUPK_ALD2     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    ALD2     2006-2013/1-12/1-31/* C xyz kgC/m2/s ALD2 254/1007     1   50
@@ -653,6 +678,7 @@ Warnings:                    {WARNINGS}
 0 NEI11_OILGAS_SO2     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   SO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
 0 NEI11_OILGAS_SULF    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   SULF     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
 0 NEI11_OILGAS_SO4     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   PSO4     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO4  255/1007     1   50
+0 NEI11_OILGAS_pFe     -                                                               -        -                     - -   -        pFe  255/1007/69  1   50
 0 NEI11_OILGAS_C2H4    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   ETH      2006-2013/1-12/1-31/* C xyz kgC/m2/s C2H4 254/1007     1   50
 0 NEI11_OILGAS_C2H6    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   ETHA     2006-2013/1-12/1-31/* C xyz kgC/m2/s C2H6 254/1007     1   50
 0 NEI11_OILGAS_ALD2    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   ALD2     2006-2013/1-12/1-31/* C xyz kgC/m2/s ALD2 254/1007     1   50
@@ -685,6 +711,7 @@ Warnings:                    {WARNINGS}
 0 NEI11_OTHPT_SO2      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    SO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
 0 NEI11_OTHPT_SULF     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    SULF     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
 0 NEI11_OTHPT_SO4      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    PSO4     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO4  255/1007     1   50
+0 NEI11_OTHPT_pFe      -                                                               -        -                     - -   -        pFe  255/1007/69  1   50
 0 NEI11_OTHPT_C2H4     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    ETH      2006-2013/1-12/1-31/* C xyz kgC/m2/s C2H4 254/1007     1   50
 0 NEI11_OTHPT_C2H6     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    ETHA     2006-2013/1-12/1-31/* C xyz kgC/m2/s C2H6 254/1007     1   50
 0 NEI11_OTHPT_ALD2     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    ALD2     2006-2013/1-12/1-31/* C xyz kgC/m2/s ALD2 254/1007     1   50
@@ -717,6 +744,7 @@ Warnings:                    {WARNINGS}
 0 NEI11_PTNONIPM_SO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc SO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
 0 NEI11_PTNONIPM_SULF  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc SULF     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
 0 NEI11_PTNONIPM_SO4   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc PSO4     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO4  255/1007     1   50
+0 NEI11_PTNONIPM_pFe   -                                                               -        -                     - -   -        pFe  255/1007/69  1   50
 0 NEI11_PTNONIPM_C2H4  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc ETH      2006-2013/1-12/1-31/* C xyz kgC/m2/s C2H4 254/1007     1   50
 0 NEI11_PTNONIPM_C2H6  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc ETHA     2006-2013/1-12/1-31/* C xyz kgC/m2/s C2H6 254/1007     1   50
 0 NEI11_PTNONIPM_ALD2  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc ALD2     2006-2013/1-12/1-31/* C xyz kgC/m2/s ALD2 254/1007     1   50
@@ -755,6 +783,7 @@ Warnings:                    {WARNINGS}
 0 NEI11_SURFACE_SO2    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          SO2      2006-2013/1-12/1/0 C xy  kg/m2/s  SO2  26/218/255/1007     1/2 50
 0 NEI11_SURFACE_SULF   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          SULF     2006-2013/1-12/1/0 C xy  kg/m2/s  SO2  26/218/255/1007     1/2 50
 0 NEI11_SURFACE_SO4    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          PSO4     2006-2013/1-12/1/0 C xy  kg/m2/s  SO4  26/219/255/1007     1/2 50
+0 NEI11_SURFACE_pFe    -                                                                       -        -                  - -   -        pFe  26/219/255/1007/69  1/2 50
 0 NEI11_SURFACE_C2H4   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          ETH      2006-2013/1-12/1/0 C xy  kgC/m2/s C2H4 26/213/254/1007     1/2 50
 0 NEI11_SURFACE_C2H6   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          ETHA     2006-2013/1-12/1/0 C xy  kgC/m2/s C2H6 26/217/254/1007     1/2 50
 0 NEI11_SURFACE_ALD2   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          ALD2     2006-2013/1-12/1/0 C xy  kgC/m2/s ALD2 26/213/254/1007     1/2 50
@@ -787,6 +816,7 @@ Warnings:                    {WARNINGS}
 0 NEI11_EGU_SO2        $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
 0 NEI11_EGU_SULF       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
 0 NEI11_EGU_SO4        $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
+0 NEI11_EGU_pFe        -                                                                       -        -                  - -   -        pFe  26/219/255/1007/69  1   50
 0 NEI11_EGU_C2H4       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      ETH      2006-2013/1-12/1/0 C xyz kgC/m2/s C2H4 26/213/254/1007     1   50
 0 NEI11_EGU_C2H6       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      ETHA     2006-2013/1-12/1/0 C xyz kgC/m2/s C2H6 26/217/254/1007     1   50
 0 NEI11_EGU_ALD2       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      ALD2     2006-2013/1-12/1/0 C xyz kgC/m2/s ALD2 26/213/254/1007     1   50
@@ -819,6 +849,7 @@ Warnings:                    {WARNINGS}
 0 NEI11_EGUPK_SO2      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
 0 NEI11_EGUPK_SULF     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
 0 NEI11_EGUPK_SO4      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
+0 NEI11_EGUPK_pFe      -                                                                       -        -                  - -   -        pFe  26/219/255/1007/69  1   50
 0 NEI11_EGUPK_C2H4     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    ETH      2006-2013/1-12/1/0 C xyz kgC/m2/s C2H4 26/213/254/1007     1   50
 0 NEI11_EGUPK_C2H6     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    ETHA     2006-2013/1-12/1/0 C xyz kgC/m2/s C2H6 26/217/254/1007     1   50
 0 NEI11_EGUPK_ALD2     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    ALD2     2006-2013/1-12/1/0 C xyz kgC/m2/s ALD2 26/213/254/1007     1   50
@@ -851,6 +882,7 @@ Warnings:                    {WARNINGS}
 0 NEI11_OILGAS_SO2     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
 0 NEI11_OILGAS_SULF    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
 0 NEI11_OILGAS_SO4     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
+0 NEI11_OILGAS_pFe     -                                                                       -        -                  - -   -        pFe  26/219/255/1007/69  1   50
 0 NEI11_OILGAS_C2H4    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   ETH      2006-2013/1-12/1/0 C xyz kgC/m2/s C2H4 26/213/254/1007     1   50
 0 NEI11_OILGAS_C2H6    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   ETHA     2006-2013/1-12/1/0 C xyz kgC/m2/s C2H6 26/217/254/1007     1   50
 0 NEI11_OILGAS_ALD2    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   ALD2     2006-2013/1-12/1/0 C xyz kgC/m2/s ALD2 26/213/254/1007     1   50
@@ -883,6 +915,7 @@ Warnings:                    {WARNINGS}
 0 NEI11_OTHPT_SO2      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
 0 NEI11_OTHPT_SULF     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
 0 NEI11_OTHPT_SO4      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
+0 NEI11_OTHPT_pFe      -                                                                       -        -                  - -   -        pFe  26/219/255/1007/69  1   50
 0 NEI11_OTHPT_C2H4     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    ETH      2006-2013/1-12/1/0 C xyz kgC/m2/s C2H4 26/213/254/1007     1   50
 0 NEI11_OTHPT_C2H6     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    ETHA     2006-2013/1-12/1/0 C xyz kgC/m2/s C2H6 26/217/254/1007     1   50
 0 NEI11_OTHPT_ALD2     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    ALD2     2006-2013/1-12/1/0 C xyz kgC/m2/s ALD2 26/213/254/1007     1   50
@@ -915,6 +948,7 @@ Warnings:                    {WARNINGS}
 0 NEI11_PTNONIPM_SO2   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
 0 NEI11_PTNONIPM_SULF  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
 0 NEI11_PTNONIPM_SO4   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
+0 NEI11_PTNONIPM_pFe   -                                                                       -        -                  - -   -        pFe  26/219/255/1007/69  1   50
 0 NEI11_PTNONIPM_C2H4  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc ETH      2006-2013/1-12/1/0 C xyz kgC/m2/s C2H4 26/213/254/1007     1   50
 0 NEI11_PTNONIPM_C2H6  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc ETHA     2006-2013/1-12/1/0 C xyz kgC/m2/s C2H6 26/217/254/1007     1   50
 0 NEI11_PTNONIPM_ALD2  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc ALD2     2006-2013/1-12/1/0 C xyz kgC/m2/s ALD2 26/213/254/1007     1   50
@@ -942,12 +976,16 @@ Warnings:                    {WARNINGS}
 0 ZHANG_SOAP__TRA   -                                                                 -       -          - -  -        SOAP 6/9/26/37/52/1003/280 1/2 40 
 0 ZHANG_SO2__IND    $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc SO2_ind 2006/1/1/0 C xy kg/m2/s  SO2  11/14/1003            1/2 40 
 0 ZHANG_SO4__IND    -                                                                 -       -          - -  -        SO4  11/14/63/1003         1/2 40 
+0 ZHANG_pFe__IND    -                                                                 -       -          - -  -        pFe  11/14/66/1003         1/2 40 
 0 ZHANG_SO2__POW    $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc SO2_pow 2006/1/1/0 C xy kg/m2/s  SO2  11/14/1003            1/2 40 
 0 ZHANG_SO4__POW    -                                                                 -       -          - -  -        SO4  11/14/63/1003         1/2 40 
+0 ZHANG_pFe__POW    -                                                                 -       -          - -  -        pFe  11/14/66/1003         1/2 40 
 0 ZHANG_SO2__RES    $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc SO2_res 2006/1/1/0 C xy kg/m2/s  SO2  11/14/1003            1/2 40 
 0 ZHANG_SO4__RES    -                                                                 -       -          - -  -        SO4  11/14/63/1003         1/2 40 
+0 ZHANG_pFe__RES    -                                                                 -       -          - -  -        pFe  11/14/66/1003         1/2 40 
 0 ZHANG_SO2__TRA    $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc SO2_tra 2006/1/1/0 C xy kg/m2/s  SO2  11/14/1003            1/2 40 
 0 ZHANG_SO4__TRA    -                                                                 -       -          - -  -        SO4  11/14/63/1003         1/2 40 
+0 ZHANG_pFe__TRA    -                                                                 -       -          - -  -        pFe  11/14/66/1003         1/2 40 
 0 ZHANG_C2H6__DOB   $ROOT/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C2H6_dob     2006/1/1/0 C xy kgC/m2/s C2H6 26/1003               1/2 40 
 0 ZHANG_C2H6__DOF   $ROOT/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C2H6_dof     2006/1/1/0 C xy kgC/m2/s C2H6 26/1003               1/2 40
 0 ZHANG_C2H6__DOP   $ROOT/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc C2H6_dop     2006/1/1/0 C xy kgC/m2/s C2H6 26/1003               1/2 40
@@ -1019,12 +1057,16 @@ Warnings:                    {WARNINGS}
 0 MIX_SOAP_TRA -                                                   -                -                  - -  -        SOAP 6/28/26/1006/280  1/2 45
 0 MIX_SO2_IND  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_INDUSTRY     2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1006        1/2 45
 0 MIX_SO4_IND  -                                                   -                -                  - -  -        SO4  11/29/63/1006     1/2 45
+0 MIX_pFe_IND  -                                                   -                -                  - -  -        pFe  11/29/66/1006     1/2 45
 0 MIX_SO2_POW  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_POWER        2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1006        1/2 45
 0 MIX_SO4_POW  -                                                   -                -                  - -  -        SO4  11/29/63/1006     1/2 45
+0 MIX_pFe_POW  -                                                   -                -                  - -  -        pFe  11/29/66/1006     1/2 45
 0 MIX_SO2_RES  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_RESIDENTIAL  2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1006        1/2 45
 0 MIX_SO4_RES  -                                                   -                -                  - -  -        SO4  11/29/63/1006     1/2 45
+0 MIX_pFe_RES  -                                                   -                -                  - -  -        pFe  11/29/66/1006     1/2 45
 0 MIX_SO2_TRA  $ROOT/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc  SO2_TRANSPORT    2008-2010/1-12/1/0 C xy kg/m2/s  SO2  11/29/1006        1/2 45
 0 MIX_SO4_TRA  -                                                   -                -                  - -  -        SO4  11/29/63/1006     1/2 45
+0 MIX_pFe_TRA  -                                                   -                -                  - -  -        pFe  11/29/66/1006     1/2 45
 0 MIX_NH3_IND  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_INDUSTRY     2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1006              1/2 45
 0 MIX_NH3_POW  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_POWER        2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1006              1/2 45
 0 MIX_NH3_RES  $ROOT/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc  NH3_RESIDENTIAL  2008-2010/1-12/1/0 C xy kg/m2/s  NH3  1006              1/2 45
@@ -1131,6 +1173,7 @@ Warnings:                    {WARNINGS}
 0 NEI11_C3MARINE_SO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc SO2             2006-2013/1-12/1-31/*  C xy kg/m2/s  SO2  255/1007     10 50
 0 NEI11_C3MARINE_SULF  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc SULF            2006-2013/1-12/1-31/*  C xy kg/m2/s  SO2  255/1007     10 50
 0 NEI11_C3MARINE_SO4   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc PSO4            2006-2013/1-12/1-31/*  C xy kg/m2/s  SO4  255/1007     10 50
+0 NEI11_C3MARINE_pFe   -                                                               -               -                      - -  -        pFe  255/1007/69  10 50
 0 NEI11_C3MARINE_C2H4  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ETH             2006-2013/1-12/1-31/*  C xy kgC/m2/s C2H4 254/1007     10 50
 0 NEI11_C3MARINE_C2H6  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ETHA            2006-2013/1-12/1-31/*  C xy kgC/m2/s C2H6 254/1007     10 50
 0 NEI11_C3MARINE_ALD2  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc ALD2            2006-2013/1-12/1-31/*  C xy kgC/m2/s ALD2 254/1007     10 50
@@ -1162,6 +1205,7 @@ Warnings:                    {WARNINGS}
 0 NEI11_C3MARINE_SO2   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc SO2      2006-2013/1-12/1/0    C xy kg/m2/s  SO2  255/1007     10 50
 0 NEI11_C3MARINE_SULF  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc SULF     2006-2013/1-12/1/0    C xy kg/m2/s  SO2  255/1007     10 50
 0 NEI11_C3MARINE_SO4   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc PSO4     2006-2013/1-12/1/0    C xy kg/m2/s  SO4  255/1007     10 50
+0 NEI11_C3MARINE_pFe   -                                                                       -        -                     - -  -        pFe  255/1007/69  10 50
 0 NEI11_C3MARINE_C2H4  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc ETH      2006-2013/1-12/1/0    C xy kgC/m2/s C2H4 254/1007     10 50
 0 NEI11_C3MARINE_C2H6  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc ETHA     2006-2013/1-12/1/0    C xy kgC/m2/s C2H6 254/1007     10 50
 0 NEI11_C3MARINE_ALD2  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc ALD2     2006-2013/1-12/1/0    C xy kgC/m2/s ALD2 254/1007     10 50
@@ -2030,6 +2074,19 @@ Warnings:                    {WARNINGS}
 * STRAT_OH            $ROOT/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc             species 2000/1-12/1/0 C xyz v/v   *        - 1  1
 )))+LinStratChem+
 
+#==============================================================================
+# --- Spatially varying OM/OC ---
+#==============================================================================
+* OMOC_DJF $ROOT/OMOC/v2018-01/OMOC.DJF.01x01.nc OMOC 2010/1/1/0 C xy 1 * - 1 1
+* OMOC_MAM $ROOT/OMOC/v2018-01/OMOC.MAM.01x01.nc OMOC 2010/1/1/0 C xy 1 * - 1 1
+* OMOC_JJA $ROOT/OMOC/v2018-01/OMOC.JJA.01x01.nc OMOC 2010/1/1/0 C xy 1 * - 1 1
+* OMOC_SON $ROOT/OMOC/v2018-01/OMOC.SON.01x01.nc OMOC 2010/1/1/0 C xy 1 * - 1 1
+
+#==============================================================================
+# --- NOAA GMD monthly mean surface CH4 ---
+#==============================================================================
+* NOAA_GMD_CH4 $ROOT/NOAA_GMD/v2018-01/monthly.gridded.surface.methane.1979-2020.1x1.nc SFC_CH4 1979-2020/1-12/1/0 C xy ppbv * - 1 1 
+
 ### END SECTION BASE EMISSIONS ###
 
 ###############################################################################
@@ -2125,12 +2182,16 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- SOx to SO2 conversion (Chin et al., 2000) ---
 #==============================================================================
-60 SOX2SO2_GLOBAL 0.986 - - - xy unitless 1
-61 SOX2SO2_EU     0.95  - - - xy unitless 1
-62 SULFUR2SOX     2.0   - - - xy unitless 1
-63 SO2toSO4       0.031 - - - xy unitless 1
-64 SOX2SO4_EU     0.05  - - - xy unitless 1
-65 SO2toSO4_CAC   0.014 - - - xy unitless 1
+60 SOX2SO2_GLOBAL 0.986  - - - xy unitless 1
+61 SOX2SO2_EU     0.95   - - - xy unitless 1
+62 SULFUR2SOX     2.0    - - - xy unitless 1
+63 SO2toSO4       0.031  - - - xy unitless 1
+64 SOX2SO4_EU     0.05   - - - xy unitless 1
+65 SO2toSO4_CAC   0.014  - - - xy unitless 1
+66 SO2toPFe       1.0e-3 - - - xy unitless 1
+67 SOX2PFe_EU     1.7e-3 - - - xy unitless 1
+68 SO2toPFe_CAC   4.7e-4 - - - xy unitless 1
+69 SO2toPFe_NEI   1.0e-3 - - - xy unitless 1
 
 #==============================================================================
 # --- Carbon aerosols: speciation of hydrophilic and hydrophobic fractions ---

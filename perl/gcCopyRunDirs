@@ -612,7 +612,7 @@ sub doCopyDirs($$) {
 	    }
 
 	    # Make symbolic link to gcgrid for accessing met fields
-	    $cmd = "ln -sf ${GCGRID_ROOT}/GEOS_2x2.5_GEOS_5/GEOS_FP ${copyDir}/MetDir";
+	    $cmd = "ln -sf ${GCGRID_ROOT}/GEOS_25x3125/GEOS_0.25x0.3125.d/GEOS_FP ${copyDir}/MetDir";
 	    qx/$cmd/;		
 
 	    # Make symbolic link to HEMCO emissions directory
@@ -681,6 +681,8 @@ sub doCopyDirs($$) {
 	    } else {
 	      if ( ( $sim =~ m/RRTMG/ ) ) {
 	    	$rstFile = "$rstRoot$rstPref$grid\_tropchem.nc";
+	      } elsif ( $sim =~ m/RnPbBe/ ) {
+		$rstFile = "$rstRoot$rstPref$grid\_RnPbBePasv_72L.nc";
 	      } else {
 	    	$rstFile = "$rstRoot$rstPref$notDir.nc";
 	      }

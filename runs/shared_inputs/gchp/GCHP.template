@@ -39,12 +39,25 @@ NUM_WRITERS: 1
 # ----------------------------
 BKG_FREQUENCY: 0
 
+# Settings for production of restart files
+# Comment out this section to output only one restart file (end-of-run)
+#---------------------------------------------------------------
+# Record frequency (HHMMSS) : Frequence of restart file write
+#                             Can exceed 24 hours (e.g. 7200000 for 30 days)
+# Record ref date (YYYYMMDD): Reference date; set to before sim start date
+# Record ref time (HHMMSS)  : Reference time 
+#                             Ref date-time is used only for metadata and to
+#                             calculate the value of the “time” vector
+RECORD_FREQUENCY: 240000 
+RECORD_REF_DATE: 20000101
+RECORD_REF_TIME: 000000
+
 # Chemistry/AEROSOL Model Restart Files
 # Enter +none for GIGCchem_INTERNAL_RESTART_FILE not use an initial restart file
 # -------------------------------------
 GIGCchem_INTERNAL_RESTART_FILE:     +initial_GEOSChem_rst.c24_{SIMULATION}.nc
 GIGCchem_INTERNAL_RESTART_TYPE:     pnc4
-GIGCchem_INTERNAL_CHECKPOINT_FILE:  -gcchem_internal_checkpoint_c24.nc
+GIGCchem_INTERNAL_CHECKPOINT_FILE:  gcchem_internal_checkpoint_c24.nc
 GIGCchem_INTERNAL_CHECKPOINT_TYPE:  pnc4
 
 DYN_INTERNAL_RESTART_FILE:    -fvcore_internal_rst
