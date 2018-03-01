@@ -75,7 +75,7 @@
    SLURM_NODES      : 1
    SLURM_TIME       : 1-12:00
    SLURM_MEMORY     : 35000
-   SLURM_PARTITION  : jacob
+   SLURM_PARTITION  : huce_intel
    SLURM_CONSTRAINT : intel
    SLURM_MAILTYPE   : END
 #
