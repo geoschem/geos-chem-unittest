@@ -1,1 +1,3 @@
-../shared_inputs/standard/input.nml
+&fms_nml 
+print_memory_usage = .false., 
+domains_stack_size = 7000000/
