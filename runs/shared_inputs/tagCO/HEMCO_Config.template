@@ -113,7 +113,7 @@ Mask fractions:              false
     --> Isoprene scaling     :       1.0 
     --> CO2 inhibition       :       true
     --> CO2 conc (ppmv)      :       390.0
-109     MEGAN_Mono           : on    MONX
+109     MEGAN_Mono           : on    CO
 
 ### END SECTION EXTENSION SWITCHES ###
 
@@ -572,7 +572,7 @@ Mask fractions:              false
 108  CLM4_PFT_C3_NARC_GRSS        $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C3_NARC_GRSS        2000/1/1/0        C xy 1        * - 1 1
 108  CLM4_PFT_C4_GRSS             $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_C4_GRSS             2000/1/1/0        C xy 1        * - 1 1
 108  CLM4_PFT_CROP                $ROOT/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc    PFT_CROP                2000/1/1/0        C xy 1        * - 1 1
-110  MEGAN_ORVC                   $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc          OCPI                    1990/1-12/1/0     C xy kgC/m2/s * - 1 1
+109  MEGAN_ORVC                   $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc          OCPI                    1990/1-12/1/0     C xy kgC/m2/s * - 1 1
 
 ###############################################################################
 ### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
