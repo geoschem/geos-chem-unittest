@@ -679,7 +679,9 @@ sub doCopyDirs($$) {
 	    if ( length( $nest ) > 0 ) {
 	      $rstFile = "$rstRoot$rstPref$grid\_$sim\_$nest.nc";
 	    } else {
-	      if ( ( $sim =~ m/RRTMG/ ) ) {
+	      if ( $sim =~ m/gc_timing/ ) {
+	    	$rstFile = "$rstRoot$rstPref$grid\_standard.nc";
+	      } elsif ( $sim =~ m/RRTMG/ ) {
 	    	$rstFile = "$rstRoot$rstPref$grid\_tropchem.nc";
 	      } elsif ( $sim =~ m/RnPbBe/ ) {
 		$rstFile = "$rstRoot$rstPref$grid\_RnPbBePasv_72L.nc";
