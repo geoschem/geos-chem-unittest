@@ -68,8 +68,8 @@ DYN_INTERNAL_HEADER:          1
 
 # %%% For reading the input.geos file %%%
 #
+MAX_PASV:             50
 MAX_DIAG:             80
-MAX_SPC:             500
 MAZ_FAM:              20
 LINOZ_NLEVELS:        25
 LINOZ_NMONTHS:        12
