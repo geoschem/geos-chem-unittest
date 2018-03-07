@@ -61,14 +61,21 @@
    WEB_PUSH         : NONE
 #
 #  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  %%%  OPTIONAL SLURM COMMANDS:                                    %%%
+#  %%%  OPTIONAL COMMANDS:                                          %%%
 #  %%%                                                              %%%
-#  %%%  Set these if your system uses the SLURM scheduler.          %%%
-#  %%%  These will be used to set #SBATCH tags for the job script.  %%%
-#  %%%  Otherwise you can comment these lines out.                  %%%
+#  %%%  If your system uses the SLURM scheduler, then you can       %%%
+#  %%%  define several #SBATCH tags that will be added to the top   %%%
+#  %%%  of the job script.  Otherwise you can comment these lines   %%%
+#  %%%  out with the # comment character.                           %%%
 #  %%%                                                              %%%
-#  %%%  NOTE: If you do use these SLURM commands, then also be      %%%
-#  %%%  sure to set the SUBMIT command above to "sbatch".           %%%
+#  %%%     NOTE: If you do use these SLURM commands, then also be   %%%
+#  %%%     sure to set the SUBMIT command above to "sbatch".        %%%
+#  %%%                                                              %%%
+#  %%%  The INIT_COMMANDS tag will let you specify any optional     %%%
+#  %%%  initialization commands that will be placed at the top      %%%
+#  %%%  of the job script.  For example, if your system requires    %%%
+#  %%%  that modules need to be loaded from within the job script,  %%%
+#  %%%  you can specify those instructions here.                    %%%
 #  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #
    SLURM_CPUS       : 4
@@ -78,6 +85,10 @@
    SLURM_PARTITION  : huce_intel
    SLURM_CONSTRAINT : intel
    SLURM_MAILTYPE   : END
+
+   # Add initialization commands for your system here if necessary
+   # Otherwise, leave these commented out
+   #INIT_COMMANDS    : . ~/.bashrc
 #
 # !RUNS:
 #  Specify the debugging runs that you want to perform below.

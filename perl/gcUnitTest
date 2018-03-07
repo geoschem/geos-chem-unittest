@@ -58,7 +58,8 @@ our $DESCRIBE        = "";         # Short description of unit tests
 our $VERBOSE         = "3";        # HEMCO verbose setting (0-3)
 our $WARNINGS        = "3";        # HEMCO warnings setting (0-3)
 
-# SLURM parameters (optional)
+# Optional parameters (including SLURM tags)
+our $INIT_COMMANDS   = "";         # Optional init cmds for top of job script
 our $SLURM_CPUS      = "";         # SLURM: Number of CPUs (-c)
 our $SLURM_NODES     = "";         # SLURM: Number of nodes (-N)
 our $SLURM_TIME      = "";         # SLURM: Run time (-t D-hh:mm)
@@ -357,6 +358,12 @@ sub makeSlurmTags() {
   # unit test job in case the node goes down and reboots for any reason
   @slurm = ( @slurm, "\#SBATCH --no-requeue\n" ); 
 
+  # Add any optional initialization commands (such as loading modules)
+  # that need to immediately below the SLURM tags
+  if ( length( $INIT_COMMANDS ) > 0 ) {
+    @slurm = ( @slurm, "$INIT_COMMANDS\n" ); 
+  }
+  
   # Export number of CPUs (NOTE: This must be done after all SBATCH commands)
   if ( length( $SLURM_CPUS ) > 0 ) {  
     @slurm = ( @slurm, "export OMP_NUM_THREADS=$SLURM_CPUS\n\n" ); 
@@ -437,36 +444,36 @@ sub doUnitTest($$) {
 # !LOCAL VARIABLES:
 #
   # Scalars
-  my $cmd     = "";
-  my $end     = "";
-  my $extra   = "";
-  my $grid    = "";
-  my $hcoEnd  = "";
-  my $jobFile = "";
-  my $logHdr  = "";
-  my $logRslt = "";
-  my $logTop  = "";
-  my $met     = "";
-  my $makeCmd = ""; 
-  my $nest    = "";
-  my $notDir  = "";
-  my $runDir  = "";
-  my $sim     = "";
-  my $status  = "";
-  my $stdout  = "";
-  my $start   = "";
-  my $locTime = "";
-  my $rstRoot = "";
-  my $rstFile = "";
+  my $cmd      = "";
+  my $end      = "";
+  my $extra    = "";
+  my $grid     = "";
+  my $hcoEnd   = "";
+  my $jobFile  = "";
+  my $logHdr   = "";
+  my $logRslt  = "";
+  my $logTop   = "";
+  my $met      = "";
+  my $makeCmd  = ""; 
+  my $nest     = "";
+  my $notDir   = "";
+  my $runDir   = "";
+  my $sim      = "";
+  my $status   = "";
+  my $stdout   = "";
+  my $start    = "";
+  my $locTime  = "";
+  my $rstRoot  = "";
+  my $rstFile  = "";
 
   # Arrays
-  my @cmds    = ();
-  my @slurm   = ();
-  my @txt     = ();
+  my @cmds     = ();
+  my @slurm    = ();
+  my @txt      = ();
 
   # Unix environment settings
-  my $home    = $ENV{"HOME"};
-  my $user    = $ENV{"USER"};
+  my $home     = $ENV{"HOME"};
+  my $user     = $ENV{"USER"};
 
   #---------------------------------------------------------------------------
   # Read options from the input file
@@ -497,11 +504,6 @@ sub doUnitTest($$) {
     if ( !( $txt[$i] =~ m/\#/ ) ) { 
       if    ( $txt[$i] =~ "CODE_DIR"        ) { $CODE_DIR = 
 						  &parse( $txt[$i] ); } 
-#--------------------------------------------------------------------------
-# GEOS-Chem now uses the $FC env-var for compiler info (bmy, 7/5/17)
-#      elsif ( $txt[$i] =~ "COMPILER"        ) { $COMPILER = 
-#						  &parse( $txt[$i] ); } 
-#--------------------------------------------------------------------------
       elsif ( $txt[$i] =~ "DATA_ROOT"       ) { $DATA_ROOT = 
 						  &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "HEMCO_ROOT"      ) { $HEMCO_ROOT = 
@@ -533,6 +535,8 @@ sub doUnitTest($$) {
       elsif ( $txt[$i] =~ "VERBOSE"         ) { $VERBOSE = 
 						  &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "WARNINGS"        ) { $WARNINGS  = 
+						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "INIT_COMMANDS"   ) { $INIT_COMMANDS = 
 						  &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "SLURM_CPUS"      ) { $SLURM_CPUS = 
 						  &parse( $txt[$i] ); }
