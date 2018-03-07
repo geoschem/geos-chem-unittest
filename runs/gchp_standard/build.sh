@@ -95,7 +95,6 @@ fi
 runDir=$PWD
 
 # Designed for full chemistry
-UCX=yes
 CHEM=Standard
 
 # Error check
@@ -138,9 +137,9 @@ elif [[ $1 == "clean_mapl" ]]; then
     make realclean
     cd GCHP
     make EXTERNAL_GRID=y  DEBUG=y   GRID=4x5      MET=geos-fp      \
-         NO_REDUCED=y     UCX=$UCX  wipeout_fvdycore
+         NO_REDUCED=y     wipeout_fvdycore
     make EXTERNAL_GRID=y  DEBUG=y   GRID=4x5      MET=geos-fp      \
-         NO_REDUCED=y     UCX=$UCX  wipeout_mapl
+         NO_REDUCED=y     wipeout_mapl
     cd ..
 
 # compile_debug
@@ -160,9 +159,9 @@ elif [[ $1 == "compile_mapl" ]]; then
     make realclean
     cd GCHP
     make EXTERNAL_GRID=y  DEBUG=y   GRID=4x5  MET=geos-fp      \
-         NO_REDUCED=y  UCX=$UCX     wipeout_fvdycore
+         NO_REDUCED=y  wipeout_fvdycore
     make EXTERNAL_GRID=y  DEBUG=y   GRID=4x5  MET=geos-fp      \
-         NO_REDUCED=y  UCX=$UCX     wipeout_mapl
+         NO_REDUCED=y  wipeout_mapl
     cd ..
 
 # compile_clean
@@ -197,16 +196,14 @@ echo "CPATH is: $CPATH"
 if [[ $1 == "compile_debug" ]]; then
     make -j${SLURM_NTASKS} NC_DIAG=y   CHEM=$CHEM     EXTERNAL_GRID=y  \
                            DEBUG=y     TRACEBACK=y    MET=geosfp       \
-                           GRID=4x5    NO_REDUCED=y   UCX=$UCX         \
-                           BOUNDS=y    FPEX=y         BPCH_DIAG=n      \
-                           hpc
+                           GRID=4x5    NO_REDUCED=y   BOUNDS=y         \
+                           FPEX=y      hpc
 elif [[ $1 == "compile_standard" ]] || \
      [[ $1 == "compile_mapl"     ]] || \
      [[ $1 == "compile_clean"    ]]; then
     make -j${SLURM_NTASKS} NC_DIAG=y   CHEM=$CHEM    EXTERNAL_GRID=y   \
                            DEBUG=n     TRACEBACK=y   MET=geos-fp       \
-                           GRID=4x5    NO_REDUCED=y  UCX=$UCX          \
-                           BPCH_DIAG=n hpc
+                           GRID=4x5    NO_REDUCED=y  hpc
 fi
 
 ###############################
