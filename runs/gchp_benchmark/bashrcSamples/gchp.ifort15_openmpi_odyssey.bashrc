@@ -1,0 +1,1 @@
+../../gchp_standard/bashrcSamples/gchp.ifort15_openmpi_odyssey.bashrc

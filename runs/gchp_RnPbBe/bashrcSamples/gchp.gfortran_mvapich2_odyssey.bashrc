@@ -1,0 +1,1 @@
+../../gchp_standard/bashrcSamples/gchp.gfortran_mvapich2_odyssey.bashrc
