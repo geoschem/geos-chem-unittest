@@ -70,7 +70,7 @@ DYN_INTERNAL_HEADER:          1
 #
 MAX_PASV:             50
 MAX_DIAG:             80
-MAZ_FAM:              20
+MAX_FAM:             250
 LINOZ_NLEVELS:        25
 LINOZ_NMONTHS:        12
 LINOZ_NFIELDS:         7
