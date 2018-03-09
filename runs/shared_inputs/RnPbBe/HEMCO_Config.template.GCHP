@@ -39,6 +39,7 @@ ROOT:                        /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/Ext
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
 DiagnFreq:                   End
+DiagnFile:                   HEMCO_Diagn.rc
 Wildcard:                    *
 Separator:                   /
 Unit tolerance:              1

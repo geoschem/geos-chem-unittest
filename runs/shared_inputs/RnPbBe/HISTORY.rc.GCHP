@@ -1,0 +1,192 @@
+
+EXPID:  OutputDir/GCHP
+EXPDSC: GEOS-Chem_devel
+CoresPerNode: 32
+
+
+COLLECTIONS: 'CloudConvFlux',
+             #'DryDep',
+             #'Emissions',
+             #'LevelEdgeDiags',      
+             #'RadioNuclide',
+             #'SpeciesConc',
+             #'StateMet',      
+             #'WetLossConv',
+             #'WetLossLS',
+::
+#==============================================================================
+  CloudConvFlux.template:     '%y4%m2%d2_%h2%n2z.nc4',
+  CloudConvFlux.format:       'CFIO',
+  CloudConvFlux.frequency:    240000
+  CloudConvFlux.duration:     240000
+  CloudConvFlux.mode:         'time-averaged'
+  CloudConvFlux.fields:       'CloudConvFlux_Rn   ', 'GIGCchem',
+                              'CloudConvFlux_Pb   ', 'GIGCchem',
+                              'CloudConvFlux_Be7  ', 'GIGCchem',
+                              'CloudConvFlux_PASV ', 'GIGCchem',
+::
+#==============================================================================
+  DryDep.template:            '%y4%m2%d2_%h2%n2z.nc4',
+  DryDep.format:              'CFIO',
+  DryDep.frequency:           240000
+  DryDep.duration:            240000
+  DryDep.mode:                'time-averaged'
+  DryDep.fields:              'DryDep_Pb          ', 'GIGCchem',
+                              'DryDep_Be7         ', 'GIGCchem',
+                              'DryDepVel_Pb       ', 'GIGCchem',
+                              'DryDepVel_Be7      ', 'GIGCchem',
+::
+#==============================================================================
+  Emissions.template:         '%y4%m2%d2_%h2%n2z.nc4',
+  Emissions.format:           'CFIO',
+  Emissions.frequency:        240000
+  Emissions.duration:         240000
+  Emissions.mode:             'time-averaged'
+  Emissions.fields:           'EmisBe7_Cosmic     ', 'GIGCchem',
+                              'EmisBe7_Total      ', 'GIGCchem',
+                              'EmisRn_Soil        ', 'GIGCchem',
+                              'EmisRn_Total       ', 'GIGCchem',
+::
+#==============================================================================
+  LevelEdgeDiags.template:    '%y4%m2%d2_%h2%n2z.nc4',
+  LevelEdgeDiags.format:      'CFIO',
+  LevelEdgeDiags.frequency:   240000
+  LevelEdgeDiags.duration:    240000
+  LevelEdgeDiags.mode:        'time-averaged'
+  LevelEdgeDiags.fields:      'Met_CMFMC          ', 'GIGCchem',
+                              'Met_PEDGE          ', 'GIGCchem',
+                              'Met_PEDGEDRY       ', 'GIGCchem',
+                              'Met_PFICU          ', 'GIGCchem',
+                              'Met_PFILSAN        ', 'GIGCchem',
+                              'Met_PFLCU          ', 'GIGCchem',
+                              'Met_PFLLSAN        ', 'GIGCchem',
+::
+#==============================================================================
+  RadioNuclide.template:      '%y4%m2%d2_%h2%n2z.nc4',
+  RadioNuclide.format:        'CFIO',
+  RadioNuclide.frequency:     240000
+  RadioNuclide.duration:      240000
+  RadioNuclide.mode:          'time-averaged'
+  RadioNuclide.fields:        'PbFromRnDecay      ', 'GIGCchem',  
+                              'RadDecay_Rn        ', 'GIGCchem',  
+                              'RadDecay_Pb        ', 'GIGCchem',  
+                              'RadDecay_Be7       ', 'GIGCchem', 
+::
+#==============================================================================
+  SpeciesConc.template:       '%y4%m2%d2_%h2%n2z.nc4',
+  SpeciesConc.format:         'CFIO',
+  SpeciesConc.frequency:      240000
+  SpeciesConc.duration:       240000
+  SpeciesConc.mode:           'time-averaged'
+  SpeciesConc.fields:         'SpeciesConc_Rn     ', 'GIGCchem',
+                              'SpeciesConc_Pb     ', 'GIGCchem',
+                              'SpeciesConc_Be7    ', 'GIGCchem',
+                              'SpeciesConc_PASV   ', 'GIGCchem',
+::
+#==============================================================================
+  StateMet.template:          '%y4%m2%d2_%h2%n2z.nc4',
+  StateMet.format:            'CFIO',
+  StateMet.frequency:         240000
+  StateMet.duration:          240000
+  StateMet.mode:              'time-averaged'
+  StateMet.fields:            'Met_AD             ', 'GIGCchem',
+                              'Met_AIRDEN         ', 'GIGCchem',
+                              'Met_AIRVOL         ', 'GIGCchem',
+                              'Met_ALBD           ', 'GIGCchem',
+                              'Met_AREAM2         ', 'GIGCchem',
+                              'Met_AVGW           ', 'GIGCchem',
+                              'Met_BXHEIGHT       ', 'GIGCchem',
+                              'Met_ChemGridLev    ', 'GIGCchem',
+                              'Met_CLDF           ', 'GIGCchem',
+                              'Met_CLDFRC         ', 'GIGCchem',
+                              'Met_CLDTOPS        ', 'GIGCchem',
+                              'Met_DELP           ', 'GIGCchem',
+                              'Met_DQRCU          ', 'GIGCchem',
+                              'Met_DQRLSAN        ', 'GIGCchem',
+                              'Met_DTRAIN         ', 'GIGCchem',
+                              'Met_EFLUX          ', 'GIGCchem',
+                              'Met_FRCLND         ', 'GIGCchem',
+                              'Met_FRLAKE         ', 'GIGCchem',
+                              'Met_FRLAND         ', 'GIGCchem',
+                              'Met_FRLANDIC       ', 'GIGCchem',
+                              'Met_FROCEAN        ', 'GIGCchem',
+                              'Met_FRSEAICE       ', 'GIGCchem',
+                              'Met_FRSNO          ', 'GIGCchem',
+                              'Met_GWETROOT       ', 'GIGCchem',
+                              'Met_GWETTOP        ', 'GIGCchem',
+                              'Met_HFLUX          ', 'GIGCchem',
+                              'Met_LAI            ', 'GIGCchem',
+                              'Met_LWI            ', 'GIGCchem',
+                              'Met_PARDR          ', 'GIGCchem',
+                              'Met_PARDF          ', 'GIGCchem',
+                              'Met_PBLTOPL        ', 'GIGCchem',
+                              'Met_PBLH           ', 'GIGCchem',
+                              'Met_PHIS           ', 'GIGCchem',
+                              'Met_PMID           ', 'GIGCchem',
+                              'Met_PMIDDRY        ', 'GIGCchem',
+                              'Met_PRECANV        ', 'GIGCchem',
+                              'Met_PRECCON        ', 'GIGCchem',
+                              'Met_PRECLSC        ', 'GIGCchem',
+                              'Met_PRECTOT        ', 'GIGCchem',
+                              'Met_PS1DRY         ', 'GIGCchem',
+                              'Met_PS1WET         ', 'GIGCchem',
+                              'Met_PS2DRY         ', 'GIGCchem',
+                              'Met_PS2WET         ', 'GIGCchem',
+                              'Met_PSC2WET        ', 'GIGCchem',
+                              'Met_PSC2DRY        ', 'GIGCchem',
+                              'Met_QI             ', 'GIGCchem',
+                              'Met_QL             ', 'GIGCchem',
+                              'Met_OMEGA          ', 'GIGCchem',
+                              'Met_OPTD           ', 'GIGCchem',
+                              'Met_REEVAPCN       ', 'GIGCchem',
+                              'Met_REEVAPLS       ', 'GIGCchem',
+                              'Met_SLP            ', 'GIGCchem',
+                              'Met_SNODP          ', 'GIGCchem',
+                              'Met_SNOMAS         ', 'GIGCchem',
+                              'Met_SPHU           ', 'GIGCchem',
+                              'Met_SPHU1          ', 'GIGCchem',
+                              'Met_SPHU2          ', 'GIGCchem',
+                              'Met_SUNCOS         ', 'GIGCchem',
+                              'Met_SUNCOSmid      ', 'GIGCchem',
+                              'Met_SWGDN          ', 'GIGCchem',
+                              'Met_T              ', 'GIGCchem',
+                              'Met_TAUCLI         ', 'GIGCchem',
+                              'Met_TAUCLW         ', 'GIGCchem',
+                              'Met_THETA          ', 'GIGCchem',
+                              'Met_TMPU1          ', 'GIGCchem',
+                              'Met_TMPU2          ', 'GIGCchem',
+                              'Met_TO3            ', 'GIGCchem',
+                              'Met_TropHt         ', 'GIGCchem',
+                              'Met_TropLev        ', 'GIGCchem',
+                              'Met_TropP          ', 'GIGCchem',
+                              'Met_TS             ', 'GIGCchem',
+                              'Met_TSKIN          ', 'GIGCchem',
+                              'Met_TV             ', 'GIGCchem',
+                              'Met_U              ', 'GIGCchem',
+                              'Met_U10M           ', 'GIGCchem',
+                              'Met_USTAR          ', 'GIGCchem',
+                              'Met_UVALBEDO       ', 'GIGCchem',
+                              'Met_V              ', 'GIGCchem',
+                              'Met_V10M           ', 'GIGCchem',
+                              'Met_Z0             ', 'GIGCchem',
+::
+#==============================================================================
+  WetLossConv.template:       '%y4%m2%d2_%h2%n2z.nc4',
+  WetLossConv.format:         'CFIO',
+  WetLossConv.frequency:      240000
+  WetLossConv.duration:       240000
+  WetLossConv.mode:           'time-averaged'
+  WetLossConv.fields:         'WetLossConv_Pb     ', 'GIGCchem',
+                              'WetLossConv_Be7    ', 'GIGCchem',
+                              'WetLossConvFrac_Pb ', 'GIGCchem',
+                              'WetLossConvFrac_Be7', 'GIGCchem',
+::
+#==============================================================================
+  WetLossLS.template:         '%y4%m2%d2_%h2%n2z.nc4',
+  WetLossLS.format:           'CFIO',
+  WetLossLS.frequency:        240000
+  WetLossLS.duration:         240000
+  WetLossLS.mode:             'time-averaged'
+  WetLossLS.fields:           'WetLossLS_Pb       ', 'GIGCchem',
+                              'WetLossLS_Be7      ', 'GIGCchem',
+::

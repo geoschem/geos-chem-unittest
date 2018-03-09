@@ -1,1 +1,1 @@
-../gchp_standard/build.sh
+../shared_inputs/GCHP/build.sh
