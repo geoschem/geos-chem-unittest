@@ -48,8 +48,8 @@ Duration="{dYYYYMMDD} {dHHmmss}"
 #### duration = frequency of file write
 #### center = time-averaged collection
 #### inst = instantaneous collection
-#### NOTE: manually edit variables for these collections and add and edit
-#### additional collections in HISTORY.rc.
+#### Edit these collection names as needed based on actual collections names
+#### in your HISTORY.rc file
 center_frequency="010000"
 center_duration="010000"
 inst_frequency="010000"
@@ -176,7 +176,7 @@ if [[ "${INITIAL_RESTART}" == 'default' ]]; then
 else
     replace_val GIGCchem_INTERNAL_RESTART_FILE "+${INITIAL_RESTART}" GCHP.rc
 fi
-replace_val GIGCchem_INTERNAL_CHECKPOINT_FILE "-gcchem_internal_checkpoint_c${CS_RES}.nc" GCHP.rc
+replace_val GIGCchem_INTERNAL_CHECKPOINT_FILE "gcchem_internal_checkpoint_c${CS_RES}.nc" GCHP.rc
 
 #### Set simulation start and end datetimes based on input.geos
 echo " "
