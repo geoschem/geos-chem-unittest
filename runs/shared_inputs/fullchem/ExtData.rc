@@ -1,0 +1,1323 @@
+#
+PrimaryExports%%
+#--------|-------|-----|-----|------|------------|---------------|--------|-------|---------------------|
+# Export |       |     | V   |      |            |___ Refresh ___|____ Factors ___|___ External File ___|
+# Name   | Units | Dim | Loc | Clim |Conservative| Time Template | Offset | Scale | Variable | Template |
+#--------|-------|-----|-----|------|------------|---------------|--------|-------|----------|----------|
+# 
+# Notes:
+# Units should be in single quotes if they contain whitespace
+# V Loc should be C if the data is vertically centered
+# Climatology should be Y if the file contains monthly climatology; otherwise it should be N
+# Conservative should be Y if units imply mass conservation dependency on regrid method (e.g. value per area)
+# Refresh Time Template should be:
+#    1. - if the file contains time-invariant constants
+#    2. prefixed with F if no time interpolation between data reads (F = fixed)
+#    3. 0 if data should be kept up-to-date at all times
+#    4. 0:HHMMSS if data occurs in file with frequency HHMMSS and should be updated at that frequency
+#    5. %y4-%m2-%d2T%h2:00:00, with any tokens replaced by appropriate constant time value, if multiple time
+#       values are in the same file. Note that including an F prefix indicates the data should be treated
+#       as constant until the next refresh time. Omission of the F prefix will time-interpolate between
+#       the values.  
+
+#------------------------
+# Met data
+#------------------------
+ALBD     '1'       xy  C N Y F0;003000 none none ALBEDO     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+CLDFRC   '1'       xy  C N Y F0;003000 none none CLDTOT     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+EFLUX    '1'       xy  C N Y F0;003000 none none EFLUX      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+EVAP     '1'       xy  C N Y F0;003000 none none EVAP       ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+FRSEAICE '1'       xy  C N Y F0;003000 none none FRSEAICE   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+FRSNO    '1'       xy  C N Y F0;003000 none none FRSNO      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+GRN      '1'       xy  C N Y F0;003000 none none GRN        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+GWETROOT '1'       xy  C N Y F0;003000 none none GWETROOT   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+GWETTOP  '1'       xy  C N Y F0;003000 none none GWETTOP    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+HFLUX    '1'       xy  C N Y F0;003000 none none HFLUX      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+LAI      '1'       xy  C N Y F0;003000 none none LAI        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+LWI      '1'       xy  C N Y F0;003000 none none LWI        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+RADLWG   '1'       xy  C N Y F0;003000 none none LWGNT      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+PARDF    '1'       xy  C N Y F0;003000 none none PARDF      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+PARDR    '1'       xy  C N Y F0;003000 none none PARDR      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+PBLH     '1'       xy  C N Y F0;003000 none none PBLH       ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+PRECANV  '1'       xy  C N Y F0;003000 none none PRECANV    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+PRECCON  '1'       xy  C N Y F0;003000 none none PRECCON    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+PRECLSC  '1'       xy  C N Y F0;003000 none none PRECLSC    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+PRECSNO  '1'       xy  C N Y F0;003000 none none PRECSNO    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+PRECTOT  '1'       xy  C N Y F0;003000 none none PRECTOT    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+SEAICE00 '1'       xy  C N Y F0;003000 none none SEAICE00   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+SEAICE10 '1'       xy  C N Y F0;003000 none none SEAICE10   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+SEAICE20 '1'       xy  C N Y F0;003000 none none SEAICE20   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+SEAICE30 '1'       xy  C N Y F0;003000 none none SEAICE30   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+SEAICE40 '1'       xy  C N Y F0;003000 none none SEAICE40   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+SEAICE50 '1'       xy  C N Y F0;003000 none none SEAICE50   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+SEAICE60 '1'       xy  C N Y F0;003000 none none SEAICE60   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+SEAICE70 '1'       xy  C N Y F0;003000 none none SEAICE70   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+SEAICE80 '1'       xy  C N Y F0;003000 none none SEAICE80   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+SEAICE90 '1'       xy  C N Y F0;003000 none none SEAICE90   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+SLP      'hPa'     xy  C N Y F0;003000 none none SLP        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+SNODP    '1'       xy  C N Y F0;003000 none none SNODP      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+SNOMAS   '1'       xy  C N Y F0;003000 none none SNOMAS     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+RADSWG   '1'       xy  C N Y F0;003000 none none SWGDN      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+TO3      'dobson'  xy  C N Y F0;003000 none none TO3        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+TROPP    '1'       xy  C N Y F0;003000 none none TROPPT     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+TSKIN    '1'       xy  C N Y F0;003000 none none TS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+TS       '1'       xy  C N Y F0;003000 none none T2M        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+USTAR    '1'       xy  C N Y F0;003000 none none USTAR      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+U10M     'm s-1'   xy  C N N F0;003000 none none U10M       ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+V10M     'm s-1'   xy  C N N F0;003000 none none V10M       ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+Z0       '1'       xy  C N Y F0;003000 none none Z0M        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A1.025x03125.nc
+FRLAKE   '1'       xy  C N Y -         none none FRLAKE     ./MetDir/2011/01/GEOSFP.20110101.CN.025x03125.nc
+FRLAND   '1'       xy  C N Y -         none none FRLAND     ./MetDir/2011/01/GEOSFP.20110101.CN.025x03125.nc
+FRLANDIC '1'       xy  C N Y -         none none FRLANDIC   ./MetDir/2011/01/GEOSFP.20110101.CN.025x03125.nc
+FROCEAN  '1'       xy  C N Y -         none none FROCEAN    ./MetDir/2011/01/GEOSFP.20110101.CN.025x03125.nc
+PHIS     'm2 s-2'  xy  C N Y -         none none PHIS       ./MetDir/2011/01/GEOSFP.20110101.CN.025x03125.nc
+SPHU1    'kg kg-1' xyz C N Y 0         none none QV         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.025x03125.nc
+SPHU2    'kg kg-1' xyz C N Y 0;001000  none none QV         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.025x03125.nc
+TMPU1    'K'       xyz C N Y 0         none none T          ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.025x03125.nc
+TMPU2    'K'       xyz C N Y 0;001000  none none T          ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.025x03125.nc
+QI       '1'       xyz C N Y F0;013000 none none QI         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.025x03125.nc
+QL       '1'       xyz C N Y F0;013000 none none QL         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.025x03125.nc
+TAUCLI   '1'       xyz C N Y F0;013000 none none TAUCLI     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.025x03125.nc
+TAUCLW   '1'       xyz C N Y F0;013000 none none TAUCLW     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.025x03125.nc
+OPTDEP   '1'       xyz C N Y F0;013000 none none OPTDEPTH   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.025x03125.nc
+CLDF     '1'       xyz C N Y F0;013000 none none CLOUD      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3cld.025x03125.nc
+DTRAIN   '1'       xyz C N Y F0;013000 none none DTRAIN     ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.025x03125.nc
+OMEGA    'Pa s-1'  xyz C N Y F0;013000 none none OMEGA      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.025x03125.nc
+RH       '-'       xyz C N Y F0;013000 none none RH         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.025x03125.nc
+UC;VC    'm s-1'   xyz C N N F0;013000 none none U;V        ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.025x03125.nc
+ULL      'm s-1'   xyz C N N F0;013000 none none U          ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.025x03125.nc
+VLL      'm s-1'   xyz C N N F0;013000 none none V          ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3dyn.025x03125.nc
+DQRCU    '1'       xyz C N Y F0;013000 none none DQRCU      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.025x03125.nc
+DQRLSAN  '1'       xyz C N Y F0;013000 none none DQRLSAN    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.025x03125.nc
+REEVAPCN '1'       xyz C N Y F0;013000 none none REEVAPCN   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.025x03125.nc
+REEVAPLS '1'       xyz C N Y F0;013000 none none REEVAPLS   ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstC.025x03125.nc
+CMFMC    '1'       xyz E N Y F0;013000 none none CMFMC      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.025x03125.nc
+PFICU    '1'       xyz E N Y F0;013000 none none PFICU      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.025x03125.nc
+PFILSAN  '1'       xyz E N Y F0;013000 none none PFILSAN    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.025x03125.nc
+PFLCU    '1'       xyz E N Y F0;013000 none none PFLCU      ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.025x03125.nc
+PFLLSAN  '1'       xyz E N Y F0;013000 none none PFLLSAN    ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.A3mstE.025x03125.nc
+
+#------------------------
+# 2D variables at edge
+#------------------------
+PS1      'hPa'     xy  E N Y 0        none none PS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.025x03125.nc
+PS2      'hPa'     xy  E N Y 0;001000 none none PS         ./MetDir/%y4/%m2/GEOSFP.%y4%m2%d2.I3.025x03125.nc
+#
+
+#-------------------------------------------------------------------
+# Olson land types - conservative frac regridding of OLSON as float
+#-------------------------------------------------------------------
+OLSON00 1 xy C N F;0  - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON01 1 xy C N F;1  - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON02 1 xy C N F;2  - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON03 1 xy C N F;3  - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON04 1 xy C N F;4  - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON05 1 xy C N F;5  - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON06 1 xy C N F;6  - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON07 1 xy C N F;7  - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON08 1 xy C N F;8  - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON09 1 xy C N F;9  - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON10 1 xy C N F;10 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON11 1 xy C N F;11 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON12 1 xy C N F;12 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON13 1 xy C N F;13 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON14 1 xy C N F;14 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON15 1 xy C N F;15 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON16 1 xy C N F;16 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON17 1 xy C N F;17 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON18 1 xy C N F;18 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON19 1 xy C N F;19 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON20 1 xy C N F;20 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON21 1 xy C N F;21 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON22 1 xy C N F;22 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON23 1 xy C N F;23 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON24 1 xy C N F;24 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON25 1 xy C N F;25 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON26 1 xy C N F;26 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON27 1 xy C N F;27 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON28 1 xy C N F;28 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON29 1 xy C N F;29 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON30 1 xy C N F;30 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON31 1 xy C N F;31 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON32 1 xy C N F;32 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON33 1 xy C N F;33 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON34 1 xy C N F;34 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON35 1 xy C N F;35 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON36 1 xy C N F;36 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON37 1 xy C N F;37 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON38 1 xy C N F;38 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON39 1 xy C N F;39 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON40 1 xy C N F;40 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON41 1 xy C N F;41 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON42 1 xy C N F;42 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON43 1 xy C N F;43 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON44 1 xy C N F;44 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON45 1 xy C N F;45 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON46 1 xy C N F;46 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON47 1 xy C N F;47 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON48 1 xy C N F;48 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON49 1 xy C N F;49 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON50 1 xy C N F;50 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON51 1 xy C N F;51 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON52 1 xy C N F;52 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON53 1 xy C N F;53 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON54 1 xy C N F;54 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON55 1 xy C N F;55 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON56 1 xy C N F;56 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON57 1 xy C N F;57 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON58 1 xy C N F;58 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON59 1 xy C N F;59 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON60 1 xy C N F;60 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON61 1 xy C N F;61 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON62 1 xy C N F;62 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON63 1 xy C N F;63 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON64 1 xy C N F;64 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON65 1 xy C N F;65 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON66 1 xy C N F;66 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON67 1 xy C N F;67 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON68 1 xy C N F;68 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON69 1 xy C N F;69 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON70 1 xy C N F;70 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON71 1 xy C N F;71 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+OLSON72 1 xy C N F;72 - none none OLSON ./ChemDataDir/Olson_Land_Map_201203/Olson_2001_Land_Map.025x025.generic.GCHP.nc
+
+#----------------------------------------------------------------------------
+# MODIS Leaf Area Index - values for one land type per variable. 
+# Data is available 2005-2008.
+#----------------------------------------------------------------------------
+XLAIMULTI cm2_cm-2 xyz E N Y %y4-%m2-%d2T00:00:00 none none XLAIMULTI ./ChemDataDir/MODIS_LAI_201204/For_Olson_2001/XLAI_for_GCHP/2008/Condensed_MODIS_XLAI.025x025.%y4%m2.nc
+
+#----------------------------------------------------------------------------
+# MODIS Chlorophyll-a - values for one land type per variable. 
+# Data is available 2005-2013.
+#----------------------------------------------------------------------------
+#XCHLRMULTI mg_m-3 xyz E N Y %y4-%m2-%d2T00:00:00 none none XCHLRMULTI ./ChemDataDir/MODIS_LAI_201204/For_Olson_2001/XCHLR_for_GCHP/%y4/Condensed_MODIS_CHLR.025x025.%y4%m2.nc
+
+#------------------------
+# EMISSION FIELDS
+#------------------------
+#
+# Need DC0360xPC0181_CFnnnnx6C.bin
+# One year of monthly data
+# Confusingly, the files labeled 2x25 actually contain data at 1x1
+# None of the 3 files (4x5, 2x25, 1x1) actually agree with each other in magnitude, although the 2x25 and 4x5 patterns agree
+GEIA_NH3_ANTH  kg_m-2_s-1 xy C Y Y F1990-%m2-01T00:00:00 none none NH3_ANTH    ./MainDataDir/NH3/v2014-07/NH3_geos.4x5.nc
+GEIA_NH3_BIOF  kg_m-2_s-1 xy C Y Y F1998-%m2-01T00:00:00 none none NH3_BIOFUEL ./MainDataDir/NH3/v2014-07/NH3_biofuel.geos.4x5.nc
+GEIA_NH3_NATU  kg_m-2_s-1 xy C Y Y F1990-%m2-01T00:00:00 none none NH3_NATU    ./MainDataDir/NH3/v2014-07/NH3_geos.4x5.nc
+#
+# POET EOH
+POET_EOH kgC_m-2_s-1 xy C Y Y - none none EOH ./MainDataDir/POET/v2017-03/POET_EOH.geos.2x25.nc
+#
+# Single entry
+BIOFUEL_NO     kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_NO   ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_CO     kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_CO   ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_C2H6   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_C2H6 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_ALK4   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_ALK4 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_ACET   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_ACET ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_ALK4   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_ALK4 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_MEK    kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_MEK  ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_ALD2   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_ALD2 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_PRPE   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_PRPE ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_C3H8   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_C3H8 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_CH2O   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_CH2O ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_C2H6   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_C2H6 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+#
+# Need DE0720xPE0360_CFnnnnx6C.bin
+# One year, monthly data
+RETRO_ALK4__A kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/butanes_kgC.nc
+RETRO_ALK4__B kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/pentanes_kgC.nc
+RETRO_ALK4__C kgm-2s-1   xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/hexanes_kgC.nc
+RETRO_ACET kg_m-2_s-1    xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/ketones_kgC.nc
+RETRO_ALD2 kg_m-2_s-1    xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/alkanals_kgC.nc
+RETRO_PRPE kg_m-2_s-1    xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/propene_kgC.nc
+RETRO_C3H8 kg_m-2_s-1    xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/propane_kgC.nc
+RETRO_CH2O kg_m-2_s-1    xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/methanal.nc
+RETRO_BENZ kg_m-2_s-1    xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/benzene_kgC.nc
+RETRO_TOLU kg_m-2_s-1    xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/toluene_kgC.nc
+RETRO_XYLE kg_m-2_s-1    xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/xylene_kgC.nc
+RETRO_C2H4 kg_m-2_s-1    xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/ethene_kgC.nc
+RETRO_C2H2 kg_m-2_s-1    xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/ethyne_kgC.nc
+RETRO_C2H6 kg_m-2_s-1    xy C Y Y F2000-%m2-01T00:00:00 none none emission_flux ./MainDataDir/RETRO/v2014-07/orig_kgC/ethane_kgC.nc
+#
+# Need DC0360xPC0181_CFnnnnx6C.bin
+# Single entry
+XIAO_C2H6 kg_m2_s-1 xy C N Y - none none C2H6 ./MainDataDir/XIAO/v2014-09/C3H8_C2H6_ngas.geos.1x1.nc
+XIAO_C3H8 kg_m2_s-1 xy C N Y - none none C2H6 ./MainDataDir/XIAO/v2014-09/C3H8_C2H6_ngas.geos.1x1.nc
+#
+# Files have annual data for 2002-2008 except for NH3, where we have one year of monthly data
+CAC_NO    kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00  none none NO   ./MainDataDir/CAC/v2016-09/CAC.geos.0.1x0.1.nc
+CAC_CO    kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00  none none CO   ./MainDataDir/CAC/v2016-09/CAC.geos.0.1x0.1.nc
+CAC_SO2   kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00  none none SOx  ./MainDataDir/CAC/v2016-09/CAC.geos.0.1x0.1.nc
+CAC_NH3   kg_m2_s-1 xy C Y Y F2008-%m2-01T00:00:00 none none NH3 ./MainDataDir/CAC/v2016-09/CAC_NH3.geos.1x1.nc
+#
+# Files have annual data for 1980-2000 (VOCs)/1990-2012 (other)
+EMEP_NO    kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00 none none NO    ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
+EMEP_CO    kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00 none none CO    ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
+EMEP_SO2   kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00 none none SO2   ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
+EMEP_NH3   kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00 none none NH3   ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
+EMEP_ALK4  kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00 none none ALK4  ./MainDataDir/EMEP/v2015-03/EMEP.geos.1x1.nc
+EMEP_ALD2  kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00 none none ALD2  ./MainDataDir/EMEP/v2015-03/EMEP.geos.1x1.nc
+EMEP_PRPE  kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00 none none PRPE  ./MainDataDir/EMEP/v2015-03/EMEP.geos.1x1.nc
+EMEP_MEK   kg_m2_s-1 xy C N Y F%y4-01-01T00:00:00 none none MEK   ./MainDataDir/EMEP/v2015-03/EMEP.geos.1x1.nc
+#
+# Need DE0360xPE0180_CFnnnnx6C.bin
+# Single entry
+BRAVO_NO  kg_m2_s-1 xy C N Y - none none NO  ./MainDataDir/BRAVO/v2014-07/BRAVO.generic.1x1.nc
+BRAVO_CO  kg_m2_s-1 xy C N Y - none none CO  ./MainDataDir/BRAVO/v2014-07/BRAVO.generic.1x1.nc
+BRAVO_SO2 kg_m2_s-1 xy C N Y - none none SO2 ./MainDataDir/BRAVO/v2014-07/BRAVO.generic.1x1.nc
+#
+# Fixed, no time stamp
+ZHANG_NO__IND    kg_m2_s-1 xy C N Y - none none NO_ind   ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_NO__POW    kg_m2_s-1 xy C N Y - none none NO_pow   ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_NO__RES    kg_m2_s-1 xy C N Y - none none NO_res   ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_NO__TRA    kg_m2_s-1 xy C N Y - none none NO_tra   ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_CO__IND    kg_m2_s-1 xy C N Y - none none CO_ind   ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_CO__POW    kg_m2_s-1 xy C N Y - none none CO_pow   ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_CO__RES    kg_m2_s-1 xy C N Y - none none CO_res   ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_CO__TRA    kg_m2_s-1 xy C N Y - none none CO_tra   ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_SO2__IND   kg_m2_s-1 xy C N Y - none none SO2_ind  ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_SO2__POW   kg_m2_s-1 xy C N Y - none none SO2_pow  ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_SO2__RES   kg_m2_s-1 xy C N Y - none none SO2_res  ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_SO2__TRA   kg_m2_s-1 xy C N Y - none none SO2_tra  ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_SO4__IND   kg_m2_s-1 xy C N Y - none none SO2_ind  ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_SO4__POW   kg_m2_s-1 xy C N Y - none none SO2_pow  ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_SO4__RES   kg_m2_s-1 xy C N Y - none none SO2_res  ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_SO4__TRA   kg_m2_s-1 xy C N Y - none none SO2_tra  ./MainDataDir/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc
+ZHANG_C2H6__DOB  kg_m2_s-1 xy C N Y - none none C2H6_dob ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_C2H6__DOF  kg_m2_s-1 xy C N Y - none none C2H6_dof ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_C2H6__DOP  kg_m2_s-1 xy C N Y - none none C2H6_dop ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_C2H6__IND  kg_m2_s-1 xy C N Y - none none C2H6_ind ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_C2H6__POW  kg_m2_s-1 xy C N Y - none none C2H6_pow ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_C2H6__TRA  kg_m2_s-1 xy C N Y - none none C2H6_tra ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_C3H8__DOB  kg_m2_s-1 xy C N Y - none none C3H8_dob ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_C3H8__DOF  kg_m2_s-1 xy C N Y - none none C3H8_dof ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_C3H8__DOP  kg_m2_s-1 xy C N Y - none none C3H8_dop ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_C3H8__IND  kg_m2_s-1 xy C N Y - none none C3H8_ind ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_C3H8__POW  kg_m2_s-1 xy C N Y - none none C3H8_pow ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_C3H8__TRA  kg_m2_s-1 xy C N Y - none none C3H8_tra ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_CH2O__DOB  kg_m2_s-1 xy C N Y - none none CH2O_dob ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_CH2O__DOF  kg_m2_s-1 xy C N Y - none none CH2O_dof ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_CH2O__DOP  kg_m2_s-1 xy C N Y - none none CH2O_dop ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_CH2O__IND  kg_m2_s-1 xy C N Y - none none CH2O_ind ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_CH2O__POW  kg_m2_s-1 xy C N Y - none none CH2O_pow ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_CH2O__TRA  kg_m2_s-1 xy C N Y - none none CH2O_tra ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ALK4__DOB  kg_m2_s-1 xy C N Y - none none ALK4_dob ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ALK4__DOF  kg_m2_s-1 xy C N Y - none none ALK4_dof ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ALK4__DOP  kg_m2_s-1 xy C N Y - none none ALK4_dop ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ALK4__IND  kg_m2_s-1 xy C N Y - none none ALK4_ind ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ALK4__POW  kg_m2_s-1 xy C N Y - none none ALK4_pow ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ALK4__TRA  kg_m2_s-1 xy C N Y - none none ALK4_tra ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ACET__DOB  kg_m2_s-1 xy C N Y - none none ACET_dob ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ACET__DOF  kg_m2_s-1 xy C N Y - none none ACET_dof ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ACET__DOP  kg_m2_s-1 xy C N Y - none none ACET_dop ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ACET__IND  kg_m2_s-1 xy C N Y - none none ACET_ind ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ACET__POW  kg_m2_s-1 xy C N Y - none none ACET_pow ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ACET__TRA  kg_m2_s-1 xy C N Y - none none ACET_tra ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ALD2__DOB  kg_m2_s-1 xy C N Y - none none ALD2_dob ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ALD2__DOF  kg_m2_s-1 xy C N Y - none none ALD2_dof ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ALD2__DOP  kg_m2_s-1 xy C N Y - none none ALD2_dop ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ALD2__IND  kg_m2_s-1 xy C N Y - none none ALD2_ind ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ALD2__POW  kg_m2_s-1 xy C N Y - none none ALD2_pow ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_ALD2__TRA  kg_m2_s-1 xy C N Y - none none ALD2_tra ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_MEK__DOB   kg_m2_s-1 xy C N Y - none none MEK_dob  ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_MEK__DOF   kg_m2_s-1 xy C N Y - none none MEK_dof  ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_MEK__DOP   kg_m2_s-1 xy C N Y - none none MEK_dop  ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_MEK__IND   kg_m2_s-1 xy C N Y - none none MEK_ind  ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_MEK__POW   kg_m2_s-1 xy C N Y - none none MEK_pow  ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_MEK__TRA   kg_m2_s-1 xy C N Y - none none MEK_tra  ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_PRPE__DOB  kg_m2_s-1 xy C N Y - none none PRPE_dob ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_PRPE__DOF  kg_m2_s-1 xy C N Y - none none PRPE_dof ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_PRPE__DOP  kg_m2_s-1 xy C N Y - none none PRPE_dop ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_PRPE__IND  kg_m2_s-1 xy C N Y - none none PRPE_ind ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_PRPE__POW  kg_m2_s-1 xy C N Y - none none PRPE_pow ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+ZHANG_PRPE__TRA  kg_m2_s-1 xy C N Y - none none PRPE_tra ./MainDataDir/STREETS/v2014-07/2006/Streets_VOCs_2006.generic.1x1.nc
+STREETS_NH3      kg_m2_s-1 xy C N Y - none none NH3_tot  ./MainDataDir/STREETS/v2014-07/2000/Streets_2000.generic.1x1.nc
+#
+# Contains data from 2008-2010
+MIX_NO_IND   kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none NO_INDUSTRY      ./MainDataDir/MIX/v2015-03/MIX_Asia_NO.generic.025x025.nc    
+MIX_NO_POW   kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none NO_POWER         ./MainDataDir/MIX/v2015-03/MIX_Asia_NO.generic.025x025.nc    
+MIX_NO_RES   kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none NO_RESIDENTIAL   ./MainDataDir/MIX/v2015-03/MIX_Asia_NO.generic.025x025.nc    
+MIX_NO_TRA   kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none NO_TRANSPORT     ./MainDataDir/MIX/v2015-03/MIX_Asia_NO.generic.025x025.nc    
+MIX_CO_IND   kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none CO_INDUSTRY      ./MainDataDir/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc 
+MIX_CO_POW   kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none CO_POWER         ./MainDataDir/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc 
+MIX_CO_RES   kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none CO_RESIDENTIAL   ./MainDataDir/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc 
+MIX_CO_TRA   kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none CO_TRANSPORT     ./MainDataDir/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc 
+MIX_SO2_IND  kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none SO2_INDUSTRY     ./MainDataDir/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc 
+MIX_SO2_POW  kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none SO2_POWER        ./MainDataDir/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc 
+MIX_SO2_RES  kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none SO2_RESIDENTIAL  ./MainDataDir/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc 
+MIX_SO2_TRA  kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none SO2_TRANSPORT    ./MainDataDir/MIX/v2015-03/MIX_Asia_SO2.generic.025x025.nc 
+MIX_ALK4_IND kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none ALK4_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_ALK4.generic.025x025.nc 
+MIX_ALK4_POW kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none ALK4_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_ALK4.generic.025x025.nc 
+MIX_ALK4_RES kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none ALK4_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_ALK4.generic.025x025.nc 
+MIX_ALK4_TRA kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none ALK4_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_ALK4.generic.025x025.nc 
+MIX_ACET_IND kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none ACET_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_ACET.generic.025x025.nc 
+MIX_ACET_POW kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none ACET_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_ACET.generic.025x025.nc 
+MIX_ACET_RES kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none ACET_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_ACET.generic.025x025.nc 
+MIX_ACET_TRA kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none ACET_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_ACET.generic.025x025.nc 
+MIX_ALD2_IND kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none ALD2_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_ALD2.generic.025x025.nc 
+MIX_ALD2_POW kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none ALD2_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_ALD2.generic.025x025.nc 
+MIX_ALD2_RES kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none ALD2_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_ALD2.generic.025x025.nc 
+MIX_ALD2_TRA kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none ALD2_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_ALD2.generic.025x025.nc 
+MIX_C2H6_IND kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none C2H6_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_C2H6.generic.025x025.nc 
+MIX_C2H6_POW kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none C2H6_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_C2H6.generic.025x025.nc 
+MIX_C2H6_RES kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none C2H6_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_C2H6.generic.025x025.nc 
+MIX_C2H6_TRA kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none C2H6_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_C2H6.generic.025x025.nc 
+MIX_C3H8_IND kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none C3H8_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_C3H8.generic.025x025.nc 
+MIX_C3H8_POW kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none C3H8_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_C3H8.generic.025x025.nc 
+MIX_C3H8_RES kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none C3H8_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_C3H8.generic.025x025.nc 
+MIX_C3H8_TRA kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none C3H8_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_C3H8.generic.025x025.nc 
+MIX_CH2O_IND kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none CH2O_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_CH2O.generic.025x025.nc 
+MIX_CH2O_POW kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none CH2O_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_CH2O.generic.025x025.nc 
+MIX_CH2O_RES kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none CH2O_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_CH2O.generic.025x025.nc 
+MIX_CH2O_TRA kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none CH2O_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_CH2O.generic.025x025.nc 
+MIX_MEK_IND  kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none MEK_INDUSTRY     ./MainDataDir/MIX/v2015-03/MIX_Asia_MEK.generic.025x025.nc 
+MIX_MEK_POW  kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none MEK_POWER        ./MainDataDir/MIX/v2015-03/MIX_Asia_MEK.generic.025x025.nc 
+MIX_MEK_RES  kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none MEK_RESIDENTIAL  ./MainDataDir/MIX/v2015-03/MIX_Asia_MEK.generic.025x025.nc 
+MIX_MEK_TRA  kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none MEK_TRANSPORT    ./MainDataDir/MIX/v2015-03/MIX_Asia_MEK.generic.025x025.nc 
+MIX_NH3_AGR  kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none NH3_AGRICULTURE  ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
+MIX_NH3_IND  kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none NH3_INDUSTRY     ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
+MIX_NH3_POW  kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none NH3_POWER        ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
+MIX_NH3_RES  kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none NH3_RESIDENTIAL  ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
+MIX_NH3_TRA  kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none NH3_TRANSPORT    ./MainDataDir/MIX/v2015-03/MIX_Asia_NH3.generic.025x025.nc 
+MIX_PRPE_IND kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none PRPE_INDUSTRY    ./MainDataDir/MIX/v2015-03/MIX_Asia_PRPE.generic.025x025.nc 
+MIX_PRPE_POW kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none PRPE_POWER       ./MainDataDir/MIX/v2015-03/MIX_Asia_PRPE.generic.025x025.nc 
+MIX_PRPE_RES kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none PRPE_RESIDENTIAL ./MainDataDir/MIX/v2015-03/MIX_Asia_PRPE.generic.025x025.nc 
+MIX_PRPE_TRA kg_m2_s-1 xy C N Y F%y4-%m2-01T00:00:00 none none PRPE_TRANSPORT   ./MainDataDir/MIX/v2015-03/MIX_Asia_PRPE.generic.025x025.nc 
+
+# Need DC0144xPC0091_CFnnnnx6C.bin
+# Single entry
+LIANG_CHBR3    kg_m2_s-1  xy C N Y - none none CHBr3_emission  ./MainDataDir/BROMINE/v2015-02/Bromocarb_Liang2010.nc
+LIANG_CH2BR2   kg_m2_s-1  xy C N Y - none none CH2Br2_emission ./MainDataDir/BROMINE/v2015-02/Bromocarb_Liang2010.nc
+
+# Very-short-lived (VSL) iodocarbon emissions(cf. Carlos Ordonez)
+ORDONEZ_CH3I   kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none CH3I   ./MainDataDir/IODINE/v2017-09/CH3I_monthly_emissions_Ordonez_2012_COARDS.nc
+ORDONEZ_CH2I2  kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none CH2I2  ./MainDataDir/IODINE/v2017-09/CH2I2_monthly_emissions_Ordonez_2012_COARDS.nc
+ORDONEZ_CH2ICL kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none CH2ICl ./MainDataDir/IODINE/v2017-09/CH2ICl_monthly_emissions_Ordonez_2012_COARDS.nc
+ORDONEZ_CH2IBR kg_m-2_s-1 xy C Y Y F2000-%m2-01T00:00:00 none none CH2IBr ./MainDataDir/IODINE/v2017-09/CH2IBr_monthly_emissions_Ordonez_2012_COARDS.nc
+
+# Need DE0360xPE0180_CFnnnnx6C.bin (for all of the following BOND emissions)
+# 12-month climatology
+BOND_ANTH_BCPI kg_m2_s-1  xy C Y Y F2000-%m2-01T00:00:00 none none BC ./MainDataDir/BCOC_BOND/v2014-07/Bond_fossil.nc
+BOND_ANTH_OCPI kg_m2_s-1  xy C Y Y F2000-%m2-01T00:00:00 none none OC ./MainDataDir/BCOC_BOND/v2014-07/Bond_fossil.nc
+BOND_BF_BCPI   kg_m2_s-1  xy C Y Y F2000-%m2-01T00:00:00 none none BC ./MainDataDir/BCOC_BOND/v2014-07/Bond_biofuel.nc
+BOND_BF_OCPI   kg_m2_s-1  xy C Y Y F2000-%m2-01T00:00:00 none none OC ./MainDataDir/BCOC_BOND/v2014-07/Bond_biofuel.nc
+
+# Bond biomass burning emissions (if not using GFED or FINN)
+# Single entry
+BOND_BM_BCPI   kg_m2_s-1  xy C N Y - none none BC ./MainDataDir/BCOC_BOND/v2014-07/Bond_biomass.nc
+BOND_BM_BCPO   kg_m2_s-1  xy C N Y - none none BC ./MainDataDir/BCOC_BOND/v2014-07/Bond_biomass.nc
+BOND_BM_OCPI   kg_m2_s-1  xy C N Y - none none OC ./MainDataDir/BCOC_BOND/v2014-07/Bond_biomass.nc
+BOND_BM_OCPO   kg_m2_s-1  xy C N Y - none none OC ./MainDataDir/BCOC_BOND/v2014-07/Bond_biomass.nc
+BOND_BM_POG1   kg_m2_s-1  xy C N Y - none none OC ./MainDataDir/BCOC_BOND/v2014-07/Bond_biomass.nc
+BOND_BM_POG2   kg_m2_s-1  xy C N Y - none none OC ./MainDataDir/BCOC_BOND/v2014-07/Bond_biomass.nc
+
+# Need DE0360xPE0180_CFnnnnx6C.bin
+# Single entry
+ARCTAS_SHIP_SO2 kg_m2_s-1 xy C Y Y - none none SO2 ./MainDataDir/ARCTAS_SHIP/v2014-07/ARCTAS_ship.generic.1x1.nc
+
+# Need DE0360xPE0180_CFnnnnx6C.bin
+# 12-month climatology
+ICOADS_SHIP_CO  kg_m2_s-1 xy C Y Y F2002-%m2-01T00:00:00 none none CO      ./MainDataDir/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc
+ICOADS_SHIP_NO  kg_m2_s-1 xy C Y Y F2002-%m2-01T00:00:00 none none NO      ./MainDataDir/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc
+
+# 1990-2012, one entry per year
+EMEP_SHIP_CO   kg_m2_s-1  xy C N Y F%y4-01-01T00:00:00  none none ShipCO  ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
+EMEP_SHIP_SO2  kg_m2_s-1  xy C N Y F%y4-01-01T00:00:00  none none ShipSO2 ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
+EMEP_SHIP_NO   kg_m2_s-1  xy C N Y F%y4-01-01T00:00:00  none none ShipNO  ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
+
+# 12-month climatology
+AEIC_NO   kg_m-2_s-1 xyz C Y Y F2005-%m2-01T00:00:00 none none NO2      ./MainDataDir/AEIC/v2015-01/AEIC.47L.gen.1x1.nc
+AEIC_CO   kg_m-2_s-1 xyz C Y Y F2005-%m2-01T00:00:00 none none CO       ./MainDataDir/AEIC/v2015-01/AEIC.47L.gen.1x1.nc
+AEIC_SO2  kg_m-2_s-1 xyz C Y Y F2005-%m2-01T00:00:00 none none FUELBURN ./MainDataDir/AEIC/v2015-01/AEIC.47L.gen.1x1.nc
+AEIC_ACET kg_m-2_s-1 xyz C Y Y F2005-%m2-01T00:00:00 none none HC       ./MainDataDir/AEIC/v2015-01/AEIC.47L.gen.1x1.nc
+
+# Volcano
+VOLCANO_SO2_ERUPT kg_m-2_s-1 xyz C N Y %y4-%m2-%d2T00:00:00 none none SO2_erupt ./MainDataDir/VOLCANO/v2015-02/%y4/volc_so2_gen.1x1.47L.%y4%m2.nc
+VOLCANO_SO2_DEGAS kg_m-2_s-1 xyz C N Y %y4-%m2-%d2T00:00:00 none none SO2_degas ./MainDataDir/VOLCANO/v2015-02/%y4/volc_so2_gen.1x1.47L.%y4%m2.nc
+
+# Decaying plants 
+ALD2_SEN kgC_m-2_s-1 xy C Y Y F1985-%m2-01T00:00:00 none none HET_RESP ./MainDataDir/ALD2/v2017-03/resp.geos.2x25.nc
+EOH_SEN  kgC_m-2_s-1 xy C Y Y F1985-%m2-01T00:00:00 none none HET_RESP ./MainDataDir/ALD2/v2017-03/resp.geos.2x25.nc
+
+# Need DC0360xPC0181_CFnnnnx6C.bin
+TOTFUEL_THISYR    1 xy C N Y F%y4-01-01T00:00:00   none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_1985      1 xy C N Y F1985-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_1999      1 xy C N Y F1999-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_2002      1 xy C N Y F2002-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_2005      1 xy C N Y F2005-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_2006      1 xy C N Y F2006-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_2008      1 xy C N Y F2008-01-01T00:00:00  none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_1985_2008 1 xy C N Y F%y4-01-01T00:00:00   none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+TOTFUEL_2008_2010 1 xy C N Y F%y4-01-01T00:00:00   none none NOxscalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_THISYR    1 xy C N Y F%y4-01-01T00:00:00   none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_1985      1 xy C N Y F1985-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_1999      1 xy C N Y F1999-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_2002      1 xy C N Y F2002-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_2005      1 xy C N Y F2005-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_2006      1 xy C N Y F2006-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_2008      1 xy C N Y F2008-01-01T00:00:00  none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_1985_2008 1 xy C N Y F%y4-01-01T00:00:00   none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+LIQFUEL_2008_2010 1 xy C N Y F%y4-01-01T00:00:00   none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_THISYR    1 xy C N Y F%y4-01-01T00:00:00   none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_1985      1 xy C N Y F1985-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_1999      1 xy C N Y F1999-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_2002      1 xy C N Y F2002-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_2005      1 xy C N Y F2005-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_2006      1 xy C N Y F2006-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_2008      1 xy C N Y F2008-01-01T00:00:00  none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_1985_2008 1 xy C N Y F%y4-01-01T00:00:00   none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+SOLFUEL_2008_2010 1 xy C N Y F%y4-01-01T00:00:00   none none SO2scalar ./MainDataDir/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc
+
+# Need DC0360xPE0180_CFnnnnx6C.bin
+# 12-month climatology
+GEIA_SEASON_NOX   1 xy C Y Y F1985-%m2-01T00:00:00 none none NOXrat    ./MainDataDir/GEIA/v2014-07/GEIA_monthscal.generic.1x1.nc
+GEIA_SEASON_SO2   1 xy C Y Y F1985-%m2-01T00:00:00 none none SO2rat    ./MainDataDir/GEIA/v2014-07/GEIA_monthscal.generic.1x1.nc
+
+# Need DE0360xPE0180_CFnnnnx6C.bin
+EDGAR_TODNOX      1 xy C N Y F2000-01-01T%h2:00:00 none none NOXscale  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_hourly_NOxScal.nc
+
+# Single entry
+CO_ratio          1 xy C N Y - none none NOXscalar ./MainDataDir/AnnualScalar/v2014-07/NO_ratio_2005_2002.nc 
+NO_ratio          1 xy C N Y - none none COscalar  ./MainDataDir/AnnualScalar/v2014-07/CO_ratio_2005_1985.nc 
+
+# Need DC0360xPC0181_CFnnnnx6C.bin
+# 12-month climatology
+EMEP_SEASON_NOX   1 xy C Y Y F2005-%m2-01T00:00:00 none none NOXrat    ./MainDataDir/EMEP/v2015-03/EMEP.Seasonal.geos.1x1.nc
+EMEP_SEASON_CO    1 xy C Y Y F2005-%m2-01T00:00:00 none none COrat     ./MainDataDir/EMEP/v2015-03/EMEP.Seasonal.geos.1x1.nc
+EMEP_SEASON_NH3   1 xy C Y Y F2005-%m2-01T00:00:00 none none NH3rat    ./MainDataDir/EMEP/v2015-03/EMEP.Seasonal.geos.1x1.nc
+EMEP_SEASON_SO2   1 xy C Y Y F2005-%m2-01T00:00:00 none none SO2rat    ./MainDataDir/EMEP/v2015-03/EMEP.Seasonal.geos.1x1.nc
+
+# Need DE0360xPE0180_CFnnnnx6C.bin
+# 12-month climatology
+ZHANG_SEASON_NOX  1 xy C Y Y F2004-%m2-01T00:00:00 none none NOxrat    ./MainDataDir/STREETS/v2014-07/2006/Streets_2004_NOx_MonthFctr_total.generic.1x1.nc
+ZHANG_SEASON_CO   1 xy C Y Y F2001-%m2-01T00:00:00 none none ratio     ./MainDataDir/STREETS/v2014-07/2006/Streets_2001_CO_MonthFctr_total.generic.1x1.nc
+
+# Need DE0360xPE0180_CFnnnnx6C.bin
+# 12-month climatology
+STREETS_SEASON_NH3 1 xy C Y Y F1995-%m2-01T00:00:00 none none NH3_scale ./MainDataDir/STREETS/v2014-07/2000/Streets_NH3_scale.generic.1x1.nc
+
+# Need DE0360xPE0180_CFnnnnx6C.bin
+# 12-month climatology
+BROMOCARB_SEASON  1 xy C Y Y F2000-%m2-01T00:00:00 none none CHXBRY_scale ./MainDataDir/BROMINE/v2015-02/BromoCarb_Season.nc
+
+# Need DC0360xPC0181_CFnnnnx6C.bin
+# 12-month climatology
+DMS_SEAWATER  kg/m3 xy C Y Y F1985-%m2-01T00:00:00 none none DMS_OCEAN ./MainDataDir/DMS/v2015-07/DMS_lana.geos.1x1.nc
+
+# Need DE0360xPE0180_CFnnnnx6C.bin
+# Single entry
+ACET_SEAWATER kg/m3 xy C N Y - none none ACET ./MainDataDir/ACET/v2014-07/ACET_seawater.generic.1x1.nc
+
+# 12-month climatology
+#CH3I_SEAWATER kg/m3 xy C Y Y F1985-%m2-01T00:00:00 none none CH3I_OCEAN ./MainDataDir/CH3I/v2014-07/ocean_ch3i.geos.4x5.nc
+ALD2_SEAWATER  kg/m3 xy C Y Y F1985-%m2-01T00:00:00 none none ALD2 ./MainDataDir/ALD2/v2017-03/ALD2_seawater.geos.2x25.nc
+
+# Need DC0144xPC0091_CFnnnnx6C.bin
+# Single entry (except VAI)
+DEAD_EF_GEO   1     xy C N Y -                    none none EF_GEO   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
+DEAD_LF_DRY   1     xy C N Y -                    none none LF_DRY   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
+DEAD_MF_CACO3 1     xy C N Y -                    none none MF_CaCO3 ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
+DEAD_MF_CLY   1     xy C N Y -                    none none MF_CLY   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
+DEAD_MF_SND   1     xy C N Y -                    none none MF_SND   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
+DEAD_GOC_SRC  1     xy C N Y -                    none none GOC_SRC  ./MainDataDir/DUST_DEAD/v2014-07/GOCART_src_fn.geos.4x5.nc
+DEAD_VAI      1     xy C Y Y 1985-%m2-01T00:00:00 none none VAI      ./MainDataDir/DUST_DEAD/v2014-07/dst_tvbds.geos.4x5.nc
+
+# Need to adjust the code to allow for land types - voting gives the best answer for now
+DEAD_SFC_TYP  count xy C N V -                    none none SFC_TYP  ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
+
+# GFED3
+# Need DE0720xPE0360_CFnnnnx6C.bin
+# HUMTROP is single-entry
+GFED_HUMTROP  1       xy C N N -                   none none humtrop           ./MainDataDir/GFED3/v2014-10/GFED3_humtropmap.nc
+GFED_WDL      kg/m2/s xy C N Y %y4-%m2-01T00:00:00 none none GFED3_BB__WDL_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
+GFED_AGW      kg/m2/s xy C N Y %y4-%m2-01T00:00:00 none none GFED3_BB__AGW_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
+GFED_DEF      kg/m2/s xy C N Y %y4-%m2-01T00:00:00 none none GFED3_BB__DEF_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
+GFED_FOR      kg/m2/s xy C N Y %y4-%m2-01T00:00:00 none none GFED3_BB__FOR_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
+GFED_PET      kg/m2/s xy C N Y %y4-%m2-01T00:00:00 none none GFED3_BB__PET_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
+GFED_SAV      kg/m2/s xy C N Y %y4-%m2-01T00:00:00 none none GFED3_BB__SAV_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
+
+# GFED4
+GFED_TEMP       1 xy C N Y F%y4-%m2-01T00:00:00 none none DM_TEMP ./MainDataDir/GFED4/v2015-10/%y4/GFED4_gen.025x025.%y4%m2.nc
+GFED_AGRI       1 xy C N Y F%y4-%m2-01T00:00:00 none none DM_AGRI ./MainDataDir/GFED4/v2015-10/%y4/GFED4_gen.025x025.%y4%m2.nc
+GFED_DEFO       1 xy C N Y F%y4-%m2-01T00:00:00 none none DM_DEFO ./MainDataDir/GFED4/v2015-10/%y4/GFED4_gen.025x025.%y4%m2.nc
+GFED_BORF       1 xy C N Y F%y4-%m2-01T00:00:00 none none DM_BORF ./MainDataDir/GFED4/v2015-10/%y4/GFED4_gen.025x025.%y4%m2.nc
+GFED_PEAT       1 xy C N Y F%y4-%m2-01T00:00:00 none none DM_PEAT ./MainDataDir/GFED4/v2015-10/%y4/GFED4_gen.025x025.%y4%m2.nc
+GFED_SAVA       1 xy C N Y F%y4-%m2-01T00:00:00 none none DM_SAVA ./MainDataDir/GFED4/v2015-10/%y4/GFED4_gen.025x025.%y4%m2.nc
+GFED_FRAC_DAY   1 xy C N Y %y4-%m2-%d2T00:00:00 none none GFED_FRACDAY  ./MainDataDir/GFED4/v2015-10/%y4/GFED4_dailyfrac_gen.025x025.%y4%m2.nc
+GFED_FRAC_3HOUR 1 xy C N Y %y4-%m2-01T%h2:00:00 none none GFED_FRAC3HR  ./MainDataDir/GFED4/v2015-10/%y4/GFED4_3hrfrac_gen.025x025.%y4%m2.nc
+
+LIGHTNOX_OTDLIS 1 xy C N N %y4-%m2-01T00:00:00 none none OTD ./MainDataDir/LIGHTNOX/v2014-07/OTD-LIS-Local-Redist.CTH.v5.geosfp.2x25.nc
+
+DEP_RESERVOIR_DEFAULT kg_m-3 xy C N Y - none none DEP_RESERVOIR ./MainDataDir/SOILNOX/v2014-07/DepReservoirDefault.nc
+
+# Single entry
+MEGAN_AEF_ISOP  kgC/m2/s xy C N Y - none none AEF_ISOPRENE     ./MainDataDir/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc
+MEGAN_AEF_MBOX  kgC/m2/s xy C N Y - none none AEF_MBO          ./MainDataDir/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc
+MEGAN_AEF_APIN  kgC/m2/s xy C N Y - none none AEF_ALPHA_PINENE ./MainDataDir/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc
+MEGAN_AEF_BPIN  kgC/m2/s xy C N Y - none none AEF_BETA_PINENE  ./MainDataDir/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc
+MEGAN_AEF_CARE  kgC/m2/s xy C N Y - none none AEF_CARENE       ./MainDataDir/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc
+MEGAN_AEF_LIMO  kgC/m2/s xy C N Y - none none AEF_LIMONENE     ./MainDataDir/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc
+MEGAN_AEF_MYRC  kgC/m2/s xy C N Y - none none AEF_MYRCENE      ./MainDataDir/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc
+MEGAN_AEF_OCIM  kgC/m2/s xy C N Y - none none AEF_OCIMENE      ./MainDataDir/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc
+MEGAN_AEF_SABI  kgC/m2/s xy C N Y - none none AEF_SABINENE     ./MainDataDir/MEGAN/v2015-02/MEGAN2.1_EF.geos.1x1.nc
+
+MEGAN_ORVC 1 xy C Y Y F1990-%m2-01T00:00:00 none none OCPI ./MainDataDir/SOA/v2014-07/NVOC.geos.1x1.nc
+
+CLM4_PFT_BARE                1 xy C N Y - none none PFT_BARE                ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_NDLF_EVGN_TMPT_TREE 1 xy C N Y - none none PFT_NDLF_EVGN_TMPT_TREE ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_NDLF_EVGN_BORL_TREE 1 xy C N Y - none none PFT_NDLF_EVGN_BORL_TREE ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_NDLF_DECD_BORL_TREE 1 xy C N Y - none none PFT_NDLF_DECD_BORL_TREE ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_BDLF_EVGN_TROP_TREE 1 xy C N Y - none none PFT_BDLF_EVGN_TROP_TREE ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_BDLF_EVGN_TMPT_TREE 1 xy C N Y - none none PFT_BDLF_EVGN_TMPT_TREE ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_BDLF_DECD_TROP_TREE 1 xy C N Y - none none PFT_BDLF_DECD_TROP_TREE ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_BDLF_DECD_TMPT_TREE 1 xy C N Y - none none PFT_BDLF_DECD_TMPT_TREE ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_BDLF_DECD_BORL_TREE 1 xy C N Y - none none PFT_BDLF_DECD_BORL_TREE ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_BDLF_EVGN_SHRB      1 xy C N Y - none none PFT_BDLF_EVGN_SHRB      ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_BDLF_DECD_TMPT_SHRB 1 xy C N Y - none none PFT_BDLF_DECD_TMPT_SHRB ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_BDLF_DECD_BORL_SHRB 1 xy C N Y - none none PFT_BDLF_DECD_BORL_SHRB ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_C3_ARCT_GRSS        1 xy C N Y - none none PFT_C3_ARCT_GRSS        ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_C3_NARC_GRSS        1 xy C N Y - none none PFT_C3_NARC_GRSS        ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_C4_GRSS             1 xy C N Y - none none PFT_C4_GRSS             ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+CLM4_PFT_CROP                1 xy C N Y - none none PFT_CROP                ./MainDataDir/MEGAN/v2015-02/CLM4_PFT.geos.1x1.nc     
+
+# Need DE0720xPE0360 grid
+# One-year climatology
+SOILNOX_LANDK1    1     xy C N Y - none none LANDFRAC_K01 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK2    1     xy C N Y - none none LANDFRAC_K02 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK3    1     xy C N Y - none none LANDFRAC_K03 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK4    1     xy C N Y - none none LANDFRAC_K04 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK5    1     xy C N Y - none none LANDFRAC_K05 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK6    1     xy C N Y - none none LANDFRAC_K06 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK7    1     xy C N Y - none none LANDFRAC_K07 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK8    1     xy C N Y - none none LANDFRAC_K08 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK9    1     xy C N Y - none none LANDFRAC_K09 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK10   1     xy C N Y - none none LANDFRAC_K10 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK11   1     xy C N Y - none none LANDFRAC_K11 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK12   1     xy C N Y - none none LANDFRAC_K12 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK13   1     xy C N Y - none none LANDFRAC_K13 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK14   1     xy C N Y - none none LANDFRAC_K14 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK15   1     xy C N Y - none none LANDFRAC_K15 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK16   1     xy C N Y - none none LANDFRAC_K16 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK17   1     xy C N Y - none none LANDFRAC_K17 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK18   1     xy C N Y - none none LANDFRAC_K18 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK19   1     xy C N Y - none none LANDFRAC_K19 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK20   1     xy C N Y - none none LANDFRAC_K20 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK21   1     xy C N Y - none none LANDFRAC_K21 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK22   1     xy C N Y - none none LANDFRAC_K22 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK23   1     xy C N Y - none none LANDFRAC_K23 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_LANDK24   1     xy C N Y - none none LANDFRAC_K24 ./MainDataDir/SOILNOX/v2014-07/soilNOx.landtype.generic.025x025.1L.nc
+SOILNOX_ARID      1     xy C N Y - none none ARID         ./MainDataDir/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc
+SOILNOX_NONARID   1     xy C N Y - none none NON_ARID     ./MainDataDir/SOILNOX/v2014-07/soilNOx.climate.generic.05x05.nc
+
+SOILNOX_FERT      kg/m3 xy C N Y  2000-%m2-%d2T00:00:00 none none FERT ./MainDataDir/SOILNOX/v2014-07/soilNOx.fert_res.generic.05x05.time_corrected_for_GCHP.nc
+UV_ALBEDO         1     xy C Y Y  1985-%m2-01T00:00:00  none none UVALBD ./MainDataDir/UVALBEDO/v2015-03/uvalbedo.geos.2x25.nc
+
+TIMEZONES         count xy C N V - none none UTC_OFFSET ./MainDataDir/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc
+
+# Don't actually need these yet
+#HTAP_NH3_IND      1     xy C N N  - none none HTAP_NH3_IND /dev/null
+#HTAP_NH3_POW      1     xy C N N  - none none HTAP_NH3_POW /dev/null
+#HTAP_NH3_TRA      1     xy C N N  - none none HTAP_NH3_TRA /dev/null
+#HTAP_NH3_AGR      1     xy C N N  - none none HTAP_NH3_AGR /dev/null
+#HTAP_NH3_RES      1     xy C N N  - none none HTAP_NH3_RES /dev/null
+
+#------------------------
+# STRATOSPHERIC DATA
+#------------------------
+STRAT_OH           v/v   xyz C Y N  2005-%m2-01T00:00:00 none none species ./MainDataDir/GMI/v2015-02/gmi.clim.OH.geos5.2x25.nc
+
+# UCX chemistry: prod rates (for strato-/mesosphere)
+UCX_PROD_Ox       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__POx      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_NO       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PNO      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_O3       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PO3      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_PAN      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PPAN     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CO       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCO      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ALK4     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PALK4    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ISOP     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PISOP    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HNO3     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHNO3    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_H2O2     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PH2O2    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ACET     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PACET    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MEK      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMEK     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ALD2     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PALD2    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_RCHO     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PRCHO    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MVK      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMVK     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MACR     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMACR    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_NPMN     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PNPMN    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_PPN      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PPPN     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_R4N2     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PR4N2    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_PRPE     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PPRPE    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_C3H8     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PC3H8    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH2O     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCH2O    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_C2H6     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PC2H6    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_N2O5     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PN2O5    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HNO4     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHNO4    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MP       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMP      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_DMS      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PDMS     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_SO2      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PSO2     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_SO4      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PSO4     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MSA      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMSA     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_Br2      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PBr2     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_Br       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PBr      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_BrO      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PBrO     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HOBr     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHOBr    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HBr      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHBr     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_BrNO2    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PBrNO2   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_BrNO3    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PBrNO3   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CHBr3    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCHBr3   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH2Br2   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCH2Br2  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH3Br    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCH3Br   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MPN      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMPN     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ISOPND   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PISOPND  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ISOPNB   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PISOPNB  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MOBA     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMOBA    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_PROPNN   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PPROPNN  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HAC      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHAC     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_GLYC     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PGLYC    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MVKN     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMVKN    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MACRN    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMACRN   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MAP      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMAP     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_NO2      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PNO2     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_NO3      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PNO3     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HNO2     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHNO2    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_BENZ     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PBENZ    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_TOLU     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PTOLU    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_XYLE     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PXYLE    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MTPA     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMTPA    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_LIMO     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PLIMO    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_EOH      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PEOH     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MGLY     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMGLY    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_GLYX     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PGLYX    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ACTA     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PACTA    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HPALD    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHPALD   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_DHDN     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PDHDN    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ETHLN    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PETHLN   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HCOOH    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHCOOH   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_IEPOXA   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PIEPOXA  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_IEPOXB   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PIEPOXB  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_IEPOXD   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PIEPOXD  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ISN1     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PISN1    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_RIPA     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PRIPA    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_RIPB     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PRIPB    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_RIPD     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PRIPD    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_IMAE     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PIMAE    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_SOAIE    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PSOAIE   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_SOAME    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PSOAME   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_SOAGX    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PSOAGX   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_SOAMG    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PSOAMG   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_LVOC     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PLVOC    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_LVOCOA   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PLVOCOA  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ISN1OG   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PISN1OG  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ISN1OA   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PISN1OA  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MONITS   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMONITS  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MONITU   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMONITU  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HONIT    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHONIT   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_IONITA   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PIONITA  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_MONITA   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PMONITA  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_INDIOL   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PINDIOL  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_IPMN     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PIPMN    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HC187    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHC187   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_N2O      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PN2O     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_OCS      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__POCS     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH4      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCH4     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_BrCl     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PBrCl    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HCl      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHCl     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CCl4     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCCl4    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH3Cl    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCH3Cl   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH3CCl3  molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCH3CCl3 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CFC113   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCFC113  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CFC114   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCFC114  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CFC115   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCFC115  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HCFC123  molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHCFC123 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HCFC141  molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHCFC141 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HCFC142  molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHCFC142 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CFC11    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCFC11   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CFC12    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCFC12   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HCFC22   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHCFC22  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_H1211    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PH1211   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_H1301    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PH1301   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_H2402    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PH2402   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_Cl       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCl      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ClO      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PClO     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HOCl     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHOCl    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ClNO3    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PClNO3   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ClNO2    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PClNO2   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ClOO     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PClOO    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_OClO     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__POClO    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_Cl2      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCl2     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_Cl2O2    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCl2O2   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_H2O      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PH2O     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_BrSALA   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PBrSALA  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_BrSALC   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PBrSALC  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CHCl3    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCHCl3   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH2Cl2   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCH2Cl2  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH3I     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCH3I    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH2I2    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCH2I2   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH2ICl   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCH2ICl  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_CH2IBr   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PCH2IBr  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HOI      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHOI     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_I2       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PI2      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_IBr      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PIBr     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ICl      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PICl     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_I        molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PI       ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_IO       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PIO      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_HI       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PHI      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_OIO      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__POIO     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_INO      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PINO     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_IONO     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PIONO    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_IONO2    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PIONO2   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_I2O2     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PI2O2    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_I2O3     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PI2O3    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_I2O4     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PI2O4    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ISALA    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PISALA   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_ISALC    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PISALC   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_PROD_AERI     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__PAERI    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+
+### UCX Loss rates
+UCX_LOSS_Ox       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LOx      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_NO       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LNO      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_O3       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LO3      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_PAN      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LPAN     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CO       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCO      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ALK4     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LALK4    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ISOP     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LISOP    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HNO3     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHNO3    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_H2O2     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LH2O2    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ACET     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LACET    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MEK      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMEK     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ALD2     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LALD2    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_RCHO     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LRCHO    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MVK      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMVK     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MACR     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMACR    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_NPMN     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LNPMN    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_PPN      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LPPN     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_R4N2     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LR4N2    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_PRPE     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LPRPE    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_C3H8     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LC3H8    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH2O     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCH2O    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_C2H6     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LC2H6    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_N2O5     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LN2O5    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HNO4     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHNO4    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MP       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMP      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_DMS      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LDMS     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_SO2      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LSO2     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_SO4      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LSO4     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MSA      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMSA     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_Br2      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LBr2     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_Br       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LBr      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_BrO      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LBrO     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HOBr     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHOBr    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HBr      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHBr     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_BrNO2    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LBrNO2   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_BrNO3    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LBrNO3   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CHBr3    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCHBr3   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH2Br2   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCH2Br2  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH3Br    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCH3Br   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MPN      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMPN     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ISOPND   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LISOPND  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ISOPNB   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LISOPNB  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MOBA     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMOBA    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_PROPNN   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LPROPNN  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HAC      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHAC     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_GLYC     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LGLYC    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MVKN     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMVKN    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MACRN    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMACRN   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MAP      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMAP     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_NO2      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LNO2     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_NO3      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LNO3     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HNO2     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHNO2    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_BENZ     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LBENZ    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_TOLU     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LTOLU    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_XYLE     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LXYLE    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MTPA     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMTPA    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_LIMO     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LLIMO    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_EOH      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LEOH     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MGLY     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMGLY    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_GLYX     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LGLYX    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ACTA     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LACTA    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HPALD    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHPALD   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_DHDN     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LDHDN    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ETHLN    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LETHLN   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HCOOH    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHCOOH   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_IEPOXA   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LIEPOXA  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_IEPOXB   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LIEPOXB  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_IEPOXD   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LIEPOXD  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ISN1     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LISN1    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_RIPA     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LRIPA    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_RIPB     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LRIPB    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_RIPD     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LRIPD    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_IMAE     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LIMAE    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_SOAIE    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LSOAIE   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_SOAME    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LSOAME   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_SOAGX    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LSOAGX   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_SOAMG    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LSOAMG   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_LVOC     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LLVOC    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_LVOCOA   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LLVOCOA  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ISN1OG   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LISN1OG  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ISN1OA   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LISN1OA  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MONITS   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMONITS  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MONITU   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMONITU  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HONIT    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHONIT   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_IONITA   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LIONITA  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_MONITA   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LMONITA  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_INDIOL   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LINDIOL  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_IPMN     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LIPMN    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HC187    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHC187   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_N2O      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LN2O     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_OCS      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LOCS     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH4      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCH4     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_BrCl     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LBrCl    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HCl      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHCl     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CCl4     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCCl4    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH3Cl    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCH3Cl   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH3CCl3  molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCH3CCl3 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CFC113   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCFC113  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CFC114   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCFC114  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CFC115   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCFC115  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HCFC123  molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHCFC123 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HCFC141  molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHCFC141 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HCFC142  molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHCFC142 ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CFC11    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCFC11   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CFC12    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCFC12   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HCFC22   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHCFC22  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_H1211    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LH1211   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_H1301    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LH1301   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_H2402    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LH2402   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_Cl       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCl      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ClO      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LClO     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HOCl     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHOCl    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ClNO3    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LClNO3   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ClNO2    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LClNO2   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ClOO     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LClOO    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_OClO     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LOClO    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_Cl2      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCl2     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_Cl2O2    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCl2O2   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_H2O      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LH2O     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_BrSALA   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LBrSALA  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_BrSALC   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LBrSALC  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CHCl3    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCHCl3   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH2Cl2   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCH2Cl2  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH3I     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCH3I    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH2I2    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCH2I2   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH2ICl   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCH2ICl  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_CH2IBr   molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LCH2IBr  ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HOI      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHOI     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_I2       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LI2      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_IBr      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LIBr     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ICl      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LICl     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_I        molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LI       ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_IO       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LIO      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_HI       molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LHI      ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_OIO      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LOIO     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_INO      molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LINO     ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_IONO     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LIONO    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_IONO2    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LIONO2   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_I2O2     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LI2O2    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_I2O3     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LI2O3    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_I2O4     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LI2O4    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ISALA    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LISALA   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_ISALC    molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LISALC   ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+UCX_LOSS_AERI     molec_cm-3_s-1 xyz C Y Y F2013-%m2-01T00:00:00 none none PORL_L_S__LAERI    ./MainDataDir/UCX/v2017-12/UCX_ProdLoss.v11-02d.4x5.72L.nc
+
+# --- Stratospheric Bry data ---
+GEOSCCM_Br_DAY      pptv  xyz C Y Y F2007-%m2-01T00:00:00 none none BR     ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.day.nc 
+GEOSCCM_Br2_DAY     pptv  xyz C Y Y F2007-%m2-01T00:00:00 none none BRCL   ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.day.nc
+GEOSCCM_BrO_DAY     pptv  xyz C Y Y F2007-%m2-01T00:00:00 none none BRO    ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.day.nc
+GEOSCCM_BrNO3_DAY   pptv  xyz C Y Y F2007-%m2-01T00:00:00 none none BRONO2 ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.day.nc
+GEOSCCM_HBr_DAY     pptv  xyz C Y Y F2007-%m2-01T00:00:00 none none HBR    ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.day.nc
+GEOSCCM_HOBr_DAY    pptv  xyz C Y Y F2007-%m2-01T00:00:00 none none HOBR   ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.day.nc
+GEOSCCM_Br_NIGHT    pptv  xyz C Y Y F2007-%m2-01T00:00:00 none none BR     ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.night.nc
+GEOSCCM_Br2_NIGHT   pptv  xyz C Y Y F2007-%m2-01T00:00:00 none none BRCL   ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.night.nc
+GEOSCCM_BrO_NIGHT   pptv  xyz C Y Y F2007-%m2-01T00:00:00 none none BRO    ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.night.nc
+GEOSCCM_BrNO3_NIGHT pptv  xyz C Y Y F2007-%m2-01T00:00:00 none none BRONO2 ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.night.nc
+GEOSCCM_HBr_NIGHT   pptv  xyz C Y Y F2007-%m2-01T00:00:00 none none HBR    ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.night.nc
+GEOSCCM_HOBr_NIGHT  pptv  xyz C Y Y F2007-%m2-01T00:00:00 none none HOBR   ./MainDataDir/STRAT/v2015-01/Bry/GEOSCCM_Bry.2007%m2.night.nc
+
+TOMS_O3_COL   dobsons xy  C N N %y4-%m2-01T00:00:00   none none TOMS   ./MainDataDir/TOMS_SBUV/v2016-11/TOMS_O3col_%y4.a.geos.1x1.nc 1980-01-01T00:00:00P0001-00-00T00:00:00
+DTOMS1_O3_COL 1       xy  C N N %y4-%m2-01T00:00:00   none none DTOMS1 ./MainDataDir/TOMS_SBUV/v2016-11/TOMS_O3col_%y4.a.geos.1x1.nc 1980-01-01T00:00:00P0001-00-00T00:00:00
+DTOMS2_O3_COL 1       xy  C N N %y4-%m2-01T00:00:00   none none DTOMS2 ./MainDataDir/TOMS_SBUV/v2016-11/TOMS_O3col_%y4.a.geos.1x1.nc 1980-01-01T00:00:00P0001-00-00T00:00:00
+
+# --- Spatially varying OM/OC ---
+OMOC_DJF  1 xy C N Y - none none OMOC ./MainDataDir/OMOC/v2018-01/OMOC.DJF.01x01.nc
+OMOC_MAM  1 xy C N Y - none none OMOC ./MainDataDir/OMOC/v2018-01/OMOC.MAM.01x01.nc
+OMOC_JJA  1 xy C N Y - none none OMOC ./MainDataDir/OMOC/v2018-01/OMOC.JJA.01x01.nc
+OMOC_SON  1 xy C N Y - none none OMOC ./MainDataDir/OMOC/v2018-01/OMOC.SON.01x01.nc
+
+# --- NOAA GMD monthly mean surface CH4 ---
+NOAA_GMD_CH4 ppbv xy C N Y F%y4-%m2-01T00:00:00 none none SFC_CH4 ./MainDataDir/NOAA_GMD/v2018-01/monthly.gridded.surface.methane.1979-2020.1x1.nc
+
+#==============================================================================
+# --- NEI 2005 scale factors ---
+#==============================================================================
+
+VISTAS_SEASON 1 xy C Y Y F2002-%m2-01T00:00:00 none none NOratio ./MainDataDir/NEI2005/v2014-09/scaling/Vistas_season.geos.1x1.nc
+ARP_SEASON    1 xy C N Y F%y4-%m2-01T00:00:00  none none NOxrat  ./MainDataDir/NEI2005/v2014-09/scaling/ARP_season.geos.1x1.nc
+
+NEI99_DOW_NOX     1 xy C D N - none none NOX     ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_CO      1 xy C D N - none none CO      ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_ALK4    1 xy C D N - none none ALK4    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_ACET    1 xy C D N - none none ACET    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_MEK     1 xy C D N - none none MEK     ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_PRPE    1 xy C D N - none none PRPE    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_C3H8    1 xy C D N - none none C3H8    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_C2H6    1 xy C D N - none none C2H6    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_SO2     1 xy C D N - none none SO2     ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_SO4     1 xy C D N - none none SO4     ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_MSA     1 xy C D N - none none MSA     ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_BCPI    1 xy C D N - none none BCPI    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+NEI99_DOW_OCPI    1 xy C D N - none none OCPI    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc 
+
+NEI99_SEASON_CO   1 xy C N N - none none CO      ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
+NEI99_SEASON_ALK4 1 xy C N N - none none ALK4    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
+NEI99_SEASON_ACET 1 xy C N N - none none ACET    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
+NEI99_SEASON_MEK  1 xy C N N - none none MEK     ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
+NEI99_SEASON_PRPE 1 xy C N N - none none PRPE    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
+NEI99_SEASON_C3H8 1 xy C N N - none none C3H8    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
+NEI99_SEASON_C2H6 1 xy C N N - none none C2H6    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
+NEI99_SEASON_SO2  1 xy C N N - none none SO2     ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
+NEI99_SEASON_SO4  1 xy C N N - none none SO4     ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
+NEI99_SEASON_MSA  1 xy C N N - none none MSA     ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
+NEI99_SEASON_BCPI 1 xy C N N - none none BCPI    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
+NEI99_SEASON_OCPI 1 xy C N N - none none OCPI    ./MainDataDir/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc 
+
+# Need DE3600xPE1800 
+EDGAR_NO_1A1a          1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A1a.generic.01x01.nc 
+EDGAR_NO_1A2           1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A2.generic.01x01.nc 
+EDGAR_NO_1A3b          1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A3b.generic.01x01.nc 
+EDGAR_NO_1A4           1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A4.generic.01x01.nc 
+EDGAR_NO_1B2a_c_1A1b_c 1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1B2a_c_1A1b_c.generic.01x01.nc 
+EDGAR_NO_2             1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_2.generic.01x01.nc 
+EDGAR_NO_4B            1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_4B.generic.01x01.nc 
+EDGAR_NO_6A_6C         1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_6A_6C.generic.01x01.nc 
+EDGAR_NO_7A            1   xy C N Y F%y4-01-01T00:00:00 none none emi_no  ./MainDataDir/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_7A.generic.01x01.nc 
+EDGAR_CO_1A1a_6        1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A1a_6.generic.01x01.nc 
+EDGAR_CO_1A2           1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A2.generic.01x01.nc 
+EDGAR_CO_1A3b          1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A3b.generic.01x01.nc 
+EDGAR_CO_1A4           1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A4.generic.01x01.nc 
+EDGAR_CO_1B2a_c_1A1b_c 1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1B2a_c_1A1b_c.generic.01x01.nc 
+EDGAR_CO_2A_2B_2D      1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_2A_2B_2D.generic.01x01.nc 
+EDGAR_CO_2C            1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_2C.generic.01x01.nc 
+EDGAR_CO_7A            1   xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_7A.generic.01x01.nc 
+EDGAR_SO2_1A1a_6C      1   xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A1a_6C.generic.01x01.nc 
+EDGAR_SO2_1A2          1   xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A2.generic.01x01.nc 
+EDGAR_SO2_1A3b         1   xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3b.generic.01x01.nc 
+EDGAR_SO2_1A4          1   xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A4.generic.01x01.nc 
+EDGAR_SO2_1B1_1B2_1A1b_c 1 xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1B1_1B2_1A1b_c.generic.01x01.nc 
+EDGAR_SO2_2B_2D        1   xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2B_2D.generic.01x01.nc 
+EDGAR_SO2_2C           1   xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2C.generic.01x01.nc 
+EDGAR_SO2_7A           1   xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_7A.generic.01x01.nc 
+EDGAR_NH3_1A1a_6       1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1a_6.generic.01x01.nc 
+EDGAR_NH3_1A1b_c       1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1b_c.generic.01x01.nc 
+EDGAR_NH3_1A2          1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A2.generic.01x01.nc 
+EDGAR_NH3_1A3          1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A3.generic.01x01.nc 
+EDGAR_NH3_1A4          1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A4.generic.01x01.nc 
+EDGAR_NH3_2A           1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2A.generic.01x01.nc 
+EDGAR_NH3_2B           1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2B.generic.01x01.nc 
+EDGAR_NH3_4B           1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4B.generic.01x01.nc 
+EDGAR_NH3_4C_4D        1   xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4C_4D.generic.01x01.nc 
+
+# Need DC0360xPC0181_CFnnnnx6C.bin
+EDGAR_NAP              1   xy C N Y - none none BENZ ./MainDataDir/EDGARv42/v2015-02/VOCv2/EDGAR2_1985_FF_IND.1x1geos.nc
+
+# ======================================
+# ----- NEI 2011 surface inventory -----
+# ======================================
+NEI11_SURFACE_NO    1 xy  C Y Y F2011-%m2-01T00:00:00 none none NO        ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_NO2   1 xy  C Y Y F2011-%m2-01T00:00:00 none none NO2       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_HONO  1 xy  C Y Y F2011-%m2-01T00:00:00 none none HONO      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_CO    1 xy  C Y Y F2011-%m2-01T00:00:00 none none CO        ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_NH3   1 xy  C Y Y F2011-%m2-01T00:00:00 none none NH3       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_CH2O  1 xy  C Y Y F2011-%m2-01T00:00:00 none none FORM      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_RCHO  1 xy  C Y Y F2011-%m2-01T00:00:00 none none ALDX      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_MACR  1 xy  C Y Y F2011-%m2-01T00:00:00 none none ACROLEIN  ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_ACET  1 xy  C Y Y F2011-%m2-01T00:00:00 none none PAR       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_PRPE  1 xy  C Y Y F2011-%m2-01T00:00:00 none none OLE       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_PRP2  1 xy  C Y Y F2011-%m2-01T00:00:00 none none IOLE      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_EOH   1 xy  C Y Y F2011-%m2-01T00:00:00 none none ETOH      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_MOH   1 xy  C Y Y F2011-%m2-01T00:00:00 none none MEOH      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_XYLE  1 xy  C Y Y F2011-%m2-01T00:00:00 none none XYL       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_TOLU  1 xy  C Y Y F2011-%m2-01T00:00:00 none none TOL       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_BENZ  1 xy  C Y Y F2011-%m2-01T00:00:00 none none BENZENE   ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_SO2   1 xy  C Y Y F2011-%m2-01T00:00:00 none none SO2       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_SULF  1 xy  C Y Y F2011-%m2-01T00:00:00 none none SULF      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_SO4   1 xy  C Y Y F2011-%m2-01T00:00:00 none none PSO4      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_C2H4  1 xy  C Y Y F2011-%m2-01T00:00:00 none none ETH       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_C2H6  1 xy  C Y Y F2011-%m2-01T00:00:00 none none ETHA      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_ALD2  1 xy  C Y Y F2011-%m2-01T00:00:00 none none ALD2      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_BCPI  1 xy  C Y Y F2011-%m2-01T00:00:00 none none PEC       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc
+NEI11_SURFACE_OCPI  1 xy  C Y Y F2011-%m2-01T00:00:00 none none POC       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean.nc            
+
+# ======================================================
+# ----- NEI 2011 peaking electric generation units -----
+# ======================================================
+NEI11_EGUPK_NO      1 xyz C Y Y F2011-%m2-01T00:00:00 none none NO        ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_NO2     1 xyz C Y Y F2011-%m2-01T00:00:00 none none NO2       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_HONO    1 xyz C Y Y F2011-%m2-01T00:00:00 none none HONO      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_CO      1 xyz C Y Y F2011-%m2-01T00:00:00 none none CO        ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_NH3     1 xyz C Y Y F2011-%m2-01T00:00:00 none none NH3       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_CH2O    1 xyz C Y Y F2011-%m2-01T00:00:00 none none FORM      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_RCHO    1 xyz C Y Y F2011-%m2-01T00:00:00 none none ALDX      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_MACR    1 xyz C Y Y F2011-%m2-01T00:00:00 none none ACROLEIN  ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_ACET    1 xyz C Y Y F2011-%m2-01T00:00:00 none none PAR       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_PRPE    1 xyz C Y Y F2011-%m2-01T00:00:00 none none OLE       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_PRP2    1 xyz C Y Y F2011-%m2-01T00:00:00 none none IOLE      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_EOH     1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETOH      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_MOH     1 xyz C Y Y F2011-%m2-01T00:00:00 none none MEOH      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_XYLE    1 xyz C Y Y F2011-%m2-01T00:00:00 none none XYL       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_TOLU    1 xyz C Y Y F2011-%m2-01T00:00:00 none none TOL       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_BENZ    1 xyz C Y Y F2011-%m2-01T00:00:00 none none BENZENE   ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_SO2     1 xyz C Y Y F2011-%m2-01T00:00:00 none none SO2       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_SULF    1 xyz C Y Y F2011-%m2-01T00:00:00 none none SULF      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_SO4     1 xyz C Y Y F2011-%m2-01T00:00:00 none none PSO4      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_C2H4    1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETH       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_C2H6    1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETHA      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_ALD2    1 xyz C Y Y F2011-%m2-01T00:00:00 none none ALD2      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_BCPI    1 xyz C Y Y F2011-%m2-01T00:00:00 none none PEC       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+NEI11_EGUPK_OCPI    1 xyz C Y Y F2011-%m2-01T00:00:00 none none POC       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egupk.nc
+
+# ==============================================
+# ----- NEI 2011 electric generation units -----
+# ==============================================
+NEI11_EGU_NO        1 xyz C Y Y F2011-%m2-01T00:00:00 none none NO        ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_NO2       1 xyz C Y Y F2011-%m2-01T00:00:00 none none NO2       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_HONO      1 xyz C Y Y F2011-%m2-01T00:00:00 none none HONO      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_CO        1 xyz C Y Y F2011-%m2-01T00:00:00 none none CO        ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_NH3       1 xyz C Y Y F2011-%m2-01T00:00:00 none none NH3       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_CH2O      1 xyz C Y Y F2011-%m2-01T00:00:00 none none FORM      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_RCHO      1 xyz C Y Y F2011-%m2-01T00:00:00 none none ALDX      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_MACR      1 xyz C Y Y F2011-%m2-01T00:00:00 none none ACROLEIN  ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_ACET      1 xyz C Y Y F2011-%m2-01T00:00:00 none none PAR       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_PRPE      1 xyz C Y Y F2011-%m2-01T00:00:00 none none OLE       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_PRP2      1 xyz C Y Y F2011-%m2-01T00:00:00 none none IOLE      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_EOH       1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETOH      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_MOH       1 xyz C Y Y F2011-%m2-01T00:00:00 none none MEOH      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_XYLE      1 xyz C Y Y F2011-%m2-01T00:00:00 none none XYL       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_TOLU      1 xyz C Y Y F2011-%m2-01T00:00:00 none none TOL       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_BENZ      1 xyz C Y Y F2011-%m2-01T00:00:00 none none BENZENE   ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_SO2       1 xyz C Y Y F2011-%m2-01T00:00:00 none none SO2       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_SULF      1 xyz C Y Y F2011-%m2-01T00:00:00 none none SULF      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_SO4       1 xyz C Y Y F2011-%m2-01T00:00:00 none none PSO4      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_C2H4      1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETH       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_C2H6      1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETHA      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_ALD2      1 xyz C Y Y F2011-%m2-01T00:00:00 none none ALD2      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_BCPI      1 xyz C Y Y F2011-%m2-01T00:00:00 none none PEC       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+NEI11_EGU_OCPI      1 xyz C Y Y F2011-%m2-01T00:00:00 none none POC       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_egu.nc
+
+# ================================
+# ----- NEI 2011 oil and gas -----
+# ================================
+NEI11_OILGAS_NO     1 xyz C Y Y F2011-%m2-01T00:00:00 none none NO        ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_NO2    1 xyz C Y Y F2011-%m2-01T00:00:00 none none NO2       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_HONO   1 xyz C Y Y F2011-%m2-01T00:00:00 none none HONO      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_CO     1 xyz C Y Y F2011-%m2-01T00:00:00 none none CO        ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_NH3    1 xyz C Y Y F2011-%m2-01T00:00:00 none none NH3       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_CH2O   1 xyz C Y Y F2011-%m2-01T00:00:00 none none FORM      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_RCHO   1 xyz C Y Y F2011-%m2-01T00:00:00 none none ALDX      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_MACR   1 xyz C Y Y F2011-%m2-01T00:00:00 none none ACROLEIN  ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_ACET   1 xyz C Y Y F2011-%m2-01T00:00:00 none none PAR       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_PRPE   1 xyz C Y Y F2011-%m2-01T00:00:00 none none OLE       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_PRP2   1 xyz C Y Y F2011-%m2-01T00:00:00 none none IOLE      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_EOH    1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETOH      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_MOH    1 xyz C Y Y F2011-%m2-01T00:00:00 none none MEOH      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_XYLE   1 xyz C Y Y F2011-%m2-01T00:00:00 none none XYL       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_TOLU   1 xyz C Y Y F2011-%m2-01T00:00:00 none none TOL       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_BENZ   1 xyz C Y Y F2011-%m2-01T00:00:00 none none BENZENE   ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_SO2    1 xyz C Y Y F2011-%m2-01T00:00:00 none none SO2       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_SULF   1 xyz C Y Y F2011-%m2-01T00:00:00 none none SULF      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_SO4    1 xyz C Y Y F2011-%m2-01T00:00:00 none none PSO4      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_C2H4   1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETH       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_C2H6   1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETHA      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_ALD2   1 xyz C Y Y F2011-%m2-01T00:00:00 none none ALD2      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_BCPI   1 xyz C Y Y F2011-%m2-01T00:00:00 none none PEC       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+NEI11_OILGAS_OCPI   1 xyz C Y Y F2011-%m2-01T00:00:00 none none POC       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_oilgas.nc
+
+# ========================================
+# ----- NEI 2011 other point sources -----
+# ========================================
+NEI11_OTHPT_NO      1 xyz C Y Y F2011-%m2-01T00:00:00 none none NO        ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_NO2     1 xyz C Y Y F2011-%m2-01T00:00:00 none none NO2       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_HONO    1 xyz C Y Y F2011-%m2-01T00:00:00 none none HONO      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_CO      1 xyz C Y Y F2011-%m2-01T00:00:00 none none CO        ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_NH3     1 xyz C Y Y F2011-%m2-01T00:00:00 none none NH3       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_CH2O    1 xyz C Y Y F2011-%m2-01T00:00:00 none none FORM      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_RCHO    1 xyz C Y Y F2011-%m2-01T00:00:00 none none ALDX      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_MACR    1 xyz C Y Y F2011-%m2-01T00:00:00 none none ACROLEIN  ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_ACET    1 xyz C Y Y F2011-%m2-01T00:00:00 none none PAR       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_PRPE    1 xyz C Y Y F2011-%m2-01T00:00:00 none none OLE       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_PRP2    1 xyz C Y Y F2011-%m2-01T00:00:00 none none IOLE      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_EOH     1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETOH      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_MOH     1 xyz C Y Y F2011-%m2-01T00:00:00 none none MEOH      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_XYLE    1 xyz C Y Y F2011-%m2-01T00:00:00 none none XYL       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_TOLU    1 xyz C Y Y F2011-%m2-01T00:00:00 none none TOL       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_BENZ    1 xyz C Y Y F2011-%m2-01T00:00:00 none none BENZENE   ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_SO2     1 xyz C Y Y F2011-%m2-01T00:00:00 none none SO2       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_SULF    1 xyz C Y Y F2011-%m2-01T00:00:00 none none SULF      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_SO4     1 xyz C Y Y F2011-%m2-01T00:00:00 none none PSO4      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_C2H4    1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETH       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_C2H6    1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETHA      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_ALD2    1 xyz C Y Y F2011-%m2-01T00:00:00 none none ALD2      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_BCPI    1 xyz C Y Y F2011-%m2-01T00:00:00 none none PEC       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+NEI11_OTHPT_OCPI    1 xyz C Y Y F2011-%m2-01T00:00:00 none none POC       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_othpt.nc
+
+# ==============================================
+# ----- NEI 2011 non-EGU industrial stacks -----
+# ==============================================
+NEI11_PTNONIPM_NO   1 xyz C Y Y F2011-%m2-01T00:00:00 none none NO        ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_NO2  1 xyz C Y Y F2011-%m2-01T00:00:00 none none NO2       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_HONO 1 xyz C Y Y F2011-%m2-01T00:00:00 none none HONO      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_CO   1 xyz C Y Y F2011-%m2-01T00:00:00 none none CO        ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_NH3  1 xyz C Y Y F2011-%m2-01T00:00:00 none none NH3       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_CH2O 1 xyz C Y Y F2011-%m2-01T00:00:00 none none FORM      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_RCHO 1 xyz C Y Y F2011-%m2-01T00:00:00 none none ALDX      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_MACR 1 xyz C Y Y F2011-%m2-01T00:00:00 none none ACROLEIN  ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_ACET 1 xyz C Y Y F2011-%m2-01T00:00:00 none none PAR       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_PRPE 1 xyz C Y Y F2011-%m2-01T00:00:00 none none OLE       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_PRP2 1 xyz C Y Y F2011-%m2-01T00:00:00 none none IOLE      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_EOH  1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETOH      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_MOH  1 xyz C Y Y F2011-%m2-01T00:00:00 none none MEOH      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_XYLE 1 xyz C Y Y F2011-%m2-01T00:00:00 none none XYL       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_TOLU 1 xyz C Y Y F2011-%m2-01T00:00:00 none none TOL       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_BENZ 1 xyz C Y Y F2011-%m2-01T00:00:00 none none BENZENE   ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_SO2  1 xyz C Y Y F2011-%m2-01T00:00:00 none none SO2       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_SULF 1 xyz C Y Y F2011-%m2-01T00:00:00 none none SULF      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_SO4  1 xyz C Y Y F2011-%m2-01T00:00:00 none none PSO4      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_C2H4 1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETH       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_C2H6 1 xyz C Y Y F2011-%m2-01T00:00:00 none none ETHA      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_ALD2 1 xyz C Y Y F2011-%m2-01T00:00:00 none none ALD2      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_BCPI 1 xyz C Y Y F2011-%m2-01T00:00:00 none none PEC       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+NEI11_PTNONIPM_OCPI 1 xyz C Y Y F2011-%m2-01T00:00:00 none none POC       ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_ptnonipm.nc
+
+# NEI 2011 ship emissions
+NEI11_C3MARINE_NO   1 xy C Y Y F2011-%m2-01T00:00:00 none none NO      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_NO2  1 xy C Y Y F2011-%m2-01T00:00:00 none none NO2     ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_HONO 1 xy C Y Y F2011-%m2-01T00:00:00 none none HONO    ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_CO   1 xy C Y Y F2011-%m2-01T00:00:00 none none CO      ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_CH2O 1 xy C Y Y F2011-%m2-01T00:00:00 none none FORM    ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_RCHO 1 xy C Y Y F2011-%m2-01T00:00:00 none none ALDX    ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_ACET 1 xy C Y Y F2011-%m2-01T00:00:00 none none PAR     ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_PRPE 1 xy C Y Y F2011-%m2-01T00:00:00 none none OLE     ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_PRP2 1 xy C Y Y F2011-%m2-01T00:00:00 none none IOLE    ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_EOH  1 xy C Y Y F2011-%m2-01T00:00:00 none none ETOH    ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_MOH  1 xy C Y Y F2011-%m2-01T00:00:00 none none MEOH    ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_XYLE 1 xy C Y Y F2011-%m2-01T00:00:00 none none XYL     ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_TOLU 1 xy C Y Y F2011-%m2-01T00:00:00 none none TOL     ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_SO2  1 xy C Y Y F2011-%m2-01T00:00:00 none none SO2     ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_SULF 1 xy C Y Y F2011-%m2-01T00:00:00 none none SULF    ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_SO4  1 xy C Y Y F2011-%m2-01T00:00:00 none none PSO4    ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_C2H4 1 xy C Y Y F2011-%m2-01T00:00:00 none none ETH     ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_C2H6 1 xy C Y Y F2011-%m2-01T00:00:00 none none ETHA    ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_ALD2 1 xy C Y Y F2011-%m2-01T00:00:00 none none ALD2    ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_BCPI 1 xy C Y Y F2011-%m2-01T00:00:00 none none PEC     ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_BENZ 1 xy C Y Y F2011-%m2-01T00:00:00 none none BENZENE ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+NEI11_C3MARINE_OCPI 1 xy C Y Y F2011-%m2-01T00:00:00 none none POC     ./MainDataDir/NEI2011/v2017-02-MM_for_GCHP/%m2/NEI11_0.1x0.1_2011%m2_monmean_c3marine.nc
+
+# RCP
+RCP3PD_CH4     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_CH4_2005-2100_23474.nc
+RCP3PD_NOx     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_NOx_2005-2100_23474.nc
+RCP3PD_CO      1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_CO_2005-2100_23474.nc
+RCP3PD_BCPO    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_BC_2005-2100_23474.nc
+RCP3PD_OCPO    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_OC_2005-2100_23474.nc
+RCP3PD_SO2     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_SO2_2005-2100_23474.nc
+RCP3PD_NH3     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_NH3_2005-2100_23474.nc
+RCP3PD_C2H2    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_acetylene_2005-2100_23474_kgC.nc
+RCP3PD_CH2O    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_formaldehyde_2005-2100_23474.nc
+RCP3PD_BENZ    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_benzene_2005-2100_23474_kgC.nc
+RCP3PD_TOLU    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_toluene_2005-2100_23474_kgC.nc
+RCP3PD_XYLE    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_xylene_2005-2100_23474_kgC.nc
+RCP3PD_ALD2    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_other_aldehydes_2005-2100_23474_kgC.nc
+RCP3PD_ALK4__A 1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_butanes_2005-2100_23474_kgC.nc
+RCP3PD_ALK4__B 1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_pentanes_2005-2100_23474_kgC.nc
+RCP3PD_ALK4__C 1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_hexanes_and_higher_alkanes_2005-2100_23474_kgC.nc
+RCP3PD_ACET    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_total_ketones_2005-2100_23474_kgC.nc
+RCP3PD_C2H6    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_ethane_2005-2100_23474_kgC.nc
+RCP3PD_C2H4    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_ethene_2005-2100_23474_kgC.nc
+RCP3PD_C3H8    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_propane_2005-2100_23474_kgC.nc
+RCP3PD_PRPE    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_propene_2005-2100_23474_kgC.nc
+RCP3PD_HCOOH   1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_3PD/RCPs_anthro_total_acids_2005-2100_23474.nc
+
+RCP45_CH4     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_CH4_2005-2100_27424.nc
+RCP45_NOx     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_NOx_2005-2100_27424.nc
+RCP45_CO      1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_CO_2005-2100_27424.nc
+RCP45_BCPO    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_BC_2005-2100_27424.nc
+RCP45_OCPO    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_OC_2005-2100_27424.nc
+RCP45_SO2     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_SO2_2005-2100_27424.nc
+RCP45_NH3     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_NH3_2005-2100_27424.nc
+RCP45_C2H2    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_acetylene_2005-2100_27424_kgC.nc
+RCP45_CH2O    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_formaldehyde_2005-2100_27424.nc
+RCP45_BENZ    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_benzene_2005-2100_27424_kgC.nc
+RCP45_TOLU    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_toluene_2005-2100_27424_kgC.nc
+RCP45_XYLE    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_xylene_2005-2100_27424_kgC.nc
+RCP45_ALD2    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_other_aldehydes_2005-2100_27424_kgC.nc
+RCP45_ALK4__A 1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_butanes_2005-2100_27424_kgC.nc
+RCP45_ALK4__B 1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_pentanes_2005-2100_27424_kgC.nc
+RCP45_ALK4__C 1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_hexanes_and_higher_alkanes_2005-2100_27424_kgC.nc
+RCP45_ACET    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_total_ketones_2005-2100_27424_kgC.nc
+RCP45_C2H6    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_ethane_2005-2100_27424_kgC.nc
+RCP45_C2H4    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_ethene_2005-2100_27424_kgC.nc
+RCP45_C3H8    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_propane_2005-2100_27424_kgC.nc
+RCP45_PRPE    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_propene_2005-2100_27424_kgC.nc
+RCP45_HCOOH   1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_45/RCPs_anthro_total_acids_2005-2100_27424.nc
+
+RCP60_CH4     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_CH4_2005-2100_43190.nc
+RCP60_NOx     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_NOx_2005-2100_43190.nc
+RCP60_CO      1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_CO_2005-2100_43190.nc
+RCP60_BCPO    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_BC_2005-2100_43190.nc
+RCP60_OCPO    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_OC_2005-2100_43190.nc
+RCP60_SO2     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_SO2_2005-2100_43190.nc
+RCP60_NH3     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_NH3_2005-2100_43190.nc
+RCP60_C2H2    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_acetylene_2005-2100_43190_kgC.nc
+RCP60_CH2O    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_formaldehyde_2005-2100_43190.nc
+RCP60_BENZ    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_benzene_2005-2100_43190_kgC.nc
+RCP60_TOLU    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_toluene_2005-2100_43190_kgC.nc
+RCP60_XYLE    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_xylene_2005-2100_43190_kgC.nc
+RCP60_ALD2    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_other_aldehydes_2005-2100_43190_kgC.nc
+RCP60_ALK4__A 1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_butanes_2005-2100_43190_kgC.nc
+RCP60_ALK4__B 1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_pentanes_2005-2100_43190_kgC.nc
+RCP60_ALK4__C 1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_hexanes_and_higher_alkanes_2005-2100_43190_kgC.nc
+RCP60_ACET    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_total_ketones_2005-2100_43190_kgC.nc
+RCP60_C2H6    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_ethane_2005-2100_43190_kgC.nc
+RCP60_C2H4    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_ethene_2005-2100_43190_kgC.nc
+RCP60_C3H8    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_propane_2005-2100_43190_kgC.nc
+RCP60_PRPE    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_propene_2005-2100_43190_kgC.nc
+RCP60_HCOOH   1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_60/RCPs_anthro_total_acids_2005-2100_43190.nc
+
+RCP85_CH4     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_CH4_2005-2100_43533.nc
+RCP85_NOx     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_NOx_2005-2100_43533.nc
+RCP85_CO      1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_CO_2005-2100_43533.nc
+RCP85_BCPO    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_BC_2005-2100_43533.nc
+RCP85_OCPO    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_OC_2005-2100_43533.nc
+RCP85_SO2     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_SO2_2005-2100_43533.nc
+RCP85_NH3     1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_NH3_2005-2100_43533.nc
+RCP85_C2H2    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_acetylene_2005-2100_43533_kgC.nc
+RCP85_CH2O    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_formaldehyde_2005-2100_43533.nc
+RCP85_BENZ    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_benzene_2005-2100_43533_kgC.nc
+RCP85_TOLU    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_toluene_2005-2100_43533_kgC.nc
+RCP85_XYLE    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_xylene_2005-2100_43533_kgC.nc
+RCP85_ALD2    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_other_aldehydes_2005-2100_43533_kgC.nc
+RCP85_ALK4__A 1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_butanes_2005-2100_43533_kgC.nc
+RCP85_ALK4__B 1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_pentanes_2005-2100_43533_kgC.nc
+RCP85_ALK4__C 1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_hexanes_and_higher_alkanes_2005-2100_43533_kgC.nc
+RCP85_ACET    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_total_ketones_2005-2100_43533_kgC.nc
+RCP85_C2H6    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_ethane_2005-2100_43533_kgC.nc
+RCP85_C2H4    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_ethene_2005-2100_43533_kgC.nc
+RCP85_C3H8    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_propane_2005-2100_43533_kgC.nc
+RCP85_PRPE    1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_propene_2005-2100_43533_kgC.nc
+RCP85_HCOOH   1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v2015-02/RCP_85/RCPs_anthro_total_acids_2005-2100_43533.nc
+
+# Masks
+EMEP_MASK    1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc
+MEXICO_MASK  1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc
+CANADA_MASK  1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/Canada_mask.geos.1x1.nc
+SEASIA_MASK  1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc
+NA_MASK      1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/NA_mask.geos.1x1.nc
+USA_MASK     1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc
+ASIA_MASK    1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc
+NEI11_MASK   1 xy C N Y - none none LANDMASK ./MainDataDir/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc
+%%
+
+DerivedExports%%
+# ---------|---------|--------------------------------------------|
+#  Export  | Primary |_________________ Mask _____________________|
+#  Name    |  Name   |    Name    |           Expression          |    
+# ---------|---------|------------|-------------------------------|
+# ---------|---------|------------|-------------------------------|
+%%
