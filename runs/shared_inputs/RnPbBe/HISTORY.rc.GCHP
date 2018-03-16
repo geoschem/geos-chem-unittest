@@ -1,12 +1,12 @@
 
 EXPID:  OutputDir/GCHP
 EXPDSC: GEOS-Chem_devel
-CoresPerNode: 32
+CoresPerNode: 6
 
 
-COLLECTIONS: 'CloudConvFlux',
+COLLECTIONS: 'Emissions',
+             'CloudConvFlux',
              'DryDep',
-             'Emissions',
              'LevelEdgeDiags',      
              'RadioNuclide',
              'SpeciesConc',
@@ -15,10 +15,21 @@ COLLECTIONS: 'CloudConvFlux',
              'WetLossLS',
 ::
 #==============================================================================
+  Emissions.template:         '%y4%m2%d2_%h2%n2z.nc4',
+  Emissions.format:           'CFIO',
+  Emissions.frequency:        010000
+  Emissions.duration:         010000
+  Emissions.mode:             'time-averaged'
+  Emissions.fields:           'EmisBe7_Cosmic     ', 'GIGCchem',
+                              'EmisBe7_Total      ', 'GIGCchem',
+                              'EmisRn_Soil        ', 'GIGCchem',
+                              'EmisRn_Total       ', 'GIGCchem',
+::
+#==============================================================================
   CloudConvFlux.template:     '%y4%m2%d2_%h2%n2z.nc4',
   CloudConvFlux.format:       'CFIO',
-  CloudConvFlux.frequency:    240000
-  CloudConvFlux.duration:     240000
+  CloudConvFlux.frequency:    010000
+  CloudConvFlux.duration:     010000
   CloudConvFlux.mode:         'time-averaged'
   CloudConvFlux.fields:       'CloudConvFlux_Rn   ', 'GIGCchem',
                               'CloudConvFlux_Pb   ', 'GIGCchem',
@@ -28,8 +39,8 @@ COLLECTIONS: 'CloudConvFlux',
 #==============================================================================
   DryDep.template:            '%y4%m2%d2_%h2%n2z.nc4',
   DryDep.format:              'CFIO',
-  DryDep.frequency:           240000
-  DryDep.duration:            240000
+  DryDep.frequency:           010000
+  DryDep.duration:            010000
   DryDep.mode:                'time-averaged'
   DryDep.fields:              'DryDep_Pb          ', 'GIGCchem',
                               'DryDep_Be7         ', 'GIGCchem',
@@ -37,21 +48,10 @@ COLLECTIONS: 'CloudConvFlux',
                               'DryDepVel_Be7      ', 'GIGCchem',
 ::
 #==============================================================================
-  Emissions.template:         '%y4%m2%d2_%h2%n2z.nc4',
-  Emissions.format:           'CFIO',
-  Emissions.frequency:        240000
-  Emissions.duration:         240000
-  Emissions.mode:             'time-averaged'
-  Emissions.fields:           'EmisBe7_Cosmic     ', 'GIGCchem',
-                              'EmisBe7_Total      ', 'GIGCchem',
-                              'EmisRn_Soil        ', 'GIGCchem',
-                              'EmisRn_Total       ', 'GIGCchem',
-::
-#==============================================================================
   LevelEdgeDiags.template:    '%y4%m2%d2_%h2%n2z.nc4',
   LevelEdgeDiags.format:      'CFIO',
-  LevelEdgeDiags.frequency:   240000
-  LevelEdgeDiags.duration:    240000
+  LevelEdgeDiags.frequency:   010000
+  LevelEdgeDiags.duration:    010000
   LevelEdgeDiags.mode:        'time-averaged'
   LevelEdgeDiags.fields:      'Met_CMFMC          ', 'GIGCchem',
                               'Met_PEDGE          ', 'GIGCchem',
@@ -64,8 +64,8 @@ COLLECTIONS: 'CloudConvFlux',
 #==============================================================================
   RadioNuclide.template:      '%y4%m2%d2_%h2%n2z.nc4',
   RadioNuclide.format:        'CFIO',
-  RadioNuclide.frequency:     240000
-  RadioNuclide.duration:      240000
+  RadioNuclide.frequency:     010000
+  RadioNuclide.duration:      010000
   RadioNuclide.mode:          'time-averaged'
   RadioNuclide.fields:        'PbFromRnDecay      ', 'GIGCchem',  
                               'RadDecay_Rn        ', 'GIGCchem',  
@@ -75,8 +75,8 @@ COLLECTIONS: 'CloudConvFlux',
 #==============================================================================
   SpeciesConc.template:       '%y4%m2%d2_%h2%n2z.nc4',
   SpeciesConc.format:         'CFIO',
-  SpeciesConc.frequency:      240000
-  SpeciesConc.duration:       240000
+  SpeciesConc.frequency:      010000
+  SpeciesConc.duration:       010000
   SpeciesConc.mode:           'time-averaged'
   SpeciesConc.fields:         'SpeciesConc_Rn     ', 'GIGCchem',
                               'SpeciesConc_Pb     ', 'GIGCchem',
@@ -86,8 +86,8 @@ COLLECTIONS: 'CloudConvFlux',
 #==============================================================================
   StateMet.template:          '%y4%m2%d2_%h2%n2z.nc4',
   StateMet.format:            'CFIO',
-  StateMet.frequency:         240000
-  StateMet.duration:          240000
+  StateMet.frequency:         010000
+  StateMet.duration:          010000
   StateMet.mode:              'time-averaged'
   StateMet.fields:            'Met_AD             ', 'GIGCchem',
                               'Met_AIRDEN         ', 'GIGCchem',
@@ -173,8 +173,8 @@ COLLECTIONS: 'CloudConvFlux',
 #==============================================================================
   WetLossConv.template:       '%y4%m2%d2_%h2%n2z.nc4',
   WetLossConv.format:         'CFIO',
-  WetLossConv.frequency:      240000
-  WetLossConv.duration:       240000
+  WetLossConv.frequency:      010000
+  WetLossConv.duration:       010000
   WetLossConv.mode:           'time-averaged'
   WetLossConv.fields:         'WetLossConv_Pb     ', 'GIGCchem',
                               'WetLossConv_Be7    ', 'GIGCchem',
@@ -184,8 +184,8 @@ COLLECTIONS: 'CloudConvFlux',
 #==============================================================================
   WetLossLS.template:         '%y4%m2%d2_%h2%n2z.nc4',
   WetLossLS.format:           'CFIO',
-  WetLossLS.frequency:        240000
-  WetLossLS.duration:         240000
+  WetLossLS.frequency:        010000
+  WetLossLS.duration:         010000
   WetLossLS.mode:             'time-averaged'
   WetLossLS.fields:           'WetLossLS_Pb       ', 'GIGCchem',
                               'WetLossLS_Be7      ', 'GIGCchem',

@@ -293,11 +293,6 @@ replace_val WetLossConv.duration       ${WetLossConv_dur}       HISTORY.rc
 replace_val WetLossLS.frequency        ${WetLossLS_freq}        HISTORY.rc
 replace_val WetLossLS.duration         ${WetLossLS_dur}         HISTORY.rc  
 
-replace_val center.frequency ${center_frequency}  HISTORY.rc
-replace_val center.duration  ${center_duration}   HISTORY.rc
-replace_val inst.frequency   ${inst_frequency}    HISTORY.rc
-replace_val inst.duration    ${inst_duration}     HISTORY.rc
-
 #### Set timesteps based on input.geos
 echo " "
 echo "Timesteps:"
