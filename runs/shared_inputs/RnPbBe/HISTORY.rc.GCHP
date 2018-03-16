@@ -5,14 +5,14 @@ CoresPerNode: 32
 
 
 COLLECTIONS: 'CloudConvFlux',
-             #'DryDep',
-             #'Emissions',
-             #'LevelEdgeDiags',      
-             #'RadioNuclide',
-             #'SpeciesConc',
-             #'StateMet',      
-             #'WetLossConv',
-             #'WetLossLS',
+             'DryDep',
+             'Emissions',
+             'LevelEdgeDiags',      
+             'RadioNuclide',
+             'SpeciesConc',
+             'StateMet',      
+             'WetLossConv',
+             'WetLossLS',
 ::
 #==============================================================================
   CloudConvFlux.template:     '%y4%m2%d2_%h2%n2z.nc4',
