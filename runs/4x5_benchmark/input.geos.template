@@ -326,7 +326,7 @@ ND22: J-Values          : 72   all
       => JV time range  :      11 13
 ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
-ND26: U/D transpt flx   :  0   all
+ND26: U/D transpt flx   : 72   all
 ND27: Strat NOx,Ox,HNO3 :  0   1 2 7
 ND28: Biomass emissions : 72   all
 ND29: CO sources        : 72   all
