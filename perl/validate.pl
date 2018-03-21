@@ -174,7 +174,7 @@ sub checkTheFiles($$$$) {
   print '#' x 79; 
   print "\n### VALIDATION OF GEOS-CHEM OUTPUT FILES\n";
   print "### Run ID: $sim\n";
-  print "###\n";
+  print "##@\n";
 
   #=========================================================================
   # Test if files are identical
