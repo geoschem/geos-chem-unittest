@@ -969,7 +969,7 @@ COLLECTIONS: 'Emissions',
   JValuesLocalNoon.format:    'CFIO',
   JValuesLocalNoon.frequency: 010000
   JValuesLocalNoon.duration:  010000
-  JValuesLocalNoon.mode:      'instantaneous'
+  JValuesLocalNoon.mode:      'time-averaged'
   JValuesLocalNoon.fields:    'JNoon_O3O3P      ', 'GIGCchem',
                               'JNoon_O3O1D      ', 'GIGCchem',
                               'JNoon_O2         ', 'GIGCchem',
