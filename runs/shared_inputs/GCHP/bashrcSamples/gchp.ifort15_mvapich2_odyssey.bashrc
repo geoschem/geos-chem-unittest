@@ -108,15 +108,6 @@ export GC_LIB="$NETCDF_HOME/lib"
 export PATH=${NETCDF_HOME}/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_HOME}/lib
 
-# If using NetCDF after the C/Fortran split (4.3+), then you will need to 
-# specify the following additional environment variables
-#export NETCDF_FORTRAN_HOME="$(dirname $(dirname $(which mpirun)))"
-#export NETCDF_FORTRAN_INCLUDE="$(dirname $(dirname $(which mpirun)))/include"
-#export NETCDF_FORTRAN_LIB="$(dirname $(dirname $(which mpirun)))/lib"
-#export GC_F_BIN="$NETCDF_FORTRAN_HOME/bin"
-#export GC_F_INCLUDE="$NETCDF_FORTRAN_INCLUDE"
-#export GC_F_LIB="$NETCDF_FORTRAN_LIB"
-
 #==============================================================================
 # Raise memory limits
 #==============================================================================
