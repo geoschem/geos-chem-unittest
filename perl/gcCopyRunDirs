@@ -598,9 +598,6 @@ sub doCopyDirs($$) {
 	    # Make symbolic links to restart files at 4 resolutions
 	    @resolutions = (24,48,90,180);
 	    foreach my $res (@resolutions) {
-	      if ( $sim =~ m/benchmark/ && $res != 24 ) {
-		next;
-	      }
 	      if ( $sim =~ m/RnPbBe/ ) {
 		$rstName = "${rstPref}c${res}_${sim}Pasv.nc";
 	      } else {
@@ -613,7 +610,21 @@ sub doCopyDirs($$) {
 	        $cmd = "ln -sf ${rstFile} ${copyDir}/${rstName}";
 	        qx/$cmd/;		
  	      }
+
+              # If benchmark simulation, also make symbolic links to restart
+              # files with HEMCO restart variables included
+              if ( $sim =~ m/benchmark/ ) {
+		$rstName = "${rstPref}c${res}_${sim}_HEMCO.nc";
+	        $rstFile = "${rstRoot}${rstName}";
+	        if ( !( -f $rstFile ) ) {
+ 	          print "\nWARNING: File ${rstFile} does not exist so it cannot be included in your run directory. Sample restart files can be found in the SPC_RESTARTS directory or you can use your own restart file.\n\n";
+ 	        } else {
+	          $cmd = "ln -sf ${rstFile} ${copyDir}/${rstName}";
+	          qx/$cmd/;		
+ 	        }
+              }
 	    }
+
 
 	    # Make symbolic link to gcgrid for accessing met fields
 	    $cmd = "ln -sf ${DATA_ROOT}/GEOS_0.25x0.3125/GEOS_FP ${copyDir}/MetDir";
