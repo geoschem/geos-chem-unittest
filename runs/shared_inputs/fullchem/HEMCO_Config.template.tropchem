@@ -13,9 +13,6 @@
 #\\
 #\\
 # !REMARKS:
-#  Customized for the nested China/SE Asia simulation
-#  (regional emissions over Europe, Canada, USA, and Mexico are turned off)
-#
 #  The following tokens will be replaced:
 #  (1) ROOT    : Filepath to HEMCO root directory
 #  (2) CFDIR   : Filepath to directory of this configuration file. 
@@ -40,6 +37,7 @@
 
 ROOT:                        {ROOT}
 Logfile:                     HEMCO.log
+DiagnFile:                   HEMCO_Diagn.rc
 DiagnPrefix:                 HEMCO_diagnostics
 DiagnFreq:                   End
 Wildcard:                    *
@@ -98,20 +96,20 @@ Warnings:                    {WARNINGS}
     --> AEIC                 :       true
     --> BIOFUEL              :       true
     --> BOND                 :       true
-    --> BRAVO                :       false
-    --> CAC                  :       false
+    --> BRAVO                :       true
+    --> CAC                  :       true
     --> XIAO                 :       true
     --> EDGAR                :       true
     --> HTAP                 :       false
-    --> EMEP                 :       false
-    --> EMEP_SHIP            :       false
+    --> EMEP                 :       true
+    --> EMEP_SHIP            :       true
     --> GEIA                 :       true
     --> POET                 :       true
     --> LIANG_BROMOCARB      :       true
     --> ORDONEZ_IODOCARB     :       true
     --> NEI2005              :       false
     --> NEI2011_HOURLY       :       false
-    --> NEI2011_MONMEAN      :       false
+    --> NEI2011_MONMEAN      :       true
     --> RETRO                :       true 
     --> SHIP                 :       true
     --> NEI2011_SHIP_HOURLY  :       false
@@ -1512,7 +1510,7 @@ Warnings:                    {WARNINGS}
 # Local redistribution factors: These are model-specific and hence need to be 
 # redefined for different model/resolution simulations!!!
 #==============================================================================
-103 LIGHTNOX_OTDLIS $ROOT/LIGHTNOX/v2017-09/OTD-LIS-Local-Redist.CTH.v5.$MET.$RES.CH.v20170928.nc OTD $YYYY/1-12/1/0 C xy unitless NO - 1 1
+103 LIGHTNOX_OTDLIS $ROOT/LIGHTNOX/v2017-09/OTD-LIS-Local-Redist.CTH.v5.$MET.$RES.v20170928.nc OTD $YYYY/1-12/1/0 C xy unitless NO - 1 1
 
 #==============================================================================
 # --- SOILNOX emissions (Extension 104) ---
