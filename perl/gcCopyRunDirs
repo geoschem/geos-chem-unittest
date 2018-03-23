@@ -596,7 +596,7 @@ sub doCopyDirs($$) {
 	    qx/$cmd/;
 
 	    # Make symbolic links to restart files at 4 resolutions
-	    @resolutions = (24,48,90,180);
+	    @resolutions = (24,48,90,180,360);
 	    foreach my $res (@resolutions) {
 	      if ( $sim =~ m/RnPbBe/ ) {
 		$rstName = "${rstPref}c${res}_${sim}Pasv.nc";
