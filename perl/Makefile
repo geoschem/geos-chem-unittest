@@ -146,14 +146,26 @@ ifndef TAU_PROF
  TAU_PROF    :=n
 endif
 
-# Default: BPCH_DIAG is always turned ON (unless user says otherwise)
+# Default: BPCH_DIAG is always turned ON unless the user specifies
+# otherwise or if NC_DIAG=y is specified
 ifndef BPCH_DIAG
  BPCH_DIAG   :=y
+ ifdef NC_DIAG
+  ifeq ($(NC_DIAG),y)
+   BPCH_DIAG   :=n
+  endif
+ endif
 endif
 
-# Default: NC_DIAG is always turned OFF (unless user says otherwise)
+# Default: NC_DIAG is always turned OFF unless the user specifies
+# otherwise or only BPCH_DIAG=n is specified 
 ifndef NC_DIAG
  NC_DIAG     :=n
+ ifdef BPCH_DIAG
+  ifeq ($(BPCH_DIAG),n)
+   NC_DIAG   :=y
+  endif
+ endif
 endif
 
 ###############################################################################
