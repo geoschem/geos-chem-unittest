@@ -32,13 +32,6 @@ NY=6
 NX=1                  
 
 ######################################
-#### INPUT MET RESOLUTION
-######################################
-#### Auto update of input met res is not yet available. Manually update
-#### ExtData.rc and change MetDir symbolic link target.
-INPUT_MET_RES=placeholder
-
-######################################
 #### INTERNAL CUBED-SPHERE RESOLUTION
 ######################################
 # Please note that lightning and dust emissions in GCHP are tuned to c24.
@@ -52,8 +45,12 @@ CS_RES=24    # 24~4x5, 48~2x2.5, 90~1x1.25, 180~0.5x0.625
 ######################################
 #### INITIAL RESTART FILE
 ######################################
-#### Use default symlink'd file in rundir or specify filename
-INITIAL_RESTART=default
+#### Use default symlink'd file in rundir by default. Use restart file
+#### with HEMCO restart variables for benchmark simulation.
+INITIAL_RESTART=initial_GEOSChem_rst.c${CS_RES}_{SIMULATION}.nc
+if [[ "{SIMULATION}" == "benchmark" ]]; then
+   INITIAL_RESTART=initial_GEOSChem_rst.c${CS_RES}_{SIMULATION}_HEMCO.nc
+fi
 
 ######################################
 #### SIMULATION TIMES
@@ -134,6 +131,8 @@ JValuesLocalNoon_freq=${common_freq}
 JValuesLocalNoon_dur=${common_dur}
 LevelEdgeDiags_freq=${common_freq}
 LevelEdgeDiags_dur=${common_dur}
+ProdLoss_freq=${common_freq}
+ProdLoss_dur=${common_dur}
 RadioNuclide_freq=${common_freq}
 RadioNuclide_dur=${common_dur}
 StateChm_freq=${common_freq}
@@ -197,9 +196,9 @@ if [[ ${domain_ratio1} -ge 3 || ${domain_ratio2} -ge 3 ]] ; then
     exit 1
 fi
 
-## Check if restart file exists if using a custom file rather than default
-if [[ "${INITIAL_RESTART}" != 'default' && ! -e ${INITIAL_RESTART} ]]; then
-    printf 'ERROR: Restart file not in run directory: %s\n' ${INITIAL_RESTART}
+## Check if restart file exists
+if [[ ! -e ${INITIAL_RESTART} ]]; then
+    printf 'ERROR: Restart file not found: %s\n' ${INITIAL_RESTART}
     exit 1
 fi
 
@@ -236,20 +235,19 @@ replace_val NX            ${NX}                 GCHP.rc
 replace_val NY            ${NY}                 GCHP.rc
 replace_val CoresPerNode  ${NUM_CORES_PER_NODE} HISTORY.rc
 
-####  set cubed-sphere resolution
+####  set cubed-sphere resolution and related grid variables
 echo " "
 echo "Cubed-sphere resolution:"
-CS_RES_x_6=$((CS_RES*6)) # Is there a better term for this?
+CS_RES_x_6=$((CS_RES*6))
 replace_val IM        ${CS_RES}                     GCHP.rc
 replace_val JM        ${CS_RES_x_6}                 GCHP.rc
 replace_val npx       ${CS_RES}                     fvcore_layout.rc
 replace_val npy       ${CS_RES}                     fvcore_layout.rc
 replace_val GRIDNAME  PE${CS_RES}x${CS_RES_x_6}-CF  GCHP.rc
-if [[ "${INITIAL_RESTART}" == 'default' ]]; then
-    replace_val GIGCchem_INTERNAL_RESTART_FILE "+initial_GEOSChem_rst.c${CS_RES}_{SIMULATION}.nc" GCHP.rc
-else
-    replace_val GIGCchem_INTERNAL_RESTART_FILE "+${INITIAL_RESTART}" GCHP.rc
-fi
+
+####  set input and output restart filenames
+echo " "
+replace_val GIGCchem_INTERNAL_RESTART_FILE "+${INITIAL_RESTART}" GCHP.rc
 replace_val GIGCchem_INTERNAL_CHECKPOINT_FILE "gcchem_internal_checkpoint_c${CS_RES}.nc" GCHP.rc
 
 #### Set simulation start and end datetimes based on input.geos
@@ -282,6 +280,8 @@ replace_val JValuesLocalNoon.frequency ${JValuesLocalNoon_freq} HISTORY.rc
 replace_val JValuesLocalNoon.duration  ${JValuesLocalNoon_dur}  HISTORY.rc
 replace_val LevelEdgeDiags.frequency   ${LevelEdgeDiags_freq}   HISTORY.rc
 replace_val LevelEdgeDiags.duration    ${LevelEdgeDiags_dur}    HISTORY.rc
+replace_val ProdLoss.frequency         ${ProdLoss_freq}         HISTORY.rc
+replace_val ProdLoss.duration          ${ProdLoss_dur}          HISTORY.rc
 replace_val RadioNuclide.frequency     ${RadioNuclide_freq}     HISTORY.rc
 replace_val RadioNuclide.duration      ${RadioNuclide_dur}      HISTORY.rc
 replace_val StateChm.frequency         ${StateChm_freq}	        HISTORY.rc
