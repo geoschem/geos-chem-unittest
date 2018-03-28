@@ -116,7 +116,6 @@ Warnings:                    {WARNINGS}
     --> NEI2011_SHIP_MONMEAN :       false
     --> MIX                  :       true
     --> STREETS              :       false
-    --> VOLCANO              :       true
     --> RCP_3PD              :       false 
     --> RCP_45               :       false
     --> RCP_60               :       false
@@ -186,6 +185,9 @@ Warnings:                    {WARNINGS}
     --> hydrophilic OC       :       0.5
 115     DustAlk              : off   DSTAL1/DSTAL2/DSTAL3/DSTAL4
 116     MarinePOA            : off   MOPO/MOPI 
+117     AeroCom_Volcano      : on    SO2
+    --> Volcano_Source       :       OMI
+    --> AeroCom_Table        :       $ROOT/VOLCANO/v2018-03/$YYYY/so2_volcanic_emissions_Carns.$YYYY$MM$DD.rc
 120     Inorg_Iodine         : on    HOI/I2
     --> Emit HOI             :       true
     --> Emit I2              :       true
@@ -1340,14 +1342,6 @@ Warnings:                    {WARNINGS}
 0 AEIC_MACR -                                        -        -             - -   -       MACR 114/108 20 1
 0 AEIC_RCHO -                                        -        -             - -   -       RCHO 114/109 20 1
 )))AEIC
-
-#==============================================================================
-# --- Volcanic emissions ---
-#==============================================================================
-(((VOLCANO
-0 VOLCANO_SO2_ERUPT $ROOT/VOLCANO/v2015-02/$YYYY/volc_so2_gen.1x1.47L.$YYYY$MM.nc SO2_erupt 1979-2009/1-12/1-31/0 C xyz kg/m2/s SO2 - 51 1
-0 VOLCANO_SO2_DEGAS $ROOT/VOLCANO/v2015-02/$YYYY/volc_so2_gen.1x1.47L.$YYYY$MM.nc SO2_degas 1979-2009/1-12/1-31/0 C xyz kg/m2/s SO2 - 52 1
-)))VOLCANO
 
 #==============================================================================
 # --- Emissions from decaying plants ---
