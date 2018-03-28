@@ -45,8 +45,8 @@ CS_RES=24    # 24~4x5, 48~2x2.5, 90~1x1.25, 180~0.5x0.625
 ######################################
 #### INITIAL RESTART FILE
 ######################################
-#### Use default symlink'd file in rundir by default. Use restart file
-#### with HEMCO restart variables for benchmark simulation.
+# Use default symlink'd file in rundir by default. Use restart file
+# with HEMCO restart variables for benchmark simulation.
 INITIAL_RESTART=initial_GEOSChem_rst.c${CS_RES}_{SIMULATION}.nc
 if [[ "{SIMULATION}" == "benchmark" ]]; then
    INITIAL_RESTART=initial_GEOSChem_rst.c${CS_RES}_{SIMULATION}_HEMCO.nc
@@ -74,87 +74,105 @@ Turn_on_Non_Local_Mixing=T
 ######################################
 #### TIMESTEPS (SECONDS)
 ######################################
-#### ***IMPORTANT NOTE***
-#### Set read frequency of SPHU2, TMPU2, and PS2 in ExtData.rc to match the
-#### dynamic timestep (TransConv) set below based on the cubed sphere 
-#### grid resolution (e.g. 30 minutes for c24, 10 minutes for c90, 
-#### 5 minutes for c180+ )
-####
-#### Timestep recommendation based on grid resolution (uncomment if using):
-####    if [[ $CS_RES -lt 90 ]]; then
-####        TransConv_Timestep_sec=1800
-####        ChemEmiss_Timestep_sec=3600
-####    elif [[ $CS_RES -lt 180 ]]; then
-####        TransConv_Timestep_sec=600
-####        ChemEmiss_Timestep_sec=1200
-####    else
-####        TransConv_Timestep_sec=300
-####        ChemEmiss_Timestep_sec=600
-####    fi
-####
-#### Default is same as GEOS-Chem Classic (comment out if using above instead):
+# ***IMPORTANT NOTE***
+# Set read frequency of SPHU2, TMPU2, and PS2 in ExtData.rc to match the
+# dynamic timestep (TransConv) set below based on the cubed sphere 
+# grid resolution (e.g. 30 minutes for c24, 10 minutes for c90, 
+# 5 minutes for c180+ )
+#
+# Timestep recommendation based on grid resolution (uncomment if using):
+#    if [[ $CS_RES -lt 90 ]]; then
+#        TransConv_Timestep_sec=1800
+#        ChemEmiss_Timestep_sec=3600
+#    elif [[ $CS_RES -lt 180 ]]; then
+#        TransConv_Timestep_sec=600
+#        ChemEmiss_Timestep_sec=1200
+#    else
+#        TransConv_Timestep_sec=300
+#        ChemEmiss_Timestep_sec=600
+#    fi
+#
+# Default is same as GEOS-Chem Classic (comment out if using above instead):
 TransConv_Timestep_sec=600
 ChemEmiss_Timestep_sec=1200
 
 ######################################
 #### DIAGNOSTIC FREQUENCY AND DURATION
 ######################################
-#### -Edit these collection names, frequencies, and durations as needed.
-#### -Common frequencies and durations are set up by default but you can
-####  customize per collection.
-#### -Collections listed here that are not present in HISTORY.rc will be 
-####  ignored.
-#### -You may specify number of hours greater than 2 digits
-####
-####   frequency = frequency of diag archiving (HHMMSS)
-####   duration  = frequency of file write     (HHMMSS)
-####   
+# -Edit these collection names, frequencies, and durations as needed.
+# -Common frequencies and durations are set up by default but you can
+#  customize per collection.
+# -Collections listed here that are not present in HISTORY.rc will be 
+#  ignored.
+# -You may specify number of hours greater than 2 digits
+#
+#   frequency = frequency of diag archiving (HHMMSS)
+#   duration  = frequency of file write     (HHMMSS)
+#   
 common_freq="010000"
 common_dur="010000"
+common_mode="time-averaged"
+
 SpeciesConc_freq=${common_freq}
 SpeciesConc_dur=${common_dur}
+SpeciesConc_mode=${common_mode}
 AerosolMass_freq=${common_freq}
 AerosolMass_dur=${common_dur}
+AerosolMass_mode=${common_mode}
 Aerosols_freq=${common_freq}
 Aerosols_dur=${common_dur}
+Aerosols_mode=${common_mode}
 CloudConvFlux_freq=${common_freq}
 CloudConvFlux_dur=${common_dur}
+CloudConvFlux_mode=${common_mode}
 ConcAfterChem_freq=${common_freq}
 ConcAfterChem_dur=${common_dur}
+ConcAfterChem_mode=${common_mode}
 DryDep_freq=${common_freq}
 DryDep_dur=${common_dur}
+DryDep_mode=${common_mode}
 Emissions_freq=${common_freq}
 Emissions_dur=${common_dur}
+Emissions_mode=${common_mode}
 JValues_freq=${common_freq}
 JValues_dur=${common_dur}
+JValues_mode=${common_mode}
 JValuesLocalNoon_freq=${common_freq}
 JValuesLocalNoon_dur=${common_dur}
+JValuesLocalNoon_mode=${common_mode}
 LevelEdgeDiags_freq=${common_freq}
 LevelEdgeDiags_dur=${common_dur}
+LevelEdgeDiags_mode=${common_mode}
 ProdLoss_freq=${common_freq}
 ProdLoss_dur=${common_dur}
+ProdLoss_mode=${common_mode}
 RadioNuclide_freq=${common_freq}
 RadioNuclide_dur=${common_dur}
+RadioNuclide_mode=${common_mode}
 StateChm_freq=${common_freq}
 StateChm_dur=${common_dur}
+StateChm_mode=${common_mode}
 StateMet_freq=${common_freq}
 StateMet_dur=${common_dur}
+StateMet_mode=${common_mode}
 WetLossConv_freq=${common_freq}
 WetLossConv_dur=${common_dur}
+WetLossConv_mode=${common_mode}
 WetLossLS_freq=${common_freq}
 WetLossLS_dur=${common_dur}
+WetLossLS_mode=${common_mode}
 
 ######################################
 #### DEBUG OPTIONS
 ######################################
-#### Set MAPL debug flag to 0 for no MAPL debug log output. Increase
-#### amount of output to log by increasing value up to 20. Using this
-#### flag is most helpful for debugging issues with file read (MAPL ExtData).
-####
-#### Auto update of ND70 (GC log debug output) is not yet implemented. Turn on 
-#### ND70 in input.geos manually       
-####
-#### Beware that turning on debug prints significantly slows down the model.
+# Set MAPL debug flag to 0 for no MAPL debug log output. Increase
+# amount of output to log by increasing value up to 20. Using this
+# flag is most helpful for debugging issues with file read (MAPL ExtData).
+#
+# Auto update of ND70 (GC log debug output) is not available. Turn on 
+# ND70 in input.geos manually.       
+#
+# Beware that turning on debug prints significantly slows down the model!
 MAPL_DEBUG_LEVEL=0   
 
 ##########################################################
@@ -262,36 +280,52 @@ echo " "
 echo "Output:" 
 replace_val SpeciesConc.frequency      ${SpeciesConc_freq}      HISTORY.rc  
 replace_val SpeciesConc.duration       ${SpeciesConc_dur}       HISTORY.rc
+replace_val SpeciesConc.mode           ${SpeciesConc_mode}      HISTORY.rc
 replace_val AerosolMass.frequency      ${AerosolMass_freq}      HISTORY.rc
 replace_val AerosolMass.duration       ${AerosolMass_dur}       HISTORY.rc
+replace_val AerosolMass.mode           ${AerosolMass_mode}      HISTORY.rc
 replace_val Aerosols.frequency         ${Aerosols_freq}	        HISTORY.rc
 replace_val Aerosols.duration          ${Aerosols_dur}	        HISTORY.rc
+replace_val Aerosols.mode              ${Aerosols_mode}	        HISTORY.rc
 replace_val CloudConvFlux.frequency    ${CloudConvFlux_freq}    HISTORY.rc
 replace_val CloudConvFlux.duration     ${CloudConvFlux_dur}     HISTORY.rc
+replace_val CloudConvFlux.mode         ${CloudConvFlux_mode}    HISTORY.rc
 replace_val ConcAfterChem.frequency    ${ConcAfterChem_freq}    HISTORY.rc
 replace_val ConcAfterChem.duration     ${ConcAfterChem_dur}     HISTORY.rc
+replace_val ConcAfterChem.mode         ${ConcAfterChem_mode}    HISTORY.rc
 replace_val DryDep.frequency           ${DryDep_freq}	        HISTORY.rc
 replace_val DryDep.duration            ${DryDep_dur}	        HISTORY.rc
+replace_val DryDep.mode                ${DryDep_mode}	        HISTORY.rc
 replace_val Emissions.frequency        ${Emissions_freq}        HISTORY.rc
 replace_val Emissions.duration         ${Emissions_dur}	        HISTORY.rc
+replace_val Emissions.mode             ${Emissions_mode}	HISTORY.rc
 replace_val JValues.frequency          ${JValues_freq}	        HISTORY.rc
 replace_val JValues.duration           ${JValues_dur}	        HISTORY.rc
+replace_val JValues.mode               ${JValues_mode}	        HISTORY.rc
 replace_val JValuesLocalNoon.frequency ${JValuesLocalNoon_freq} HISTORY.rc
 replace_val JValuesLocalNoon.duration  ${JValuesLocalNoon_dur}  HISTORY.rc
+replace_val JValuesLocalNoon.mode      ${JValuesLocalNoon_mode} HISTORY.rc
 replace_val LevelEdgeDiags.frequency   ${LevelEdgeDiags_freq}   HISTORY.rc
 replace_val LevelEdgeDiags.duration    ${LevelEdgeDiags_dur}    HISTORY.rc
+replace_val LevelEdgeDiags.mode        ${LevelEdgeDiags_mode}   HISTORY.rc
 replace_val ProdLoss.frequency         ${ProdLoss_freq}         HISTORY.rc
 replace_val ProdLoss.duration          ${ProdLoss_dur}          HISTORY.rc
+replace_val ProdLoss.mode              ${ProdLoss_mode}         HISTORY.rc
 replace_val RadioNuclide.frequency     ${RadioNuclide_freq}     HISTORY.rc
 replace_val RadioNuclide.duration      ${RadioNuclide_dur}      HISTORY.rc
+replace_val RadioNuclide.mode          ${RadioNuclide_mode}     HISTORY.rc
 replace_val StateChm.frequency         ${StateChm_freq}	        HISTORY.rc
 replace_val StateChm.duration          ${StateChm_dur}	        HISTORY.rc
+replace_val StateChm.mode              ${StateChm_mode}	        HISTORY.rc
 replace_val StateMet.frequency         ${StateMet_freq}	        HISTORY.rc
 replace_val StateMet.duration          ${StateMet_dur}	        HISTORY.rc
+replace_val StateMet.mode              ${StateMet_mode}	        HISTORY.rc
 replace_val WetLossConv.frequency      ${WetLossConv_freq}      HISTORY.rc
 replace_val WetLossConv.duration       ${WetLossConv_dur}       HISTORY.rc
+replace_val WetLossConv.mode           ${WetLossConv_mode}      HISTORY.rc
 replace_val WetLossLS.frequency        ${WetLossLS_freq}        HISTORY.rc
 replace_val WetLossLS.duration         ${WetLossLS_dur}         HISTORY.rc  
+replace_val WetLossLS.mode             ${WetLossLS_mode}        HISTORY.rc  
 
 #### Set timesteps based on input.geos
 echo " "
