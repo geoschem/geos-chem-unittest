@@ -127,9 +127,6 @@ Species fluxes          : 0 0 0 0 0 0 0 0 0 1
 %%% CH4 MENU %%%        :
 Use GOSAT obs operator? : F
 Use TCCON obs operator? : F
-Do analytical inversion?: F 
- => Emiss perturbation  : 1.5
- => Current cluster #   : 1
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH
 Schedule output for JAN : 3000000000000000000000000000000

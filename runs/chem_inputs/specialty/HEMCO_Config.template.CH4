@@ -461,11 +461,6 @@ Warnings:                    {WARNINGS}
 * GLOBAL_OH  $ROOT/OH/v2014-09/v5-07-08/OH_3Dglobal.geos5.47L.4x5.nc OH           1985/1-12/1/0 C xyz kg/m3 * - 1 1
 * GLOBAL_Cl  $ROOT/CH4/v2017-10/Cl_Sherwen_2016b_ACP.4x5.nc          IJ_AVG_S__Cl 2005/1-12/1/0 C xyz ppbv  * - 1 1
 
-##==============================================================================
-## --- Clusters for analytical inversion ---
-##==============================================================================
-#* CH4_CLUSTERS Clusters_45_July.nc Clusters 2009/1/1/0 C xy 1 * - 1 1 
-
 ### END SECTION BASE EMISSIONS ###
 
 ###############################################################################

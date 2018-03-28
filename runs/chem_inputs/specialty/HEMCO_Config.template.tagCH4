@@ -208,6 +208,18 @@ Warnings:                    {WARNINGS}
 0 MEX_GAS_DISTRIBUTION $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_MX_2010.nc CH4_FLX_MX_Gas_Distribution 2010/1/1/0 C xy molec/cm2/s CH4_GAS 1001 2 20
 0 MEX_GAS_DISTRIBUTION $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_MX_2010.nc CH4_FLX_MX_Gas_Distribution 2010/1/1/0 C xy molec/cm2/s CH4     1001 2 20
 
+### Make sure to include offshore/coastal emissions (Hier=1 to add to EDGAR) ###
+0 MEX_COAST_OIL              $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_MX_2010.nc CH4_FLX_MX_Oil              2010/1/1/0 C xy molec/cm2/s CH4_OIL 1010 1 1
+0 MEX_COAST_OIL              $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_MX_2010.nc CH4_FLX_MX_Oil              2010/1/1/0 C xy molec/cm2/s CH4     1010 1 1
+0 MEX_COAST_GAS_PRODUCTION   $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_MX_2010.nc CH4_FLX_MX_Gas_Production   2010/1/1/0 C xy molec/cm2/s CH4_GAS 1010 2 1
+0 MEX_COAST_GAS_PRODUCTION   $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_MX_2010.nc CH4_FLX_MX_Gas_Production   2010/1/1/0 C xy molec/cm2/s CH4     1010 2 1
+0 MEX_COAST_GAS_PROCESSING   $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_MX_2010.nc CH4_FLX_MX_Gas_Processing   2010/1/1/0 C xy molec/cm2/s CH4_GAS 1010 2 1
+0 MEX_COAST_GAS_PROCESSING   $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_MX_2010.nc CH4_FLX_MX_Gas_Processing   2010/1/1/0 C xy molec/cm2/s CH4     1010 2 1
+0 MEX_COAST_GAS_TRANSMISSION $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_MX_2010.nc CH4_FLX_MX_Gas_Transmission 2010/1/1/0 C xy molec/cm2/s CH4_GAS 1010 2 1
+0 MEX_COAST_GAS_TRANSMISSION $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_MX_2010.nc CH4_FLX_MX_Gas_Transmission 2010/1/1/0 C xy molec/cm2/s CH4     1010 2 1
+0 MEX_COAST_GAS_DISTRIBUTION $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_MX_2010.nc CH4_FLX_MX_Gas_Distribution 2010/1/1/0 C xy molec/cm2/s CH4_GAS 1010 2 1
+0 MEX_COAST_GAS_DISTRIBUTION $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_MX_2010.nc CH4_FLX_MX_Gas_Distribution 2010/1/1/0 C xy molec/cm2/s CH4     1010 2 1
+
 #==============================================================================
 # --- Canada oil and gas (Sheng et al., Atmos. Environ., 2017) ---
 #==============================================================================
@@ -225,6 +237,18 @@ Warnings:                    {WARNINGS}
 0 CAN_GAS_TRANSMISSION $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_CA_2013.nc CH4_FLX_CA_Gas_Transmission 2013/1/1/0 C xy molec/cm2/s CH4     1002 2 60
 0 CAN_GAS_DISTRIBUTION $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_CA_2013.nc CH4_FLX_CA_Gas_Distribution 2013/1/1/0 C xy molec/cm2/s CH4_GAS 1002 2 60
 0 CAN_GAS_DISTRIBUTION $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_CA_2013.nc CH4_FLX_CA_Gas_Distribution 2013/1/1/0 C xy molec/cm2/s CH4     1002 2 60
+
+### Make sure to include offshore/coastal emissions (Hier=1 to add to EDGAR) ###
+0 CAN_COAST_OIL              $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_CA_2013.nc CH4_FLX_CA_Gas_Oil          2013/1/1/0 C xy molec/cm2/s CH4_OIL 1011 1 1
+0 CAN_COAST_OIL              $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_CA_2013.nc CH4_FLX_CA_Gas_Oil          2013/1/1/0 C xy molec/cm2/s CH4     1011 1 1
+0 CAN_COAST_GAS_PRODUCTION   $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_CA_2013.nc CH4_FLX_CA_Gas_Production   2013/1/1/0 C xy molec/cm2/s CH4_GAS 1011 2 1
+0 CAN_COAST_GAS_PRODUCTION   $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_CA_2013.nc CH4_FLX_CA_Gas_Production   2013/1/1/0 C xy molec/cm2/s CH4     1011 2 1
+0 CAN_COAST_GAS_PROCESSING   $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_CA_2013.nc CH4_FLX_CA_Gas_Processing   2013/1/1/0 C xy molec/cm2/s CH4_GAS 1011 2 1
+0 CAN_COAST_GAS_PROCESSING   $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_CA_2013.nc CH4_FLX_CA_Gas_Processing   2013/1/1/0 C xy molec/cm2/s CH4     1011 2 1
+0 CAN_COAST_GAS_TRANSMISSION $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_CA_2013.nc CH4_FLX_CA_Gas_Transmission 2013/1/1/0 C xy molec/cm2/s CH4_GAS 1011 2 1
+0 CAN_COAST_GAS_TRANSMISSION $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_CA_2013.nc CH4_FLX_CA_Gas_Transmission 2013/1/1/0 C xy molec/cm2/s CH4     1011 2 1
+0 CAN_COAST_GAS_DISTRIBUTION $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_CA_2013.nc CH4_FLX_CA_Gas_Distribution 2013/1/1/0 C xy molec/cm2/s CH4_GAS 1011 2 1
+0 CAN_COAST_GAS_DISTRIBUTION $ROOT/CH4/v2017-10/CMS/CMS_CH4_FLX_CA_2013.nc CH4_FLX_CA_Gas_Distribution 2013/1/1/0 C xy molec/cm2/s CH4     1011 2 1
 )))CanMex
 
 #==============================================================================
@@ -292,7 +316,7 @@ Warnings:                    {WARNINGS}
 0 GEPA_RICE             $ROOT/CH4/v2017-10/GEPA/GEPA_Annual.nc  emissions_4C_Rice_Cultivation                2012/1/1/0    C xy molec/cm2/s CH4_RIC 11/1008 7 50
 0 GEPA_RICE             $ROOT/CH4/v2017-10/GEPA/GEPA_Annual.nc  emissions_4C_Rice_Cultivation                2012/1/1/0    C xy molec/cm2/s CH4     11/1008 7 50
 
-### Other Anthro
+### Other Anthro ###
 0 GEPA_OTHER__1A_M      $ROOT/CH4/v2017-10/GEPA/GEPA_Annual.nc  emissions_1A_Combustion_Mobile               2012/1/1/0    C xy molec/cm2/s CH4_OTA 1008    8 50
 0 GEPA_OTHER__1A_M      $ROOT/CH4/v2017-10/GEPA/GEPA_Annual.nc  emissions_1A_Combustion_Mobile               2012/1/1/0    C xy molec/cm2/s CH4     1008    8 50
 0 GEPA_OTHER__1A_S      $ROOT/CH4/v2017-10/GEPA/GEPA_Annual.nc  emissions_1A_Combustion_Stationary           2012/1/1/0    C xy molec/cm2/s CH4_OTA 1008    8 50
@@ -338,7 +362,7 @@ Warnings:                    {WARNINGS}
 0 GEPA_COAST_WSTW_I     $ROOT/CH4/v2017-10/GEPA/GEPA_Annual.nc  emissions_6B_Wastewater_Treatment_Industrial 2012/1/1/0    C xy molec/cm2/s CH4_WST 1009    6 1
 0 GEPA_COAST_WSTW_I     $ROOT/CH4/v2017-10/GEPA/GEPA_Annual.nc  emissions_6B_Wastewater_Treatment_Industrial 2012/1/1/0    C xy molec/cm2/s CH4     1009    6 1
 0 GEPA_COAST_RICE       $ROOT/CH4/v2017-10/GEPA/GEPA_Annual.nc  emissions_4C_Rice_Cultivation                2012/1/1/0    C xy molec/cm2/s CH4_RIC 11/1009 7 1
-0 GEPA_COAST_RICE       $ROOT/CH4/v2017-10/GEPA/GEPA_Annual.nc  emissions_4C_Rice_Cultivation                2012/1/1/0    C xy molec/cm2/s CH4_RIC 11/1009 7 1
+0 GEPA_COAST_RICE       $ROOT/CH4/v2017-10/GEPA/GEPA_Annual.nc  emissions_4C_Rice_Cultivation                2012/1/1/0    C xy molec/cm2/s CH4     11/1009 7 1
 0 GEPA_COAST_OTH_1AM    $ROOT/CH4/v2017-10/GEPA/GEPA_Annual.nc  emissions_1A_Combustion_Mobile               2012/1/1/0    C xy molec/cm2/s CH4_OTA 1009    8 1
 0 GEPA_COAST_OTH_1AM    $ROOT/CH4/v2017-10/GEPA/GEPA_Annual.nc  emissions_1A_Combustion_Mobile               2012/1/1/0    C xy molec/cm2/s CH4     1009    8 1
 0 GEPA_COAST_OTH_1AS    $ROOT/CH4/v2017-10/GEPA/GEPA_Annual.nc  emissions_1A_Combustion_Stationary           2012/1/1/0    C xy molec/cm2/s CH4_OTA 1009    8 1
@@ -409,10 +433,10 @@ Warnings:                    {WARNINGS}
 #   in mixing_mod.F
 #==============================================================================
 (((FUNG
-0 CH4_TERMITES     $ROOT/CH4/v2014-09/$RES/termites.geos.$RES.nc        CH4 1985/1/1/0         C xy kg/m2/s     CH4_TER - 13 1
-0 CH4_TERMITES     $ROOT/CH4/v2014-09/$RES/termites.geos.$RES.nc        CH4 1985/1/1/0         C xy kg/m2/s     CH4     - 13 1
-#0 CH4_SOILABSORB  $ROOT/CH4/v2014-09/$RES/soilabs.geos.$RES.nc         CH4 1985/1/1/0         C xy kg/m2/s     CH4_SAB - 14 1
-##0 CH4_SOILABSORB $ROOT/CH4/v2014-09/$RES/soilabs.geos.$RES.nc         CH4 1985/1/1/0         C xy kg/m2/s     CH4     1 14 1
+0 CH4_TERMITES     $ROOT/CH4/v2014-09/4x5/termites.geos.4x5.nc          CH4 1985/1/1/0         C xy kg/m2/s     CH4_TER - 13 1
+0 CH4_TERMITES     $ROOT/CH4/v2014-09/4x5/termites.geos.4x5.nc          CH4 1985/1/1/0         C xy kg/m2/s     CH4     - 13 1
+#0 CH4_SOILABSORB  $ROOT/CH4/v2014-09/4x5/soilabs.geos.4x5.nc           CH4 1985/1/1/0         C xy kg/m2/s     CH4_SAB - 14 1
+##0 CH4_SOILABSORB $ROOT/CH4/v2014-09/4x5/soilabs.geos.4x5.nc           CH4 1985/1/1/0         C xy kg/m2/s     CH4     1 14 1
 0 CH4_SOILABSORB   $ROOT/CH4/v2017-10/Fung/Soil_Absorption_4x5_$YYYY.nc CH4 2009-2015/1-12/1/0 C xy molec/cm2/s CH4_SAB - 14 1
 #0 CH4_SOILABSORB  $ROOT/CH4/v2017-10/Fung/Soil_Absorption_4x5_$YYYY.nc CH4 2009-2015/1-12/1/0 C xy molec/cm2/s CH4     1 14 1
 
@@ -503,13 +527,13 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- CH4 wetland and rice emissions (Extension 121) 
 #==============================================================================
-121 CH4_RICE     $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc                 ch4_4C_4D 2004-2008/1/1/0    C xy kg/m2/s  CH4 - 1 1
-121 CH4_GWET_YR  $ROOT/CH4/v2014-09/$RES/GWETTOP.annual.geos5.$RES.nc  GWETTOP   2004-2011/1/1/0    C xy 1        *   - 1 1
-121 CH4_GWET_MT  $ROOT/CH4/v2014-09/$RES/GWETTOP.monthly.geos5.$RES.nc GWETTOP   2004-2011/1-12/1/0 C xy 1        *   - 1 1
-121 CH4_MEAN_T   $ROOT/CH4/v2014-09/$RES/TSKIN.annual.geos5.$RES.nc    TSKIN     2004-2011/1/1/0    C xy 1        *   - 1 1
-121 CH4_WETFRAC  $ROOT/CH4/v2014-09/$RES/Wetfrac.$RES.nc               WETFRAC   2000/1/1/0         C xy 1        *   - 1 1
-121 CH4_LITTER_C $ROOT/CH4/v2014-09/$RES/Carbon_litter.$RES.nc         CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
-121 CH4_SOIL_C   $ROOT/CH4/v2014-09/$RES/Carbon_soil.$RES.nc           CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
+121 CH4_RICE     $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc               ch4_4C_4D 2004-2008/1/1/0    C xy kg/m2/s  CH4 - 1 1
+121 CH4_GWET_YR  $ROOT/CH4/v2014-09/4x5/GWETTOP.annual.geos5.4x5.nc  GWETTOP   2004-2011/1/1/0    C xy 1        *   - 1 1
+121 CH4_GWET_MT  $ROOT/CH4/v2014-09/4x5/GWETTOP.monthly.geos5.4x5.nc GWETTOP   2004-2011/1-12/1/0 C xy 1        *   - 1 1
+121 CH4_MEAN_T   $ROOT/CH4/v2014-09/4x5/TSKIN.annual.geos5.4x5.nc    TSKIN     2004-2011/1/1/0    C xy 1        *   - 1 1
+121 CH4_WETFRAC  $ROOT/CH4/v2014-09/4x5/Wetfrac.4x5.nc               WETFRAC   2000/1/1/0         C xy 1        *   - 1 1
+121 CH4_LITTER_C $ROOT/CH4/v2014-09/4x5/Carbon_litter.4x5.nc         CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
+121 CH4_SOIL_C   $ROOT/CH4/v2014-09/4x5/Carbon_soil.4x5.nc           CARBON    2000/1/1/0         C xy kgC/m2/s *   - 1 1
 
 ###############################################################################
 ### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
@@ -532,11 +556,6 @@ Warnings:                    {WARNINGS}
 * CH4_LOSS   $ROOT/CH4/v2014-09/4x5/gmi.ch4loss.geos5_47L.4x5.nc     CH4loss      1985/1-12/1/0 C xyz s-1   * - 1 1
 * GLOBAL_OH  $ROOT/OH/v2014-09/v5-07-08/OH_3Dglobal.geos5.47L.4x5.nc OH           1985/1-12/1/0 C xyz kg/m3 * - 1 1
 * GLOBAL_Cl  $ROOT/CH4/v2017-10/Cl_Sherwen_2016b_ACP.4x5.nc          IJ_AVG_S__Cl 2005/1-12/1/0 C xyz ppbv  * - 1 1
-
-##==============================================================================
-## --- Clusters for analytical inversion ---
-##==============================================================================
-#* CH4_CLUSTERS Clusters_45_July.nc Clusters 2009/1/1/0 C xy 1 * - 1 1 
 
 ### END SECTION BASE EMISSIONS ###
 
@@ -586,16 +605,18 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # Country/region masks
 #==============================================================================
-1000 EMEP_MASK     $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc           MASK     2000/1/1/0 C xy unitless 1 -30/30/45/70
-1001 MEXICO_MASK   $ROOT/MASKS/v2014-07/Mexico_Mask.Extended_NAgrid.001x001.nc   MASK     2000/1/1/0 C xy unitless 1 -118/17/-95/33
-1002 CANADA_MASK   $ROOT/MASKS/v2014-07/Canada_Mask.Extended_NAgrid.001x001.nc   MASK     2000/1/1/0 C xy unitless 1 -141/40/-52/85
-1003 SEASIA_MASK   $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc              MASK     2000/1/1/0 C xy unitless 1  60/-12/153/55
-1004 NA_MASK       $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc                      MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
-1005 USA_MASK      $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc             MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
-1006 ASIA_MASK     $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc         MASK     2000/1/1/0 C xy unitless 1 46/-12/180/82
-1007 NEI11_MASK    $ROOT/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc LANDMASK 2000/1/1/0 C xy 1        1 -140/20/-50/60
-1008 CONUS_MASK    $ROOT/MASKS/v2014-07/CONUS_Mask.001x001.nc                    MASK     2000/1/1/0 C xy unitless 1 -140/20/-50/60
-1009 CONUS_MIRROR  $ROOT/MASKS/v2014-07/CONUS_Mask_Mirror.001x001.nc             MASK     2000/1/1/0 C xy unitless 1 -140/20/-50/60
+1000 EMEP_MASK       $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc                  MASK     2000/1/1/0 C xy unitless 1 -30/30/45/70
+1001 MEXICO_MASK     $ROOT/MASKS/v2014-07/Mexico_Mask.Extended_NAgrid.001x001.nc          MASK     2000/1/1/0 C xy unitless 1 -118/17/-95/33
+1002 CANADA_MASK     $ROOT/MASKS/v2014-07/Canada_Mask.Extended_NAgrid.001x001.nc          MASK     2000/1/1/0 C xy unitless 1 -141/40/-52/85
+1003 SEASIA_MASK     $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc                     MASK     2000/1/1/0 C xy unitless 1  60/-12/153/55
+1004 NA_MASK         $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc                             MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
+1005 USA_MASK        $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc                    MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
+1006 ASIA_MASK       $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc                MASK     2000/1/1/0 C xy unitless 1 46/-12/180/82
+1007 NEI11_MASK      $ROOT/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc        LANDMASK 2000/1/1/0 C xy 1        1 -140/20/-50/60
+1008 CONUS_MASK      $ROOT/MASKS/v2014-07/CONUS_Mask.001x001.nc                           MASK     2000/1/1/0 C xy unitless 1 -140/20/-50/60
+1009 CONUS_MIRROR    $ROOT/MASKS/v2014-07/CONUS_Mask_Mirror.001x001.nc                    MASK     2000/1/1/0 C xy unitless 1 -140/20/-50/60
+1010 MEX_MASK_MIRROR $ROOT/MASKS/v2014-07/Mexico_Mask_Mirror.Extended_NAgrid.001x001.nc   MASK     2000/1/1/0 C xy unitless 1 -118/17/-95/33
+1011 CAN_MASK_MIRROR $ROOT/MASKS/v2014-07/Canada_Mask_Mirror.Extended_NAgrid.001x001.nc   MASK     2000/1/1/0 C xy unitless 1 -141/40/-52/85
 
 ### END SECTION MASKS ###
  
