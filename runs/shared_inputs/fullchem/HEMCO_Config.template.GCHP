@@ -99,7 +99,7 @@ Warnings:                    {WARNINGS}
     --> BRAVO                :       true
     --> APEI                 :       true
     --> XIAO                 :       true
-    --> EDGAR                :       true
+    --> EDGARv43             :       true
     --> HTAP                 :       false
     --> EMEP                 :       true
     --> EMEP_SHIP            :       true
@@ -238,98 +238,147 @@ Warnings:                    {WARNINGS}
 )))POET
 
 #==============================================================================
-# --- EDGAR v4.2 ---
+# --- EDGAR v4.3 ---
 #
 # %%% NOTE: Use EDGAR for the global base emissions instead of GEIA %%%
-#
+# 
+# Aviation and shipping emissions are not included
 # Do not include the following sources (meng,3/6/2014)
-#  - Non-road transportation emissions (1A3a_c_d_e). Instead, use
-#    ICOADS/ARCTAS for ship emissions and AEIC for aircraft emisisons.
-#  - Soil emissions of NOx (4C_4D). These emissions are calculated via the 
+#  - Soil emissions of NOx (SOL). These emissions are calculated via the 
 #    SoilNOx extension.
-#  - Open biomass burning (4F, 5A_C_D_F_4E). These emissions are obtained from
-#    GFED3 or FINN.
+#  - Open biomass burning (AWB). These emissions are obtained from
+#    GFED or FINN.
 #==============================================================================
-(((EDGAR
-0 EDGAR_NO_1A1a            $ROOT/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A1a.generic.01x01.nc             emi_no  1970-2008/1/1/0 C xy kg/m2/s NO   1/40/25/30     1   2
-0 EDGAR_NO_1A2             $ROOT/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A2.generic.01x01.nc              emi_no  1970-2008/1/1/0 C xy kg/m2/s NO   1/40/25/30     1   2
-#0 EDGAR_NO_1A3a_c_d_e     $ROOT/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A3a_c_d_e.generic.01x01.nc       emi_no  1970-2008/1/1/0 C xy kg/m2/s NO   1/40/25/30     1   2
-0 EDGAR_NO_1A3b            $ROOT/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A3b.generic.01x01.nc             emi_no  1970-2008/1/1/0 C xy kg/m2/s NO   1/40/25/30     1   2
-0 EDGAR_NO_1A4             $ROOT/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1A4.generic.01x01.nc              emi_no  1970-2008/1/1/0 C xy kg/m2/s NO   1/40/25/30     1/2 2
-0 EDGAR_NO_1B2a_c_1A1b_c   $ROOT/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_1B2a_c_1A1b_c.generic.01x01.nc    emi_no  1970-2008/1/1/0 C xy kg/m2/s NO   1/40/25/30     1   2
-0 EDGAR_NO_2               $ROOT/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_2.generic.01x01.nc                emi_no  1970-2008/1/1/0 C xy kg/m2/s NO   1/40/25/30     1   2
-0 EDGAR_NO_4B              $ROOT/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_4B.generic.01x01.nc               emi_no  1970-2008/1/1/0 C xy kg/m2/s NO   1/40/25/30     1   2
-#0 EDGAR_NO_4C_4D          $ROOT/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_4C_4D.generic.01x01.nc            emi_no  1970-2008/1/1/0 C xy kg/m2/s NO   1/40/25/30     1   2
-#0 EDGAR_NO_4F             $ROOT/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_4F.generic.01x01.nc               emi_no  1970-2008/1/1/0 C xy kg/m2/s NO   1/40/25/30     1   2
-#0 EDGAR_NO_5A_C_D_F_4E    $ROOT/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_5A_C_D_F_4E.generic.01x01.nc      emi_no  1970-2008/1/1/0 C xy kg/m2/s NO   1/40/25/30     1   2
-0 EDGAR_NO_6A_6C           $ROOT/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_6A_6C.generic.01x01.nc            emi_no  1970-2008/1/1/0 C xy kg/m2/s NO   1/40/25/30     1   2
-0 EDGAR_NO_7A              $ROOT/EDGARv42/v2015-02/NO/EDGAR_v42_NO_IPCC_7A.generic.01x01.nc               emi_no  1970-2008/1/1/0 C xy kg/m2/s NO   1/40/25/30     1   2
-0 EDGAR_CO_1A1a_6          $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A1a_6.generic.01x01.nc           emi_co  1970-2008/1/1/0 C xy kg/m2/s CO   6/41/26/52     1   2
-0 EDGAR_SOAP_1A1a_6        -                                                                              -       -               - -  -       SOAP 6/41/26/52/280 1   2
-0 EDGAR_CO_1A2             $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A2.generic.01x01.nc              emi_co  1970-2008/1/1/0 C xy kg/m2/s CO   6/41/26/52     1   2
-0 EDGAR_SOAP_1A2           -                                                                              -       -               - -  -       SOAP 6/41/26/52/280 1   2
-#0 EDGAR_CO_1A3a_c_d_e     $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A3a_c_d_e.generic.01x01.nc       emi_co  1970-2008/1/1/0 C xy kg/m2/s CO   6/41/26/52     1   2
-#0 EDGAR_SOAP_1A3a_c_d_e   -                                                                              -       -               - -  -       SOAP 6/41/26/52/280 1   2
-0 EDGAR_CO_1A3b            $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A3b.generic.01x01.nc             emi_co  1970-2008/1/1/0 C xy kg/m2/s CO   6/41/26/52     1   2
-0 EDGAR_SOAP_1A3b          -                                                                              -       -               - -  -       SOAP 6/41/26/52/280 1   2
-0 EDGAR_CO_1A4             $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A4.generic.01x01.nc              emi_co  1970-2008/1/1/0 C xy kg/m2/s CO   6/41/26/52     1/2 2
-0 EDGAR_SOAP_1A4           -                                                                              -       -               - -  -       SOAP 6/41/26/52/280 1   2
-0 EDGAR_CO_1B2a_c_1A1b_c   $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1B2a_c_1A1b_c.generic.01x01.nc    emi_co  1970-2008/1/1/0 C xy kg/m2/s CO   6/41/26/52     1   2
-0 EDGAR_SOAP_1B2a_c_1A1b_c -                                                                              -       -               - -  -       SOAP 6/41/26/52/280 1   2
-0 EDGAR_CO_2A_2B_2D        $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_2A_2B_2D.generic.01x01.nc         emi_co  1970-2008/1/1/0 C xy kg/m2/s CO   6/41/26/52     1   2
-0 EDGAR_SOAP_2A_2B_2D      -                                                                              -       -               - -  -       SOAP 6/41/26/52/280 1   2
-0 EDGAR_CO_2C              $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_2C.generic.01x01.nc               emi_co  1970-2008/1/1/0 C xy kg/m2/s CO   6/41/26/52     1   2
-0 EDGAR_SOAP_2C            -                                                                              -       -               - -  -       SOAP 6/41/26/52/280 1   2
-#0 EDGAR_CO_4F             $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_4F.generic.01x01.nc               emi_co  1970-2008/1/1/0 C xy kg/m2/s CO   6/41/26/52     1   2
-#0 EDGAR_SOAP_4F           -                                                                              -       -               - -  -       SOAP 6/41/26/52/280 1   2
-#0 EDGAR_CO_5A_C_D_F_4E    $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_5A_C_D_F_4E.generic.01x01.nc      emi_co  1970-2008/1/1/0 C xy kg/m2/s CO   6/41/26/52     1   2
-#0 EDGAR_SOAP_5A_C_D_F_4E  -                                                                              -       -               - -  -       SOAP 6/41/26/52/280 1   2
-0 EDGAR_CO_7A              $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_7A.generic.01x01.nc               emi_co  1970-2008/1/1/0 C xy kg/m2/s CO   6/41/26/52     1   2
-0 EDGAR_SOAP_7A            -                                                                              -       -               - -  -       SOAP 6/41/26/52/280 1   2
-0 EDGAR_SO2_1A1a_6C        $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A1a_6C.generic.01x01.nc        emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
-0 EDGAR_SO4_1A1a_6C        -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
-0 EDGAR_pFe_1A1a_6C        -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
-0 EDGAR_SO2_1A2            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A2.generic.01x01.nc            emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
-0 EDGAR_SO4_1A2            -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
-0 EDGAR_pFe_1A2            -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
-#0 EDGAR_SO2_1A3a_c_d_e    $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3a_c_d_e.generic.01x01.nc     emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
-#0 EDGAR_SO4_1A3a_c_d_e    -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
-#0 EDGAR_pFe_1A3a_c_d_e    -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
-0 EDGAR_SO2_1A3b           $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A3b.generic.01x01.nc           emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
-0 EDGAR_SO4_1A3b           -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
-0 EDGAR_pFe_1A3b           -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
-0 EDGAR_SO2_1A4            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1A4.generic.01x01.nc            emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1/2 2
-0 EDGAR_SO4_1A4            -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1/2 2 
-0 EDGAR_pFe_1A4            -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1/2 2 
-0 EDGAR_SO2_1B1_1B2_1A1b_c $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_1B1_1B2_1A1b_c.generic.01x01.nc emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
-0 EDGAR_SO4_1B1_1B2_1A1b_c -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
-0 EDGAR_pFe_1B1_1B2_1A1b_c -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
-0 EDGAR_SO2_2B_2D          $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2B_2D.generic.01x01.nc          emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
-0 EDGAR_SO4_2B_2D          -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
-0 EDGAR_pFe_2B_2D          -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
-0 EDGAR_SO2_2C             $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_2C.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
-0 EDGAR_SO4_2C             -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
-0 EDGAR_pFe_2C             -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
-#0 EDGAR_SO2_4F            $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_4F.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
-#0 EDGAR_SO4_4F            -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
-#0 EDGAR_pFe_4F            -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
-#0 EDGAR_SO2_5A_C_D_F_4E   $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_5A_C_D_F_4E.generic.01x01.nc    emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
-#0 EDGAR_SO4_5A_C_D_F_4E   -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
-#0 EDGAR_pFe_5A_C_D_F_4E   -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
-0 EDGAR_SO2_7A             $ROOT/EDGARv42/v2015-02/SO2/EDGAR_v42_SO2_IPCC_7A.generic.01x01.nc             emi_so2 1970-2008/1/1/0 C xy kg/m2/s SO2  11/42/31/62    1   2
-0 EDGAR_SO4_7A             -                                                                              -       -               - -  -       SO4  11/42/31/62/63 1   2 
-0 EDGAR_pFe_7A             -                                                                              -       -               - -  -       pFe  11/42/31/62/66 1   2 
-0 EDGAR_NH3_1A1a_6         $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1a_6.generic.01x01.nc         emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3  38             1   2
-0 EDGAR_NH3_1A1b_c         $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A1b_c.generic.01x01.nc         emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3  38             1   2
-0 EDGAR_NH3_1A2            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A2.generic.01x01.nc            emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3  38             1   2
-0 EDGAR_NH3_1A3            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A3.generic.01x01.nc            emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3  38             1   2
-0 EDGAR_NH3_1A4            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_1A4.generic.01x01.nc            emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3  38             1/2 2
-0 EDGAR_NH3_2A             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2A.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3  38             1   2
-0 EDGAR_NH3_2B             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_2B.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3  38             1   2
-0 EDGAR_NH3_4B             $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4B.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3  38             1   2
-0 EDGAR_NH3_4C_4D          $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4C_4D.generic.01x01.nc          emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3  38             1   2
-#0 EDGAR_NH3_4F            $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_4F.generic.01x01.nc             emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3  38             1   2
-#0 EDGAR_NH3_5A_C_D_F_4E   $ROOT/EDGARv42/v2015-02/NH3/EDGAR_v42_NH3_IPCC_5A_C_D_F_4E.generic.01x01.nc    emi_nh3 1970-2008/1/1/0 C xy kg/m2/s NH3  38             1   2
+(((EDGARv43
+0  EDGAR_BCPI_POW $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.POW.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1201/70         1/2 2
+0  EDGAR_BCPO_POW -                                                    -       -               - -  -       BCPO 1201/71         1/2 2
+0  EDGAR_BCPI_ENG $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.ENG.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1202/70         1/2 2
+0  EDGAR_BCPO_ENG -                                                    -       -               - -  -       BCPO 1202/71         1/2 2
+0  EDGAR_BCPI_IND $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.IND.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1203/70         1/2 2
+0  EDGAR_BCPO_IND -                                                    -       -               - -  -       BCPO 1203/71         1/2 2
+0  EDGAR_BCPI_TRO $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.TRO.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1204/70         1/2 2
+0  EDGAR_BCPO_TRO -                                                    -       -               - -  -       BCPO 1204/71         1/2 2
+0  EDGAR_BCPI_TNG $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.TNG.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1205/70         1/2 2
+0  EDGAR_BCPO_TNG -                                                    -       -               - -  -       BCPO 1205/71         1/2 2
+0  EDGAR_BCPI_RCO $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.RCO.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1206/70         1/2 2
+0  EDGAR_BCPO_RCO -                                                    -       -               - -  -       BCPO 1206/71         1/2 2
+0  EDGAR_BCPI_PPA $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.PPA.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1207/70         1/2 2
+0  EDGAR_BCPO_PPA -                                                    -       -               - -  -       BCPO 1207/71         1/2 2
+#0 EDGAR_BCPI_AWB $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.AWB.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1209/70         1/2 2
+#0 EDGAR_BCPO_AWB -                                                    -       -               - -  -       BCPO 1209/71         1/2 2
+0  EDGAR_BCPI_SWD $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.SWD.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1211/70         1/2 2
+0  EDGAR_BCPO_SWD -                                                    -       -               - -  -       BCPO 1211/71         1/2 2
+0  EDGAR_BCPI_FFF $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.FFF.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1212/70         1/2 2
+0  EDGAR_BCPO_FFF -                                                    -       -               - -  -       BCPO 1212/71         1/2 2
+0  EDGAR_CO_POW   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.POW.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1201/26/52      1/2 2
+0  EDGAR_SOAP_POW -                                                    -       -               - -  -       SOAP 1201/26/52/280  1/2 2
+0  EDGAR_CO_ENG   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.ENG.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1202/26/52      1/2 2
+0  EDGAR_SOAP_ENG -                                                    -       -               - -  -       SOAP 1202/26/52/280  1/2 2
+0  EDGAR_CO_IND   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.IND.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1203/26/52      1/2 2
+0  EDGAR_SOAP_IND -                                                    -       -               - -  -       SOAP 1203/26/52/280  1/2 2
+0  EDGAR_CO_TRO   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.TRO.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1204/26/52      1/2 2
+0  EDGAR_SOAP_TRO -                                                    -       -               - -  -       SOAP 1204/26/52/280  1/2 2
+0  EDGAR_CO_TNG   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.TNG.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1205/26/52      1/2 2
+0  EDGAR_SOAP_TNG -                                                    -       -               - -  -       SOAP 1205/26/52/280  1/2 2
+0  EDGAR_CO_RCO   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.RCO.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1206/26/52      1/2 2
+0  EDGAR_SOAP_RCO -                                                    -       -               - -  -       SOAP 1206/26/52/280  1/2 2
+0  EDGAR_CO_PPA   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.PPA.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1207/26/52      1/2 2
+0  EDGAR_SOAP_PPA -                                                    -       -               - -  -       SOAP 1207/26/52/280  1/2 2
+#0 EDGAR_CO_AWB   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.AWB.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1209/26/52      1/2 2
+#0 EDGAR_SOAP_AWB -                                                    -       -               - -  -       SOAP 1209/26/52/280  1/2 2
+0  EDGAR_CO_SWD   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.SWD.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1211/26/52      1/2 2
+0  EDGAR_SOAP_SWD -                                                    -       -               - -  -       SOAP 1211/26/52/280  1/2 2
+0  EDGAR_CO_FFF   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.FFF.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1212/26/52      1/2 2
+0  EDGAR_SOAP_FFF -                                                    -       -               - -  -       SOAP 1212/26/52/280  1/2 2
+0  EDGAR_NH3_POW  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.POW.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1201            1/2 2
+0  EDGAR_NH3_ENG  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.ENG.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1202            1/2 2
+0  EDGAR_NH3_IND  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.IND.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1203            1/2 2
+0  EDGAR_NH3_TRO  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.TRO.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1204            1/2 2
+0  EDGAR_NH3_TNG  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.TNG.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1205            1/2 2
+0  EDGAR_NH3_RCO  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.RCO.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1206            1/2 2
+0  EDGAR_NH3_PPA  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.PPA.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1207            1/2 2
+0  EDGAR_NH3_AGR  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.AGR.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1208            1/2 2
+#0 EDGAR_NH3_AWB  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.AWB.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1209            1/2 2
+0  EDGAR_NH3_SOL  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.SOL.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1210            1/2 2
+0  EDGAR_NH3_SWD  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.SWD.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1211            1/2 2
+0  EDGAR_NO_POW   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.POW.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1201/25/115     1/2 2
+0  EDGAR_NO_ENG   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.ENG.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1202/25/115     1/2 2
+0  EDGAR_NO_IND   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.IND.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1203/25/115     1/2 2
+0  EDGAR_NO_TRO   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.TRO.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1204/25/115     1/2 2
+0  EDGAR_NO_TNG   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.TNG.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1205/25/115     1/2 2
+0  EDGAR_NO_RCO   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.RCO.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1206/25/115     1/2 2
+0  EDGAR_NO_PPA   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.PPA.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1207/25/115     1/2 2
+0  EDGAR_NO_AGR   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.AGR.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1208/25/115     1/2 2
+#0 EDGAR_NO_AWB   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.AWB.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1209/25/115     1/2 2
+#0 EDGAR_NO_SOL   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.SOL.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1210/25/115     1/2 2
+0  EDGAR_NO_SWD   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.SWD.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1211/25/115     1/2 2
+0  EDGAR_NO_FFF   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.FFF.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1212/25/115     1/2 2
+0  EDGAR_OCPI_POW $ROOT/EDGARv43/v2016-11/EDGAR_v43.OC.POW.0.1x0.1.nc  emi_oc  1970-2010/1/1/0 C xy kg/m2/s OCPI 1201/72         1/2 2
+0  EDGAR_OCPO_POW -                                                    -       -               - -  -       OCPO 1201/73         1/2 2
+0  EDGAR_POG1_POW -                                                    -       -               - -  -       POG1 1201/74/76      1/2 2
+0  EDGAR_POG2_POW -                                                    -       -               - -  -       POG2 1201/74/77      1/2 2
+0  EDGAR_OCPI_ENG $ROOT/EDGARv43/v2016-11/EDGAR_v43.OC.ENG.0.1x0.1.nc  emi_oc  1970-2010/1/1/0 C xy kg/m2/s OCPI 1202/72         1/2 2
+0  EDGAR_OCPO_ENG -                                                    -       -               - -  -       OCPO 1202/73         1/2 2
+0  EDGAR_POG1_ENG -                                                    -       -               - -  -       POG1 1202/74/76      1/2 2
+0  EDGAR_POG2_ENG -                                                    -       -               - -  -       POG2 1202/74/77      1/2 2
+0  EDGAR_OCPI_IND $ROOT/EDGARv43/v2016-11/EDGAR_v43.OC.IND.0.1x0.1.nc  emi_oc  1970-2010/1/1/0 C xy kg/m2/s OCPI 1203/72         1/2 2
+0  EDGAR_OCPO_IND -                                                    -       -               - -  -       OCPO 1203/73         1/2 2
+0  EDGAR_POG1_IND -                                                    -       -               - -  -       POG1 1203/74/76      1/2 2
+0  EDGAR_POG2_IND -                                                    -       -               - -  -       POG2 1203/74/77      1/2 2
+0  EDGAR_OCPI_TRO $ROOT/EDGARv43/v2016-11/EDGAR_v43.OC.TRO.0.1x0.1.nc  emi_oc  1970-2010/1/1/0 C xy kg/m2/s OCPI 1204/72         1/2 2
+0  EDGAR_OCPO_TRO -                                                    -       -               - -  -       OCPO 1204/73         1/2 2
+0  EDGAR_POG1_TRO -                                                    -       -               - -  -       POG1 1204/74/76      1/2 2
+0  EDGAR_POG2_TRO -                                                    -       -               - -  -       POG2 1204/74/77      1/2 2
+0  EDGAR_OCPI_TNG $ROOT/EDGARv43/v2016-11/EDGAR_v43.OC.TNG.0.1x0.1.nc  emi_oc  1970-2010/1/1/0 C xy kg/m2/s OCPI 1205/72         1/2 2
+0  EDGAR_OCPO_TNG -                                                    -       -               - -  -       OCPO 1205/73         1/2 2
+0  EDGAR_POG1_TNG -                                                    -       -               - -  -       POG1 1205/74/76      1/2 2
+0  EDGAR_POG2_TNG -                                                    -       -               - -  -       POG2 1205/74/77      1/2 2
+0  EDGAR_OCPI_RCO $ROOT/EDGARv43/v2016-11/EDGAR_v43.OC.RCO.0.1x0.1.nc  emi_oc  1970-2010/1/1/0 C xy kg/m2/s OCPI 1206/72         1/2 2
+0  EDGAR_OCPO_RCO -                                                    -       -               - -  -       OCPO 1206/73         1/2 2
+0  EDGAR_POG1_RCO -                                                    -       -               - -  -       POG1 1206/74/76      1/2 2
+0  EDGAR_POG2_RCO -                                                    -       -               - -  -       POG2 1206/74/77      1/2 2
+#0 EDGAR_OCPI_AWB $ROOT/EDGARv43/v2016-11/EDGAR_v43.OC.AWB.0.1x0.1.nc  emi_oc  1970-2010/1/1/0 C xy kg/m2/s OCPI 1209/72         1/2 2
+#0 EDGAR_OCPO_AWB -                                                    -       -               - -  -       OCPO 1209/73         1/2 2
+#0 EDGAR_POG1_AWB -                                                    -       -               - -  -       POG1 1209/74/76      1/2 2
+#0 EDGAR_POG2_AWB -                                                    -       -               - -  -       POG2 1209/74/77      1/2 2
+0  EDGAR_OCPI_SWD $ROOT/EDGARv43/v2016-11/EDGAR_v43.OC.SWD.0.1x0.1.nc  emi_oc  1970-2010/1/1/0 C xy kg/m2/s OCPI 1211/72         1/2 2
+0  EDGAR_OCPO_SWD -                                                    -       -               - -  -       OCPO 1211/73         1/2 2
+0  EDGAR_POG1_SWD -                                                    -       -               - -  -       POG1 1211/74/76      1/2 2
+0  EDGAR_POG2_SWD -                                                    -       -               - -  -       POG2 1211/74/77      1/2 2
+0  EDGAR_OCPI_FFF $ROOT/EDGARv43/v2016-11/EDGAR_v43.OC.FFF.0.1x0.1.nc  emi_oc  1970-2010/1/1/0 C xy kg/m2/s OCPI 1212/72         1/2 2
+0  EDGAR_OCPO_FFF -                                                    -       -               - -  -       OCPO 1212/73         1/2 2
+0  EDGAR_POG1_FFF -                                                    -       -               - -  -       POG1 1212/74/76      1/2 2
+0  EDGAR_POG2_FFF -                                                    -       -               - -  -       POG2 1212/74/77      1/2 2
+0  EDGAR_SO2_POW  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.POW.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1201            1/2 2
+0  EDGAR_SO4_POW  -                                                    -       -               - -  -       SO4  1201/63         1/2 2
+0  EDGAR_pFe_POW  -                                                    -       -               - -  -       pFe  1201/66         1/2 2
+0  EDGAR_SO2_ENG  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.ENG.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1202            1/2 2
+0  EDGAR_SO4_ENG  -                                                    -       -               - -  -       SO4  1202/63         1/2 2
+0  EDGAR_pFe_ENG  -                                                    -       -               - -  -       pFe  1202/66         1/2 2
+0  EDGAR_SO2_IND  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.IND.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1203            1/2 2
+0  EDGAR_SO4_IND  -                                                    -       -               - -  -       SO4  1203/63         1/2 2
+0  EDGAR_pFe_IND  -                                                    -       -               - -  -       pFe  1203/66         1/2 2
+0  EDGAR_SO2_TRO  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.TRO.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1204            1/2 2
+0  EDGAR_SO4_TRO  -                                                    -       -               - -  -       SO4  1204/63         1/2 2
+0  EDGAR_pFe_TRO  -                                                    -       -               - -  -       pFe  1204/66         1/2 2
+0  EDGAR_SO2_TNG  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.TNG.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1205            1/2 2
+0  EDGAR_SO4_TNG  -                                                    -       -               - -  -       SO4  1205/63         1/2 2
+0  EDGAR_pFe_TNG  -                                                    -       -               - -  -       pFe  1205/66         1/2 2
+0  EDGAR_SO2_RCO  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.RCO.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1206            1/2 2
+0  EDGAR_SO4_RCO  -                                                    -       -               - -  -       SO4  1206/63         1/2 2
+0  EDGAR_pFe_RCO  -                                                    -       -               - -  -       pFe  1206/66         1/2 2
+0  EDGAR_SO2_PPA  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.PPA.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1207            1/2 2
+0  EDGAR_SO4_PPA  -                                                    -       -               - -  -       SO4  1207/63         1/2 2
+0  EDGAR_pFe_PPA  -                                                    -       -               - -  -       pFe  1207/66         1/2 2
+#0 EDGAR_SO2_AWB  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.AWB.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1209            1/2 2
+#0 EDGAR_SO4_AWB  -                                                    -       -               - -  -       SO4  1209/63         1/2 2
+#0 EDGAR_pFe_AWB  -                                                    -       -               - -  -       pFe  1209/66         1/2 2
+0  EDGAR_SO2_SWD  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.SWD.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1211            1/2 2
+0  EDGAR_SO4_SWD  -                                                    -       -               - -  -       SO4  1211/63         1/2 2
+0  EDGAR_pFe_SWD  -                                                    -       -               - -  -       pFe  1211/66         1/2 2
+0  EDGAR_SO2_FFF  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.FFF.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1212            1/2 2
+0  EDGAR_SO4_FFF  -                                                    -       -               - -  -       SO4  1212/63         1/2 2
+0  EDGAR_pFe_FFF  -                                                    -       -               - -  -       pFe  1212/66         1/2 2
 
 #==============================================================================
 # --- NAP ANTHROPOGENIC EMISSIONS: approximate from EDGAR BENZ --- 
@@ -339,7 +388,7 @@ Warnings:                    {WARNINGS}
 # download the older EDGAR data directory, in order to save disk space.
 #==============================================================================
 0 EDGAR_NAP $ROOT/EDGARv42/v2015-02/VOCv2/EDGAR2_1985_FF_IND.1x1geos.nc BENZ 1985/1/1/0 C xy kgC/m2/s NAP 80/81/82 1 2
-)))EDGAR
+)))EDGARv43
 
 #==============================================================================
 # --- HTAP v2 ---
@@ -2110,6 +2159,27 @@ Warnings:                    {WARNINGS}
 # for Bromocarbons:
 39 BROMOCARB_SEASON $ROOT/BROMINE/v2015-02/BromoCarb_Season.nc CHXBRY_scale 2000/1-12/1/0 C xy unitless 1
 
+# for EDGAR 4.3.1:
+# Using data of 2010, the calculated seasonal ratio for different species in the 
+# same sector are nearly identical, possibly due to consistent activity data used.
+# Therefore we use the seasonal scale factors of CO in 2010 for most sectors, 
+# except for AGR, AWB and SOL.
+# For AGR, the NH3 AGR seasonal scale factors are used.
+# For AWB, the CO AGR seasonal scale factors are used.
+# For SOL, the NOx AGR seasonal scale factors are used.
+1201 POW $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc POW 2010/1-12/1/0 C xy unitless 1
+1202 ENG $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc ENG 2010/1-12/1/0 C xy unitless 1
+1203 IND $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc IND 2010/1-12/1/0 C xy unitless 1
+1204 TRO $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc TRO 2010/1-12/1/0 C xy unitless 1
+1205 TNG $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc TNG 2010/1-12/1/0 C xy unitless 1
+1206 RCO $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc RCO 2010/1-12/1/0 C xy unitless 1
+1207 PPA $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc PPA 2010/1-12/1/0 C xy unitless 1
+1208 AGR $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc AGR 2010/1-12/1/0 C xy unitless 1
+1209 AWB $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc AWB 2010/1-12/1/0 C xy unitless 1
+1210 SOL $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc SOL 2010/1-12/1/0 C xy unitless 1
+1211 SWD $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc SWD 2010/1-12/1/0 C xy unitless 1
+1212 FFF $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc FFF 2010/1-12/1/0 C xy unitless 1
+
 #==============================================================================
 # --- VOC speciations ---
 #==============================================================================
@@ -2324,7 +2394,7 @@ Warnings:                    {WARNINGS}
 #   0.069 g AVOC (g CO)−1 (Hayes et al., 2015) and
 #   0.013 g BBVOC (g CO)−1 (Cubison et al., 2011).
 #   They are both oxidized by OH in the model ... to generate SOA.
-#
+#==============================================================================
 280 COtoSOAP_anth 0.069 - - - xy 1 1
 281 COtoSOAP_burn 0.013 - - - xy 1 1
 

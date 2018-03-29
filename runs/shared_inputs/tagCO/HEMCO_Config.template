@@ -91,7 +91,7 @@ Mask fractions:              false
     --> BRAVO                :       true
     --> APEI                 :       true
     --> C2H6                 :       true
-    --> EDGAR                :       true
+    --> EDGARv43             :       true
     --> HTAP                 :       false
     --> EMEP                 :       true
     --> GEIA                 :       true
@@ -124,67 +124,69 @@ Mask fractions:              false
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
 
 #==============================================================================
-# --- EDGAR v4.2 ---
+# --- EDGAR v4.3 ---
 #
 # %%% NOTE: Use EDGAR for the global base emissions instead of GEIA %%%
-#
+# 
+# Aviation and shipping emissions are not included
 # Do not include the following sources (meng,3/6/2014)
-#  - Non-road transportation emissions (1A3a_c_d_e). Instead, use
-#    ICOADS/ARCTAS for ship emissions and AEIC for aircraft emisisons.
-#  - Soil emissions of NOx (4C_4D). These emissions are calculated via the 
+#  - Soil emissions of NOx (SOL). These emissions are calculated via the 
 #    SoilNOx extension.
-#  - Open biomass burning (4F, 5A_C_D_F_4E). These emissions are obtained from
-#    GFED3 or FINN.
+#  - Open biomass burning (AWB). These emissions are obtained from
+#    GFED or FINN.
 #==============================================================================
-(((EDGAR
-0 EDGAR_CO_1A1a_6             $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A1a_6.generic.01x01.nc         emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
-0 EDGAR_CO_1A1a_6_us          -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
-0 EDGAR_CO_1A1a_6_eur         -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
-0 EDGAR_CO_1A1a_6_asia        -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
-0 EDGAR_CO_1A1a_6_oth         -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
-
-0 EDGAR_CO_1A2                $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A2.generic.01x01.nc            emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
-0 EDGAR_CO_1A2_us             -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
-0 EDGAR_CO_1A2_eur            -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
-0 EDGAR_CO_1A2_asia           -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
-0 EDGAR_CO_1A2_oth            -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
-
-0 EDGAR_CO_1A3b               $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A3b.generic.01x01.nc           emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
-0 EDGAR_CO_1A3b_us            -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
-0 EDGAR_CO_1A3b_eur           -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
-0 EDGAR_CO_1A3b_asia          -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
-0 EDGAR_CO_1A3b_oth           -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
-
-0 EDGAR_CO_1A4                $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1A4.generic.01x01.nc            emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
-0 EDGAR_CO_1A4_us             -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
-0 EDGAR_CO_1A4_eur            -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
-0 EDGAR_CO_1A4_asia           -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
-0 EDGAR_CO_1A4_oth            -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
-
-0 EDGAR_CO_1B2a_c_1A1b_c      $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_1B2a_c_1A1b_c.generic.01x01.nc  emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
-0 EDGAR_CO_1B2a_c_1A1b_c_us   -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
-0 EDGAR_CO_1B2a_c_1A1b_c_eur  -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
-0 EDGAR_CO_1B2a_c_1A1b_c_asia -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
-0 EDGAR_CO_1B2a_c_1A1b_c_oth  -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
-
-0 EDGAR_CO_2A_2B_2D           $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_2A_2B_2D.generic.01x01.nc       emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
-0 EDGAR_CO_2A_2B_2D_us        -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
-0 EDGAR_CO_2A_2B_2D_eur       -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
-0 EDGAR_CO_2A_2B_2D_asia      -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
-0 EDGAR_CO_2A_2B_2D_oth       -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
-
-0 EDGAR_CO_2C                 $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_2C.generic.01x01.nc             emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
-0 EDGAR_CO_2C_us              -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
-0 EDGAR_CO_2C_eur             -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
-0 EDGAR_CO_2C_asia            -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
-0 EDGAR_CO_2C_oth             -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
-
-0 EDGAR_CO_7A                 $ROOT/EDGARv42/v2015-02/CO/EDGAR_v42_CO_IPCC_7A.generic.01x01.nc             emi_co  1970-2008/1/1/0 C xy kg/m2/s CO       6/41/26/52       1 2
-0 EDGAR_CO_7A_us              -                                                                            -       -               - -  -       COus     6/41/26/52/1100  1 2
-0 EDGAR_CO_7A_eur             -                                                                            -       -               - -  -       COeur    6/41/26/52/1101  1 2
-0 EDGAR_CO_7A_asia            -                                                                            -       -               - -  -       COasia   6/41/26/52/1102  1 2
-0 EDGAR_CO_7A_oth             -                                                                            -       -               - -  -       COoth    6/41/26/52/1103  1 2
-)))EDGAR
+(((EDGARv43
+0  EDGAR_CO_POW      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.POW.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1201/26/52      1 2
+0  EDGAR_CO_POW_us   -                                                    -       -               - -  -       COus   1201/26/52/1100 1 2
+0  EDGAR_CO_POW_eur  -                                                    -       -               - -  -       COeur  1201/26/52/1101 1 2
+0  EDGAR_CO_POW_asia -                                                    -       -               - -  -       COasia 1201/26/52/1102 1 2
+0  EDGAR_CO_POW_oth  -                                                    -       -               - -  -       COoth  1201/26/52/1103 1 2
+0  EDGAR_CO_ENG      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.ENG.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1202/26/52      1 2
+0  EDGAR_CO_ENG_us   -                                                    -       -               - -  -       COus   1202/26/52/1100 1 2
+0  EDGAR_CO_ENG_eur  -                                                    -       -               - -  -       COeur  1202/26/52/1101 1 2
+0  EDGAR_CO_ENG_asia -                                                    -       -               - -  -       COasia 1202/26/52/1102 1 2
+0  EDGAR_CO_ENG_oth  -                                                    -       -               - -  -       COoth  1202/26/52/1103 1 2
+0  EDGAR_CO_IND      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.IND.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1203/26/52      1 2
+0  EDGAR_CO_IND_us   -                                                    -       -               - -  -       COus   1203/26/52/1100 1 2
+0  EDGAR_CO_IND_eur  -                                                    -       -               - -  -       COeur  1203/26/52/1101 1 2
+0  EDGAR_CO_IND_asia -                                                    -       -               - -  -       COasia 1203/26/52/1102 1 2
+0  EDGAR_CO_IND_oth  -                                                    -       -               - -  -       COoth  1203/26/52/1103 1 2
+0  EDGAR_CO_TRO      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.TRO.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1204/26/52      1 2
+0  EDGAR_CO_TRO_us   -                                                    -       -               - -  -       COus   1204/26/52/1100 1 2
+0  EDGAR_CO_TRO_eur  -                                                    -       -               - -  -       COeur  1204/26/52/1101 1 2
+0  EDGAR_CO_TRO_asia -                                                    -       -               - -  -       COasia 1204/26/52/1102 1 2
+0  EDGAR_CO_TRO_oth  -                                                    -       -               - -  -       COoth  1204/26/52/1103 1 2
+0  EDGAR_CO_TNG      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.TNG.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1205/26/52      1 2
+0  EDGAR_CO_TNG_us   -                                                    -       -               - -  -       COus   1205/26/52/1100 1 2
+0  EDGAR_CO_TNG_eur  -                                                    -       -               - -  -       COeur  1205/26/52/1101 1 2
+0  EDGAR_CO_TNG_asia -                                                    -       -               - -  -       COasia 1205/26/52/1102 1 2
+0  EDGAR_CO_TNG_oth  -                                                    -       -               - -  -       COoth  1205/26/52/1103 1 2
+0  EDGAR_CO_RCO      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.RCO.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1206/26/52      1 2
+0  EDGAR_CO_RCO_us   -                                                    -       -               - -  -       COus   1206/26/52/1100 1 2
+0  EDGAR_CO_RCO_eur  -                                                    -       -               - -  -       COeur  1206/26/52/1101 1 2
+0  EDGAR_CO_RCO_asia -                                                    -       -               - -  -       COasia 1206/26/52/1102 1 2
+0  EDGAR_CO_RCO_oth  -                                                    -       -               - -  -       COoth  1206/26/52/1103 1 2
+0  EDGAR_CO_PPA      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.PPA.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1207/26/52      1 2
+0  EDGAR_CO_PPA_us   -                                                    -       -               - -  -       COus   1207/26/52/1100 1 2
+0  EDGAR_CO_PPA_eur  -                                                    -       -               - -  -       COeur  1207/26/52/1101 1 2
+0  EDGAR_CO_PPA_asia -                                                    -       -               - -  -       COasia 1207/26/52/1102 1 2
+0  EDGAR_CO_PPA_oth  -                                                    -       -               - -  -       COoth  1207/26/52/1103 1 2
+#0 EDGAR_CO_AWB      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.AWB.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1209/26/52      1 2
+#0 EDGAR_CO_AWB_us   -                                                    -       -               - -  -       COus   1209/26/52/1100 1 2
+#0 EDGAR_CO_AWB_eur  -                                                    -       -               - -  -       COeur  1209/26/52/1101 1 2
+#0 EDGAR_CO_AWB_asia -                                                    -       -               - -  -       COasia 1209/26/52/1102 1 2
+#0 EDGAR_CO_AWB_oth  -                                                    -       -               - -  -       COoth  1209/26/52/1103 1 2
+0  EDGAR_CO_SWD      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.SWD.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1211/26/52      1 2
+0  EDGAR_CO_SWD_us   -                                                    -       -               - -  -       COus   1211/26/52/1100 1 2
+0  EDGAR_CO_SWD_eur  -                                                    -       -               - -  -       COeur  1211/26/52/1101 1 2
+0  EDGAR_CO_SWD_asia -                                                    -       -               - -  -       COasia 1211/26/52/1102 1 2
+0  EDGAR_CO_SWD_oth  -                                                    -       -               - -  -       COoth  1211/26/52/1103 1 2
+0  EDGAR_CO_FFF      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.FFF.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1212/26/52      1 2
+0  EDGAR_CO_FFF_us   -                                                    -       -               - -  -       COus   1212/26/52/1100 1 2
+0  EDGAR_CO_FFF_eur  -                                                    -       -               - -  -       COeur  1212/26/52/1101 1 2
+0  EDGAR_CO_FFF_asia -                                                    -       -               - -  -       COasia 1212/26/52/1102 1 2
+0  EDGAR_CO_FFF_oth  -                                                    -       -               - -  -       COoth  1212/26/52/1103 1 2
+)))EDGARv43
 
 #==============================================================================
 # --- BIOFUEL EMISSIONS (Yevich and Logan, 2003) ---
@@ -671,6 +673,27 @@ Mask fractions:              false
 
 # from Streets:
 37 ZHANG_SEASON_CO  $ROOT/STREETS/v2014-07/2006/Streets_2001_CO_MonthFctr_total.generic.1x1.nc  ratio  2001/1-12/1/0 C xy 1 1 
+
+# for EDGAR 4.3.1:
+# Using data of 2010, the calculated seasonal ratio for different species in the 
+# same sector are nearly identical, possibly due to consistent activity data used.
+# Therefore we use the seasonal scale factors of CO in 2010 for most sectors, 
+# except for AGR, AWB and SOL.
+# For AGR, the NH3 AGR seasonal scale factors are used.
+# For AWB, the CO AGR seasonal scale factors are used.
+# For SOL, the NOx AGR seasonal scale factors are used.
+1201 POW $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc POW 2010/1-12/1/0 C xy unitless 1
+1202 ENG $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc ENG 2010/1-12/1/0 C xy unitless 1
+1203 IND $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc IND 2010/1-12/1/0 C xy unitless 1
+1204 TRO $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc TRO 2010/1-12/1/0 C xy unitless 1
+1205 TNG $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc TNG 2010/1-12/1/0 C xy unitless 1
+1206 RCO $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc RCO 2010/1-12/1/0 C xy unitless 1
+1207 PPA $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc PPA 2010/1-12/1/0 C xy unitless 1
+1208 AGR $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc AGR 2010/1-12/1/0 C xy unitless 1
+1209 AWB $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc AWB 2010/1-12/1/0 C xy unitless 1
+1210 SOL $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc SOL 2010/1-12/1/0 C xy unitless 1
+1211 SWD $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc SWD 2010/1-12/1/0 C xy unitless 1
+1212 FFF $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc FFF 2010/1-12/1/0 C xy unitless 1
 
 #==============================================================================
 # --- VOC speciations ---
