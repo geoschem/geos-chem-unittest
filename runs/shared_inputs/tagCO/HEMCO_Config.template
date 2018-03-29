@@ -89,7 +89,7 @@ Mask fractions:              false
     --> AEIC                 :       true
     --> BIOFUEL              :       true
     --> BRAVO                :       true
-    --> CAC                  :       true
+    --> APEI                 :       true
     --> C2H6                 :       true
     --> EDGAR                :       true
     --> HTAP                 :       false
@@ -239,13 +239,13 @@ Mask fractions:              false
 )))BRAVO
 
 #==============================================================================
-# --- CAC (Canada) ---
+# --- APEI (Canada) ---
 #==============================================================================
-(((CAC
-0 CAC_CO    $ROOT/CAC/v2016-09/CAC.geos.0.1x0.1.nc CO 2002-2008/1/1/0 C xy kg/m2/s CO    6/23/26/52/1002      1/2 30
-0 CAC_COus  -                                      -  -               - -  -       COus  6/23/26/52/1002/1100 1/2 30
-0 CAC_COoth -                                      -  -               - -  -       COoth 6/23/26/52/1002/1103 1/2 30
-)))CAC
+(((APEI
+0 APEI_CO    $ROOT/APEI/v2016-11/APEI.0.1x0.1.nc CO 1989-2014/1/1/0 C xy kg/m2/s CO    26/52/1002      1/2 30
+0 APEI_COus  -                                   -  -               - -  -       COus  26/52/1002/1100 1/2 30
+0 APEI_COoth -                                   -  -               - -  -       COoth 26/52/1002/1103 1/2 30
+)))APEI
 
 #==============================================================================
 # --- NEI 2005 (USA) ---

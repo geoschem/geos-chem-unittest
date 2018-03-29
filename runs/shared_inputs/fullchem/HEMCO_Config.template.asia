@@ -99,7 +99,7 @@ Warnings:                    {WARNINGS}
     --> BIOFUEL              :       true
     --> BOND                 :       true
     --> BRAVO                :       false
-    --> CAC                  :       false
+    --> APEI                 :       false
     --> XIAO                 :       true
     --> EDGAR                :       true
     --> HTAP                 :       false
@@ -507,17 +507,23 @@ Warnings:                    {WARNINGS}
 )))BRAVO
 
 #==============================================================================
-# --- CAC (Canada) ---
+# --- APEI (Canada) ---
 #==============================================================================
-(((CAC
-0 CAC_NO   $ROOT/CAC/v2016-09/CAC.geos.0.1x0.1.nc NO  2002-2008/1/1/0 C xy kg/m2/s NO   1/24/25/1002        1/2 30
-0 CAC_CO   $ROOT/CAC/v2016-09/CAC.geos.0.1x0.1.nc CO  2002-2008/1/1/0 C xy kg/m2/s CO   6/23/26/52/1002     1/2 30
-0 CAC_SOAP  -                                    -   -               - -  -        SOAP 6/23/26/52/1002/280 1/2 30
-0 CAC_SO2  $ROOT/CAC/v2016-09/CAC.geos.0.1x0.1.nc SOx 2002-2008/1/1/0 C xy kg/m2/s SO2  11/19/60/1002       1/2 30
-0 CAC_SO4  -                                      -   -               - -  -       SO4  60/65/1002          1/2 30
-0 CAC_pFe  -                                      -   -               - -  -       pFe  60/68/1002          1/2 30
-0 CAC_NH3  $ROOT/CAC/v2016-09/CAC_NH3.geos.1x1.nc NH3 2008/1-12/1/0   C xy kg/m2/s NH3  1002                1/2 30
-)))CAC
+(((APEI
+0 APEI_NO   $ROOT/APEI/v2016-11/APEI.0.1x0.1.nc NOx 1989-2014/1/1/0 C xy kg/m2/s NO   25/1002/115    1/2 30
+0 APEI_CO   $ROOT/APEI/v2016-11/APEI.0.1x0.1.nc CO  1989-2014/1/1/0 C xy kg/m2/s CO   26/52/1002     1/2 30
+0 APEI_SOAP -                                   -   -               - -  -       SOAP 26/52/1002/280 1/2 30
+0 APEI_SO2  $ROOT/APEI/v2016-11/APEI.0.1x0.1.nc SOx 1989-2014/1/1/0 C xy kg/m2/s SO2  60/1002        1/2 30
+0 APEI_SO4  -                                   -   -               - -  -       SO4  60/65/1002     1/2 30
+0 APEI_pFe  -                                   -   -               - -  -       pFe  60/68/1002     1/2 30
+0 APEI_NH3  $ROOT/APEI/v2016-11/APEI.0.1x0.1.nc NH3 1989-2014/1/1/0 C xy kg/m2/s NH3  1002           1/2 30
+0 APEI_BCPI $ROOT/APEI/v2016-11/APEI.0.1x0.1.nc EC  1989-2014/1/1/0 C xy kg/m2/s BCPI 70/1002        1/2 30
+0 APEI_BCPO $ROOT/APEI/v2016-11/APEI.0.1x0.1.nc EC  1989-2014/1/1/0 C xy kg/m2/s BCPO 71/1002        1/2 30
+0 APEI_OCPI $ROOT/APEI/v2016-11/APEI.0.1x0.1.nc OC  1989-2014/1/1/0 C xy kg/m2/s OCPI 72/1002        1/2 30
+0 APEI_OCPO $ROOT/APEI/v2016-11/APEI.0.1x0.1.nc OC  1989-2014/1/1/0 C xy kg/m2/s OCPO 73/1002        1/2 30
+0 APEI_POG1 -                                       -    -          - -  -       POG1 74/76/1002     1/2 30
+0 APEI_POG2 -                                       -    -          - -  -       POG2 74/77/1002     1/2 30
+)))APEI
 
 #==============================================================================
 # --- NEI 2005 (USA) ---
@@ -1506,7 +1512,7 @@ Warnings:                    {WARNINGS}
 # Local redistribution factors: These are model-specific and hence need to be 
 # redefined for different model/resolution simulations!!!
 #==============================================================================
-103 LIGHTNOX_OTDLIS $ROOT/LIGHTNOX/v2017-09/OTD-LIS-Local-Redist.CTH.v5.$MET.$RES.CH.v20170928.nc OTD $YYYY/1-12/1/0 C xy unitless NO - 1 1
+103 LIGHTNOX_OTDLIS $ROOT/LIGHTNOX/v2017-09/OTD-LIS-Local-Redist.CTH.v5.$MET.$RES.AS.v20170928.nc OTD $YYYY/1-12/1/0 C xy unitless NO - 1 1
 
 #==============================================================================
 # --- SOILNOX emissions (Extension 104) ---
