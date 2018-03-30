@@ -3,8 +3,21 @@
 ###  Contact: GEOS-Chem Support Team (geos-chem-support@as.harvard.edu)     ###
 ###############################################################################
 
-# The following settings are used for only for GCHP simulations
-EXPID:  OutputDir/GCHP
+#============================================================================
+# EXPID allows you to specify the beginning of the file path corresponding
+# to each diagnostic collection.  For example:
+#
+#   EXPID: ./GEOSChem 
+#      Will create netCDF files whose names begin "GEOSChem",
+#      in this run directory.
+#
+#   EXPID: ./OutputDir/GEOSChem
+#      Will create netCDF files whose names begin with "GEOSChem"
+#      in the OutputDir sub-folder of this run directory.
+#
+# EXPDSC and CoresPerNode are only used by GCHP simulations.
+#============================================================================
+EXPID:  ./GEOSChem
 EXPDSC: GEOS-Chem_devel
 CoresPerNode: 6
 
