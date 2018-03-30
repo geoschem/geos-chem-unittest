@@ -113,6 +113,7 @@ Warnings:                    {WARNINGS}
     --> MIX                  :       true
     --> STREETS              :       false
     --> DICE_Africa          :       true 
+    --> TRASH                :       true
     --> RCP_3PD              :       false 
     --> RCP_45               :       false
     --> RCP_60               :       false
@@ -372,6 +373,21 @@ Warnings:                    {WARNINGS}
 0 BIOFUEL_SOAP $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_CO   1985/1/1/0 C xy kg/m2/s SOAP 53/281 2 1
 0 BIOFUEL_SO2  -                                          -            -          - -  -       SO2  91     2 1
 )))BIOFUEL
+
+#==============================================================================
+# --- Wiedinmyer et al. (2014) global trash emissions ---
+#==============================================================================
+(((TRASH
+0 TRASH_SOAP  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  CO    2008/1/1/0 C xy kg/m2/s  SOAP  280   12 30
+0 TRASH_SO2   $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  SO2   2008/1/1/0 C xy kg/m2/s  SO2   78    12 30
+0 TRASH_SO4   -                                                       -     -          - -  -        SO4   63    12 30
+0 TRASH_pFe   -                                                       -     -          - -  -        pFe   78/66 12 30
+0 TRASH_NH3   $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  NH3   2008/1/1/0 C xy kg/m2/s  NH3   -     12 30
+0 TRASH_BCPI  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  BC    2008/1/1/0 C xy kg/m2/s  BCPI  70    12 30
+0 TRASH_BCPO  -                                                       -     -          - -  -        BCPO  71    12 30
+0 TRASH_OCPI  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  OC    2008/1/1/0 C xy kg/m2/s  OCPI  72    12 30
+0 TRASH_OCPO  -                                                       -     -          - -  -        OCPO  73    12 30
+)))TRASH
 
 #==============================================================================
 # --- EMEP (Europe) ---

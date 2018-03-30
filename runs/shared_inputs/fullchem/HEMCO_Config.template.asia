@@ -120,6 +120,7 @@ Warnings:                    {WARNINGS}
     --> MIX                  :       true
     --> STREETS              :       false
     --> DICE_Africa          :       false
+    --> TRASH                :       true
     --> RCP_3PD              :       false 
     --> RCP_45               :       false
     --> RCP_60               :       false
@@ -510,6 +511,41 @@ Warnings:                    {WARNINGS}
 0 RETRO_C2H2    $ROOT/RETRO/v2014-07/orig_kgC/ethyne_kgC.nc   emission_flux 2000/1-12/1/0 C xy kgC/m2/s C2H2 26     1/2 3 
 0 RETRO_C2H6    $ROOT/RETRO/v2014-07/orig_kgC/ethane_kgC.nc   emission_flux 2000/1-12/1/0 C xy kgC/m2/s C2H6 26     1/2 3 
 )))RETRO
+
+#==============================================================================
+# --- Wiedinmyer et al. (2014) global trash emissions ---
+#==============================================================================
+(((TRASH
+0 TRASH_CO    $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  CO    2008/1/1/0 C xy kg/m2/s  CO    -     12 30
+0 TRASH_SOAP  -                                                       -     -          - -  -        SOAP  280   12 30
+0 TRASH_NO    $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  NO    2008/1/1/0 C xy kg/m2/s  NO    -     12 30
+0 TRASH_SO2   $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  SO2   2008/1/1/0 C xy kg/m2/s  SO2   78    12 30
+0 TRASH_SO4   -                                                       -     -          - -  -        SO4   63    12 30
+0 TRASH_pFe   -                                                       -     -          - -  -        pFe   78/66 12 30
+0 TRASH_NH3   $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  NH3   2008/1/1/0 C xy kg/m2/s  NH3   -     12 30
+0 TRASH_ACET  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  ACET  2008/1/1/0 C xy kg/m2/s  ACET  -     12 30
+0 TRASH_ISOP  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  ISOP  2008/1/1/0 C xy kg/m2/s  ISOP  -     12 30
+0 TRASH_MEK   $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  MEK   2008/1/1/0 C xy kg/m2/s  MEK   -     12 30
+0 TRASH_ALD2  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  ALD2  2008/1/1/0 C xy kg/m2/s  ALD2  -     12 30
+0 TRASH_MVK   $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  MVK   2008/1/1/0 C xy kg/m2/s  MVK   -     12 30
+0 TRASH_PRPE  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  PRPE  2008/1/1/0 C xy kg/m2/s  PRPE  -     12 30
+0 TRASH_CH2O  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  CH2O  2008/1/1/0 C xy kg/m2/s  CH2O  -     12 30
+0 TRASH_HAC   $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  HAC   2008/1/1/0 C xy kg/m2/s  HAC   -     12 30
+0 TRASH_GLYC  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  GLYC  2008/1/1/0 C xy kg/m2/s  GLYC  -     12 30
+0 TRASH_MOH   $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  MOH   2008/1/1/0 C xy kg/m2/s  MOH   -     12 30
+#0 TRASH_MGLY $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  MGLY  2008/1/1/0 C xy kg/m2/s  MGLY  -     12 30
+#0 TRASH_APIN $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  APIN  2008/1/1/0 C xy kg/m2/s  APIN  -     12 30
+0 TRASH_C2H2  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  C2H2  2008/1/1/0 C xy kg/m2/s  C2H2  -     12 30
+0 TRASH_C2H4  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  C2H4  2008/1/1/0 C xy kg/m2/s  C2H4  -     12 30
+0 TRASH_BENZ  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  BENZ  2008/1/1/0 C xy kg/m2/s  BENZ  -     12 30
+0 TRASH_TOLU  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  TOLU  2008/1/1/0 C xy kg/m2/s  TOLU  -     12 30
+0 TRASH_XYLE  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  XYLE  2008/1/1/0 C xy kg/m2/s  XYLE  -     12 30
+0 TRASH_HCOOH $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  HCOOH 2008/1/1/0 C xy kg/m2/s  HCOOH -     12 30
+0 TRASH_BCPI  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  BC    2008/1/1/0 C xy kg/m2/s  BCPI  70    12 30
+0 TRASH_BCPO  -                                                       -     -          - -  -        BCPO  71    12 30
+0 TRASH_OCPI  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  OC    2008/1/1/0 C xy kg/m2/s  OCPI  72    12 30
+0 TRASH_OCPO  -                                                       -     -          - -  -        OCPO  73    12 30
+)))TRASH
 
 #==============================================================================
 # --- Xiao et al., JGR, 2008 ---
