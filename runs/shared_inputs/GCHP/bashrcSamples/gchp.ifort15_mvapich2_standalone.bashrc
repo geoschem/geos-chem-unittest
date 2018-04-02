@@ -82,6 +82,7 @@ export OMPI_FC=ifort
 export OMPI_CC=icc
 export OMPI_CXX=icpc
 export COMPILER=ifort
+export ESMF_COMPILER=intel
 
 # For ESMF compilation ONLY!
 # Disable these when compiling mvapich2 & netcdf, or configure will not allow 
@@ -112,6 +113,9 @@ export GC_F_BIN="$NETCDF_FORTRAN_HOME/bin"
 export GC_F_INCLUDE="$NETCDF_FORTRAN_INCLUDE"
 export GC_F_LIB="$NETCDF_FORTRAN_LIB"
 
+# Set ESMF optimization (g=debugging, O=optimized (capital o))
+export ESMF_BOPT=O
+
 #==============================================================================
 # Raise memory limits.
 #==============================================================================
@@ -130,6 +134,7 @@ echo ""
 echo "LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}"
 echo ""
 echo "ESMF_COMM: ${ESMF_COMM}"
+echo "ESMP_BOPT: ${ESMF_BOPT}"
 echo "MPI_ROOT: ${MPI_ROOT}"
 echo "MVAPICH2: ${MVAPICH2}"
 echo "MV2_USE_THREAD_WARNING: ${MV2_USE_THREAD_WARNING}"
@@ -152,6 +157,7 @@ echo "F77: ${F77}"
 echo "F90: ${F90}"
 echo "OMPI_FC: ${OMPI_FC}"
 echo "COMPILER: ${COMPILER}"
+echo "ESMF_COMPILER: ${ESMF_COMPILER}"
 echo ""
 echo "GC_BIN: ${GC_BIN}"
 echo "GC_INCLUDE: ${GC_INCLUDE}"

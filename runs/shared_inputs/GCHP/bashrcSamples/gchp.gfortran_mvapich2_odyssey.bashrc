@@ -84,7 +84,8 @@ export FC=gfortran
 export F77=$FC
 export F90=$FC
 export OMPI_FC=$FC
-export COMPILER=$FC # needed for gfortran?
+export COMPILER=$FC
+export ESMF_COMPILER=gfortran
 
 # MPI Communication
 export ESMF_COMM=mvapich2
@@ -117,6 +118,9 @@ export GC_F_LIB="$NETCDF_FORTRAN_HOME/lib"
 export PATH=${NETCDF_FORTRAN_HOME}/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_FORTRAN_HOME}/lib
 
+# Set ESMF optimization (g=debugging, O=optimized (capital o))
+export ESMF_BOPT=O
+
 #==============================================================================
 # Raise/set memory limits
 #==============================================================================
@@ -138,6 +142,7 @@ echo ""
 echo "LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}"
 echo ""
 echo "ESMF_COMM: ${ESMF_COMM}"
+echo "ESMP_BOPT: ${ESMF_BOPT}"
 echo "MPI_ROOT: ${MPI_ROOT}"
 echo "MVAPICH2: ${MVAPICH2}"
 echo "MV2_USE_THREAD_WARNING: ${MV2_USE_THREAD_WARNING}"
@@ -155,6 +160,7 @@ echo "F77: ${F77}"
 echo "F90: ${F90}"
 echo "OMPI_FC: ${OMPI_FC}"
 echo "COMPILER: ${COMPILER}"
+echo "ESMF_COMPILER: ${ESMF_COMPILER}"
 echo ""
 echo "GC_BIN: ${GC_BIN}"
 echo "GC_INCLUDE: ${GC_INCLUDE}"
