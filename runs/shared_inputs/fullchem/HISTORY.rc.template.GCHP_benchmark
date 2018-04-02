@@ -1168,9 +1168,9 @@ COLLECTIONS: 'Emissions',
   ProdLoss.frequency:         010000
   ProdLoss.duration:          010000
   ProdLoss.mode:              'time-averaged'
-  ProdLoss.fields:            'PROD_SO4                      ', 'GIGCchem', 
-                              'PROD_CO                       ', 'GIGCchem', 
-                              'PROD_OX                       ', 'GIGCchem', 
+  ProdLoss.fields:            'Prod_SO4                      ', 'GIGCchem', 
+                              'Prod_CO                       ', 'GIGCchem', 
+                              'Prod_Ox                       ', 'GIGCchem', 
                               'ProdBCPIfromBCPO              ', 'GIGCchem', 
                               'ProdOCPIfromOCPO              ', 'GIGCchem',
                               'ProdSO4fromH2O2inCloud        ', 'GIGCchem',
@@ -1181,8 +1181,8 @@ COLLECTIONS: 'Emissions',
                               'ProdSO4fromSRO3               ', 'GIGCchem',
                               'ProdSO4fromSRHOBr             ', 'GIGCchem',
                               'ProdSO4fromO3s                ', 'GIGCchem',
-                              'LOSS_CO                       ', 'GIGCchem',
-                              'LOSS_OX                       ', 'GIGCchem',
+                              'Loss_CO                       ', 'GIGCchem',
+                              'Loss_Ox                       ', 'GIGCchem',
                               'LossHNO3onSeaSalt             ', 'GIGCchem',
 ::
 #===================================================================
