@@ -12,7 +12,7 @@
 # Cores are distributed across each of the six cubed sphere faces using
 # NX and NY set below. Each face is divided into NX by NY/6 regions 
 # and each of those regions is processed by a single core independent of
-# which node it belows to.
+# which node it belongs to.
 #
 # Rules for setting NX and NY:
 #   1. NY must be an integer and a multiple of 6	  
@@ -29,7 +29,11 @@
 NUM_NODES=1
 NUM_CORES_PER_NODE=6
 NY=6                  
-NX=1                  
+NX=1            
+
+# MAPL shared memory option (0: off, 1: on). Keep off unless you know what
+# you are doing. Contact GCST for more information.      
+USE_SHMEM=0
 
 ######################################
 #### INTERNAL CUBED-SPHERE RESOLUTION
@@ -247,11 +251,12 @@ else
     exit 1
 fi
 
-#### Set # nodes and # cores
+#### Set # nodes, # cores, and shared memory option
 echo "Compute resources:"
 replace_val NX            ${NX}                 GCHP.rc
 replace_val NY            ${NY}                 GCHP.rc
 replace_val CoresPerNode  ${NUM_CORES_PER_NODE} HISTORY.rc
+replace_cal USE_SHMEM     ${USE_SHMEM}          CAP.rc
 
 ####  set cubed-sphere resolution and related grid variables
 echo " "
