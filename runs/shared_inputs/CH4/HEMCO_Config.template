@@ -93,7 +93,6 @@ Warnings:                    {WARNINGS}
     --> RCP_85            :       false
 # ----------------------------------------------------------------------------
 111     GFED              : off   CH4
-    --> GFED3             :       false
     --> GFED4             :       true
     --> GFED_daily        :       true
     --> GFED_3hourly      :       false
@@ -379,24 +378,6 @@ Warnings:                    {WARNINGS}
 # --- GFED biomass burning emissions (Extension 111) 
 # NOTE: These are the base emissions in kgDM/m2/s.
 #==============================================================================
-111 GFED_HUMTROP    $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy 1         * - 1 1
-
-(((GFED3   
-111 GFED_WDL        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__WDL_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_AGW        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__AGW_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_DEF        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__DEF_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_FOR        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__FOR_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_PET        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__PET_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_SAV        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__SAV_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-
-(((GFED_daily
-111 GFED_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  C xy 1         * - 1 1
-)))GFED_daily
-
-(((GFED_3hourly
-111 GFED_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 C xy 1         * - 1 1
-)))GFED_3hourly
-)))GFED3  
 
 (((GFED4
 111 GFED_TEMP       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_TEMP       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1

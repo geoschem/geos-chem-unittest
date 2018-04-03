@@ -164,7 +164,6 @@ Warnings:                    {WARNINGS}
     --> Othrterp to SOAS     :       0.050
 #10% mass yield from other terpenes to SOA
 111     GFED                 : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/MTPA/BENZ/TOLU/XYLE/NAP/EOH/SOAP
-    --> GFED3                :       false 
     --> GFED4                :       true
     --> GFED_daily           :       false
     --> GFED_3hourly         :       false
@@ -2010,24 +2009,6 @@ Warnings:                    {WARNINGS}
 # NOTE: These are the base emissions in kgDM/m2/s.
 #==============================================================================
 
-(((GFED3
-111 GFED_HUMTROP    $ROOT/GFED3/v2014-10/GFED3_humtropmap.nc              humtrop           2000/1/1/0             C xy unitless  * - 1 1
-111 GFED_WDL        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__WDL_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_AGW        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__AGW_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_DEF        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__DEF_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_FOR        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__FOR_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_PET        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__PET_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_SAV        $ROOT/GFED3/v2014-10/GFED3_gen.1x1.$YYYY.nc           GFED3_BB__SAV_DM  1997-2011/1-12/01/0    C xy kgDM/m2/s * - 1 1
-
-(((GFED_daily
-111 GFED_FRAC_DAY   $ROOT/GFED3/v2014-10/GFED3_dailyfrac_gen.1x1.$YYYY.nc GFED3_BB__DAYFRAC 2002-2011/1-12/1-31/0  R xy unitless  * - 1 1 
-)))GFED_daily
-
-(((GFED_3hourly
-111 GFED_FRAC_3HOUR $ROOT/GFED3/v2014-10/GFED3_3hrfrac_gen.1x1.$YYYY.nc   GFED3_BB__HRFRAC  2002-2011/1-12/01/0-23 R xy unitless  * - 1 1 
-)))GFED_3hourly
-)))GFED3
-
 (((GFED4
 111 GFED_TEMP       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_TEMP       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
 111 GFED_AGRI       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_AGRI       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
@@ -2585,7 +2566,7 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- Carbon aerosols: speciation of hydrophilic and hydrophobic fractions ---
 #
-# Fractions applied to the biomass burning extensions (GFED3 or FINN) are
+# Fractions applied to the biomass burning extensions (GFED or FINN) are
 # specified separately in the extensions section.
 #==============================================================================
 70 BC2BCPI  0.2  - - - xy unitless 1

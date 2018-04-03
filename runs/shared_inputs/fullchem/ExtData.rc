@@ -525,17 +525,6 @@ DEAD_VAI      1     xy C Y Y 1985-%m2-01T00:00:00 none none VAI      ./MainDataD
 # Need to adjust the code to allow for land types - voting gives the best answer for now
 DEAD_SFC_TYP  count xy C N V -                    none none SFC_TYP  ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
 
-# GFED3
-# Need DE0720xPE0360_CFnnnnx6C.bin
-# HUMTROP is single-entry
-GFED_HUMTROP  1       xy C N N -                   none none humtrop           ./MainDataDir/GFED3/v2014-10/GFED3_humtropmap.nc
-GFED_WDL      kg/m2/s xy C N Y %y4-%m2-01T00:00:00 none none GFED3_BB__WDL_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
-GFED_AGW      kg/m2/s xy C N Y %y4-%m2-01T00:00:00 none none GFED3_BB__AGW_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
-GFED_DEF      kg/m2/s xy C N Y %y4-%m2-01T00:00:00 none none GFED3_BB__DEF_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
-GFED_FOR      kg/m2/s xy C N Y %y4-%m2-01T00:00:00 none none GFED3_BB__FOR_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
-GFED_PET      kg/m2/s xy C N Y %y4-%m2-01T00:00:00 none none GFED3_BB__PET_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
-GFED_SAV      kg/m2/s xy C N Y %y4-%m2-01T00:00:00 none none GFED3_BB__SAV_DM  ./MainDataDir/GFED3/v2014-10/GFED3_gen.1x1.%y4.nc
-
 # GFED4
 GFED_TEMP       1 xy C N Y F%y4-%m2-01T00:00:00 none none DM_TEMP ./MainDataDir/GFED4/v2015-10/%y4/GFED4_gen.025x025.%y4%m2.nc
 GFED_AGRI       1 xy C N Y F%y4-%m2-01T00:00:00 none none DM_AGRI ./MainDataDir/GFED4/v2015-10/%y4/GFED4_gen.025x025.%y4%m2.nc
