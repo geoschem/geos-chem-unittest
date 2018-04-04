@@ -201,9 +201,10 @@ XLAIMULTI cm2_cm-2 xyz E N Y %y4-%m2-%d2T00:00:00 none none XLAIMULTI ./ChemData
 # One year of monthly data
 # Confusingly, the files labeled 2x25 actually contain data at 1x1
 # None of the 3 files (4x5, 2x25, 1x1) actually agree with each other in magnitude, although the 2x25 and 4x5 patterns agree
-GEIA_NH3_ANTH  kg_m-2_s-1 xy C Y Y F1990-%m2-01T00:00:00 none none NH3_ANTH    ./MainDataDir/NH3/v2014-07/NH3_geos.4x5.nc
-GEIA_NH3_BIOF  kg_m-2_s-1 xy C Y Y F1998-%m2-01T00:00:00 none none NH3_BIOFUEL ./MainDataDir/NH3/v2014-07/NH3_biofuel.geos.4x5.nc
-GEIA_NH3_NATU  kg_m-2_s-1 xy C Y Y F1990-%m2-01T00:00:00 none none NH3_NATU    ./MainDataDir/NH3/v2014-07/NH3_geos.4x5.nc
+GEIA_NH3_ANTH  kg_m-2_s-1 xy C Y Y F1990-%m2-01T00:00:00 none none NH3_ANTH     ./MainDataDir/NH3/v2014-07/NH3_geos.4x5.nc
+GEIA_NH3_BIOF  kg_m-2_s-1 xy C Y Y F1998-%m2-01T00:00:00 none none NH3_BIOFUEL  ./MainDataDir/NH3/v2014-07/NH3_biofuel.geos.4x5.nc
+GEIA_NH3_NATU  kg_m-2_s-1 xy C Y Y F1990-%m2-01T00:00:00 none none NH3_NATU     ./MainDataDir/NH3/v2014-07/NH3_geos.4x5.nc
+SEABIRD_NH3    kg_m-2_s-1 xy C Y Y F1990-%m2-01T00:00:00 none none NH3_SEABIRDS ./MainDataDir/NH3/v2018-04/NH3_Arctic_seabirds.nc
 #
 # POET EOH
 POET_EOH kgC_m-2_s-1 xy C Y Y - none none EOH ./MainDataDir/POET/v2017-03/POET_EOH.geos.2x25.nc

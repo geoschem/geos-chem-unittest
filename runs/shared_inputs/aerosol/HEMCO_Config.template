@@ -190,13 +190,15 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 (((GEIA
 # GEIA NH3 emissions: anthropogenic, biofuel and natural sources
-0 GEIA_NH3_ANTH $ROOT/NH3/v2014-07/NH3_geos.1x1.nc         NH3_ANTH    1990/1-12/1/0 C xy  kg/m2/s NH3 - 1 1 
+0 GEIA_NH3_ANTH $ROOT/NH3/v2014-07/NH3_geos.1x1.nc         NH3_ANTH     1990/1-12/1/0 C xy  kg/m2/s NH3 - 1 1 
 
 (((BIOFUEL
-0 GEIA_NH3_BIOF $ROOT/NH3/v2014-07/NH3_biofuel.geos.1x1.nc NH3_BIOFUEL 1998/1-12/1/0 C xy  kg/m2/s NH3 - 2 1
+0 GEIA_NH3_BIOF $ROOT/NH3/v2014-07/NH3_biofuel.geos.1x1.nc NH3_BIOFUEL  1998/1-12/1/0 C xy  kg/m2/s NH3 - 2 1
 )))BIOFUEL
 
-0 GEIA_NH3_NATU $ROOT/NH3/v2014-07/NH3_geos.1x1.nc         NH3_NATU    1990/1-12/1/0 C xy  kg/m2/s NH3 - 3 1
+0 GEIA_NH3_NATU $ROOT/NH3/v2014-07/NH3_geos.1x1.nc         NH3_NATU     1990/1-12/1/0 C xy  kg/m2/s NH3 - 3 1
+
+0 SEABIRD_NH3   $ROOT/NH3/v2018-04/NH3_Arctic_seabirds.nc  NH3_SEABIRDS 1990/1-12/1/0 C xy  kg/m2/s NH3 - 30 1
 )))GEIA
 
 #==============================================================================
