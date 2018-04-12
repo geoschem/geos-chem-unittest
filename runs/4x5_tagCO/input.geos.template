@@ -29,11 +29,7 @@ Species #9              : CObboc
 Species #10             : CObbeu
 Species #11             : CObboth
 Species #12             : COch4
-Species #13             : CObiof
-Species #14             : COisop
-Species #15             : COmono
-Species #16             : COmeoh
-Species #17             : COacet
+Species #13             : COnmvoc
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
@@ -114,6 +110,10 @@ All-sky flux?           : F
 Radiation Timestep [sec]: 10800
 Species fluxes          : 0 0 0 0 0 0 0 0 0 1 0
  ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM,ST]
+------------------------+------------------------------------------------------
+%%% CO SIM MENU %%%     :
+Use full chem. P(CO)|CH4: T
+Use full chem. P(CO)|VOC: T
 ------------------------+------------------------------------------------------
 %%% OUTPUT MENU %%%     : 123456789.123456789.123456789.1--1=ZERO+2=BPCH
 Schedule output for JAN : 3000000000000000000000000000000
@@ -268,6 +268,7 @@ JMIN, JMAX of region    :  23  46
 Turn on P/L (ND65) diag?: T
 # of levels for ND65    : 47
 Save O3 P/L (ND20)?     : F
+Save CO Production?     : F
 ------------------------+------------------------------------------------------
 %%% BENCHMARK MENU %%%  :
 Save benchmark output?  : F

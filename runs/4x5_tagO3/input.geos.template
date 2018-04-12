@@ -253,6 +253,7 @@ JMIN, JMAX of region    :  23  46
 Turn on P/L (ND65) diag?: T
 # of levels for ND65    : 47
 Save O3 P/L (ND20)?     : F
+Save CO Production?     : F
 ------------------------+------------------------------------------------------
 %%% BENCHMARK MENU %%%  :
 Save benchmark output?  : F
