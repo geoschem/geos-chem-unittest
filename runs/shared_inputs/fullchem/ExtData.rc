@@ -526,11 +526,20 @@ DEAD_VAI      1     xy C Y Y 1985-%m2-01T00:00:00 none none VAI      ./MainDataD
 # Need to adjust the code to allow for land types - voting gives the best answer for now
 DEAD_SFC_TYP  count xy C N V -                    none none SFC_TYP  ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
 
+############################################################################## 
+#### NOTE: Comment out these entries for fine dust emissions.  Adding these
+#### causes the dust emissions total to change by orders of magnitude, and
+#### we do not yet understand why.  It could be that something in a recent
+#### HEMCO update changed.  For the time being, comment these out so that
+#### they can be restored at a later date.
+####     -- Bob Yantosca (11 Apr 2018)
+#
 # Anthropogenic PM2.5 for DST1 (new in v11-02f; anticipate problem with same 
 # name)
-DEAD_PM25FINE kg/m2/s xy C Y Y 2015-%m2-01T00:00:00 none none PM25FINE   ./MainDataDir/DUST_DEAD/v2018-04/PM25FINE_ECLIPSE_2015.geos.2x25.nc
-DEAD_PM25FINE kg/m2/s xy C Y Y 2012-%m2-01T00:00:00 none none PM25FINE   ./MainDataDir/DUST_DEAD/v2018-04/PM25FINE_MEIC_2012.geos.025x025.nc
-DEAD_PM25FINE kg/m2/s xy C Y Y 2013-%m2-01T00:00:00 none none PM25Fine   ./MainDataDir/DUST_DEAD/v2018-04/PM25FINE_IITB_2013.geos.025x025.nc
+#DEAD_PM25FINE kg/m2/s xy C Y Y 2015-%m2-01T00:00:00 none none PM25FINE   ./MainDataDir/DUST_DEAD/v2018-04/PM25FINE_ECLIPSE_2015.geos.2x25.nc
+#DEAD_PM25FINE kg/m2/s xy C Y Y 2012-%m2-01T00:00:00 none none PM25FINE   ./MainDataDir/DUST_DEAD/v2018-04/PM25FINE_MEIC_2012.geos.025x025.nc
+#DEAD_PM25FINE kg/m2/s xy C Y Y 2013-%m2-01T00:00:00 none none PM25Fine   ./MainDataDir/DUST_DEAD/v2018-04/PM25FINE_IITB_2013.geos.025x025.nc
+#############################################################################
 
 # GFED4
 GFED_TEMP       1 xy C N Y F%y4-%m2-01T00:00:00 none none DM_TEMP ./MainDataDir/GFED4/v2015-10/%y4/GFED4_gen.025x025.%y4%m2.nc
@@ -1457,8 +1466,15 @@ USA_MASK     1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/usa.ma
 ASIA_MASK    1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc
 NEI11_MASK   1 xy C N Y - none none LANDMASK ./MainDataDir/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc
 AF_MASK      1 xy C N Y - none none LANDMASK ./MainDataDir/MASKS/v2014-07/AF_LANDMASK.geos.05x0666.nc
-CHINA_MASK   1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/China_mask.generic.1x1.nc
-INDIA_MASK   1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/India_mask.generic.1x1.nc
+############################################################################## 
+#### NOTE: These masks correspond to the fine dust emissions for the 
+#### DEAD dust extension, which are on hold for the time being.  For the
+#### time being, comment out these mask entries so that we can quickly
+#### restore them at a later date.
+####     -- Bob Yantosca (11 Apr 2018)
+#CHINA_MASK   1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/China_mask.generic.1x1.nc
+#INDIA_MASK   1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/India_mask.generic.1x1.nc
+############################################################################## 
 
 %%
 
