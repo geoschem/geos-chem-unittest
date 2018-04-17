@@ -78,9 +78,10 @@ Warnings:                    {WARNINGS}
 ###############################################################################
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
-    --> AMAP_COMB         :       true
-    --> AMAP_INDS         :       true
-    --> AMAP_INTW         :       true
+    --> AMAP_COMB         :       false
+    --> AMAP_INDS         :       false
+    --> AMAP_INTW         :       false
+    --> WHET              :       true
     --> ZHAOZHANG         :       false
     --> CHAKRABORTY       :       false
     --> EMISS_CONT        :       true 
@@ -90,7 +91,14 @@ Warnings:                    {WARNINGS}
     --> BrOx_GC           :       true
     --> BrOx_GMI          :       true
     --> LRED_JNO2         :       true
+    --> LBRYCHEM          :       true
+    --> LCLCHEM           :       true
+    --> LHGAQCHEM         :       false
+    --> LBRCHEM           :       false
+    --> LBROCHEM          :       false
+    --> LOHO3CHEM         :       false
     --> QFED2             :       false
+    --> LRED_INPLUME      :       false
 # ----------------------------------------------------------------------------
 111     GFED              : on    Hg0
     --> GFED4             :       true
@@ -194,6 +202,16 @@ Warnings:                    {WARNINGS}
 )))AMAP_INTW
 
 )))CHAKRABORTY
+
+#==============================================================================
+# WHET emissions inventory
+#==============================================================================
+
+(((WHET
+0 WHET_HG0 $ROOT/MERCURY/v2018-04/WHET_Hg0.geos.1x1.2010_final.nc Hg0 2010/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 WHET_HG2 $ROOT/MERCURY/v2018-04/WHET_Hg2.geos.1x1.2010_final.nc Hg2 2010/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 WHET_HGP $ROOT/MERCURY/v2018-04/WHET_HgP.geos.1x1.2010_final.nc HgP 2010/1/1/0 C xy kg/m2/s Hg2 - 1 1
+)))WHET
 
 #==============================================================================
 # --- Emissions Controls for Coal Fired Power Plants  ---
@@ -334,15 +352,25 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- Oxidant fields (O3, OH) ---
 #==============================================================================
-* GLOBAL_O3  $ROOT/O3/v2014-09/MERGE.O3.geos5.72L.2x25.nc                 O3 1985/1-12/1/0 C xyz v/v   * - 1 1
-* GLOBAL_OH  $ROOT/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.geos5.72L.2x25.nc OH 1985/1-12/1/0 C xyz kg/m3 * - 1 1
+* GLOBAL_O3        $ROOT/O3/v2014-09/MERGE.O3.geos5.72L.2x25.nc                 O3             1985/1-12/1/0 C xyz v/v * - 1 1
+* GLOBAL_OH_trop   $ROOT/MERCURY/v2018-04/Johan.OH.kgm3.2007.nc                 CHEM_L_S__OH   2007/1-12/1/0 C xyz 1   * - 1 1
+* GLOBAL_OH_strat  $ROOT/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.geos5.72L.2x25.nc OH             1985/1-12/1/0 C xyz 1   * - 1 1
+* GLOBAL_HO2_strat $ROOT/GMI/v2015-02/gmi.clim.HO2.geos5.2x25.nc                species        1985/1-12/1/0 C xyz 1   * - 1 1
+* GLOBAL_HO2_trop  $ROOT/MERCURY/v2018-04/Johan.HO2.2007.nc                     CHEM_L_S__HO2  2007/1-12/1/0 C xyz 1   * - 1 1
+* GLOBAL_Cl        $ROOT/MERCURY/v2018-04/halogens.Johan.Mar16.2007.nc          IJ_24H_S__Cl   2007/1-12/1/0 C xyz 1   * - 1 1
+* GLOBAL_HOCl      $ROOT/MERCURY/v2018-04/halogens.Johan.Mar16.2007.nc          IJ_24H_S__HOCl 2007/1-12/1/0 C xyz 1   * - 1 1
+* GLOBAL_ClO       $ROOT/MERCURY/v2018-04/halogens.Johan.Mar16.2007.nc          IJ_24H_S__ClO  2007/1-12/1/0 C xyz 1   * - 1 1
+* GLOBAL_NO2       $ROOT/MERCURY/v2018-04/halogens.Johan.Mar16.2007.nc          IJ_24H_S__NO2  2007/1-12/1/0 C xyz 1   * - 1 1
+* GLOBAL_NO        $ROOT/MERCURY/v2018-04/halogens.Johan.Mar16.2007.nc          IJ_24H_S__NO   2007/1-12/1/0 C xyz 1   * - 1 1
+* GLOBAL_OA        $ROOT/MERCURY/v2018-04/OA_3Dglobal.geosfp.4x5.2013.nc        IJ_SOA_S__     2013/1-12/1/0 C xyz 1   * - 1 1
+* GLOBAL_OCEAN     $ROOT/MERCURY/v2018-04/ocean_fixed.nc                        ocean_conc     1985/1-12/1/0 C xyz 1   * - 1 1
 
 #==============================================================================
 # --- BrOx fields --
 #==============================================================================
 (((BrOx_GC
-* Br_GC      $ROOT/MERCURY/v2014-09/BrOx/BrOx.GC.geos5.2x25.nc  Br     2007/1-12/1/0 C xyz ppbv * - 1 1
-* BrO_GC     -                                                  BrO    -             - -   ppbv * - 1 1
+* Br_GC      $ROOT/MERCURY/v2018-04/halogens.Johan.Mar16.2007.nc IJ_24H_S__Br     2007/1-12/1/0 C xyz ppbv * - 1 1
+* BrO_GC     -                                                   IJ_24H_S__BrO    -             - -   ppbv * - 1 1
 )))BrOx_GC
 
 (((.not.BrOx_GC

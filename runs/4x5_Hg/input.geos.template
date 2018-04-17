@@ -102,8 +102,6 @@ Species fluxes          : 0 0 0 0 0 0 0 0 0 1 0
  ---[O3,ME,SU,NI,AM,BC,OA,SS,DU,PM,ST]
 ------------------------+------------------------------------------------------
 %%% MERCURY MENU %%%    :
-Use anthro Hg emiss for : 2006
-Use future emissions?   : PRESENT
 Error check tag/tot Hg? : F
 Use dynamic ocean Hg?   : T
 Preindustrial sim?      : F
