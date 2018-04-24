@@ -91,85 +91,84 @@ Warnings:                    {WARNINGS}
 ### --> You can select either NEI2011_HOURLY or NEI2011_MONMEAN but not both.
 ###     The same goes for NEI2011_SHIP_HOURLY and NEI2011_SHIP_MONMEAN.
 ###############################################################################
-# ExtNr ExtName              on/off  Species
-0       Base                 : on    *
-    --> HEMCO_RESTART        :       true
-    --> AEIC                 :       true
-    --> BIOFUEL              :       true
-    --> BOND                 :       true
-    --> BRAVO                :       true
-    --> APEI                 :       true
-    --> EDGARv43             :       false
-    --> HTAP                 :       false
-    --> CEDS                 :       true
-    --> EMEP                 :       true
-    --> EMEP_SHIP            :       true
-    --> GEIA                 :       true
-    --> NEI2005              :       false
-    --> NEI2011_HOURLY       :       false
-    --> NEI2011_MONMEAN      :       true
-    --> SHIP                 :       true
-    --> NEI2011_SHIP_HOURLY  :       false
-    --> NEI2011_SHIP_MONMEAN :       false
-    --> MIX                  :       true
-    --> STREETS              :       false
-    --> DICE_Africa          :       true 
-    --> TRASH                :       true
-    --> RCP_3PD              :       false 
-    --> RCP_45               :       false
-    --> RCP_60               :       false
-    --> RCP_85               :       false
-    --> QFED2                :       false
+# ExtNr ExtName                on/off  Species
+0       Base                   : on    *
+    --> HEMCO_RESTART          :       true
+    --> AEIC                   :       true
+    --> BIOFUEL                :       true
+    --> BOND                   :       true
+    --> BRAVO                  :       true
+    --> APEI                   :       true
+    --> EDGARv43               :       false
+    --> HTAP                   :       false
+    --> CEDS                   :       true
+    --> EMEP                   :       true
+    --> GEIA                   :       true
+    --> NEI2011ek_HOURLY       :       false
+    --> NEI2011ek_MONMEAN      :       true
+    --> MIX                    :       true
+    --> STREETS                :       false
+    --> DICE_Africa            :       true 
+    --> TRASH                  :       true
+    --> RCP_3PD                :       false 
+    --> RCP_45                 :       false
+    --> RCP_60                 :       false
+    --> RCP_85                 :       false
+    --> QFED2                  :       false
+    --> SHIP                   :       true
+    --> EMEP_SHIP              :       true
+    --> NEI2011ek_SHIP_HOURLY  :       false
+    --> NEI2011ek_SHIP_MONMEAN :       false
 # -----------------------------------------------------------------------------
-100     Custom               : off   - 
-101     SeaFlux              : on    DMS
-105     DustDead             : on    DST1/DST2/DST3/DST4 
-106     DustGinoux           : off   DST1/DST2/DST3/DST4
-107     SeaSalt              : on    SALA/SALC/Br2
-    --> SALA lower radius    :       0.01 
-    --> SALA upper radius    :       0.5
-    --> SALC lower radius    :       0.5
-    --> SALC upper radius    :       8.0
-    --> Emit Br2             :       false  
-    --> Br2 scaling          :       1.0 
-108     MEGAN                : on    ISOP/ACET/PRPE/C2H4/ALD2/EOH/SOAP/SOAS
-    --> Isoprene scaling     :       1.0 
-    --> CO2 inhibition       :       true
-    --> CO2 conc (ppmv)      :       390.0
-    --> Isoprene to SOAP     :       0.015
-    --> Isoprene to SOAS     :       0.015
+100     Custom                 : off   - 
+101     SeaFlux                : on    DMS
+105     DustDead               : on    DST1/DST2/DST3/DST4 
+106     DustGinoux             : off   DST1/DST2/DST3/DST4
+107     SeaSalt                : on    SALA/SALC/Br2
+    --> SALA lower radius      :       0.01 
+    --> SALA upper radius      :       0.5
+    --> SALC lower radius      :       0.5
+    --> SALC upper radius      :       8.0
+    --> Emit Br2               :       false  
+    --> Br2 scaling            :       1.0 
+108     MEGAN                  : on    ISOP/ACET/PRPE/C2H4/ALD2/EOH/SOAP/SOAS
+    --> Isoprene scaling       :       1.0 
+    --> CO2 inhibition         :       true
+    --> CO2 conc (ppmv)        :       390.0
+    --> Isoprene to SOAP       :       0.015
+    --> Isoprene to SOAS       :       0.015
 #3% mass yield from isoprene to SOA
-109     MEGAN_Mono           : on    CO/MTPA/MTPO/LIMO/SESQ
-    --> Monoterp to SOAP     :       0.050
-    --> Monoterp to SOAS     :       0.050
+109     MEGAN_Mono             : on    CO/MTPA/MTPO/LIMO/SESQ
+    --> Monoterp to SOAP       :       0.050
+    --> Monoterp to SOAS       :       0.050
 #10% mass yield from monoterpenes to SOA
-    --> Othrterp to SOAP     :       0.050
-    --> Othrterp to SOAS     :       0.050
+    --> Othrterp to SOAP       :       0.050
+    --> Othrterp to SOAS       :       0.050
 #10% mass yield from other terpenes to SOA
-111     GFED                 : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/MTPA/BENZ/TOLU/XYLE/NAP/EOH/SOAP
-    --> GFED4                :       true
-    --> GFED_daily           :       false
-    --> GFED_3hourly         :       false
-    --> Scaling_CO           :       1.05
-    --> Scaling_POG1         :       1.27
-    --> Scaling_POG2         :       1.27
-    --> Scaling_NAP          :       2.75e-4
-    --> hydrophilic BC       :       0.2
-    --> hydrophilic OC       :       0.5
-    --> fraction POG1        :       0.49
-    --> CO to SOAP           :       0.013
+111     GFED                   : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/MTPA/BENZ/TOLU/XYLE/NAP/EOH/SOAP
+    --> GFED4                  :       true
+    --> GFED_daily             :       false
+    --> GFED_3hourly           :       false
+    --> Scaling_CO             :       1.05
+    --> Scaling_POG1           :       1.27
+    --> Scaling_POG2           :       1.27
+    --> Scaling_NAP            :       2.75e-4
+    --> hydrophilic BC         :       0.2
+    --> hydrophilic OC         :       0.5
+    --> fraction POG1          :       0.49
+    --> CO to SOAP             :       0.013
 #see the note near scale factor 281 for the source of this emis factor
-114     FINN                 : off   NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/GLYC/HAC/SOAP
-    --> FINN_daily           :       false
-    --> Scaling_CO           :       1.0
-    --> Scaling_SOAP         :       0.013
-    --> hydrophilic BC       :       0.2
-    --> hydrophilic OC       :       0.5
-115     DustAlk              : off   DSTAL1/DSTAL2/DSTAL3/DSTAL4
-116     MarinePOA            : off   MOPO/MOPI 
-117     AeroCom_Volcano      : on    SO2
-    --> Volcano_Source       :       OMI
-    --> AeroCom_Table        :       $ROOT/VOLCANO/v2018-03/$YYYY/so2_volcanic_emissions_Carns.$YYYY$MM$DD.rc
+114     FINN                   : off   NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/GLYC/HAC/SOAP
+    --> FINN_daily             :       false
+    --> Scaling_CO             :       1.0
+    --> Scaling_SOAP           :       0.013
+    --> hydrophilic BC         :       0.2
+    --> hydrophilic OC         :       0.5
+115     DustAlk                : off   DSTAL1/DSTAL2/DSTAL3/DSTAL4
+116     MarinePOA              : off   MOPO/MOPI 
+117     AeroCom_Volcano        : on    SO2
+    --> Volcano_Source         :       OMI
+    --> AeroCom_Table          :       $ROOT/VOLCANO/v2018-03/$YYYY/so2_volcanic_emissions_Carns.$YYYY$MM$DD.rc
 ### END SECTION EXTENSION SWITCHES ###
 
 ###############################################################################
@@ -606,182 +605,312 @@ Warnings:                    {WARNINGS}
 )))APEI
 
 #==============================================================================
-# --- NEI 2005 (USA) ---
+# ---- NEI 2011 (USA) version 6.3 emission case "ek" (11th evaluation) ----
+# ---- Incorporated into HEMCO by Zitely A. Tzompa-Sosa                ----
 #
-# NOTE: Need to apply the GEIA_TOD_FOSSIL scale factor (#26)! 
-# done for CO, need to check others
+# ---- HOURLY DATA -----
 #==============================================================================
-(((NEI2005
-0 NEI2005_SOAP $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc CO   2005/1/1/0 C xy kg/m2/s SOAP 6/26/17/211/230/1005/280 1 35
-0 NEI2005_SO2  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc SO2  2005/1/1/0 C xy kg/m2/s SO2  11/18/218/237/1005       1 35
-0 NEI2005_SO4  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc SO4  2005/1/1/0 C xy kg/m2/s SO4  11/18/219/238/1005       1 35
-0 NEI2005_pFe  -                                                -    -          - -  -        pFe  11/18/219/238/1005/69    1 35
-0 NEI2005_NH3  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc NH3  2005/1/1/0 C xy kg/m2/s NH3  242/1005                 1 35
-#0 NEI2005_OC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc OCPI 2005/1/1/0 C xy kg/m2/s OCPI 222/241/1005             1 35
-#0 NEI2005_BC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc BCPI 2005/1/1/0 C xy kg/m2/s BCPI 221/240/1005             1 35
-)))NEI2005
+(((NEI2011ek_HOURLY
+#------------------------------------------------------------------------------
+# ON-ROAD (non-point-source), hourly data
+#------------------------------------------------------------------------------
+0 NEI_ONROAD_SOAP    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_onroad.nc CO           2004-2015/1-12/1-31/* R xy  kg/m2/s  SOAP 252/1007/280 1 500
+0 NEI_ONROAD_SO2     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_onroad.nc SO2          2004-2015/1-12/1-31/* R xy  kg/m2/s  SO2  255/1007     1 500
+0 NEI_ONROAD_SO4     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_onroad.nc PSO4         2004-2015/1-12/1-31/* R xy  kg/m2/s  SO4  255/1007     1 500
+0 NEI_ONROAD_pFe     -                                                                   -            -                     - -   -        pFe  255/1007     1 500
+0 NEI_ONROAD_BCPI    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_onroad.nc PEC          2004-2015/1-12/1-31/* R xy  kg/m2/s  BCPI 256/1007/265 1 500
+0 NEI_ONROAD_BCPO    -                                                                   -            -                     - -   -        BCPO 256/1007/266 1 500
+0 NEI_ONROAD_OCPI    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_onroad.nc POC          2004-2015/1-12/1-31/* R xy  kg/m2/s  OCPI 257/1007/267 1 500
+0 NEI_ONROAD_OCPO    -                                                                   -            -                     - -   -        OCPO 257/1007/268 1 500
 
-#==============================================================================
-# --- NEI 2011 (USA) ---
+#------------------------------------------------------------------------------
+# NON-ROAD MOBILE EQUIPMENT (non-point-source), hourly data
+#------------------------------------------------------------------------------
+0 NEI_NONROAD_CO     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonroad.nc CO           2004-2015/1-12/1-31/* R xy  kg/m2/s  SOAP 252/1007/280 1 500
+0 NEI_NONROAD_NH3    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonroad.nc NH3          2004-2015/1-12/1-31/* R xy  kg/m2/s  NH3  253/1007     1 500
+0 NEI_NONROAD_NH3_F  $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonroad.nc NH3_FERT     2004-2015/1-12/1-31/* R xy  kg/m2/s  NH3  253/1007     1 500
+0 NEI_NONROAD_SULF   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonroad.nc SULF         2004-2015/1-12/1-31/* R xy  kg/m2/s  SO2  255/1007     1 500
+0 NEI_NONROAD_SO4    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonroad.nc PSO4         2004-2015/1-12/1-31/* R xy  kg/m2/s  SO4  255/1007     1 500
+0 NEI_NONROAD_pFe    -                                                                    -            -                     - -   -        pFe  255/1007     1 500
+0 NEI_NONROAD_BCPI   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonroad.nc PEC          2004-2015/1-12/1-31/* R xy  kg/m2/s  BCPI 256/1007/265 1 500
+0 NEI_NONROAD_BCPO   -                                                                    -            -                     - -   -        BCPO 256/1007/266 1 500
+0 NEI_NONROAD_OCPI   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonroad.nc POC          2004-2015/1-12/1-31/* R xy  kg/m2/s  OCPI 257/1007/267 1 500
+0 NEI_NONROAD_OCPO   -                                                                    -            -                     - -   -        OCPO 257/1007/268 1 500
+
+#------------------------------------------------------------------------------
+# OIL & GAS (non-point-source), hourly data
+# 
+# Includes: drill rigs, workover rigs, artificial lift, hydraulic fracturing 
+# engines, pneumatic pumps and other devices, storage tanks, flares, truck 
+# loading, compressor engines, and dehydrators.
+#------------------------------------------------------------------------------
+0 NEI_NP_OILGAS_SOAP    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_np_oilgas.nc CO           2004-2015/1-12/1-31/* R xy  kg/m2/s  SOAP SOAP 252/1007/280 1 500
+0 NEI_NP_OILGAS_SO2     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_np_oilgas.nc SO2          2004-2015/1-12/1-31/* R xy  kg/m2/s  SO2  255/1007     1 500
+0 NEI_NP_OILGAS_SULF    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_np_oilgas.nc SULF         2004-2015/1-12/1-31/* R xy  kg/m2/s  SO2  255/1007     1 500
+0 NEI_NP_OILGAS_SO4     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_np_oilgas.nc PSO4         2004-2015/1-12/1-31/* R xy  kg/m2/s  SO4  255/1007     1 500
+0 NEI_NP_OILGAS_pFe     -                                                                      -            -                     - -   -        pFe  255/1007     1 500
+0 NEI_NP_OILGAS_BCPI    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_np_oilgas.nc PEC          2004-2015/1-12/1-31/* R xy  kg/m2/s  BCPI 256/1007/265 1 500
+0 NEI_NP_OILGAS_BCPO    -                                                                      -            -                     - -   -        BCPO 256/1007/266 1 500
+0 NEI_NP_OILGAS_OCPI    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_np_oilgas.nc POC          2004-2015/1-12/1-31/* R xy  kg/m2/s  OCPI 257/1007/267 1 500
+0 NEI_NP_OILGAS_OCPO    -                                                                      -            -                     - -   -        OCPO 257/1007/268 1 500
+
+#------------------------------------------------------------------------------
+# RAILROAD (non-point-source), hourly data
+#------------------------------------------------------------------------------
+0 NEI_RAIL_SOAP   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rail.nc CO           2004-2015/1-12/1-31/* R xy  kg/m2/s  SOAP 252/1007/280 1 500
+0 NEI_RAIL_NH3    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rail.nc NH3          2004-2015/1-12/1-31/* R xy  kg/m2/s  NH3  253/1007     1 500
+0 NEI_RAIL_NH3_F  $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rail.nc NH3_FERT     2004-2015/1-12/1-31/* R xy  kg/m2/s  NH3  253/1007     1 500
+0 NEI_RAIL_SO2    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rail.nc SO2          2004-2015/1-12/1-31/* R xy  kg/m2/s  SO2  255/1007     1 500
+0 NEI_RAIL_SULF   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rail.nc SULF         2004-2015/1-12/1-31/* R xy  kg/m2/s  SO2  255/1007     1 500
+0 NEI_RAIL_SO4    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rail.nc PSO4         2004-2015/1-12/1-31/* R xy  kg/m2/s  SO4  255/1007     1 500
+0 NEI_RAIL_pFe    -                                                                 -            -                     - -   -        pFe  255/1007     1 500
+0 NEI_RAIL_BCPI   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rail.nc PEC          2004-2015/1-12/1-31/* R xy  kg/m2/s  BCPI 256/1007/265 1 500
+0 NEI_RAIL_BCPO   -                                                                 -            -                     - -   -        BCPO 256/1007/266 1 500
+0 NEI_RAIL_OCPI   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rail.nc POC          2004-2015/1-12/1-31/* R xy  kg/m2/s  OCPI 257/1007/267 1 500
+0 NEI_RAIL_OCPO   -                                                                 -            -                     - -   -        OCPO 257/1007/268 1 500
+
+#------------------------------------------------------------------------------
+# AGRICULTURAL AMMONIA SECTOR (non-point-source), hourly data
+#------------------------------------------------------------------------------
+0 NEI_AG_NH3     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ag.nc  NH3          2004-2015/1-12/1-31/* R xy  kg/m2/s  NH3  253/1007     1 500
+0 NEI_AG_NH3_F   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ag.nc  NH3_FERT     2004-2015/1-12/1-31/* R xy  kg/m2/s  NH3  253/1007     1 500
+
+#------------------------------------------------------------------------------
+# RESIDENTIAL WOOD COMBUSTION (non-point-source), hourly data
+#------------------------------------------------------------------------------
+0 NEI_RWC_SOAP   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rwc.nc CO           2004-2015/1-12/1-31/* R xy  kg/m2/s  SOAP 252/1007/280 2 500
+0 NEI_RWC_NH3    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rwc.nc NH3          2004-2015/1-12/1-31/* R xy  kg/m2/s  NH3  253/1007     2 500
+0 NEI_RWC_NH3_F  $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rwc.nc NH3_FERT     2004-2015/1-12/1-31/* R xy  kg/m2/s  NH3  253/1007     2 500
+0 NEI_RWC_SO2    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rwc.nc SO2          2004-2015/1-12/1-31/* R xy  kg/m2/s  SO2  255/1007     2 500
+0 NEI_RWC_SULF   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rwc.nc SULF         2004-2015/1-12/1-31/* R xy  kg/m2/s  SO2  255/1007     2 500
+0 NEI_RWC_SO4    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rwc.nc PSO4         2004-2015/1-12/1-31/* R xy  kg/m2/s  SO4  255/1007     2 500
+0 NEI_RWC_pFe    -                                                                -            -                     - -   -        pFe  255/1007     2 500
+0 NEI_RWC_BCPI   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rwc.nc PEC          2004-2015/1-12/1-31/* R xy  kg/m2/s  BCPI 256/1007/265 2 500
+0 NEI_RWC_BCPO   -                                                                -            -                     - -   -        BCPO 256/1007/266 2 500
+0 NEI_RWC_OCPI   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_rwc.nc POC          2004-2015/1-12/1-31/* R xy  kg/m2/s  OCPI 257/1007/267 2 500
+0 NEI_RWC_OCPO   -                                                                -            -                     - -   -        OCPO 257/1007/268 2 500
+
+#------------------------------------------------------------------------------
+# OTHER NON-POINT-SOURCE EMISSIONS, hourly data
 #
-# Users may use either hourly or monthly mean NEI2011 emissions.
+# Includes: stationary nonpoint sources that were not subdivided 
+# into the ag, np_oilgas, or rwc sectors
+#------------------------------------------------------------------------------
+0 NEI_NONPT_SOAP    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonpt.nc CO           2004-2015/1-12/1-31/* R xy  kg/m2/s  SOAP 252/1007/280 1/2 500
+0 NEI_NONPT_NH3     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonpt.nc NH3          2004-2015/1-12/1-31/* R xy  kg/m2/s  NH3  253/1007     1/2 500
+0 NEI_NONPT_NH3_F   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonpt.nc NH3_FERT     2004-2015/1-12/1-31/* R xy  kg/m2/s  NH3  253/1007     1/2 500
+0 NEI_NONPT_SO2     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonpt.nc SO2          2004-2015/1-12/1-31/* R xy  kg/m2/s  SO2  255/1007     1/2 500
+0 NEI_NONPT_SULF    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonpt.nc SULF         2004-2015/1-12/1-31/* R xy  kg/m2/s  SO2  255/1007     1/2 500
+0 NEI_NONPT_SO4     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonpt.nc PSO4         2004-2015/1-12/1-31/* R xy  kg/m2/s  SO4  255/1007     1/2 500
+0 NEI_NONPT_pFe     -                                                                  -            -                     - -   -        pFe  255/1007     1/2 500
+0 NEI_NONPT_BCPI    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonpt.nc PEC          2004-2015/1-12/1-31/* R xy  kg/m2/s  BCPI 256/1007/265 1/2 500
+0 NEI_NONPT_BCPO    -                                                                  -            -                     - -   -        BCPO 256/1007/266 1/2 500
+0 NEI_NONPT_OCPI    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_nonpt.nc POC          2004-2015/1-12/1-31/* R xy  kg/m2/s  OCPI 257/1007/267 1/2 500
+0 NEI_NONPT_OCPO    -                                                                  -            -                     - -   -        OCPO 257/1007/268 1/2 500
+
+#------------------------------------------------------------------------------
+# ELECTRIC GENERATING UNITS (point-source), hourly data
+#------------------------------------------------------------------------------
+0 NEI_EGU_SOAP   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptegu.nc CO           2004-2015/1-12/1-31/* R xyz kg/m2/s  SOAP 252/1007/280 1 500
+0 NEI_EGU_NH3    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptegu.nc NH3          2004-2015/1-12/1-31/* R xyz kg/m2/s  NH3  253/1007     1 500
+0 NEI_EGU_NH3_F  $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptegu.nc NH3_FERT     2004-2015/1-12/1-31/* R xyz kg/m2/s  NH3  253/1007     1 500
+0 NEI_EGU_SO2    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptegu.nc SO2          2004-2015/1-12/1-31/* R xyz kg/m2/s  SO2  255/1007     1 500
+0 NEI_EGU_SULF   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptegu.nc SULF         2004-2015/1-12/1-31/* R xyz kg/m2/s  SO2  255/1007     1 500
+0 NEI_EGU_SO4    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptegu.nc PSO4         2004-2015/1-12/1-31/* R xyz kg/m2/s  SO4  255/1007     1 500
+0 NEI_EGU_pFe    -                                                                  -            -                     - -   -        pFe  255/1007     1 500
+0 NEI_EGU_BCPI   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptegu.nc PEC          2004-2015/1-12/1-31/* R xyz kg/m2/s  BCPI 256/1007/265 1 500
+0 NEI_EGU_BCPO   -                                                                  -            -                     - -   -        BCPO 256/1007/266 1 500
+0 NEI_EGU_OCPI   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptegu.nc POC          2004-2015/1-12/1-31/* R xyz kg/m2/s  OCPI 257/1007/267 1 500
+0 NEI_EGU_OCPO   -                                                                  -            -                     - -   -        OCPO 257/1007/268 1 500
+ 
+#------------------------------------------------------------------------------
+# OIL & GAS (point-source), hourly data
+#
+# Includes: Oil and gas extraction (wells), distribution, pipelines
+#------------------------------------------------------------------------------
+0 NEI_OILGAS_SOAP    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_pt_oilgas.nc CO           2004-2015/1-12/1-31/* R xyz kg/m2/s  SOAP 252/1007/280 1 500
+0 NEI_OILGAS_NH3     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_pt_oilgas.nc NH3          2004-2015/1-12/1-31/* R xyz kg/m2/s  NH3  253/1007     1 500
+0 NEI_OILGAS_NH3_F   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_pt_oilgas.nc NH3_FERT     2004-2015/1-12/1-31/* R xyz kg/m2/s  NH3  253/1007     1 500
+0 NEI_OILGAS_SO2     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_pt_oilgas.nc SO2          2004-2015/1-12/1-31/* R xyz kg/m2/s  SO2  255/1007     1 500
+0 NEI_OILGAS_SULF    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_pt_oilgas.nc SULF         2004-2015/1-12/1-31/* R xyz kg/m2/s  SO2  255/1007     1 500
+0 NEI_OILGAS_SO4     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_pt_oilgas.nc PSO4         2004-2015/1-12/1-31/* R xyz kg/m2/s  SO4  255/1007     1 500
+0 NEI_OILGAS_pFe     -                                                                      -            -                     - -   -        pFe  255/1007     1 500
+0 NEI_OILGAS_BCPI    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_pt_oilgas.nc PEC          2004-2015/1-12/1-31/* R xyz kg/m2/s  BCPI 256/1007/265 1 500
+0 NEI_OILGAS_BCPO    -                                                                      -            -                     - -   -        BCPO 256/1007/266 1 500
+0 NEI_OILGAS_OCPI    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_pt_oilgas.nc POC          2004-2015/1-12/1-31/* R xyz kg/m2/s  OCPI 257/1007/267 1 500
+0 NEI_OILGAS_OCPO    -                                                                      -            -                     - -   -        OCPO 257/1007/268 1 500
+
+#------------------------------------------------------------------------------
+# NON-IPM SECTOR (point-source), hourly data
+#
+# Includes: Point sources that are not in the ptegu or pt_oilgas sectors 
+#------------------------------------------------------------------------------
+0 NEI_PTNONIPM_SOAP   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptnonipm.nc CO           2004-2015/1-12/1-31/* R xyz kg/m2/s  SOAP 252/1007/280 1 500
+0 NEI_PTNONIPM_SOAP   -                                                                     -            -                     - -   -        SOAP 252/1007/280 1 500
+0 NEI_PTNONIPM_NH3    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptnonipm.nc NH3          2004-2015/1-12/1-31/* R xyz kg/m2/s  NH3  253/1007     1 500
+0 NEI_PTNONIPM_NH3_F  $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptnonipm.nc NH3_FERT     2004-2015/1-12/1-31/* R xyz kg/m2/s  NH3  253/1007     1 500
+0 NEI_PTNONIPM_SO2    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptnonipm.nc SO2          2004-2015/1-12/1-31/* R xyz kg/m2/s  SO2  255/1007     1 500
+0 NEI_PTNONIPM_SULF   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptnonipm.nc SULF         2004-2015/1-12/1-31/* R xyz kg/m2/s  SO2  255/1007     1 500
+0 NEI_PTNONIPM_SO4    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptnonipm.nc PSO4         2004-2015/1-12/1-31/* R xyz kg/m2/s  SO4  255/1007     1 500
+0 NEI_PTNONIPM_pFe    -                                                                     -            -                     - -   -        pFe  255/1007     1 500
+0 NEI_PTNONIPM_BCPI   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptnonipm.nc PEC          2004-2015/1-12/1-31/* R xyz kg/m2/s  BCPI 256/1007/265 1 500
+0 NEI_PTNONIPM_BCPO   -                                                                     -            -                     - -   -        BCPO 256/1007/266 1 500
+0 NEI_PTNONIPM_OCPI   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_ptnonipm.nc POC          2004-2015/1-12/1-31/* R xyz kg/m2/s  OCPI 257/1007/267 1 500
+0 NEI_PTNONIPM_OCPO   -                                                                     -            -                     - -   -        OCPO 257/1007/268 1 500
+)))NEI2011ek_HOURLY
+
+
 #==============================================================================
+# ---- NEI 2011 (USA) version 6.3 emission case "ek" (11th evaluation) ----
+# ---- Incorporated into HEMCO by Zitely A. Tzompa-Sosa                ----
+#
+# ---- MONTHLY-MEAN DATA, computed from hourly data by the GCST        ----
+#==============================================================================
+(((NEI2011ek_MONMEAN
 
-#------------------------------------------------
-# HOURLY NEI2011
-#------------------------------------------------
+#------------------------------------------------------------------------------
+# ON-ROAD (non-point-source), monthly-mean data
+#------------------------------------------------------------------------------
+0 NEI_MM_ONROAD_SOAP    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_onroad.nc CO           2004-2015/1-12/1/0 R xy  kg/m2/s  SOAP 252/1007/280        1 500
+0 NEI_MM_ONROAD_NH3     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_onroad.nc NH3          2004-2015/1-12/1/0 R xy  kg/m2/s  NH3  26/213/253/1007     1 500
+0 NEI_MM_ONROAD_SO2     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_onroad.nc SO2          2004-2015/1-12/1/0 R xy  kg/m2/s  SO2  26/218/255/1007     1 500
+0 NEI_MM_ONROAD_SO4     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_onroad.nc PSO4         2004-2015/1-12/1/0 R xy  kg/m2/s  SO4  26/219/255/1007     1 500
+0 NEI_MM_ONROAD_pFe     -                                                                           -            -                  - -   -        pFe  26/219/255/1007     1 500
+0 NEI_MM_ONROAD_BCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_onroad.nc PEC          2004-2015/1-12/1/0 R xy  kg/m2/s  BCPI 26/221/256/1007/265 1 500
+0 NEI_MM_ONROAD_BCPO    -                                                                           -            -                  - -   -        BCPO 26/221/256/1007/266 1 500
+0 NEI_MM_ONROAD_OCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_onroad.nc POC          2004-2015/1-12/1/0 R xy  kg/m2/s  OCPI 26/222/257/1007/267 1 500
+0 NEI_MM_ONROAD_OCPO    -                                                                           -            -                  - -   -        OCPO 26/222/257/1007/268 1 500
 
-(((NEI2011_HOURLY
-# SURFACE INVENTORY
-0 NEI11_SURFACE_SOAP   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          CO       2006-2013/1-12/1-31/* C xy  kg/m2/s  SOAP 252/1007/280 1/2 50
-0 NEI11_SURFACE_NH3    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          NH3      2006-2013/1-12/1-31/* C xy  kg/m2/s  NH3  253/1007     1/2 50
-0 NEI11_SURFACE_SO2    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          SO2      2006-2013/1-12/1-31/* C xy  kg/m2/s  SO2  255/1007     1/2 50
-0 NEI11_SURFACE_SULF   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          SULF     2006-2013/1-12/1-31/* C xy  kg/m2/s  SO2  255/1007     1/2 50
-0 NEI11_SURFACE_SO4    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          PSO4     2006-2013/1-12/1-31/* C xy  kg/m2/s  SO4  255/1007     1/2 50
-0 NEI11_SURFACE_pFe    -                                                               -        -                     - -   -        pFe  255/1007/69  1/2 50
-0 NEI11_SURFACE_BCPI   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          PEC      2006-2013/1-12/1-31/* C xy  kg/m2/s  BCPI 256/1007/265 1/2 50
-0 NEI11_SURFACE_BCPO   -                                                               -        -                     - -   -        BCPO 256/1007/266 1/2 50
-0 NEI11_SURFACE_OCPI   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          POC      2006-2013/1-12/1-31/* C xy  kg/m2/s  OCPI 257/1007/267 1/2 50
-0 NEI11_SURFACE_OCPO   -                                                               -        -                     - -   -        OCPO 257/1007/268 1/2 50
+#------------------------------------------------------------------------------
+# NON-ROAD MOBILE EQUIPMENT (non-point-source), monthly-mean data
+#------------------------------------------------------------------------------
+0 NEI_MM_NONROAD_SOAP    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonroad.nc CO           2004-2015/1-12/1/0 R xy  kg/m2/s  SOAP 252/1007/280        1 500
+0 NEI_MM_NONROAD_NH3     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonroad.nc NH3          2004-2015/1-12/1/0 R xy  kg/m2/s  NH3  26/213/253/1007     1 500
+0 NEI_MM_NONROAD_NH3_F   $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonroad.nc NH3_FERT     2004-2015/1-12/1/0 R xy  kg/m2/s  NH3  26/213/253/1007     1 500
+0 NEI_MM_NONROAD_BENZ    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonroad.nc BENZ         2004-2015/1-12/1/0 R xy  kgC/m2/s BENZ 26/213/254/1007     1 500
+0 NEI_MM_NONROAD_SO2     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonroad.nc SO2          2004-2015/1-12/1/0 R xy  kg/m2/s  SO2  26/218/255/1007     1 500
+0 NEI_MM_NONROAD_SO4     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonroad.nc PSO4         2004-2015/1-12/1/0 R xy  kg/m2/s  SO4  26/219/255/1007     1 500
+0 NEI_MM_NONROAD_pFe     -                                                                            -            -                  - -   -        pFe  26/219/255/1007     1 500
+0 NEI_MM_NONROAD_ALD2_P  $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonroad.nc ALD2_PRIMARY 2004-2015/1-12/1/0 R xy  kgC/m2/s ALD2 26/213/254/1007     1 500
+0 NEI_MM_NONROAD_BCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonroad.nc PEC          2004-2015/1-12/1/0 R xy  kg/m2/s  BCPI 26/221/256/1007/265 1 500
+0 NEI_MM_NONROAD_BCPO    -                                                                            -            -                  - -   -        BCPO 26/221/256/1007/266 1 500
+0 NEI_MM_NONROAD_OCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonroad.nc POC          2004-2015/1-12/1/0 R xy  kg/m2/s  OCPI 26/222/257/1007/267 1 500
+0 NEI_MM_NONROAD_OCPO    -                                                                            -            -                  - -   -        OCPO 26/222/257/1007/268 1 500
 
-# ELECTRIC GENERATING UNITS (EGUs)
-0 NEI11_EGU_SOAP       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      CO       2006-2013/1-12/1-31/* C xyz kg/m2/s  SOAP 252/1007/280 1   50
-#0 NEI11_EGU_NH3       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      NH3      2006-2013/1-12/1-31/* C xyz kg/m2/s  NH3  253/1007     1   50
-0 NEI11_EGU_SO2        $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      SO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_EGU_SULF       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      SULF     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_EGU_SO4        $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      PSO4     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO4  255/1007     1   50
-0 NEI11_EGU_pFe        -                                                               -        -                     - -   -        pFe  255/1007/69  1   50
-0 NEI11_EGU_BCPI       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      PEC      2006-2013/1-12/1-31/* C xyz kg/m2/s  BCPI 256/1007/265 1   50
-0 NEI11_EGU_BCPO       -                                                               -        -                     - -   -        BCPO 256/1007/266 1   50
-0 NEI11_EGU_OCPI       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      POC      2006-2013/1-12/1-31/* C xyz kg/m2/s  OCPI 257/1007/267 1   50
-0 NEI11_EGU_OCPO       -                                                               -        -                     - -   -        OCPO 257/1007/268 1   50
+#------------------------------------------------------------------------------
+# OIL & GAS (non-point-source), monthly mean data
+#
+# Includes: drill rigs, workover rigs, artificial lift, hydraulic fracturing
+# engines, pneumatic pumps and other devices, storage tanks, flares, truck 
+# loading, compressor engines, and dehydrators.
+#------------------------------------------------------------------------------
+0 NEI_MM_NP_OILGAS_SOAP    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_np_oilgas.nc CO           2004-2015/1-12/1/0 R xy  kg/m2/s  SOAP 252/1007/280        1 500
+0 NEI_MM_NP_OILGAS_SO2     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_np_oilgas.nc SO2          2004-2015/1-12/1/0 R xy  kg/m2/s  SO2  26/218/255/1007     1 500
+0 NEI_MM_NP_OILGAS_SULF    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_np_oilgas.nc SULF         2004-2015/1-12/1/0 R xy  kg/m2/s  SO2  26/218/255/1007     1 500
+0 NEI_MM_NP_OILGAS_SO4     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_np_oilgas.nc PSO4         2004-2015/1-12/1/0 R xy  kg/m2/s  SO4  26/219/255/1007     1 500
+0 NEI_MM_NP_OILGAS_pFe     -                                                                              -            -                  - -   -        pFe  26/219/255/1007     1 500
+0 NEI_MM_NP_OILGAS_BCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_np_oilgas.nc PEC          2004-2015/1-12/1/0 R xy  kg/m2/s  BCPI 26/221/256/1007/265 1 500
+0 NEI_MM_NP_OILGAS_BCPO    -                                                                              -            -                  - -   -        BCPO 26/221/256/1007/266 1 500
+0 NEI_MM_NP_OILGAS_OCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_np_oilgas.nc POC          2004-2015/1-12/1/0 R xy  kg/m2/s  OCPI 26/222/257/1007/267 1 500
+0 NEI_MM_NP_OILGAS_OCPO    -                                                                              -            -                  - -   -        OCPO 26/222/257/1007/268 1 500
 
-# PEAKING ELECTRIC GENERATING UNITS
-0 NEI11_EGUPK_SOAP     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    CO       2006-2013/1-12/1-31/* C xyz kg/m2/s  SOAP 252/1007/280 1   50
-#0 NEI11_EGUPK_NH3     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    NH3      2006-2013/1-12/1-31/* C xyz kg/m2/s  NH3  253/1007     1   50
-0 NEI11_EGUPK_SO2      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    SO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_EGUPK_SULF     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    SULF     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_EGUPK_SO4      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    PSO4     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO4  255/1007     1   50
-0 NEI11_EGUPK_pFe      -                                                               -        -                     - -   -        pFe  255/1007/69  1   50
-0 NEI11_EGUPK_BCPI     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    PEC      2006-2013/1-12/1-31/* C xyz kg/m2/s  BCPI 256/1007/265 1   50
-0 NEI11_EGUPK_BCPO     -                                                               -        -                     - -   -        BCPO 256/1007/266 1   50
-0 NEI11_EGUPK_OCPI     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egupk.nc    POC      2006-2013/1-12/1-31/* C xyz kg/m2/s  OCPI 257/1007/267 1   50
-0 NEI11_EGUPK_OCPO     -                                                               -        -                     - -   -        OCPO 257/1007/268 1   50
+#------------------------------------------------------------------------------
+# RAILROAD (non-point-source), monthly-mean data
+#------------------------------------------------------------------------------
+0 NEI_MM_RAIL_SOAP    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_rail.nc CO           2004-2015/1-12/1/0 R xy  kg/m2/s  SOAP 252/1007/280        1 500
+0 NEI_MM_RAIL_NH3     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_rail.nc NH3          2004-2015/1-12/1/0 R xy  kg/m2/s  NH3  26/213/253/1007     1 500
+0 NEI_MM_RAIL_NH3_F   $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_rail.nc NH3_FERT     2004-2015/1-12/1/0 R xy  kg/m2/s  NH3  26/213/253/1007     1 500
+0 NEI_MM_RAIL_SO2     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_rail.nc SO2          2004-2015/1-12/1/0 R xy  kg/m2/s  SO2  26/218/255/1007     1 500
+0 NEI_MM_RAIL_SO4     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_rail.nc PSO4         2004-2015/1-12/1/0 R xy  kg/m2/s  SO4  26/219/255/1007     1 500
+0 NEI_MM_RAIL_pFe     -                                                                         -            -                  - -   -        pFe  26/219/255/1007     1 500
+0 NEI_MM_RAIL_BCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_rail.nc PEC          2004-2015/1-12/1/0 R xy  kg/m2/s  BCPI 26/221/256/1007/265 1 500
+0 NEI_MM_RAIL_BCPO    -                                                                         -            -                  - -   -        BCPO 26/221/256/1007/266 1 500
+0 NEI_MM_RAIL_OCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_rail.nc POC          2004-2015/1-12/1/0 R xy  kg/m2/s  OCPI 26/222/257/1007/267 1 500
+0 NEI_MM_RAIL_OCPO    -                                                                         -            -                  - -   -        OCPO 26/222/257/1007/268 1 500
 
-# OIL & GAS
-0 NEI11_OILGAS_SOAP    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   CO       2006-2013/1-12/1-31/* C xyz kg/m2/s  SOAP 252/1007/280 1   50
-0 NEI11_OILGAS_NH3     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   NH3      2006-2013/1-12/1-31/* C xyz kg/m2/s  NH3  253/1007     1   50
-0 NEI11_OILGAS_SO2     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   SO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_OILGAS_SULF    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   SULF     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_OILGAS_SO4     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   PSO4     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO4  255/1007     1   50
-0 NEI11_OILGAS_pFe     -                                                               -        -                     - -   -        pFe  255/1007/69  1   50
-0 NEI11_OILGAS_BCPI    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   PEC      2006-2013/1-12/1-31/* C xyz kg/m2/s  BCPI 256/1007/265 1   50
-0 NEI11_OILGAS_BCPO    -                                                               -        -                     - -   -        BCPO 256/1007/266 1   50
-0 NEI11_OILGAS_OCPI    $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_oilgas.nc   POC      2006-2013/1-12/1-31/* C xyz kg/m2/s  OCPI 257/1007/267 1   50
-0 NEI11_OILGAS_OCPO    -                                                               -        -                     - -   -        OCPO 257/1007/268 1   50
+#------------------------------------------------------------------------------
+# AGRICULTURAL AMMONIA SECTOR (non-point-source), monthly-mean data
+#------------------------------------------------------------------------------
+0 NEI_MM_AG_NH3     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ag.nc NH3      2004-2015/1-12/1/0 R xy kg/m2/s NH3 26/213/253/1007 1 500
+0 NEI_MM_AG_NH3_F   $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ag.nc NH3_FERT 2004-2015/1-12/1/0 R xy kg/m2/s NH3 26/213/253/1007 1 500
 
-# OTHER POINT SOURCES
-0 NEI11_OTHPT_SOAP     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    CO       2006-2013/1-12/1-31/* C xyz kg/m2/s  SOAP 252/1007/280 1   50
-0 NEI11_OTHPT_NH3      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    NH3      2006-2013/1-12/1-31/* C xyz kg/m2/s  NH3  253/1007     1   50
-0 NEI11_OTHPT_SO2      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    SO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_OTHPT_SULF     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    SULF     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_OTHPT_SO4      $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    PSO4     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO4  255/1007     1   50
-0 NEI11_OTHPT_pFe      -                                                               -        -                     - -   -        pFe  255/1007/69  1   50
-0 NEI11_OTHPT_BCPI     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    PEC      2006-2013/1-12/1-31/* C xyz kg/m2/s  BCPI 256/1007/265 1   50
-0 NEI11_OTHPT_BCPO     -                                                               -        -                     - -   -        BCPO 256/1007/266 1   50
-0 NEI11_OTHPT_OCPI     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_othpt.nc    POC      2006-2013/1-12/1-31/* C xyz kg/m2/s  OCPI 257/1007/267 1   50
-0 NEI11_OTHPT_OCPO     -                                                               -        -                     - -   -        OCPO 257/1007/268 1   50
+#------------------------------------------------------------------------------
+# RESIDENTIAL WOOD COMBUSTION (non-point-source), monthly-mean data
+#------------------------------------------------------------------------------
+0 NEI_MM_RWC_SOAP    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_rwc.nc CO           2004-2015/1-12/1/0 R xy  kg/m2/s  SOAP 252/1007/280        2 500
+0 NEI_MM_RWC_NH3     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_rwc.nc NH3          2004-2015/1-12/1/0 R xy  kg/m2/s  NH3  26/213/253/1007     2 500
+0 NEI_MM_RWC_NH3_F   $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_rwc.nc NH3_FERT     2004-2015/1-12/1/0 R xy  kg/m2/s  NH3  26/213/253/1007     2 500
+0 NEI_MM_RWC_SO2     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_rwc.nc SO2          2004-2015/1-12/1/0 R xy  kg/m2/s  SO2  26/218/255/1007     2 500
+0 NEI_MM_RWC_SO4     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_rwc.nc PSO4         2004-2015/1-12/1/0 R xy  kg/m2/s  SO4  26/219/255/1007     2 500
+0 NEI_MM_RWC_pFe     -                                                                        -            -                  - -   -        pFe  26/219/255/1007     2 500
+0 NEI_MM_RWC_BCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_rwc.nc PEC          2004-2015/1-12/1/0 R xy  kg/m2/s  BCPI 26/221/256/1007/265 2 500
+0 NEI_MM_RWC_BCPO    -                                                                        -            -                  - -   -        BCPO 26/221/256/1007/266 2 500
+0 NEI_MM_RWC_OCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_rwc.nc POC          2004-2015/1-12/1/0 R xy  kg/m2/s  OCPI 26/222/257/1007/267 2 500
+0 NEI_MM_RWC_OCPO    -                                                                        -            -                  - -   -        OCPO 26/222/257/1007/268 2 500
 
-# NON-EGU INDUSTRIAL STACKS
-0 NEI11_PTNONIPM_SOAP  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc CO       2006-2013/1-12/1-31/* C xyz kg/m2/s  SOAP 252/1007/280 1   50
-0 NEI11_PTNONIPM_NH3   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc NH3      2006-2013/1-12/1-31/* C xyz kg/m2/s  NH3  253/1007     1   50
-0 NEI11_PTNONIPM_SO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc SO2      2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_PTNONIPM_SULF  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc SULF     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO2  255/1007     1   50
-0 NEI11_PTNONIPM_SO4   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc PSO4     2006-2013/1-12/1-31/* C xyz kg/m2/s  SO4  255/1007     1   50
-0 NEI11_PTNONIPM_pFe   -                                                               -        -                     - -   -        pFe  255/1007/69  1   50
-0 NEI11_PTNONIPM_BCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc PEC      2006-2013/1-12/1-31/* C xyz kg/m2/s  BCPI 256/1007/265 1   50
-0 NEI11_PTNONIPM_BCPO  -                                                               -        -                     - -   -        BCPO 256/1007/266 1   50
-0 NEI11_PTNONIPM_OCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_ptnonipm.nc POC      2006-2013/1-12/1-31/* C xyz kg/m2/s  OCPI 257/1007/267 1   50
-0 NEI11_PTNONIPM_OCPO  -                                                               -        -                     - -   -        OCPO 257/1007/268 1   50
-)))NEI2011_HOURLY
+#------------------------------------------------------------------------------
+# OTHER NON POINT SOURCES, monthly-mean data
+#
+# Includes: Stationary nonpoint sources that were not subdivided 
+# into the ag, np_oilgas, or rwc sectors
+#------------------------------------------------------------------------------
+0 NEI_MM_NONPT_SOAP    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonpt.nc CO           2004-2015/1-12/1/0 R xy  kg/m2/s  SOAP 252/1007/280        1/2 500
+0 NEI_MM_NONPT_NH3     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonpt.nc NH3          2004-2015/1-12/1/0 R xy  kg/m2/s  NH3  26/213/253/1007     1/2 500
+0 NEI_MM_NONPT_NH3_F   $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonpt.nc NH3_FERT     2004-2015/1-12/1/0 R xy  kg/m2/s  NH3  26/213/253/1007     1/2 500
+0 NEI_MM_NONPT_SO2     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonpt.nc SO2          2004-2015/1-12/1/0 R xy  kg/m2/s  SO2  26/218/255/1007     1/2 500
+0 NEI_MM_NONPT_SO4     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonpt.nc PSO4         2004-2015/1-12/1/0 R xy  kg/m2/s  SO4  26/219/255/1007     1/2 500
+0 NEI_MM_NONPT_pFe     -                                                                       -               -                  - -   -        pFe  26/219/255/1007     1/2 500
+0 NEI_MM_NONPT_BCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonpt.nc PEC          2004-2015/1-12/1/0 R xy  kg/m2/s  BCPI 26/221/256/1007/265 1/2 500
+0 NEI_MM_NONPT_BCPO    -                                                                          -            -                  - -   -        BCPO 26/221/256/1007/266 1/2 500
+0 NEI_MM_NONPT_OCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_nonpt.nc POC          2004-2015/1-12/1/0 R xy  kg/m2/s  OCPI 26/222/257/1007/267 1/2 500
+0 NEI_MM_NONPT_OCPO    -                                                                          -            -                  - -   -        OCPO 26/222/257/1007/268 1/2 500
 
-#------------------------------------------------
-# MONTHLY MEAN NEI2011
-#------------------------------------------------
+#------------------------------------------------------------------------------
+# ELECTRIC GENERATING UNITS (point-source) monthly-mean data
+#------------------------------------------------------------------------------
+0 NEI_MM_EGU_SOAP    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptegu.nc CO           2004-2015/1-12/1/0 R xyz  kg/m2/s  SOAP 252/1007/280        1 500
+0 NEI_MM_EGU_NH3     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptegu.nc NH3          2004-2015/1-12/1/0 R xyz  kg/m2/s  NH3  26/213/253/1007     1 500
+0 NEI_MM_EGU_NH3_F   $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptegu.nc NH3_FERT     2004-2015/1-12/1/0 R xyz  kg/m2/s  NH3  26/213/253/1007     1 500
+0 NEI_MM_EGU_SO2     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptegu.nc SO2          2004-2015/1-12/1/0 R xyz  kg/m2/s  SO2  26/218/255/1007     1 500
+0 NEI_MM_EGU_SO4     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptegu.nc PSO4         2004-2015/1-12/1/0 R xyz  kg/m2/s  SO4  26/219/255/1007     1 500
+0 NEI_MM_EGU_pFe     -                                                                          -            -                  - -    -        pFe  26/219/255/1007     1 500
+0 NEI_MM_EGU_BCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptegu.nc PEC          2004-2015/1-12/1/0 R xyz  kg/m2/s  BCPI 26/221/256/1007/265 1 500
+0 NEI_MM_EGU_BCPO    -                                                                          -            -                  - -    -        BCPO 26/221/256/1007/266 1 500
+0 NEI_MM_EGU_OCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptegu.nc POC          2004-2015/1-12/1/0 R xyz  kg/m2/s  OCPI 26/222/257/1007/267 1 500
+0 NEI_MM_EGU_OCPO    -                                                                          -            -                  - -    -        OCPO 26/222/257/1007/268 1 500
 
-(((NEI2011_MONMEAN
-# SURFACE INVENTORY
-0 NEI11_SURFACE_SOAP   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          CO       2006-2013/1-12/1/0 C xy  kg/m2/s  SOAP 26/211/252/1007/280 1/2 50
-0 NEI11_SURFACE_NH3    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          NH3      2006-2013/1-12/1/0 C xy  kg/m2/s  NH3  26/213/253/1007     1/2 50
-0 NEI11_SURFACE_SO2    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          SO2      2006-2013/1-12/1/0 C xy  kg/m2/s  SO2  26/218/255/1007     1/2 50
-0 NEI11_SURFACE_SULF   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          SULF     2006-2013/1-12/1/0 C xy  kg/m2/s  SO2  26/218/255/1007     1/2 50
-0 NEI11_SURFACE_SO4    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          PSO4     2006-2013/1-12/1/0 C xy  kg/m2/s  SO4  26/219/255/1007     1/2 50
-0 NEI11_SURFACE_pFe    -                                                                       -        -                  - -   -        pFe  26/219/255/1007/69  1/2 50
-0 NEI11_SURFACE_BCPI   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          PEC      2006-2013/1-12/1/0 C xy  kg/m2/s  BCPI 26/221/256/1007/265 1/2 50
-0 NEI11_SURFACE_BCPO   -                                                                       -        -                  - -   -        BCPO 26/221/256/1007/266 1/2 50
-0 NEI11_SURFACE_OCPI   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          POC      2006-2013/1-12/1/0 C xy  kg/m2/s  OCPI 26/222/257/1007/267 1/2 50
-0 NEI11_SURFACE_OCPO   -                                                                       -        -                  - -   -        OCPO 26/222/257/1007/268 1/2 50
+#------------------------------------------------------------------------------
+# OIL & GAS (point-source), monthly-mean data
+# 
+# Includes: Oil and gas extraction (wells), distribution, pipelines
+#------------------------------------------------------------------------------
+0 NEI_MM_OILGAS_SOAP    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_pt_oilgas.nc CO           2004-2015/1-12/1/0 R xyz  kg/m2/s  SOAP 252/1007/280        1 500
+0 NEI_MM_OILGAS_NH3     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_pt_oilgas.nc NH3          2004-2015/1-12/1/0 R xyz  kg/m2/s  NH3  26/213/253/1007     1 500
+0 NEI_MM_OILGAS_NH3_F   $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_pt_oilgas.nc NH3_FERT     2004-2015/1-12/1/0 R xyz  kg/m2/s  NH3  26/213/253/1007     1 500
+0 NEI_MM_OILGAS_SO2     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_pt_oilgas.nc SO2          2004-2015/1-12/1/0 R xyz  kg/m2/s  SO2  26/218/255/1007     1 500
+0 NEI_MM_OILGAS_SO4     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_pt_oilgas.nc PSO4         2004-2015/1-12/1/0 R xyz  kg/m2/s  SO4  26/219/255/1007     1 500
+0 NEI_MM_OILGAS_pFe     -                                                                              -            -                  - -    -        pFe  26/219/255/1007     1 500
+0 NEI_MM_OILGAS_BCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_pt_oilgas.nc PEC          2004-2015/1-12/1/0 R xyz  kg/m2/s  BCPI 26/221/256/1007/265 1 500
+0 NEI_MM_OILGAS_BCPO    -                                                                              -            -                  - -    -        BCPO 26/221/256/1007/266 1 500
+0 NEI_MM_OILGAS_OCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_pt_oilgas.nc POC          2004-2015/1-12/1/0 R xyz  kg/m2/s  OCPI 26/222/257/1007/267 1 500
+0 NEI_MM_OILGAS_OCPO    -                                                                              -            -                  - -    -        OCPO 26/222/257/1007/268 1 500
 
-# ELECTRIC GENERATING UNITS (EGUs)
-0 NEI11_EGU_SOAP       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      CO       2006-2013/1-12/1/0 C xyz kg/m2/s  SOAP 26/211/252/1007/280 1   50
-#0 NEI11_EGU_NH3       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      NH3      2006-2013/1-12/1/0 C xyz kg/m2/s  NH3  26/213/253/1007     1   50
-0 NEI11_EGU_SO2        $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
-0 NEI11_EGU_SULF       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
-0 NEI11_EGU_SO4        $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
-0 NEI11_EGU_pFe        -                                                                       -        -                  - -   -        pFe  26/219/255/1007/69  1   50
-0 NEI11_EGU_BCPI       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      PEC      2006-2013/1-12/1/0 C xyz kg/m2/s  BCPI 26/221/256/1007/265 1   50
-0 NEI11_EGU_BCPO       -                                                                       -        -                  - -   -        BCPO 26/221/256/1007/266 1   50
-0 NEI11_EGU_OCPI       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      POC      2006-2013/1-12/1/0 C xyz kg/m2/s  OCPI 26/222/257/1007/267 1   50
-0 NEI11_EGU_OCPO       -                                                                       -        -                  - -   -        OCPO 26/222/257/1007/268 1   50
-
-# PEAKING ELECTRIC GENERATING UNITS
-0 NEI11_EGUPK_SOAP     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    CO       2006-2013/1-12/1/0 C xyz kg/m2/s  SOAP 26/211/252/1007/280 1   50
-#0 NEI11_EGUPK_NH3     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    NH3      2006-2013/1-12/1/0 C xyz kg/m2/s  NH3  26/213/253/1007     1   50
-0 NEI11_EGUPK_SO2      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
-0 NEI11_EGUPK_SULF     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
-0 NEI11_EGUPK_SO4      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
-0 NEI11_EGUPK_pFe      -                                                                       -        -                  - -   -        pFe  26/219/255/1007/69  1   50
-0 NEI11_EGUPK_BCPI     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    PEC      2006-2013/1-12/1/0 C xyz kg/m2/s  BCPI 26/221/256/1007/265 1   50
-0 NEI11_EGUPK_BCPO     -                                                                       -        -                  - -   -        BCPO 26/221/256/1007/266 1   50
-0 NEI11_EGUPK_OCPI     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egupk.nc    POC      2006-2013/1-12/1/0 C xyz kg/m2/s  OCPI 26/222/257/1007/267 1   50
-0 NEI11_EGUPK_OCPO     -                                                                       -        -                  - -   -        OCPO 26/222/257/1007/268 1   50
-
-# OIL & GAS
-0 NEI11_OILGAS_SOAP    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   CO       2006-2013/1-12/1/0 C xyz kg/m2/s  SOAP 26/211/252/1007/280 1   50
-0 NEI11_OILGAS_NH3     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   NH3      2006-2013/1-12/1/0 C xyz kg/m2/s  NH3  26/213/253/1007     1   50
-0 NEI11_OILGAS_SO2     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
-0 NEI11_OILGAS_SULF    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
-0 NEI11_OILGAS_SO4     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
-0 NEI11_OILGAS_pFe     -                                                                       -        -                  - -   -        pFe  26/219/255/1007/69  1   50
-0 NEI11_OILGAS_BCPI    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   PEC      2006-2013/1-12/1/0 C xyz kg/m2/s  BCPI 26/221/256/1007/265 1   50
-0 NEI11_OILGAS_BCPO    -                                                                       -        -                  - -   -        BCPO 26/221/256/1007/266 1   50
-0 NEI11_OILGAS_OCPI    $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_oilgas.nc   POC      2006-2013/1-12/1/0 C xyz kg/m2/s  OCPI 26/222/257/1007/267 1   50
-0 NEI11_OILGAS_OCPO    -                                                                       -        -                  - -   -        OCPO 26/222/257/1007/268 1   50
-
-# OTHER POINT SOURCES
-0 NEI11_OTHPT_SOAP     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    CO       2006-2013/1-12/1/0 C xyz kg/m2/s  SOAP 26/211/252/1007/280 1   50
-0 NEI11_OTHPT_NH3      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    NH3      2006-2013/1-12/1/0 C xyz kg/m2/s  NH3  26/213/253/1007     1   50
-0 NEI11_OTHPT_SO2      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
-0 NEI11_OTHPT_SULF     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
-0 NEI11_OTHPT_SO4      $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
-0 NEI11_OTHPT_pFe      -                                                                       -        -                  - -   -        pFe  26/219/255/1007/69  1   50
-0 NEI11_OTHPT_BCPI     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    PEC      2006-2013/1-12/1/0 C xyz kg/m2/s  BCPI 26/221/256/1007/265 1   50
-0 NEI11_OTHPT_BCPO     -                                                                       -        -                  - -   -        BCPO 26/221/256/1007/266 1   50
-0 NEI11_OTHPT_OCPI     $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_othpt.nc    POC      2006-2013/1-12/1/0 C xyz kg/m2/s  OCPI 26/222/257/1007/267 1   50
-0 NEI11_OTHPT_OCPO     -                                                                       -        -                  - -   -        OCPO 26/222/257/1007/268 1   50
-
-# NON-EGU INDUSTRIAL STACKS
-0 NEI11_PTNONIPM_SOAP  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc CO       2006-2013/1-12/1/0 C xyz kg/m2/s  SOAP 26/211/252/1007/280 1   50
-0 NEI11_PTNONIPM_NH3   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc NH3      2006-2013/1-12/1/0 C xyz kg/m2/s  NH3  26/213/253/1007     1   50
-0 NEI11_PTNONIPM_SO2   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc SO2      2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
-0 NEI11_PTNONIPM_SULF  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc SULF     2006-2013/1-12/1/0 C xyz kg/m2/s  SO2  26/218/255/1007     1   50
-0 NEI11_PTNONIPM_SO4   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc PSO4     2006-2013/1-12/1/0 C xyz kg/m2/s  SO4  26/219/255/1007     1   50
-0 NEI11_PTNONIPM_pFe   -                                                                       -        -                  - -   -        pFe  26/219/255/1007/69  1   50
-0 NEI11_PTNONIPM_BCPI  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc PEC      2006-2013/1-12/1/0 C xyz kg/m2/s  BCPI 26/221/256/1007/265 1   50
-0 NEI11_PTNONIPM_BCPO  -                                                                       -        -                  - -   -        BCPO 26/221/256/1007/266 1   50
-0 NEI11_PTNONIPM_OCPI  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_ptnonipm.nc POC      2006-2013/1-12/1/0 C xyz kg/m2/s  OCPI 26/222/257/1007/267 1   50
-0 NEI11_PTNONIPM_OCPO  -                                                                       -        -                  - -   -        OCPO 26/222/257/1007/268 1   50
-)))NEI2011_MONMEAN
+#------------------------------------------------------------------------------
+# NON-IPM SECTOR (point-source), monthly-mean data
+#
+# Includes: Point sources that are not in the ptegu or pt_oilgas sectors 
+#------------------------------------------------------------------------------
+0 NEI_MM_PTNONIPM_SOAP   $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptnonipm.nc CO           2004-2015/1-12/1/0 R xyz kg/m2/s  SOAP 252/1007/280 1 500
+0 NEI_MM_PTNONIPM_NH3    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptnonipm.nc NH3          2004-2015/1-12/1/0 R xyz kg/m2/s  NH3  253/1007     1 500
+0 NEI_MM_PTNONIPM_NH3_F  $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptnonipm.nc NH3_FERT     2004-2015/1-12/1/0 R xyz kg/m2/s  NH3  253/1007     1 500
+0 NEI_MM_PTNONIPM_SO2    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptnonipm.nc SO2          2004-2015/1-12/1/0 R xyz kg/m2/s  SO2  255/1007     1 500
+0 NEI_MM_PTNONIPM_SULF   $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptnonipm.nc SULF         2004-2015/1-12/1/0 R xyz kg/m2/s  SO2  255/1007     1 500
+0 NEI_MM_PTNONIPM_SO4    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptnonipm.nc PSO4         2004-2015/1-12/1/0 R xyz kg/m2/s  SO4  255/1007     1 500
+0 NEI_MM_PTNONIPM_BCPI   $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptnonipm.nc PEC          2004-2015/1-12/1/0 R xyz kg/m2/s  BCPI 256/1007/265 1 500
+0 NEI_MM_PTNONIPM_BCPO   -                                                                             -            -                  - -   -        BCPO 256/1007/266 1 500
+0 NEI_MM_PTNONIPM_OCPI   $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_ptnonipm.nc POC          2004-2015/1-12/1/0 R xyz kg/m2/s  OCPI 257/1007/267 1 500
+0 NEI_MM_PTNONIPM_OCPO   -                                                                             -            -                  - -   -        OCPO 257/1007/268 1 500
+)))NEI2011ek_MONMEAN
 
 #==============================================================================
 # --- STREETS SE ASIA (Zhang et al., 2009) ---
@@ -991,31 +1120,39 @@ Warnings:                    {WARNINGS}
 0 EMEP_SHIP_SO2        $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipSO2         1990-2012/1/1/0        C xy kg/m2/s  SO2  61/1000     10 2
 )))EMEP_SHIP
 
-(((NEI2011_SHIP_HOURLY
-0 NEI11_C3MARINE_SOAP  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc CO              2006-2013/1-12/1-31/* C xy kg/m2/s  SOAP 252/1007/280 10 50
-#0 NEI11_C3MARINE_NH3  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc NH3             2006-2013/1-12/1-31/* C xy kg/m2/s  NH3  253/1007     10 50
-0 NEI11_C3MARINE_SO2   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc SO2             2006-2013/1-12/1-31/* C xy kg/m2/s  SO2  255/1007     10 50
-0 NEI11_C3MARINE_SULF  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc SULF            2006-2013/1-12/1-31/* C xy kg/m2/s  SO2  255/1007     10 50
-0 NEI11_C3MARINE_SO4   $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc PSO4            2006-2013/1-12/1-31/* C xy kg/m2/s  SO4  255/1007     10 50
-0 NEI11_C3MARINE_pFe   -                                                               -               -                      - -  -        pFe  255/1007/69  10 50
-0 NEI11_C3MARINE_BCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc PEC             2006-2013/1-12/1-31/* C xy kg/m2/s  BCPI 256/1007/265 10 50
-0 NEI11_C3MARINE_BCPO  -                                                               -               -                     - -  -        BCPO 256/1007/266 10 50
-0 NEI11_C3MARINE_OCPI  $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc POC             2006-2013/1-12/1-31/* C xy kg/m2/s  OCPI 257/1007/267 10 50
-0 NEI11_C3MARINE_OCPO  -                                                               -               -                     - -  -        OCPO 257/1007/268 10 50
-)))NEI2011_SHIP_HOURLY
+(((NEI2011ek_SHIP_HOURLY
+#------------------------------------------------------------------------------
+# NEI2011ek, COMMERCIAL MARINE VESSELS (non-point-source), hourly data
+#------------------------------------------------------------------------------
+0 NEI_CMV_SOAP    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_cmv.nc CO           2004-2015/1-12/1-31/* R xy  kg/m2/s  SOAP 252/1007/280 1 500
+0 NEI_CMV_NH3     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_cmv.nc NH3          2004-2015/1-12/1-31/* R xy  kg/m2/s  NH3  253/1007     1 500
+0 NEI_CMV_NH3_F   $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_cmv.nc NH3_FERT     2004-2015/1-12/1-31/* R xy  kg/m2/s  NH3  253/1007     1 500
+0 NEI_CMV_SO2     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_cmv.nc SO2          2004-2015/1-12/1-31/* R xy  kg/m2/s  SO2  255/1007     1 500
+0 NEI_CMV_SULF    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_cmv.nc SULF         2004-2015/1-12/1-31/* R xy  kg/m2/s  SO2  255/1007     1 500
+0 NEI_CMV_SO4     $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_cmv.nc PSO4         2004-2015/1-12/1-31/* R xy  kg/m2/s  SO4  255/1007     1 500
+0 NEI_CMV_pFe     -                                                                -            -                     - -   -        SO4  255/1007     1 500
+0 NEI_CMV_BCPI    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_cmv.nc PEC          2004-2015/1-12/1-31/* R xy  kg/m2/s  BCPI 256/1007/265 1 500
+0 NEI_CMV_BCPO    -                                                                -            -                     - -   -        BCPO 256/1007/266 1 500
+0 NEI_CMV_OCPI    $ROOT/NEI2011ek/v2018-04/$MM/NEI2011ek_0.1x0.1_2011$MM$DD_cmv.nc POC          2004-2015/1-12/1-31/* R xy  kg/m2/s  OCPI 257/1007/267 1 500
+0 NEI_CMV_OCPO    -                                                                -            -                     - -   -        OCPO 257/1007/268 1 500
+)))NEI2011ek_SHIP_HOURLY
 
-(((NEI2011_SHIP_MONMEAN
-0 NEI11_C3MARINE_SOAP  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc CO      2006-2013/1-12/1/0    C xy kg/m2/s  SOAP 252/1007/280 10 50
-#0 NEI11_C3MARINE_NH3  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc NH3     2006-2013/1-12/1/0    C xy kg/m2/s  NH3  253/1007     10 50
-0 NEI11_C3MARINE_SO2   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc SO2     2006-2013/1-12/1/0    C xy kg/m2/s  SO2  255/1007     10 50
-0 NEI11_C3MARINE_SULF  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc SULF    2006-2013/1-12/1/0    C xy kg/m2/s  SO2  255/1007     10 50
-0 NEI11_C3MARINE_SO4   $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc PSO4    2006-2013/1-12/1/0    C xy kg/m2/s  SO4  255/1007     10 50
-0 NEI11_C3MARINE_pFe   -                                                                       -        -                     - -  -        pFe  255/1007/69  10 50
-0 NEI11_C3MARINE_BCPI  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc PEC     2006-2013/1-12/1/0    C xy kg/m2/s  BCPI 256/1007/265 10 50
-0 NEI11_C3MARINE_BCPO  -                                                                       -       -                     - -  -        BCPO 256/1007/266 10 50
-0 NEI11_C3MARINE_OCPI  $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_c3marine.nc POC     2006-2013/1-12/1/0    C xy kg/m2/s  OCPI 257/1007/267 10 50
-0 NEI11_C3MARINE_OCPO  -                                                                       -       -                     - -  -        OCPO 257/1007/268 10 50
-)))NEI2011_SHIP_MONMEAN
+(((NEI2011ek_SHIP_MONMEAN
+#------------------------------------------------------------------------------
+# NEI2011ek, COMMERCIAL MARINE VESSELS (non-point-source), monthly-mean data
+#------------------------------------------------------------------------------
+0 NEI_MM_CMV_CO      $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_cmv.nc CO           2004-2015/1-12/1/0 R xy  kg/m2/s  SOAP 252/1007/280        1 500
+0 NEI_MM_CMV_NH3     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_cmv.nc NH3          2004-2015/1-12/1/0 R xy  kg/m2/s  NH3  26/213/253/1007     1 500
+0 NEI_MM_CMV_NH3_F   $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_cmv.nc NH3_FERT     2004-2015/1-12/1/0 R xy  kg/m2/s  NH3  26/213/253/1007     1 500
+0 NEI_MM_CMV_SO2     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_cmv.nc SO2          2004-2015/1-12/1/0 R xy  kg/m2/s  SO2  26/218/255/1007     1 500
+0 NEI_MM_CMV_SULF    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_cmv.nc SULF         2004-2015/1-12/1/0 R xy  kg/m2/s  SO2  26/218/255/1007     1 500
+0 NEI_MM_CMV_SO4     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_cmv.nc PSO4         2004-2015/1-12/1/0 R xy  kg/m2/s  SO4  26/219/255/1007     1 500
+0 NEI_MM_CMV_pFe     -                                                                        -            -                  - -   -        pFe  26/219/255/1007     1 500
+0 NEI_MM_CMV_BCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_cmv.nc PEC          2004-2015/1-12/1/0 R xy  kg/m2/s  BCPI 26/221/256/1007/265 1 500
+0 NEI_MM_CMV_BCPO    -                                                                        -            -                  - -   -        BCPO 26/221/256/1007/266 1 500
+0 NEI_MM_CMV_OCPI    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_cmv.nc POC          2004-2015/1-12/1/0 R xy  kg/m2/s  OCPI 26/222/257/1007/267 1 500
+0 NEI_MM_CMV_OCPO    -                                                                        -            -                  - -   -        OCPO 26/222/257/1007/268 1 500
+)))NEI2011ek_SHIP_MONMEAN
 
 )))SHIP
  
@@ -1527,37 +1664,30 @@ Warnings:                    {WARNINGS}
 115 NO2toNO  6.521739e-1 - -  - xy unitless 1
 
 #==============================================================================
-# --- NEI 2005 scale factors ---
+# --- NEI 2011ek scale factors ---
+#
+# Use NEI99 weekday/weekend scale factors for NEI2011ek monthly-mean data
+# New yearly scale factors 2004-2015 from Rachel Silvern
 #==============================================================================
-201 VISTAS_SEASON     $ROOT/NEI2005/v2014-09/scaling/Vistas_season.geos.1x1.nc       NOratio      2002/1-12/1/0  C xy 1 1
-202 ARP_SEASON        $ROOT/NEI2005/v2014-09/scaling/ARP_season.geos.1x1.nc          NOxrat  1999-2007/1-12/1/0  C xy 1 1
-211 NEI99_DOW_CO      $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           CO           1999/1-12/WD/0 C xy 1 1
-213 NEI99_DOW_ACET    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           ACET         1999/1-12/WD/0 C xy 1 1
-218 NEI99_DOW_SO2     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           SO2          1999/1-12/WD/0 C xy 1 1
-219 NEI99_DOW_SO4     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           SO4          1999/1-12/WD/0 C xy 1 1
-220 NEI99_DOW_MSA     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           MSA          1999/1-12/WD/0 C xy 1 1
-221 NEI99_DOW_BCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           BCPI         1999/1-12/WD/0 C xy 1 1
-222 NEI99_DOW_OCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc           OCPI         1999/1-12/WD/0 C xy 1 1
-230 NEI99_SEASON_CO   $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        CO           1999/1-12/1/0  C xy 1 1
-237 NEI99_SEASON_SO2  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        SO2          1999/1-12/1/0  C xy 1 1
-238 NEI99_SEASON_SO4  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        SO4          1999/1-12/1/0  C xy 1 1
-239 NEI99_SEASON_MSA  $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        MSA          1999/1-12/1/0  C xy 1 1
-240 NEI99_SEASON_BCPI $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        BCPI         1999/1-12/1/0  C xy 1 1
-241 NEI99_SEASON_OCPI $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc        OCPI         1999/1-12/1/0  C xy 1 1
-242 NEI99_SEASON_NH3  0.216/0.418/0.622/0.815/0.982/0.974/1.0/0.9/0.96/0.6/0.28/0.236 -            -             - xy 1 1
-
-#==============================================================================
-# --- NEI 20011 scale factors ---
-#==============================================================================
-252 NEI11_CO_YRSCALE  1.271/1.227/1.104/0.998/1.019/1.0/0.981/0.962 - 2006-2013/1/1/0 C xy 1 1 
-253 NEI11_NH3_YRSCALE 0.966/1.002/1.019/1.015/1.010/1.0/0.999/0.998 - 2006-2013/1/1/0 C xy 1 1 
-255 NEI11_SO2_YRSCALE 2.038/1.813/1.600/1.408/1.200/1.0/0.800/0.738 - 2006-2013/1/1/0 C xy 1 1 
-256 NEI11_BC_YRSCALE  1.006/1.034/0.996/0.995/0.993/1.0/0.995/0.991 - 2006-2013/1/1/0 C xy 1 1 
-257 NEI11_OC_YRSCALE  1.006/1.034/0.996/0.995/0.993/1.0/0.995/0.991 - 2006-2013/1/1/0 C xy 1 1 
-265 NEI11_BC2BCPI     0.2                                           - -               - xy 1 1
-266 NEI11_BC2BCPO     0.8                                           - -               - xy 1 1
-267 NEI11_OC2OCPI     0.5                                           - -               - xy 1 1
-268 NEI11_OC2OCPO     0.5                                           - -               - xy 1 1
+210 NEI99_DOW_NOX     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc                  NOX  1999/1-12/WD/0  C xy 1 1
+211 NEI99_DOW_CO      $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc                  CO   1999/1-12/WD/0  C xy 1 1
+218 NEI99_DOW_SO2     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc                  SO2  1999/1-12/WD/0  C xy 1 1
+219 NEI99_DOW_SO4     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc                  SO4  1999/1-12/WD/0  C xy 1 1
+220 NEI99_DOW_MSA     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc                  MSA  1999/1-12/WD/0  C xy 1 1
+221 NEI99_DOW_BCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc                  BCPI 1999/1-12/WD/0  C xy 1 1
+222 NEI99_DOW_OCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc                  OCPI 1999/1-12/WD/0  C xy 1 1
+251 NEI11_NO_YRSCALE  1.494/1.419/1.337/1.255/1.172/1.097/1.034/1.0/0.939/0.887/0.847/0.781 -    2004-2015/1/1/0 C xy 1 1
+252 NEI11_CO_YRSCALE  1.486/1.388/1.271/1.227/1.104/0.998/1.019/1.0/0.981/0.962/0.911/0.874 -    2004-2015/1/1/0 C xy 1 1
+253 NEI11_NH3_YRSCALE 0.913/0.931/0.966/1.002/1.019/1.015/1.010/1.0/0.999/0.998/0.917/0.916 -    2004-2015/1/1/0 C xy 1 1
+254 NEI11_VOC_YRSCALE 1.071/1.073/1.083/1.093/1.011/1.000/1.016/1.0/0.986/0.971/0.943/0.922 -    2004-2015/1/1/0 C xy 1 1
+255 NEI11_SO2_YRSCALE 2.253/2.263/2.038/1.813/1.600/1.408/1.200/1.0/0.800/0.738/0.725/0.571 -    2004-2015/1/1/0 C xy 1 1
+256 NEI11_BC_YRSCALE  1.104/0.978/1.006/1.034/0.996/0.995/0.993/1.0/0.995/0.991/1.012/1.006 -    2004-2015/1/1/0 C xy 1 1
+257 NEI11_OC_YRSCALE  1.104/0.978/1.006/1.034/0.996/0.995/0.993/1.0/0.995/0.991/1.012/1.006 -    2004-2015/1/1/0 C xy 1 1
+264 NEI11_OLE2PRPE    0.5                                                                   -    -               - xy 1 1
+265 NEI11_BC2BCPI     0.2                                                                   -    -               - xy 1 1
+266 NEI11_BC2BCPO     0.8                                                                   -    -               - xy 1 1
+267 NEI11_OC2OCPI     0.5                                                                   -    -               - xy 1 1
+268 NEI11_OC2OCPO     0.5                                                                   -    -               - xy 1 1
 
 #==============================================================================
 # --- Aromatics scale factors ---
@@ -1596,23 +1726,23 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # Country/region masks
 #==============================================================================
-1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc           MASK     2000/1/1/0 C xy unitless 1 -30/30/45/70
-1001 MEXICO_MASK $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc          MASK     2000/1/1/0 C xy unitless 1 -118/17/-95/33
-1002 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc                  MASK     2000/1/1/0 C xy unitless 1 -141/40/-52/85
-1003 SEASIA_MASK $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc              MASK     2000/1/1/0 C xy unitless 1  60/-12/153/55
-1004 NA_MASK     $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc                      MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
-1005 USA_MASK    $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc             MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
-1006 ASIA_MASK   $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc         MASK     2000/1/1/0 C xy unitless 1 46/-12/180/82
-1007 NEI11_MASK  $ROOT/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc LANDMASK 2000/1/1/0 C xy 1        1 -140/20/-50/60
-1008 AF_MASK     $ROOT/MASKS/v2014-07/AF_LANDMASK.geos.05x0666.nc              LANDMASK 1985/1/1/0 C xy unitless 1 -20/-37/54/40
+1000 EMEP_MASK      $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc    MASK     2000/1/1/0 C xy unitless 1 -30/30/45/70
+1001 MEXICO_MASK    $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc   MASK     2000/1/1/0 C xy unitless 1 -118/17/-95/33
+1002 CANADA_MASK    $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc           MASK     2000/1/1/0 C xy unitless 1 -141/40/-52/85
+1003 SEASIA_MASK    $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc       MASK     2000/1/1/0 C xy unitless 1  60/-12/153/55
+1004 NA_MASK        $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc               MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
+1005 USA_MASK       $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc      MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
+1006 ASIA_MASK      $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc  MASK     2000/1/1/0 C xy unitless 1 46/-12/180/82
+1007 NEI2011ek_MASK $ROOT/MASKS/v2014-07/USA_NEI2011ek_mask.nc             MASK     2000/1/1/0 C xy unitless 1 -140/20/-50/60
+1008 AF_MASK        $ROOT/MASKS/v2014-07/AF_LANDMASK.geos.05x0666.nc       LANDMASK 1985/1/1/0 C xy unitless 1 -20/-37/54/40
 ############################################################################## 
 #### NOTE: These masks correspond to the fine dust emissions for the 
 #### DEAD dust extension, which are on hold for the time being.  For the
 #### time being, comment out these mask entries so that we can quickly
 #### restore them at a later date.
 ####     -- Bob Yantosca (11 Apr 2018)
-#1009 CHINA_MASK  $ROOT/MASKS/v2014-07/China_mask.generic.1x1.nc                MASK     2000/1/1/0 C xy unitless 1  70/10/150/60
-#1010 INDIA_MASK  $ROOT/MASKS/v2014-07/India_mask.generic.1x1.nc                MASK     2000/1/1/0 C xy unitless 1  67/7/99/39
+#1009 CHINA_MASK    $ROOT/MASKS/v2014-07/China_mask.generic.1x1.nc          MASK     2000/1/1/0 C xy unitless 1  70/10/150/60
+#1010 INDIA_MASK    $ROOT/MASKS/v2014-07/India_mask.generic.1x1.nc          MASK     2000/1/1/0 C xy unitless 1  67/7/99/39
 ############################################################################## 
 
 ### END SECTION MASKS ###
