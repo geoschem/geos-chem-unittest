@@ -1668,6 +1668,7 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 210 NEI99_DOW_NOX     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc  NOX  1999/1-12/WD/0  C xy 1 1
 211 NEI99_DOW_CO      $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc  CO   1999/1-12/WD/0  C xy 1 1
+213 NEI99_DOW_ACET    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc  ACET 1999/1-12/WD/0  C xy 1 1
 218 NEI99_DOW_SO2     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc  SO2  1999/1-12/WD/0  C xy 1 1
 219 NEI99_DOW_SO4     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc  SO4  1999/1-12/WD/0  C xy 1 1
 220 NEI99_DOW_MSA     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc  MSA  1999/1-12/WD/0  C xy 1 1

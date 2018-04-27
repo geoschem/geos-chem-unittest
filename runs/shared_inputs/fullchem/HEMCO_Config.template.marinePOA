@@ -2047,7 +2047,7 @@ Warnings:                    {WARNINGS}
 0 NEI_MM_CMV_ALK4    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_cmv.nc PAR          2004-2015/1-12/1/0 R xy  kgC/m2/s ALK4 26/212/254/1007     1 500
 0 NEI_MM_CMV_HONO    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_cmv.nc HONO         2004-2015/1-12/1/0 R xy  kg/m2/s  HNO2 25/210/1007         1 500
 0 NEI_MM_CMV_CO      $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_cmv.nc CO           2004-2015/1-12/1/0 R xy  kg/m2/s  CO   26/211/252/1007     1 500
-0 NEI_MM_CMV_SOAP    -                                                                                     -                  - -   -        SOAP 252/1007/280        1 500
+0 NEI_MM_CMV_SOAP    -                                                                        -            -                  - -   -        SOAP 252/1007/280        1 500
 0 NEI_MM_CMV_NH3     $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_cmv.nc NH3          2004-2015/1-12/1/0 R xy  kg/m2/s  NH3  26/213/253/1007     1 500
 0 NEI_MM_CMV_NH3_F   $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_cmv.nc NH3_FERT     2004-2015/1-12/1/0 R xy  kg/m2/s  NH3  26/213/253/1007     1 500
 0 NEI_MM_CMV_CH2O    $ROOT/NEI2011ek/v2018-04-MM/$MM/NEI2011ek_0.1x0.1_2011$MM_monmean_cmv.nc FORM         2004-2015/1-12/1/0 R xy  kg/m2/s  CH2O 26/213/254/1007     1 500
