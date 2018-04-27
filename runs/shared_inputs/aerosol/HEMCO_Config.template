@@ -1664,30 +1664,31 @@ Warnings:                    {WARNINGS}
 115 NO2toNO  6.521739e-1 - -  - xy unitless 1
 
 #==============================================================================
-# --- NEI 2011ek scale factors ---
-#
-# Use NEI99 weekday/weekend scale factors for NEI2011ek monthly-mean data
-# New yearly scale factors 2004-2015 from Rachel Silvern
+# --- NEI99 weekday/weekend scale factors ---
 #==============================================================================
-210 NEI99_DOW_NOX     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc                  NOX  1999/1-12/WD/0  C xy 1 1
-211 NEI99_DOW_CO      $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc                  CO   1999/1-12/WD/0  C xy 1 1
-218 NEI99_DOW_SO2     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc                  SO2  1999/1-12/WD/0  C xy 1 1
-219 NEI99_DOW_SO4     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc                  SO4  1999/1-12/WD/0  C xy 1 1
-220 NEI99_DOW_MSA     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc                  MSA  1999/1-12/WD/0  C xy 1 1
-221 NEI99_DOW_BCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc                  BCPI 1999/1-12/WD/0  C xy 1 1
-222 NEI99_DOW_OCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc                  OCPI 1999/1-12/WD/0  C xy 1 1
-251 NEI11_NO_YRSCALE  1.494/1.419/1.337/1.255/1.172/1.097/1.034/1.0/0.939/0.887/0.847/0.781 -    2004-2015/1/1/0 C xy 1 1
-252 NEI11_CO_YRSCALE  1.486/1.388/1.271/1.227/1.104/0.998/1.019/1.0/0.981/0.962/0.911/0.874 -    2004-2015/1/1/0 C xy 1 1
-253 NEI11_NH3_YRSCALE 0.913/0.931/0.966/1.002/1.019/1.015/1.010/1.0/0.999/0.998/0.917/0.916 -    2004-2015/1/1/0 C xy 1 1
-254 NEI11_VOC_YRSCALE 1.071/1.073/1.083/1.093/1.011/1.000/1.016/1.0/0.986/0.971/0.943/0.922 -    2004-2015/1/1/0 C xy 1 1
-255 NEI11_SO2_YRSCALE 2.253/2.263/2.038/1.813/1.600/1.408/1.200/1.0/0.800/0.738/0.725/0.571 -    2004-2015/1/1/0 C xy 1 1
-256 NEI11_BC_YRSCALE  1.104/0.978/1.006/1.034/0.996/0.995/0.993/1.0/0.995/0.991/1.012/1.006 -    2004-2015/1/1/0 C xy 1 1
-257 NEI11_OC_YRSCALE  1.104/0.978/1.006/1.034/0.996/0.995/0.993/1.0/0.995/0.991/1.012/1.006 -    2004-2015/1/1/0 C xy 1 1
-264 NEI11_OLE2PRPE    0.5                                                                   -    -               - xy 1 1
-265 NEI11_BC2BCPI     0.2                                                                   -    -               - xy 1 1
-266 NEI11_BC2BCPO     0.8                                                                   -    -               - xy 1 1
-267 NEI11_OC2OCPI     0.5                                                                   -    -               - xy 1 1
-268 NEI11_OC2OCPO     0.5                                                                   -    -               - xy 1 1
+210 NEI99_DOW_NOX     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc  NOX  1999/1-12/WD/0  C xy 1 1
+211 NEI99_DOW_CO      $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc  CO   1999/1-12/WD/0  C xy 1 1
+218 NEI99_DOW_SO2     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc  SO2  1999/1-12/WD/0  C xy 1 1
+219 NEI99_DOW_SO4     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc  SO4  1999/1-12/WD/0  C xy 1 1
+220 NEI99_DOW_MSA     $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc  MSA  1999/1-12/WD/0  C xy 1 1
+221 NEI99_DOW_BCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc  BCPI 1999/1-12/WD/0  C xy 1 1
+222 NEI99_DOW_OCPI    $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc  OCPI 1999/1-12/WD/0  C xy 1 1
+
+#==============================================================================
+# --- NEI 2011ek scale factors ---
+#==============================================================================
+251 NEI11_NO_YRSCALE  1.337/1.255/1.172/1.097/1.034/1.0/0.939/0.887 - 2006-2013/1/1/0 C xy 1 1
+252 NEI11_CO_YRSCALE  1.271/1.227/1.104/0.998/1.019/1.0/0.981/0.962 - 2006-2013/1/1/0 C xy 1 1 
+253 NEI11_NH3_YRSCALE 0.966/1.002/1.019/1.015/1.010/1.0/0.999/0.998 - 2006-2013/1/1/0 C xy 1 1 
+254 NEI11_VOC_YRSCALE 1.083/1.093/1.011/1.000/1.016/1.0/0.986/0.971 - 2006-2013/1/1/0 C xy 1 1 
+255 NEI11_SO2_YRSCALE 2.038/1.813/1.600/1.408/1.200/1.0/0.800/0.738 - 2006-2013/1/1/0 C xy 1 1 
+256 NEI11_BC_YRSCALE  1.006/1.034/0.996/0.995/0.993/1.0/0.995/0.991 - 2006-2013/1/1/0 C xy 1 1 
+257 NEI11_OC_YRSCALE  1.006/1.034/0.996/0.995/0.993/1.0/0.995/0.991 - 2006-2013/1/1/0 C xy 1 1 
+264 NEI11_OLE2PRPE    0.5                                           - -               - xy 1 1
+265 NEI11_BC2BCPI     0.2                                           - -               - xy 1 1
+266 NEI11_BC2BCPO     0.8                                           - -               - xy 1 1
+267 NEI11_OC2OCPI     0.5                                           - -               - xy 1 1
+268 NEI11_OC2OCPO     0.5                                           - -               - xy 1 1
 
 #==============================================================================
 # --- Aromatics scale factors ---
