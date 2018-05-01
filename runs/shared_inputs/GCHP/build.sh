@@ -95,7 +95,7 @@ if [[ $1 == "clean_gc"      ]] || \
    make HPC=yes realclean
 elif [[ $1 == "clean_mapl" ]] || \
      [[ $1 == "compile_mapl" ]]; then
-   make realclean # why no HPC?
+   make realclean
 fi
 
 # Change directory to GCHP
@@ -108,7 +108,7 @@ if [[ $1 == "compile_debug"    ]] || \
 elif [[ $1 == "clean_all" ]]; then
     make the_nuclear_option
 elif [[ $1 == "clean_nuclear" ]] || \
-     [[ $1 == "clean_clean"   ]]; then
+     [[ $1 == "compile_clean"   ]]; then
     make EXTERNAL_GRID=y the_nuclear_option
 elif [[ $1 == "clean_mapl" ]] || \
      [[ $1 == "compile_mapl" ]]; then
