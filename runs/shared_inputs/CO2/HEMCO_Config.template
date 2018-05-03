@@ -279,26 +279,24 @@ END SECTION EXTENSION SWITCHES
 )))GFED4
 
 #==============================================================================
-# --- FINN v1.6 biomass burning emissions (Extension 114) 
+# --- FINN v1.5 biomass burning emissions (Extension 114) 
 #==============================================================================
 (((.not.FINN_daily
-114 FINN_VEGTYP1       $ROOT/FINN/v2018-04/FINNv1.6_$YYYY_GEOSChem.monthly.nc fire_vegtype1 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP2       $ROOT/FINN/v2018-04/FINNv1.6_$YYYY_GEOSChem.monthly.nc fire_vegtype2 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP3       $ROOT/FINN/v2018-04/FINNv1.6_$YYYY_GEOSChem.monthly.nc fire_vegtype3 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP4       $ROOT/FINN/v2018-04/FINNv1.6_$YYYY_GEOSChem.monthly.nc fire_vegtype4 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP5       $ROOT/FINN/v2018-04/FINNv1.6_$YYYY_GEOSChem.monthly.nc fire_vegtype5 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP6       $ROOT/FINN/v2018-04/FINNv1.6_$YYYY_GEOSChem.monthly.nc fire_vegtype6 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP9       $ROOT/FINN/v2018-04/FINNv1.6_$YYYY_GEOSChem.monthly.nc fire_vegtype9 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP1       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype1 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP2       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype2 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP3       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype3 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP4       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype4 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP5       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype5 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP9       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype9 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
 ))).not.FINN_daily
 
 (((FINN_daily
-114 FINN_DAILY_VEGTYP1 $ROOT/FINN/v2018-04/FINNv1.6_$YYYY_GEOSChem.daily.nc   fire_vegtype1 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_DAILY_VEGTYP2 $ROOT/FINN/v2018-04/FINNv1.6_$YYYY_GEOSChem.daily.nc   fire_vegtype2 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_DAILY_VEGTYP3 $ROOT/FINN/v2018-04/FINNv1.6_$YYYY_GEOSChem.daily.nc   fire_vegtype3 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_DAILY_VEGTYP4 $ROOT/FINN/v2018-04/FINNv1.6_$YYYY_GEOSChem.daily.nc   fire_vegtype4 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2018-04/FINNv1.6_$YYYY_GEOSChem.daily.nc   fire_vegtype5 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_DAILY_VEGTYP6 $ROOT/FINN/v2018-04/FINNv1.6_$YYYY_GEOSChem.daily.nc   fire_vegtype5 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2018-04/FINNv1.6_$YYYY_GEOSChem.daily.nc   fire_vegtype9 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP1 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype1 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP2 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype2 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP3 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype3 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP4 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype4 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype5 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype9 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
 )))FINN_daily
 
 ###############################################################################
