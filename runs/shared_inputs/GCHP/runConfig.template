@@ -256,7 +256,7 @@ echo "Compute resources:"
 replace_val NX            ${NX}                 GCHP.rc
 replace_val NY            ${NY}                 GCHP.rc
 replace_val CoresPerNode  ${NUM_CORES_PER_NODE} HISTORY.rc
-replace_cal USE_SHMEM     ${USE_SHMEM}          CAP.rc
+replace_val USE_SHMEM     ${USE_SHMEM}          CAP.rc
 
 ####  set cubed-sphere resolution and related grid variables
 echo " "
