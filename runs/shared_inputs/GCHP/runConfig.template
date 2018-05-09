@@ -1,4 +1,4 @@
-#!/bin/bash
+ ~#!/bin/bash
 
 # runSettings.sh: Update select settings in *.rc and input.geos config files
 #
@@ -115,7 +115,7 @@ ChemEmiss_Timestep_sec=1200
 #   
 common_freq="010000"
 common_dur="010000"
-common_mode="time-averaged"
+common_mode="'time-averaged'"
 
 SpeciesConc_freq=${common_freq}
 SpeciesConc_dur=${common_dur}
