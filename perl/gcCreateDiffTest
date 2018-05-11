@@ -300,6 +300,7 @@ sub doCopyDirs($$) {
 #  12 Apr 2017 - R. Yantosca - Now replace {VERSION} in $COPY_PATH variable
 #  03 May 2017 - R. Yantosca - Bug fix: remove spaces from directory paths
 #  21 Sep 2017 - R. Yantosca - Now link to the HISTORY.rc file in Dev/
+#  03 May 2018 - R. Yantosca - Now also links to HEMCO_Diagn.rc file in Dev/
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -631,6 +632,10 @@ sub doCopyDirs($$) {
 	  # Make a symbolic link in Ref to Dev/HEMCO_Config.rc
 	  $cmd = "ln -s $devDir/HEMCO_Config.rc $refDir/HEMCO_Config.rc";
 	  qx/$cmd/;	      
+
+	  # Make a symbolic link in Ref to Dev/HEMCO_Diagn.rc
+	  $cmd = "ln -s $devDir/HEMCO_Diagn.rc $refDir/HEMCO_Diagn.rc";
+	  qx/$cmd/;
 
 	  # Make a symbolic link in Ref to Dev/input.geos
 	  $cmd = "ln -s $devDir/input.geos $refDir/input.geos";
