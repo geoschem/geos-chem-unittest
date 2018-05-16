@@ -93,7 +93,7 @@ Warnings:                    {WARNINGS}
     --> LRED_JNO2         :       true
     --> LBRYCHEM          :       true
     --> LCLCHEM           :       true
-    --> LHGAQCHEM         :       false
+    --> LHGAQCHEM         :       true
     --> LBRCHEM           :       false
     --> LBROCHEM          :       false
     --> LOHO3CHEM         :       false
