@@ -11,8 +11,8 @@ Root data directory     : {DATA_ROOT}
 Global offsets I0, J0   : 0 0
 ------------------------+------------------------------------------------------
 %%% TIMESTEP MENU %%%   :
-Tran/conv timestep [sec]: 600
-Chem/emis timestep [sec]: 1200
+Tran/conv timestep [sec]: 1200
+Chem/emis timestep [sec]: 2400
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 11
@@ -103,7 +103,7 @@ Species fluxes          : 0 0 0 0 0 0 0 0 0 1 0
 ------------------------+------------------------------------------------------
 %%% MERCURY MENU %%%    :
 Error check tag/tot Hg? : F
-Use dynamic ocean Hg?   : T
+Use dynamic ocean Hg?   : F
 Preindustrial sim?      : F
 Use GTMM soil model?    : F
 GTMM Hg rst file (bpch) : GTM.totHg.YYYYMMDDhh
