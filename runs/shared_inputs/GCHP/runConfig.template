@@ -1,4 +1,4 @@
- ~#!/bin/bash
+#!/bin/bash
 
 # runSettings.sh: Update select settings in *.rc and input.geos config files
 #
