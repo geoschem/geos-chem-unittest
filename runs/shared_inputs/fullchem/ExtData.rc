@@ -434,16 +434,16 @@ CEDS_HCOOH_WST  kg/m2/s xy C N Y F%y4-%m2-01T00:00:00 none none HCOOH_wst       
 #==============================================================================
 # --- Biofuel (BIOFUEL) ---
 #==============================================================================
-BIOFUEL_NO     kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_NO   ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_CO     kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_CO   ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_ALK4   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_ALK4 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_ACET   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_ACET ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_MEK    kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_MEK  ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_ALD2   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_ALD2 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_PRPE   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_PRPE ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_CH2O   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_CH2O ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_C2H6   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_C2H6 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
-BIOFUEL_C3H8   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_C3H8 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.1x1.nc
+BIOFUEL_NO     kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_NO   ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.4x5.nc
+BIOFUEL_CO     kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_CO   ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.4x5.nc
+BIOFUEL_ALK4   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_ALK4 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.4x5.nc
+BIOFUEL_ACET   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_ACET ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.4x5.nc
+BIOFUEL_MEK    kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_MEK  ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.4x5.nc
+BIOFUEL_ALD2   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_ALD2 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.4x5.nc
+BIOFUEL_PRPE   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_PRPE ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.4x5.nc
+BIOFUEL_CH2O   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_CH2O ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.4x5.nc
+BIOFUEL_C2H6   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_C2H6 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.4x5.nc
+BIOFUEL_C3H8   kg_m-2_s-1 xy C N Y F1985-01-01T00:00:00 none none BIOFUEL_C3H8 ./MainDataDir/BIOFUEL/v2014-07/biofuel.geos.4x5.nc
 
 #==============================================================================
 # --- RETRO (RETRO) ---
