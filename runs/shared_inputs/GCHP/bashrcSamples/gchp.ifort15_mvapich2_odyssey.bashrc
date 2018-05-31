@@ -13,8 +13,7 @@
 #\\
 #\\
 # !CALLING SEQUENCE:
-#  source gchp.ifort15_mvapich2_odyssey.bashrc  or
-#  . gchp.ifort15_mvapich2_odyssey.bashrc
+#  source gchp.ifort15_mvapich2_odyssey.bashrc
 #
 # !REMARKS
 #
@@ -31,17 +30,18 @@ if [[ $- = *i* ]] ; then
 fi
 
 #==============================================================================
-# Aliases (edit as needed for your preferences)
+# Aliases (edit/add/remove based on your preferences)
 #==============================================================================
 
-# Submit a run as a batch job
-alias gchprun="sbatch gchp.run"
+# Clean run directory before a new run
+# WARNING: will delete gchp.log and contents of OutputDir
+alias mco="make cleanup_output"       
 
 # Recompile GC but not MAPL, ESMF, dycore
 alias mcs="make compile_standard"     
 
-# Clean run directory before a new run
-alias mco="make cleanup_output"       
+# Submit a run as a batch job
+alias gchprun="sbatch gchp.run"
 
 # Follow log output on screen
 alias tfl="tail --follow gchp.log -n 100"   
@@ -56,14 +56,11 @@ alias checkbuild="cat lastbuild"
 # Modules (specific to compute cluster)
 #==============================================================================
 
-# These modules were defined with the older "module" command but are in the
-# process of being renamed during the transition to "lmod".  We still need
-# these for the GIGC/ESMF/MPI environment, so load them by their old names.
-source new-modules.sh
-
 module purge
 module load git
 
+# WARNING: these libraries were build on Odyssey CentOS6 and will
+# not work on Odyssey CentOS7
 module load intel/15.0.0-fasrc01
 module load mvapich2/2.3b-fasrc01
 module load netcdf/4.1.3-fasrc09

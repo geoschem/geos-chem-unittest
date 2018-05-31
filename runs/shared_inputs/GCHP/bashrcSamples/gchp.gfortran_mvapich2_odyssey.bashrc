@@ -12,8 +12,7 @@
 #\\
 #\\
 # !CALLING SEQUENCE:
-#  source gchp.gfortran_mvapich2_odyssey.bashrc  or
-#  . gchp.gfortran_mvapich2_odyssey.bashrc
+#  source gchp.gfortran_mvapich2_odyssey.bashrc
 #
 # !REMARKS
 #
@@ -31,17 +30,18 @@ if [[ $- = *i* ]] ; then
 fi
 
 #==============================================================================
-# Aliases (edit as needed for your preferences)
+# Aliases (add/remove/edit based on your preferences)
 #==============================================================================
-
-# Submit a run as a batch job
-alias gchprun="sbatch gchp.run"
 
 # Recompile GC but not MAPL, ESMF, dycore
 alias mcs="make compile_standard"     
 
 # Clean run directory before a new run
+# WARNING: will delete gchp.log and contents of OutputDir 
 alias mco="make cleanup_output"       
+
+# Submit a run as a batch job
+alias gchprun="sbatch gchp.run"
 
 # Follow log output on screen
 alias tfl="tail --follow gchp.log -n 100"   
@@ -56,14 +56,11 @@ alias checkbuild="cat lastbuild"
 # Modules (specific to compute cluster)
 #==============================================================================
 
-# These modules were defined with the older "module" command but are in the
-# process of being renamed during the transition to "lmod".  We still need
-# these for the GIGC/ESMF/MPI environment, so load them by their old names.
-source new-modules.sh
-
 module purge
 module load git
 
+# WARNING: These libraries were build on Odyssey CentOS 6 and will not
+# work on Odyssey CentOS7
 module load gcc/5.2.0-fasrc01
 module load mvapich2/2.2a-fasrc01
 module load netcdf/4.3.3.1-fasrc02

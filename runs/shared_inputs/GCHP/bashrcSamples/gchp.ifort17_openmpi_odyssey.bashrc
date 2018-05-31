@@ -3,24 +3,23 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !MODULE: gchp.gfortran_mvapich2_odyssey.bashrc
+# !MODULE: gchp.ifort17_openmpi_odyssey.bashrc
 #
-# !DESCRIPTION: Source this bash file to compile and run GCHP with the GNU 
-#  Fortran Compiler v5.2.0 and MPI implementation MVAPICH2 on the
-#  Harvard University Odyssey cluster. Compare it to the ifort15_mvapich2
-#  bash file to see the differences when changing compiler.
+# !DESCRIPTION: Source this bash file to compile and run GCHP v11-02f with the
+#  Intel Fortran Compiler v17 and MPI implementation OpenMPI on the 
+#  Harvard University Odyssey cluster. This environment script is customized to
+#  work with libraries built on CentOS 7.
 #\\
 #\\
 # !CALLING SEQUENCE:
-#  source gchp.gfortran_mvapich2_odyssey.bashrc  or
-#  . gchp.gfortran_mvapich2_odyssey.bashrc
+#  source gchp.ifort17_openmpi_odyssey.bashrc
 #
 # !REMARKS
 #
 # !REVISION HISTORY:
-#  26 Oct 2016 - S. Eastham - Initial version
-#  03 Feb 2017 - S. Eastham - Updated for GCHP v1
-#  31 May 2017 - S. Eastham - Converted for gfortran
+#  26 Oct 2016 - S. Eastham  - Initial version
+#  03 Feb 2017 - S. Eastham  - Updated for GCHP v1
+#  05 Jan 2018 - E. Lundgren - Initial commit
 #  See git commit history for subsequent revisions
 #EOP
 #------------------------------------------------------------------------------
@@ -31,17 +30,18 @@ if [[ $- = *i* ]] ; then
 fi
 
 #==============================================================================
-# Aliases (edit as needed for your preferences)
+# Aliases (edit/add/remove based on your preferences)
 #==============================================================================
 
-# Submit a run as a batch job
-alias gchprun="sbatch gchp.run"
+# Clean run directory before a new run 
+# WARNING: will delete gchp.log and contents of OutputDir
+alias mco="make cleanup_output"       
 
 # Recompile GC but not MAPL, ESMF, dycore
 alias mcs="make compile_standard"     
 
-# Clean run directory before a new run
-alias mco="make cleanup_output"       
+# Submit a run as a batch job
+alias gchprun="sbatch gchp.run"
 
 # Follow log output on screen
 alias tfl="tail --follow gchp.log -n 100"   
@@ -55,11 +55,6 @@ alias checkbuild="cat lastbuild"
 #==============================================================================
 # Modules (specific to compute cluster)
 #==============================================================================
-
-# These modules were defined with the older "module" command but are in the
-# process of being renamed during the transition to "lmod".  We still need
-# these for the GIGC/ESMF/MPI environment, so load them by their old names.
-#source new-modules.sh
 
 module purge
 module load git
@@ -85,6 +80,7 @@ export F77=$FC
 export F90=$FC
 export OMPI_FC=$FC
 export COMPILER=$FC
+export ESMF_COMPILER=intel
 
 # MPI Communication
 export ESMF_COMM=openmpi
@@ -99,7 +95,7 @@ export GC_LIB="$NETCDF_HOME/lib"
 export PATH=${NETCDF_HOME}/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_HOME}/lib
 
-# If using NetCDF after the C/Fortran split (4.3+), then you will need to 
+# If using NetCDF after the C/Fortran split (4.3+), then you will need to
 # specify the following additional environment variables
 export GC_F_BIN="$NETCDF_FORTRAN_HOME/bin"
 export GC_F_INCLUDE="$NETCDF_FORTRAN_HOME/include"
@@ -107,13 +103,16 @@ export GC_F_LIB="$NETCDF_FORTRAN_HOME/lib"
 export PATH=${NETCDF_FORTRAN_HOME}/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_FORTRAN_HOME}/lib
 
+# Set ESMF optimization (g=debugging, O=optimized (capital o))
+export ESMF_BOPT=O
+
 #==============================================================================
-# Raise/set memory limits
+# Raise memory limits
 #==============================================================================
 
 ulimit -c unlimited              # coredumpsize
 ulimit -l unlimited              # memorylocked
-ulimit -u unlimited              # maxproc
+#ulimit -u unlimited              # maxproc
 ulimit -v unlimited              # vmemoryuse
 
 #==============================================================================
@@ -128,7 +127,12 @@ echo ""
 echo "LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}"
 echo ""
 echo "ESMF_COMM: ${ESMF_COMM}"
+echo "ESMP_BOPT: ${ESMF_BOPT}"
 echo "MPI_ROOT: ${MPI_ROOT}"
+echo "MVAPICH2: ${MVAPICH2}"
+echo "MV2_USE_THREAD_WARNING: ${MV2_USE_THREAD_WARNING}"
+echo "MV2_ENABLE_AFFINITY: ${MV2_ENABLE_AFFINITY}"
+echo "MV2_USE_SHARED_MEM: ${MV2_USE_SHARED_MEM}"
 echo ""
 echo "CC: ${CC}"
 echo "OMPI_CC: ${OMPI_CC}"
@@ -141,6 +145,7 @@ echo "F77: ${F77}"
 echo "F90: ${F90}"
 echo "OMPI_FC: ${OMPI_FC}"
 echo "COMPILER: ${COMPILER}"
+echo "ESMF_COMPILER: ${ESMF_COMPILER}"
 echo ""
 echo "GC_BIN: ${GC_BIN}"
 echo "GC_INCLUDE: ${GC_INCLUDE}"
@@ -150,4 +155,5 @@ echo "GC_F_BIN: ${GC_F_BIN}"
 echo "GC_F_INCLUDE: ${GC_F_INCLUDE}"
 echo "GC_F_LIB: ${GC_F_LIB}"
 echo ""
+
 echo "Done sourcing ${BASH_SOURCE[0]}"

@@ -1,0 +1,1 @@
+../../shared_inputs/GCHP/bashrcSamples/gchp.ifort17_openmpi_odyssey.bashrc

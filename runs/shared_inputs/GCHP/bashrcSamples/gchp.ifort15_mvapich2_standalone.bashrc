@@ -39,17 +39,18 @@
 #BOC
 
 #==============================================================================
-# Aliases (edit as needed for your system and preferences)
+# Aliases (edit/add/remove based on your system and preferences)
 #==============================================================================
 
-# Run GCHP (Edit as needed for # of cores; you may replace w/ job script submit)
-alias gchprun="mpirun -np 64 ./geos | tee gchp.log"
+# Clean run directory before a new run
+# WARNING: will delete gchp.log and contents of OutputDir
+alias mco="make cleanup_output"       
 
 # Recompile GC but not MAPL, ESMF, dycore
 alias mcs="make compile_standard"     
 
-# Clean run directory before a new run
-alias mco="make cleanup_output"       
+# Run GCHP (Edit as needed for # of cores; you may replace w/ job script submit)
+alias gchprun="mpirun -np 64 ./geos | tee gchp.log"
 
 # Follow log output on screen
 alias tfl="tail --follow gchp.log -n 100"   

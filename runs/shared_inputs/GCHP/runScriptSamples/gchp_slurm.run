@@ -25,7 +25,7 @@ if [[ $? == 0 ]]; then
 
     # Set and source your bashrc. Change this to whatever env file
     # used during GCHP compilation.
-    BASHRC=bashrcSamples/gchp.ifort15_openmpi_odyssey.bashrc
+    BASHRC=bashrcSamples/gchp.ifort17_openmpi_odyssey.bashrc
     echo "WARNING: You are using environment settings in $BASHRC"
     source $BASHRC
 
