@@ -1328,7 +1328,7 @@ DEAD_VAI      1     xy C Y Y 1985-%m2-01T00:00:00 none none VAI      ./MainDataD
 # HEMCO restart variables are stored in the Internal State and are input/output via the checkpoint file
 #==============================================================================
 # --- Extension 108 ---
-MEGAN_AEF_ISOP               kgC/m2/s xy C N Y - none none AEF_ISOPRENE            ./MainDataDir/MEGAN/v2017-07/MEGAN2.1_EF.geos.025x03125.nc
+MEGAN_AEF_ISOP               kgC/m2/s xy C N Y - none none AEF_ISOPRENE            ./MainDataDir/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc
 CLM4_PFT_BARE                1        xy C N Y - none none PFT_BARE                ./MainDataDir/MEGAN/v2017-07/CLM4_PFT.geos.025x03125.nc       
 CLM4_PFT_NDLF_EVGN_TMPT_TREE 1        xy C N Y - none none PFT_NDLF_EVGN_TMPT_TREE ./MainDataDir/MEGAN/v2017-07/CLM4_PFT.geos.025x03125.nc       
 CLM4_PFT_NDLF_EVGN_BORL_TREE 1        xy C N Y - none none PFT_NDLF_EVGN_BORL_TREE ./MainDataDir/MEGAN/v2017-07/CLM4_PFT.geos.025x03125.nc       

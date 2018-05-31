@@ -1216,15 +1216,15 @@ Warnings:                    {WARNINGS}
 108  PARDR_DAVG                   ./HEMCO_restart.$YYYY$MM$DD$HH00.nc                PARDR_DAVG              $YYYY/$MM/$DD/$HH E xy W/m2     * - 1 1
 108  PARDF_DAVG                   ./HEMCO_restart.$YYYY$MM$DD$HH00.nc                PARDF_DAVG              $YYYY/$MM/$DD/$HH E xy W/m2     * - 1 1
 )))HEMCO_RESTART
-108  MEGAN_AEF_ISOP               $ROOT/MEGAN/v2017-07/MEGAN2.1_EF.geos.025x03125.nc AEF_ISOPRENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_MBOX               $ROOT/MEGAN/v2017-07/MEGAN2.1_EF.geos.025x03125.nc AEF_MBO                 1985/1/1/0        C xy kgC/m2/s * - 1 1
-#109 MEGAN_AEF_APIN               $ROOT/MEGAN/v2017-07/MEGAN2.1_EF.geos.025x03125.nc AEF_ALPHA_PINENE        1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_BPIN               $ROOT/MEGAN/v2017-07/MEGAN2.1_EF.geos.025x03125.nc AEF_BETA_PINENE         1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_CARE               $ROOT/MEGAN/v2017-07/MEGAN2.1_EF.geos.025x03125.nc AEF_CARENE              1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_LIMO               $ROOT/MEGAN/v2017-07/MEGAN2.1_EF.geos.025x03125.nc AEF_LIMONENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
-#109 MEGAN_AEF_MYRC               $ROOT/MEGAN/v2017-07/MEGAN2.1_EF.geos.025x03125.nc AEF_MYRCENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_OCIM               $ROOT/MEGAN/v2017-07/MEGAN2.1_EF.geos.025x03125.nc AEF_OCIMENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_SABI               $ROOT/MEGAN/v2017-07/MEGAN2.1_EF.geos.025x03125.nc AEF_SABINENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
+108  MEGAN_AEF_ISOP               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc AEF_ISOPRENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_MBOX               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc AEF_MBO                 1985/1/1/0        C xy kgC/m2/s * - 1 1
+#109 MEGAN_AEF_APIN               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc AEF_ALPHA_PINENE        1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_BPIN               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc AEF_BETA_PINENE         1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_CARE               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc AEF_CARENE              1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_LIMO               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc AEF_LIMONENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
+#109 MEGAN_AEF_MYRC               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc AEF_MYRCENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_OCIM               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc AEF_OCIMENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
+109  MEGAN_AEF_SABI               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc AEF_SABINENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
 108  CLM4_PFT_BARE                $ROOT/MEGAN/v2017-07/CLM4_PFT.geos.025x03125.nc    PFT_BARE                2000/1/1/0        C xy 1        * - 1 1
 108  CLM4_PFT_NDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2017-07/CLM4_PFT.geos.025x03125.nc    PFT_NDLF_EVGN_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
 108  CLM4_PFT_NDLF_EVGN_BORL_TREE $ROOT/MEGAN/v2017-07/CLM4_PFT.geos.025x03125.nc    PFT_NDLF_EVGN_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
