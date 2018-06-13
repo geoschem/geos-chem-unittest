@@ -102,7 +102,7 @@ Warnings:                    3
     --> C2H6_2010              :       true
     --> EDGARv43               :       false
     --> HTAP                   :       false
-    --> CEDS                   :       false
+    --> CEDS                   :       true
     --> EMEP                   :       true
     --> GEIA                   :       true
     --> POET                   :       true
