@@ -1238,6 +1238,25 @@ RCP85_HCOOH   1 xy C N Y %y4-01-01T00:00:00 none none ACCMIP ./MainDataDir/RCP/v
 #==============================================================================
 
 #==============================================================================
+# --- Offline seasalt emissions (SALT_SSALT_OFFLINE) ---
+#==============================================================================
+SALA_SSALT_OFFLINE kg/m2/s  xy C N Y F%y4-%m2-%d2T%h2:00:00 none none SSALT_SALA ./MainDataDir/OFFLINE_SSALT/v2018-06/SSalt_2x25_%y4%m2.nc4
+SALC_SSALT_OFFLINE kg/m2/s  xy C N Y F%y4-%m2-%d2T%h2:00:00 none none SSALT_SALC ./MainDataDir/OFFLINE_SSALT/v2018-06/SSalt_2x25_%y4%m2.nc4
+Br2_SSALT_OFFLINE  kg/m2/s  xy C N Y F%y4-%m2-%d2T%h2:00:00 none none SSALT_Br2  ./MainDataDir/OFFLINE_SSALT/v2018-06/SSalt_2x25_%y4%m2.nc4
+
+#==============================================================================
+# --- Offline sea flux emissions (SEA_SFLUX_OFFLINE) ---
+#==============================================================================
+ACET_SFLUX_OFFLINE kg/m2/s   xy C N Y F%y4-%m2-%d2T%h2:00:00 none none SFLUX_ACET ./MainDataDir/OFFLINE_SFLUX/v2018-06/SFlux_2x25_%y4%m2.nc4
+DMS_SFLUX_OFFLINE  kg/m2/s   xy C N Y F%y4-%m2-%d2T%h2:00:00 none none SFLUX_DMS  ./MainDataDir/OFFLINE_SFLUX/v2018-06/SFlux_2x25_%y4%m2.nc4
+ALD2_SFLUX_OFFLINE kg/m2/s   xy C N Y F%y4-%m2-%d2T%h2:00:00 none none SFLUX_ALD2 ./MainDataDir/OFFLINE_SFLUX/v2018-06/SFlux_2x25_%y4%m2.nc4
+
+#==============================================================================
+# --- Offline lightning NOx emissions (NOX_LTNG_OFFLINE) ---
+#==============================================================================
+NO_LTNG_OFFLINE kg/m2/s xyz C N Y F%y4-%m2-%d2T%h2:00:00 none none LNOX_NO ./MainDataDir/OFFLINE_LNOX/v2018-06/LNOx_2x25_%y4%m2.nc4
+
+#==============================================================================
 # --- Volcanic emissions (VOLCANO) --- 
 #==============================================================================
 VOLCANO_SO2_ERUPT kg_m-2_s-1 xyz C N Y %y4-%m2-%d2T00:00:00 none none SO2_erupt ./MainDataDir/VOLCANO/v2015-02/%y4/volc_so2_gen.1x1.47L.%y4%m2.nc
