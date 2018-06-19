@@ -3,15 +3,15 @@
 #------------------------------------------------------------------------------
 #BOP
 #
-# !MODULE: gchp.ifort17_openmpi_odyssey.bashrc
+# !MODULE: gchp.gfortran_openmpi_odyssey.bashrc
 #
-# !DESCRIPTION: Source this bash file to compile and run GCHP with the
-#  Intel Fortran Compiler v17 and MPI implementation OpenMPI on the 
+# !DESCRIPTION: Source this bash file to compile and run GCHP with the GNU
+#  Compiler Collection (GCC) v7.1.0 and MPI implementation OpenMPI on the 
 #  Harvard University Odyssey cluster.
 #\\
 #\\
 # !CALLING SEQUENCE:
-#  source gchp.ifort17_openmpi_odyssey.bashrc
+#  source gchp.gfortran_openmpi_odyssey.bashrc
 #
 # !REMARKS
 #
@@ -59,7 +59,7 @@ module purge
 module load git
 
 # Modules for CentOS7
-module load intel/17.0.4-fasrc01
+module load gcc/7.1.0-fasrc01
 module load openmpi/2.1.0-fasrc02
 module load netcdf/4.3.2-fasrc05
 module load netcdf-fortran/4.4.0-fasrc03
@@ -75,16 +75,16 @@ export OMPI_CC=$CC
 export CXX=g++
 export OMPI_CXX=$CXX
 
-export FC=ifort
+export FC=gfortran
 export F77=$FC
 export F90=$FC
 export OMPI_FC=$FC
 export COMPILER=$FC
-export ESMF_COMPILER=intel
+export ESMF_COMPILER=gfortran
 
 # MPI Communication
 export ESMF_COMM=openmpi
-export MPI_ROOT=$MPI_HOME
+export MPI_ROOT=$( dirname $( dirname $( which mpirun ) ) )
 
 # Base paths
 export GC_BIN="$NETCDF_HOME/bin"
@@ -112,7 +112,7 @@ export ESMF_BOPT=O
 
 ulimit -c unlimited              # coredumpsize
 ulimit -l unlimited              # memorylocked
-ulimit -u unlimited              # maxproc
+#ulimit -u unlimited              # maxproc
 ulimit -v unlimited              # vmemoryuse
 
 #==============================================================================
@@ -129,6 +129,10 @@ echo ""
 echo "ESMF_COMM: ${ESMF_COMM}"
 echo "ESMP_BOPT: ${ESMF_BOPT}"
 echo "MPI_ROOT: ${MPI_ROOT}"
+echo "MVAPICH2: ${MVAPICH2}"
+echo "MV2_USE_THREAD_WARNING: ${MV2_USE_THREAD_WARNING}"
+echo "MV2_ENABLE_AFFINITY: ${MV2_ENABLE_AFFINITY}"
+echo "MV2_USE_SHARED_MEM: ${MV2_USE_SHARED_MEM}"
 echo ""
 echo "CC: ${CC}"
 echo "OMPI_CC: ${OMPI_CC}"

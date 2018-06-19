@@ -7,8 +7,7 @@
 #
 # !DESCRIPTION: Source this bash file to compile and run GCHP with the
 #  Intel Fortran Compiler v15 and MPI implementation OpenMPI on the 
-#  Harvard University Odyssey cluster. Compare it to the ifort15_mvapich2
-#  bash file to see the differences when changing MPI.
+#  Harvard University Odyssey cluster.
 #\\
 #\\
 # !CALLING SEQUENCE:
@@ -59,13 +58,11 @@ alias checkbuild="cat lastbuild"
 module purge
 module load git
 
-# WARNING: These libraries were build on Odyssey CentOS6 and will not 
-# work on Odyssey CentOS 7
+# Modules for CentOS7
 module load intel/15.0.0-fasrc01
-module load openmpi/1.10.3-fasrc01
-module load zlib/1.2.8-fasrc03
-module load hdf5/1.8.12-fasrc12
-module load netcdf/4.1.3-fasrc09
+module load openmpi/2.1.0-fasrc02
+module load netcdf/4.3.2-fasrc05
+module load netcdf-fortran/4.4.0-fasrc03
 
 #==============================================================================
 # Environment variables
@@ -98,6 +95,14 @@ export GC_LIB="$NETCDF_HOME/lib"
 export PATH=${NETCDF_HOME}/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_HOME}/lib
 
+# If using NetCDF after the C/Fortran split (4.3+), then you will need to
+# specify the following additional environment variables
+export GC_F_BIN="$NETCDF_FORTRAN_HOME/bin"
+export GC_F_INCLUDE="$NETCDF_FORTRAN_HOME/include"
+export GC_F_LIB="$NETCDF_FORTRAN_HOME/lib"
+export PATH=${NETCDF_FORTRAN_HOME}/bin:$PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_FORTRAN_HOME}/lib
+
 # Set ESMF optimization (g=debugging, O=optimized (capital o))
 export ESMF_BOPT=O
 
@@ -107,7 +112,7 @@ export ESMF_BOPT=O
 
 ulimit -c unlimited              # coredumpsize
 ulimit -l unlimited              # memorylocked
-ulimit -u unlimited              # maxproc
+#ulimit -u unlimited              # maxproc
 ulimit -v unlimited              # vmemoryuse
 
 #==============================================================================
@@ -145,5 +150,9 @@ echo ""
 echo "GC_BIN: ${GC_BIN}"
 echo "GC_INCLUDE: ${GC_INCLUDE}"
 echo "GC_LIB: ${GC_LIB}"
+echo ""
+echo "GC_F_BIN: ${GC_F_BIN}"
+echo "GC_F_INCLUDE: ${GC_F_INCLUDE}"
+echo "GC_F_LIB: ${GC_F_LIB}"
 echo ""
 echo "Done sourcing ${BASH_SOURCE[0]}"

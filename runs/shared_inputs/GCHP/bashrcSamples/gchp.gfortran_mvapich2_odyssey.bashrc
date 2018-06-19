@@ -5,10 +5,9 @@
 #
 # !MODULE: gchp.gfortran_mvapich2_odyssey.bashrc
 #
-# !DESCRIPTION: Source this bash file to compile and run GCHP with the GNU 
-#  Fortran Compiler v5.2.0 and MPI implementation MVAPICH2 on the
-#  Harvard University Odyssey cluster. Compare it to the ifort15_mvapich2
-#  bash file to see the differences when changing compiler.
+# !DESCRIPTION: Source this bash file to compile and run GCHP with the GNU
+#  Compiler Collection (GCC) v7.1.0 and MPI implementation MVAPICH2 on the 
+#  Harvard University Odyssey cluster.
 #\\
 #\\
 # !CALLING SEQUENCE:
@@ -19,7 +18,6 @@
 # !REVISION HISTORY:
 #  26 Oct 2016 - S. Eastham - Initial version
 #  03 Feb 2017 - S. Eastham - Updated for GCHP v1
-#  31 May 2017 - S. Eastham - Converted for gfortran
 #  See git commit history for subsequent revisions
 #EOP
 #------------------------------------------------------------------------------
@@ -30,15 +28,15 @@ if [[ $- = *i* ]] ; then
 fi
 
 #==============================================================================
-# Aliases (add/remove/edit based on your preferences)
+# Aliases (edit/add/remove based on your preferences)
 #==============================================================================
+
+# Clean run directory before a new run
+# WARNING: will delete gchp.log and contents of OutputDir
+alias mco="make cleanup_output"       
 
 # Recompile GC but not MAPL, ESMF, dycore
 alias mcs="make compile_standard"     
-
-# Clean run directory before a new run
-# WARNING: will delete gchp.log and contents of OutputDir 
-alias mco="make cleanup_output"       
 
 # Submit a run as a batch job
 alias gchprun="sbatch gchp.run"
@@ -50,7 +48,7 @@ alias tfl="tail --follow gchp.log -n 100"
 alias checkgit="make printbuildinfo"        
 
 # Show build code git info
-alias checkbuild="cat lastbuild" 
+alias checkbuild="cat lastbuild"   
 
 #==============================================================================
 # Modules (specific to compute cluster)
@@ -59,12 +57,11 @@ alias checkbuild="cat lastbuild"
 module purge
 module load git
 
-# WARNING: These libraries were build on Odyssey CentOS 6 and will not
-# work on Odyssey CentOS7
-module load gcc/5.2.0-fasrc01
-module load mvapich2/2.2a-fasrc01
-module load netcdf/4.3.3.1-fasrc02
-module load netcdf-fortran/4.4.2-fasrc01
+# Modules for CentOS7
+module load gcc/7.1.0-fasrc01
+module load mvapich2/2.3b-fasrc02
+module load netcdf/4.3.2-fasrc05
+module load netcdf-fortran/4.4.0-fasrc03
 
 #==============================================================================
 # Environment variables
@@ -86,8 +83,8 @@ export ESMF_COMPILER=gfortran
 
 # MPI Communication
 export ESMF_COMM=mvapich2
-export MPI_ROOT=$( dirname $( dirname $( which mpirun ) ) )
-export MVAPICH2=$( dirname $( dirname $( which mpirun ) ) )
+export MPI_ROOT=$MPI_HOME
+export MVAPICH2=$MPI_HOME
 
 # Suppress MVAPICH2 warning message for if OpenMP is used
 export MV2_USE_THREAD_WARNING=0
@@ -107,7 +104,7 @@ export GC_LIB="$NETCDF_HOME/lib"
 export PATH=${NETCDF_HOME}/bin:$PATH
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_HOME}/lib
 
-# If using NetCDF after the C/Fortran split (4.3+), then you will need to 
+# If using NetCDF after the C/Fortran split (4.3+), then you will need to
 # specify the following additional environment variables
 export GC_F_BIN="$NETCDF_FORTRAN_HOME/bin"
 export GC_F_INCLUDE="$NETCDF_FORTRAN_HOME/include"
@@ -119,12 +116,12 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_FORTRAN_HOME}/lib
 export ESMF_BOPT=O
 
 #==============================================================================
-# Raise/set memory limits
+# Raise memory limits
 #==============================================================================
 
 ulimit -c unlimited              # coredumpsize
 ulimit -l unlimited              # memorylocked
-ulimit -u unlimited              # maxproc
+#ulimit -u unlimited              # maxproc
 ulimit -v unlimited              # vmemoryuse
 
 #==============================================================================
@@ -168,3 +165,4 @@ echo "GC_F_INCLUDE: ${GC_F_INCLUDE}"
 echo "GC_F_LIB: ${GC_F_LIB}"
 echo ""
 echo "Done sourcing ${BASH_SOURCE[0]}"
+
