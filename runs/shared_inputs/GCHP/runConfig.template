@@ -366,8 +366,8 @@ replace_val "Turn on Dry Deposition?"   ${Turn_on_Dry_Deposition}   input.geos
 replace_val "Turn on Wet Deposition?"   ${Turn_on_Wet_Deposition}   input.geos
 echo " "
 echo "Timesteps:"
-replace_val "Trans/conv Timestep [sec]"	${TransConv_Timestep_sec}   input.geos
-replace_val "Chem/emis Timestep [sec]"	${ChemEmiss_Timestep_sec}   input.geos
+replace_val "Tran/conv timestep [sec]"	${TransConv_Timestep_sec}   input.geos
+replace_val "Chem/emis timestep [sec]"	${ChemEmiss_Timestep_sec}   input.geos
 	    
 
 

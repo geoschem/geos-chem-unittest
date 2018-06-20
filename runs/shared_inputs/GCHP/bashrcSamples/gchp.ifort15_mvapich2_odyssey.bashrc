@@ -79,7 +79,7 @@ export F77=$FC
 export F90=$FC
 export OMPI_FC=$FC
 export COMPILER=$FC
-#export ESMF_COMPILER=intel
+export ESMF_COMPILER=intel
 
 # MPI Communication
 export ESMF_COMM=mvapich2
