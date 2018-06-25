@@ -100,6 +100,10 @@ ifndef FPE
  FPE         :=n
 endif
 
+ifndef FPEX
+ FPEX        :=n
+endif
+
 ifndef OMP
  OMP         :=y
 endif
@@ -145,14 +149,27 @@ ifndef TAU_PROF
  TAU_PROF    :=n
 endif
 
-# Default: BPCH_DIAG is always turned ON (unless user says otherwise)
+
+# Default: BPCH_DIAG is always turned ON unless the user specifies
+# otherwise or if NC_DIAG=y is specified
 ifndef BPCH_DIAG
  BPCH_DIAG   :=y
+ ifdef NC_DIAG
+  ifeq ($(NC_DIAG),y)
+   BPCH_DIAG   :=n
+  endif
+ endif
 endif
 
-# Default: NC_DIAG is always turned OFF (unless user says otherwise)
+# Default: NC_DIAG is always turned OFF unless the user specifies
+# otherwise or only BPCH_DIAG=n is specified 
 ifndef NC_DIAG
  NC_DIAG     :=n
+ ifdef BPCH_DIAG
+  ifeq ($(BPCH_DIAG),n)
+   NC_DIAG   :=y
+  endif
+ endif
 endif
 
 ###############################################################################
@@ -247,6 +264,10 @@ endif
 
 ifeq ($(SIM),masscons)
  MASSCONS    :=y
+endif
+
+ifeq ($(SIM),RnPbBe)
+ NO_REDUCED  :=y
 endif
 
 # General run information
@@ -388,42 +409,42 @@ quickdt:
 	@$(MAKE) check
 
 refonly:
-	@$(MAKE) -C $(RUN_REF) ref                                           \
-                               MET=$(MET)             GRID=$(GRID)           \
-                               NEST=$(NEST)                                  \
-                               CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
-                               TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
-                               TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
-                               MASSCONS=$(MASSCONS)   OMP=$(OMP)             \
-                               NO_ISO=$(NO_ISO)       CODE=$(CODE_REF)       \
-                               EXEC=$(EXEC_REF)       TRAC_AVG=$(TRAC_AVG)   \
-                               TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG)   \
-                               HMCO_RST=$(HMCO_RST)   HIST_INS=$(HIST_INS)   \
-                               HMCO_LOG=$(LOG_HMCO)   LOG=$(LOG_REF)         \
-                               START=$(START)         END=$(END)             \
-                               TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
-                               TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE) \
+	@$(MAKE) -C $(RUN_REF) ref                                            \
+                               MET=$(MET)             GRID=$(GRID)            \
+                               NEST=$(NEST)           NO_REDUCED=$(NO_REDUCED)\
+                               CHEM=$(CHEM)           RRTMG=$(RRTMG)          \
+                               TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)      \
+                               TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)      \
+                               MASSCONS=$(MASSCONS)   OMP=$(OMP)              \
+                               NO_ISO=$(NO_ISO)       CODE=$(CODE_REF)        \
+                               EXEC=$(EXEC_REF)       TRAC_AVG=$(TRAC_AVG)    \
+                               TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG)    \
+                               HMCO_RST=$(HMCO_RST)   HIST_INS=$(HIST_INS)    \
+                               HMCO_LOG=$(LOG_HMCO)   LOG=$(LOG_REF)          \
+                               START=$(START)         END=$(END)              \
+                               TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)    \
+                               TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
                                NC_DIAG=$(NC_DIAG)     BPCH_DIAG=$(BPCH_DIAG) 
 	@$(MAKE) printbuildinfo > $(RUN_REF)/$(LOG_COMP).Ref
 	@$(MAKE) printruninforef >> $(LOG_REF)
 	@$(MAKE) printallinforef
 
 devonly:
-	@$(MAKE) -C $(RUN_DEV) dev                                           \
-                               MET=$(MET)             GRID=$(GRID)           \
-                               NEST=$(NEST)                                  \
-                               CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
-                               TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
-                               TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
-                               MASSCONS=$(MASSCONS)   OMP=$(OMP)             \
-                               NO_ISO=$(NO_ISO)       CODE=$(CODE_DEV)       \
-                               EXEC=$(EXEC_DEV)       TRAC_AVG=$(TRAC_AVG)   \
-                               TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG)   \
-                               HMCO_RST=$(HMCO_RST)   HIST_INS=$(HIST_INS)   \
-                               HMCO_LOG=$(LOG_HMCO)   LOG=$(LOG_DEV)         \
-                               START=$(START)         END=$(END)             \
-                               TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
-                               TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE) \
+	@$(MAKE) -C $(RUN_DEV) dev                                            \
+                               MET=$(MET)             GRID=$(GRID)            \
+                               NEST=$(NEST)           NO_REDUCED=$(NO_REDUCED)\
+                               CHEM=$(CHEM)           RRTMG=$(RRTMG)          \
+                               TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)      \
+                               TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)      \
+                               MASSCONS=$(MASSCONS)   OMP=$(OMP)              \
+                               NO_ISO=$(NO_ISO)       CODE=$(CODE_DEV)        \
+                               EXEC=$(EXEC_DEV)       TRAC_AVG=$(TRAC_AVG)    \
+                               TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG)    \
+                               HMCO_RST=$(HMCO_RST)   HIST_INS=$(HIST_INS)    \
+                               HMCO_LOG=$(LOG_HMCO)   LOG=$(LOG_DEV)          \
+                               START=$(START)         END=$(END)              \
+                               TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)    \
+                               TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
                                NC_DIAG=$(NC_DIAG)     BPCH_DIAG=$(BPCH_DIAG)
 	@$(MAKE) printbuildinfo > $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
@@ -434,21 +455,21 @@ devonly:
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 devlib:
-	@$(MAKE) -C $(RUN_DEV) lib                                           \
-                               MET=$(MET)             GRID=$(GRID)           \
-                               NEST=$(NEST)                                  \
-                               CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
-                               TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
-                               TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
-                               MASSCONS=$(MASSCONS)   OMP=yes                \
-                               NO_ISO=$(NO_ISO)       CODE=$(CODE_DEV)       \
-                               EXEC=$(EXEC_DEV)       TRAC_AVG=$(TRAC_AVG)   \
-                               TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG)   \
-                               HMCO_RST=$(HMCO_RST)   SPEC_RST=$(SPEC_RST)   \
-                               HIST_INS=$(HIST_INS)   HMCO_LOG=$(LOG_HMCO)   \
-                               LOG=$(LOG_DEV)         START=$(START)         \
-                               END=$(END)             TIMERS=$(TIMERS)       \
-                               TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE) \
+	@$(MAKE) -C $(RUN_DEV) lib                                            \
+                               MET=$(MET)             GRID=$(GRID)            \
+                               NEST=$(NEST)           NO_REDUCED=$(NO_REDUCED)\
+                               CHEM=$(CHEM)           RRTMG=$(RRTMG)          \
+                               TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)      \
+                               TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)      \
+                               MASSCONS=$(MASSCONS)   OMP=yes                 \
+                               NO_ISO=$(NO_ISO)       CODE=$(CODE_DEV)        \
+                               EXEC=$(EXEC_DEV)       TRAC_AVG=$(TRAC_AVG)    \
+                               TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG)    \
+                               HMCO_RST=$(HMCO_RST)   SPEC_RST=$(SPEC_RST)    \
+                               HIST_INS=$(HIST_INS)   HMCO_LOG=$(LOG_HMCO)    \
+                               LOG=$(LOG_DEV)         START=$(START)          \
+                               END=$(END)             TIMERS=$(TIMERS)        \
+                               TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
                                NC_DIAG=$(NC_DIAG)     BPCH_DIAG=$(BPCH_DIAG)
 	@$(MAKE) printbuildinfo > $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
@@ -459,21 +480,22 @@ devlib:
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 devrun:
-	@$(MAKE) -C $(RUN_DEV) run                                           \
-                               MET=$(MET)             GRID=$(GRID)           \
-                               NEST=$(NEST)                                  \
-                               CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
-                               TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
-                               TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
-                               MASSCONS=$(MASSCONS)   OMP=yes                \
-                               NO_ISO=$(NO_ISO)       CODE=$(CODE_DEV)       \
-                               EXEC=$(EXEC_DEV)       TRAC_AVG=$(TRAC_AVG)   \
-                               TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG)   \
-                               HMCO_RST=$(HMCO_RST)   SPEC_RST=$(SPEC_RST)   \
-                               HIST_INS=$(HIST_INS)   HMCO_LOG=$(LOG_HMCO)   \
-                               LOG_DEV=$(LOG_DEV)     START=$(START)         \
-                               END=$(END)             TIMERS=$(TIMERS)       \
-                               TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE) \
+	@$(MAKE) -C $(RUN_DEV) run                                            \
+                               MET=$(MET)             GRID=$(GRID)            \
+                               NEST=$(NEST)           NO_REDUCED=$(NO_REDUCED)\
+                               CHEM=$(CHEM)           RRTMG=$(RRTMG)          \
+                               CHEM=$(CHEM)           RRTMG=$(RRTMG)          \
+                               TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)      \
+                               TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)      \
+                               MASSCONS=$(MASSCONS)   OMP=yes                 \
+                               NO_ISO=$(NO_ISO)       CODE=$(CODE_DEV)        \
+                               EXEC=$(EXEC_DEV)       TRAC_AVG=$(TRAC_AVG)    \
+                               TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG)    \
+                               HMCO_RST=$(HMCO_RST)   SPEC_RST=$(SPEC_RST)    \
+                               HIST_INS=$(HIST_INS)   HMCO_LOG=$(LOG_HMCO)    \
+                               LOG_DEV=$(LOG_DEV)     START=$(START)          \
+                               END=$(END)             TIMERS=$(TIMERS)        \
+                               TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
                                NC_DIAG=$(NC_DIAG)     BPCH_DIAG=$(BPCH_DIAG)
 	@$(MAKE) printbuildinfo > $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printruninfodev >> $(LOG_DEV)

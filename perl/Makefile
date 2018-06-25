@@ -106,6 +106,10 @@ ifndef FPE
  FPE         :=n
 endif
 
+ifndef FPEX
+ FPEX        :=n
+endif
+
 ifndef NO_ISO
  NO_ISO      :=n
 endif
