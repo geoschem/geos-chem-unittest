@@ -982,6 +982,7 @@ sub readResults($$) {
   my $dateRan          = "";
   my $describe         = "";
   my $makeCmd          = "";
+  my $compiler         = $ENV{"FC"};
 
   # HTML color values
   my $WHITE            = "#FFFFFF";
@@ -1042,7 +1043,7 @@ sub readResults($$) {
       $unitTests{ "UNIT_TEST_VERSION"  } = $version;
       $unitTests{ "UNIT_TEST_DATE"     } = $dateRan;
       $unitTests{ "UNIT_TEST_DESCRIBE" } = $describe;
-      $unitTests{ "UNIT_TEST_MAKECMD"  } = $makeCmd;
+      $unitTests{ "UNIT_TEST_MAKECMD"  } = "($compiler) $makeCmd";
     }
     
     #-------------------------------------------------------------------------
