@@ -20,10 +20,31 @@
 #\\
 #\\
 # !REMARKS:
-# Designed to be used with the geosfp_4x5_standard run directory created
-# by the GEOS-Chem Unit Tester. To use this script, you must first compile
-# the GEOS-Chem code using the command "make -j4 mpbuild" to create the
-# geos.mp executable.
+#  Designed to be used with the geosfp_4x5_standard run directory created
+#  by the GEOS-Chem Unit Tester. To use this script, you must first compile
+#  the GEOS-Chem code using the command "make -j4 mpbuild" to create the
+#  geos.mp executable.
+#
+#  NOTES:
+#  (1) This script is customized for the Harvard "Odyssey" cluster.  If you
+#      are running a benchmark on a different machine, you can edit this
+#      script accordingly.
+#
+#  (2) SBATCH -w holyjacob01 is only needed for "official" 1-month benchmarks
+#      for which timing information is needed.  If you are running a private
+#      benchmark and don't need the timing info, you can delete this.
+#
+#  (3) SBATCH --exclusive will request an entire node, to prevent backfilling
+#      jobs from affecting timing results.  If you don't need the timing info,
+#      then you can delete this.
+#
+#  (4) We have increased the requested memory to 10 GB, since the benchmark
+#      simulation now carries many more SOA species.  
+# 
+#  (5) Remember to update the id variable below for each version.
+#
+#  (6) At present, the benchmarks are done with ifort 11.1.069 to maintain
+#      backwards compatibility.  This may change in the future.
 #
 # !CALLING SEQUENCE:
 #  To submit run to the SLURM queue system:
@@ -39,9 +60,9 @@
 #BOC
 
 # Load environment modules
-# This will load the IFORT11 compiler. If you use a different compiler, make
-# sure to load the proper modules. Examples of other bash scripts for loading
-# modules can be found in the ~/init/ directory.
+# This will load the IFORT11 compiler (version 11.1.069). If you use a 
+# different compiler, make sure to load the proper modules. Examples of 
+# other bash scripts for loading modules can be found in the ~/init/ folder
 source ~/.bashrc
 source ~/init/init.gc-classic.ifort11
 
@@ -62,16 +83,18 @@ log="$id.log"
 #-------------------------------------------------
 # Start the simulation
 #-------------------------------------------------
+
 # Run GEOS-Chem and pipe output to log
 srun -c $OMP_NUM_THREADS time -p ./geos.mp >> $log
 
-# Echo end fin
+# Echo end time
 echo '===> Run ended at' `date` >> $log
 
 #-------------------------------------------------
 # Clean up
 #-------------------------------------------------
-# Rename output file
+
+# Rename output file.  NOTE: We now use 2016 as the benchmark year.
 if [ -f trac_avg.geosfp_4x5_benchmark.201607010000 ]; then
    mv -fv trac_avg.geosfp_4x5_benchmark.201607010000 trac_avg.$id
 fi
