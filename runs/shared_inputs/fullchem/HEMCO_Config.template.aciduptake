@@ -212,6 +212,10 @@ Warnings:                    {WARNINGS}
 # NOTE: These emissions are old and are slated to be replaced soon.
 #==============================================================================
 (((GEIA
+
+(((.not.CEDS.or.EDGARv43
+
+# GEIA anthro emissions (skip if CEDS or EDGARv43 is on)
 #0 GEIA_NO   $ROOT/GEIA/v2014-07/GEIA_NOSO4.fullyear.geos.4x5.nc NO   1985/1-12/1/0 C xy  kg/m2/s  NO   1/2/25/20    1 1 
 #0 GEIA_CO   $ROOT/GEIA/v2014-07/GEIA_FOSSIL.geos.1x1.nc         CO   1985/1/1/0    C xy  kg/m2/s  CO   6/7/26/21/52 1 1 
 #0 GEIA_ALK4 $ROOT/GEIA/v2014-07/GEIA_FOSSIL.geos.1x1.nc         ALK4 1985/1/1/0    C xy  kgC/m2/s ALK4 918/26/22    1 1 
@@ -221,15 +225,20 @@ Warnings:                    {WARNINGS}
 #0 GEIA_C2H6 $ROOT/GEIA/v2014-07/GEIA_FOSSIL.geos.1x1.nc         C2H6 1985/1/1/0    C xy  kgC/m2/s C2H6 26           1 1
 #0 GEIA_C3H8 $ROOT/GEIA/v2014-07/GEIA_FOSSIL.geos.1x1.nc         C3H8 1985/1/1/0    C xy  kgC/m2/s C3H8 918/26/22    1 1
 
-# GEIA NH3 emissions: anthropogenic, biofuel and natural sources
+# GEIA NH3 anthro (skip if CEDS or EDGARv43 is on)
 0 GEIA_NH3_ANTH $ROOT/NH3/v2014-07/NH3_geos.4x5.nc         NH3_ANTH     1990/1-12/1/0 C xy  kg/m2/s NH3 - 1 1 
 
+# GEIA NH3 biofuel(skip if CEDS or EDGARv43 is on)
 (((BIOFUEL
 0 GEIA_NH3_BIOF $ROOT/NH3/v2014-07/NH3_biofuel.geos.1x1.nc NH3_BIOFUEL  1998/1-12/1/0 C xy  kg/m2/s NH3 - 2 1
 )))BIOFUEL
 
+))).not.CEDS.or.EDGARv43
+
+# GEIA NH3 natural source
 0 GEIA_NH3_NATU $ROOT/NH3/v2014-07/NH3_geos.4x5.nc         NH3_NATU     1990/1-12/1/0 C xy  kg/m2/s NH3 - 3 1
 
+# GEIA NH3 from arctic seabirds
 0 SEABIRD_NH3   $ROOT/NH3/v2018-04/NH3_Arctic_seabirds.nc  NH3_SEABIRDS 1990/1-12/1/0 C xy  kg/m2/s NH3 - 30 1
 )))GEIA
 

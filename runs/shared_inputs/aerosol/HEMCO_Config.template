@@ -128,7 +128,7 @@ Warnings:                    {WARNINGS}
 101     SeaFlux                : on    DMS
 105     DustDead               : on    DST1/DST2/DST3/DST4 
 106     DustGinoux             : off   DST1/DST2/DST3/DST4
-107     SeaSalt                : on    SALA/SALC/Br2
+107     SeaSalt                : on    SALA/SALC
     --> SALA lower radius      :       0.01 
     --> SALA upper radius      :       0.5
     --> SALC lower radius      :       0.5
@@ -195,15 +195,23 @@ Warnings:                    {WARNINGS}
 # NOTE: These emissions are old and are slated to be replaced soon.
 #==============================================================================
 (((GEIA
-# GEIA NH3 emissions: anthropogenic, biofuel and natural sources
+
+(((.not.CEDS.or.EDGARv43
+
+# GEIA NH3 anthro (skip if CEDS or EDGARv43 is on)
 0 GEIA_NH3_ANTH $ROOT/NH3/v2014-07/NH3_geos.4x5.nc         NH3_ANTH     1990/1-12/1/0 C xy  kg/m2/s NH3 - 1 1 
 
+# GEIA NH3 biofuel (skip if CEDS or EDGARv43 is on)
 (((BIOFUEL
 0 GEIA_NH3_BIOF $ROOT/NH3/v2014-07/NH3_biofuel.geos.1x1.nc NH3_BIOFUEL  1998/1-12/1/0 C xy  kg/m2/s NH3 - 2 1
 )))BIOFUEL
 
+))).not.CEDS.or.EDGARv43
+
+# GEIA NH3 natural source
 0 GEIA_NH3_NATU $ROOT/NH3/v2014-07/NH3_geos.4x5.nc         NH3_NATU     1990/1-12/1/0 C xy  kg/m2/s NH3 - 3 1
 
+# GEIA NH3 from arctic seabirds
 0 SEABIRD_NH3   $ROOT/NH3/v2018-04/NH3_Arctic_seabirds.nc  NH3_SEABIRDS 1990/1-12/1/0 C xy  kg/m2/s NH3 - 30 1
 )))GEIA
 
