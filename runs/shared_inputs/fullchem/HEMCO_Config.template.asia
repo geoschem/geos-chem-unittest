@@ -1691,7 +1691,7 @@ Warnings:                    {WARNINGS}
 #     zero.
 #==============================================================================
 (((SHIP
-0  ARCTAS_SHIP_SO2     $ROOT/ARCTAS_SHIP/v2014-07/ARCTAS_ship.generic.1x1.nc           SO2             2008/1/1/0             C xy kg/m2/s  SO2  11           10 1
+0  ARCTAS_SHIP_SO2     $ROOT/ARCTAS_SHIP/v2014-07/ARCTAS_ship.generic.1x1.nc           SO2             2008/1/1/0             C xy kg/m2/s  SO2  11/19        10 1
 #0 CORBETT_SHIP_SO2    $ROOT/CORBETT_SHIP/v2014-07/CORBETT_ship.geos.1x1.nc            SO2_SHIP        1985/1-12/1/0          C xy kg/m2/s  SO2  -            10 3
 #0 ICOADS_SHIP_SO2     $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                SO2             2002/1-12/1/0          C xy kg/m2/s  SO2  11/15/60     10 5
 #0 HTAP_SHIP_SO2       $ROOT/HTAP/v2015-03/EDGAR_HTAP_SO2_SHIPS.generic.01x01.nc       emi_so2         2008-2010/1/1/0        C xy kg/m2/s  SO2  11/29        10 2
