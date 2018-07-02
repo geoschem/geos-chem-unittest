@@ -1320,17 +1320,18 @@ SOILNOX_NONARID       1      xy C N Y -                     none none NON_ARID  
 # DEAD_PM25FINE is commented out by default in HEMCO_Config.rc
 # DEAD_SFC_TYP uses the ExtData voting option
 #==============================================================================
-DEAD_EF_GEO   1     xy C N Y -                    none none EF_GEO   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
-DEAD_LF_DRY   1     xy C N Y -                    none none LF_DRY   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
-DEAD_MF_CACO3 1     xy C N Y -                    none none MF_CaCO3 ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
-DEAD_MF_CLY   1     xy C N Y -                    none none MF_CLY   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
-DEAD_MF_SND   1     xy C N Y -                    none none MF_SND   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
-DEAD_SFC_TYP  count xy C N V -                    none none SFC_TYP  ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
-DEAD_GOC_SRC  1     xy C N Y -                    none none GOC_SRC  ./MainDataDir/DUST_DEAD/v2014-07/GOCART_src_fn.geos.4x5.nc
-DEAD_VAI      1     xy C Y Y 1985-%m2-01T00:00:00 none none VAI      ./MainDataDir/DUST_DEAD/v2014-07/dst_tvbds.geos.4x5.nc
-#DEAD_PM25FINE kg/m2/s xy C Y Y 2015-%m2-01T00:00:00 none none PM25FINE   ./MainDataDir/DUST_DEAD/v2018-04/PM25FINE_ECLIPSE_2015.geos.2x25.nc
-#DEAD_PM25FINE kg/m2/s xy C Y Y 2012-%m2-01T00:00:00 none none PM25FINE   ./MainDataDir/DUST_DEAD/v2018-04/PM25FINE_MEIC_2012.geos.025x025.nc
-#DEAD_PM25FINE kg/m2/s xy C Y Y 2013-%m2-01T00:00:00 none none PM25Fine   ./MainDataDir/DUST_DEAD/v2018-04/PM25FINE_IITB_2013.geos.025x025.nc
+DEAD_EF_GEO     1       xy C N Y -                    none none EF_GEO   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
+DEAD_LF_DRY     1       xy C N Y -                    none none LF_DRY   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
+DEAD_MF_CACO3   1       xy C N Y -                    none none MF_CaCO3 ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
+DEAD_MF_CLY     1       xy C N Y -                    none none MF_CLY   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
+DEAD_MF_SND     1       xy C N Y -                    none none MF_SND   ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
+DEAD_SFC_TYP    count   xy C N V -                    none none SFC_TYP  ./MainDataDir/DUST_DEAD/v2014-07/dst_tibds.geos.4x5.nc
+DEAD_GOC_SRC    1       xy C N Y -                    none none GOC_SRC  ./MainDataDir/DUST_DEAD/v2014-07/GOCART_src_fn.geos.4x5.nc
+DEAD_VAI        1       xy C Y Y 1985-%m2-01T00:00:00 none none VAI      ./MainDataDir/DUST_DEAD/v2014-07/dst_tvbds.geos.4x5.nc
+#### NOTE: This option will be added in GEOS-Chem 12.1.0 (bmy, 6/29/18) ####
+#DEAD_PM25FINE_1 kg/m2/s xy C Y Y 2015-%m2-01T00:00:00 none none PM25FINE   ./MainDataDir/DUST_DEAD/v2018-04/PM25FINE_ECLIPSE_2015.geos.2x25.nc
+#DEAD_PM25FINE_2 kg/m2/s xy C Y Y 2012-%m2-01T00:00:00 none none PM25FINE   ./MainDataDir/DUST_DEAD/v2018-04/PM25FINE_MEIC_2012.geos.025x025.nc
+#DEAD_PM25FINE_3 kg/m2/s xy C Y Y 2013-%m2-01T00:00:00 none none PM25Fine   ./MainDataDir/DUST_DEAD/v2018-04/PM25FINE_IITB_2013.geos.025x025.nc
 
 #==============================================================================
 # --- Dust emissions using Paul Ginoux's mechanism (Extension 106) ---
