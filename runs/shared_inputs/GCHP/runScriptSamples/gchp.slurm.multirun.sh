@@ -17,7 +17,7 @@
 #  1. Configure the total number of runs within runConfig.sh. This is 
 #     equivalent to how many jobs will be submitted to SLURM. Make sure that 
 #     the end date in runConfig.sh is sufficiently past the start date to 
-#     accomodate all configured runs.
+#     accommodate all configured runs.
 #
 #  2. runConfig.sh need only be sourced once, at the very start of this script,
 #     and cap_restart should never be deleted. This is why there is a special
@@ -50,7 +50,7 @@ rm -f cap_restart.log
 printf "Submitting ${Num_Runs} jobs with duration '${Duration}'\n"
 printf "Start date: ${Start_Time}\n"
 printf "End date:   ${End_Time}\n"
-printf "*** Check that end date is sufficiently past start date to accomodate all runs ***\n"
+printf "*** Check that end date is sufficiently past start date to span all runs ***\n"
 
 msg=$(sbatch gchp_slurm.multirun.run)
 echo $msg

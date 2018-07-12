@@ -133,11 +133,12 @@ gchp_mapl:
 cleanup_output: cleanup_data cleanup_logs
 
 cleanup_data: 
-	rm -f $(RUN_DIR)/OutputDir/GCHP.*
+	rm -f $(RUN_DIR)/OutputDir/*.nc4
 	rm -f trac_avg.*
 	rm -f tracerinfo.dat
 	rm -f diaginfo.dat
 	rm -f cap_restart
+        rm -f gcchem*
 	rm -f *.rcx
 	rm -f *~
 
