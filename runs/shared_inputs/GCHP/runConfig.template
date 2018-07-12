@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # runSettings.sh: Update select settings in *.rc and input.geos config files
+# and configure simulation start/end/duration and # of consecutive runs.
 #
 # Usage: ./runSettings.sh
 #
@@ -59,6 +60,15 @@ fi
 ######################################
 #### SIMULATION TIMES
 ######################################
+# End_time must be sufficiently past Start_Time to accomodate Num_Runs
+# times Duration. Use or adapt ./runScriptSamples/gchp_slurm.multirun.sh 
+# (which uses gchp_slurm.multirun.run) if number of runs is greater than one.
+# Otherwise, use or adapt ./runScriptSamples/gchp_slurm.run.
+#
+# Beware that diagnostics are configured with number of hours and do not 
+# accomodate differing number of hours per month. Configure your diagnostic 
+# frequency and duration further down in this file with this in mind.
+Num_Runs=1
 Start_Time="{DATE1} {TIME1}"
 End_Time="{DATE2} {TIME2}"
 Duration="{dYYYYMMDD} {dHHmmss}"
