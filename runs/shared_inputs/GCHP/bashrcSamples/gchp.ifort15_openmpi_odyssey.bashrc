@@ -84,7 +84,7 @@ export ESMF_COMPILER=intel
 
 # MPI Communication
 export ESMF_COMM=openmpi
-export MPI_ROOT=$( dirname $( dirname $( which mpirun ) ) )
+export MPI_ROOT=$MPI_HOME
 
 # Base paths
 export GC_BIN="$NETCDF_HOME/bin"
@@ -129,10 +129,6 @@ echo ""
 echo "ESMF_COMM: ${ESMF_COMM}"
 echo "ESMP_BOPT: ${ESMF_BOPT}"
 echo "MPI_ROOT: ${MPI_ROOT}"
-echo "MVAPICH2: ${MVAPICH2}"
-echo "MV2_USE_THREAD_WARNING: ${MV2_USE_THREAD_WARNING}"
-echo "MV2_ENABLE_AFFINITY: ${MV2_ENABLE_AFFINITY}"
-echo "MV2_USE_SHARED_MEM: ${MV2_USE_SHARED_MEM}"
 echo ""
 echo "CC: ${CC}"
 echo "OMPI_CC: ${OMPI_CC}"
