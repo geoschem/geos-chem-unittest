@@ -1,9 +1,15 @@
 #!/bin/bash
 
-# Script to archive files after a run. The output data (OutputDir/*.nc4) is moved 
-# but everything else is copied, including log files (*.log, slurm-*), config files
-# (*.rc, input.geos), run files (*.run, *.bashrc, runConfig.sh), and restarts 
-# (only gcchem*). Files are stored in subdirectories.
+# Script to archive files after a run. 
+# 
+# Argument: archive directory name (can be non-existent)
+#
+# Example usage: ./archiveRun.sh c48_1hr_emissionsOff
+#
+# The output data (OutputDir/*.nc4) is moved but everything else is copied, including 
+# log files (*.log, slurm-*), config files (*.rc, input.geos), run files (*.run, 
+# *.bashrc, runConfig.sh), and restarts (only gcchem*). Files are stored in 
+# subdirectories within the archive directory.
 #
 # Clean the run directory after archiving with 'make cleanup_output' prior to
 # rerunning and archiving a new set of run outputs. Otherwise previous run files
@@ -11,11 +17,9 @@
 
 # Initial version: Lizzie Lundgren - 7/12/2018
 
-printf "Enter archive directory name (ok if non-existent):\n"
-read dirname
-archivedir=${dirname}
+archivedir=$1
 if [ -d "${archivedir}" ]; then
-   printf "Warning: Directory ${archivedir} already exists.\nRemove or rename that directory, or choose a different name.\n"
+   printf -v "Warning: Directory ${archivedir} already exists.\nRemove or rename that directory, or choose a different name."
    exit 1
 else
    mkdir -p ${archivedir}
@@ -27,18 +31,52 @@ else
    mkdir -p ${archivedir}/restarts
 fi
 
-numfiles=$(ls -l OutputDir/*.nc4 | wc -l)
-if [ "$numfiles" -eq "0" ]; then
-   printf "Warning: No netcdf files in OutputDir to move. Exiting.\n"
-   exit 1
-else
-   mv OutputDir/*.nc4 ${archivedir}/data
-fi
-cp -t ${archivedir}/run *.run *.bashrc runConfig.sh *multirun.sh
-cp -t ${archivedir}/logs *.log slurm-*
-cp -t ${archivedir}/build lastbuild compile.log
-cp -t ${archivedir}/config *.rc input.geos
-cp -t ${archivedir}/restarts gcchem_* *restart*
-printf "Archiving in ${archivedir} complete.\n"
+echo "Archiving files..."
+
+# Move diagnostic data
+for f in OutdirDir/*.nc4; do
+   if [ -f $f ]; then
+      mv $f ${archivedir}/data
+   else      
+      echo "Warning: OutputDir is empty"
+   fi
+done
+
+# Function to copy arg1 all files matching arg2
+copyfiles () {
+   for file in $2; do
+      if [ -e $file ]; then
+         echo "-> $1/$file"
+         cp -t $1 $file
+      else
+         echo "Warning: $file not found"
+      fi
+   done
+}
+
+# Customize as needed to best fit your workflow
+
+# compilation logs
+copyfiles ${archivedir}/build lastbuild
+copyfiles ${archivedir}/build compile.log
+
+# config files
+copyfiles ${archivedir}/config input.geos
+copyfiles ${archivedir}/config "*.rc"
+
+# restarts (add/remove as needed - beware this is copying so may take a while if high res!)
+copyfiles ${archivedir}/restarts "gcchem_*"
+
+# run logs
+copyfiles ${archivedir}/logs "*.log"
+copyfiles ${archivedir}/logs "slurm-*"
+
+# miscellaneous run files
+copyfiles ${archivedir}/run runConfig.sh
+copyfiles ${archivedir}/run "*.run"
+copyfiles ${archivedir}/run "*.bashrc"
+copyfiles ${archivedir}/run *.multirun.sh
+
+printf "Complete!\n"
 
 exit 0

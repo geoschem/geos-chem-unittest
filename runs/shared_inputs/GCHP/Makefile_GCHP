@@ -138,7 +138,7 @@ cleanup_data:
 	rm -f tracerinfo.dat
 	rm -f diaginfo.dat
 	rm -f cap_restart
-        rm -f gcchem*
+	rm -f gcchem*
 	rm -f *.rcx
 	rm -f *~
 
