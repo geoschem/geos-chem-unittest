@@ -1035,6 +1035,41 @@ DICE_OTHERFUELWOOD_HCOOH g/m2/yr  xy C N Y - none none HCOOH ./MainDataDir/DICE_
 DICE_OTHERFUELWOOD_BCPI  g/m2/yr  xy C N Y - none none BC    ./MainDataDir/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc 
 DICE_OTHERFUELWOOD_OCPI  g/m2/yr  xy C N Y - none none OC    ./MainDataDir/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc 
 
+#  --- Efficient Combusions Emissions from EDGARv43    --- 
+#  --- This covers sectors not included in DICE-Africa ---
+EDGAR_CO_POW   kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.CO.POW.0.1x0.1.nc  
+EDGAR_CO_ENG   kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.CO.ENG.0.1x0.1.nc  
+EDGAR_CO_IND   kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.CO.IND.0.1x0.1.nc  
+EDGAR_CO_TNG   kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.CO.TNG.0.1x0.1.nc  
+EDGAR_CO_PPA   kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.CO.PPA.0.1x0.1.nc  
+EDGAR_CO_SWD   kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_co  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.CO.SWD.0.1x0.1.nc  
+EDGAR_NO_POW   kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nox  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NOx.POW.0.1x0.1.nc 
+EDGAR_NO_ENG   kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nox  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NOx.ENG.0.1x0.1.nc 
+EDGAR_NO_IND   kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nox  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NOx.IND.0.1x0.1.nc 
+EDGAR_NO_TNG   kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nox  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NOx.TNG.0.1x0.1.nc 
+EDGAR_NO_PPA   kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nox  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NOx.PPA.0.1x0.1.nc 
+EDGAR_NO_AGR   kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nox  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NOx.AGR.0.1x0.1.nc 
+EDGAR_NO_SWD   kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nox  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NOx.SWD.0.1x0.1.nc 
+EDGAR_NH3_POW  kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NH3.POW.0.1x0.1.nc 
+EDGAR_NH3_ENG  kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NH3.ENG.0.1x0.1.nc 
+EDGAR_NH3_IND  kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NH3.IND.0.1x0.1.nc 
+EDGAR_NH3_TNG  kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NH3.TNG.0.1x0.1.nc 
+EDGAR_NH3_PPA  kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NH3.PPA.0.1x0.1.nc 
+EDGAR_NH3_AGR  kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NH3.AGR.0.1x0.1.nc 
+EDGAR_NH3_SOL  kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NH3.SOL.0.1x0.1.nc 
+EDGAR_NH3_SWD  kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_nh3 ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.NH3.SWD.0.1x0.1.nc 
+EDGAR_OCPI_POW kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_oc  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.OC.POW.0.1x0.1.nc  
+EDGAR_OCPI_ENG kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_oc  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.OC.ENG.0.1x0.1.nc  
+EDGAR_OCPI_IND kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_oc  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.OC.IND.0.1x0.1.nc  
+EDGAR_OCPI_TNG kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_oc  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.OC.TNG.0.1x0.1.nc  
+EDGAR_OCPI_SWD kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_oc  ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.OC.SWD.0.1x0.1.nc  
+EDGAR_SO2_POW  kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.SO2.POW.0.1x0.1.nc 
+EDGAR_SO2_ENG  kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.SO2.ENG.0.1x0.1.nc 
+EDGAR_SO2_IND  kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.SO2.IND.0.1x0.1.nc 
+EDGAR_SO2_TNG  kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.SO2.TNG.0.1x0.1.nc 
+EDGAR_SO2_PPA  kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.SO2.PPA.0.1x0.1.nc 
+EDGAR_SO2_SWD  kg/m2/s  xy C N Y F%y4-01-01T00:00:00 none none emi_so2 ./MainDataDir/EDGARv43/v2016-11/EDGAR_v43.SO2.SWD.0.1x0.1.nc
+
 #==============================================================================
 # --- Very-short-lived bromocarbon (LIANG_BROMOCARB) ---
 #==============================================================================

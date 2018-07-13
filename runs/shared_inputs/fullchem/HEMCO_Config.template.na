@@ -1376,288 +1376,374 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- DICE-Africa emission inventory (Marais and Wiedinmyer, ES&T, 2016) ---
 #
-# NOTE: includes biofuel and diffuse anthropogenic emissions from cars and 
-#       motorcycles, biofuels, charcoal making and use, backup generators, 
-#       agricultural waste burning for heating and cooking, gas flares,
-#       and illegal oil refining.
+# DICE-Africa includes regional (Africa) emissions of biofuel and diffuse 
+# anthropogenic emissions from cars and motorcycles, biofuels, charcoal making 
+# and use, backup generators, agricultural waste burning for cooking, gas 
+# flares, and ad-hoc/informal oil refining.
+#
+# Other pollution sources (formal industry, power generation using fossil 
+# fuels) are from the EDGAR v4.3 inventory for CO, SO2, NH3, NOx BC, and OC. 
+#
+# NMVOCs from sources not accounted for in DICE-Africa aren't included here, 
+# as these emissions are likely to be low compared to the DICE pollution 
+# sources and RETRO v1 as implemented in GEOS-Chem doesn't distinguish 
+# emissions by sector/activity.
+#
+# Emissions for 2013 are defined below, but DICE-Africa also includes 
+# emissions for 2006.  Developers recommend using population change to 
+# estimate emissions, if users want to use annual trends in pollutant 
+# emissions to estimate in other years.
 #==============================================================================
 (((DICE_Africa
 # ------------------------
 #  Cars 
 # ------------------------
-0 DICE_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  CO      2013/1/1/0 C xy g/m2/yr  CO    26/1008         1 60
-0 DICE_SOAP  -                                                                 -       -          - -  -        SOAP  26/1008/280     1 60
-0 DICE_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  NO      2013/1/1/0 C xy g/m2/yr  NO    25/30/1008      1 60
-0 DICE_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  ALK4    2013/1/1/0 C xy g/m2/yr  ALK4  26/1008         1 60
-0 DICE_ISOP  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  ISOP    2013/1/1/0 C xy g/m2/yr  ISOP  26/1008         1 60
-0 DICE_ACET  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  ACET    2013/1/1/0 C xy g/m2/yr  ACET  26/1008         1 60
-0 DICE_MEK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  MEK     2013/1/1/0 C xy g/m2/yr  MEK   26/1008         1 60
-0 DICE_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  ALD2    2013/1/1/0 C xy g/m2/yr  ALD2  26/1008         1 60
-0 DICE_RCHO  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  RCHO    2013/1/1/0 C xy g/m2/yr  RCHO  26/1008         1 60
-0 DICE_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  PRPE    2013/1/1/0 C xy g/m2/yr  PRPE  26/1008         1 60
-0 DICE_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  CH2O    2013/1/1/0 C xy g/m2/yr  CH2O  26/1008         1 60
-0 DICE_SO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  SO2     2013/1/1/0 C xy g/m2/yr  SO2   31/78/1008      1 60
-0 DICE_SO4   -                                                                 -       -          - -  -        SO4   31/63/1008      1 60
-0 DICE_pFe   -                                                                 -       -          - -  -        pFe   31/78/66/1008   1 60
-0 DICE_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  C2H4    2013/1/1/0 C xy g/m2/yr  C2H4  26/1008         1 60
-0 DICE_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  BENZ    2013/1/1/0 C xy g/m2/yr  BENZ  26/1008         1 60
-0 DICE_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  TOLU    2013/1/1/0 C xy g/m2/yr  TOLU  26/1008         1 60
-0 DICE_XYLE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  XYLE    2013/1/1/0 C xy g/m2/yr  XYLE  26/1008         1 60
-0 DICE_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  BC      2013/1/1/0 C xy g/m2/yr  BCPI  70/1008         1 60
-0 DICE_BCPO  -                                                                 -       -          - -  -        BCPO  71/1008         1 60
-0 DICE_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  OC      2013/1/1/0 C xy g/m2/yr  OCPI  72/1008         1 60
-0 DICE_OCPO  -                                                                 -       -          - -  -        OCPO  73/1008         1 60
+0 DICE_CARS_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  CO      2013/1/1/0 C xy g/m2/yr  CO    26/1008         1 60
+0 DICE_CARS_SOAP  -                                                                 -       -          - -  -        SOAP  26/1008/280     1 60
+0 DICE_CARS_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  NO      2013/1/1/0 C xy g/m2/yr  NO    25/30/1008      1 60
+0 DICE_CARS_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  ALK4    2013/1/1/0 C xy g/m2/yr  ALK4  26/1008         1 60
+0 DICE_CARS_ISOP  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  ISOP    2013/1/1/0 C xy g/m2/yr  ISOP  26/1008         1 60
+0 DICE_CARS_ACET  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  ACET    2013/1/1/0 C xy g/m2/yr  ACET  26/1008         1 60
+0 DICE_CARS_MEK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  MEK     2013/1/1/0 C xy g/m2/yr  MEK   26/1008         1 60
+0 DICE_CARS_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  ALD2    2013/1/1/0 C xy g/m2/yr  ALD2  26/1008         1 60
+0 DICE_CARS_RCHO  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  RCHO    2013/1/1/0 C xy g/m2/yr  RCHO  26/1008         1 60
+0 DICE_CARS_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  PRPE    2013/1/1/0 C xy g/m2/yr  PRPE  26/1008         1 60
+0 DICE_CARS_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  CH2O    2013/1/1/0 C xy g/m2/yr  CH2O  26/1008         1 60
+0 DICE_CARS_SO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  SO2     2013/1/1/0 C xy g/m2/yr  SO2   31/78/1008      1 60
+0 DICE_CARS_SO4   -                                                                 -       -          - -  -        SO4   31/63/1008      1 60
+0 DICE_CARS_pFe   -                                                                 -       -          - -  -        pFe   31/78/66/1008   1 60
+0 DICE_CARS_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  C2H4    2013/1/1/0 C xy g/m2/yr  C2H4  26/1008         1 60
+0 DICE_CARS_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  BENZ    2013/1/1/0 C xy g/m2/yr  BENZ  26/1008         1 60
+0 DICE_CARS_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  TOLU    2013/1/1/0 C xy g/m2/yr  TOLU  26/1008         1 60
+0 DICE_CARS_XYLE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  XYLE    2013/1/1/0 C xy g/m2/yr  XYLE  26/1008         1 60
+0 DICE_CARS_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  BC      2013/1/1/0 C xy g/m2/yr  BCPI  70/1008         1 60
+0 DICE_CARS_BCPO  -                                                                 -       -          - -  -        BCPO  71/1008         1 60
+0 DICE_CARS_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc  OC      2013/1/1/0 C xy g/m2/yr  OCPI  72/1008         1 60
+0 DICE_CARS_OCPO  -                                                                 -       -          - -  -        OCPO  73/1008         1 60
 
 # ------------------------
 #  Motorcycles 
 # ------------------------
-0 DICE_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  CO     2013/1/1/0 C xy g/m2/yr  CO    26/1008          1 60
-0 DICE_SOAP  -                                                                        -      -          - -  -        SOAP  26/1008/280      1 60
-0 DICE_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  NO     2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       1 60
-0 DICE_SO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  SO2    2013/1/1/0 C xy g/m2/yr  SO2   31/78/1008       1 60
-0 DICE_SO4   -                                                                        -      -          - -  -        SO4   31/63/1008       1 60
-0 DICE_pFe   -                                                                        -      -          - -  -        pFe   31/78/66/1008    1 60
-0 DICE_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  ALK4   2013/1/1/0 C xy g/m2/yr  ALK4  26/1008          1 60
-0 DICE_MEK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  MEK    2013/1/1/0 C xy g/m2/yr  MEK   26/1008          1 60
-0 DICE_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  ALD2   2013/1/1/0 C xy g/m2/yr  ALD2  26/1008          1 60
-0 DICE_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  PRPE   2013/1/1/0 C xy g/m2/yr  PRPE  26/1008          1 60
-0 DICE_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  CH2O   2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          1 60
-0 DICE_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  BENZ   2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          1 60
-0 DICE_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  TOLU   2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          1 60
-0 DICE_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  BC     2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          1 60
-0 DICE_BCPO  -                                                                        -      -          - -  -        BCPO  71/1008          1 60
-0 DICE_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  OC     2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          1 60
-0 DICE_OCPO  -                                                                        -      -          - -  -        OCPO  73/1008          1 60
+0 DICE_MOTORCYCLES_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  CO     2013/1/1/0 C xy g/m2/yr  CO    26/1008          1 60
+0 DICE_MOTORCYCLES_SOAP  -                                                                        -      -          - -  -        SOAP  26/1008/280      1 60
+0 DICE_MOTORCYCLES_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  NO     2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       1 60
+0 DICE_MOTORCYCLES_SO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  SO2    2013/1/1/0 C xy g/m2/yr  SO2   31/78/1008       1 60
+0 DICE_MOTORCYCLES_SO4   -                                                                        -      -          - -  -        SO4   31/63/1008       1 60
+0 DICE_MOTORCYCLES_pFe   -                                                                        -      -          - -  -        pFe   31/78/66/1008    1 60
+0 DICE_MOTORCYCLES_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  ALK4   2013/1/1/0 C xy g/m2/yr  ALK4  26/1008          1 60
+0 DICE_MOTORCYCLES_MEK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  MEK    2013/1/1/0 C xy g/m2/yr  MEK   26/1008          1 60
+0 DICE_MOTORCYCLES_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  ALD2   2013/1/1/0 C xy g/m2/yr  ALD2  26/1008          1 60
+0 DICE_MOTORCYCLES_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  PRPE   2013/1/1/0 C xy g/m2/yr  PRPE  26/1008          1 60
+0 DICE_MOTORCYCLES_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  CH2O   2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          1 60
+0 DICE_MOTORCYCLES_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  BENZ   2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          1 60
+0 DICE_MOTORCYCLES_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  TOLU   2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          1 60
+0 DICE_MOTORCYCLES_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  BC     2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          1 60
+0 DICE_MOTORCYCLES_BCPO  -                                                                        -      -          - -  -        BCPO  71/1008          1 60
+0 DICE_MOTORCYCLES_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc  OC     2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          1 60
+0 DICE_MOTORCYCLES_OCPO  -                                                                        -      -          - -  -        OCPO  73/1008          1 60
 
 # ------------------------
 #  Backup generators 
 # ------------------------
-0 DICE_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  CO   2013/1/1/0 C xy g/m2/yr  CO    26/1008          1 60
-0 DICE_SOAP  -                                                                          -    -          - -  -        SOAP  26/1008/280      1 60
-0 DICE_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  NO   2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       1 60
-0 DICE_NO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  NO2  2013/1/1/0 C xy g/m2/yr  NO2   25/30/1008       1 60
-0 DICE_SO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  SO2  2013/1/1/0 C xy g/m2/yr  SO2   31/78/1008       1 60
-0 DICE_SO4   -                                                                          -    -          - -  -        SO4   31/63/1008       1 60
-0 DICE_pFe   -                                                                          -    -          - -  -        pFe   31/78/66/1008    1 60
-0 DICE_ACET  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  ACET 2013/1/1/0 C xy g/m2/yr  ACET  26/1008          1 60
-0 DICE_MEK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  MEK  2013/1/1/0 C xy g/m2/yr  MEK   26/1008          1 60
-0 DICE_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  ALD2 2013/1/1/0 C xy g/m2/yr  ALD2  26/1008          1 60
-0 DICE_RCHO  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  RCHO 2013/1/1/0 C xy g/m2/yr  RCHO  26/1008          1 60
-0 DICE_MVK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  MVK  2013/1/1/0 C xy g/m2/yr  MVK   26/1008          1 60
-0 DICE_MACR  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  MACR 2013/1/1/0 C xy g/m2/yr  MACR  26/1008          1 60
-0 DICE_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  CH2O 2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          1 60
-#0 DICE_MGLY $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  MGLY 2013/1/1/0 C xy g/m2/yr  MGLY  26/1008          1 60
-#0 DICE_GLYX $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  GLYX 2013/1/1/0 C xy g/m2/yr  GLYX  26/1008          1 60
-0 DICE_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  C2H4 2013/1/1/0 C xy g/m2/yr  C2H4  26/1008          1 60
-0 DICE_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  BENZ 2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          1 60
-0 DICE_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  TOLU 2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          1 60
-0 DICE_XYLE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  XYLE 2013/1/1/0 C xy g/m2/yr  XYLE  26/1008          1 60
-0 DICE_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  BC   2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          1 60
-0 DICE_BCPO  -                                                                          -        -          - -  -    BCPO  71/1008          1 60
-0 DICE_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  OC   2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          1 60
-0 DICE_OCPO  -                                                                          -        -          - -  -    OCPO  73/1008          1 60
+0 DICE_BACKUPGEN_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  CO   2013/1/1/0 C xy g/m2/yr  CO    26/1008          1 60
+0 DICE_BACKUPGEN_SOAP  -                                                                          -    -          - -  -        SOAP  26/1008/280      1 60
+0 DICE_BACKUPGEN_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  NO   2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       1 60
+0 DICE_BACKUPGEN_NO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  NO2  2013/1/1/0 C xy g/m2/yr  NO2   25/30/1008       1 60
+0 DICE_BACKUPGEN_SO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  SO2  2013/1/1/0 C xy g/m2/yr  SO2   31/78/1008       1 60
+0 DICE_BACKUPGEN_SO4   -                                                                          -    -          - -  -        SO4   31/63/1008       1 60
+0 DICE_BACKUPGEN_pFe   -                                                                          -    -          - -  -        pFe   31/78/66/1008    1 60
+0 DICE_BACKUPGEN_ACET  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  ACET 2013/1/1/0 C xy g/m2/yr  ACET  26/1008          1 60
+0 DICE_BACKUPGEN_MEK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  MEK  2013/1/1/0 C xy g/m2/yr  MEK   26/1008          1 60
+0 DICE_BACKUPGEN_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  ALD2 2013/1/1/0 C xy g/m2/yr  ALD2  26/1008          1 60
+0 DICE_BACKUPGEN_RCHO  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  RCHO 2013/1/1/0 C xy g/m2/yr  RCHO  26/1008          1 60
+0 DICE_BACKUPGEN_MVK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  MVK  2013/1/1/0 C xy g/m2/yr  MVK   26/1008          1 60
+0 DICE_BACKUPGEN_MACR  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  MACR 2013/1/1/0 C xy g/m2/yr  MACR  26/1008          1 60
+0 DICE_BACKUPGEN_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  CH2O 2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          1 60
+#0 DICE_BACKUPGEN_MGLY $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  MGLY 2013/1/1/0 C xy g/m2/yr  MGLY  26/1008          1 60
+#0 DICE_BACKUPGEN_GLYX $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  GLYX 2013/1/1/0 C xy g/m2/yr  GLYX  26/1008          1 60
+0 DICE_BACKUPGEN_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  C2H4 2013/1/1/0 C xy g/m2/yr  C2H4  26/1008          1 60
+0 DICE_BACKUPGEN_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  BENZ 2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          1 60
+0 DICE_BACKUPGEN_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  TOLU 2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          1 60
+0 DICE_BACKUPGEN_XYLE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  XYLE 2013/1/1/0 C xy g/m2/yr  XYLE  26/1008          1 60
+0 DICE_BACKUPGEN_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  BC   2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          1 60
+0 DICE_BACKUPGEN_BCPO  -                                                                          -        -          - -  -    BCPO  71/1008          1 60
+0 DICE_BACKUPGEN_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc  OC   2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          1 60
+0 DICE_BACKUPGEN_OCPO  -                                                                          -        -          - -  -    OCPO  73/1008          1 60
 
 # ------------------------
 #  Charcoal production 
 # ------------------------
-0 DICE_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          1 60
-0 DICE_SOAP  -                                                                                -     -          - -  -        SOAP  26/1008/280      1 60
-0 DICE_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  NO    2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       1 60
-0 DICE_NH3   $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  NH3   2013/1/1/0 C xy g/m2/yr  NH3   1008             1 60
-0 DICE_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  PRPE  2013/1/1/0 C xy g/m2/yr  PRPE  26/1008          1 60
-0 DICE_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  CH2O  2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          1 60
-0 DICE_C2H6  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  C2H6  2013/1/1/0 C xy g/m2/yr  C2H6  26/1008          1 60
-0 DICE_HAC   $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  HAC   2013/1/1/0 C xy g/m2/yr  HAC   26/1008          1 60
-0 DICE_C2H2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  C2H2  2013/1/1/0 C xy g/m2/yr  C2H2  26/1008          1 60
-0 DICE_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  C2H4  2013/1/1/0 C xy g/m2/yr  C2H4  26/1008          1 60
-0 DICE_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  TOLU  2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          1 60
-0 DICE_HCOOH $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  HCOOH 2013/1/1/0 C xy g/m2/yr  HCOOH 26/1008          1 60
-0 DICE_MOH   $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  MOH   2013/1/1/0 C xy g/m2/yr  MOH   26/1008          1 60
-0 DICE_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          1 60
-0 DICE_BCPO  -                                                                                -     -          - -  -        BCPO  71/1008          1 60
-0 DICE_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          1 60
-0 DICE_OCPO  -                                                                                -     -          - -  -        OCPO  73/1008          1 60
+0 DICE_CHARCOALPROD_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          1 60
+0 DICE_CHARCOALPROD_SOAP  -                                                                                -     -          - -  -        SOAP  26/1008/280      1 60
+0 DICE_CHARCOALPROD_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  NO    2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       1 60
+0 DICE_CHARCOALPROD_NH3   $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  NH3   2013/1/1/0 C xy g/m2/yr  NH3   1008             1 60
+0 DICE_CHARCOALPROD_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  PRPE  2013/1/1/0 C xy g/m2/yr  PRPE  26/1008          1 60
+0 DICE_CHARCOALPROD_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  CH2O  2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          1 60
+0 DICE_CHARCOALPROD_C2H6  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  C2H6  2013/1/1/0 C xy g/m2/yr  C2H6  26/1008          1 60
+0 DICE_CHARCOALPROD_HAC   $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  HAC   2013/1/1/0 C xy g/m2/yr  HAC   26/1008          1 60
+0 DICE_CHARCOALPROD_C2H2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  C2H2  2013/1/1/0 C xy g/m2/yr  C2H2  26/1008          1 60
+0 DICE_CHARCOALPROD_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  C2H4  2013/1/1/0 C xy g/m2/yr  C2H4  26/1008          1 60
+0 DICE_CHARCOALPROD_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  TOLU  2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          1 60
+0 DICE_CHARCOALPROD_HCOOH $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  HCOOH 2013/1/1/0 C xy g/m2/yr  HCOOH 26/1008          1 60
+0 DICE_CHARCOALPROD_MOH   $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  MOH   2013/1/1/0 C xy g/m2/yr  MOH   26/1008          1 60
+0 DICE_CHARCOALPROD_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          1 60
+0 DICE_CHARCOALPROD_BCPO  -                                                                                -     -          - -  -        BCPO  71/1008          1 60
+0 DICE_CHARCOALPROD_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          1 60
+0 DICE_CHARCOALPROD_OCPO  -                                                                                -     -          - -  -        OCPO  73/1008          1 60
 
 # ------------------------
 #  Flaring of natural gas 
 # ------------------------
-0 DICE_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          1 60
-0 DICE_SOAP  -                                                                       -     -          - -  -        SOAP  26/1008/280      1 60
-0 DICE_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  NO    2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       1 60
-0 DICE_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  ALK4  2013/1/1/0 C xy g/m2/yr  ALK4  26/1008          1 60
-0 DICE_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  ALD2  2013/1/1/0 C xy g/m2/yr  ALD2  26/1008          1 60
-0 DICE_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  PRPE  2013/1/1/0 C xy g/m2/yr  PRPE  26/1008          1 60
-0 DICE_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  CH2O  2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          1 60
-0 DICE_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  BENZ  2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          1 60
-0 DICE_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  TOLU  2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          1 60
-0 DICE_XYLE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  XYLE  2013/1/1/0 C xy g/m2/yr  XYLE  26/1008          1 60
-0 DICE_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          1 60
-0 DICE_BCPO  -                                                                       -     -          - -  -        BCPO  71/1008          1 60
-0 DICE_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          1 60
-0 DICE_OCPO  -                                                                       -     -          - -  -        OCPO  73/1008          1 60
+0 DICE_GASFLARE_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          1 60
+0 DICE_GASFLARE_SOAP  -                                                                       -     -          - -  -        SOAP  26/1008/280      1 60
+0 DICE_GASFLARE_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  NO    2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       1 60
+0 DICE_GASFLARE_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  ALK4  2013/1/1/0 C xy g/m2/yr  ALK4  26/1008          1 60
+0 DICE_GASFLARE_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  ALD2  2013/1/1/0 C xy g/m2/yr  ALD2  26/1008          1 60
+0 DICE_GASFLARE_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  PRPE  2013/1/1/0 C xy g/m2/yr  PRPE  26/1008          1 60
+0 DICE_GASFLARE_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  CH2O  2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          1 60
+0 DICE_GASFLARE_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  BENZ  2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          1 60
+0 DICE_GASFLARE_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  TOLU  2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          1 60
+0 DICE_GASFLARE_XYLE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  XYLE  2013/1/1/0 C xy g/m2/yr  XYLE  26/1008          1 60
+0 DICE_GASFLARE_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          1 60
+0 DICE_GASFLARE_BCPO  -                                                                       -     -          - -  -        BCPO  71/1008          1 60
+0 DICE_GASFLARE_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          1 60
+0 DICE_GASFLARE_OCPO  -                                                                       -     -          - -  -        OCPO  73/1008          1 60
 
 # ------------------------------
 #  Ag waste burning for energy 
 # ------------------------------
-0 DICE_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          2 60
-0 DICE_SOAP  -                                                                                       -     -          - -  -        SOAP  26/1008/280      2 60
-0 DICE_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  NO    2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       2 60
-0 DICE_NO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  NO2   2013/1/1/0 C xy g/m2/yr  NO2   25/30/1008       2 60
-0 DICE_SO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  SO2   2013/1/1/0 C xy g/m2/yr  SO2   31/78/1008       2 60
-0 DICE_SO4   -                                                                                       -     -          - -  -        SO4   31/63/1008       2 60
-0 DICE_pFe   -                                                                                       -     -          - -  -        pFe   31/78/66/1008    2 60
-0 DICE_NH3   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  NH3   2013/1/1/0 C xy g/m2/yr  NH3   1008             2 60
-0 DICE_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  ALK4  2013/1/1/0 C xy g/m2/yr  ALK4  26/1008          2 60
-0 DICE_ISOP  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  ISOP  2013/1/1/0 C xy g/m2/yr  ISOP  26/1008          2 60
-0 DICE_ACET  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  ACET  2013/1/1/0 C xy g/m2/yr  ACET  26/1008          2 60
-0 DICE_MEK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  MEK   2013/1/1/0 C xy g/m2/yr  MEK   26/1008          2 60
-0 DICE_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  ALD2  2013/1/1/0 C xy g/m2/yr  ALD2  26/1008          2 60
-0 DICE_MVK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  MVK   2013/1/1/0 C xy g/m2/yr  MVK   26/1008          2 60
-0 DICE_MACR  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  MACR  2013/1/1/0 C xy g/m2/yr  MACR  26/1008          2 60
-0 DICE_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  PRPE  2013/1/1/0 C xy g/m2/yr  PRPE  26/1008          2 60
-0 DICE_C3H8  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  C3H8  2013/1/1/0 C xy g/m2/yr  C3H8  26/1008          2 60
-0 DICE_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  CH2O  2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          2 60
-0 DICE_C2H6  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  C2H6  2013/1/1/0 C xy g/m2/yr  C2H6  26/1008          2 60
-0 DICE_HAC   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  HAC   2013/1/1/0 C xy g/m2/yr  HAC   26/1008          2 60
-0 DICE_GLYC  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  GLYC  2013/1/1/0 C xy g/m2/yr  GLYC  26/1008          2 60
-0 DICE_MOH   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  MOH   2013/1/1/0 C xy g/m2/yr  MOH   26/1008          2 60
-#0 DICE_MGLY $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  MGLY  2013/1/1/0 C xy g/m2/yr  MGLY  26/1008          2 60
-#0 DICE_APIN $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  APIN  2013/1/1/0 C xy g/m2/yr  APIN  26/1008          2 60
-0 DICE_C2H2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  C2H2  2013/1/1/0 C xy g/m2/yr  C2H2  26/1008          2 60
-0 DICE_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  C2H4  2013/1/1/0 C xy g/m2/yr  C2H4  26/1008          2 60
-0 DICE_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  BENZ  2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          2 60
-0 DICE_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  TOLU  2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          2 60
-0 DICE_XYLE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  XYLE  2013/1/1/0 C xy g/m2/yr  XYLE  26/1008          2 60
-0 DICE_HCOOH $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  HCOOH 2013/1/1/0 C xy g/m2/yr  HCOOH 26/1008          2 60
-0 DICE_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          2 60
-0 DICE_BCPO  -                                                                                       -     -          - -  g/m2/yr  BCPO  71/1008          2 60
-0 DICE_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          2 60
-0 DICE_OCPO  -                                                                                       -     -          - -  g/m2/yr  OCPO  73/1008          2 60
+0 DICE_AGBURNING_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          2 60
+0 DICE_AGBURNING_SOAP  -                                                                                       -     -          - -  -        SOAP  26/1008/280      2 60
+0 DICE_AGBURNING_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  NO    2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       2 60
+0 DICE_AGBURNING_NO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  NO2   2013/1/1/0 C xy g/m2/yr  NO2   25/30/1008       2 60
+0 DICE_AGBURNING_SO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  SO2   2013/1/1/0 C xy g/m2/yr  SO2   31/78/1008       2 60
+0 DICE_AGBURNING_SO4   -                                                                                       -     -          - -  -        SO4   31/63/1008       2 60
+0 DICE_AGBURNING_pFe   -                                                                                       -     -          - -  -        pFe   31/78/66/1008    2 60
+0 DICE_AGBURNING_NH3   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  NH3   2013/1/1/0 C xy g/m2/yr  NH3   1008             2 60
+0 DICE_AGBURNING_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  ALK4  2013/1/1/0 C xy g/m2/yr  ALK4  26/1008          2 60
+0 DICE_AGBURNING_ISOP  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  ISOP  2013/1/1/0 C xy g/m2/yr  ISOP  26/1008          2 60
+0 DICE_AGBURNING_ACET  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  ACET  2013/1/1/0 C xy g/m2/yr  ACET  26/1008          2 60
+0 DICE_AGBURNING_MEK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  MEK   2013/1/1/0 C xy g/m2/yr  MEK   26/1008          2 60
+0 DICE_AGBURNING_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  ALD2  2013/1/1/0 C xy g/m2/yr  ALD2  26/1008          2 60
+0 DICE_AGBURNING_MVK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  MVK   2013/1/1/0 C xy g/m2/yr  MVK   26/1008          2 60
+0 DICE_AGBURNING_MACR  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  MACR  2013/1/1/0 C xy g/m2/yr  MACR  26/1008          2 60
+0 DICE_AGBURNING_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  PRPE  2013/1/1/0 C xy g/m2/yr  PRPE  26/1008          2 60
+0 DICE_AGBURNING_C3H8  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  C3H8  2013/1/1/0 C xy g/m2/yr  C3H8  26/1008          2 60
+0 DICE_AGBURNING_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  CH2O  2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          2 60
+0 DICE_AGBURNING_C2H6  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  C2H6  2013/1/1/0 C xy g/m2/yr  C2H6  26/1008          2 60
+0 DICE_AGBURNING_HAC   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  HAC   2013/1/1/0 C xy g/m2/yr  HAC   26/1008          2 60
+0 DICE_AGBURNING_GLYC  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  GLYC  2013/1/1/0 C xy g/m2/yr  GLYC  26/1008          2 60
+0 DICE_AGBURNING_MOH   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  MOH   2013/1/1/0 C xy g/m2/yr  MOH   26/1008          2 60
+#0 DICEAGBURNING_MGLY $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  MGLY  2013/1/1/0 C xy g/m2/yr  MGLY  26/1008          2 60
+#0 DICEAGBURNING_APIN $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  APIN  2013/1/1/0 C xy g/m2/yr  APIN  26/1008          2 60
+0 DICE_AGBURNING_C2H2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  C2H2  2013/1/1/0 C xy g/m2/yr  C2H2  26/1008          2 60
+0 DICE_AGBURNING_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  C2H4  2013/1/1/0 C xy g/m2/yr  C2H4  26/1008          2 60
+0 DICE_AGBURNING_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  BENZ  2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          2 60
+0 DICE_AGBURNING_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  TOLU  2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          2 60
+0 DICE_AGBURNING_XYLE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  XYLE  2013/1/1/0 C xy g/m2/yr  XYLE  26/1008          2 60
+0 DICE_AGBURNING_HCOOH $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  HCOOH 2013/1/1/0 C xy g/m2/yr  HCOOH 26/1008          2 60
+0 DICE_AGBURNING_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          2 60
+0 DICE_AGBURNING_BCPO  -                                                                                       -     -          - -  g/m2/yr  BCPO  71/1008          2 60
+0 DICE_AGBURNING_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          2 60
+0 DICE_AGBURNING_OCPO  -                                                                                       -     -          - -  g/m2/yr  OCPO  73/1008          2 60
 
 # ------------------------------
 #  Charcoal use 
 # ------------------------------
-0 DICE_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          2 60
-0 DICE_SOAP  -                                                                         -     -          - -  -        SOAP  26/1008/280      2 60
-0 DICE_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  NO    2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       2 60
-0 DICE_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  ALK4  2013/1/1/0 C xy g/m2/yr  ALK4  26/1008          2 60
-0 DICE_NH3   $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  NH3   2013/1/1/0 C xy g/m2/yr  NH3   1008             2 60
-0 DICE_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  PRPE  2013/1/1/0 C xy g/m2/yr  PRPE  26/1008          2 60
-0 DICE_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  CH2O  2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          2 60
-0 DICE_C2H6  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  C2H6  2013/1/1/0 C xy g/m2/yr  C2H6  26/1008          2 60
-0 DICE_C2H2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  C2H2  2013/1/1/0 C xy g/m2/yr  C2H2  26/1008          2 60
-0 DICE_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  C2H4  2013/1/1/0 C xy g/m2/yr  C2H4  26/1008          2 60
-0 DICE_HCOOH $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  HCOOH 2013/1/1/0 C xy g/m2/yr  HCOOH 26/1008          2 60
-0 DICE_MOH   $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  MOH   2013/1/1/0 C xy g/m2/yr  MOH   26/1008          2 60
-0 DICE_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          2 60
-0 DICE_BCPO  -                                                                         -     -          - -  -        BCPO  71/1008          2 60
-0 DICE_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          2 60
-0 DICE_OCPO  -                                                                         -     -          - -  -        OCPO  73/1008          2 60
+0 DICE_CHARCOALUSE_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          2 60
+0 DICE_CHARCOALUSE_SOAP  -                                                                         -     -          - -  -        SOAP  26/1008/280      2 60
+0 DICE_CHARCOALUSE_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  NO    2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       2 60
+0 DICE_CHARCOALUSE_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  ALK4  2013/1/1/0 C xy g/m2/yr  ALK4  26/1008          2 60
+0 DICE_CHARCOALUSE_NH3   $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  NH3   2013/1/1/0 C xy g/m2/yr  NH3   1008             2 60
+0 DICE_CHARCOALUSE_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  PRPE  2013/1/1/0 C xy g/m2/yr  PRPE  26/1008          2 60
+0 DICE_CHARCOALUSE_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  CH2O  2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          2 60
+0 DICE_CHARCOALUSE_C2H6  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  C2H6  2013/1/1/0 C xy g/m2/yr  C2H6  26/1008          2 60
+0 DICE_CHARCOALUSE_C2H2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  C2H2  2013/1/1/0 C xy g/m2/yr  C2H2  26/1008          2 60
+0 DICE_CHARCOALUSE_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  C2H4  2013/1/1/0 C xy g/m2/yr  C2H4  26/1008          2 60
+0 DICE_CHARCOALUSE_HCOOH $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  HCOOH 2013/1/1/0 C xy g/m2/yr  HCOOH 26/1008          2 60
+0 DICE_CHARCOALUSE_MOH   $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  MOH   2013/1/1/0 C xy g/m2/yr  MOH   26/1008          2 60
+0 DICE_CHARCOALUSE_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          2 60
+0 DICE_CHARCOALUSE_BCPO  -                                                                         -     -          - -  -        BCPO  71/1008          2 60
+0 DICE_CHARCOALUSE_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          2 60
+0 DICE_CHARCOALUSE_OCPO  -                                                                         -     -          - -  -        OCPO  73/1008          2 60
 
 # ------------------------------
 #  Kerosene use 
 # ------------------------------
-0 DICE_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-kerosene-use-2013-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          1 60
-0 DICE_SOAP  -                                                                         -     -          - -  -        SOAP  26/1008/280      1 60
-0 DICE_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-kerosene-use-2013-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          1 60
-0 DICE_BCPO  -                                                                         -     -          - -  -        BCPO  71/1008          1 60
-0 DICE_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-kerosene-use-2013-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          1 60
-0 DICE_OCPO  -                                                                         -     -          - -  -        OCPO  73/1008          1 60
+0 DICE_KEROSENE_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-kerosene-use-2013-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          1 60
+0 DICE_KEROSENE_SOAP  -                                                                         -     -          - -  -        SOAP  26/1008/280      1 60
+0 DICE_KEROSENE_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-kerosene-use-2013-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          1 60
+0 DICE_KEROSENE_BCPO  -                                                                         -     -          - -  -        BCPO  71/1008          1 60
+0 DICE_KEROSENE_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-kerosene-use-2013-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          1 60
+0 DICE_KEROSENE_OCPO  -                                                                         -     -          - -  -        OCPO  73/1008          1 60
 
 # ------------------------------
 #  Artisanal oil refining 
 # ------------------------------
-0 DICE_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          1 60
-0 DICE_SOAP  -                                                                               -     -          - -  -        SOAP  26/1008/280      1 60
-0 DICE_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  NO    2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       1 60
-0 DICE_SO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  SO2   2013/1/1/0 C xy g/m2/yr  SO2   31/78/1008       1 60
-0 DICE_SO4   -                                                                               -     -          - -  -        SO4   31/63/1008       1 60
-0 DICE_pFe   -                                                                               -     -          - -  -        pFe   31/78/66/1008    1 60
-0 DICE_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  ALK4  2013/1/1/0 C xy g/m2/yr  ALK4  26/1008          1 60
-0 DICE_ACET  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  ACET  2013/1/1/0 C xy g/m2/yr  ACET  26/1008          1 60
-0 DICE_MEK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  MEK   2013/1/1/0 C xy g/m2/yr  MEK   26/1008          1 60
-0 DICE_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  ALD2  2013/1/1/0 C xy g/m2/yr  ALD2  26/1008          1 60
-0 DICE_RCHO  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  RCHO  2013/1/1/0 C xy g/m2/yr  RCHO  26/1008          1 60
-0 DICE_C3H8  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  C3H8  2013/1/1/0 C xy g/m2/yr  C3H8  26/1008          1 60
-0 DICE_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  CH2O  2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          1 60
-0 DICE_C2H6  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  C2H6  2013/1/1/0 C xy g/m2/yr  C2H6  26/1008          1 60
-0 DICE_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  BENZ  2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          1 60
-0 DICE_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  TOLU  2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          1 60
-0 DICE_XYLE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  XYLE  2013/1/1/0 C xy g/m2/yr  XYLE  26/1008          1 60
-0 DICE_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          1 60
-0 DICE_BCPO  -                                                                               -     -          - -  -        BCPO  71/1008          1 60
-0 DICE_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          1 60
-0 DICE_OCPO  -                                                                               -     -          - -  -        OCPO  73/1008          1 60
+0 DICE_OILREFINING_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          1 60
+0 DICE_OILREFINING_SOAP  -                                                                               -     -          - -  -        SOAP  26/1008/280      1 60
+0 DICE_OILREFINING_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  NO    2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       1 60
+0 DICE_OILREFINING_SO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  SO2   2013/1/1/0 C xy g/m2/yr  SO2   31/78/1008       1 60
+0 DICE_OILREFINING_SO4   -                                                                               -     -          - -  -        SO4   31/63/1008       1 60
+0 DICE_OILREFINING_pFe   -                                                                               -     -          - -  -        pFe   31/78/66/1008    1 60
+0 DICE_OILREFINING_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  ALK4  2013/1/1/0 C xy g/m2/yr  ALK4  26/1008          1 60
+0 DICE_OILREFINING_ACET  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  ACET  2013/1/1/0 C xy g/m2/yr  ACET  26/1008          1 60
+0 DICE_OILREFINING_MEK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  MEK   2013/1/1/0 C xy g/m2/yr  MEK   26/1008          1 60
+0 DICE_OILREFINING_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  ALD2  2013/1/1/0 C xy g/m2/yr  ALD2  26/1008          1 60
+0 DICE_OILREFINING_RCHO  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  RCHO  2013/1/1/0 C xy g/m2/yr  RCHO  26/1008          1 60
+0 DICE_OILREFINING_C3H8  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  C3H8  2013/1/1/0 C xy g/m2/yr  C3H8  26/1008          1 60
+0 DICE_OILREFINING_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  CH2O  2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          1 60
+0 DICE_OILREFINING_C2H6  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  C2H6  2013/1/1/0 C xy g/m2/yr  C2H6  26/1008          1 60
+0 DICE_OILREFINING_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  BENZ  2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          1 60
+0 DICE_OILREFINING_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  TOLU  2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          1 60
+0 DICE_OILREFINING_XYLE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  XYLE  2013/1/1/0 C xy g/m2/yr  XYLE  26/1008          1 60
+0 DICE_OILREFINING_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          1 60
+0 DICE_OILREFINING_BCPO  -                                                                               -     -          - -  -        BCPO  71/1008          1 60
+0 DICE_OILREFINING_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          1 60
+0 DICE_OILREFINING_OCPO  -                                                                               -     -          - -  -        OCPO  73/1008          1 60
 
 # --------------------------
 #  Household fuelwood use 
 # --------------------------
-0 DICE_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          2 60
-0 DICE_SOAP  -                                                                                   -     -          - -  -        SOAP  26/1008/280      2 60
-0 DICE_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  NO    2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       2 60
-0 DICE_NO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  NO2   2013/1/1/0 C xy g/m2/yr  NO2   25/30/1008       2 60
-0 DICE_SO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  SO2   2013/1/1/0 C xy g/m2/yr  SO2   31/78/1008       2 60
-0 DICE_SO4   -                                                                                   -     -          - -  -        SO4   31/63/1008       2 60
-0 DICE_pFe   -                                                                                   -     -          - -  -        pFe   31/78/66/1008    2 60
-0 DICE_NH3   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  NH3   2013/1/1/0 C xy g/m2/yr  NH3   1008             2 60
-0 DICE_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  ALK4  2013/1/1/0 C xy g/m2/yr  ALK4  26/1008          2 60
-0 DICE_ISOP  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  ISOP  2013/1/1/0 C xy g/m2/yr  ISOP  26/1008          2 60
-0 DICE_MEK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  MEK   2013/1/1/0 C xy g/m2/yr  MEK   26/1008          2 60
-0 DICE_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  ALD2  2013/1/1/0 C xy g/m2/yr  ALD2  26/1008          2 60
-0 DICE_MVK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  MVK   2013/1/1/0 C xy g/m2/yr  MVK   26/1008          2 60
-0 DICE_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  PRPE  2013/1/1/0 C xy g/m2/yr  PRPE  26/1008          2 60
-0 DICE_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  CH2O  2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          2 60
-0 DICE_C2H6  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  C2H6  2013/1/1/0 C xy g/m2/yr  C2H6  26/1008          2 60
-0 DICE_HAC   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  HAC   2013/1/1/0 C xy g/m2/yr  HAC   26/1008          2 60
-0 DICE_GLYC  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  GLYC  2013/1/1/0 C xy g/m2/yr  GLYC  26/1008          2 60
-0 DICE_MOH   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc   MOH  2013/1/1/0 C xy g/m2/yr  MOH   26/1008          2 60
-#0 DICE_MGLY $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  MGLY  2013/1/1/0 C xy g/m2/yr  MGLY  26/1008          2 60
-#0 DICE_APIN $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  APIN  2013/1/1/0 C xy g/m2/yr  APIN  26/1008          2 60
-0 DICE_C2H2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  C2H2  2013/1/1/0 C xy g/m2/yr  C2H2  26/1008          2 60
-0 DICE_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  C2H4  2013/1/1/0 C xy g/m2/yr  C2H4  26/1008          2 60
-0 DICE_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  BENZ  2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          2 60
-0 DICE_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  TOLU  2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          2 60
-0 DICE_XYLE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  XYLE  2013/1/1/0 C xy g/m2/yr  XYLE  26/1008          2 60
-0 DICE_HCOOH $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  HCOOH 2013/1/1/0 C xy g/m2/yr  HCOOH 26/1008          2 60
-0 DICE_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          2 60
-0 DICE_BCPO  -                                                                                   -     -          - -  -        BCPO  71/1008          2 60
-0 DICE_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          2 60
-0 DICE_OCPO  -                                                                                   -     -          - -  -        OCPO  73/1008          2 60
+0 DICE_HOUSEFUELWOOD_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          2 60
+0 DICE_HOUSEFUELWOOD_SOAP  -                                                                                   -     -          - -  -        SOAP  26/1008/280      2 60
+0 DICE_HOUSEFUELWOOD_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  NO    2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       2 60
+0 DICE_HOUSEFUELWOOD_NO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  NO2   2013/1/1/0 C xy g/m2/yr  NO2   25/30/1008       2 60
+0 DICE_HOUSEFUELWOOD_SO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  SO2   2013/1/1/0 C xy g/m2/yr  SO2   31/78/1008       2 60
+0 DICE_HOUSEFUELWOOD_SO4   -                                                                                   -     -          - -  -        SO4   31/63/1008       2 60
+0 DICE_HOUSEFUELWOOD_pFe   -                                                                                   -     -          - -  -        pFe   31/78/66/1008    2 60
+0 DICE_HOUSEFUELWOOD_NH3   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  NH3   2013/1/1/0 C xy g/m2/yr  NH3   1008             2 60
+0 DICE_HOUSEFUELWOOD_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  ALK4  2013/1/1/0 C xy g/m2/yr  ALK4  26/1008          2 60
+0 DICE_HOUSEFUELWOOD_ISOP  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  ISOP  2013/1/1/0 C xy g/m2/yr  ISOP  26/1008          2 60
+0 DICE_HOUSEFUELWOOD_MEK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  MEK   2013/1/1/0 C xy g/m2/yr  MEK   26/1008          2 60
+0 DICE_HOUSEFUELWOOD_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  ALD2  2013/1/1/0 C xy g/m2/yr  ALD2  26/1008          2 60
+0 DICE_HOUSEFUELWOOD_MVK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  MVK   2013/1/1/0 C xy g/m2/yr  MVK   26/1008          2 60
+0 DICE_HOUSEFUELWOOD_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  PRPE  2013/1/1/0 C xy g/m2/yr  PRPE  26/1008          2 60
+0 DICE_HOUSEFUELWOOD_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  CH2O  2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          2 60
+0 DICE_HOUSEFUELWOOD_C2H6  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  C2H6  2013/1/1/0 C xy g/m2/yr  C2H6  26/1008          2 60
+0 DICE_HOUSEFUELWOOD_HAC   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  HAC   2013/1/1/0 C xy g/m2/yr  HAC   26/1008          2 60
+0 DICE_HOUSEFUELWOOD_GLYC  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  GLYC  2013/1/1/0 C xy g/m2/yr  GLYC  26/1008          2 60
+0 DICE_HOUSEFUELWOOD_MOH   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc   MOH  2013/1/1/0 C xy g/m2/yr  MOH   26/1008          2 60
+#0 DICE_HOUSEFUELWOOD_MGLY $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  MGLY  2013/1/1/0 C xy g/m2/yr  MGLY  26/1008          2 60
+#0 DICE_HOUSEFUELWOOD_APIN $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  APIN  2013/1/1/0 C xy g/m2/yr  APIN  26/1008          2 60
+0 DICE_HOUSEFUELWOOD_C2H2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  C2H2  2013/1/1/0 C xy g/m2/yr  C2H2  26/1008          2 60
+0 DICE_HOUSEFUELWOOD_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  C2H4  2013/1/1/0 C xy g/m2/yr  C2H4  26/1008          2 60
+0 DICE_HOUSEFUELWOOD_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  BENZ  2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          2 60
+0 DICE_HOUSEFUELWOOD_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  TOLU  2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          2 60
+0 DICE_HOUSEFUELWOOD_XYLE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  XYLE  2013/1/1/0 C xy g/m2/yr  XYLE  26/1008          2 60
+0 DICE_HOUSEFUELWOOD_HCOOH $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  HCOOH 2013/1/1/0 C xy g/m2/yr  HCOOH 26/1008          2 60
+0 DICE_HOUSEFUELWOOD_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          2 60
+0 DICE_HOUSEFUELWOOD_BCPO  -                                                                                   -     -          - -  -        BCPO  71/1008          2 60
+0 DICE_HOUSEFUELWOOD_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          2 60
+0 DICE_HOUSEFUELWOOD_OCPO  -                                                                                   -     -          - -  -        OCPO  73/1008          2 60
 
 # ---------------------------------
 #  Commercial (other) fuelwood use 
 # ---------------------------------
-0 DICE_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          2 60
-0 DICE_SOAP  -                                                                               -     -          - -  -        SOAP  26/1008/280      2 60
-0 DICE_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  NO    2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       2 60
-0 DICE_NO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  NO2   2013/1/1/0 C xy g/m2/yr  NO2   25/30/1008       2 60
-0 DICE_SO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  SO2   2013/1/1/0 C xy g/m2/yr  SO2   31/78/1008       2 60
-0 DICE_SO4   -                                                                               -     -          - -  -        SO4   31/63/1008       2 60
-0 DICE_pFe   -                                                                               -     -          - -  -        pFe   31/78/66/1008    2 60
-0 DICE_NH3   $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  NH3   2013/1/1/0 C xy g/m2/yr  NH3   1008             2 60
-0 DICE_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  ALK4  2013/1/1/0 C xy g/m2/yr  ALK4  26/1008          2 60
-0 DICE_ISOP  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  ISOP  2013/1/1/0 C xy g/m2/yr  ISOP  26/1008          2 60
-0 DICE_MEK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  MEK   2013/1/1/0 C xy g/m2/yr  MEK   26/1008          2 60
-0 DICE_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  ALD2  2013/1/1/0 C xy g/m2/yr  ALD2  26/1008          2 60
-0 DICE_MVK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  MVK   2013/1/1/0 C xy g/m2/yr  MVK   26/1008          2 60
-0 DICE_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  PRPE  2013/1/1/0 C xy g/m2/yr  PRPE  26/1008          2 60
-0 DICE_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  CH2O  2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          2 60
-0 DICE_C2H6  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  C2H6  2013/1/1/0 C xy g/m2/yr  C2H6  26/1008          2 60
-0 DICE_HAC   $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  HAC   2013/1/1/0 C xy g/m2/yr  HAC   26/1008          2 60
-0 DICE_GLYC  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  GLYC  2013/1/1/0 C xy g/m2/yr  GLYC  26/1008          2 60
-0 DICE_MOH   $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  MOH   2013/1/1/0 C xy g/m2/yr  MOH   26/1008          2 60
-#0 DICE_MGLY $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  MGLY  2013/1/1/0 C xy g/m2/yr  MGLY  26/1008          2 60
-#0 DICE_APIN $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  APIN  2013/1/1/0 C xy g/m2/yr  APIN  26/1008          2 60
-0 DICE_C2H2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  C2H2  2013/1/1/0 C xy g/m2/yr  C2H2  26/1008          2 60
-0 DICE_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  C2H4  2013/1/1/0 C xy g/m2/yr  C2H4  26/1008          2 60
-0 DICE_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  BENZ  2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          2 60
-0 DICE_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  TOLU  2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          2 60
-0 DICE_XYLE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  XYLE  2013/1/1/0 C xy g/m2/yr  XYLE  26/1008          2 60
-0 DICE_HCOOH $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  HCOOH 2013/1/1/0 C xy g/m2/yr  HCOOH 26/1008          2 60
-0 DICE_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          2 60
-0 DICE_BCPO  -                                                                               -     -          - -  -        BCPO  71/1008          2 60
-0 DICE_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          2 60
-0 DICE_OCPO  -                                                                               -     -          - -  -        OCPO  73/1008          2 60
+0 DICE_OTHERFUELWOOD_CO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  CO    2013/1/1/0 C xy g/m2/yr  CO    26/1008          2 60
+0 DICE_OTHERFUELWOOD_SOAP  -                                                                               -     -          - -  -        SOAP  26/1008/280      2 60
+0 DICE_OTHERFUELWOOD_NO    $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  NO    2013/1/1/0 C xy g/m2/yr  NO    25/30/1008       2 60
+0 DICE_OTHERFUELWOOD_NO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  NO2   2013/1/1/0 C xy g/m2/yr  NO2   25/30/1008       2 60
+0 DICE_OTHERFUELWOOD_SO2   $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  SO2   2013/1/1/0 C xy g/m2/yr  SO2   31/78/1008       2 60
+0 DICE_OTHERFUELWOOD_SO4   -                                                                               -     -          - -  -        SO4   31/63/1008       2 60
+0 DICE_OTHERFUELWOOD_pFe   -                                                                               -     -          - -  -        pFe   31/78/66/1008    2 60
+0 DICE_OTHERFUELWOOD_NH3   $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  NH3   2013/1/1/0 C xy g/m2/yr  NH3   1008             2 60
+0 DICE_OTHERFUELWOOD_ALK4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  ALK4  2013/1/1/0 C xy g/m2/yr  ALK4  26/1008          2 60
+0 DICE_OTHERFUELWOOD_ISOP  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  ISOP  2013/1/1/0 C xy g/m2/yr  ISOP  26/1008          2 60
+0 DICE_OTHERFUELWOOD_MEK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  MEK   2013/1/1/0 C xy g/m2/yr  MEK   26/1008          2 60
+0 DICE_OTHERFUELWOOD_ALD2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  ALD2  2013/1/1/0 C xy g/m2/yr  ALD2  26/1008          2 60
+0 DICE_OTHERFUELWOOD_MVK   $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  MVK   2013/1/1/0 C xy g/m2/yr  MVK   26/1008          2 60
+0 DICE_OTHERFUELWOOD_PRPE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  PRPE  2013/1/1/0 C xy g/m2/yr  PRPE  26/1008          2 60
+0 DICE_OTHERFUELWOOD_CH2O  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  CH2O  2013/1/1/0 C xy g/m2/yr  CH2O  26/1008          2 60
+0 DICE_OTHERFUELWOOD_C2H6  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  C2H6  2013/1/1/0 C xy g/m2/yr  C2H6  26/1008          2 60
+0 DICE_OTHERFUELWOOD_HAC   $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  HAC   2013/1/1/0 C xy g/m2/yr  HAC   26/1008          2 60
+0 DICE_OTHERFUELWOOD_GLYC  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  GLYC  2013/1/1/0 C xy g/m2/yr  GLYC  26/1008          2 60
+0 DICE_OTHERFUELWOOD_MOH   $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  MOH   2013/1/1/0 C xy g/m2/yr  MOH   26/1008          2 60
+#0 DICE_OTHERFUELWOOD_MGLY $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  MGLY  2013/1/1/0 C xy g/m2/yr  MGLY  26/1008          2 60
+#0 DICE_OTHERFUELWOOD_APIN $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  APIN  2013/1/1/0 C xy g/m2/yr  APIN  26/1008          2 60
+0 DICE_OTHERFUELWOOD_C2H2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  C2H2  2013/1/1/0 C xy g/m2/yr  C2H2  26/1008          2 60
+0 DICE_OTHERFUELWOOD_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  C2H4  2013/1/1/0 C xy g/m2/yr  C2H4  26/1008          2 60
+0 DICE_OTHERFUELWOOD_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  BENZ  2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          2 60
+0 DICE_OTHERFUELWOOD_TOLU  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  TOLU  2013/1/1/0 C xy g/m2/yr  TOLU  26/1008          2 60
+0 DICE_OTHERFUELWOOD_XYLE  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  XYLE  2013/1/1/0 C xy g/m2/yr  XYLE  26/1008          2 60
+0 DICE_OTHERFUELWOOD_HCOOH $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  HCOOH 2013/1/1/0 C xy g/m2/yr  HCOOH 26/1008          2 60
+0 DICE_OTHERFUELWOOD_BCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  BC    2013/1/1/0 C xy g/m2/yr  BCPI  70/1008          2 60
+0 DICE_OTHERFUELWOOD_BCPO  -                                                                               -     -          - -  -        BCPO  71/1008          2 60
+0 DICE_OTHERFUELWOOD_OCPI  $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc  OC    2013/1/1/0 C xy g/m2/yr  OCPI  72/1008          2 60
+0 DICE_OTHERFUELWOOD_OCPO  -                                                                               -     -          - -  -        OCPO  73/1008          2 60
+# ---------------------------------------------------
+#  Efficient Combustion Emissions from EDGAR
+#  This makes up for sources that DICE-Africa lacks
+# ---------------------------------------------------
+0  EDGAR_CO_POW   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.POW.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1201/26/52/1008      1/2 60
+0  EDGAR_SOAP_POW -                                                    -       -               - -  -       SOAP 1201/26/52/1008/280  1/2 60
+0  EDGAR_CO_ENG   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.ENG.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1202/26/52/1008      1/2 60
+0  EDGAR_SOAP_ENG -                                                    -       -               - -  -       SOAP 1202/26/52/1008/280  1/2 60
+0  EDGAR_CO_IND   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.IND.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1203/26/52/1008      1/2 60
+0  EDGAR_SOAP_IND -                                                    -       -               - -  -       SOAP 1203/26/52/1008/280  1/2 60
+0  EDGAR_CO_TNG   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.TNG.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1205/26/52/1008      1/2 60
+0  EDGAR_SOAP_TNG -                                                    -       -               - -  -       SOAP 1205/26/52/1008/280  1/2 60
+0  EDGAR_CO_PPA   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.PPA.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1207/26/52/1008      1/2 60
+0  EDGAR_SOAP_PPA -                                                    -       -               - -  -       SOAP 1207/26/52/1008/280  1/2 60
+0  EDGAR_CO_SWD   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.SWD.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1211/26/52/1008      1/2 60
+0  EDGAR_SOAP_SWD -                                                    -       -               - -  -       SOAP 1211/26/52/1008/280  1/2 60
+
+0  EDGAR_NO_POW   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.POW.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1201/25/115/1008     1/2 60
+0  EDGAR_NO_ENG   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.ENG.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1202/25/115/1008     1/2 60
+0  EDGAR_NO_IND   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.IND.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1203/25/115/1008     1/2 60
+0  EDGAR_NO_TNG   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.TNG.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1205/25/115/1008     1/2 60
+0  EDGAR_NO_PPA   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.PPA.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1207/25/115/1008     1/2 60
+0  EDGAR_NO_AGR   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.AGR.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1208/25/115/1008     1/2 60
+0  EDGAR_NO_SWD   $ROOT/EDGARv43/v2016-11/EDGAR_v43.NOx.SWD.0.1x0.1.nc emi_nox 1970-2010/1/1/0 C xy kg/m2/s NO   1211/25/115/1008     1/2 60
+
+0  EDGAR_NH3_POW  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.POW.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1201/1008            1/2 60
+0  EDGAR_NH3_ENG  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.ENG.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1202/1008            1/2 60
+0  EDGAR_NH3_IND  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.IND.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1203/1008            1/2 60
+0  EDGAR_NH3_TNG  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.TNG.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1205/1008            1/2 60
+0  EDGAR_NH3_PPA  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.PPA.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1207/1008            1/2 60
+0  EDGAR_NH3_AGR  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.AGR.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1208/1008            1/2 60
+0  EDGAR_NH3_SOL  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.SOL.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1210/1008            1/2 60
+0  EDGAR_NH3_SWD  $ROOT/EDGARv43/v2016-11/EDGAR_v43.NH3.SWD.0.1x0.1.nc emi_nh3 1970-2010/1/1/0 C xy kg/m2/s NH3  1211/1008            1/2 60
+
+0  EDGAR_OCPI_POW $ROOT/EDGARv43/v2016-11/EDGAR_v43.OC.POW.0.1x0.1.nc  emi_oc  1970-2010/1/1/0 C xy kg/m2/s OCPI 1201/1008/72         1/2 60
+0  EDGAR_OCPO_POW -                                                    -       -               - -  -       OCPO 1201/1008/73         1/2 60
+0  EDGAR_POG1_POW -                                                    -       -               - -  -       POG1 1201/1008/74/76      1/2 60
+0  EDGAR_POG2_POW -                                                    -       -               - -  -       POG2 1201/1008/74/77      1/2 60
+0  EDGAR_OCPI_ENG $ROOT/EDGARv43/v2016-11/EDGAR_v43.OC.ENG.0.1x0.1.nc  emi_oc  1970-2010/1/1/0 C xy kg/m2/s OCPI 1202/1008/72         1/2 60
+0  EDGAR_OCPO_ENG -                                                    -       -               - -  -       OCPO 1202/1008/73         1/2 60
+0  EDGAR_POG1_ENG -                                                    -       -               - -  -       POG1 1202/74/1008/76      1/2 60
+0  EDGAR_POG2_ENG -                                                    -       -               - -  -       POG2 1202/1008/74/77      1/2 60
+0  EDGAR_OCPI_IND $ROOT/EDGARv43/v2016-11/EDGAR_v43.OC.IND.0.1x0.1.nc  emi_oc  1970-2010/1/1/0 C xy kg/m2/s OCPI 1203/1008/72         1/2 60
+0  EDGAR_OCPO_IND -                                                    -       -               - -  -       OCPO 1203/1008/73         1/2 60
+0  EDGAR_POG1_IND -                                                    -       -               - -  -       POG1 1203/1008/74/76      1/2 60
+0  EDGAR_POG2_IND -                                                    -       -               - -  -       POG2 1203/1008/74/77      1/2 60
+0  EDGAR_OCPI_TNG $ROOT/EDGARv43/v2016-11/EDGAR_v43.OC.TNG.0.1x0.1.nc  emi_oc  1970-2010/1/1/0 C xy kg/m2/s OCPI 1205/1008/72         1/2 60
+0  EDGAR_OCPO_TNG -                                                    -       -               - -  -       OCPO 1205/1008/73         1/2 60
+0  EDGAR_POG1_TNG -                                                    -       -               - -  -       POG1 1205/1008/74/76      1/2 60
+0  EDGAR_POG2_TNG -                                                    -       -               - -  -       POG2 1205/1008/74/77      1/2 60
+0  EDGAR_OCPI_SWD $ROOT/EDGARv43/v2016-11/EDGAR_v43.OC.SWD.0.1x0.1.nc  emi_oc  1970-2010/1/1/0 C xy kg/m2/s OCPI 1211/1008/72         1/2 60
+0  EDGAR_OCPO_SWD -                                                    -       -               - -  -       OCPO 1211/1008/73         1/2 60
+0  EDGAR_POG1_SWD -                                                    -       -               - -  -       POG1 1211/1008/74/76      1/2 60
+0  EDGAR_POG2_SWD -                                                    -       -               - -  -       POG2 1211/1008/74/77      1/2 60
+
+0  EDGAR_SO2_POW  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.POW.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1201/1008            1/2 60
+0  EDGAR_SO4_POW  -                                                    -       -               - -  -       SO4  1201/1008/63         1/2 60
+0  EDGAR_pFe_POW  -                                                    -       -               - -  -       pFe  1201/1008/66         1/2 60
+0  EDGAR_SO2_ENG  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.ENG.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1202/1008            1/2 60
+0  EDGAR_SO4_ENG  -                                                    -       -               - -  -       SO4  1202/1008/63         1/2 60
+0  EDGAR_pFe_ENG  -                                                    -       -               - -  -       pFe  1202/1008/66         1/2 60
+0  EDGAR_SO2_IND  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.IND.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1203/1008            1/2 60
+0  EDGAR_SO4_IND  -                                                    -       -               - -  -       SO4  1203/1008/63         1/2 60
+0  EDGAR_pFe_IND  -                                                    -       -               - -  -       pFe  1203/1008/66         1/2 60
+0  EDGAR_SO2_TNG  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.TNG.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1205/1008            1/2 60
+0  EDGAR_SO4_TNG  -                                                    -       -               - -  -       SO4  1205/1008/63         1/2 60
+0  EDGAR_pFe_TNG  -                                                    -       -               - -  -       pFe  1205/1008/66         1/2 60
+0  EDGAR_SO2_PPA  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.PPA.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1207/1008            1/2 60
+0  EDGAR_SO4_PPA  -                                                    -       -               - -  -       SO4  1207/1008/63         1/2 60
+0  EDGAR_pFe_PPA  -                                                    -       -               - -  -       pFe  1207/1008/66         1/2 60
+0  EDGAR_SO2_SWD  $ROOT/EDGARv43/v2016-11/EDGAR_v43.SO2.SWD.0.1x0.1.nc emi_so2 1970-2010/1/1/0 C xy kg/m2/s SO2  1211/1008            1/2 60
+0  EDGAR_SO4_SWD  -                                                    -       -               - -  -       SO4  1211/1008/63         1/2 60
+0  EDGAR_pFe_SWD  -                                                    -       -               - -  -       pFe  1211/1008/66         1/2 60
 )))DICE_Africa
 
 #==============================================================================
