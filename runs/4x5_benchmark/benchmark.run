@@ -64,7 +64,7 @@
 # different compiler, make sure to load the proper modules. Examples of 
 # other bash scripts for loading modules can be found in the ~/init/ folder
 source ~/.bashrc
-source ~/init/init.gc-classic.ifort11
+source ~/init/init.gc-classic.ifort11.centos7
 
 # Set the proper # of threads for OpenMP
 # SLURM_CPUS_PER_TASK ensures this matches the number you set with -c above
