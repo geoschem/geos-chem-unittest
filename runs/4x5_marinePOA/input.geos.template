@@ -199,7 +199,7 @@ HEMCO Input file        : HEMCO_Config.rc
 Switches for UCX        :---
  => Use CH4 emissions?  : F
  => Turn on surface BCs :---
-    => CH4?             : T
+    => CH4?             : F
     => OCS?             : T
     => CFCs?            : T
     => Cl species?      : T
