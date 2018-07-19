@@ -569,15 +569,15 @@ Warnings:                    {WARNINGS}
 # --- Wiedinmyer et al. (2014) global trash emissions ---
 #==============================================================================
 (((TRASH
-0 TRASH_SOAP  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  CO    2008/1/1/0 C xy kg/m2/s  SOAP  280   12 30
-0 TRASH_SO2   $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  SO2   2008/1/1/0 C xy kg/m2/s  SO2   78    12 30
-0 TRASH_SO4   -                                                       -     -          - -  -        SO4   63    12 30
-0 TRASH_pFe   -                                                       -     -          - -  -        pFe   78/66 12 30
-0 TRASH_NH3   $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  NH3   2008/1/1/0 C xy kg/m2/s  NH3   -     12 30
-0 TRASH_BCPI  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  BC    2008/1/1/0 C xy kg/m2/s  BCPI  70    12 30
-0 TRASH_BCPO  -                                                       -     -          - -  -        BCPO  71    12 30
-0 TRASH_OCPI  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  OC    2008/1/1/0 C xy kg/m2/s  OCPI  72    12 30
-0 TRASH_OCPO  -                                                       -     -          - -  -        OCPO  73    12 30
+0 TRASH_SOAP  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  CO    2008/1/1/0 C xy kg/m2/s  SOAP  280   1 30
+0 TRASH_SO2   $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  SO2   2008/1/1/0 C xy kg/m2/s  SO2   78    1 30
+0 TRASH_SO4   -                                                       -     -          - -  -        SO4   63    1 30
+0 TRASH_pFe   -                                                       -     -          - -  -        pFe   78/66 1 30
+0 TRASH_NH3   $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  NH3   2008/1/1/0 C xy kg/m2/s  NH3   -     1 30
+0 TRASH_BCPI  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  BC    2008/1/1/0 C xy kg/m2/s  BCPI  70    1 30
+0 TRASH_BCPO  -                                                       -     -          - -  -        BCPO  71    1 30
+0 TRASH_OCPI  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  OC    2008/1/1/0 C xy kg/m2/s  OCPI  72    1 30
+0 TRASH_OCPO  -                                                       -     -          - -  -        OCPO  73    1 30
 )))TRASH
 
 #==============================================================================
@@ -1290,14 +1290,14 @@ Warnings:                    {WARNINGS}
 0 BOND_BF_POG1   -                                        -    -             - -  -       POG1 74/76 2 1
 0 BOND_BF_POG2   -                                        -    -             - -  -       POG2 74/77 2 1
 
-(((.not.GFED.or.FINN.or.QFED
+(((.not.GFED.or.FINN.or.QFED2
 0 BOND_BM_BCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc BC   2000/1-12/1/0 C xy kg/m2/s BCPI 70    2 1
 0 BOND_BM_BCPO   -                                        -    -             - -  -       BCPO 71    2 1
 0 BOND_BM_OCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc OC   2000/1-12/1/0 C xy kg/m2/s OCPI 72    2 1
 0 BOND_BM_OCPO   -                                        -    -             - -  -       OCPO 73    2 1
 0 BOND_BM_POG1   -                                        -    -             - -  -       POG1 74/76 2 1
 0 BOND_BM_POG2   -                                        -    -             - -  -       POG2 74/77 2 1
-))).not.GFED.or.FINN.or.QFED
+))).not.GFED.or.FINN.or.QFED2
 
 )))BOND
 
@@ -1360,16 +1360,16 @@ Warnings:                    {WARNINGS}
 )))RCP_85
 
 #==============================================================================
-# --- QFED2 biomass burning ---
+# --- QFED2 biomass burning (v2.5r1) ---
 #==============================================================================
 (((QFED2
-0 QFED_BCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_bc.005.$YYYY$MM$DD.nc4   biomass 2000-2016/1-12/1-31/0 C xy kg/m2/s BCPI 70/75     5 2 
+0 QFED_BCPI  $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_bc.006.$YYYY$MM$DD.nc4   biomass 2000-2017/1-12/1-31/0 C xy kg/m2/s BCPI 70/75     5 2 
 0 QFED_BCPO  -                                                                 -       -                     - -  -       BCPO 71/75     5 2 
-0 QFED_OCPI  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_oc.005.$YYYY$MM$DD.nc4   biomass 2000-2016/1-12/1-31/0 C xy kg/m2/s OCPI 72/75     5 2 
+0 QFED_OCPI  $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_oc.006.$YYYY$MM$DD.nc4   biomass 2000-2017/1-12/1-31/0 C xy kg/m2/s OCPI 72/75     5 2 
 0 QFED_OCPO  -                                                                 -       -                     - -  -       OCPO 73/75     5 2 
-0 QFED_SOAP  $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_co.005.$YYYY$MM$DD.nc4   biomass 2000-2016/1-12/1-31/0 C xy kg/m2/s SOAP 54/75/281 5 2 
-0 QFED_NH3   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_nh3.005.$YYYY$MM$DD.nc4  biomass 2000-2016/1-12/1-31/0 C xy kg/m2/s NH3  75        5 2 
-0 QFED_SO2   $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_so2.005.$YYYY$MM$DD.nc4  biomass 2000-2016/1-12/1-31/0 C xy kg/m2/s SO2  75        5 2 
+0 QFED_CO    $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4   biomass 2000-2017/1-12/1-31/0 C xy kg/m2/s SOAP 54/75/281 5 2 
+0 QFED_NH3   $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_nh3.006.$YYYY$MM$DD.nc4  biomass 2000-2017/1-12/1-31/0 C xy kg/m2/s NH3  75        5 2 
+0 QFED_SO2   $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_so2.006.$YYYY$MM$DD.nc4  biomass 2000-2017/1-12/1-31/0 C xy kg/m2/s SO2  75        5 2 
 )))QFED2
 
 #==============================================================================

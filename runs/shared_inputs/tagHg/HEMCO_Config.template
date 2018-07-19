@@ -276,7 +276,7 @@ Warnings:                    {WARNINGS}
 # --- QFED2 biomass burning ---
 #==============================================================================
 (((QFED2
-0 QFED_Hg    $ROOT/QFED/v2014-09/$YYYY/$MM/qfed2.emis_co.005.$YYYY$MM$DD.nc4   biomass 2000-2016/1-12/1-31/0 C xy kg/m2/s Hg0  54/75 5 2 
+0 QFED_Hg    $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.005.$YYYY$MM$DD.nc4   biomass 2000-2017/1-12/1-31/0 C xy kg/m2/s Hg0  54/75 5 2 
 )))QFED2
 
 ###############################################################################
