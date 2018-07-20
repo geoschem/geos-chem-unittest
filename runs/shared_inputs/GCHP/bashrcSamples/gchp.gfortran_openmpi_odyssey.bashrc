@@ -60,9 +60,8 @@ module load git
 
 # Modules for CentOS7
 module load gcc/7.1.0-fasrc01
-module load openmpi/2.1.0-fasrc02
-module load netcdf/4.3.2-fasrc05
-module load netcdf-fortran/4.4.0-fasrc03
+module load openmpi/3.1.1-fasrc01
+module load netcdf/4.1.3-fasrc03
 
 #==============================================================================
 # Environment variables
@@ -97,11 +96,11 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_HOME}/lib
 
 # If using NetCDF after the C/Fortran split (4.3+), then you will need to
 # specify the following additional environment variables
-export GC_F_BIN="$NETCDF_FORTRAN_HOME/bin"
-export GC_F_INCLUDE="$NETCDF_FORTRAN_HOME/include"
-export GC_F_LIB="$NETCDF_FORTRAN_HOME/lib"
-export PATH=${NETCDF_FORTRAN_HOME}/bin:$PATH
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_FORTRAN_HOME}/lib
+#export GC_F_BIN="$NETCDF_FORTRAN_HOME/bin"
+#export GC_F_INCLUDE="$NETCDF_FORTRAN_HOME/include"
+#export GC_F_LIB="$NETCDF_FORTRAN_HOME/lib"
+#export PATH=${NETCDF_FORTRAN_HOME}/bin:$PATH
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:${NETCDF_FORTRAN_HOME}/lib
 
 # Set ESMF optimization (g=debugging, O=optimized (capital o))
 export ESMF_BOPT=O
@@ -112,7 +111,7 @@ export ESMF_BOPT=O
 
 ulimit -c unlimited              # coredumpsize
 ulimit -l unlimited              # memorylocked
-#ulimit -u unlimited              # maxproc
+ulimit -u 50000                  # maxproc
 ulimit -v unlimited              # vmemoryuse
 
 #==============================================================================
@@ -147,8 +146,8 @@ echo "GC_BIN: ${GC_BIN}"
 echo "GC_INCLUDE: ${GC_INCLUDE}"
 echo "GC_LIB: ${GC_LIB}"
 echo ""
-echo "GC_F_BIN: ${GC_F_BIN}"
-echo "GC_F_INCLUDE: ${GC_F_INCLUDE}"
-echo "GC_F_LIB: ${GC_F_LIB}"
-echo ""
+#echo "GC_F_BIN: ${GC_F_BIN}"
+#echo "GC_F_INCLUDE: ${GC_F_INCLUDE}"
+#echo "GC_F_LIB: ${GC_F_LIB}"
+#echo ""
 echo "Done sourcing ${BASH_SOURCE[0]}"

@@ -47,10 +47,10 @@ source runConfig.sh > runConfig.log
 rm -f gchp.log
 rm -f cap_restart.log
 
-printf "Submitting ${Num_Runs} jobs with duration '${Duration}'\n"
-printf "Start date: ${Start_Time}\n"
-printf "End date:   ${End_Time}\n"
-printf "*** Check that end date is sufficiently past start date to span all runs ***\n"
+echo "Submitting ${Num_Runs} jobs with duration '${Duration}'"
+echo "Start date: ${Start_Time}"
+echo "End date:   ${End_Time}"
+echo "*** Check that end date is sufficiently past start date to span all runs ***"
 
 msg=$(sbatch gchp_slurm.multirun.run)
 echo $msg

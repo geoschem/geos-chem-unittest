@@ -32,10 +32,13 @@ if [[ $? == 0 ]]; then
     BASHRC=./set_your_gchp_env.bashrc
     if [ ! -f $BASHRC ] 
     then
-       printf "ERROR: BASHRC environment variable in run script is not set!\nCopy or adapt a bashrc from the ./bashrcSamples subdirectory\nprior to running. Use the same environment file used for compilation.\nExiting.\n"
+       echo "ERROR: BASHRC environment variable in run script is not set!"
+       echo "Copy or adapt a bashrc from the ./bashrcSamples subdirectory"
+       echo "prior to running. Use the same environment file used for compilation."
+       echo "Exiting."
        exit 1
     fi
-    printf "WARNING: You are using environment settings in $BASHRC\n"
+    echo "WARNING: You are using environment settings in $BASHRC"
     source $BASHRC
 
     # Use SLURM to distribute tasks across nodes
@@ -48,9 +51,9 @@ if [[ $? == 0 ]]; then
     fi
 
     # Echo info from computational cores to log file for displaying results
-    printf "# of CPUs : $coreCount\n"
-    printf "# of nodes: $SLURM_NNODES\n"
-    printf "-m plane  : ${planeCount}"
+    echo "# of CPUs : $coreCount\n"
+    echo "# of nodes: $SLURM_NNODES\n"
+    echo "-m plane  : ${planeCount}"
 
     # Echo start date
     echo '===> Run started at' `date` >> ${log}

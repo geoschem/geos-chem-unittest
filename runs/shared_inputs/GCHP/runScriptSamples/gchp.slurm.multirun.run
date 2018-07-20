@@ -36,7 +36,10 @@ if [[ $? == 0 ]]; then
     BASHRC=./set_your_gchp_env.bashrc
     if [ ! -f $BASHRC ] 
     then
-       printf "ERROR: BASHRC environment variable in run script is not set!\nCopy or adapt a bashrc from the ./bashrcSamples subdirectory\nprior to running. Use the same environment file used for compilation.\nExiting.\n"
+       echo "ERROR: BASHRC environment variable in run script is not set!"
+       echo "Copy or adapt a bashrc from the ./bashrcSamples subdirectory"
+       echo "prior to running. Use the same environment file used for compilation."
+       echo "Exiting."
        exit 1
     fi
 
