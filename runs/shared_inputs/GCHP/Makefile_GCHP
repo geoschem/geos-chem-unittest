@@ -78,19 +78,23 @@ EXE :=geos
 
 # Beware! Destroys ESMF, MAPL, and FVdycore compilations
 compile_clean:
-	./build.sh compile_clean 2>&1 | tee $(BUILD_LOG)
+	date >> $(BUILD_LOG)
+	./build.sh compile_clean 2>&1 | tee -a $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
 compile_standard:
-	./build.sh compile_standard 2>&1 | tee $(BUILD_LOG)
+	date > $(BUILD_LOG)
+	./build.sh compile_standard 2>&1 | tee -a $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
 compile_debug:
-	./build.sh compile_debug 2>&1 | tee $(BUILD_LOG)
+	date > ${BUILD_LOG}
+	./build.sh compile_debug 2>&1 | tee -a $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
 compile_mapl:
-	./build.sh compile_mapl 2>&1 | tee $(BUILD_LOG)
+	date > ${BUILD_LOG}
+	./build.sh compile_mapl 2>&1 | tee -a $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
 #%%%%%%%%%%%%%%%%%%%%%%%
