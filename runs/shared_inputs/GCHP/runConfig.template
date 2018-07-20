@@ -127,9 +127,21 @@ common_freq="010000"
 common_dur="010000"
 common_mode="'time-averaged'"
 
-SpeciesConc_freq=${common_freq}
-SpeciesConc_dur=${common_dur}
-SpeciesConc_mode=${common_mode}
+# Diagnostics enabled in benchmark simulation by default
+SpeciesConc_avg_freq=${common_freq}
+SpeciesConc_avg_dur=${common_dur}
+SpeciesConc_avg_mode=${common_mode}
+SpeciesConc_inst_freq=${common_freq}
+SpeciesConc_inst_dur=${common_dur}
+SpeciesConc_inst_mode="'instantaneous'"
+StateMet_avg_freq=${common_freq}
+StateMet_avg_dur=${common_dur}
+StateMet_avg_mode=${common_mode}
+StateMet_inst_freq=${common_freq}
+StateMet_inst_dur=${common_dur}
+StateMet_inst_mode="'instantaneous'"
+
+# Other diagnostics
 AerosolMass_freq=${common_freq}
 AerosolMass_dur=${common_dur}
 AerosolMass_mode=${common_mode}
@@ -166,9 +178,6 @@ RadioNuclide_mode=${common_mode}
 StateChm_freq=${common_freq}
 StateChm_dur=${common_dur}
 StateChm_mode=${common_mode}
-StateMet_freq=${common_freq}
-StateMet_dur=${common_dur}
-StateMet_mode=${common_mode}
 WetLossConv_freq=${common_freq}
 WetLossConv_dur=${common_dur}
 WetLossConv_mode=${common_mode}
@@ -293,9 +302,18 @@ replace_val JOB_SGMT  "${Duration}"   CAP.rc
 #### Set output frequency, duration, and mode
 echo " "
 echo "Output:" 
-replace_val SpeciesConc.frequency      ${SpeciesConc_freq}      HISTORY.rc  
-replace_val SpeciesConc.duration       ${SpeciesConc_dur}       HISTORY.rc
-replace_val SpeciesConc.mode           ${SpeciesConc_mode}      HISTORY.rc
+replace_val SpeciesConc_avg.frequency  ${SpeciesConc_avg_freq}  HISTORY.rc  
+replace_val SpeciesConc_avg.duration   ${SpeciesConc_avg_dur}   HISTORY.rc
+replace_val SpeciesConc_avg.mode       ${SpeciesConc_avg_mode}  HISTORY.rc
+replace_val SpeciesConc_inst.frequency ${SpeciesConc_inst_freq} HISTORY.rc  
+replace_val SpeciesConc_inst.duration  ${SpeciesConc_inst_dur}  HISTORY.rc
+replace_val SpeciesConc_inst.mode      ${SpeciesConc_inst_mode} HISTORY.rc
+replace_val StateMet_avg.frequency     ${StateMet_avg_freq}	HISTORY.rc
+replace_val StateMet_avg.duration      ${StateMet_avg_dur}	HISTORY.rc
+replace_val StateMet_avg.mode          ${StateMet_avg_mode}	HISTORY.rc
+replace_val StateMet_inst.frequency    ${StateMet_inst_freq}	HISTORY.rc
+replace_val StateMet_inst.duration     ${StateMet_inst_dur}	HISTORY.rc
+replace_val StateMet_inst.mode         ${StateMet_inst_mode}	HISTORY.rc
 replace_val AerosolMass.frequency      ${AerosolMass_freq}      HISTORY.rc
 replace_val AerosolMass.duration       ${AerosolMass_dur}       HISTORY.rc
 replace_val AerosolMass.mode           ${AerosolMass_mode}      HISTORY.rc
@@ -332,9 +350,6 @@ replace_val RadioNuclide.mode          ${RadioNuclide_mode}     HISTORY.rc
 replace_val StateChm.frequency         ${StateChm_freq}	        HISTORY.rc
 replace_val StateChm.duration          ${StateChm_dur}	        HISTORY.rc
 replace_val StateChm.mode              ${StateChm_mode}	        HISTORY.rc
-replace_val StateMet.frequency         ${StateMet_freq}	        HISTORY.rc
-replace_val StateMet.duration          ${StateMet_dur}	        HISTORY.rc
-replace_val StateMet.mode              ${StateMet_mode}	        HISTORY.rc
 replace_val WetLossConv.frequency      ${WetLossConv_freq}      HISTORY.rc
 replace_val WetLossConv.duration       ${WetLossConv_dur}       HISTORY.rc
 replace_val WetLossConv.mode           ${WetLossConv_mode}      HISTORY.rc
