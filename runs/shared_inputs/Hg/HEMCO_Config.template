@@ -276,7 +276,8 @@ Warnings:                    {WARNINGS}
 # --- QFED2 biomass burning ---
 #==============================================================================
 (((QFED2
-0 QFED_Hg    $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4   biomass 2000-2017/1-12/1-31/0 C xy kg/m2/s Hg0  54/75 5 2 
+0 QFED_Hg_PBL    $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4   biomass 2000-2017/1-12/1-31/0 C xyL=1:PBL     kg/m2/s Hg0  54/75/311 5 2 
+0 QFED_Hg_FT     $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4   biomass 2000-2017/1-12/1-31/0 C xyL=PBL:5500m kg/m2/s Hg0  54/75/312 5 2 
 )))QFED2
 
 ###############################################################################
@@ -454,6 +455,14 @@ Warnings:                    {WARNINGS}
 # No. 178-6, July 2005
 #==============================================================================
 75 QFED2_TOD 0.1392/0.1392/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.48/0.96/1.68/2.4/3.12/3.84/4.08/2.88/1.68/0.96/0.1368/0.1368/0.1368/0.1368/0.1368 - - - xy unitless 1
+
+#==============================================================================
+# --- QFED vertical partitioning ---
+# Following Fischer et al. (2014) and Travis et al. (2016), emit 35% of QFED
+# emissions above the PBL.
+#==============================================================================
+311 QFED_PBL_FRAC 0.65 - - - xy 1 1
+312 QFED_FT_FRAC  0.35 - - - xy 1 1
 
 ### END SECTION SCALE FACTORS ###
 

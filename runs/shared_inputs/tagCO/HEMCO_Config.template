@@ -511,13 +511,20 @@ Mask fractions:              false
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #==============================================================================
 (((QFED2
-0 QFED_CO      $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4 biomass 2000-2017/1-12/1-31/0 C xy kg/m2/s CO      54/75       5 2 
-0 QFED_CObbAm  -                                                               -       -                     - -  -       CObbam  54/75/1104  5 2 
-0 QFED_CObbAf  -                                                               -       -                     - -  -       CObbaf  54/75/1105  5 2 
-0 QFED_CObbAs  -                                                               -       -                     - -  -       CObbas  54/75/1106  5 2 
-0 QFED_CObbOc  -                                                               -       -                     - -  -       CObboc  54/75/1107  5 2 
-0 QFED_CObbEu  -                                                               -       -                     - -  -       CObbeu  54/75/1108  5 2 
-0 QFED_CObbOth -                                                               -       -                     - -  -       CObboth 54/75/1109  5 2 
+0 QFED_CO_PBL      $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4 biomass 2000-2017/1-12/1-31/0 C xyL=1:PBL     kg/m2/s CO      54/75/311       5 2 
+0 QFED_CObbAm_PBL  -                                                               -       -                     - -             -       CObbam  54/75/311/1104  5 2 
+0 QFED_CObbAf_PBL  -                                                               -       -                     - -             -       CObbaf  54/75/311/1105  5 2 
+0 QFED_CObbAs_PBL  -                                                               -       -                     - -             -       CObbas  54/75/311/1106  5 2 
+0 QFED_CObbOc_PBL  -                                                               -       -                     - -             -       CObboc  54/75/311/1107  5 2 
+0 QFED_CObbEu_PBL  -                                                               -       -                     - -             -       CObbeu  54/75/311/1108  5 2 
+0 QFED_CObbOth_PBL -                                                               -       -                     - -             -       CObboth 54/75/311/1109  5 2 
+0 QFED_CO_FT       $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4 biomass 2000-2017/1-12/1-31/0 C xyL=PBL:5500m kg/m2/s CO      54/75/312       5 2
+0 QFED_CObbAm_FT   -                                                               -       -                     - -             -       CObbam  54/75/312/1104  5 2 
+0 QFED_CObbAf_FT   -                                                               -       -                     - -             -       CObbaf  54/75/312/1105  5 2 
+0 QFED_CObbAs_FT   -                                                               -       -                     - -             -       CObbas  54/75/312/1106  5 2 
+0 QFED_CObbOc_FT   -                                                               -       -                     - -             -       CObboc  54/75/312/1107  5 2 
+0 QFED_CObbEu_FT   -                                                               -       -                     - -             -       CObbeu  54/75/312/1108  5 2 
+0 QFED_CObbOth_FT  -                                                               -       -                     - -             -       CObboth 54/75/312/1109  5 2 
 )))QFED2
 
 ###############################################################################
@@ -758,6 +765,14 @@ Mask fractions:              false
 # --- NEI 20011 scale factors ---
 #==============================================================================
 252 NEI11_CO_YRSCALE  1.271/1.227/1.104/0.998/1.019/1.0/0.981/0.962 - 2006-2013/1/1/0 C xy 1 1 
+
+#==============================================================================
+# --- QFED vertical partitioning ---
+# Following Fischer et al. (2014) and Travis et al. (2016), emit 35% of QFED
+# emissions above the PBL.
+#==============================================================================
+311 QFED_PBL_FRAC 0.65 - - - xy 1 1
+312 QFED_FT_FRAC  0.35 - - - xy 1 1
 
 ### END SECTION SCALE FACTORS ###
 
