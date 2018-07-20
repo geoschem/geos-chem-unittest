@@ -34,7 +34,7 @@ fi
 echo "Archiving files..."
 
 # Move diagnostic data
-for f in OutdirDir/*.nc4; do
+for f in OutputDir/*.nc4; do
    if [ -f $f ]; then
       mv $f ${archivedir}/data
    else      
