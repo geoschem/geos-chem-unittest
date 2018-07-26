@@ -62,7 +62,7 @@ SHELL        :=/bin/bash
 
 # GEOS-Chem run log filename prefix
 ifndef VERSION
- VERSION     :=v11-02
+ VERSION     :="12.0.0"
 endif
 
 # Source code location
