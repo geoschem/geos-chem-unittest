@@ -150,7 +150,8 @@ cleanup_logs:
 	rm -f gchp.log
 	rm -f HEMCO.log
 	rm -f PET*.log
-	rm -f runConfig.log
+	rm -f runConfig*log
+	rm -f multirun.log
 	rm -f logfile.000000.out
 	rm -f slurm-*
 	rm -f 1

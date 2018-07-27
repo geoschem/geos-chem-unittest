@@ -642,10 +642,6 @@ sub doCopyDirs($$) {
 	    $cmd = "ln -sf ${DATA_ROOT}/GCHP/TileFiles ${copyDir}/TileFiles";
 	    qx/$cmd/;	
 
-	    # Copy the slurm script into the run directory by default
-	    $cmd = "cp ${copyDir}/runScriptSamples/gchp.slurm.run ${copyDir}/gchp.run";
-	    qx/$cmd/;		    
-
           } else {
 
 	    #---------------------------------------------

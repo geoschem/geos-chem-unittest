@@ -21,8 +21,8 @@
 #
 #  2. runConfig.sh need only be sourced once, at the very start of this script,
 #     and cap_restart should never be deleted. This is why there is a special
-#     run script for the multi-run segments (gchp_slurm.multirun.run). Using 
-#     the default run script instead (gchp_slurm.run) will not work for 
+#     run script for the multi-run segments (gchp.multirun.run). Using 
+#     the default run script instead (gchp.run) will not work for 
 #     multi-segmented run without manual updates. 
 #
 #  3. The run script submitted on loop in this shell script will send stdout to
@@ -42,28 +42,43 @@
 #
 # ~ GEOS-Chem Support Team, 7/9/2018
 
+# Set multirun log filename (separate from GEOS-Chem log file gchp.log)
+multirunlog="multirun.log"
+runconfiglog="runConfig.log"
+
+
 # Source runConfig.sh to update rc files and get variables used below.
-source runConfig.sh > runConfig.log
-rm -f gchp.log
-rm -f cap_restart.log
+source runConfig.sh > $runconfiglog
 
-echo "Submitting ${Num_Runs} jobs with duration '${Duration}'"
-echo "Start date: ${Start_Time}"
-echo "End date:   ${End_Time}"
-echo "*** Check that end date is sufficiently past start date to span all runs ***"
+# Only continue if runConfig.sh had no errors
+if [[ $? == 0 ]]; then
+   rm -f gchp.log
+   rm -f cap_restart
+   rm -f $multirunlog
+   
+   echo "Submitting    ${Num_Runs} jobs with duration '${Duration}'" | tee $multirunlog
+   echo "Start date:   ${Start_Time}" | tee -a $multirunlog
+   echo "End date:     ${End_Time}" | tee -a $multirunlog
+   echo "Monthly diag: ${Monthly_Diag} (0:off, 1:on)" | tee -a $multirunlog
+   echo "*** Check that end date is sufficiently past start date to span all runs ***"
+   
+   msg=$(sbatch gchp.multirun.run)
+   echo $msg | tee -a $multirunlog
+   IFS=', ' IFS=', ' read -r -a msgarray <<< "$msg"
+   jobid=${msgarray[3]}
+   
+   for i in $(seq 1 $((Num_Runs-1))); 
+   do
+     msg=$(sbatch --dependency=afterok:$jobid gchp.multirun.run)
+     echo $msg | tee -a $multirunlog
+     IFS=', ' IFS=', ' read -r -a msgarray <<< "$msg"
+     jobid=${msgarray[3]}
+   done
 
-msg=$(sbatch gchp_slurm.multirun.run)
-echo $msg
-IFS=', ' IFS=', ' read -r -a msgarray <<< "$msg"
-jobid=${msgarray[3]}
-
-for i in $(seq 1 $((Num_Runs-1))); 
-do
-  msg=$(sbatch --dependency=afterok:$jobid gchp_slurm.multirun.run)
-  echo $msg
-  IFS=', ' IFS=', ' read -r -a msgarray <<< "$msg"
-  jobid=${msgarray[3]}
-done
+else
+   echo "Problem in sourcing runConfig.sh"
+   cat runConfig.log
+fi
 
 exit 0
 
