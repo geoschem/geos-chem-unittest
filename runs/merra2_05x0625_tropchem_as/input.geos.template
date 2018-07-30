@@ -11,8 +11,8 @@ Root data directory     : {DATA_ROOT}
 Global offsets I0, J0   : 384 158
 ------------------------+------------------------------------------------------
 %%% TIMESTEP MENU %%%   :
-Tran/conv timestep [sec]: 300
-Chem/emis timestep [sec]: 600
+Tran/conv timestep [sec]: 600
+Chem/emis timestep [sec]: 1200
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
