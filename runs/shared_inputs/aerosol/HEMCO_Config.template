@@ -381,12 +381,12 @@ Warnings:                    {WARNINGS}
 # ==> CEDS includes trash emissions (Cat=12) from Wiedinmyer et al. (2014)
 #==============================================================================
 (((CEDS
-0 CEDS_SOAP_AGR   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_agr            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/2/12
-0 CEDS_SOAP_ENE   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_ene            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/2/12
-0 CEDS_SOAP_IND   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_ind            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/2/12
-0 CEDS_SOAP_TRA   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_tra            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/2/12
-0 CEDS_SOAP_SLV   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_slv            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/2/12
-0 CEDS_SOAP_WST   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_wst            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/2/12
+0 CEDS_SOAP_AGR   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_agr            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/12 5
+0 CEDS_SOAP_ENE   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_ene            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/12 5
+0 CEDS_SOAP_IND   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_ind            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/12 5
+0 CEDS_SOAP_TRA   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_tra            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/12 5
+0 CEDS_SOAP_SLV   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_slv            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/12 5
+0 CEDS_SOAP_WST   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_wst            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/12 5
 0 CEDS_SO2_AGR    $ROOT/CEDS/v2018-04/SO2-em-anthro_CMIP_CEDS_195001-201412.nc           SO2_agr           1950-2014/1-12/1/0 C xy kg/m2/s SO2   -      1/2/12 5
 0 CEDS_SO4_AGR    -                                                                      -                 -                  - -  -       SO4   63     1/2/12 5
 0 CEDS_pFe_AGR    -                                                                      -                 -                  - -  -       pFe   66     1/2/12 5
@@ -473,7 +473,7 @@ Warnings:                    {WARNINGS}
 0 TRASH_BCPO  -                                                       -     -          - -  -        BCPO  71    1 30
 0 TRASH_OCPI  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  OC    2008/1/1/0 C xy kg/m2/s  OCPI  72    1 30
 0 TRASH_OCPO  -                                                       -     -          - -  -        OCPO  73    1 30
-))).notCEDS
+))).not.CEDS
 )))TRASH
 
 #==============================================================================
