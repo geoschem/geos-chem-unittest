@@ -91,11 +91,8 @@ Warnings:                    {WARNINGS}
     --> BrOx_GC           :       true
     --> BrOx_GMI          :       true
     --> LRED_JNO2         :       true
-    --> LBRYCHEM          :       true
-    --> LCLCHEM           :       true
+    --> LHALOGENCHEM      :       true
     --> LHGAQCHEM         :       true
-    --> LBRCHEM           :       false
-    --> LBROCHEM          :       false
     --> LOHO3CHEM         :       false
     --> QFED2             :       false
     --> LRED_INPLUME      :       false
