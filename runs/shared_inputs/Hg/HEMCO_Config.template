@@ -97,6 +97,10 @@ Warnings:                    {WARNINGS}
     --> QFED2             :       false
     --> LRED_INPLUME      :       false
 # ----------------------------------------------------------------------------
+# NOTE: Changing these options will require a change in reduction rate in order
+#       to maintain agreement with observations. Please see wiki for details
+#       http://wiki.seas.harvard.edu/geos-chem/index.php/Mercury
+# ----------------------------------------------------------------------------
 111     GFED              : on    Hg0
     --> GFED4             :       true
     --> GFED_daily        :       false
