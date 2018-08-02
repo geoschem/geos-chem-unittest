@@ -1,6 +1,11 @@
 This is the GEOS-Chem run directory for the 2x2.5 Hg simulation.  This
 directory can be used with GEOS-FP or MERRA-2 meteorology.
 
+NOTE FOR Hg USERS:
+Please see the wiki for notes on using options other than the defaults!
+(e.g. if using dynamic ocean)
+http://wiki.seas.harvard.edu/geos-chem/index.php/Mercury
+
 The various input files (e.g. HEMCO_Config.template, HISTORY.rc, etc.) are
 stored in ../shared_inputs/Hg.  This allows us to keep a single set of 
 these files in one location, for convenience.  A new HEMCO_Config.rc file will 
