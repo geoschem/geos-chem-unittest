@@ -72,14 +72,18 @@ else
    echo "No cap_restart prior to run"
 fi
 
+source runConfig.sh > /dev/null
+
+
 # Monthly diagnostic option automatically updates HISTORY.rc freq/duration
 # with number of hours for the month of the run
 # Requirements: 
 #   1. run segment duration must be 1-month 
 #   2. start date must be within the first 28 days of the month
-# NOTE: turn on this feature in runConfig.sh. If on, the diagnostic freq
-#       and duration do not need to be manually set in runConfig.sh
-source runConfig.sh > /dev/null
+# NOTE: turn on this feature manually here by setting Monthly_Diag to 1. 
+#       If on, the diagnostic freq and duration do not need to be manually 
+#       set in runConfig.sh
+Monthly_Diag=0
 if [ ${Monthly_Diag} = "1" ]; then
    if [ -e cap_restart ]; then    
       yr_str=${cap_rst:0:4}
@@ -99,6 +103,7 @@ if [ ${Monthly_Diag} = "1" ]; then
    sed -i "s|common_freq\=.*|common_freq\=\"${hrs_str}0000\"|" ./runConfig.sh
    sed -i "s|common_dur\=.*|common_dur\=\"${hrs_str}0000\"|"   ./runConfig.sh
 fi
+
 echo " "
 echo "Settings from runConfig.sh: "
 echo " "

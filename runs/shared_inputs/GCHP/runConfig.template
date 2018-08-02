@@ -106,25 +106,19 @@ End_Time="{DATE2} {TIME2}"
 Duration="{dYYYYMMDD} {dHHmmss}"
 
 #------------------------------------------------
-#    Multi-segmented Runs / Monthly Diagnostics
+#    Number of Runs
 #------------------------------------------------
-# The simplest run is a single segment. Use or adapt gchp.run in 
-# runScriptSamples/ as your run script for this type of run. Set Num_Runs
-# to 1 and Monthly_Diag to 0 below. Set duration to the difference between
-# start and end above. For monthly diagnostics of a single run set the
-# number of hours in the month for freq and duration in the diagnostics
-# section further down in this script.
+# The simplest run is a single segment:
+#   1. Use or adapt gchp.run in runScriptSamples/ as your run script
+#   2. Set duration to the difference between start and end
+#   3. Set Num_Runs=1 in this section
 #
-# For monthly diagnostics of multiple months do multi-segmented runs.
-# Set Num_Runs to number of months and Monthly_Diag to 1 below. Set
-# duration to 1 month above, and end sufficientsly after start to include
-# all months. Use or adapt gchp.multirun.sh and gchp.multirun.run in
-# runScriptSamples/ as your run script for this type of run. There is no
-# need to set the # of hours for diagnostics further down in this script
-# since it will be set automaticlly for each month (run).
+# To do consecutive runs:
+#   1. Use or adapt gchp.multirun.sh and gchp.multirun.run in runScriptSamples/
+#   2. Set duration to the duration of each individual run
+#   3. Set end date sufficiently after start date to span all runs
+#   3. Set Num_Runs to number of runs total 
 Num_Runs=1
-Monthly_Diag=0
-
 
 #------------------------------------------------
 #    Diagnostics
