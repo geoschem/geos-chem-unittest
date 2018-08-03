@@ -41,7 +41,8 @@
 #  (4) We have increased the requested memory to 10 GB, since the benchmark
 #      simulation now carries many more SOA species.  
 # 
-#  (5) Remember to update the id variable below for each version.
+#  (5) Remember to update the version variable below with the current 
+#      GEOS-Chem version number (X.Y.Z).
 #
 #  (6) At present, the benchmarks are done with ifort 11.1.069 to maintain
 #      backwards compatibility.  This may change in the future.
@@ -74,11 +75,15 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 # Initialize
 #-------------------------------------------------
 
-# Define version ID (change as necessary)
-id="12.0.0"
+# Define GEOS-Chem version number (X.Y.Z)
+version=12.0.0
+
+# Define version ID (prefix "GC_" to the version
+# so that file names won't begin with a number)
+id=GC_$version
 
 # Define GEOS-Chem log file
-log="$id.log"
+log=$id.log
 
 #-------------------------------------------------
 # Start the simulation

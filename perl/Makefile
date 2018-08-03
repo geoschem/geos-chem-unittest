@@ -60,12 +60,15 @@ SHELL        :=/bin/bash
 #####                                                                     #####
 ###############################################################################
 
-# GEOS-Chem run log filename prefix
+# GEOS-Chem version number (X.Y.Z)
 ifndef VERSION
- VERSION     :="12.0.0"
+ VERSION     :=12.0.0
 endif
 
-# Source code location
+# Prefix "GC" to the version number so that log files won't start w/ a number
+VERSION_TAG  :=GC_$(VERSION)
+
+# Source code location (you can modify as necessary)
 ifndef CODE_DIR
  CODE_DIR    :=$(HOME)/GC/Code.$(VERSION)
 endif
@@ -282,9 +285,9 @@ endif
 
 # Log files that will be written to the log directory
 LOG_COMP     :="$(RUN_DIR)/lastbuild"
-LOG_SP       :="$(LOG_DIR)/$(VERSION).$(RUNID).log.sp"
-LOG_MP       :="$(LOG_DIR)/$(VERSION).$(RUNID).log.mp"
-LOG_HMCO_SA  :="$(LOG_DIR)/$(VERSION).$(RUNID).log"
+LOG_SP       :="$(LOG_DIR)/$(VERSION_TAG).$(RUNID).log.sp"
+LOG_MP       :="$(LOG_DIR)/$(VERSION_TAG).$(RUNID).log.mp"
+LOG_HMCO_SA  :="$(LOG_DIR)/$(VERSION_TAG).$(RUNID).log"
 
 # Log files that will be written to the run directory
 # (For copied run directories, the log & run directories are the same)
@@ -302,7 +305,7 @@ GC_RST       :=GEOSChem_restart.$(END).nc
 
 # Unit test validation script and results file
 VALIDATE     :=/usr/bin/perl $(PERL_DIR)/validate.pl
-RESULTS      :=$(LOG_DIR)/$(VERSION).results.log
+RESULTS      :=$(LOG_DIR)/$(VERSION_TAG).results.log
 
 # Get information about the Git version, because some features
 # (like -C) are not available in older Git versions.  The git 
@@ -659,7 +662,8 @@ printruninfosp:
 	@echo "  Simulation Start    : $(START)"
 	@echo "  Simulation End      : $(END)"
 	@echo "  HEMCO End           : $(HMCO_END)"
-	@echo "  Version             : $(VERSION)"
+	@echo "  Version number      : $(VERSION)"
+	@echo "  Version tag         : $(VERSION_TAG)"
 	@echo "  GC Diagnostic File  : $(GC_DIAG).sp"
 	@echo "  GC Restart File     : $(GC_RST).sp"
 	@echo "  History file (inst) ; $(HIST_INS).sp"
@@ -674,7 +678,8 @@ printruninfomp:
 	@echo "  Simulation Start    : $(START)"
 	@echo "  Simulation End      : $(END)"
 	@echo "  HEMCO End           : $(HMCO_END)"
-	@echo "  Version             : $(VERSION)"
+	@echo "  Version number      : $(VERSION)"
+	@echo "  Version tag         : $(VERSION_TAG)"
 	@echo "  GC Diagnostic File  : $(GC_DIAG).mp"
 	@echo "  GC Restart File     : $(GC_RST).mp"
 	@echo "  History file (inst) ; $(HIST_INS).mp"
