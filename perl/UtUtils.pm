@@ -978,7 +978,7 @@ sub readResults($$) {
   # Strings
   my $color            = "";
   my $utName           = "";
-  my $version          = "";
+  my $versionTag       = "";
   my $dateRan          = "";
   my $describe         = "";
   my $makeCmd          = "";
@@ -1011,39 +1011,39 @@ sub readResults($$) {
     #-------------------------------------------------------------------------
     # Get the version number, date submitted, description, and make command
     #-------------------------------------------------------------------------
-    if ( $txt[$i] =~ m/GEOS-CHEM UNIT TEST RESULTS FOR VERSION/ ) {
+    if ( $txt[$i] =~ m/GEOS-CHEM UNIT TEST RESULTS FOR/ ) {
 
       # Version number
-      @subStr   =  split( ':', $txt[$i] );
-      $version  =  $subStr[1];
-      $version  =~ s/^\s+//; 
-      $version  =~ s/^\s+$//;
+      @subStr      =  split( ':', $txt[$i] );
+      $versionTag  =  $subStr[1];
+      $versionTag  =~ s/^\s+//;
+      $versionTag  =~ s/^\s+$//;
 
       # Date the test ran
-      @subStr   =  split( '\@', $txt[++$i] );
-      $dateRan  =  $subStr[1];
-      $dateRan  =~ s/^\s+//; 
-      $dateRan  =~ s/^\s+$//;
+      @subStr      =  split( '\@', $txt[++$i] );
+      $dateRan     =  $subStr[1];
+      $dateRan     =~ s/^\s+//;
+      $dateRan     =~ s/^\s+$//;
 
       # Description
       ++$i;     
-      @subStr   =  split( '\:', $txt[++$i] );
-      $describe =  $subStr[1];
-      $describe =~ s/^\s+//; 
-      $describe =~ s/^\s+$//;
+      @subStr      =  split( '\:', $txt[++$i] );
+      $describe    =  $subStr[1];
+      $describe    =~ s/^\s+//;
+      $describe    =~ s/^\s+$//;
 
       # Make command
       ++$i;     
-      @subStr   =  split( '\:', $txt[++$i] );
-      $makeCmd  =  $subStr[1];
-      $makeCmd  =~ s/^\s+//; 
-      $makeCmd  =~ s/^\s+$//;
+      @subStr      =  split( '\:', $txt[++$i] );
+      $makeCmd     =  $subStr[1];
+      $makeCmd     =~ s/^\s+//;
+      $makeCmd     =~ s/^\s+$//;
 
       # Store in the hash
-      $unitTests{ "UNIT_TEST_VERSION"  } = $version;
-      $unitTests{ "UNIT_TEST_DATE"     } = $dateRan;
-      $unitTests{ "UNIT_TEST_DESCRIBE" } = $describe;
-      $unitTests{ "UNIT_TEST_MAKECMD"  } = "($compiler) $makeCmd";
+      $unitTests{ "UNIT_TEST_VERSIONTAG" } = $versionTag;
+      $unitTests{ "UNIT_TEST_DATE"       } = $dateRan;
+      $unitTests{ "UNIT_TEST_DESCRIBE"   } = $describe;
+      $unitTests{ "UNIT_TEST_MAKECMD"    } = "($compiler) $makeCmd";
     }
     
     #-------------------------------------------------------------------------

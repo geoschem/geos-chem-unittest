@@ -28,8 +28,9 @@
 #
 # %%% ID tags %%%
 #
-   VERSION          : v11-02
-   DESCRIPTION      : Tests GEOS-Chem v11-02
+   VERSION          : 12.0.0
+   VERSION_TAG      : GC_{VERSION}_{TODAYSDATE}
+   DESCRIPTION      : Tests GEOS-Chem 12.0.0 (edit description as necessary)
 #
 # %%% Data path and HEMCO settings %%%
 #
@@ -40,7 +41,7 @@
 #
 # %%% Code and queue settings %%%
 #
-   CODE_DIR         : {HOME}/GC/Code.v11-02
+   CODE_DIR         : {HOME}/GC/Code.{VERSION}
    MAKE_CMD         : make -j4 BOUNDS=y DEBUG=y FPEX=y NO_ISO=y
    SUBMIT           : sbatch
 #
@@ -50,14 +51,14 @@
    RUN_ROOT         : {UTROOT}/runs
    RUN_DIR          : {RUNROOT}/{RUNDIR}
    JOB_DIR          : {UTROOT}/jobs
-   LOG_DIR          : {UTROOT}/logs/{VERSION}
+   LOG_DIR          : {UTROOT}/logs/{VERSION_TAG}
    PERL_DIR         : {UTROOT}/perl
 #
 # %%% Web and text display options %%%
 #
    TEMPLATE         : {PERLDIR}/ut_template.html
-   TXT_GRID         : {LOGDIR}/{VERSION}.results.txt
-   WEB_GRID         : {LOGDIR}/{VERSION}.results.html
+   TXT_GRID         : {LOGDIR}/{VERSION_TAG}.results.txt
+   WEB_GRID         : {LOGDIR}/{VERSION_TAG}.results.html
    WEB_PUSH         : NONE
 #
 #  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -176,6 +177,7 @@
   geosfp   4x5         -      TOMAS15          2016070100   201607010030   -
   geosfp   4x5         -      TOMAS40          2016070100   201607010030   -
 # ======= RRTMG online radiative transfer ====================================
+#### NOTE: At present, RRTMG does not work with GNU Fortran (bmy, 8/6/18) ####
   geosfp   4x5         -      RRTMG            2016070100   201607010040   -
   merra2   4x5         -      RRTMG            2016070100   201607010040   -
 # geosfp   2x25        -      RRTMG            2016070100   201607010040   -

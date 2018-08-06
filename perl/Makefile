@@ -65,8 +65,11 @@ ifndef VERSION
  VERSION     :=12.0.0
 endif
 
-# Prefix "GC" to the version number so that log files won't start w/ a number
-VERSION_TAG  :=GC_$(VERSION)
+# If VERSION_TAG is not specified, then prefix "GC_" to the version number.
+# This will prevent log files from beginning with a number.
+ifndef VERSION_TAG
+ VERSION_TAG :=GC_$(VERSION)
+endif
 
 # Source code location (you can modify as necessary)
 ifndef CODE_DIR
@@ -706,6 +709,7 @@ printbuildinfo:
 	@echo "  LAST_COMMIT  : $(LAST_COMMIT)"
 	@echo "  COMMIT_DATE  : $(COMMIT_DATE)"
 	@echo "  VERSION      : $(VERSION)"
+	@echo "  VERSION_TAG  : $(VERSION_TAG)"
 	@echo "  MET          : $(MET)"
 	@echo "  GRID         : $(GRID)"
 	@echo "  SIM          : $(SIM)"
