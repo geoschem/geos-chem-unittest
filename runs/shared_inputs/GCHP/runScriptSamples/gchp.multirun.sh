@@ -59,7 +59,6 @@ if [[ $? == 0 ]]; then
    echo "Submitting    ${Num_Runs} jobs with duration '${Duration}'" | tee $multirunlog
    echo "Start date:   ${Start_Time}" | tee -a $multirunlog
    echo "End date:     ${End_Time}" | tee -a $multirunlog
-   echo "Monthly diag: ${Monthly_Diag} (0:off, 1:on)" | tee -a $multirunlog
    echo "*** Check that end date is sufficiently past start date to span all runs ***"
    
    msg=$(sbatch gchp.multirun.run)
