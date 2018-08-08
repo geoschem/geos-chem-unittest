@@ -76,9 +76,9 @@ ifndef CODE_DIR
  CODE_DIR    :=$(HOME)/GC/Code.$(VERSION)
 
  # Make sure CODE_DIR points to a valid directory
- ifeq ($(wildcard "$(CODE_DIR)"),)
-   $(error "ERROR: Could not find source code directory $(CODE_DIR)")
- endif
+ #ifeq ($(wildcard "$(CODE_DIR)"),)
+ #  $(error "ERROR: Could not find source code directory $(CODE_DIR)")
+ #endif
 endif
 
 # Output log file destination (default is run directory) 
