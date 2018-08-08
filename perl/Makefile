@@ -74,11 +74,12 @@ endif
 # Source code location (you can modify as necessary)
 ifndef CODE_DIR
  CODE_DIR    :=$(HOME)/GC/Code.$(VERSION)
+endif
 
- # Make sure CODE_DIR points to a valid directory
- #ifeq ($(wildcard "$(CODE_DIR)"),)
- #  $(error "ERROR: Could not find source code directory $(CODE_DIR)")
- #endif
+# Check if the code directory is not valid
+NO_CODE_FOUND:=$(shell test -d $(CODE_DIR) -a ! -h $(CODE_DIR); echo $$?)
+ifeq ($(NO_CODE_FOUND),1)
+ $(error Could not find source code directory CODE_DIR=$(CODE_DIR))
 endif
 
 # Output log file destination (default is run directory) 
