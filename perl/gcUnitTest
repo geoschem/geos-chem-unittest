@@ -841,8 +841,8 @@ EOF
 
   # Print info about the job
   print '%%%%%%%%% GEOS-Chem UNIT TEST SIMULATION(S) %%%%%%%%%%%%%%%%%%'."\n";
+  print "\%\%\% Unit Test ID       : $VERSION_TAG\n";
   print "\%\%\% Version number     : $VERSION\n";
-  print "\%\%\% Version tag        : $VERSION_TAG\n";
   print "\%\%\% Testing code in    : $CODE_DIR\n";
   print "\%\%\% Using job file:    : $jobFile\n";
   print "\%\%\% Log file directory : $LOG_DIR\n";
