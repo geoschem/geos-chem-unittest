@@ -4,17 +4,20 @@
 #SBATCH -N 1
 #SBATCH -t 0-1:00
 #SBATCH -p huce_intel
-#SBATCH --mem=100000
+#SBATCH --mem=50000
 #SBATCH --mail-type=ALL
 
 # See SLURM documentation for descriptions of the above settings as well
-# as many other settings you may use.
+# as many other settings you may use. For best performance, request all
+# memory per node using --mem=MaxMemPerNode.
+#
+# This sample run script includes usage of the shared memory option which can
+# be toggled on/off in runConfig.sh.
 
 # Define GEOS-Chem log file
 log="gchp.log"
 
-# Disable this if running consecutive jobs with the duration in which case
-# cap_restart is used, i.e. start and end span 1-year but duration is 1-month.
+# Always remove cap_restart if not doing a multi-segmented run.
 if [[ -e cap_restart ]]; then
    rm cap_restart
 fi
@@ -24,8 +27,17 @@ fi
 if [[ $? == 0 ]]; then
 
     # Set and source your bashrc. Change this to whatever env file
-    # used during GCHP compilation.
-    BASHRC=bashrcSamples/gchp.ifort17_openmpi_odyssey.bashrc
+    # used during GCHP compilation. You can copy or adapt sample bashrc
+    # files located in ./bashrcSamples subdirectory.
+    BASHRC=./set_your_gchp_env.bashrc
+    if [ ! -f $BASHRC ] 
+    then
+       echo "ERROR: BASHRC environment variable in run script is not set!"
+       echo "Copy or adapt a bashrc from the ./bashrcSamples subdirectory"
+       echo "prior to running. Use the same environment file used for compilation."
+       echo "Exiting."
+       exit 1
+    fi
     echo "WARNING: You are using environment settings in $BASHRC"
     source $BASHRC
 
@@ -39,8 +51,8 @@ if [[ $? == 0 ]]; then
     fi
 
     # Echo info from computational cores to log file for displaying results
-    echo "# of CPUs : $coreCount"
-    echo "# of nodes: $SLURM_NNODES"
+    echo "# of CPUs : $coreCount\n"
+    echo "# of nodes: $SLURM_NNODES\n"
     echo "-m plane  : ${planeCount}"
 
     # Echo start date

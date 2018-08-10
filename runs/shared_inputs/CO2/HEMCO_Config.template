@@ -128,11 +128,11 @@ END SECTION EXTENSION SWITCHES
 # ---> Recommended option: ODIAC (set FOSSIL_ODIAC = true)
 #==============================================================================
 (((FOSSIL_CDIAC
-0 FOSSILCO2_MONTHLY $ROOT/CO2/v2014-09/FOSSIL/CDIAC_v2014.monthly.generic.1x1.nc CO2 1980-2014/1-12/1/0 C xy kg/m2/s CO2ff 40/41/80 1 1
+0 FOSSILCO2_MONTHLY_CDIAC $ROOT/CO2/v2014-09/FOSSIL/CDIAC_v2014.monthly.generic.1x1.nc CO2 1980-2014/1-12/1/0 C xy kg/m2/s CO2ff 40/41/80 1 1
 )))FOSSIL_CDIAC
 
 (((FOSSIL_ODIAC
-0 FOSSILCO2_MONTHLY $ROOT/CO2/v2015-04/FOSSIL/ODIAC_CO2.monthly.generic.1x1.nc   CO2 2000-2014/1-12/1/0 C xy kg/m2/s CO2ff 40/41/80 1 2
+0 FOSSILCO2_MONTHLY_ODIAC $ROOT/CO2/v2015-04/FOSSIL/ODIAC_CO2.monthly.generic.1x1.nc   CO2 2000-2014/1-12/1/0 C xy kg/m2/s CO2ff 40/41/80 1 2
 )))FOSSIL_ODIAC
 
 #==============================================================================
@@ -236,14 +236,14 @@ END SECTION EXTENSION SWITCHES
 # ---> Recommended for use if chemical production (above) is turned on
 ===============================================================================
 (((CO2CORR
-0 FOSSILCO2_MONTHLY $ROOT/CO2/v2015-04/FOSSIL/ODIAC_CO2.monthly.generic.1x1.nc CO2     2000-2014/1-12/1/0 E xy kg/m2/s CO2corr 10/40/41/80 1 1
-0 CO2CORR_LIVESTOCK $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_004 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
-0 CO2CORR_WASTE     $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_005 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
-0 CO2CORR_RICE      $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_007 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
-0 CO2CORR_WETLANDS  $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_010 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
-0 CO2CORR_NATURAL   $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_012 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
-0 CO2CORR_ISOPRENE  $ROOT/CO2/v2015-04/CHEM/Isoprene-2004.geos.2x25.nc         ISOP    2004/1-12/1/0      C xy kg/m2/s CO2corr 21/30       3 1
-0 CO2CORR_MONOTERP  $ROOT/CO2/v2015-04/CHEM/Monoterpene-2004.geos.2x25.nc      MONOT   2004/1-12/1/0      C xy kg/m2/s CO2corr 21/30       3 1
+0 FOSSILCO2_MONTHLY_ODIAC_1 $ROOT/CO2/v2015-04/FOSSIL/ODIAC_CO2.monthly.generic.1x1.nc CO2     2000-2014/1-12/1/0 E xy kg/m2/s CO2corr 10/40/41/80 1 1
+0 CO2CORR_LIVESTOCK         $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_004 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
+0 CO2CORR_WASTE             $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_005 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
+0 CO2CORR_RICE              $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_007 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
+0 CO2CORR_WETLANDS          $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_010 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
+0 CO2CORR_NATURAL           $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_012 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
+0 CO2CORR_ISOPRENE          $ROOT/CO2/v2015-04/CHEM/Isoprene-2004.geos.2x25.nc         ISOP    2004/1-12/1/0      C xy kg/m2/s CO2corr 21/30       3 1
+0 CO2CORR_MONOTERP          $ROOT/CO2/v2015-04/CHEM/Monoterpene-2004.geos.2x25.nc      MONOT   2004/1-12/1/0      C xy kg/m2/s CO2corr 21/30       3 1
 )))CO2CORR
 
 ###############################################################################
@@ -262,19 +262,19 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 
 (((GFED4
-111 GFED_TEMP       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_TEMP       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_AGRI       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_AGRI       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_DEFO       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_DEFO       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_BORF       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_BORF       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_PEAT       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_PEAT       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_SAVA       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_SAVA       1997-2014/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_TEMP       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_TEMP       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_AGRI       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_AGRI       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_DEFO       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_DEFO       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_BORF       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_BORF       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_PEAT       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_PEAT       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_SAVA       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_SAVA       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
 
 (((GFED_daily
-111 GFED_FRAC_DAY   $ROOT/GFED4/v2015-10/$YYYY/GFED4_dailyfrac_gen.025x025.$YYYY$MM.nc GFED_FRACDAY 2003-2014/1-12/1-31/0  C xy 1 * - 1 1
+111 GFED_FRAC_DAY   $ROOT/GFED4/v2015-10/$YYYY/GFED4_dailyfrac_gen.025x025.$YYYY$MM.nc GFED_FRACDAY 2003-2016/1-12/1-31/0  C xy 1 * - 1 1
 )))GFED_daily
 
 (((GFED_3hourly
-111 GFED_FRAC_3HOUR $ROOT/GFED4/v2015-10/$YYYY/GFED4_3hrfrac_gen.025x025.$YYYY$MM.nc   GFED_FRAC3HR 2003-2014/1-12/1/0-23  C xy 1 * - 1 1
+111 GFED_FRAC_3HOUR $ROOT/GFED4/v2015-10/$YYYY/GFED4_3hrfrac_gen.025x025.$YYYY$MM.nc   GFED_FRAC3HR 2003-2016/1-12/1/0-23  C xy 1 * - 1 1
 )))GFED_3hourly
 )))GFED4
 
@@ -380,7 +380,7 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- AVIATION FUEL BURN SCALE FACTOR ( kg C / kg fuel ) ---
 #==============================================================================
-60 AEIC_CO2 3.155 - - - xy unitless 1
+60 AEIC_CO2_SCALE 3.155 - - - xy unitless 1
 
 #==============================================================================
 # --- AVIATION GLOBAL ANNUAL EMISSION SCALE FACTOR ---

@@ -87,7 +87,6 @@ Turn on Chemistry?      : T
 Use linear. strat. chem?: F
  => Use Linoz for O3?   : F
 Use UCX strat. chem?    : F
-Online CH4 chemistry?   : F
 Active strat. H2O?      : F
 Overhead O3 for FAST-JX :---
  => Online O3 from model: F
