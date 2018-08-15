@@ -116,6 +116,7 @@ Warnings:                    {WARNINGS}
     --> RCP_85                 :       false
     --> QFED2                  :       false
     --> SHIP                   :       true
+    --> CEDS_SHIP              :       false
     --> EMEP_SHIP              :       true
     --> NEI2011_SHIP_HOURLY    :       false
     --> NEI2011_SHIP_MONMEAN   :       false
@@ -376,8 +377,7 @@ Warnings:                    {WARNINGS}
 # %%% NOTE: This is an optional inventory. You may select either EDGAR, CEDS,
 # or HTAP for the global base emissions %%%
 #
-# ==> Do not use CEDS ship emissions for now. They may eventually be listed
-#     in the ship emissions section below
+# ==> CEDS ship emissions are listed in the ship emissions section below
 # ==> CEDS includes trash emissions (Cat=12) from Wiedinmyer et al. (2014)
 #==============================================================================
 (((CEDS
@@ -385,6 +385,7 @@ Warnings:                    {WARNINGS}
 0 CEDS_SOAP_ENE   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_ene            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/12 5
 0 CEDS_SOAP_IND   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_ind            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/12 5
 0 CEDS_SOAP_TRA   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_tra            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/12 5
+0 CEDS_SOAP_RCO   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_rco            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/12 5
 0 CEDS_SOAP_SLV   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_slv            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/12 5
 0 CEDS_SOAP_WST   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_wst            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/12 5
 0 CEDS_SO2_AGR    $ROOT/CEDS/v2018-04/SO2-em-anthro_CMIP_CEDS_195001-201412.nc           SO2_agr           1950-2014/1-12/1/0 C xy kg/m2/s SO2   -      1/2/12 5
@@ -399,6 +400,9 @@ Warnings:                    {WARNINGS}
 0 CEDS_SO2_TRA    $ROOT/CEDS/v2018-04/SO2-em-anthro_CMIP_CEDS_195001-201412.nc           SO2_tra           1950-2014/1-12/1/0 C xy kg/m2/s SO2   -      1/2/12 5
 0 CEDS_SO4_TRA    -                                                                      -                 -                  - -  -       SO4   63     1/2/12 5
 0 CEDS_pFe_TRA    -                                                                      -                 -                  - -  -       pFe   66     1/2/12 5
+0 CEDS_SO2_RCO    $ROOT/CEDS/v2018-04/SO2-em-anthro_CMIP_CEDS_195001-201412.nc           SO2_rco           1950-2014/1-12/1/0 C xy kg/m2/s SO2   -      1/2/12 5
+0 CEDS_SO4_RCO    -                                                                      -                 -                  - -  -       SO4   63     1/2/12 5
+0 CEDS_pFe_RCO    -                                                                      -                 -                  - -  -       pFe   66     1/2/12 5
 0 CEDS_SO2_SLV    $ROOT/CEDS/v2018-04/SO2-em-anthro_CMIP_CEDS_195001-201412.nc           SO2_slv           1950-2014/1-12/1/0 C xy kg/m2/s SO2   -      1/2/12 5
 0 CEDS_SO4_SLV    -                                                                      -                 -                  - -  -       SO4   63     1/2/12 5
 0 CEDS_pFe_SLV    -                                                                      -                 -                  - -  -       pFe   66     1/2/12 5
@@ -409,6 +413,7 @@ Warnings:                    {WARNINGS}
 0 CEDS_NH3_ENE    $ROOT/CEDS/v2018-04/NH3-em-anthro_CMIP_CEDS_195001-201412.nc           NH3_ene           1950-2014/1-12/1/0 C xy kg/m2/s NH3   -      1/2/12 5
 0 CEDS_NH3_IND    $ROOT/CEDS/v2018-04/NH3-em-anthro_CMIP_CEDS_195001-201412.nc           NH3_ind           1950-2014/1-12/1/0 C xy kg/m2/s NH3   -      1/2/12 5
 0 CEDS_NH3_TRA    $ROOT/CEDS/v2018-04/NH3-em-anthro_CMIP_CEDS_195001-201412.nc           NH3_tra           1950-2014/1-12/1/0 C xy kg/m2/s NH3   -      1/2/12 5
+0 CEDS_NH3_RCO    $ROOT/CEDS/v2018-04/NH3-em-anthro_CMIP_CEDS_195001-201412.nc           NH3_rco           1950-2014/1-12/1/0 C xy kg/m2/s NH3   -      1/2/12 5
 0 CEDS_NH3_SLV    $ROOT/CEDS/v2018-04/NH3-em-anthro_CMIP_CEDS_195001-201412.nc           NH3_slv           1950-2014/1-12/1/0 C xy kg/m2/s NH3   -      1/2/12 5
 0 CEDS_NH3_WST    $ROOT/CEDS/v2018-04/NH3-em-anthro_CMIP_CEDS_195001-201412.nc           NH3_wst           1950-2014/1-12/1/0 C xy kg/m2/s NH3   -      1/2/12 5
 0 CEDS_BCPI_AGR   $ROOT/CEDS/v2018-04/BC-em-anthro_CMIP_CEDS_195001-201412.nc            BC_agr            1950-2014/1-12/1/0 C xy kg/m2/s BCPI  265    1/2/12 5
@@ -419,6 +424,8 @@ Warnings:                    {WARNINGS}
 0 CEDS_BCPO_IND   -                                                                      -                 -                  - -  -       BCPO  266    1/2/12 5
 0 CEDS_BCPI_TRA   $ROOT/CEDS/v2018-04/BC-em-anthro_CMIP_CEDS_195001-201412.nc            BC_tra            1950-2014/1-12/1/0 C xy kg/m2/s BCPI  265    1/2/12 5
 0 CEDS_BCPO_TRA   -                                                                      -                 -                  - -  -       BCPO  266    1/2/12 5
+0 CEDS_BCPI_RCO   $ROOT/CEDS/v2018-04/BC-em-anthro_CMIP_CEDS_195001-201412.nc            BC_rco            1950-2014/1-12/1/0 C xy kg/m2/s BCPI  265    1/2/12 5
+0 CEDS_BCPO_RCO   -                                                                      -                 -                  - -  -       BCPO  266    1/2/12 5
 0 CEDS_BCPI_SLV   $ROOT/CEDS/v2018-04/BC-em-anthro_CMIP_CEDS_195001-201412.nc            BC_slv            1950-2014/1-12/1/0 C xy kg/m2/s BCPI  265    1/2/12 5
 0 CEDS_BCPO_SLV   -                                                                      -                 -                  - -  -       BCPO  266    1/2/12 5
 0 CEDS_BCPI_WST   $ROOT/CEDS/v2018-04/BC-em-anthro_CMIP_CEDS_195001-201412.nc            BC_wst            1950-2014/1-12/1/0 C xy kg/m2/s BCPI  265    1/2/12 5
@@ -431,6 +438,8 @@ Warnings:                    {WARNINGS}
 0 CEDS_OCPO_IND   -                                                                      -                 -                  - -  -       OCPO  268    1/2/12 5
 0 CEDS_OCPI_TRA   $ROOT/CEDS/v2018-04/OC-em-anthro_CMIP_CEDS_195001-201412.nc            OC_tra            1950-2014/1-12/1/0 C xy kg/m2/s OCPI  267    1/2/12 5
 0 CEDS_OCPO_TRA   -                                                                      -                 -                  - -  -       OCPO  268    1/2/12 5
+0 CEDS_OCPI_RCO   $ROOT/CEDS/v2018-04/OC-em-anthro_CMIP_CEDS_195001-201412.nc            OC_rco            1950-2014/1-12/1/0 C xy kg/m2/s OCPI  267    1/2/12 5
+0 CEDS_OCPO_RCO   -                                                                      -                 -                  - -  -       OCPO  268    1/2/12 5
 0 CEDS_OCPI_SLV   $ROOT/CEDS/v2018-04/OC-em-anthro_CMIP_CEDS_195001-201412.nc            OC_slv            1950-2014/1-12/1/0 C xy kg/m2/s OCPI  267    1/2/12 5
 0 CEDS_OCPO_SLV   -                                                                      -                 -                  - -  -       OCPO  268    1/2/12 5
 0 CEDS_OCPI_WST   $ROOT/CEDS/v2018-04/OC-em-anthro_CMIP_CEDS_195001-201412.nc            OC_wst            1950-2014/1-12/1/0 C xy kg/m2/s OCPI  267    1/2/12 5
@@ -966,6 +975,18 @@ Warnings:                    {WARNINGS}
 #0 ICOADS_SHIP_SO2     $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                SO2             2002/1-12/1/0          C xy kg/m2/s  SO2  11/15/60    10 5
 #0 HTAP_SHIP_SO2       $ROOT/HTAP/v2015-03/EDGAR_HTAP_SO2_SHIPS.generic.01x01.nc       emi_so2         2008-2010/1/1/0        C xy kg/m2/s  SO2  11/29       10 2
 0  ICOADS_SHIP_SOAP    $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                CO              2002/1-12/1/0          C xy kg/m2/s  SOAP 6/10/280    10 1
+
+(((CEDS_SHIP
+0 CEDS_SOAP_SHP   $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_shp            1950-2014/1-12/1/0 C xy kg/m2/s SOAP  26/280 1/2/12 5
+0 CEDS_SO2_SHP    $ROOT/CEDS/v2018-04/SO2-em-anthro_CMIP_CEDS_195001-201412.nc           SO2_shp           1950-2014/1-12/1/0 C xy kg/m2/s SO2   -      1/2/12 5
+0 CEDS_SO4_SHP    -                                                                      -                 -                  - -  -       SO4   63     1/2/12 5
+0 CEDS_pFe_SHP    -                                                                      -                 -                  - -  -       pFe   66     1/2/12 5
+0 CEDS_NH3_SHP    $ROOT/CEDS/v2018-04/NH3-em-anthro_CMIP_CEDS_195001-201412.nc           NH3_shp           1950-2014/1-12/1/0 C xy kg/m2/s NH3   -      1/2/12 5
+0 CEDS_BCPI_SHP   $ROOT/CEDS/v2018-04/BC-em-anthro_CMIP_CEDS_195001-201412.nc            BC_shp            1950-2014/1-12/1/0 C xy kg/m2/s BCPI  265    1/2/12 5
+0 CEDS_BCPO_SHP   -                                                                      -                 -                  - -  -       BCPO  266    1/2/12 5
+0 CEDS_OCPI_SHP   $ROOT/CEDS/v2018-04/OC-em-anthro_CMIP_CEDS_195001-201412.nc            OC_shp            1950-2014/1-12/1/0 C xy kg/m2/s OCPI  267    1/2/12 5
+0 CEDS_OCPO_SHP   -                                                                      -                 -                  - -  -       OCPO  268    1/2/12 5
+)))CEDS_SHIP
 
 (((EMEP_SHIP
 0 EMEP_SHIP_SOAP       $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipCO          1990-2012/1/1/0        C xy kg/m2/s  SOAP 1000/280    10 2
