@@ -105,11 +105,11 @@ PBL dry deposition:          False
 # -----------------------------------------------------------------------------
 102     ParaNOx              : off   NO/NO2/O3/HNO3
 104     SoilNOx              : off   NO
-108     MEGAN                : on    ISOP/ACET/PRPE/C2H4/ALD2
+108     MEGAN                : off   ISOP/ACET/PRPE/C2H4/ALD2
     --> Isoprene scaling     :       1.0 
     --> CO2 inhibition       :       true
     --> CO2 conc (ppmv)      :       390.0
-109     MEGAN_Mono           : on    CO/OCPI/MONX
+109     MEGAN_Mono           : off   CO/OCPI/MONX
 110     MEGAN_SOA            : off   MTPA/MTPO/LIMO/SESQ
 ### END SECTION EXTENSION SWITCHES ###
 
@@ -118,6 +118,12 @@ PBL dry deposition:          False
 ###############################################################################
 
 # ExtNr Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
+#
+# NOTE: we can just "drop in" an existing HEMCO_Config.rc file from another
+# GEOS-Chem run directory, and those settings will be activated.
+#
+# NOTE: Settings in HEMCO_sa_Config.rc  will override those in HEMCO_Config.rc. 
+# (bmy, 7/3/18)
 >>>include HEMCO_Config.rc
 
 #==============================================================================
@@ -125,29 +131,29 @@ PBL dry deposition:          False
 #==============================================================================
 (((MET_FIELDS
 # --- 2D fields ---
-* WLI      $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     LWI      2011-2014/1-12/1-31/0-23 C xy  count  * -  1 1
-* LAI      $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     LAI      2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
-* T2M      $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     T2M      2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
-* PARDR    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     PARDR    2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
-* PARDF    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     PARDF    2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
-* GWETROOT $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     GWETROOT 2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
-* GWETTOP  $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     GWETTOP  2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
-* ALBD     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     ALBEDO   2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
-* TSKIN    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     TS       2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
-* U10M     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     U10M     2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
-* V10M     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     V10M     2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
-* TROPP    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     TROPPT   2011-2014/1-12/1-31/0-23 C xy  1      * 301 1 1
-* PSFC     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     SLP      2011-2014/1-12/1-31/0-23 C xy  1      * 301 1 1
-* USTAR    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     USTAR    2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
-* Z0       $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     Z0M      2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
-* RADSWG   $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     SWGDN    2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
-* SNOWHGT  $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     SNOMAS   2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
-* CLDFRC   $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.{GRID}.nc     CLDTOT   2011-2014/1-12/1-31/0-23 C xy  1      * -  1 1
+* WLI      $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     LWI      2011-2018/1-12/1-31/0-23 C xy  count  * -   1 1
+* LAI      $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     LAI      2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
+* T2M      $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     T2M      2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
+* PARDR    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     PARDR    2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
+* PARDF    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     PARDF    2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
+* GWETROOT $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     GWETROOT 2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
+* GWETTOP  $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     GWETTOP  2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
+* ALBD     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     ALBEDO   2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
+* TSKIN    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     TS       2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
+* U10M     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     U10M     2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
+* V10M     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     V10M     2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
+* TROPP    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     TROPPT   2011-2018/1-12/1-31/0-23 C xy  1      * 301 1 1
+* PSFC     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     SLP      2011-2018/1-12/1-31/0-23 C xy  1      * 301 1 1
+* USTAR    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     USTAR    2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
+* Z0       $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     Z0M      2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
+* RADSWG   $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     SWGDN    2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
+* SNOWHGT  $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     SNOMAS   2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
+* CLDFRC   $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     CLDTOT   2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
 
 # --- 3D fields ---
-* TK       $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.I3.{GRID}.nc     T        2011-2014/1-12/1-31/0-23 C xyz 1      * -  1 1
-* CNV_MFC  $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A3mstE.{GRID}.nc CMFMC    2011-2014/1-12/1-31/0-23 C xyz 1      * -  1 1
-* SPHU     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.I3.{GRID}.nc     QV       2011-2014/1-12/1-31/0-23 C xyz 1      * -  1 1
+* TK       $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.I3.4x5.nc     T        2011-2018/1-12/1-31/0-23 C xyz 1      * -   1 1
+* CNV_MFC  $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A3mstE.4x5.nc CMFMC    2011-2018/1-12/1-31/0-23 C xyz 1      * -   1 1
+* SPHU     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.I3.4x5.nc     QV       2011-2018/1-12/1-31/0-23 C xyz 1      * -   1 1
 
 # --- Dummy variables ---
 # FRAC_OF_PBL is expected by the air-sea exchange module, but not used if setting 'PBL dry deposition' is disabled.

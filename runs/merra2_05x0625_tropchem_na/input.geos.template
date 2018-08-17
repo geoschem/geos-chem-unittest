@@ -11,8 +11,8 @@ Root data directory     : {DATA_ROOT}
 Global offsets I0, J0   : 64 200
 ------------------------+------------------------------------------------------
 %%% TIMESTEP MENU %%%   :
-Tran/conv timestep [sec]: 300
-Chem/emis timestep [sec]: 600
+Tran/conv timestep [sec]: 600
+Chem/emis timestep [sec]: 1200
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 3
@@ -224,7 +224,6 @@ Turn on Chemistry?      : T
 Use linear. strat. chem?: T
  => Use Linoz for O3?   : T
 Use UCX strat. chem?    : F
-Online CH4 chemistry?   : F
 Active strat. H2O?      : F
 Overhead O3 for FAST-JX :---
  => Online O3 from model: F

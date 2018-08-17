@@ -78,19 +78,23 @@ EXE :=geos
 
 # Beware! Destroys ESMF, MAPL, and FVdycore compilations
 compile_clean:
-	./build.sh compile_clean 2>&1 | tee $(BUILD_LOG)
+	date >> $(BUILD_LOG)
+	./build.sh compile_clean 2>&1 | tee -a $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
 compile_standard:
-	./build.sh compile_standard 2>&1 | tee $(BUILD_LOG)
+	date > $(BUILD_LOG)
+	./build.sh compile_standard 2>&1 | tee -a $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
 compile_debug:
-	./build.sh compile_debug 2>&1 | tee $(BUILD_LOG)
+	date > ${BUILD_LOG}
+	./build.sh compile_debug 2>&1 | tee -a $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
 compile_mapl:
-	./build.sh compile_mapl 2>&1 | tee $(BUILD_LOG)
+	date > ${BUILD_LOG}
+	./build.sh compile_mapl 2>&1 | tee -a $(BUILD_LOG)
 	@$(MAKE) printbuildinfo > $(LAST_BUILD)
 
 #%%%%%%%%%%%%%%%%%%%%%%%
@@ -133,11 +137,12 @@ gchp_mapl:
 cleanup_output: cleanup_data cleanup_logs
 
 cleanup_data: 
-	rm -f $(RUN_DIR)/OutputDir/GCHP.*
+	rm -f $(RUN_DIR)/OutputDir/*.nc4
 	rm -f trac_avg.*
 	rm -f tracerinfo.dat
 	rm -f diaginfo.dat
 	rm -f cap_restart
+	rm -f gcchem*
 	rm -f *.rcx
 	rm -f *~
 
@@ -145,7 +150,8 @@ cleanup_logs:
 	rm -f gchp.log
 	rm -f HEMCO.log
 	rm -f PET*.log
-	rm -f runConfig.log
+	rm -f runConfig*log
+	rm -f multirun.log
 	rm -f logfile.000000.out
 	rm -f slurm-*
 	rm -f 1

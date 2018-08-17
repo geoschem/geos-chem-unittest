@@ -53,7 +53,8 @@ our $WEB_PUSH        = "NONE";     # Remote server for web page push
 our $COMPILER        = "";         # Compiler variable for GEOS-Chem
 our $MAKE_CMD        = "";         # Make command with debug options
 our $SUBMIT          = "";         # Queue submit command
-our $VERSION         = "";         # GEOS-Chem version ID
+our $VERSION         = "";         # GEOS-Chem version number
+our $VERSION_TAG     = "";         # GEOS-Chem version tag
 our $DESCRIBE        = "";         # Short description of unit tests
 our $VERBOSE         = "3";        # HEMCO verbose setting (0-3)
 our $WARNINGS        = "3";        # HEMCO warnings setting (0-3)
@@ -102,6 +103,7 @@ our $SLURM_MAILTYPE  = "";         # SLURM: When to send emails?
 #  18 Dec 2015 - R. Yantosca - Add UT_ROOT directory.  This lets us place the
 #                              unit test directory in scratch space if needed.
 #  28 Apr 2016 - R. Yantosca - Now use -c $SLURM_CPUS (i.e. cpus-per-task)
+#  06 Aug 2018 - R. Yantosca - Now add VERSION_TAG as a separate input
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -470,6 +472,8 @@ sub doUnitTest($$) {
   my @cmds     = ();
   my @slurm    = ();
   my @txt      = ();
+  my @subStrs  = ();
+  my @months   = qw/Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec/;
 
   # Unix environment settings
   my $home     = $ENV{"HOME"};
@@ -496,10 +500,11 @@ sub doUnitTest($$) {
     #
     # PLEASE NOTE THAT THE FOLLOWING ORDER MUST BE OBSERVED:
     # (1) VERSION        has to be listed last of all
-    # (2) DATA_ROOT      has to be listed before HEMCO_ROOT
-    # (3) RUN_ROOT       has to be listed before RUN_DIR
-    # (4) WEB_GRID       has to be listed before WEB_PUSH
-    # (5) UNIT_TEST_ROOT has to be listed before other unit test dirs
+    # (2) VERSION_TAG    has to be listed second-last of all
+    # (3) DATA_ROOT      has to be listed before HEMCO_ROOT
+    # (4) RUN_ROOT       has to be listed before RUN_DIR
+    # (5) WEB_GRID       has to be listed before WEB_PUSH
+    # (6) UNIT_TEST_ROOT has to be listed before other unit test dirs
     #------------------------------------------------------------------------
     if ( !( $txt[$i] =~ m/\#/ ) ) { 
       if    ( $txt[$i] =~ "CODE_DIR"        ) { $CODE_DIR = 
@@ -562,6 +567,8 @@ sub doUnitTest($$) {
 						  &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "DESCRIPTION"     ) { $DESCRIBE = 
 						  &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "VERSION_TAG"     ) { $VERSION_TAG =
+						  &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "VERSION"         ) { $VERSION = 
 						  &parse( $txt[$i] ); }
     }
@@ -572,15 +579,25 @@ sub doUnitTest($$) {
     elsif ( $txt[$i] =~ "!RUNS"     ) {
 
       # Replace tokens in UT_ROOT 
-      $UT_ROOT =~  s/{HOME}/$home/g;
-      $UT_ROOT =~  s/{USER}/$user/g;
+      $UT_ROOT      =~ s/{HOME}/$home/g;
+      $UT_ROOT      =~ s/{USER}/$user/g;
       
-      # Append the version tag to the log directory
+      # Replace version number and today's date tokens in $VERSION_TAG
+      $locTime      =  &getLocalTime();
+      @subStrs      =  split( / /, $locTime );
+      $locTime      =  $subStrs[0];
+      @subStrs      =  split( /\//, $locTime );
+      $locTime      =  $months[ int( $subStrs[1] )-1 ] . "$subStrs[2]";
+      $VERSION_TAG  =~ s/{VERSION}/$VERSION/g;
+      $VERSION_TAG  =~ s/{TODAYSDATE}/$locTime/g;
+
+      # Append the version number or tag to the log directory
       # So that we can keep several log files simultaneously
-      $LOG_DIR =~ s/{VERSION}/$VERSION/g;
-      $LOG_DIR =~ s/{HOME}/$home/g;
-      $LOG_DIR =~ s/{USER}/$user/g;
-      $LOG_DIR =~ s/{UTROOT}/$UT_ROOT/g;
+      $LOG_DIR      =~ s/{VERSION}/$VERSION/g;
+      $LOG_DIR      =~ s/{VERSION_TAG}/$VERSION_TAG/g;
+      $LOG_DIR      =~ s/{HOME}/$home/g;
+      $LOG_DIR      =~ s/{USER}/$user/g;
+      $LOG_DIR      =~ s/{UTROOT}/$UT_ROOT/g;
       if ( !( -f $LOG_DIR ) ) { qx( mkdir -p $LOG_DIR ); }
 
       # Replace directory tokens in a few more variables
@@ -593,8 +610,10 @@ sub doUnitTest($$) {
       $PERL_DIR     =~ s/{UTROOT}/$UT_ROOT/g;
       $TEMPLATE     =~ s/{PERLDIR}/$PERL_DIR/g;
       $TXT_GRID     =~ s/{VERSION}/$VERSION/g;
+      $TXT_GRID     =~ s/{VERSION_TAG}/$VERSION_TAG/g;
       $TXT_GRID     =~ s/{LOGDIR}/$LOG_DIR/g;
       $WEB_GRID     =~ s/{VERSION}/$VERSION/g;
+      $WEB_GRID     =~ s/{VERSION_TAG}/$VERSION_TAG/g;
       $WEB_GRID     =~ s/{LOGDIR}/$LOG_DIR/g;
       $HEMCO_ROOT   =~ s/{HOME}/$home/g;
       $HEMCO_ROOT   =~ s/{DATAROOT}/$DATA_ROOT/g;
@@ -603,8 +622,10 @@ sub doUnitTest($$) {
       $WEB_PUSH     =~ s/\|/:/g;
       $SLURM_STDOUT =~ s/{LOGDIR}/$LOG_DIR/g;
       $SLURM_STDOUT =~ s/{VERSION}/$VERSION/g;
+      $SLURM_STDOUT =~ s/{VERSION_TAG}/$VERSION_TAG/g;
       $SLURM_STDERR =~ s/{LOGDIR}/$LOG_DIR/g;
       $SLURM_STDERR =~ s/{VERSION}/$VERSION/g;
+      $SLURM_STDERR =~ s/{VERSION_TAG}/$VERSION_TAG/g;
       
       # Replace user token
       $CODE_DIR     =~ s/{USER}/$user/g;
@@ -714,16 +735,17 @@ sub doUnitTest($$) {
 	  # MET, GRID, NEST, START, and END are retrieved from
 	  # within Makefile using getRunInfo (ewl, 4/10/15) 
 	  $makeCmd  = "$MAKE_CMD RUN_DIR=$runDir";
-	  $makeCmd .= " SIM=$sim VERSION=$VERSION LOG_DIR=$LOG_DIR";
+	  $makeCmd .= " SIM=$sim VERSION=$VERSION";
+	  $makeCmd .= " VERSION_TAG=$VERSION_TAG LOG_DIR=$LOG_DIR";
 	  $makeCmd .= " CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR";
  
 	  # Stdout log file.  If we are using the SLURM scheduler, then
 	  # set the $stdout variable to the value in $SLURM_STDOUT.
-	  $stdout   = "$LOG_DIR/$VERSION.stdout.log";
+	  $stdout   = "$LOG_DIR/$VERSION_TAG.stdout.log";
 	  if ( length( $SLURM_STDOUT ) > 0 ) { $stdout = $SLURM_STDOUT; }
 
 	  # The main log file
-	  $logRslt  = "$LOG_DIR/$VERSION.results.log";
+	  $logRslt  = "$LOG_DIR/$VERSION_TAG.results.log";
 	  $RESULTS  = $logRslt;
 
 	  # If necessary, also add on the nested grid flags
@@ -774,7 +796,7 @@ sub doUnitTest($$) {
   $logTop = <<EOF;
 echo "$logHdr"                                                 >> $logRslt
 echo "%%%"                                                     >> $logRslt
-echo "%%%  GEOS-CHEM UNIT TEST RESULTS FOR VERSION: $VERSION"  >> $logRslt
+echo "%%%  GEOS-CHEM UNIT TEST RESULTS FOR: $VERSION_TAG"      >> $logRslt
 echo "%%%  job sent to queue @ $locTime"                       >> $logRslt
 echo "%%%"                                                     >> $logRslt
 echo "%%%  DESCRIPTION: $DESCRIBE"                             >> $logRslt
@@ -803,7 +825,7 @@ EOF
             @cmds );
 
   # WRITE the make commands to a job file
-  $jobFile = "$JOB_DIR/job.$VERSION";
+  $jobFile = "$JOB_DIR/job.$VERSION_TAG";
   open( O, ">$jobFile" ) or die "Cannot open $jobFile!\n";
   print O @cmds;
   close( O );
@@ -819,7 +841,8 @@ EOF
 
   # Print info about the job
   print '%%%%%%%%% GEOS-Chem UNIT TEST SIMULATION(S) %%%%%%%%%%%%%%%%%%'."\n";
-  print "\%\%\% Version ID         : $VERSION\n";
+  print "\%\%\% Unit Test ID       : $VERSION_TAG\n";
+  print "\%\%\% GEOS-Chem version  : $VERSION\n";
   print "\%\%\% Testing code in    : $CODE_DIR\n";
   print "\%\%\% Using job file:    : $jobFile\n";
   print "\%\%\% Log file directory : $LOG_DIR\n";

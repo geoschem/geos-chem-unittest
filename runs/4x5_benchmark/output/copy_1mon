@@ -34,7 +34,7 @@ fi
 
 # Set variables
 version=$1
-dir="/n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/geos-chem/1mo_benchmarks/v11-02/"
+dir="/n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/geos-chem/1mo_benchmarks/v12/"
 
 echo "======================================================================="
 echo "Copying 1-month benchmark output to $dir$version"
@@ -46,7 +46,7 @@ cp -avL ../../$version $dir
 
 # Remove large files not needed for permanent storage
 rm -v $dir$version/geos.mp
-rm -v $dir$version/*2013080100*
+rm -v $dir$version/*2016080100*
 
 # Change group name of new directories and files
 chgrp jacob_gcst $dir$version

@@ -2,13 +2,13 @@
 
 # runSettings.sh: Update select settings in *.rc and input.geos config files
 #
-# Usage: ./runSettings.sh
+# Usage: source ./runConfig.sh
 #
 # Initial version: E. Lundgren, 8/17/2017
 
-######################################
-####   COMPUTE RESOURCES
-######################################
+#------------------------------------------------
+#   Compute Resources
+#------------------------------------------------
 # Cores are distributed across each of the six cubed sphere faces using
 # NX and NY set below. Each face is divided into NX by NY/6 regions 
 # and each of those regions is processed by a single core independent of
@@ -21,51 +21,42 @@
 #      within contraint of total # of CPUs		  
 #      e.g., (NX=2,NY=12) if 24 cores, (NX=4,NY=12) if 48
 #
-# NUM_CORES_PER_NODE is used for the shared memory option (default off)
-# Along with NUM_NODES, it is also used only to verify that NX and NY are 
-# properly set (NX * NY == NUM_NODES * NUM_CORES_PER_NODE )
 # Make sure your settings here match the resources you request on your
-# cluster (e.g. in your run script)
+# cluster in your run script!!!
 NUM_NODES=1
 NUM_CORES_PER_NODE=6
 NY=6                  
 NX=1            
 
 # MAPL shared memory option (0: off, 1: on). Keep off unless you know what
-# you are doing. Contact GCST for more information.      
+# you are doing. Contact GCST for more information if you have memory
+# problems you are unable to fix.
 USE_SHMEM=0
 
-######################################
-#### INTERNAL CUBED-SPHERE RESOLUTION
-######################################
-# Please note that lightning and dust emissions in GCHP are tuned to c24.
-# Removing the online resolution-dependency of lightning and dust by using
-# offline lightning and dust emissions will be a future update. Until
-# then, running at resolutions other than c24 will have degraded accuracy
-# due to the resolution dependency of emissions. Please contact the GCST
-# for more information.
-CS_RES=24    # 24~4x5, 48~2x2.5, 90~1x1.25, 180~0.5x0.625
+#------------------------------------------------
+#   Internal Cubed Sphere Resolution
+#------------------------------------------------
+CS_RES=24    # 24 ~ 4x5, 48 ~ 2x2.5, 90 ~ 1x1.25, 180 ~ 1/2 deg, 360 ~ 1/4 deg
 
-######################################
-#### INITIAL RESTART FILE
-######################################
-# Use default symlink'd file in rundir by default. Use restart file
-# with HEMCO restart variables for benchmark simulation.
+#------------------------------------------------
+#    Initial Restart File
+#------------------------------------------------
+# By default the linked restart files in the run directories will be 
+# used. Some initial restart files contain HEMCO variables as well as species
+# and are labelled as such. All restart files you generate yourself will 
+# contain both HEMCO and species restart variables. HEMCO restart in 
+# HEMCO_Config.rc should always be false when running GCHP.
 INITIAL_RESTART=initial_GEOSChem_rst.c${CS_RES}_{SIMULATION}.nc
 if [[ "{SIMULATION}" == "benchmark" ]]; then
    INITIAL_RESTART=initial_GEOSChem_rst.c${CS_RES}_{SIMULATION}_HEMCO.nc
 fi
+# You can specify a custom initial restart file here to overwrite:
+# INITIAL_RESTART=your_restart_filename_here
 
-######################################
-#### SIMULATION TIMES
-######################################
-Start_Time="{DATE1} {TIME1}"
-End_Time="{DATE2} {TIME2}"
-Duration="{dYYYYMMDD} {dHHmmss}"
-
-######################################
-#### TURN COMPONENTS ON/OFF
-######################################
+#------------------------------------------------
+#    Turn Components On/Off
+#------------------------------------------------
+# Automatically turns on/off GEOS-Chem components in input.geos
 Turn_on_Chemistry=T
 Turn_on_emissions=T
 Turn_on_Dry_Deposition=T
@@ -75,16 +66,17 @@ Turn_on_Cloud_Conv=T
 Turn_on_PBL_Mixing=T
 Turn_on_Non_Local_Mixing=T
 
-######################################
-#### TIMESTEPS (SECONDS)
-######################################
+#------------------------------------------------
+#    Timesteps
+#------------------------------------------------
 # ***IMPORTANT NOTE***
-# Set read frequency of SPHU2, TMPU2, and PS2 in ExtData.rc to match the
-# dynamic timestep (TransConv) set below based on the cubed sphere 
-# grid resolution (e.g. 30 minutes for c24, 10 minutes for c90, 
-# 5 minutes for c180+ )
+# If changing timesteps, set read frequency of SPHU2, TMPU2, and PS2 in 
+# ExtData.rc to match the dynamic timestep (TransConv) set below based 
+# on the cubed sphere grid resolution (e.g. 30 minutes for c24, 10 minutes 
+# for c90, 5 minutes for c180+ )
 #
-# Timestep recommendation based on grid resolution (uncomment if using):
+# Timestep recommendation based on grid resolution (uncomment if using, and
+# comment out the defaults set further down):
 #    if [[ $CS_RES -lt 90 ]]; then
 #        TransConv_Timestep_sec=1800
 #        ChemEmiss_Timestep_sec=3600
@@ -100,26 +92,67 @@ Turn_on_Non_Local_Mixing=T
 TransConv_Timestep_sec=600
 ChemEmiss_Timestep_sec=1200
 
-######################################
-#### DIAGNOSTIC FREQUENCY AND DURATION
-######################################
-# -Edit these collection names, frequencies, and durations as needed.
-# -Common frequencies and durations are set up by default but you can
-#  customize per collection.
-# -Collections listed here that are not present in HISTORY.rc will be 
-#  ignored.
-# -You may specify number of hours greater than 2 digits
+#------------------------------------------------
+#    Simulation Start/End/Duration
+#------------------------------------------------
+# Setting duration such that two or more durations can occur between start
+# and end will enable multi-segmented runs where subsequent job submissions
+# will automatically use the last generated restart file as the starting
+# point. The new start time is stored in output file cap_restart. Use this
+# feature in conjunction with the multi-segmented runs / monthly diagnostics
+# section below.
+Start_Time="{DATE1} {TIME1}"
+End_Time="{DATE2} {TIME2}"
+Duration="{dYYYYMMDD} {dHHmmss}"
+
+#------------------------------------------------
+#    Number of Runs
+#------------------------------------------------
+# The simplest run is a single segment:
+#   1. Use or adapt gchp.run in runScriptSamples/ as your run script
+#   2. Set duration to the difference between start and end
+#   3. Set Num_Runs=1 in this section
 #
-#   frequency = frequency of diag archiving (HHMMSS)
-#   duration  = frequency of file write     (HHMMSS)
-#   
+# To do consecutive runs:
+#   1. Use or adapt gchp.multirun.sh and gchp.multirun.run in runScriptSamples/
+#   2. Set duration to the duration of each individual run
+#   3. Set end date sufficiently after start date to span all runs
+#   3. Set Num_Runs to number of runs total 
+Num_Runs=1
+
+#------------------------------------------------
+#    Diagnostics
+#------------------------------------------------
+# frequency = frequency of diagnostic calculation (HHMMSS)
+# duration  = frequency of diagnostic file  write (HHMMSS)
+# mode can be time-averaged or instantaneous  
+#
+# Default collection names are included below and freq, duration, and
+# mode are automatically set for all of them. Edit as needed for your
+# specific application. Collections listed here that are not present 
+# in HISTORY.rc will be ignored.
+#
+# NOTE: You may specify number of hours greater than 2 digits, e.g. 7440000
+#
 common_freq="010000"
 common_dur="010000"
 common_mode="'time-averaged'"
 
-SpeciesConc_freq=${common_freq}
-SpeciesConc_dur=${common_dur}
-SpeciesConc_mode=${common_mode}
+# Diagnostics enabled in benchmark simulation by default
+SpeciesConc_avg_freq=${common_freq}
+SpeciesConc_avg_dur=${common_dur}
+SpeciesConc_avg_mode=${common_mode}
+SpeciesConc_inst_freq=${common_freq}
+SpeciesConc_inst_dur=${common_dur}
+SpeciesConc_inst_mode="'instantaneous'"
+StateMet_avg_freq=${common_freq}
+StateMet_avg_dur=${common_dur}
+StateMet_avg_mode=${common_mode}
+StateMet_inst_freq=${common_freq}
+StateMet_inst_dur=${common_dur}
+StateMet_inst_mode="'instantaneous'"
+
+# Other diagnostics
 AerosolMass_freq=${common_freq}
 AerosolMass_dur=${common_dur}
 AerosolMass_mode=${common_mode}
@@ -156,9 +189,6 @@ RadioNuclide_mode=${common_mode}
 StateChm_freq=${common_freq}
 StateChm_dur=${common_dur}
 StateChm_mode=${common_mode}
-StateMet_freq=${common_freq}
-StateMet_dur=${common_dur}
-StateMet_mode=${common_mode}
 WetLossConv_freq=${common_freq}
 WetLossConv_dur=${common_dur}
 WetLossConv_mode=${common_mode}
@@ -166,9 +196,9 @@ WetLossLS_freq=${common_freq}
 WetLossLS_dur=${common_dur}
 WetLossLS_mode=${common_mode}
 
-######################################
-#### DEBUG OPTIONS
-######################################
+#------------------------------------------------
+#    Debug Options
+#------------------------------------------------
 # Set MAPL debug flag to 0 for no MAPL debug log output. Increase
 # amount of output to log by increasing value up to 20. Using this
 # flag is most helpful for debugging issues with file read (MAPL ExtData).
@@ -270,6 +300,7 @@ replace_val GRIDNAME  PE${CS_RES}x${CS_RES_x_6}-CF  GCHP.rc
 
 ####  set input and output restart filenames
 echo " "
+echo "Restart and checkpoint files:"
 replace_val GIGCchem_INTERNAL_RESTART_FILE "+${INITIAL_RESTART}" GCHP.rc
 replace_val GIGCchem_INTERNAL_CHECKPOINT_FILE "gcchem_internal_checkpoint_c${CS_RES}.nc" GCHP.rc
 
@@ -283,9 +314,18 @@ replace_val JOB_SGMT  "${Duration}"   CAP.rc
 #### Set output frequency, duration, and mode
 echo " "
 echo "Output:" 
-replace_val SpeciesConc.frequency      ${SpeciesConc_freq}      HISTORY.rc  
-replace_val SpeciesConc.duration       ${SpeciesConc_dur}       HISTORY.rc
-replace_val SpeciesConc.mode           ${SpeciesConc_mode}      HISTORY.rc
+replace_val SpeciesConc_avg.frequency  ${SpeciesConc_avg_freq}  HISTORY.rc  
+replace_val SpeciesConc_avg.duration   ${SpeciesConc_avg_dur}   HISTORY.rc
+replace_val SpeciesConc_avg.mode       ${SpeciesConc_avg_mode}  HISTORY.rc
+replace_val SpeciesConc_inst.frequency ${SpeciesConc_inst_freq} HISTORY.rc  
+replace_val SpeciesConc_inst.duration  ${SpeciesConc_inst_dur}  HISTORY.rc
+replace_val SpeciesConc_inst.mode      ${SpeciesConc_inst_mode} HISTORY.rc
+replace_val StateMet_avg.frequency     ${StateMet_avg_freq}	HISTORY.rc
+replace_val StateMet_avg.duration      ${StateMet_avg_dur}	HISTORY.rc
+replace_val StateMet_avg.mode          ${StateMet_avg_mode}	HISTORY.rc
+replace_val StateMet_inst.frequency    ${StateMet_inst_freq}	HISTORY.rc
+replace_val StateMet_inst.duration     ${StateMet_inst_dur}	HISTORY.rc
+replace_val StateMet_inst.mode         ${StateMet_inst_mode}	HISTORY.rc
 replace_val AerosolMass.frequency      ${AerosolMass_freq}      HISTORY.rc
 replace_val AerosolMass.duration       ${AerosolMass_dur}       HISTORY.rc
 replace_val AerosolMass.mode           ${AerosolMass_mode}      HISTORY.rc
@@ -322,9 +362,6 @@ replace_val RadioNuclide.mode          ${RadioNuclide_mode}     HISTORY.rc
 replace_val StateChm.frequency         ${StateChm_freq}	        HISTORY.rc
 replace_val StateChm.duration          ${StateChm_dur}	        HISTORY.rc
 replace_val StateChm.mode              ${StateChm_mode}	        HISTORY.rc
-replace_val StateMet.frequency         ${StateMet_freq}	        HISTORY.rc
-replace_val StateMet.duration          ${StateMet_dur}	        HISTORY.rc
-replace_val StateMet.mode              ${StateMet_mode}	        HISTORY.rc
 replace_val WetLossConv.frequency      ${WetLossConv_freq}      HISTORY.rc
 replace_val WetLossConv.duration       ${WetLossConv_dur}       HISTORY.rc
 replace_val WetLossConv.mode           ${WetLossConv_mode}      HISTORY.rc

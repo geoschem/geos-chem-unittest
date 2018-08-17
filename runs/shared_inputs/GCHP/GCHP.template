@@ -42,7 +42,7 @@ BKG_FREQUENCY: 0
 # Settings for production of restart files
 # Comment out this section to output only one restart file (end-of-run)
 #---------------------------------------------------------------
-# Record frequency (HHMMSS) : Frequence of restart file write
+# Record frequency (HHMMSS) : Frequency of restart file write
 #                             Can exceed 24 hours (e.g. 7200000 for 30 days)
 # Record ref date (YYYYMMDD): Reference date; set to before sim start date
 # Record ref time (HHMMSS)  : Reference time 

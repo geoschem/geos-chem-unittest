@@ -199,7 +199,7 @@ HEMCO Input file        : HEMCO_Config.rc
 Switches for UCX        :---
  => Use CH4 emissions?  : F
  => Turn on surface BCs :---
-    => CH4?             : T
+    => CH4?             : F
     => OCS?             : T
     => CFCs?            : T
     => Cl species?      : T
@@ -243,7 +243,6 @@ Turn on Chemistry?      : T
 Use linear. strat. chem?: T
  => Use Linoz for O3?   : T
 Use UCX strat. chem?    : T
-Online CH4 chemistry?   : T
 Active strat. H2O?      : T
 Overhead O3 for FAST-JX :---
  => Online O3 from model: T

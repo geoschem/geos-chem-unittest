@@ -241,7 +241,7 @@ sub fmtStr($) {
   my $str     = "";   # Modified string
 #
 # !CALLING SEQUENCE:
-#  $dateStr = &fmtStr( 20040101 );
+#  $dateStr = &fmtStr( 20160101 );
 #  $dateStr = &fmtStr( 0        );
 # 
 # !REMARKS:
@@ -289,9 +289,9 @@ sub makeInputGeos($$$$$$) {
 #
 # !INPUT PARAMETERS:
 #
-  # $date1    : Starting date for GEOS-Chem model run (e.g. 20040101) 
+  # $date1    : Starting date for GEOS-Chem model run (e.g. 20160101) 
   # $time1    : Starting time for GEOS-Chem model run (e.g. 000000  ) 
-  # $date2    : Ending   date for GEOS-Chem model run (e.g. 20040102)
+  # $date2    : Ending   date for GEOS-Chem model run (e.g. 20160102)
   # $time2    : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
   # $met      : Met field type  (passed via MET flag in G-C compilation)
   # $dataRoot : GEOS-chem root data directory
@@ -301,10 +301,10 @@ sub makeInputGeos($$$$$$) {
        $inFile, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
-# &makeInputGeos( 20130101,             000000, 
-#                 20130102,             000000, 
+# &makeInputGeos( 20160101,             000000, 
+#                 20160102,             000000, 
 #                 "/as/data/geos/",
-#                "input.geos.template", "input.geos" );
+#                 "input.geos.template", "input.geos" );
 #
 # !REVISION HISTORY:
 #  23 May 2013 - R. Yantosca - Initial version, adapted from NRT-ARCTAS
@@ -387,9 +387,9 @@ sub makeGCHPcfg($$$$$$$) {
 #
 # !INPUT PARAMETERS:
 #
-  # $date1    : Starting date for GEOS-Chem model run (e.g. 20040101) 
+  # $date1    : Starting date for GEOS-Chem model run (e.g. 20160101) 
   # $time1    : Starting time for GEOS-Chem model run (e.g. 000000  ) 
-  # $date2    : Ending   date for GEOS-Chem model run (e.g. 20040102)
+  # $date2    : Ending   date for GEOS-Chem model run (e.g. 20160102)
   # $time2    : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
   # $sim      : Simulation name
   # $template : Path for "template" file
@@ -397,9 +397,9 @@ sub makeGCHPcfg($$$$$$$) {
   my ( $date1,  $time1,  $date2, $time2, $sim, $inFile, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
-# &makeGCHPcfg( 20130101, 000000, 
-#                 20130102, 000000, 
-#                "runConfig.template", "runConfig.sh" );
+# &makeGCHPcfg( 20160101, 000000, 
+#               20160102, 000000, 
+#               "runConfig.template", "runConfig.sh" );
 #
 # !REVISION HISTORY:
 #  09 Aug 2017 - E. Lundgren - Initial version, adapted from makeInputGeos
@@ -505,10 +505,10 @@ sub makeHemcoCfg($$$$$$$) {
        $simType, $verbose, $warnings, $rootDir, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
-# &makeHemcoCfg( "HEMCO_Config.template", 20130101, 000000,     
+# &makeHemcoCfg( "HEMCO_Config.template", 20160101, 000000,     
 #                "geosfp",                "4x5",    "-",      
-#                 "tropchem",             "3",      "3",  
-#                 "HEMCO_Config.rc" )
+#                "tropchem",              "3",      "3",  
+#                "HEMCO_Config.rc" )
 #                 
 #
 # !REMARKS:
@@ -623,7 +623,7 @@ sub makeHcoSaCfg($$$$$$$) {
        $simType, $verbose, $warnings, $rootDir, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
-# &makeHcoSaCfg( "HEMCO_sa_Config.template", 20130101, 000000,     
+# &makeHcoSaCfg( "HEMCO_sa_Config.template", 20160101, 000000,     
 #                "geosfp",                   "4x5",    "-",      
 #                "tropchem",                 "3",      "3",  
 #                "HEMCO_sa_Config.rc" )
@@ -745,16 +745,16 @@ sub makeHistoryRc($$$$$$) {
 # !INPUT PARAMETERS:
 #
   # $infile   : HISTORY.rc.template file w/ replaceable tokens
-  # $date1    : Starting date for GEOS-Chem model run (e.g. 20040101) 
+  # $date1    : Starting date for GEOS-Chem model run (e.g. 20160101) 
   # $time1    : Starting time for GEOS-Chem model run (e.g. 000000  ) 
-  # $date2    : Ending   date for GEOS-Chem model run (e.g. 20040102)
+  # $date2    : Ending   date for GEOS-Chem model run (e.g. 20160102)
   # $time2    : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
   # $outFile  : HISTORY.rc file w/ all tokens replaced
   my ( $inFile, $date1, $time1, $date2, $time2, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
-# &makeHistoryRc( "HISTORY.rc.template", 20130101, 000000, 
-#                 20130102               000000,   "HISTORY.rc" );
+# &makeHistoryRc( "HISTORY.rc.template", 20160101, 000000, 
+#                 20160102               000000,   "HISTORY.rc" );
 #                 
 # !REMARKS:
 #
@@ -893,7 +893,7 @@ sub replaceDate($$) {
   my $newStr = "";          # Updated string 
 #
 # !CALLING SEQUENCE:
-#  $newStr = &replaceDate( "file.YYYYMMDD", 20130101 );
+#  $newStr = &replaceDate( "file.YYYYMMDD", 20160101 );
 #
 # !REVISION HISTORY:
 #  23 May 2013 - R. Yantosca - Initial version
@@ -978,10 +978,11 @@ sub readResults($$) {
   # Strings
   my $color            = "";
   my $utName           = "";
-  my $version          = "";
+  my $versionTag       = "";
   my $dateRan          = "";
   my $describe         = "";
   my $makeCmd          = "";
+  my $compiler         = $ENV{"FC"};
 
   # HTML color values
   my $WHITE            = "#FFFFFF";
@@ -1010,39 +1011,39 @@ sub readResults($$) {
     #-------------------------------------------------------------------------
     # Get the version number, date submitted, description, and make command
     #-------------------------------------------------------------------------
-    if ( $txt[$i] =~ m/GEOS-CHEM UNIT TEST RESULTS FOR VERSION/ ) {
+    if ( $txt[$i] =~ m/GEOS-CHEM UNIT TEST RESULTS FOR/ ) {
 
       # Version number
-      @subStr   =  split( ':', $txt[$i] );
-      $version  =  $subStr[1];
-      $version  =~ s/^\s+//; 
-      $version  =~ s/^\s+$//;
+      @subStr      =  split( ':', $txt[$i] );
+      $versionTag  =  $subStr[1];
+      $versionTag  =~ s/^\s+//;
+      $versionTag  =~ s/^\s+$//;
 
       # Date the test ran
-      @subStr   =  split( '\@', $txt[++$i] );
-      $dateRan  =  $subStr[1];
-      $dateRan  =~ s/^\s+//; 
-      $dateRan  =~ s/^\s+$//;
+      @subStr      =  split( '\@', $txt[++$i] );
+      $dateRan     =  $subStr[1];
+      $dateRan     =~ s/^\s+//;
+      $dateRan     =~ s/^\s+$//;
 
       # Description
       ++$i;     
-      @subStr   =  split( '\:', $txt[++$i] );
-      $describe =  $subStr[1];
-      $describe =~ s/^\s+//; 
-      $describe =~ s/^\s+$//;
+      @subStr      =  split( '\:', $txt[++$i] );
+      $describe    =  $subStr[1];
+      $describe    =~ s/^\s+//;
+      $describe    =~ s/^\s+$//;
 
       # Make command
       ++$i;     
-      @subStr   =  split( '\:', $txt[++$i] );
-      $makeCmd  =  $subStr[1];
-      $makeCmd  =~ s/^\s+//; 
-      $makeCmd  =~ s/^\s+$//;
+      @subStr      =  split( '\:', $txt[++$i] );
+      $makeCmd     =  $subStr[1];
+      $makeCmd     =~ s/^\s+//;
+      $makeCmd     =~ s/^\s+$//;
 
       # Store in the hash
-      $unitTests{ "UNIT_TEST_VERSION"  } = $version;
-      $unitTests{ "UNIT_TEST_DATE"     } = $dateRan;
-      $unitTests{ "UNIT_TEST_DESCRIBE" } = $describe;
-      $unitTests{ "UNIT_TEST_MAKECMD"  } = $makeCmd;
+      $unitTests{ "UNIT_TEST_VERSIONTAG" } = $versionTag;
+      $unitTests{ "UNIT_TEST_DATE"       } = $dateRan;
+      $unitTests{ "UNIT_TEST_DESCRIBE"   } = $describe;
+      $unitTests{ "UNIT_TEST_MAKECMD"    } = "($compiler) $makeCmd";
     }
     
     #-------------------------------------------------------------------------
@@ -1340,9 +1341,9 @@ sub getDuration($$$$) {
 #
 # !INPUT PARAMETERS:
 #
-  # $date1 : Starting date for GEOS-Chem model run (e.g. 20040101) 
+  # $date1 : Starting date for GEOS-Chem model run (e.g. 20160101) 
   # $time1 : Starting time for GEOS-Chem model run (e.g. 000000  ) 
-  # $date2 : Ending   date for GEOS-Chem model run (e.g. 20040102)
+  # $date2 : Ending   date for GEOS-Chem model run (e.g. 20160102)
   # $time2 : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
   my ( $date1, $time1,  $date2, $time2 ) = @_;
 #
@@ -1354,9 +1355,9 @@ sub getDuration($$$$) {
   my $durStrTime = "";
 #
 # !CALLING SEQUENCE:
-# &makeGCHPcfg( 20130101, 000000, 
-#                 20130102, 000000, 
-#                "runConfig.template", "runConfig.sh" );
+# &makeGCHPcfg( 20160101, 000000, 
+#               20160102, 000000, 
+#               "runConfig.template", "runConfig.sh" );
 #
 # !REVISION HISTORY:
 #  09 Aug 2017 - E. Lundgren - Initial version, adapted from makeInputGeos

@@ -1,6 +1,0 @@
-Updates to build script build.sh between GCHP v11-02e and v11-02f. Please see the
-differences between gchp.ifort17_openmpi_odyssey_v11-02e.bashrc and
-gchp.ifort17_openmpi_odyssey_v11-02f.bashrc for guidance on necessary changes to
-make to your local environment settings between the two versions.
-
-~ GEOS-Chem Support Team, 5/31/2018
