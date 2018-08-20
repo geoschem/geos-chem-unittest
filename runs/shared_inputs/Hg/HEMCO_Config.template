@@ -84,7 +84,7 @@ Warnings:                    {WARNINGS}
     --> WHET              :       true
     --> ZHAOZHANG         :       false
     --> CHAKRABORTY       :       false
-    --> EMISS_CONT        :       true 
+    --> EMISS_CONT        :       false 
     --> ARTISANAL         :       false
     --> NATURAL           :       true
     --> SOILDIST          :       true
