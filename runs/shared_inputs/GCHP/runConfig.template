@@ -42,14 +42,13 @@ CS_RES=24    # 24 ~ 4x5, 48 ~ 2x2.5, 90 ~ 1x1.25, 180 ~ 1/2 deg, 360 ~ 1/4 deg
 #    Initial Restart File
 #------------------------------------------------
 # By default the linked restart files in the run directories will be 
-# used. Some initial restart files contain HEMCO variables as well as species
-# and are labelled as such. All restart files you generate yourself will 
-# contain both HEMCO and species restart variables. HEMCO restart in 
-# HEMCO_Config.rc should always be false when running GCHP.
+# used. Please note that HEMCO restart variables are stored in the same
+# restart file as species concentrations. Initial restart files available 
+# on gcgrid do not contain HEMCO variables which will have the same effect
+# as turning the HEMCO restart file option off in GC classic. However, all 
+# output restart files will contain HEMCO restart variables for your next run.
 INITIAL_RESTART=initial_GEOSChem_rst.c${CS_RES}_{SIMULATION}.nc
-if [[ "{SIMULATION}" == "benchmark" ]]; then
-   INITIAL_RESTART=initial_GEOSChem_rst.c${CS_RES}_{SIMULATION}_HEMCO.nc
-fi
+
 # You can specify a custom initial restart file here to overwrite:
 # INITIAL_RESTART=your_restart_filename_here
 
