@@ -1085,9 +1085,28 @@ ORDONEZ_CH2IBR kg/m2/s xy C Y Y F2000-%m2-01T00:00:00 none none CH2IBr ./MainDat
 #==============================================================================
 # --- Ship emissions (SHIP) ---
 #==============================================================================
-ARCTAS_SHIP_SO2 kg/m2/s xy C Y Y - none none SO2 ./MainDataDir/ARCTAS_SHIP/v2014-07/ARCTAS_ship.generic.1x1.nc
-ICOADS_SHIP_CO  kg/m2/s xy C Y Y F2002-%m2-01T00:00:00 none none CO      ./MainDataDir/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc
-ICOADS_SHIP_NO  kg/m2/s xy C Y Y F2002-%m2-01T00:00:00 none none NO      ./MainDataDir/ICOADS_SHIP/v2014-07/ICOADS.gen.1x1.nc
+CEDS_NO_SHP     kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none NO_shp            ./MainDataDir/CEDS/v2018-04/NO-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_CO_SHP     kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none CO_shp            ./MainDataDir/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_SO2_SHP    kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none SO2_shp           ./MainDataDir/CEDS/v2018-04/SO2-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_NH3_SHP    kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none NH3_shp           ./MainDataDir/CEDS/v2018-04/NH3-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_BCPI_SHP   kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none BC_shp            ./MainDataDir/CEDS/v2018-04/BC-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_OCPI_SHP   kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none OC_shp            ./MainDataDir/CEDS/v2018-04/OC-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_EOH_SHP    kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none EOH_shp           ./MainDataDir/CEDS/v2018-04/EOH-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_C2H6_SHP   kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none C2H6_shp          ./MainDataDir/CEDS/v2018-04/C2H6-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_C3H8_SHP   kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none C3H8_shp          ./MainDataDir/CEDS/v2018-04/C3H8-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_C4H10_SHP  kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none ALK4_butanes_shp  ./MainDataDir/CEDS/v2018-04/ALK4_butanes-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_C5H12_SHP  kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none ALK4_pentanes_shp ./MainDataDir/CEDS/v2018-04/ALK4_pentanes-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_C6H14_SHP  kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none ALK4_hexanes_shp  ./MainDataDir/CEDS/v2018-04/ALK4_hexanes-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_C2H4_SHP   kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none C2H4_shp          ./MainDataDir/CEDS/v2018-04/C2H4-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_PRPE_SHP   kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none PRPE_shp          ./MainDataDir/CEDS/v2018-04/PRPE-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_C2H2_SHP   kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none C2H2_shp          ./MainDataDir/CEDS/v2018-04/C2H2-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_BENZ_SHP   kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none BENZ_shp          ./MainDataDir/CEDS/v2018-04/BENZ-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_TOLU_SHP   kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none TOLU_shp          ./MainDataDir/CEDS/v2018-04/TOLU-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_XYLE_SHP   kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none XYLE_shp          ./MainDataDir/CEDS/v2018-04/XYLE-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_CH2O_SHP   kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none CH2O_shp          ./MainDataDir/CEDS/v2018-04/CH2O-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_ALD2_SHP   kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none ALD2_shp          ./MainDataDir/CEDS/v2018-04/ALD2-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_MEK_SHP    kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none MEK_shp           ./MainDataDir/CEDS/v2018-04/MEK-em-anthro_CMIP_CEDS_195001-201412.nc
+CEDS_HCOOH_SHP  kg/m2/s xy C Y Y F%y4-%m2-01T00:00:00 none none HCOOH_shp         ./MainDataDir/CEDS/v2018-04/HCOOH-em-anthro_CMIP_CEDS_195001-201412.nc
 
 # --- if SHIP and EMEP_SHIP ---
 EMEP_SHIP_CO   kg/m2/s  xy C N Y F%y4-01-01T00:00:00  none none ShipCO  ./MainDataDir/EMEP/v2015-03/EMEP.generic.1x1.nc
