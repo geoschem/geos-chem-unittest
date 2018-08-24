@@ -125,7 +125,7 @@ Warnings:                    {WARNINGS}
     --> QFED2                  :       false
     --> DECAYING_PLANTS        :       true
     --> SHIP                   :       true
-    --> CEDS_SHIP              :       false
+    --> CEDS_SHIP              :       true
     --> EMEP_SHIP              :       true
     --> NEI2011_SHIP_HOURLY    :       false
     --> NEI2011_SHIP_MONMEAN   :       false
@@ -1583,8 +1583,8 @@ Warnings:                    {WARNINGS}
 0 DICE_AGBURNING_HAC   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  HAC   2013/1/1/0 C xy g/m2/yr  HAC   26/1008          2 60
 0 DICE_AGBURNING_GLYC  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  GLYC  2013/1/1/0 C xy g/m2/yr  GLYC  26/1008          2 60
 0 DICE_AGBURNING_MOH   $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  MOH   2013/1/1/0 C xy g/m2/yr  MOH   26/1008          2 60
-#0 DICEAGBURNING_MGLY $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  MGLY  2013/1/1/0 C xy g/m2/yr  MGLY  26/1008          2 60
-#0 DICEAGBURNING_APIN $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  APIN  2013/1/1/0 C xy g/m2/yr  APIN  26/1008          2 60
+#0 DICE_AGBURNING_MGLY $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  MGLY  2013/1/1/0 C xy g/m2/yr  MGLY  26/1008          2 60
+#0 DICE_AGBURNING_APIN $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  APIN  2013/1/1/0 C xy g/m2/yr  APIN  26/1008          2 60
 0 DICE_AGBURNING_C2H2  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  C2H2  2013/1/1/0 C xy g/m2/yr  C2H2  26/1008          2 60
 0 DICE_AGBURNING_C2H4  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  C2H4  2013/1/1/0 C xy g/m2/yr  C2H4  26/1008          2 60
 0 DICE_AGBURNING_BENZ  $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc  BENZ  2013/1/1/0 C xy g/m2/yr  BENZ  26/1008          2 60
@@ -1816,23 +1816,26 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- Ship emissions ---
 #
-# ==> In the defaults, ARCTAS SO2 has priority over ICOADS, CORBETT, and HTAP.
-#     This can be ovewritten by EMEP over Europe.
-# ==> For CO and NO, ICOADS has priority.
-# ==> Do not use ship emissions from EDGAR v4.2 since they are lumped with
-#     other non-road transportation (aircraft, rail, etc.) emissions
+# ==> CEDS ship emissions are now the default.
+# ==> If CEDS_SHIP is turned off above then ARCTAS should be used over ICOADS,
+#     CORBETT, and HTAP for SO2 and ICOADS should be used for CO and NO.
+# ==> Ship emisisons over Europe are ovewritten by EMEP.
+# ==> The ship inventory for NEI11 only goes a few km from land, so it isn’t
+#     a complete 'ship inventory'. NEI2011_SHIP_* is set to false for now.
 # ==> Ship NO emissions are used by PARANOx and the extension number must be
 #     adjusted accordingly. If PARANOx is turned off, set the ExtNr back to
 #     zero.
 #==============================================================================
 (((SHIP
 0  ARCTAS_SHIP_SO2     $ROOT/ARCTAS_SHIP/v2014-07/ARCTAS_ship.generic.1x1.nc           SO2             2008/1/1/0             C xy kg/m2/s  SO2  11/19        10 1
+#0 ICOADS_SHIP_SO2     $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                SO2             2002/1-12/1/0          C xy kg/m2/s  SO2  11/15/60     10 2
 #0 CORBETT_SHIP_SO2    $ROOT/CORBETT_SHIP/v2014-07/CORBETT_ship.geos.1x1.nc            SO2_SHIP        1985/1-12/1/0          C xy kg/m2/s  SO2  -            10 3
-#0 ICOADS_SHIP_SO2     $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                SO2             2002/1-12/1/0          C xy kg/m2/s  SO2  11/15/60     10 5
-#0 HTAP_SHIP_SO2       $ROOT/HTAP/v2015-03/EDGAR_HTAP_SO2_SHIPS.generic.01x01.nc       emi_so2         2008-2010/1/1/0        C xy kg/m2/s  SO2  11/29        10 2
-0  ICOADS_SHIP_CO      $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                CO              2002/1-12/1/0          C xy kg/m2/s  CO   6/10         10 1
-0  ICOADS_SHIP_SOAP    -                                                               -               -                      - -  -        SOAP 6/10/280     10 1
-#0 HTAP_SHIP_CO        $ROOT/HTAP/v2015-03/EDGAR_HTAP_CO_SHIPS.generic.01x01.nc        emi_co          2008-2010/1/1/0        C xy kg/m2/s  CO   6/28         10 2
+#0 HTAP_SHIP_SO2       $ROOT/HTAP/v2015-03/EDGAR_HTAP_SO2_SHIPS.generic.01x01.nc       emi_so2         2008-2010/1/1/0        C xy kg/m2/s  SO2  11/29        10 4
+
+0  ICOADS_SHIP_CO      $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                CO              2002/1-12/1/0          C xy kg/m2/s  CO   6/10         10 2
+0  ICOADS_SHIP_SOAP    -                                                               -               -                      - -  -        SOAP 6/10/280     10 2
+#0 HTAP_SHIP_CO        $ROOT/HTAP/v2015-03/EDGAR_HTAP_CO_SHIPS.generic.01x01.nc        emi_co          2008-2010/1/1/0        C xy kg/m2/s  CO   6/28         10 4
+#0 HTAP_SHIP_SOAP      -                                                               -               -                      - -  -        SOAP 6/28/280     10 4
 
 (((CEDS_SHIP
 0 CEDS_CO_SHP     $ROOT/CEDS/v2018-04/CO-em-anthro_CMIP_CEDS_195001-201412.nc            CO_shp            1950-2014/1-12/1/0 C xy kg/m2/s CO    26     10 5
@@ -1868,9 +1871,9 @@ Warnings:                    {WARNINGS}
 )))CEDS_SHIP
 
 (((EMEP_SHIP
-0 EMEP_SHIP_CO         $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipCO          1990-2012/1/1/0        C xy kg/m2/s  CO   1000         10 2
-0 EMEP_SHIP_SOAP       -                                                               -               -                      - -  -        SOAP 1000/280     10 2
-0 EMEP_SHIP_SO2        $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipSO2         1990-2012/1/1/0        C xy kg/m2/s  SO2  61/1000      10 2
+0 EMEP_SHIP_CO         $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipCO          1990-2012/1/1/0        C xy kg/m2/s  CO   1000         10 10
+0 EMEP_SHIP_SOAP       -                                                               -               -                      - -  -        SOAP 1000/280     10 10
+0 EMEP_SHIP_SO2        $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipSO2         1990-2012/1/1/0        C xy kg/m2/s  SO2  61/1000      10 10
 )))EMEP_SHIP
 
 (((NEI2011_SHIP_HOURLY
@@ -1949,7 +1952,7 @@ Warnings:                    {WARNINGS}
 #102 HTAP_SHIP_NO      $ROOT/HTAP/v2015-03/EDGAR_HTAP_NO_SHIPS.generic.01x01.nc        emi_no 2008-2010/1/1/0        C xy kg/m2/s  NO   1/27     10 2
 
 (((CEDS_SHIP
-0 CEDS_NO_SHP          $ROOT/CEDS/v2018-04/NO-em-anthro_CMIP_CEDS_195001-201412.nc     NO_shp 1950-2014/1-12/1/0     C xy kg/m2/s  NO   25       10 5
+102 CEDS_NO_SHP          $ROOT/CEDS/v2018-04/NO-em-anthro_CMIP_CEDS_195001-201412.nc     NO_shp 1950-2014/1-12/1/0     C xy kg/m2/s  NO   25       10 5
 )))CEDS_SHIP
 
 (((EMEP_SHIP
