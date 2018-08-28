@@ -1,1 +1,0 @@
-../../shared_inputs/GCHP/bashrcSamples/gchp.gfortran_mvapich2_odyssey.bashrc
