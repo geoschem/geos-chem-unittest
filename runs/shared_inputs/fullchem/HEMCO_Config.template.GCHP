@@ -262,7 +262,8 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- EDGAR v4.3 ---
 #
-# %%% NOTE: Use EDGAR for the global base emissions instead of GEIA %%%
+# %%% NOTE: This is an optional inventory. You may select either CEDS, EDGAR,
+#  or HTAP for the global base emissions %%%
 # 
 # Aviation and shipping emissions are not included
 # Do not include the following sources (meng,3/6/2014)
@@ -415,7 +416,7 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- HTAP v2 ---
 #
-# %%% NOTE: This is an optional inventory. You may select either EDGAR, CEDS,
+# %%% NOTE: This is an optional inventory. You may select either CEDS, EDGAR,
 #  or HTAP for the global base emissions %%%
 #
 # ==> HTAP ship emissions are listed in the ship emissions section below
@@ -474,8 +475,8 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- CEDS ---
 #
-# %%% NOTE: This is an optional inventory. You may select either EDGAR, CEDS,
-# or HTAP for the global base emissions %%%
+# %%% NOTE: This is the default global inventory. You may select either CEDS,
+# EDGAR, or HTAP for the global base emissions %%%
 #
 # ==> CEDS ship emissions are listed in the ship emissions section below
 # ==> CEDS includes trash emissions (Cat=12) from Wiedinmyer et al. (2014)
