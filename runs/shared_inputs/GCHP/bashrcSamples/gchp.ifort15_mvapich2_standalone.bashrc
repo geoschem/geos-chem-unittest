@@ -62,6 +62,16 @@ alias checkgit="make printbuildinfo"
 alias checkbuild="cat lastbuild"            
 
 #==============================================================================
+# %%%%% Clear existing environment variables %%%%%
+#==============================================================================
+unset GC_BIN
+unset GC_INCLUDE
+unset GC_LIB
+unset GC_F_BIN
+unset GC_F_INCLUDE
+unset GC_F_LIB
+
+#==============================================================================
 # Environment variables
 #==============================================================================
 
