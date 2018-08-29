@@ -53,6 +53,7 @@ lib:
 	cp -f $(CODE)/bin/geos $(EXEC)
 
 run:
+	rm trac_avg*
 	./$(EXEC) >> $(LOG)
 	@$(MAKE) addsuffixdev
 

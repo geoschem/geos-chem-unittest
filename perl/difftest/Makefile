@@ -556,12 +556,14 @@ tauclean:
 	@$(MAKE) reftauclean
 	@$(MAKE) devtauclean
 
+logclean:
+	rm -f $(LOG_DIR)/log.*
+	rm -f $(LOG_DIR)/*.log
+
 superclean:
 	@$(MAKE) realclean
 	@$(MAKE) fileclean
-
-logclean:
-	rm -f $(LOG_DIR)/log.*
+	@$(MAKE) logclean
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Debugging              %
@@ -706,16 +708,16 @@ help:
 	@echo '%%% REMOVE OUTPUT FILES %%%'
 	@echo 'fileclean         Removes all GEOS-Chem REF & DEV output files + logs'
 	@echo ''
+	@echo '%%% REMOVE LOG FILES %%%'
+	@echo 'logclean          Removes all log files in LOG_DIR'
+	@echo ''
+	@echo '%%% CLEAN AND REMOVE ALL %%%'
+	@echo 'superclean        Synonym for: fileclean realclean logclean'
+	@echo ''
 	@echo '%%% REMOVE TAU FILES %%%'
 	@echo 'reftauclean       Removes all TAU files in the REF code'
 	@echo 'devtauclean       Removes all TAU files in the DEV code'
 	@echo 'tauclean          Synonym for: reftauclean devtauclean'
-	@echo ''
-	@echo '%%% CLEAN AND REMOVE ALL %%%'
-	@echo 'superclean        Synonym for: fileclean realclean'
-	@echo ''
-	@echo '%%% REMOVE LOG FILES %%%'
-	@echo 'logclean          Removes all log files in LOG_DIR'
 	@echo ''
 	@echo '%%% DEBUGGING %%%'
 	@echo 'tvsp_ref          Runs totalview for REF (single processor)'
