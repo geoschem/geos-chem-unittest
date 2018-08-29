@@ -13,6 +13,9 @@ GEOS-Chem simulations:
 (2 ) HISTORY.rc            : Configuration file for netCDF diagnostic output,
                               customized for the specific GEOS-Chem simulation
 
+(2 ) Makefile              : Makefile for compiling GEOS-Chem from the run directory,
+                              along with other functionalities. There are separate
+                              Makefiles for GEOS-Chem Classic and GCHP
 
 For full-chemistry and aerosol-only simulations, the following additional
 files are symbolically linked to originals in the shared_inputs/fast_jx 

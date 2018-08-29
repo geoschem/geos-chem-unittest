@@ -759,7 +759,7 @@ sub doUnitTest($$) {
 	  # Temporarily copy Makefile to run dir for unit test (ewl, 4/10/15)
 	  @cmds = ( @cmds, 
 		    "\n\n\# %%% $notDir %%%\n",
-		    "cp -f $PERL_DIR/Makefile $runDir\n",
+		    "cp -f $RUN_ROOT/shared_inputs/Makefiles/Makefile $runDir\n",
 		    "cd $runDir >> $stdout\n\n",
 		    "cp -f input.geos.$met\_$grid\_$sim input.geos >> $stdout\n",
 		    "rm -f input.geos.$met\_$grid\_$sim >> $stdout\n",
@@ -781,8 +781,9 @@ sub doUnitTest($$) {
 
   #--------------------------------------------------------------------------
   # Write the commands archived above into the master job script.  This 
-  # script will copy UT/perl/Makefile to the run directory of each requested 
-  # unit test to compile and run GEOS-Chem w/ the specified options.
+  # script will copy UT/runs/shared_inputs/Makefiles/Makefile to the run 
+  # directory of each requested unit test to compile and run GEOS-Chem w/ 
+  # the specified options.
   #--------------------------------------------------------------------------
 
   # Make the 

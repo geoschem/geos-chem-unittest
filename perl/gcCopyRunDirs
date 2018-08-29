@@ -536,8 +536,8 @@ sub doCopyDirs($$) {
 	    $cmd .= " $copyDir/output/*.nc*";
 	    qx/$cmd/;
 
-            # Copy perl/Makefile to copied run directory
-            $cmd = "cp ./Makefile $copyDir/Makefile";
+            # Copy GEOS-Chem Classic Makefile to copied run directory
+            $cmd = "cp ../runs/shared_inputs/Makefiles/Makefile $copyDir/Makefile";
             qx/$cmd/;
 
             # Copy UT/perl/getRunInfo to copied run directory
@@ -552,6 +552,10 @@ sub doCopyDirs($$) {
 
 	    # Execute the copy command
 	    qx/$cmd/;
+
+            # Copy GCHP Makefile to copied run directory
+            $cmd = "cp ../runs/shared_inputs/Makefiles/Makefile_GCHP $copyDir/Makefile";
+            qx/$cmd/;
 
 	    # Make the input.geos, HEMCO_Config.rc, HISTORY.rc, CAP.rc, 
             # runConfig.sh, and GCHP.rc files from templates.
@@ -582,10 +586,6 @@ sub doCopyDirs($$) {
 	    $cmd .= " ${copyDir}/EGRESS";
 	    $cmd .= " ${copyDir}/geos";
       	    qx/$cmd/;
-
-	    # Rename Makefile_GCHP to Makefile
-	    $cmd = "mv ${copyDir}/Makefile_GCHP ${copyDir}/Makefile";
-	    qx/$cmd/;
 
 	    # Rename HISTORY.rc.template to HISTORY.rc
 	    $cmd = "mv ${copyDir}/HISTORY.rc.template ${copyDir}/HISTORY.rc";
@@ -655,8 +655,8 @@ sub doCopyDirs($$) {
 	    $cmd .= " ${copyDir}/*.sp";
       	    qx/$cmd/;
 
-            # Copy perl/Makefile to copied run directory
-            $cmd = "cp ./Makefile $copyDir/Makefile";
+            # Copy GEOS-Chem Classic Makefile to copied run directory
+            $cmd = "cp ../runs/shared_inputs/Makefiles/Makefile $copyDir/Makefile";
             qx/$cmd/;
           
             # Copy UT/perl/getRunInfo to copied run directory
