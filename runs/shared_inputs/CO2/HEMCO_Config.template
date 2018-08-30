@@ -37,7 +37,8 @@
 ### BEGIN SECTION SETTINGS
 ###############################################################################
 
-ROOT:                        {ROOT}
+ROOT:                        {DATA_ROOT}/HEMCO
+METDIR:                      {DATA_ROOT}/GEOS_{GRID_DIR}/{MET_DIR}
 Logfile:                     HEMCO.log
 DiagnPrefix:                 HEMCO_diagnostics
 DiagnFreq:                   End

@@ -35,7 +35,6 @@ our $CODE_REF   = "";                # Path to reference code (REF)
 our $CODE_DEV   = "";                # Path to development code (DEV)
 our $DATA_ROOT  = "";                # Root path for GEOS-Chem data directory
 our $DESCRIBE   = "";                # Short description of unit tests
-our $HEMCO_ROOT = "";                # Root path for HEMCO emissions files
 our $JOB_DIR    = "";                # Unit Test job directory
 our $LOG_DIR    = "";                # Unit Test logs directory
 our $RUN_ROOT   = "";                # Unit Test top-level run directory
@@ -65,6 +64,8 @@ our $WARNINGS   = "1";               # Warnings setting (0-3)
 #
 # !REVISION HISTORY: 
 #  02 Oct 2015 - E. Lundgren - Initial version, based on gcCopyRunDirs
+#  30 Aug 2018 - M. Sulprizio- Remove $HEMCO_ROOT; Now pass $DATA_ROOT to
+#                              makeHemcoCfg instead
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -193,7 +194,7 @@ sub makeInputs($$$$$$$$) {
 
   # Make the HEMCO_Config.rc file in the run directory
   &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
-                 $sim,     $VERBOSE, $WARNINGS, $HEMCO_ROOT, $hcoCfg );
+                 $sim,     $VERBOSE, $WARNINGS, $DATA_ROOT, $hcoCfg );
 
   # Make the HISTORY.rc file in the run directory
   if ( -f $histTmpl ) {
@@ -368,7 +369,6 @@ sub doCopyDirs($$) {
     #------------------------------------------------------------------------
     if ( !( $txt[$i] =~ m/\#/ ) ) { 
       if    ( $txt[$i] =~ "DATA_ROOT"   ) { $DATA_ROOT = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "HEMCO_ROOT"  ) { $HEMCO_ROOT= &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "UNIT_TEST_ROOT") { $UT_ROOT = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "JOB_DIR"     ) { $JOB_DIR   = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "LOG_DIR"     ) { $LOG_DIR   = &parse( $txt[$i] ); }
@@ -394,7 +394,6 @@ sub doCopyDirs($$) {
       # Strip spaces from directory paths
       $COPY_PATH  =~ s/ //g;
       $DATA_ROOT  =~ s/ //g;
-      $HEMCO_ROOT =~ s/ //g;
       $RUN_ROOT   =~ s/ //g; 
       $UT_ROOT    =~ s/ //g;
 
@@ -412,8 +411,6 @@ sub doCopyDirs($$) {
       $LOG_DIR    =~ s/{HOME}/$home/g;
       $LOG_DIR    =~ s/{UTROOT}/$UT_ROOT/g;
       $LOG_DIR    =~ s/{VERSION}/$VERSION/g;
-      $HEMCO_ROOT =~ s/{HOME}/$home/g;
-      $HEMCO_ROOT =~ s/{DATAROOT}/$DATA_ROOT/g;
       $RUN_DIR    =~ s/{RUNROOT}/$RUN_ROOT/g;
       $RUN_DIR    =~ s/{UTROOT}/$UT_ROOT/g;
 
@@ -431,7 +428,6 @@ sub doCopyDirs($$) {
       &checkDir( $CODE_REF   );
       &checkDir( $CODE_DEV   );
       &checkDir( $DATA_ROOT  );
-      &checkDir( $HEMCO_ROOT );
 
        # Splash page
       print '%%%%%%%%% GEOS-Chem CREATE DIFFTEST DIRECTORIES %%%%%%%%%'."\n"; # 

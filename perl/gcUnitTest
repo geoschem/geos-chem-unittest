@@ -35,7 +35,6 @@ use UtUtils qw( &baseName
 our $CODE_DIR        = "";         # GEOS-Chem Code directory
 our $UT_ROOT         = "";         # Unit test root directory
 our $DATA_ROOT       = "";         # Root path for GEOS-Chem data directory
-our $HEMCO_ROOT      = "";         # Root path for HEMCO emissions files
 our $JOB_DIR         = "";         # Unit Test job directory
 our $LOG_DIR         = "";         # Unit Test logs directory
 our $PERL_DIR        = "";         # Unit Test Perl directory
@@ -104,6 +103,8 @@ our $SLURM_MAILTYPE  = "";         # SLURM: When to send emails?
 #                              unit test directory in scratch space if needed.
 #  28 Apr 2016 - R. Yantosca - Now use -c $SLURM_CPUS (i.e. cpus-per-task)
 #  06 Aug 2018 - R. Yantosca - Now add VERSION_TAG as a separate input
+#  30 Aug 2018 - M. Sulprizio- Remove $HEMCO_ROOT; Now pass $DATA_ROOT to
+#                              makeHemcoCfg instead
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -254,7 +255,7 @@ sub makeInputs($$$$$$$$) {
 
   # Make the HEMCO_Config.rc file in the run directory
   &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
-                 $sim,     $VERBOSE, $WARNINGS, $HEMCO_ROOT, $hcoCfg );
+                 $sim,     $VERBOSE, $WARNINGS, $DATA_ROOT, $hcoCfg );
 
   # Make the HISTORY.rc file in the run directory
   if ( -f $histTmpl ) { 
@@ -511,8 +512,6 @@ sub doUnitTest($$) {
 						  &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "DATA_ROOT"       ) { $DATA_ROOT = 
 						  &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "HEMCO_ROOT"      ) { $HEMCO_ROOT = 
-						  &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "UNIT_TEST_ROOT"  ) { $UT_ROOT = 
 						  &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "JOB_DIR"         ) { $JOB_DIR = 
@@ -615,8 +614,6 @@ sub doUnitTest($$) {
       $WEB_GRID     =~ s/{VERSION}/$VERSION/g;
       $WEB_GRID     =~ s/{VERSION_TAG}/$VERSION_TAG/g;
       $WEB_GRID     =~ s/{LOGDIR}/$LOG_DIR/g;
-      $HEMCO_ROOT   =~ s/{HOME}/$home/g;
-      $HEMCO_ROOT   =~ s/{DATAROOT}/$DATA_ROOT/g;
       $RUN_DIR      =~ s/{RUNROOT}/$RUN_ROOT/g;
       $RUN_DIR      =~ s/{UTROOT}/$UT_ROOT/g;
       $WEB_PUSH     =~ s/\|/:/g;
@@ -636,7 +633,6 @@ sub doUnitTest($$) {
 
       # Make sure each of these directories exist before proceeding
       &checkDir( $DATA_ROOT  );
-      &checkDir( $HEMCO_ROOT );
       &checkDir( $CODE_DIR   );
       &checkDir( $JOB_DIR    );
       &checkDir( $LOG_DIR    );
