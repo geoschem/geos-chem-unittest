@@ -2459,92 +2459,92 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 
 # --- CN fields ---
-* FRLAKE    $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NEST.nc        FRLAKE   */1/1/0                            C xy  1  * -  1 1
-* FRLAND    $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NEST.nc        FRLAND   */1/1/0                            C xy  1  * -  1 1
-* FRLANDIC  $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NEST.nc        FRLANDIC */1/1/0                            C xy  1  * -  1 1
-* FROCEAN   $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NEST.nc        FROCEAN  */1/1/0                            C xy  1  * -  1 1
-* PHIS      $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NEST.nc        PHIS     */1/1/0                            C xy  1  * -  1 1
+* FRLAKE    $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NEST.$NC        FRLAKE   */1/1/0                            C xy  1  * -  1 1
+* FRLAND    $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NEST.$NC        FRLAND   */1/1/0                            C xy  1  * -  1 1
+* FRLANDIC  $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NEST.$NC        FRLANDIC */1/1/0                            C xy  1  * -  1 1
+* FROCEAN   $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NEST.$NC        FROCEAN  */1/1/0                            C xy  1  * -  1 1
+* PHIS      $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NEST.$NC        PHIS     */1/1/0                            C xy  1  * -  1 1
 
 # --- A1 fields ---
-* ALBEDO    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     ALBEDO   1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* CLDTOT    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     CLDTOT   1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* EFLUX     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     EFLUX    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* EVAP      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     EVAP     1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* FRSEAICE  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     FRSEAICE 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* FRSNO     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     FRSNO    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* GRN       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     GRN      1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* GWETROOT  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     GWETROOT 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* GWETTOP   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     GWETTOP  1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* HFLUX     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     HFLUX    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* LAI       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     LAI      1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* LWI       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     LWI      1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* LWGNT     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     LWGNT    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* PARDF     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     PARDF    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* PARDR     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     PARDR    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* PBLH      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     PBLH     1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* PRECANV   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     PRECANV  1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* PRECCON   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     PRECCON  1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* PRECLSC   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     PRECLSC  1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* PRECSNO   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     PRECSNO  1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* PRECTOT   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     PRECTOT  1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* SEAICE00  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     SEAICE00 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* SEAICE10  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     SEAICE10 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* SEAICE20  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     SEAICE20 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* SEAICE30  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     SEAICE30 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* SEAICE40  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     SEAICE40 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* SEAICE50  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     SEAICE50 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* SEAICE60  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     SEAICE60 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* SEAICE70  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     SEAICE70 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* SEAICE80  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     SEAICE80 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* SEAICE90  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     SEAICE90 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* SLP       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     SLP      1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* SNODP     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     SNODP    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* SNOMAS    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     SNOMAS   1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* SWGDN     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     SWGDN    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* TO3       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     TO3      1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* TROPPT    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     TROPPT   1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* TS        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     TS       1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* T2M       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     T2M      1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* U10M      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     U10M     1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* USTAR     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     USTAR    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* V10M      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     V10M     1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
-* Z0M       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.nc     Z0M      1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* ALBEDO    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     ALBEDO   1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* CLDTOT    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     CLDTOT   1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* EFLUX     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     EFLUX    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* EVAP      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     EVAP     1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* FRSEAICE  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     FRSEAICE 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* FRSNO     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     FRSNO    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* GRN       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     GRN      1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* GWETROOT  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     GWETROOT 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* GWETTOP   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     GWETTOP  1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* HFLUX     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     HFLUX    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* LAI       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     LAI      1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* LWI       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     LWI      1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* LWGNT     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     LWGNT    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* PARDF     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     PARDF    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* PARDR     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     PARDR    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* PBLH      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     PBLH     1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* PRECANV   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     PRECANV  1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* PRECCON   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     PRECCON  1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* PRECLSC   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     PRECLSC  1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* PRECSNO   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     PRECSNO  1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* PRECTOT   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     PRECTOT  1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* SEAICE00  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     SEAICE00 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* SEAICE10  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     SEAICE10 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* SEAICE20  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     SEAICE20 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* SEAICE30  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     SEAICE30 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* SEAICE40  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     SEAICE40 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* SEAICE50  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     SEAICE50 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* SEAICE60  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     SEAICE60 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* SEAICE70  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     SEAICE70 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* SEAICE80  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     SEAICE80 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* SEAICE90  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     SEAICE90 1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* SLP       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     SLP      1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* SNODP     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     SNODP    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* SNOMAS    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     SNOMAS   1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* SWGDN     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     SWGDN    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* TO3       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     TO3      1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* TROPPT    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     TROPPT   1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* TS        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     TS       1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* T2M       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     T2M      1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* U10M      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     U10M     1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* USTAR     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     USTAR    1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* V10M      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     V10M     1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
+* Z0M       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NEST.$NC     Z0M      1980-2018/1-12/1-31/0-23/+30minute E xy  1  * -  1 1
 
 # --- A3cld fields ---
-* CLOUD     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NEST.nc  CLOUD    1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* OPTDEPTH  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NEST.nc  OPTDEPTH 1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* QI        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NEST.nc  QI       1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* QL        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NEST.nc  QL       1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* TAUCLI    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NEST.nc  TAUCLI   1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* TAUCLW    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NEST.nc  TAUCLW   1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* CLOUD     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NEST.$NC  CLOUD    1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* OPTDEPTH  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NEST.$NC  OPTDEPTH 1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* QI        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NEST.$NC  QI       1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* QL        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NEST.$NC  QL       1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* TAUCLI    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NEST.$NC  TAUCLI   1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* TAUCLW    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NEST.$NC  TAUCLW   1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
 
 # --- A3dyn fields ---
-* DTRAIN    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NEST.nc  DTRAIN   1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* OMEGA     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NEST.nc  OMEGA    1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* RH        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NEST.nc  RH       1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* U         $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NEST.nc  U        1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* V         $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NEST.nc  V        1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* DTRAIN    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NEST.$NC  DTRAIN   1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* OMEGA     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NEST.$NC  OMEGA    1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* RH        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NEST.$NC  RH       1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* U         $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NEST.$NC  U        1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* V         $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NEST.$NC  V        1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
 
 # --- A3mstC fields ---
-* DQRCU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NEST.nc DQRCU    1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* DQRLSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NEST.nc DQRLSAN  1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* REEVAPCN  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NEST.nc REEVAPCN 1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* REEVAPLS  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NEST.nc REEVAPLS 1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* DQRCU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NEST.$NC DQRCU    1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* DQRLSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NEST.$NC DQRLSAN  1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* REEVAPCN  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NEST.$NC REEVAPCN 1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* REEVAPLS  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NEST.$NC REEVAPLS 1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
 
 # --- A3mstE fields ---
-* CMFMC     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NEST.nc CMFMC    1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* PFICU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NEST.nc PFICU    1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* PFILSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NEST.nc PFILSAN  1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* PFLCU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NEST.nc PFLCU    1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
-* PFLLSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NEST.nc PFLLSAN  1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* CMFMC     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NEST.$NC CMFMC    1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* PFICU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NEST.$NC PFICU    1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* PFILSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NEST.$NC PFILSAN  1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* PFLCU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NEST.$NC PFLCU    1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
+* PFLLSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NEST.$NC PFLLSAN  1980-2018/1-12/1-31/0-23/+90minute E xyz 1  * -  1 1
 
 # --- I3 fields ---
-* PS1       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.nc     PS       1980-2018/1-12/1-31/0-23           E xy  1  * -  1 1
-* PS2       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.nc     PS       1980-2018/1-12/1-31/0-23/+3hour    E xy  1  * -  1 1
-* SPHU1     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.nc     QV       1980-2018/1-12/1-31/0-23           E xyz 1  * -  1 1
-* SPHU2     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.nc     QV       1980-2018/1-12/1-31/0-23/+3hour    E xyz 1  * -  1 1
-* TMPU1     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.nc     T        1980-2018/1-12/1-31/0-23           E xyz 1  * -  1 1
-* TMPU2     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.nc     T        1980-2018/1-12/1-31/0-23/+3hour    E xyz 1  * -  1 1
+* PS1       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     PS       1980-2018/1-12/1-31/0-23           E xy  1  * -  1 1
+* PS2       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     PS       1980-2018/1-12/1-31/0-23/+3hour    E xy  1  * -  1 1
+* SPHU1     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     QV       1980-2018/1-12/1-31/0-23           E xyz 1  * -  1 1
+* SPHU2     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     QV       1980-2018/1-12/1-31/0-23/+3hour    E xyz 1  * -  1 1
+* TMPU1     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     T        1980-2018/1-12/1-31/0-23           E xyz 1  * -  1 1
+* TMPU2     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     T        1980-2018/1-12/1-31/0-23/+3hour    E xyz 1  * -  1 1
 
 #==============================================================================
 # --- Time zones (offset to UTC) ---

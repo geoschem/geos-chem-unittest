@@ -224,7 +224,7 @@ sub makeInputs($$$$$$$$) {
   my $inpTmpl  = "$runDir/input.geos.template";
   my $inpGeos  = "$runDir/input.geos.$met\_$grid\_$sim";
   my $hcoTmpl  = "$runDir/HEMCO_Config.template";
-  my $hcoCfg   = "$runDir/HEMCO_Config.rc";
+  my $hcoCfg   = "$runDir/HEMCO_Config.rc.$met\_$grid\_$sim";
   my $histTmpl = "$runDir/HISTORY.rc.template";
   my $histRc   = "$runDir/HISTORY.rc";
   my $errMsg   = "makeInputs: DATE must be YYYYMMDDhh or YYYYMMDDhhmm!";
@@ -759,6 +759,8 @@ sub doUnitTest($$) {
 		    "cd $runDir >> $stdout\n\n",
 		    "cp -f input.geos.$met\_$grid\_$sim input.geos >> $stdout\n",
 		    "rm -f input.geos.$met\_$grid\_$sim >> $stdout\n",
+		    "cp -f HEMCO_Config.rc.$met\_$grid\_$sim HEMCO_Config.rc >> $stdout\n",
+		    "rm -f HEMCO_Config.rc.$met\_$grid\_$sim >> $stdout\n",
 		    "ln -sf $rstFile GEOSChem_restart.${start}00.nc\n",
  	            "$makeCmd unittest >> $stdout\n",
 		    "rm -f Makefile\n",
