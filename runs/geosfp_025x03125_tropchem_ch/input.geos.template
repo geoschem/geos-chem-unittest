@@ -6,8 +6,6 @@ End   YYYYMMDD, hhmmss  : {DATE2} {TIME2}
 Run directory           : ./
 Input restart file      : GEOSChem_restart.YYYYMMDDhhmm.nc
 Root data directory     : {DATA_ROOT}
- => GEOS-FP subdir      : GEOS_FP/YYYY/MM/
- => MERRA2  subdir      : MERRA2/YYYY/MM/
 Global offsets I0, J0   : 800 420
 ------------------------+------------------------------------------------------
 %%% TIMESTEP MENU %%%   :
