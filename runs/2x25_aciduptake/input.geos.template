@@ -199,6 +199,7 @@ Turn on Transport       : T
 ------------------------+------------------------------------------------------
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
+ => Use fields from RAS?: F
 Turn on PBL Mixing?     : T
  => Use non-local PBL?  : T
 ------------------------+------------------------------------------------------
