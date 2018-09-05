@@ -19,6 +19,7 @@ input.geos.geos*
 input.geos.merra*
 *.log
 HEMCO*Config.rc
+HEMCO_Config.rc.*
 HEMCO*restart*sp
 HEMCO*restart*mp
 HEMCO*diagnostics*
@@ -29,3 +30,6 @@ Ox.mass.*
 tracer*mass*.dat
 *.mp
 *.sp
+core.*
+HISTORY.rc
+GEOSChem.*nc4*

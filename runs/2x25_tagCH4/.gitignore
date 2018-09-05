@@ -19,6 +19,7 @@ input.geos.geos*
 input.geos.merra*
 *.log
 HEMCO*Config.rc
+HEMCO_Config.rc.*
 HEMCO*restart*sp
 HEMCO*restart*mp
 HEMCO*diagnostics*
