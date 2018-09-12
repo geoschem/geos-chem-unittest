@@ -13,20 +13,22 @@
 #\\
 # !USES:
 #
-require 5.003;                       # Need this version of Perl or newer
-use English;                         # Use English language
-use Carp;                            # Get detailed error messages
+require 5.003;                     # Need this version of Perl or newer
+use English;                       # Use English language
+use Carp;                          # Get detailed error messages
 use strict;
-use Dates   qw( &getLocalTime   );   # Get routines from Dates.pm
-use UtUtils qw( &baseName
-                &checkDir
-                &cleanDir
-                &makeHemcoCfg
-                &makeInputGeos
-                &makeHistoryRc
-                &parse
-                &readResults
-                &makeMatrix     );
+use FindBin qw/$RealBin/;          # Look for perl modules
+use lib        $RealBin;           #  in the current folder
+use Dates   qw/&getLocalTime/;     # Get routines from module Dates.pm
+use UtUtils qw/&baseName
+               &checkDir
+               &cleanDir
+               &makeHemcoCfg
+               &makeInputGeos
+               &makeHistoryRc
+               &parse
+               &readResults
+               &makeMatrix/;       # Get routines from module UtUtils.pm
 #
 # !PUBLIC DATA MEMBERS:
 #
