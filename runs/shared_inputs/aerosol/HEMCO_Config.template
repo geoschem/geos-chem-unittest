@@ -1055,16 +1055,6 @@ Warnings:                    {WARNINGS}
 )))BOND
 
 #==============================================================================
-# --- BC/OC emissions over NA from Cooke et al. (1999) ---
-#
-# ==> don't use in standard simulation
-#==============================================================================
-##0 COOKE_ANTH_BC $ROOT/BCOC_COOKE/v2014-07/BCOC_Cooke_fossil.gen.1x1.nc  BCPI 1998/1-12/1/0 C xy kg/m2/s BC 1004 1 2
-##0 COOKE_ANTH_OC $ROOT/BCOC_COOKE/v2014-07/BCOC_Cooke_fossil.gen.1x1.nc  OCPI 1998/1-12/1/0 C xy kg/m2/s OC 1004 1 2
-##0 COOKE_BF_BC   $ROOT/BCOC_COOKE/v2014-07/BCOC_Cooke_biofuel.gen.1x1.nc BCPI 1998/1-12/1/0 C xy kg/m2/s BC 1004 2 2
-##0 COOKE_BF_OC   $ROOT/BCOC_COOKE/v2014-07/BCOC_Cooke_biofuel.gen.1x1.nc OCPI 1998/1-12/1/0 C xy kg/m2/s OC 1004 2 2
-
-#==============================================================================
 # --- AEIC aircraft emissions ---
 #
 # ==> Now emit aircraft BC and OC into hydrophilic tracers BCPI and OCPI.
@@ -1627,21 +1617,15 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # Country/region masks
 #==============================================================================
-1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc           MASK     2000/1/1/0 C xy unitless 1 -30/30/45/70
-1001 MEXICO_MASK $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc          MASK     2000/1/1/0 C xy unitless 1 -118/17/-95/33
-1002 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc                  MASK     2000/1/1/0 C xy unitless 1 -141/40/-52/85
-1003 SEASIA_MASK $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc              MASK     2000/1/1/0 C xy unitless 1  60/-12/153/55
-1004 NA_MASK     $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc                      MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
-1005 USA_MASK    $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc             MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
-1006 ASIA_MASK   $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc         MASK     2000/1/1/0 C xy unitless 1 46/-12/180/82
-1007 NEI11_MASK  $ROOT/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc LANDMASK 2000/1/1/0 C xy 1        1 -140/20/-50/60
-1008 AF_MASK     $ROOT/MASKS/v2014-07/AF_LANDMASK.geos.05x0666.nc              LANDMASK 1985/1/1/0 C xy unitless 1 -20/-37/54/40
-############################################################################## 
-#### NOTE: We will implement this option in GEOS-Chem 12.1.0
-####     -- Bob Yantosca (29 Jun 2018)
-#1009 CHINA_MASK  $ROOT/MASKS/v2014-07/China_mask.generic.1x1.nc                MASK     2000/1/1/0 C xy unitless 1  70/10/150/60
-#1010 INDIA_MASK  $ROOT/MASKS/v2014-07/India_mask.generic.1x1.nc                MASK     2000/1/1/0 C xy unitless 1  67/7/99/39
-############################################################################## 
+1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc           MASK     2000/1/1/0 C xy 1 1 -30/30/45/70
+1001 MEXICO_MASK $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc          MASK     2000/1/1/0 C xy 1 1 -118/17/-95/33
+1002 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc                  MASK     2000/1/1/0 C xy 1 1 -141/40/-52/85
+1003 SEASIA_MASK $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc              MASK     2000/1/1/0 C xy 1 1  60/-12/153/55
+1006 ASIA_MASK   $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc         MASK     2000/1/1/0 C xy 1 1 46/-12/180/82
+1007 NEI11_MASK  $ROOT/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc LANDMASK 2000/1/1/0 C xy 1 1 -140/20/-50/60
+1008 AFRICA_MASK $ROOT/MASKS/v2014-07/AF_LANDMASK.geos.05x0666.global.nc       LANDMASK 1985/1/1/0 C xy 1 1 -20/-37/54/40
+1009 CHINA_MASK  $ROOT/MASKS/v2014-07/China_mask.generic.1x1.nc                MASK     2000/1/1/0 C xy 1 1  70/10/150/60
+1010 INDIA_MASK  $ROOT/MASKS/v2014-07/India_mask.generic.1x1.nc                MASK     2000/1/1/0 C xy 1 1  67/7/99/39
 
 ### END SECTION MASKS ###
 

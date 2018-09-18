@@ -472,12 +472,14 @@ Warnings:                    {WARNINGS}
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
 
-1004 NA_MASK     $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc       MASK 1985/1/1/0 C xy 1 1 -165/10/-40/90
+#==============================================================================
+# Country/region masks
+#==============================================================================
 1005 USA_MASK    $ROOT/MASKS/v2014-07/USA_mask.geos.1x1.nc      MASK 1985/1/1/0 C xy 1 1 -140/10/-40/70
 1006 CHINA_MASK  $ROOT/MASKS/v2014-07/China_mask.generic.1x1.nc MASK 1985/1/1/0 C xy 1 1 70/15/125/50
 1007 INDIA_MASK  $ROOT/MASKS/v2014-07/India_mask.generic.1x1.nc MASK 1985/1/1/0 C xy 1 1 65/5/100/35
 1008 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.gen.1x1.nc    MASK 2000/1/1/0 C xy 1 1 -130/45/-50/85
-1009 EU_MASK     $ROOT/MASKS/v2014-07/EU_mask.generic.1x1.nc    MASK 1985/1/1/0 C xy 1 1 20/35/50/80
+1009 EUROPE_MASK $ROOT/MASKS/v2014-07/EU_mask.generic.1x1.nc    MASK 1985/1/1/0 C xy 1 1 20/35/50/80
 
 ### END SECTION MASKS ###
  

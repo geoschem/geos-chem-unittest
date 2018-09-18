@@ -1970,19 +1970,16 @@ NEI99_SEASON_OCPI 1 xy C N N -                     none none OCPI    ./MainDataD
 
 #==============================================================================
 # Country/region masks
-# China and India masks are commented out by default in HEMCO_Config.rc
 #==============================================================================
-EMEP_MASK    1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc
-MEXICO_MASK  1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc
-CANADA_MASK  1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/Canada_mask.geos.1x1.nc
-SEASIA_MASK  1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc
-NA_MASK      1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/NA_mask.geos.1x1.nc
-USA_MASK     1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc
-ASIA_MASK    1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc
-NEI11_MASK   1 xy C N Y - none none LANDMASK ./MainDataDir/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc
-AF_MASK      1 xy C N Y - none none LANDMASK ./MainDataDir/MASKS/v2014-07/AF_LANDMASK.geos.05x0666.nc
-CHINA_MASK   1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/China_mask.generic.1x1.nc
-INDIA_MASK   1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2014-07/India_mask.generic.1x1.nc
+EMEP_MASK    1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2018-09/EMEP_mask.geos.1x1.20151222.nc
+MEXICO_MASK  1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2018-09/BRAVO.MexicoMask.generic.1x1.nc
+CANADA_MASK  1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2018-09/Canada_mask.geos.1x1.nc
+SEASIA_MASK  1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2018-09/SE_Asia_mask.generic.1x1.nc
+ASIA_MASK    1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2018-09/MIX_Asia_mask.generic.025x025.nc
+NEI11_MASK   1 xy C N Y - none none LANDMASK ./MainDataDir/MASKS/v2018-09/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc
+AFRICA_MASK  1 xy C N Y - none none LANDMASK ./MainDataDir/MASKS/v2018-09/AF_LANDMASK.geos.05x0666.global.nc
+CHINA_MASK   1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2018-09/China_mask.generic.1x1.nc
+INDIA_MASK   1 xy C N Y - none none MASK     ./MainDataDir/MASKS/v2018-09/India_mask.generic.1x1.nc
 
 %%
 

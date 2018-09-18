@@ -785,28 +785,31 @@ Mask fractions:              false
 #==============================================================================
 # Country/region masks
 #==============================================================================
-1000 EMEP_MASK   $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc           MASK     2000/1/1/0 C xy unitless 1 -30/30/45/70
-1001 MEXICO_MASK $ROOT/MASKS/v2014-07/BRAVO.MexicoMask.generic.1x1.nc          MASK     2000/1/1/0 C xy unitless 1 -118/17/-95/33
-1002 CANADA_MASK $ROOT/MASKS/v2014-07/Canada_mask.geos.1x1.nc                  MASK     2000/1/1/0 C xy unitless 1 -141/40/-52/85
-1003 SEASIA_MASK $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc              MASK     2000/1/1/0 C xy unitless 1  60/-12/153/55
-1004 NA_MASK     $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc                      MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
-1005 USA_MASK    $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc             MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
-1006 ASIA_MASK   $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc         MASK     2000/1/1/0 C xy unitless 1 46/-12/180/82
-1007 NEI11_MASK  $ROOT/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc LANDMASK 2000/1/1/0 C xy 1        1 -140/20/-50/60
+1000 EMEP_MASK   $ROOT/MASKS/v2018-09/EMEP_mask.geos.1x1.20151222.nc           MASK     2000/1/1/0 C xy 1 1 -30/30/45/70
+1001 MEXICO_MASK $ROOT/MASKS/v2018-09/BRAVO.MexicoMask.generic.1x1.nc          MASK     2000/1/1/0 C xy 1 1 -118/17/-95/33
+1002 CANADA_MASK $ROOT/MASKS/v2018-09/Canada_mask.geos.1x1.nc                  MASK     2000/1/1/0 C xy 1 1 -141/40/-52/85
+1003 SEASIA_MASK $ROOT/MASKS/v2018-09/SE_Asia_mask.generic.1x1.nc              MASK     2000/1/1/0 C xy 1 1  60/-12/153/55
+1004 NA_MASK     $ROOT/MASKS/v2018-09/NA_mask.geos.1x1.nc                      MASK     2000/1/1/0 C xy 1 1 -165/10/-40/90
+1005 USA_MASK    $ROOT/MASKS/v2018-09/usa.mask.nei2005.geos.1x1.nc             MASK     2000/1/1/0 C xy 1 1 -165/10/-40/90
+1006 ASIA_MASK   $ROOT/MASKS/v2018-09/MIX_Asia_mask.generic.025x025.nc         MASK     2000/1/1/0 C xy 1 1 46/-12/180/82
+1007 NEI11_MASK  $ROOT/MASKS/v2018-09/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc LANDMASK 2000/1/1/0 C xy 1 1 -140/20/-50/60
+1008 AFRICA_MASK $ROOT/MASKS/v2018-09/AF_LANDMASK.geos.05x0666.global.nc       LANDMASK 1985/1/1/0 C xy 1 1 -20/-37/54/40
+1009 CHINA_MASK  $ROOT/MASKS/v2018-09/China_mask.generic.1x1.nc                MASK     2000/1/1/0 C xy 1 1  70/10/150/60
+1010 INDIA_MASK  $ROOT/MASKS/v2018-09/India_mask.generic.1x1.nc                MASK     2000/1/1/0 C xy 1 1  67/7/99/39
 
 #==============================================================================
 # Tagged CO regions
 #==============================================================================
-1100 TAGCO_USA_MASK   $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_USA_MASK   2000/1/1/0 C xy 1 1 -172/24/-18/88
-1101 TAGCO_EUR_MASK   $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_EUR_MASK   2000/1/1/0 C xy 1 1 -17/36/172/88
-1102 TAGCO_ASIA_MASK  $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_ASIA_MASK  2000/1/1/0 C xy 1 1  70/8/152/44
-1103 TAGCO_OTH_MASK   $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_OTH_MASK   2000/1/1/0 C xy 1 1 -180/-90/180/90
-1104 TAGCO_BBAM_MASK  $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBAM_MASK  2000/1/1/0 C xy 1 1 -112/-56/-33/24
-1105 TAGCO_BBAF_MASK  $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBAF_MASK  2000/1/1/0 C xy 1 1 -17/-48/70/36
-1106 TAGCO_BBAS_MASK  $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBAS_MASK  2000/1/1/0 C xy 1 1  70/8/153/45
-1107 TAGCO_BBOC_MASK  $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBOC_MASK  2000/1/1/0 C xy 1 1  70/8/170/90
-1108 TAGCO_BBEU_MASK  $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBEU_MASK  2000/1/1/0 C xy 1 1 -17/45/173/88
-1109 TAGCO_BBOTH_MASK $ROOT/MASKS/v2014-07/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBOTH_MASK 2000/1/1/0 C xy 1 1 -180/-90/180/90
+1100 TAGCO_USA_MASK   $ROOT/MASKS/v2018-09/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_USA_MASK   2000/1/1/0 C xy 1 1 -172/24/-18/88
+1101 TAGCO_EUR_MASK   $ROOT/MASKS/v2018-09/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_EUR_MASK   2000/1/1/0 C xy 1 1 -17/36/172/88
+1102 TAGCO_ASIA_MASK  $ROOT/MASKS/v2018-09/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_ASIA_MASK  2000/1/1/0 C xy 1 1  70/8/152/44
+1103 TAGCO_OTH_MASK   $ROOT/MASKS/v2018-09/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_OTH_MASK   2000/1/1/0 C xy 1 1 -180/-90/180/90
+1104 TAGCO_BBAM_MASK  $ROOT/MASKS/v2018-09/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBAM_MASK  2000/1/1/0 C xy 1 1 -112/-56/-33/24
+1105 TAGCO_BBAF_MASK  $ROOT/MASKS/v2018-09/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBAF_MASK  2000/1/1/0 C xy 1 1 -17/-48/70/36
+1106 TAGCO_BBAS_MASK  $ROOT/MASKS/v2018-09/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBAS_MASK  2000/1/1/0 C xy 1 1  70/8/153/45
+1107 TAGCO_BBOC_MASK  $ROOT/MASKS/v2018-09/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBOC_MASK  2000/1/1/0 C xy 1 1  70/8/170/90
+1108 TAGCO_BBEU_MASK  $ROOT/MASKS/v2018-09/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBEU_MASK  2000/1/1/0 C xy 1 1 -17/45/173/88
+1109 TAGCO_BBOTH_MASK $ROOT/MASKS/v2018-09/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBOTH_MASK 2000/1/1/0 C xy 1 1 -180/-90/180/90
 
 ### END SECTION MASKS ###
  
