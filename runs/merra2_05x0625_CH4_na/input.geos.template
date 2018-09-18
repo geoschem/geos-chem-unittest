@@ -27,7 +27,7 @@ Turn on Transport       : T
 %%% CONVECTION MENU %%% :
 Turn on Cloud Conv?     : T
 Turn on PBL Mixing?     : T
- => Use non-local PBL?  : F
+ => Use non-local PBL?  : T
 ------------------------+------------------------------------------------------
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
