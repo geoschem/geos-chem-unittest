@@ -91,23 +91,27 @@ Mask fractions:              false
     --> BRAVO                :       true
     --> APEI                 :       true
     --> C2H6                 :       true
-    --> EDGARv43             :       true
+    --> EDGARv43             :       false
     --> HTAP                 :       false
+    --> CEDS                 :       true
     --> EMEP                 :       true
     --> GEIA                 :       true
-    --> NEI2005              :       true
     --> NEI2011_HOURLY       :       false
-    --> NEI2011_MONMEAN      :       false
-    --> SHIP                 :       true
-    --> NEI2011_SHIP_HOURLY  :       false
-    --> NEI2011_SHIP_MONMEAN :       false
+    --> NEI2011_MONMEAN      :       true
     --> MIX                  :       true
     --> STREETS              :       false
+    --> DICE_Africa          :       true
+    --> TRASH                :       false
     --> RCP_3PD              :       false 
     --> RCP_45               :       false
     --> RCP_60               :       false
     --> RCP_85               :       false
     --> QFED2                :       true
+    --> SHIP                 :       true
+    --> CEDS_SHIP            :       true
+    --> EMEP_SHIP            :       true
+    --> NEI2011_SHIP_HOURLY  :       false
+    --> NEI2011_SHIP_MONMEAN :       false
 # -----------------------------------------------------------------------------
 108     MEGAN                : on    ISOP/ACET
     --> Isoprene scaling     :       1.0 
@@ -126,7 +130,8 @@ Mask fractions:              false
 #==============================================================================
 # --- EDGAR v4.3 ---
 #
-# %%% NOTE: Use EDGAR for the global base emissions instead of GEIA %%%
+# %%% NOTE: This is an optional inventory. You may select either CEDS, EDGAR,
+#  or HTAP for the global base emissions %%%
 # 
 # Aviation and shipping emissions are not included
 # Do not include the following sources (meng,3/6/2014)
@@ -189,6 +194,100 @@ Mask fractions:              false
 )))EDGARv43
 
 #==============================================================================
+# --- HTAP v2 ---
+#
+# %%% NOTE: This is an optional inventory. You may select either CEDS, EDGAR,
+#  or HTAP for the global base emissions %%%
+#
+# ==> HTAP ship emissions are listed in the ship emissions section below
+# ==> Disable aircraft emissions and get them from AEIC instead.
+#==============================================================================
+(((HTAP
+0 HTAP_CO_IND      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_INDUSTRY.generic.01x01.nc    emi_co 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26      1/2 4
+0 HTAP_CO_IND_us   -                                                                 -      -                  - -  -       COus   6/28/26/1100 1/2 4
+0 HTAP_CO_IND_eur  -                                                                 -      -                  - -  -       COeur  6/28/26/1101 1/2 4
+0 HTAP_CO_IND_asia -                                                                 -      -                  - -  -       COasia 6/28/26/1102 1/2 4
+0 HTAP_CO_IND_oth  -                                                                 -      -                  - -  -       COoth  6/28/26/1103 1/2 4
+0 HTAP_CO_POW      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_ENERGY.generic.01x01.nc      emi_co 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26      1/2 4
+0 HTAP_CO_POW_us   -                                                                 -      -                  - -  -       COus   6/28/26/1100 1/2 4
+0 HTAP_CO_POW_eur  -                                                                 -      -                  - -  -       COeur  6/28/26/1101 1/2 4
+0 HTAP_CO_POW_asia -                                                                 -      -                  - -  -       COasia 6/28/26/1102 1/2 4
+0 HTAP_CO_POW_oth  -                                                                 -      -                  - -  -       COoth  6/28/26/1103 1/2 4
+0 HTAP_CO_RES      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_RESIDENTIAL.generic.01x01.nc emi_co 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26      1/2 4
+0 HTAP_CO_RES_us   -                                                                 -      -                  - -  -       COus   6/28/26/1100 1/2 4
+0 HTAP_CO_RES_eur  -                                                                 -      -                  - -  -       COeur  6/28/26/1101 1/2 4
+0 HTAP_CO_RES_asia -                                                                 -      -                  - -  -       COasia 6/28/26/1102 1/2 4
+0 HTAP_CO_RES_oth  -                                                                 -      -                  - -  -       COoth  6/28/26/1103 1/2 4
+0 HTAP_CO_TRA      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_TRANSPORT.generic.01x01.nc   emi_co 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26      1/2 4
+0 HTAP_CO_TRA_us   -                                                                 -      -                  - -  -       COus   6/28/26/1100 1/2 4
+0 HTAP_CO_TRA_eur  -                                                                 -      -                  - -  -       COeur  6/28/26/1101 1/2 4
+0 HTAP_CO_TRA_asia -                                                                 -      -                  - -  -       COasia 6/28/26/1102 1/2 4
+0 HTAP_CO_TRA_oth  -                                                                 -      -                  - -  -       COoth  6/28/26/1103 1/2 4
+#0 HTAP_CO_AIR1      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_LTO.generic.01x01.nc   emi_co 2008-2010/1/1/0    C xy kg/m2/s CO     6/28/26      1/2 4
+#0 HTAP_CO_AIR1_us   -                                                               -      -                  - -  -       COus   6/28/26/1100 1/2 4
+#0 HTAP_CO_AIR1_eur  -                                                               -      -                  - -  -       COeur  6/28/26/1101 1/2 4
+#0 HTAP_CO_AIR1_asia -                                                               -      -                  - -  -       COasia 6/28/26/1102 1/2 4
+#0 HTAP_CO_AIR1_oth  -                                                               -      -                  - -  -       COoth  6/28/26/1103 1/2 4
+#0 HTAP_CO_AIR2      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_CDS.generic.01x01.nc   emi_co 2008-2010/1/1/0    C xy kg/m2/s CO     6/28/26      1/2 4
+#0 HTAP_CO_AIR2_us   -                                                               -      -                  - -  -       COus   6/28/26/1100 1/2 4
+#0 HTAP_CO_AIR2_eur  -                                                               -      -                  - -  -       COeur  6/28/26/1101 1/2 4
+#0 HTAP_CO_AIR2_asia -                                                               -      -                  - -  -       COasia 6/28/26/1102 1/2 4
+#0 HTAP_CO_AIR2_oth  -                                                               -      -                  - -  -       COoth  6/28/26/1103 1/2 4
+#0 HTAP_CO_AIR3      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_CRS.generic.01x01.nc   emi_co 2008-2010/1/1/0    C xy kg/m2/s CO     6/28/26      1/2 4
+#0 HTAP_CO_AIR3_us   -                                                               -      -                  - -  -       COus   6/28/26/1100 1/2 4
+#0 HTAP_CO_AIR3_eur  -                                                               -      -                  - -  -       COeur  6/28/26/1101 1/2 4
+#0 HTAP_CO_AIR3_asia -                                                               -      -                  - -  -       COasia 6/28/26/1102 1/2 4
+#0 HTAP_CO_AIR3_oth  -                                                               -      -                  - -  -       COoth  6/28/26/1103 1/2 4
+)))HTAP
+
+#==============================================================================
+# --- CEDS ---
+#
+# %%% NOTE: This is the default global inventory. You may select either CEDS,
+# EDGAR, or HTAP for the global base emissions %%%
+#
+# ==> CEDS ship emissions are listed in the ship emissions section below
+# ==> CEDS includes trash emissions (Cat=12) from Wiedinmyer et al. (2014)
+#==============================================================================
+(((CEDS
+0 CEDS_CO_AGR      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_agr 1950-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
+0 CEDS_CO_AGR_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
+0 CEDS_CO_AGR_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
+0 CEDS_CO_AGR_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
+0 CEDS_CO_AGR_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
+0 CEDS_CO_ENE      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_ene 1950-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
+0 CEDS_CO_ENE_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
+0 CEDS_CO_ENE_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
+0 CEDS_CO_ENE_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
+0 CEDS_CO_ENE_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
+0 CEDS_CO_IND      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_ind 1950-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
+0 CEDS_CO_IND_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
+0 CEDS_CO_IND_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
+0 CEDS_CO_IND_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
+0 CEDS_CO_IND_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
+0 CEDS_CO_TRA      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_tra 1950-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
+0 CEDS_CO_TRA_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
+0 CEDS_CO_TRA_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
+0 CEDS_CO_TRA_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
+0 CEDS_CO_TRA_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
+0 CEDS_CO_RCO      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_rco 1950-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
+0 CEDS_CO_RCO_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
+0 CEDS_CO_RCO_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
+0 CEDS_CO_RCO_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
+0 CEDS_CO_RCO_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
+0 CEDS_CO_SLV      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_slv 1950-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
+0 CEDS_CO_SLV_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
+0 CEDS_CO_SLV_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
+0 CEDS_CO_SLV_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
+0 CEDS_CO_SLV_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
+0 CEDS_CO_WST      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_wst 1950-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
+0 CEDS_CO_WST_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
+0 CEDS_CO_WST_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
+0 CEDS_CO_WST_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
+0 CEDS_CO_WST_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
+)))CEDS
+
+#==============================================================================
 # --- BIOFUEL EMISSIONS (Yevich and Logan, 2003) ---
 #
 # ==> Note that this inventory does not contain emissions over the US!!
@@ -221,6 +320,22 @@ Mask fractions:              false
 )))BIOFUEL
 
 #==============================================================================
+# --- Wiedinmyer et al. (2014) global trash emissions ---
+#
+# CEDS emissions already include trash emissions from Wiedinmyer et al. (2014)
+# so we will not use TRASH emissions when CEDS emissions are used.
+#==============================================================================
+(((TRASH
+(((.notCEDS
+0 TRASH_CO     $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc CO 2008/1/1/0 C xy kg/m2/s CO     -       12 1
+0 TRASH_COus   -                                                      -  -          - -  -       COus   53/1100 12 1
+0 TRASH_COeur  -                                                      -  -          - -  -       COeur  53/1101 12 1
+0 TRASH_COasia -                                                      -  -          - -  -       COasia 53/1102 12 1
+0 TRASH_COoth  -                                                      -  -          - -  -       COoth  53/1103 12 1
+))).notCEDS
+)))TRASH
+
+#==============================================================================
 # --- EMEP (Europe) ---
 #==============================================================================
 (((EMEP
@@ -248,18 +363,6 @@ Mask fractions:              false
 0 APEI_COus  -                                   -  -               - -  -       COus  26/52/1002/1100 1/2 30
 0 APEI_COoth -                                   -  -               - -  -       COoth 26/52/1002/1103 1/2 30
 )))APEI
-
-#==============================================================================
-# --- NEI 2005 (USA) ---
-#
-# NOTE: Need to apply the GEIA_TOD_FOSSIL scale factor (#26)! 
-# done for CO, need to check others
-#==============================================================================
-(((NEI2005
-0 NEI2005_CO     $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc  CO  2005/1/1/0 C xy kg/m2/s  CO      6/26/17/211/230/1005      1 35
-0 NEI2005_COus   -                                              -   -          - -  -        COus    6/26/17/211/230/1005/1100 1 35
-0 NEI2005_COoth  -                                              -   -          - -  -        COoth   6/26/17/211/230/1005/1103 1 35
-)))NEI2005
 
 #==============================================================================
 # --- NEI 2011 (USA) ---
@@ -402,6 +505,151 @@ Mask fractions:              false
 )))MIX
 
 #==============================================================================
+# --- DICE-Africa emission inventory (Marais and Wiedinmyer, ES&T, 2016) ---
+#
+# DICE-Africa includes regional (Africa) emissions of biofuel and diffuse 
+# anthropogenic emissions from cars and motorcycles, biofuels, charcoal making 
+# and use, backup generators, agricultural waste burning for cooking, gas 
+# flares, and ad-hoc/informal oil refining.
+#
+# Other pollution sources (formal industry, power generation using fossil 
+# fuels) are from the EDGAR v4.3 inventory for CO, SO2, NH3, NOx BC, and OC. 
+#
+# NMVOCs from sources not accounted for in DICE-Africa aren't included here, 
+# as these emissions are likely to be low compared to the DICE pollution 
+# sources and RETRO v1 as implemented in GEOS-Chem doesn't distinguish 
+# emissions by sector/activity.
+#
+# Emissions for 2013 are defined below, but DICE-Africa also includes 
+# emissions for 2006.  Developers recommend using population change to 
+# estimate emissions, if users want to use annual trends in pollutant 
+# emissions to estimate in other years.
+#==============================================================================
+(((DICE_Africa
+# ------------------------
+#  Cars 
+# ------------------------
+0 DICE_CARS_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      1 60
+0 DICE_CARS_CO_eur  -                                                                -  -          - -  -       COeur  26/1008/1101 1 60
+0 DICE_CARS_CO_asia -                                                                -  -          - -  -       COasia 26/1008/1102 1 60
+0 DICE_CARS_CO_oth  -                                                                -  -          - -  -       COoth  26/1008/1103 1 60
+
+# ------------------------
+#  Motorcycles 
+# ------------------------
+0 DICE_MOTORCYCLES_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      1 60
+0 DICE_MOTORCYCLES_CO_eur  -                                                                       -  -          - -  -       COeur  26/1008/1101 1 60
+0 DICE_MOTORCYCLES_CO_asia -                                                                       -  -          - -  -       COasia 26/1008/1102 1 60
+0 DICE_MOTORCYCLES_CO_oth  -                                                                       -  -          - -  -       COoth  26/1008/1103 1 60
+
+# ------------------------
+#  Backup generators 
+# ------------------------
+0 DICE_BACKUPGEN_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      1 60
+0 DICE_BACKUPGEN_CO_eur  -                                                                         -  -          - -  -       COeur  26/1008/1101 1 60
+0 DICE_BACKUPGEN_CO_asia -                                                                         -  -          - -  -       COasia 26/1008/1102 1 60
+0 DICE_BACKUPGEN_CO_oth  -                                                                         -  -          - -  -       COoth  26/1008/1103 1 60
+
+# ------------------------
+#  Charcoal production 
+# ------------------------
+0 DICE_CHARCOALPROD_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      1 60
+0 DICE_CHARCOALPROD_CO_eur  -                                                                               -  -          - -  -       COeur  26/1008/1101 1 60
+0 DICE_CHARCOALPROD_CO_asia -                                                                               -  -          - -  -       COasia 26/1008/1102 1 60
+0 DICE_CHARCOALPROD_CO_oth  -                                                                               -  -          - -  -       COoth  26/1008/1103 1 60
+
+# ------------------------
+#  Flaring of natural gas 
+# ------------------------
+0 DICE_GASFLARE_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      1 60
+0 DICE_GASFLARE_CO_eur  -                                                                      -  -          - -  -       COeur  26/1008/1101 1 60
+0 DICE_GASFLARE_CO_asia -                                                                      -  -          - -  -       COasia 26/1008/1102 1 60
+0 DICE_GASFLARE_CO_oth  -                                                                      -  -          - -  -       COoth  26/1008/1103 1 60
+
+# ------------------------------
+#  Ag waste burning for energy 
+# ------------------------------
+0 DICE_AGBURNING_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      2 60
+0 DICE_AGBURNING_CO_eur  -                                                                                      -  -          - -  -       COeur  26/1008/1101 2 60
+0 DICE_AGBURNING_CO_asia -                                                                                      -  -          - -  -       COasia 26/1008/1102 2 60
+0 DICE_AGBURNING_CO_oth  -                                                                                      -  -          - -  -       COoth  26/1008/1103 2 60
+
+# ------------------------------
+#  Charcoal use 
+# ------------------------------
+0 DICE_CHARCOALUSE_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      2 60
+0 DICE_CHARCOALUSE_CO_eur  -                                                                        -  -          - -  -       COeur  26/1008/1101 2 60
+0 DICE_CHARCOALUSE_CO_asia -                                                                        -  -          - -  -       COasia 26/1008/1102 2 60
+0 DICE_CHARCOALUSE_CO_oth  -                                                                        -  -          - -  -       COoth  26/1008/1103 2 60
+
+# ------------------------------
+#  Kerosene use 
+# ------------------------------
+0 DICE_KEROSENE_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-kerosene-use-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      1 60
+0 DICE_KEROSENE_CO_eur  -                                                                        -  -          - -  -       COeur  26/1008/1101 1 60
+0 DICE_KEROSENE_CO_asia -                                                                        -  -          - -  -       COasia 26/1008/1102 1 60
+0 DICE_KEROSENE_CO_oth  -                                                                        -  -          - -  -       COoth  26/1008/1103 1 60
+
+# ------------------------------
+#  Artisanal oil refining 
+# ------------------------------
+0 DICE_OILREFINING_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      1 60
+0 DICE_OILREFINING_CO_eur  -                                                                              -  -          - -  -       COeur  26/1008/1101 1 60
+0 DICE_OILREFINING_CO_asia -                                                                              -  -          - -  -       COasia 26/1008/1102 1 60
+0 DICE_OILREFINING_CO_oth  -                                                                              -  -          - -  -       COoth  26/1008/1103 1 60
+
+# --------------------------
+#  Household fuelwood use 
+# --------------------------
+0 DICE_HOUSEFUELWOOD_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      2 60
+0 DICE_HOUSEFUELWOOD_CO_eur  -                                                                                  -  -          - -  -       COeur  26/1008/1101 2 60
+0 DICE_HOUSEFUELWOOD_CO_asia -                                                                                  -  -          - -  -       COasia 26/1008/1102 2 60
+0 DICE_HOUSEFUELWOOD_CO_oth  -                                                                                  -  -          - -  -       COoth  26/1008/1103 2 60
+
+# ---------------------------------
+#  Commercial (other) fuelwood use 
+# ---------------------------------
+0 DICE_OTHERFUELWOOD_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      2 60
+0 DICE_OTHERFUELWOOD_CO_eur  -                                                                              -  -          - -  -       COeur  26/1008/1101 2 60
+0 DICE_OTHERFUELWOOD_CO_asia -                                                                              -  -          - -  -       COasia 26/1008/1102 2 60
+0 DICE_OTHERFUELWOOD_CO_oth  -                                                                              -  -          - -  -       COoth  26/1008/1103 2 60
+
+# ---------------------------------------------------
+#  Efficient Combustion Emissions from EDGAR
+#  This makes up for sources that DICE-Africa lacks
+# ---------------------------------------------------
+0 AF_EDGAR_CO_POW      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.POW.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1201/26/52/1008      1/2 60
+0 AF_EDGAR_CO_POW_eur  -                                                   -       -               - -  -       COeur  1201/26/52/1008/1101 1/2 60
+0 AF_EDGAR_CO_POW_asia -                                                   -       -               - -  -       COasia 1201/26/52/1008/1102 1/2 60
+0 AF_EDGAR_CO_POW_oth  -                                                   -       -               - -  -       COoth  1201/26/52/1008/1103 1/2 60
+
+0 AF_EDGAR_CO_ENG      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.ENG.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1202/26/52/1008      1/2 60
+0 AF_EDGAR_CO_ENG_eur  -                                                   -       -               - -  -       COeur  1202/26/52/1008/1101 1/2 60
+0 AF_EDGAR_CO_ENG_asia -                                                   -       -               - -  -       COasia 1202/26/52/1008/1102 1/2 60
+0 AF_EDGAR_CO_ENG_oth  -                                                   -       -               - -  -       COoth  1202/26/52/1008/1103 1/2 60
+
+0 AF_EDGAR_CO_IND      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.IND.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1203/26/52/1008      1/2 60
+0 AF_EDGAR_CO_IND_eur  -                                                   -       -               - -  -       COeur  1203/26/52/1008/1101 1/2 60
+0 AF_EDGAR_CO_IND_asia -                                                   -       -               - -  -       COasia 1203/26/52/1008/1102 1/2 60
+0 AF_EDGAR_CO_IND_oth  -                                                   -       -               - -  -       COoth  1203/26/52/1008/1103 1/2 60
+
+0 AF_EDGAR_CO_TNG      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.TNG.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1205/26/52/1008      1/2 60
+0 AF_EDGAR_CO_TNG_eur  -                                                   -       -               - -  -       COeur  1205/26/52/1008/1101 1/2 60
+0 AF_EDGAR_CO_TNG_asia -                                                   -       -               - -  -       COasia 1205/26/52/1008/1102 1/2 60
+0 AF_EDGAR_CO_TNG_oth  -                                                   -       -               - -  -       COoth  1205/26/52/1008/1103 1/2 60
+
+0 AF_EDGAR_CO_PPA      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.PPA.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1207/26/52/1008      1/2 60
+0 AF_EDGAR_CO_PPA_eur  -                                                   -       -               - -  -       COeur  1207/26/52/1008/1101 1/2 60
+0 AF_EDGAR_CO_PPA_asia -                                                   -       -               - -  -       COasia 1207/26/52/1008/1102 1/2 60
+0 AF_EDGAR_CO_PPA_oth  -                                                   -       -               - -  -       COoth  1207/26/52/1008/1103 1/2 60
+
+0 AF_EDGAR_CO_SWD      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.SWD.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1211/26/52/1008      1/2 60
+0 AF_EDGAR_CO_SWD_eur  -                                                   -       -               - -  -       COeur  1211/26/52/1008/1101 1/2 60
+0 AF_EDGAR_CO_SWD_asia -                                                   -       -               - -  -       COasia 1211/26/52/1008/1102 1/2 60
+0 AF_EDGAR_CO_SWD_oth  -                                                   -       -               - -  -       COoth  1211/26/52/1008/1103 1/2 60
+)))DICE_Africa
+
+#==============================================================================
 # --- Ship emissions ---
 #
 # ==> In the defaults, ARCTAS SO2 has priority over ICOADS, CORBETT, and HTAP.
@@ -414,25 +662,33 @@ Mask fractions:              false
 #     zero.
 #==============================================================================
 (((SHIP
-0  ICOADS_SHIP_CO       $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                CO     2002/1-12/1/0       C xy kg/m2/s  CO     6/10          10 1
-0  ICOADS_SHIP_CO_us    -                                                               -      -                   - -  -        COus   6/10/1100     10 1
-0  ICOADS_SHIP_CO_eur   -                                                               -      -                   - -  -        COeur  6/10/1101     10 1
-0  ICOADS_SHIP_CO_asia  -                                                               -      -                   - -  -        COasia 6/10/1102     10 1
-0  ICOADS_SHIP_CO_oth   -                                                               -      -                   - -  -        COoth  6/10/1103     10 1
+0  ICOADS_SHIP_CO       $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                CO     2002/1-12/1/0       C xy kg/m2/s  CO     6/10          10 2
+0  ICOADS_SHIP_CO_us    -                                                               -      -                   - -  -        COus   6/10/1100     10 2
+0  ICOADS_SHIP_CO_eur   -                                                               -      -                   - -  -        COeur  6/10/1101     10 2
+0  ICOADS_SHIP_CO_asia  -                                                               -      -                   - -  -        COasia 6/10/1102     10 2
+0  ICOADS_SHIP_CO_oth   -                                                               -      -                   - -  -        COoth  6/10/1103     10 2
 
-#0 HTAP_SHIP_CO         $ROOT/HTAP/v2015-03/EDGAR_HTAP_CO_SHIPS.generic.01x01.nc        CO     2008-2010/1/1/0     C xy kg/m2/s  CO     6/28          10 2
-#0 HTAP_SHIP_CO_us      -                                                               -      -                   - -  -        COus   6/28/1100     10 2
-#0 HTAP_SHIP_CO_eur     -                                                               -      -                   - -  -        COeur  6/28/1101     10 2
-#0 HTAP_SHIP_CO_asia    -                                                               -      -                   - -  -        COasia 6/28/1102     10 2
-#0 HTAP_SHIP_CO_oth     -                                                               -      -                   - -  -        COoth  6/28/1103     10 2
+#0 HTAP_SHIP_CO         $ROOT/HTAP/v2015-03/EDGAR_HTAP_CO_SHIPS.generic.01x01.nc        CO     2008-2010/1/1/0     C xy kg/m2/s  CO     6/28          10 4
+#0 HTAP_SHIP_CO_us      -                                                               -      -                   - -  -        COus   6/28/1100     10 4
+#0 HTAP_SHIP_CO_eur     -                                                               -      -                   - -  -        COeur  6/28/1101     10 4
+#0 HTAP_SHIP_CO_asia    -                                                               -      -                   - -  -        COasia 6/28/1102     10 4
+#0 HTAP_SHIP_CO_oth     -                                                               -      -                   - -  -        COoth  6/28/1103     10 4
 
-(((EMEP
-0 EMEP_SHIP_CO          $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipCO 1990-2012/1/1/0     C xy kg/m2/s  CO     1000          10 2
-0 EMEP_SHIP_CO_us       -                                                               -      -                   - -  -        COus   1000/1100     10 2
-0 EMEP_SHIP_CO_eur      -                                                               -      -                   - -  -        COeur  1000/1101     10 2
-0 EMEP_SHIP_CO_asia     -                                                               -      -                   - -  -        COasia 1000/1102     10 2
-0 EMEP_SHIP_CO_oth      -                                                               -      -                   - -  -        COoth  1000/1103     10 2
-)))EMEP
+(((CEDS_SHIP
+0 CEDS_CO_SHP           $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc       CO_shp 1950-2014/1-12/1/0  C xy kg/m2/s  CO     26            10 5
+0 CEDS_CO_SHP_us        -                                                               -      -                   - -  -        COus   26/1100       10 5
+0 CEDS_CO_SHP_eur       -                                                               -      -                   - -  -        COeur  26/1101       10 5
+0 CEDS_CO_SHP_asia      -                                                               -      -                   - -  -        COasia 26/1102       10 5
+0 CEDS_CO_SHP_oth       -                                                               -      -                   - -  -        COoth  26/1103       10 5
+)))CEDS_SHIP
+
+(((EMEP_SHIP
+0 EMEP_SHIP_CO          $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipCO 1990-2012/1/1/0     C xy kg/m2/s  CO     1000          10 10
+0 EMEP_SHIP_CO_us       -                                                               -      -                   - -  -        COus   1000/1100     10 10
+0 EMEP_SHIP_CO_eur      -                                                               -      -                   - -  -        COeur  1000/1101     10 10
+0 EMEP_SHIP_CO_asia     -                                                               -      -                   - -  -        COasia 1000/1102     10 10
+0 EMEP_SHIP_CO_oth      -                                                               -      -                   - -  -        COoth  1000/1103     10 10
+)))EMEP_SHIP
 
 (((NEI2011_SHIP_HOURLY
 0 NEI11_C3MARINE_CO     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc CO     2006-2013/$MM/$DD/* R xy kg/m2/s  CO     252/1007      10 50
@@ -759,7 +1015,6 @@ Mask fractions:              false
 # --- NEI 2005 scale factors ---
 #==============================================================================
 211 NEI99_DOW_CO      $ROOT/NEI2005/v2014-09/scaling/NEI99.dow.geos.1x1.nc      CO 1999/1-12/WD/0 C xy 1 1
-230 NEI99_SEASON_CO   $ROOT/NEI2005/v2014-09/scaling/NEI99.season.geos.1x1.nc   CO 1999/1-12/1/0 C  xy 1 1
 
 #==============================================================================
 # --- NEI 20011 scale factors ---
@@ -789,8 +1044,6 @@ Mask fractions:              false
 1001 MEXICO_MASK $ROOT/MASKS/v2018-09/BRAVO.MexicoMask.generic.1x1.nc          MASK     2000/1/1/0 C xy 1 1 -118/17/-95/33
 1002 CANADA_MASK $ROOT/MASKS/v2018-09/Canada_mask.geos.1x1.nc                  MASK     2000/1/1/0 C xy 1 1 -141/40/-52/85
 1003 SEASIA_MASK $ROOT/MASKS/v2018-09/SE_Asia_mask.generic.1x1.nc              MASK     2000/1/1/0 C xy 1 1  60/-12/153/55
-1004 NA_MASK     $ROOT/MASKS/v2018-09/NA_mask.geos.1x1.nc                      MASK     2000/1/1/0 C xy 1 1 -165/10/-40/90
-1005 USA_MASK    $ROOT/MASKS/v2018-09/usa.mask.nei2005.geos.1x1.nc             MASK     2000/1/1/0 C xy 1 1 -165/10/-40/90
 1006 ASIA_MASK   $ROOT/MASKS/v2018-09/MIX_Asia_mask.generic.025x025.nc         MASK     2000/1/1/0 C xy 1 1 46/-12/180/82
 1007 NEI11_MASK  $ROOT/MASKS/v2018-09/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc LANDMASK 2000/1/1/0 C xy 1 1 -140/20/-50/60
 1008 AFRICA_MASK $ROOT/MASKS/v2018-09/AF_LANDMASK.geos.05x0666.global.nc       LANDMASK 1985/1/1/0 C xy 1 1 -20/-37/54/40

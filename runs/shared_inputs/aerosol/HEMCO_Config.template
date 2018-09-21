@@ -525,22 +525,6 @@ Warnings:                    {WARNINGS}
 )))APEI
 
 #==============================================================================
-# --- NEI 2005 (USA) ---
-#
-# NOTE: Need to apply the GEIA_TOD_FOSSIL scale factor (#26)! 
-# done for CO, need to check others
-#==============================================================================
-(((NEI2005
-0 NEI2005_SOAP $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc CO   2005/1/1/0 C xy kg/m2/s SOAP 6/26/17/211/230/1005/280 1 35
-0 NEI2005_SO2  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc SO2  2005/1/1/0 C xy kg/m2/s SO2  11/18/218/237/1005       1 35
-0 NEI2005_SO4  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc SO4  2005/1/1/0 C xy kg/m2/s SO4  11/18/219/238/1005       1 35
-0 NEI2005_pFe  -                                                -    -          - -  -        pFe  11/18/219/238/1005/69    1 35
-0 NEI2005_NH3  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc NH3  2005/1/1/0 C xy kg/m2/s NH3  242/1005                 1 35
-#0 NEI2005_OC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc OCPI 2005/1/1/0 C xy kg/m2/s OCPI 222/241/1005             1 35
-#0 NEI2005_BC  $ROOT/NEI2005/v2014-09/NEI2005.geos.1x1.1L.nc BCPI 2005/1/1/0 C xy kg/m2/s BCPI 221/240/1005             1 35
-)))NEI2005
-
-#==============================================================================
 # --- NEI 2011 (USA) ---
 #
 # Users may use either hourly or monthly mean NEI2011 emissions.
