@@ -483,12 +483,12 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 
 (((GFED4
-111 GFED_TEMP       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_TEMP           1998-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_AGRI       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_AGRI           1998-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_DEFO       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_DEFO           1998-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_BORF       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_BORF           1998-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_PEAT       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_PEAT           1998-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_SAVA       $ROOT/GFED4/v2015-06/GFED4_gen.025x025.$YYYY.nc       DM_SAVA           1998-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_TEMP       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_TEMP       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_AGRI       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_AGRI       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_DEFO       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_DEFO       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_BORF       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_BORF       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_PEAT       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_PEAT       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_SAVA       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_SAVA       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
 
 (((GFED_daily
 111 GFED_FRAC_DAY   $ROOT/GFED4/v2015-10/$YYYY/GFED4_dailyfrac_gen.025x025.$YYYY$MM.nc GFED_FRACDAY 2003-2016/1-12/1-31/0  C xy 1 * - 1 1
@@ -500,7 +500,7 @@ Warnings:                    {WARNINGS}
 )))GFED4
 
 #==============================================================================
-# --- FINN biomass burning emissions (Extension 114) 
+# --- FINN v1.5 biomass burning emissions (Extension 114) 
 #==============================================================================
 (((.not.FINN_daily
 114 FINN_VEGTYP1       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype1 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
@@ -601,18 +601,13 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # Country/region masks
 #==============================================================================
-1000 EMEP_MASK       $ROOT/MASKS/v2014-07/EMEP_mask.geos.1x1.20151222.nc                  MASK     2000/1/1/0 C xy unitless 1 -30/30/45/70
-1001 MEXICO_MASK     $ROOT/MASKS/v2014-07/Mexico_Mask.Extended_NAgrid.001x001.nc          MASK     2000/1/1/0 C xy unitless 1 -118/17/-95/33
-1002 CANADA_MASK     $ROOT/MASKS/v2014-07/Canada_Mask.Extended_NAgrid.001x001.nc          MASK     2000/1/1/0 C xy unitless 1 -141/40/-52/85
-1003 SEASIA_MASK     $ROOT/MASKS/v2014-07/SE_Asia_mask.generic.1x1.nc                     MASK     2000/1/1/0 C xy unitless 1  60/-12/153/55
-1004 NA_MASK         $ROOT/MASKS/v2014-07/NA_mask.geos.1x1.nc                             MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
-1005 USA_MASK        $ROOT/MASKS/v2014-07/usa.mask.nei2005.geos.1x1.nc                    MASK     2000/1/1/0 C xy unitless 1 -165/10/-40/90
-1006 ASIA_MASK       $ROOT/MASKS/v2014-07/MIX_Asia_mask.generic.025x025.nc                MASK     2000/1/1/0 C xy unitless 1 46/-12/180/82
-1007 NEI11_MASK      $ROOT/MASKS/v2014-07/USA_LANDMASK_NEI2011_0.1x0.1.20160921.nc        LANDMASK 2000/1/1/0 C xy 1        1 -140/20/-50/60
-1008 CONUS_MASK      $ROOT/MASKS/v2014-07/CONUS_Mask.001x001.nc                           MASK     2000/1/1/0 C xy unitless 1 -140/20/-50/60
-1009 CONUS_MIRROR    $ROOT/MASKS/v2014-07/CONUS_Mask_Mirror.001x001.nc                    MASK     2000/1/1/0 C xy unitless 1 -140/20/-50/60
-1010 MEX_MASK_MIRROR $ROOT/MASKS/v2014-07/Mexico_Mask_Mirror.Extended_NAgrid.001x001.nc   MASK     2000/1/1/0 C xy unitless 1 -118/17/-95/33
-1011 CAN_MASK_MIRROR $ROOT/MASKS/v2014-07/Canada_Mask_Mirror.Extended_NAgrid.001x001.nc   MASK     2000/1/1/0 C xy unitless 1 -141/40/-52/85
+1001 MEXICO_MASK     $ROOT/MASKS/v2018-09/Mexico_Mask.001x001.nc           MASK     2000/1/1/0 C xy 1 1 -118/17/-95/33
+1002 CANADA_MASK     $ROOT/MASKS/v2018-09/Canada_Mask.001x001.nc           MASK     2000/1/1/0 C xy 1 1 -141/40/-52/85
+1006 ASIA_MASK       $ROOT/MASKS/v2018-09/MIX_Asia_mask.generic.025x025.nc MASK     2000/1/1/0 C xy 1 1 46/-12/180/82
+1008 CONUS_MASK      $ROOT/MASKS/v2018-09/CONUS_Mask.001x001.nc            MASK     2000/1/1/0 C xy 1 1 -140/20/-50/60
+1009 CONUS_MIRROR    $ROOT/MASKS/v2018-09/CONUS_Mask_Mirror.001x001.nc     MASK     2000/1/1/0 C xy 1 1 -140/20/-50/60
+1010 MEX_MASK_MIRROR $ROOT/MASKS/v2018-09/Mexico_Mask_Mirror.001x001.nc    MASK     2000/1/1/0 C xy 1 1 -118/17/-95/33
+1011 CAN_MASK_MIRROR $ROOT/MASKS/v2018-09/Canada_Mask_Mirror.001x001.nc    MASK     2000/1/1/0 C xy 1 1 -141/40/-52/85
 
 ### END SECTION MASKS ###
  

@@ -46,7 +46,7 @@ cp -avL ../../$version $dir
 
 # Remove large files not needed for permanent storage
 rm -v $dir$version/geos.mp
-rm -v $dir$version/*2016080100*
+#rm -v $dir$version/*2016080100*
 
 # Change group name of new directories and files
 chgrp jacob_gcst $dir$version
