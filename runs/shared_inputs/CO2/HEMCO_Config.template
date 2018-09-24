@@ -91,7 +91,7 @@ Warnings:                    {WARNINGS}
     --> AVIATION          :       true
     --> CO2CORR           :       true
 # ----------------------------------------------------------------------------
-111     GFED              : on    CO2bb
+111     GFED              : on    CO2/CO2bb
     --> GFED4             :       true
     --> GFED_daily        :       true
     --> GFED_3hourly      :       false
@@ -102,7 +102,7 @@ Warnings:                    {WARNINGS}
     --> hydrophilic BC    :       0.2
     --> hydrophilic OC    :       0.5
     --> fraction POG1     :       0.49
-114     FINN              : off   CO2bb
+114     FINN              : off   CO2/CO2bb
     --> FINN_daily        :       true
     --> Scaling_CO        :       1.0
     --> hydrophilic BC    :       0.2
@@ -128,21 +128,27 @@ END SECTION EXTENSION SWITCHES
 # ---> Recommended option: ODIAC (set FOSSIL_ODIAC = true)
 #==============================================================================
 (((FOSSIL_CDIAC
-0 FOSSILCO2_MONTHLY_CDIAC $ROOT/CO2/v2014-09/FOSSIL/CDIAC_v2014.monthly.generic.1x1.nc CO2 1980-2014/1-12/1/0 C xy kg/m2/s CO2ff 40/41/80 1 1
+0 FOSSILCO2_CDIAC   $ROOT/CO2/v2014-09/FOSSIL/CDIAC_v2014.monthly.generic.1x1.nc CO2 1980-2014/1-12/1/0 C xy kg/m2/s CO2   40/41/80 1 1
+0 FOSSILCO2FF_CDIAC -                                                            -   -                  - -  -       CO2ff 40/41/80 1 1
 )))FOSSIL_CDIAC
 
 (((FOSSIL_ODIAC
-0 FOSSILCO2_MONTHLY_ODIAC $ROOT/CO2/v2015-04/FOSSIL/ODIAC_CO2.monthly.generic.1x1.nc   CO2 2000-2014/1-12/1/0 C xy kg/m2/s CO2ff 40/41/80 1 2
+0 FOSSILCO2_ODIAC   $ROOT/CO2/v2015-04/FOSSIL/ODIAC_CO2.monthly.generic.1x1.nc   CO2 2000-2014/1-12/1/0 C xy kg/m2/s CO2   40/41/80 1 2
+0 FOSSILCO2FF_ODIAC -                                                            -   -                  - -  -       CO2ff 40/41/80 1 2
 )))FOSSIL_ODIAC
 
 #==============================================================================
 # --- MIX v1.1 (Asia) ---
 #==============================================================================
 (((MIX
-0 MIX_CO2_IND $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_INDUSTRY    2008-2010/1-12/1/0 C xy kg/m2/s CO2ff 1006 1 45
-0 MIX_CO2_POW $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_POWER       2008-2010/1-12/1/0 C xy kg/m2/s CO2ff 1006 1 45
-0 MIX_CO2_RES $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_RESIDENTIAL 2008-2010/1-12/1/0 C xy kg/m2/s CO2ff 1006 1 45
-0 MIX_CO2_TRA $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_TRANSPORT   2008-2010/1-12/1/0 C xy kg/m2/s CO2ff 1006 1 45
+0 MIX_CO2_IND   $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_INDUSTRY    2008-2010/1-12/1/0 C xy kg/m2/s CO2   1006 1 45
+0 MIX_CO2FF_IND -                                                  -               -                  - -  -       CO2ff 1006 1 45
+0 MIX_CO2_POW   $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_POWER       2008-2010/1-12/1/0 C xy kg/m2/s CO2   1006 1 45
+0 MIX_CO2FF_POW -                                                  -               -                  - -  -       CO2ff 1006 1 45
+0 MIX_CO2_RES   $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_RESIDENTIAL 2008-2010/1-12/1/0 C xy kg/m2/s CO2   1006 1 45
+0 MIX_CO2FF_RES -                                                  -               -                  - -  -       CO2ff 1006 1 45
+0 MIX_CO2_TRA   $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_TRANSPORT   2008-2010/1-12/1/0 C xy kg/m2/s CO2   1006 1 45
+0 MIX_CO2FF_TRA -                                                  -               -                  - -  -       CO2ff 1006 1 45
 )))MIX
 
 #==============================================================================
@@ -155,12 +161,15 @@ END SECTION EXTENSION SWITCHES
 # ---> Recommended option: scaled ocean exchange (set OCEAN_EXCH_SCALED = true)
 #==============================================================================
 (((OCEAN_EXCH_TAKA09
-0 OCEANCO2_TAKA_ANNUAL  $ROOT/CO2/v2014-09/OCEAN/Taka2009_CO2_Annual.nc        CO2 2000/1/1/0         C xy kg/m2/s CO2oc - 1 1
-0 OCEANCO2_TAKA_MONTHLY $ROOT/CO2/v2014-09/OCEAN/Taka2009_CO2_Monthly.nc       CO2 2000/1-12/1/0      C xy kg/m2/s CO2oc - 1 2
+0 OCEANCO2_TAKA_ANNUAL    $ROOT/CO2/v2014-09/OCEAN/Taka2009_CO2_Annual.nc      CO2 2000/1/1/0         C xy kg/m2/s CO2   - 2 1
+0 OCEANCO2OC_TAKA_ANNUAL  -                                                    -   -                  - -  -       CO2oc - 2 1
+0 OCEANCO2_TAKA_MONTHLY   $ROOT/CO2/v2014-09/OCEAN/Taka2009_CO2_Monthly.nc     CO2 2000/1-12/1/0      C xy kg/m2/s CO2   - 2 2
+0 OCEANCO2OC_TAKA_MONTHLY -                                                    -   -                  - -  -       CO2oc - 2 2
 )))OCEAN_EXCH_TAKA09
 
 (((OCEAN_EXCH_SCALED
-0 OCEANCO2_SCALED_MONTHLY $ROOT/CO2/v2015-04/OCEAN/Scaled_Ocean_CO2_monthly.nc CO2 2000-2013/1-12/1/0 C xy kg/m2/s CO2oc - 1 3
+0 OCEANCO2_SCALED_MONTHLY   $ROOT/CO2/v2015-04/OCEAN/Scaled_Ocean_CO2_monthly.nc CO2 2000-2013/1-12/1/0 C xy kg/m2/s CO2   - 2 3
+0 OCEANCO2OC_SCALED_MONTHLY -                                                    -   -                  - -  -       CO2oc - 2 3
 )))OCEAN_EXCH_SCALED
 
 #==============================================================================
@@ -176,11 +185,13 @@ END SECTION EXTENSION SWITCHES
 # ---> Recommended option: SiB3 (set BBIO_SIB3 = true)
 #==============================================================================
 (((BBIO_DIURNAL
-0 BBIOCO2_DIURNAL $ROOT/CO2/v2014-09/BBIO/BBIO_diurnal_CO2.nc CO2 1985/1-12/1-31/0-23 C xy kg/m2/s CO2bal - 1 1
+0 BBIOCO2_DIURNAL    $ROOT/CO2/v2014-09/BBIO/BBIO_diurnal_CO2.nc CO2 1985/1-12/1-31/0-23 C xy kg/m2/s CO2    - 3 1
+0 BBIOCO2BAL_DIURNAL -                                           -   -                   - -  -       CO2bal - 3 1
 )))BBIO_DIURNAL
 
 (((BBIO_SIB3
-0 SIB_BBIO_CO2 $ROOT/CO2/v2015-04/BIO/SiB3_3hr_NEP.nc CO2 2006-2010/1-12/1-31/0-23 C xy kg/m2/s CO2bal - 1 1
+0 SIB_BBIO_CO2    $ROOT/CO2/v2015-04/BIO/SiB3_3hr_NEP.nc CO2 2006-2010/1-12/1-31/0-23 C xy kg/m2/s CO2    - 3 1
+0 SIB_BBIO_CO2BAL -                                      -   -                        - -  -       CO2bal - 3 1
 )))BBIO_SIB3
 
 #==============================================================================
@@ -189,7 +200,8 @@ END SECTION EXTENSION SWITCHES
 # From Yevich and Logan (2001)
 #==============================================================================
 (((BIOFUEL
-0 BIOFUEL_CO2 $ROOT/CO2/v2015-04/BIOFUEL/biofuel_CO2.geos.1x1-1995.nc CO2 1995/1/1/0 C xy kg/m2/s CO2bf - 1 1
+0 BIOFUEL_CO2   $ROOT/CO2/v2015-04/BIOFUEL/biofuel_CO2.geos.1x1-1995.nc CO2 1995/1/1/0 C xy kg/m2/s CO2   - 4 1
+0 BIOFUEL_CO2BF -                                                       -   -          - -  -       CO2bf - 4 1
 )))BIOFUEL
 
 #==============================================================================
@@ -201,7 +213,8 @@ END SECTION EXTENSION SWITCHES
 #      inversion/assimilation
 #==============================================================================
 (((NET_TERR_EXCH
-0 CO2_NET_TERRESTRIAL $ROOT/CO2/v2015-04/BIO/Net_terrestrial_exch_5.29Pg.generic.1x1.nc CO2 2000/1/1/0 C xy kg/m2/s CO2nte - 1 1
+0 CO2_NET_TERRESTRIAL    $ROOT/CO2/v2015-04/BIO/Net_terrestrial_exch_5.29Pg.generic.1x1.nc CO2 2000/1/1/0 C xy kg/m2/s CO2nte - 5 1
+0 CO2NTE_NET_TERRESTRIAL -                                                                 -   -          - -  -       CO2    - 5 1
 )))NET_TERR_EXCH
 
 #==============================================================================
@@ -210,7 +223,8 @@ END SECTION EXTENSION SWITCHES
 # The spatial distribution is scaled with global annual scale factors #50
 #==============================================================================
 (((SHIP
-0 CO2_SHIP_ICOADS  $ROOT/ICOADS_SHIP/v2014-07/ICOADS_ship_CO2_2004.generic.1x1.nc CO2 2004/1-12/1/0 C xy kg/m2/s CO2se 50 1 1
+0 CO2_SHIP_ICOADS    $ROOT/ICOADS_SHIP/v2014-07/ICOADS_ship_CO2_2004.generic.1x1.nc CO2 2004/1-12/1/0 C xy kg/m2/s CO2   50 6 1
+0 CO2SE_SHIP_ICOADS  -                                                              -   -             - -  -       CO2se 50 6 1
 )))SHIP
 
 #==============================================================================
@@ -221,7 +235,8 @@ END SECTION EXTENSION SWITCHES
 # (Olsen et al., 2013)
 #==============================================================================
 (((AVIATION
-0 AEIC_CO2  $ROOT/AEIC/v2015-01/AEIC.47L.gen.1x1.nc FUELBURN 2005/1-12/1/0 C xyz kg/m2/s CO2av 60/70 1 1 
+0 AEIC_CO2    $ROOT/AEIC/v2015-01/AEIC.47L.gen.1x1.nc FUELBURN 2005/1-12/1/0 C xyz kg/m2/s CO2   60/70 7 1 
+0 AEIC_CO2AV  -                                       -        -             - -   -       CO2av 60/70 7 1 
 )))AVIATION
 
 #==============================================================================
@@ -234,16 +249,27 @@ END SECTION EXTENSION SWITCHES
 # Approach is described in Nassar et al. (2010)
 #
 # ---> Recommended for use if chemical production (above) is turned on
+#
+# Now multiply by scale factor of -1.0 (#90 in scale factor section below)
+# to make these emissions negative, so that they will be subtracted.
 ===============================================================================
 (((CO2CORR
-0 FOSSILCO2_MONTHLY_ODIAC_1 $ROOT/CO2/v2015-04/FOSSIL/ODIAC_CO2.monthly.generic.1x1.nc CO2     2000-2014/1-12/1/0 E xy kg/m2/s CO2corr 10/40/41/80 1 1
-0 CO2CORR_LIVESTOCK         $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_004 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
-0 CO2CORR_WASTE             $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_005 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
-0 CO2CORR_RICE              $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_007 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
-0 CO2CORR_WETLANDS          $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_010 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
-0 CO2CORR_NATURAL           $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_012 2004/1-12/1/0      C xy kg/m2/s CO2corr 20          2 1
-0 CO2CORR_ISOPRENE          $ROOT/CO2/v2015-04/CHEM/Isoprene-2004.geos.2x25.nc         ISOP    2004/1-12/1/0      C xy kg/m2/s CO2corr 21/30       3 1
-0 CO2CORR_MONOTERP          $ROOT/CO2/v2015-04/CHEM/Monoterpene-2004.geos.2x25.nc      MONOT   2004/1-12/1/0      C xy kg/m2/s CO2corr 21/30       3 1
+0 FOSSILCO2_MONTHLY     $ROOT/CO2/v2015-04/FOSSIL/ODIAC_CO2.monthly.generic.1x1.nc CO2     2000-2014/1-12/1/0 E xy kg/m2/s CO2     10/40/41/80/90 8 1
+0 FOSSILCO2CORR_MONTHLY -                                                          -       -                  - -  -       CO2corr 10/40/41/80/90 8 1
+0 CO2_LIVESTOCK         $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_004 2004/1-12/1/0      C xy kg/m2/s CO2     20/90          8 1
+0 CO2CORR_LIVESTOCK     -                                                          -       -                  - -  -       CO2corr 20/90          8 1
+0 CO2_WASTE             $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_005 2004/1-12/1/0      C xy kg/m2/s CO2     20/90          8 1
+0 CO2CORR_WASTE         -                                                          -       -                  - -  -       CO2corr 20/90          8 1
+0 CO2_RICE              $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_007 2004/1-12/1/0      C xy kg/m2/s CO2     20/90          8 1
+0 CO2CORR_RICE          -                                                          -       -                  - -  -       CO2corr 20/90          8 1
+0 CO2_WETLANDS          $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_010 2004/1-12/1/0      C xy kg/m2/s CO2     20/90          8 1
+0 CO2CORR_WETLANDS      -                                                          -       -                  - -  -       CO2corr 20/90          8 1
+0 CO2_NATURAL           $ROOT/CO2/v2015-04/CHEM/CH4_source.geos.2x25.nc            CH4_012 2004/1-12/1/0      C xy kg/m2/s CO2     20/90          8 1
+0 CO2CORR_NATURAL       -                                                          -       -                  - -  -       CO2corr 20/90          8 1
+0 CO2_ISOPRENE          $ROOT/CO2/v2015-04/CHEM/Isoprene-2004.geos.2x25.nc         ISOP    2004/1-12/1/0      C xy kg/m2/s CO2     21/30/90       8 1
+0 CO2CORR_ISOPRENE      -                                                          -       -                  - -  -       CO2corr 21/30/90       8 1
+0 CO2_MONOTERP          $ROOT/CO2/v2015-04/CHEM/Monoterpene-2004.geos.2x25.nc      MONOT   2004/1-12/1/0      C xy kg/m2/s CO2     21/30/90       8 1
+0 CO2CORR_MONOTERP      -                                                          -       -                  - -  -       -       21/30/90       8 1
 )))CO2CORR
 
 ###############################################################################
@@ -320,7 +346,7 @@ END SECTION EXTENSION SWITCHES
 # ---> Recommended for use in forward modelling, optional for
 #      inversion/assimilation
 #==============================================================================
-* CO2_COPROD $ROOT/CO2/v2015-04/CHEM/CO2_prod_rates.GEOS5.2x25.47L.nc LCO 2004-2009/1-12/1/0 C xyz kg/m3/s CO2ch - 1 1
+* CO2_COPROD $ROOT/CO2/v2015-04/CHEM/CO2_prod_rates.GEOS5.2x25.47L.nc LCO 2004-2009/1-12/1/0 C xyz kg/m3/s * - 1 1
 
 ### END SECTION BASE EMISSIONS ###
 
@@ -399,6 +425,11 @@ END SECTION EXTENSION SWITCHES
 # main/national fossil fuel emission field if using avaition emissions.
 #==============================================================================
 80 AVIATION_SURF_CORR $ROOT/CO2/v2015-04/FOSSIL/Aviation_SurfCorr_SclFac.1x1.nc CO2 2004/1/1/0 C xy 1 1
+
+#==============================================================================
+# Scale factor to make emissions negative
+#==============================================================================
+90 CO2_NEGATIVE -1.0 - 2000/1/1/0 C xy 1 1
 
 ### END SECTION SCALE FACTORS ###
 
