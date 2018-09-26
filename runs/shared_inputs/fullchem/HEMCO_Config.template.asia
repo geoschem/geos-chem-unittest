@@ -755,7 +755,7 @@ Warnings:                    {WARNINGS}
 # so we will not use TRASH emissions when CEDS emissions are used.
 #==============================================================================
 (((TRASH
-(((.notCEDS
+(((.not.CEDS
 0 TRASH_CO    $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  CO    2008/1/1/0 C xy kg/m2/s  CO    -     12 1
 0 TRASH_SOAP  -                                                       -     -          - -  -        SOAP  280   12 1
 0 TRASH_NO    $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  NO    2008/1/1/0 C xy kg/m2/s  NO    -     12 1
@@ -785,7 +785,7 @@ Warnings:                    {WARNINGS}
 0 TRASH_BCPO  -                                                       -     -          - -  -        BCPO  71    12 1
 0 TRASH_OCPI  $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc  OC    2008/1/1/0 C xy kg/m2/s  OCPI  72    12 1
 0 TRASH_OCPO  -                                                       -     -          - -  -        OCPO  73    12 1
-))).notCEDS
+))).not.CEDS
 )))TRASH
 
 #==============================================================================
