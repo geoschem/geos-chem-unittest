@@ -61,7 +61,7 @@ COLLECTIONS: 'SpeciesConc',
 #==============================================================================
 # %%%%% THE Budget COLLECTION %%%%%
 #
-# GEOS-Chem budget diagnostics defined as species kg/m2/s in the column
+# GEOS-Chem budget diagnostics defined as species kg/s in the column
 # (full, troposphere, or PBL) due to a single component (e.g. chemistry)
 # (default = advected species)
 #
