@@ -7,6 +7,7 @@ CoresPerNode: 6
 #===================================================================
 COLLECTIONS: #'AerosolMass'
 	     #'Aerosols',
+             #'Budget',
              #'CloudConvFlux',
              #'ConcAfterChem',
              #'DryDep',
@@ -302,6 +303,34 @@ COLLECTIONS: #'AerosolMass'
                               'Chem_KhetiSLAHOClHBr          ', 'GIGCchem',
                               'Chem_KhetiSLAHOBrHCl          ', 'GIGCchem',
                               'Chem_KhetiSLAHOBrHBr          ', 'GIGCchem',
+::
+#==============================================================================
+# Budget defined as species kg/m2/s in the column (full, troposphere, or PBL) 
+# due to a single component (e.g. chemistry); default = ozone only; add more 
+# species as needed (advected only)
+  Budget.template:            '%y4%m2%d2_%h2%n2z.nc4',
+  Budget.format:              'CFIO',
+  Budget.frequency:           010000
+  Budget.duration:            010000
+  Budget.mode:                'time-averaged'
+  Budget.fields:              'BudgetEmisDepFull_O3     ', 'GIGCchem',  
+                              'BudgetEmisDepTrop_O3     ', 'GIGCchem',  
+                              'BudgetEmisDepPBL_O3      ', 'GIGCchem',  
+                              'BudgetChemistryFull_O3   ', 'GIGCchem',
+                              'BudgetChemistryTrop_O3   ', 'GIGCchem',
+                              'BudgetChemistryPBL_O3    ', 'GIGCchem',  
+                              'BudgetTransportFull_O3   ', 'GIGCchem',
+                              'BudgetTransportTrop_O3   ', 'GIGCchem',
+                              'BudgetTransportPBL_O3    ', 'GIGCchem',  
+                              'BudgetMixingFull_O3      ', 'GIGCchem',
+                              'BudgetMixingTrop_O3      ', 'GIGCchem',
+                              'BudgetMixingPBL_O3       ', 'GIGCchem',   
+                              'BudgetConvectionFull_O3  ', 'GIGCchem',
+                              'BudgetConvectionTrop_O3  ', 'GIGCchem',
+                              'BudgetConvectionPBL_O3   ', 'GIGCchem',  
+                              'BudgetWetDepFull_O3      ', 'GIGCchem',
+                              'BudgetWetDepTrop_O3      ', 'GIGCchem',
+                              'BudgetWetDepPBL_O3       ', 'GIGCchem',  
 ::
 #===================================================================
 # Cloud convective flux (per advected species)

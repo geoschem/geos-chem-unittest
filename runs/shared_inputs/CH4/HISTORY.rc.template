@@ -30,6 +30,7 @@ CoresPerNode: 6
 # But you can create your own customized diagnostic collections as well.
 #==============================================================================
 COLLECTIONS: 'SpeciesConc',
+             'Budget',
              'CloudConvFlux',
              'ConcAfterChem',
              'LevelEdgeDiags',      
@@ -55,6 +56,39 @@ COLLECTIONS: 'SpeciesConc',
   SpeciesConc.duration:       {DURATION}
   SpeciesConc.mode:           'time-averaged'
   SpeciesConc.fields:         'SpeciesConc_?ADV?             ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE Budget COLLECTION %%%%%
+#
+# GEOS-Chem budget diagnostics defined as species kg/m2/s in the column
+# (full, troposphere, or PBL) due to a single component (e.g. chemistry)
+# (default = advected species)
+#
+# Available for all simulations
+#==============================================================================
+  Budget.template:     '%y4%m2%d2_%h2%n2z.nc4',
+  Budget.format:       'CFIO',
+  Budget.frequency:    {FREQUENCY}
+  Budget.duration:     {DURATION}
+  Budget.mode:         'time-averaged'
+  Budget.fields:       'BudgetEmisDepFull_?ADV?              ', 'GIGCchem',  
+                       'BudgetEmisDepTrop_?ADV?              ', 'GIGCchem',  
+                       'BudgetEmisDepPBL_?ADV?               ', 'GIGCchem',  
+                       'BudgetChemistryFull_?ADV?            ', 'GIGCchem',
+                       'BudgetChemistryTrop_?ADV?            ', 'GIGCchem',
+                       'BudgetChemistryPBL_?ADV?             ', 'GIGCchem',  
+                       'BudgetTransportFull_?ADV?            ', 'GIGCchem',
+                       'BudgetTransportTrop_?ADV?            ', 'GIGCchem',
+                       'BudgetTransportPBL_?ADV?             ', 'GIGCchem',  
+                       'BudgetMixingFull_?ADV?               ', 'GIGCchem',
+                       'BudgetMixingTrop_?ADV?               ', 'GIGCchem',
+                       'BudgetMixingPBL_?ADV?                ', 'GIGCchem',    
+                       'BudgetConvectionFull_?ADV?           ', 'GIGCchem',
+                       'BudgetConvectionTrop_?ADV?           ', 'GIGCchem',
+                       'BudgetConvectionPBL_?ADV?            ', 'GIGCchem',  
+                       'BudgetWetDepFull_?WET?               ', 'GIGCchem',
+                       'BudgetWetDepTrop_?WET?               ', 'GIGCchem',
+                       'BudgetWetDepPBL_?WET?                ', 'GIGCchem',  
 ::
 #==============================================================================
 # %%%%% THE CloudConvFlux COLLECTION %%%%%
