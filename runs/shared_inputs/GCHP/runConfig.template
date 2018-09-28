@@ -262,7 +262,7 @@ replace_val() {
     KEY=$1
     VALUE=$2
     FILE=$3
-    printf '%-30s : %-20s %-20s\n' "${KEY}" "${VALUE}" "${FILE}"
+    printf '%-30s : %-20s %-20s\n' "${KEY//\\}" "${VALUE}" "${FILE}"
 
     # replace value in line starting with 'whitespace + key + whitespace + : +
     # whitespace + value' where whitespace is variable length including none
@@ -402,8 +402,8 @@ replace_val "Turn on Dry Deposition?"   ${Turn_on_Dry_Deposition}   input.geos
 replace_val "Turn on Wet Deposition?"   ${Turn_on_Wet_Deposition}   input.geos
 echo " "
 echo "Timesteps:"
-replace_val "Tran/conv timestep [sec]"	${TransConv_Timestep_sec}   input.geos
-replace_val "Chem/emis timestep [sec]"	${ChemEmiss_Timestep_sec}   input.geos
+replace_val "Tran\/conv timestep \[sec\]"  ${TransConv_Timestep_sec}   input.geos
+replace_val "Chem\/emis timestep \[sec\]"  ${ChemEmiss_Timestep_sec}   input.geos
 	    
 
 
