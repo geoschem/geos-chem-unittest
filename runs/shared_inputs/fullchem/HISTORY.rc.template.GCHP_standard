@@ -302,9 +302,9 @@ COLLECTIONS: #'Emissions',
   Budget.frequency:           010000
   Budget.duration:            010000
   Budget.mode:                'time-averaged'
-  Budget.fields:              'BudgetEmisDepFull_O3     ', 'GIGCchem',  
-                              'BudgetEmisDepTrop_O3     ', 'GIGCchem',  
-                              'BudgetEmisDepPBL_O3      ', 'GIGCchem',  
+  Budget.fields:              'BudgetEmisDryDepFull_O3  ', 'GIGCchem',  
+                              'BudgetEmisDryDepTrop_O3  ', 'GIGCchem',  
+                              'BudgetEmisDryDepPBL_O3   ', 'GIGCchem',  
                               'BudgetChemistryFull_O3   ', 'GIGCchem',
                               'BudgetChemistryTrop_O3   ', 'GIGCchem',
                               'BudgetChemistryPBL_O3    ', 'GIGCchem',  

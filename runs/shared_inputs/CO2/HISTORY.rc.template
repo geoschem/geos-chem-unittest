@@ -70,9 +70,9 @@ COLLECTIONS: 'SpeciesConc',
   Budget.frequency:    {FREQUENCY}
   Budget.duration:     {DURATION}
   Budget.mode:         'time-averaged'
-  Budget.fields:       'BudgetEmisDepFull_?ADV?              ', 'GIGCchem',  
-                       'BudgetEmisDepTrop_?ADV?              ', 'GIGCchem',  
-                       'BudgetEmisDepPBL_?ADV?               ', 'GIGCchem',  
+  Budget.fields:       'BudgetEmisDryDepFull_?ADV?           ', 'GIGCchem',  
+                       'BudgetEmisDryDepTrop_?ADV?           ', 'GIGCchem',  
+                       'BudgetEmisDryDepPBL_?ADV?            ', 'GIGCchem',  
                        'BudgetChemistryFull_?ADV?            ', 'GIGCchem',
                        'BudgetChemistryTrop_?ADV?            ', 'GIGCchem',
                        'BudgetChemistryPBL_?ADV?             ', 'GIGCchem',  
