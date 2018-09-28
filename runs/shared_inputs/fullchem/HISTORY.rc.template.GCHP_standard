@@ -317,9 +317,9 @@ COLLECTIONS: #'Emissions',
                               'BudgetConvectionFull_O3  ', 'GIGCchem',
                               'BudgetConvectionTrop_O3  ', 'GIGCchem',
                               'BudgetConvectionPBL_O3   ', 'GIGCchem',  
-                              'BudgetWetDepFull_O3      ', 'GIGCchem',
-                              'BudgetWetDepTrop_O3      ', 'GIGCchem',
-                              'BudgetWetDepPBL_O3       ', 'GIGCchem',  
+                              'BudgetWetDepFull_SO4     ', 'GIGCchem',
+                              'BudgetWetDepTrop_SO4     ', 'GIGCchem',
+                              'BudgetWetDepPBL_SO4      ', 'GIGCchem',  
 ::
 #===================================================================
 # Cloud convective flux (per advected species)
