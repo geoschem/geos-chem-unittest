@@ -53,6 +53,19 @@ INITIAL_RESTART=initial_GEOSChem_rst.c${CS_RES}_{SIMULATION}.nc
 # INITIAL_RESTART=your_restart_filename_here
 
 #------------------------------------------------
+#    Output Restart Files
+#------------------------------------------------
+# You can output restart files at regular intervals throughout your 
+# simulation. Unlike the end restart file, which is always produced, the
+# regularly output restart files (also called checkpoint files) will contain
+# the date and time in their filename. To configure output restart file
+# frequency, set the variable below to a string of format HHmmSS. More than 
+# 2 digits for the hours string is permitted (e.g. 1680000 for 7 days).
+# Setting the frequency to 0 will effectively turn off this feature by setting
+# the frequency to a very large number.
+Checkpoint_Freq="0"
+
+#------------------------------------------------
 #    Turn Components On/Off
 #------------------------------------------------
 # Automatically turns on/off GEOS-Chem components in input.geos
@@ -105,43 +118,55 @@ End_Time="{DATE2} {TIME2}"
 Duration="{dYYYYMMDD} {dHHmmss}"
 
 #------------------------------------------------
-#    Number of Runs
+#    Number of Runs / Monthly Diagnostics
 #------------------------------------------------
-# The simplest run is a single segment:
-#   1. Use or adapt gchp.run in runScriptSamples/ as your run script
-#   2. Set duration to the difference between start and end
-#   3. Set Num_Runs=1 in this section
+# The simplest run is a single segment. Use this option as follows:
+#   1. Copy gchp.run from runScriptSamples/ to this directory
+#   1. Use or adapt gchp.run as your run script
+#   2. Set duration above to the difference between start and end
+#   3. Set Num_Runs below to 1
+#   4. Set Monthly_Diag below to 0 (off)
 #
-# To do consecutive runs:
-#   1. Use or adapt gchp.multirun.sh and gchp.multirun.run in runScriptSamples/
-#   2. Set duration to the duration of each individual run
-#   3. Set end date sufficiently after start date to span all runs
-#   3. Set Num_Runs to number of runs total 
+# For long runs it is advantageous to split up your simulation into 
+# multiple jobs. Doing this also enables outputting monthly diagnostics.
+# Use this option as follows:
+#   1. Copy gchp.multirun.sh and gchp.multirun.run from runScriptSamples/
+#      to this directory
+#   2. Use or adapt gchp.multirun.sh to submit your jobs in one step
+#   3. Use or adapt gchp.multirun.run as your reusable run script
+#   4. Set duration above to the duration of each individual run
+#   5. Set end date sufficiently after start date to span all runs
+#   6. Set Num_Runs below to number runs total
+#   7. For monthly diagnostics, set Monthly_Diag to 1 (on); else set to 0 (off)
+#
+# If using monthly diagnostics, please note the following: 
+#   - Run segment duration must be 1-month (00000100 000000)
+#   - Start date must be within the first 28 days of the month
+#   - There is no need to set diag frequency and duration below
+#
 Num_Runs=1
-
-#------------------------------------------------
-#    Output Checkout Files
-#------------------------------------------------
-# An output restart file will always be output at the end of the run.
-# You also have the option of outputting additional restart files at regular
-# intervals throughout your simulation. Set the frequency (HHmmSS) below.
-# You can use number of hours that exceeds 2 digits. The default set
-# is 30 days (720 hours).
-Checkpoint_Freq=7200000
+Monthly_Diag=0
 
 #------------------------------------------------
 #    Diagnostics
 #------------------------------------------------
-# frequency = frequency of diagnostic calculation (HHMMSS)
-# duration  = frequency of diagnostic file  write (HHMMSS)
-# mode can be time-averaged or instantaneous  
+# You may set frequency, duration, and mode used for all default
+# GCHP diagnostics collections defined in HISTORY.rc below. These
+# metrics are defined as follows:
 #
-# Default collection names are included below and freq, duration, and
-# mode are automatically set for all of them. Edit as needed for your
-# specific application. Collections listed here that are not present 
-# in HISTORY.rc will be ignored.
+#   Frequency = frequency of diagnostic calculation (HHmmSS)
+#   Duration  = frequency of diagnostic file  write (HHmmSS)
+#   Mode      = computation of diagnostics (time-averaged or instantaneous)
 #
-# NOTE: You may specify number of hours greater than 2 digits, e.g. 7440000
+# Edit the common frequency, duration, and mode below, and browse
+# what collections will be updated to what in HISTORY.rc. Add more collections
+# or customize different collections' frequency, duration, and/or mode
+# as needed
+# 
+# NOTES: 
+#  1. Freq/duration # of hours may exceed 2 digits, e.g. 7440000 for 31 days
+#  2. Frequency and duration are ignored if Monthly_Diag is set to 1
+#  3. Collections in HISTORY.rc not listed below are ignored
 #
 common_freq="010000"
 common_dur="010000"
@@ -161,7 +186,7 @@ StateMet_inst_freq=${common_freq}
 StateMet_inst_dur=${common_dur}
 StateMet_inst_mode="'instantaneous'"
 
-# Other diagnostics
+# Other diagnostics (edit/add more as needed for convenience)
 AerosolMass_freq=${common_freq}
 AerosolMass_dur=${common_dur}
 AerosolMass_mode=${common_mode}
@@ -321,6 +346,10 @@ replace_val END_DATE  "${End_Time}"   CAP.rc
 replace_val JOB_SGMT  "${Duration}"   CAP.rc
 
 #### Set frequency of writing restart files
+# Set to a very large number if turned off
+if [[ ${Checkpoint_Freq} == '0' ]]; then
+   Checkpoint_Freq=100000000
+fi 
 echo " "
 echo "Checkpoint (restart) frequency:"
 replace_val RECORD_FREQUENCY "${Checkpoint_Freq}" GCHP.rc

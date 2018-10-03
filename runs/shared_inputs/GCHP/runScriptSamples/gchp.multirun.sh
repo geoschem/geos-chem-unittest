@@ -4,43 +4,44 @@
 
 # Use this bash script to submit multiple consecutive GCHP jobs to SLURM. 
 # This allows breaking up long duration simulations into jobs of shorter 
-# duration. 
+# duration. This also enables outputting monthly diagnostics by updating
+# the diagnostics frequency and duration to # of hours per month each run.
 #
-# Each job runs gchp.multirun.run only once. with duration configured in 
+# Each job runs gchp.multirun.run once, with duration configured in 
 # runConfig.sh. The first job submitted starts at the start date configured 
-# in runConfig.sh. Subsequent jobs start where the last job left off, and 
-# the date-time string is stored in cap_restart. Since cap_restart is 
+# in runConfig.sh. Subsequent jobs start where the last job left off, with 
+# the new start date-time string stored in cap_restart. Since cap_restart is 
 # over-written with every job, the start dates are sent to log file 
 # cap_restart.log for later inspection. 
 #
 # Special Notes:
+#
 #  1. Configure the total number of runs within runConfig.sh. This is 
 #     equivalent to how many jobs will be submitted to SLURM. Make sure that 
 #     the end date in runConfig.sh is sufficiently past the start date to 
 #     accommodate all configured runs.
 #
-#  2. runConfig.sh need only be sourced once, at the very start of this script,
-#     and cap_restart should never be deleted. This is why there is a special
-#     run script for the multi-run segments (gchp.multirun.run). Using 
-#     the default run script instead (gchp.run) will not work for 
-#     multi-segmented run without manual updates. 
+#  2. This script uses a special run script for multi-run segments 
+#     (gchp.multirun.run). Using the default run script instead (gchp.run) 
+#     will not work for multi-segmented runs without updates. 
 #
 #  3. The run script submitted on loop in this shell script will send stdout to
 #     to gchp.log. Log output is not over-written by subsequent runs. 
 #
-#  4. Because GCHP output diagnostics files contain the date, those output
+#  4. Because GCHP output diagnostics files contain the date, diagnostic output
 #     files will also not be over-written by subsequent runs. 
 #
 #  5. Restart files will always be produced at the end of a run for use in 
 #     the next run, but will not include the date in the filename. They will 
-#     therefore be over-written. However, you can configure the 
-#     RECORD_FREQUENCY in GCHP.rc to archive restart files at a fixed period 
-#     with date timestamp. This feature is on by default and set to 30 days.
+#     therefore be over-written. However, you can configure regular restart
+#     output with the Checkpoint_Freq option in runConfig.sh. This will
+#     regularly output restart files with date/time in the filenames. 
 # 
 #  6. gchp.log and cap_restart.log are both deleted at the top of this script.
 #     If you want to keep logs from a prior run you must archive elsewhere.
-#
-# ~ GEOS-Chem Support Team, 7/9/2018
+#     Use the archiveRun.sh script to archive past runs. Using this script
+#     at the end of a multi-segmented run will archive files for all segements
+#     into one archive directory.
 
 # Set multirun log filename (separate from GEOS-Chem log file gchp.log)
 multirunlog="multirun.log"
