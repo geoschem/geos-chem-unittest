@@ -120,6 +120,16 @@ Duration="{dYYYYMMDD} {dHHmmss}"
 Num_Runs=1
 
 #------------------------------------------------
+#    Output Checkout Files
+#------------------------------------------------
+# An output restart file will always be output at the end of the run.
+# You also have the option of outputting additional restart files at regular
+# intervals throughout your simulation. Set the frequency (HHmmSS) below.
+# You can use number of hours that exceeds 2 digits. The default set
+# is 30 days (720 hours).
+Checkpoint_Freq=7200000
+
+#------------------------------------------------
 #    Diagnostics
 #------------------------------------------------
 # frequency = frequency of diagnostic calculation (HHMMSS)
@@ -309,6 +319,13 @@ echo "Simulation start, end, duration:"
 replace_val BEG_DATE  "${Start_Time}" CAP.rc
 replace_val END_DATE  "${End_Time}"   CAP.rc
 replace_val JOB_SGMT  "${Duration}"   CAP.rc
+
+#### Set frequency of writing restart files
+echo " "
+echo "Checkpoint (restart) frequency:"
+replace_val RECORD_FREQUENCY "${Checkpoint_Freq}" GCHP.rc
+replace_val RECORD_REF_DATE  "${Start_Time:0:8}"  GCHP.rc
+replace_val RECORD_REF_TIME  "${Start_Time:9:6}"  GCHP.rc
 
 #### Set output frequency, duration, and mode
 echo " "
