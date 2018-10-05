@@ -106,8 +106,8 @@ Warnings:                    {WARNINGS}
 1002 TOT_POP     $ROOT/POPs/v2015-08/BaP_wildfredist.generic.1x1.nc PG_SRCE__POPG  2004/1/1/0         C xy  kg/m2/s * - 1 1
 1002 SURF_POP    $ROOT/POPs/v2015-08/BaP_soil_conc.geos5.4x5.nc     IJ_AVG_S__POPG 2009/1/1/0         C xy  1       * - 1 1
 1002 SOIL_CARBON $ROOT/POPs/v2015-08/GTMM_carbon.generic.1x1.nc     SOIL_CARBON    1985/1/1/0         C xy  1       * - 1 1
-1002 GLOBAL_OC   $ROOT/POPs/v2015-08/OCPO.$MET.$RES.nc              OCPO           2005-2009/1-12/1/0 C xyz 1       * - 1 1
-1002 GLOBAL_BC   $ROOT/POPs/v2015-08/BCPO.$MET.$RES.nc              BCPO           2005-2009/1-12/1/0 C xyz 1       * - 1 1
+1002 GLOBAL_OC   $ROOT/POPs/v2015-08/OCPO.$met.$RES.nc              OCPO           2005-2009/1-12/1/0 C xyz 1       * - 1 1
+1002 GLOBAL_BC   $ROOT/POPs/v2015-08/BCPO.$met.$RES.nc              BCPO           2005-2009/1-12/1/0 C xyz 1       * - 1 1
 
 
 ###############################################################################

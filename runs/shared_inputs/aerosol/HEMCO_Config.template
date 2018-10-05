@@ -40,7 +40,6 @@
 ROOT:                        {DATA_ROOT}/HEMCO
 METDIR:                      {DATA_ROOT}/GEOS_{GRID_DIR}/{MET_DIR}
 Logfile:                     HEMCO.log
-DiagnFile:                   HEMCO_Diagn.rc
 DiagnPrefix:                 HEMCO_diagnostics
 DiagnFreq:                   End
 Wildcard:                    *
