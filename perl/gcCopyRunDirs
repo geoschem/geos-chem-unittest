@@ -24,7 +24,6 @@ use Dates   qw/&getLocalTime/;        # Get routines from Dates.pm
 use UtUtils qw/&baseName
                &checkDir
                &makeHemcoCfg
-               &makeHcoSaCfg
                &makeInputGeos
                &makeGCHPcfg
                &makeHistoryRc
@@ -38,7 +37,6 @@ our $UT_ROOT     = "";                # Root path for the unit tester
 our $GCGRID_ROOT = "";                # Root path for GEOS-Chem data directory
 our $DATA_ROOT   = "";                # Root path for ExtData data directory
 our $DESCRIBE    = "";                # Short description of unit tests
-our $HEMCO_ROOT  = "";                # Root path for HEMCO emissions files
 our $JOB_DIR     = "";                # Unit Test job directory
 our $LOG_DIR     = "";                # Unit Test logs directory
 our $RUN_ROOT    = "";                # Unit Test top-level run directory
@@ -70,6 +68,8 @@ our $WARNINGS    = "1";               # Warnings setting (0-3)
 #  06 Mar 2015 - R. Yantosca - Initial version, based on gcUnitTest
 #  19 May 2015 - R. Yantosca - Now add VERBOSE and WARNINGS global variables
 #  18 Dec 2015 - R. Yantosca - Add $UT_ROOT global variable   
+#  30 Aug 2018 - M. Sulprizio- Remove $HEMCO_ROOT; Now pass $DATA_ROOT to
+#                              makeHemcoCfg instead
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -217,7 +217,7 @@ sub makeInputs($$$$$$$$) {
 
   # Make the HEMCO_Config.rc file in the run directory
   &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
-                 $sim,     $VERBOSE, $WARNINGS, $HEMCO_ROOT, $hcoCfg );
+                 $sim,     $VERBOSE, $WARNINGS, $DATA_ROOT,  $hcoCfg );
 
   # Make the HISTORY.rc file in the run directory
   if ( -f $histTmpl ) {
@@ -342,7 +342,6 @@ sub doCopyDirs($$) {
     if ( !( $txt[$i] =~ m/\#/ ) ) { 
       if    ( $txt[$i] =~ "GCGRID_ROOT" ) { $GCGRID_ROOT=&parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "DATA_ROOT"   ) { $DATA_ROOT = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "HEMCO_ROOT"  ) { $HEMCO_ROOT= &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "UNIT_TEST_ROOT") { $UT_ROOT = &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "JOB_DIR"     ) { $JOB_DIR   = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "LOG_DIR"     ) { $LOG_DIR   = &parse( $txt[$i] ); }
@@ -367,7 +366,6 @@ sub doCopyDirs($$) {
       $COPY_PATH  =~ s/ //g;
       $GCGRID_ROOT=~ s/ //g;
       $DATA_ROOT  =~ s/ //g;
-      $HEMCO_ROOT =~ s/ //g;
       $RUN_ROOT   =~ s/ //g; 
       $UT_ROOT    =~ s/ //g;
 
@@ -385,8 +383,6 @@ sub doCopyDirs($$) {
       $LOG_DIR    =~ s/{VERSION}/$VERSION/g;
       $DATA_ROOT  =~ s/{HOME}/$home/g;
       $DATA_ROOT  =~ s/{GCGRIDROOT}/$GCGRID_ROOT/g;
-      $HEMCO_ROOT =~ s/{HOME}/$home/g;
-      $HEMCO_ROOT =~ s/{DATAROOT}/$DATA_ROOT/g;
       $RUN_DIR    =~ s/{RUNROOT}/$RUN_ROOT/g;
       $RUN_DIR    =~ s/{UTROOT}/$UT_ROOT/g;
 
@@ -400,7 +396,6 @@ sub doCopyDirs($$) {
       # Make sure each of these directories exist before proceeding
       &checkDir( $GCGRID_ROOT );
       &checkDir( $DATA_ROOT   );
-      &checkDir( $HEMCO_ROOT  );
 
        # Splash page
       print '%%%%%%%%% GEOS-Chem COPY RUN DIRECTORIES %%%%%%%%%%%%%%%%%%%%%'."\n"; # 
@@ -473,7 +468,7 @@ sub doCopyDirs($$) {
 
 	  # Append nested grid string if necessary
 	  if ( length( $nest ) > 0 ) { $copyDir .= "_$nest"; }
-
+  
 	  #-----------------------------------------------------------------
 	  # Create the input.geos and HEMCO_Config.rc files from templates 
 	  # in the run directory for each requested unit test.  This has
@@ -522,14 +517,14 @@ sub doCopyDirs($$) {
 	    # Make the HEMCO_Config.rc file from template
 	    $hcoTmpl = "$copyDir/HEMCO_Config.template";
 	    $hcoCfg  = "$copyDir/HEMCO_Config.rc";
+            &makeHemcoCfg( $hcoTmpl, $start,    $met, $grid, $nest, $sim,    
+                           $VERBOSE, $WARNINGS, $DATA_ROOT,  $hcoCfg );
+
+	    # Make the HEMCO_sa_Config.rc file from template
 	    $hsaTmpl = "$copyDir/HEMCO_sa_Config.template";
 	    $hsaCfg  = "$copyDir/HEMCO_sa_Config.rc";
-            &makeHemcoCfg( $hcoTmpl, $start,    $met, $grid, $nest, $sim,    
-                           $VERBOSE, $WARNINGS, $HEMCO_ROOT, $hcoCfg );
-
-            &makeHcoSaCfg( $hsaTmpl, $start,    $met, $grid, $nest, $sim,    
+            &makeHemcoCfg( $hsaTmpl, $start,    $met, $grid, $nest, $sim,    
                            $VERBOSE, $WARNINGS, $DATA_ROOT,  $hsaCfg );
-
 
 	    # Remove the output files from the copied run dir
 	    $cmd  = "rm -f $copyDir/HEMCO_Config.template";

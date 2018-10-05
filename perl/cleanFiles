@@ -229,7 +229,8 @@ sub main() {
 	  $cmd .= "rm -f input.geos HEMCO_Config.rc HEMCO.log ";
           $cmd .= "HEMCO_diagnostics.* HISTORY.rc Ox.mass.* Makefile ";
           $cmd .= "lastbuild* *.sp *.mp *info.dat input.geos.g* ";
-          $cmd .= "input.geos.m* GEOSChem_restart* core.* *.nc4;";
+          $cmd .= "input.geos.m* GEOSChem_restart* core.* *.nc4 ";
+	  $cmd .= "HEMCO_Config.rc.g* HEMCO_Config.rc.m* trac_avg.*;";
 	  $cmd .= "cd ..";
           #print "$cmd\n";
 	  qx/$cmd/;
