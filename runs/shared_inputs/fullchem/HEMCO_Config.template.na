@@ -2526,12 +2526,9 @@ Warnings:                    {WARNINGS}
 * PFLLSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NEST.$NC PFLLSAN  1980-2018/1-12/1-31/* C xyz 1  * -  1 1
 
 # --- I3 fields ---
-* PS1       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     PS       1980-2018/1-12/1-31/* C xy  1  * -  1 1
-* PS2       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     PS       1980-2018/1-12/1-31/* C xy  1  * -  1 1
-* SPHU1     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     QV       1980-2018/1-12/1-31/* C xyz 1  * -  1 1
-* SPHU2     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     QV       1980-2018/1-12/1-31/* C xyz 1  * -  1 1
-* TMPU1     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     T        1980-2018/1-12/1-31/* C xyz 1  * -  1 1
-* TMPU2     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     T        1980-2018/1-12/1-31/* C xyz 1  * -  1 1
+* PS        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     PS       1980-2018/1-12/1-31/* C xy  1  * -  1 1
+* SPHU      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     QV       1980-2018/1-12/1-31/* C xyz 1  * -  1 1
+* TMPU      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     T        1980-2018/1-12/1-31/* C xyz 1  * -  1 1
 
 #==============================================================================
 # --- Time zones (offset to UTC) ---
