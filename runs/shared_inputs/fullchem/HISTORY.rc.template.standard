@@ -23,8 +23,8 @@ EXPID:  ./GEOSChem
 #
 # To disable a collection, place a "#" character in front of its name
 #
-# NOTE: These are the "default" collections for GEOS-Chem.
-# But you can create your own customized diagnostic collections as well.
+# NOTE: These are the "default" collections for GEOS-Chem, but you can create
+# your own customized diagnostic collections as well.
 #==============================================================================
 COLLECTIONS: 'SpeciesConc',
              'Budget',
