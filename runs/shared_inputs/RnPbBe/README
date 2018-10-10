@@ -1,9 +1,8 @@
 This folder (runs/shared_inputs/RnPbBe) contains input files
 for GEOS-Chem RADON-LEAD-BERYLLIUM simulations, namely:
 
-(1) GCHP configuration files (symbolically linked from ../gchp)
-(2) HEMCO configuration files
-(3) A HISTORY.rc file for netCDF diagnostics
+(1) HEMCO configuration files
+(2) A HISTORY.rc file for netCDF diagnostics
 
 -- GEOS-Chem Support Team
    geos-chem-support@as.harvard.edu

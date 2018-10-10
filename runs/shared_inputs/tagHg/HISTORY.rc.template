@@ -15,11 +15,8 @@
 #      Will create netCDF files whose names begin with "GEOSChem"
 #      in the OutputDir sub-folder of this run directory.
 #
-# EXPDSC and CoresPerNode are only used by GCHP simulations.
 #============================================================================
 EXPID:  ./GEOSChem
-EXPDSC: GEOS-Chem_devel
-CoresPerNode: 6
 
 #==============================================================================
 # %%%%% COLLECTION NAME DECLARATIONS %%%%%

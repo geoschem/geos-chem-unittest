@@ -1,1 +1,0 @@
-../../shared_inputs/GCHP/bashrcSamples/gchp.gfortran82_openmpi_odyssey.bashrc

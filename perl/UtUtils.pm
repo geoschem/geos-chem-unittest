@@ -71,7 +71,6 @@ BEGIN {
                    &cleanDir
                    &fmtStr
                    &getDuration
-                   &makeGCHPcfg
                    &makeHcoSaCfg        
                    &makeHemcoCfg        
                    &makeHistoryRc
@@ -245,7 +244,7 @@ sub fmtStr($) {
 #  $dateStr = &fmtStr( 0        );
 # 
 # !REMARKS:
-#  Used by routines &makeInputGeos and &makeGCHPcfg below.
+#  Used by routine &makeInputGeosbelow.
 #
 # !REVISION HISTORY:
 #  23 May 2013 - R. Yantosca - Initial version, based on NRT-ARCTAS
@@ -353,112 +352,6 @@ sub makeInputGeos($$$$$$) {
     $line =~ s/{TIME2}/$tStr2/g;
     $line =~ s/{MET}/$met/g;
     $line =~ s/{DATA_ROOT}/$dataRoot/g;
-
-    # Write to output file
-    print O "$line\n";
-  }
-
-  # Close output file
-  close( O );
-
-  # Make the input.geos file chmod 644
-  chmod( 0644, $outFile );
-
-  # Exit
-  return(0);
-}
-#EOC
-#------------------------------------------------------------------------------
-#                  GEOS-Chem Global Chemical Transport Model                  !
-#------------------------------------------------------------------------------
-#BOP
-#
-# !IROUTINE: makeGCHPcfg
-#
-# !DESCRIPTION: Constructs the "runConfig.sh" or "CAP.rc" files for GCHP.  
-#  It reads a pre-defined template file and then just replaces tokens with 
-#  the values passed via the argument list. It also calculates duration 
-#  based on start and end dates and times passed in.
-#\\
-#\\
-# !INTERFACE:
-#
-sub makeGCHPcfg($$$$$$$) {
-#
-# !INPUT PARAMETERS:
-#
-  # $date1    : Starting date for GEOS-Chem model run (e.g. 20160101) 
-  # $time1    : Starting time for GEOS-Chem model run (e.g. 000000  ) 
-  # $date2    : Ending   date for GEOS-Chem model run (e.g. 20160102)
-  # $time2    : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
-  # $sim      : Simulation name
-  # $template : Path for "template" file
-  # $fileName : Path for output file (w/ dates and duration replaced)
-  my ( $date1,  $time1,  $date2, $time2, $sim, $inFile, $outFile ) = @_;
-#
-# !CALLING SEQUENCE:
-# &makeGCHPcfg( 20160101, 000000, 
-#               20160102, 000000, 
-#               "runConfig.template", "runConfig.sh" );
-#
-# !REVISION HISTORY:
-#  09 Aug 2017 - E. Lundgren - Initial version, adapted from makeInputGeos
-#  22 Feb 2018 - R. Yantosca - Now call &getDuration to get duration date/time
-#EOP
-#------------------------------------------------------------------------------
-#BOC
-#
-# !LOCAL VARIABLES:
-#
-  # Strings
-  my @lines                      = "";
-  my $line                       = "";
-  my $dStr1                      = &fmtStr( $date1 );
-  my $dStr2                      = &fmtStr( $date2 );
-  my $tStr1                      = &fmtStr( $time1 );
-  my $tStr2                      = &fmtStr( $time2 );
-  my ( $durStrDate,$durStrTime ) = &getDuration( $date1,$time1,$date2,$time2 );
-
-  #------------------------------  
-  # Read template file
-  #------------------------------ 
-  
-  # Read template "runConfig.sh" file into an array
-  open( I, "$inFile" ) or croak( "Cannot open $inFile!\n" );
-  @lines = <I>;
-  close( I );
-
-  #------------------------------  
-  # Create output file
-  #------------------------------ 
-
-  # Open file
-  open( O, ">$outFile") or die "Can't open $outFile\n";
-  
-  # Get the formatted duration string and time
-  
-  # Loop thru each line
-  foreach $line ( @lines ) {
-    
-    # Remove newline character
-    chomp( $line );
-  
-    # Replace tokens
-    if ( $outFile =~ m/GCHP.rc/ || $outFile =~ m/runConfig.sh/ ) {
-      if  ( $sim =~ m/RnPbBe/ ) {
-	$line =~ s/{SIMULATION}/${sim}Pasv/g;
-      } else {
-	$line =~ s/{SIMULATION}/$sim/g;
-      }      
-    }
-    if ( !($outFile =~ m/GCHP.rc/) ) {
-      $line =~ s/{DATE1}/$dStr1/g;
-      $line =~ s/{TIME1}/$tStr1/g;
-      $line =~ s/{DATE2}/$dStr2/g; 
-      $line =~ s/{TIME2}/$tStr2/g;
-      $line =~ s/{dYYYYMMDD}/$durStrDate/g;
-      $line =~ s/{dHHmmss}/$durStrTime/g;
-    }    
 
     # Write to output file
     print O "$line\n";
@@ -1244,9 +1137,8 @@ sub getDuration($$$$) {
   my $durStrTime = "";
 #
 # !CALLING SEQUENCE:
-# &makeGCHPcfg( 20160101, 000000, 
-#               20160102, 000000, 
-#               "runConfig.template", "runConfig.sh" );
+# &getDuration( 20160101, 000000, 
+#               20160102, 000000 );
 #
 # !REVISION HISTORY:
 #  09 Aug 2017 - E. Lundgren - Initial version, adapted from makeInputGeos

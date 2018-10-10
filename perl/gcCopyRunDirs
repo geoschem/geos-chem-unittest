@@ -25,7 +25,6 @@ use UtUtils qw/&baseName
                &checkDir
                &makeHemcoCfg
                &makeInputGeos
-               &makeGCHPcfg
                &makeHistoryRc
                &parse/;               # Get routines from module UtUtils.pm
 #
@@ -54,7 +53,6 @@ our $WARNINGS    = "1";               # Warnings setting (0-3)
 # !PRIVATE MEMBER FUNCTIONS:
 #  &getRunDir  : Returns the name of the GEOS-Chem run directory
 #  &makeInputs : Creates the input.geos file in the run directory 
-#  &makeInputs : Creates the runConfig.sh file for GCHP run directory
 #  &doCopyDirs : Reads user options from a file and starts the copy process
 #
 # !CALLING SEQUENCE:
@@ -70,6 +68,7 @@ our $WARNINGS    = "1";               # Warnings setting (0-3)
 #  18 Dec 2015 - R. Yantosca - Add $UT_ROOT global variable   
 #  30 Aug 2018 - M. Sulprizio- Remove $HEMCO_ROOT; Now pass $DATA_ROOT to
 #                              makeHemcoCfg instead
+#  10 Oct 2018 - E. Lundgren - Remove GCHP code; rundir creation in GCHP repo
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -105,6 +104,7 @@ sub getRunDir($$$$) {
 #  06 Mar 2015 - R. Yantosca - Initial version, based on gcUnitTest
 #  13 Jul 2016 - M. Sulprizio- Modify runLoc for consolidated run directories
 #  16 Aug 2017 - E. Lundgren - Change GCHP rundir to be grid-independent
+#  10 Oct 2018 - E. Lundgren - Remove GCHP code; rundir creation in GCHP repo
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -114,9 +114,7 @@ sub getRunDir($$$$) {
   # Run directory string
   my $runLoc = "";
 
-  if ( ( $met =~ m/gchp/ ) > 0 ) {
-    $runLoc = "{MET}_{SIM}";
-  } elsif ( length( $nest ) > 0 ) {
+  if ( length( $nest ) > 0 ) {
     $runLoc = "{MET}_{GRID}_{SIM}_{NEST}";
   } elsif ( $sim =~ m/gc_timing/) {
     $runLoc = "{SIM}";
@@ -182,8 +180,6 @@ sub makeInputs($$$$$$$$) {
   my $runConf  = "$runDir/runConfig.sh";
   my $capTmpl  = "$runDir/CAP.template";
   my $capRc    = "$runDir/CAP.rc";
-  my $gchpTmpl = "$runDir/GCHP.template";
-  my $GCHPRc   = "$runDir/GCHP.rc";
   my $hcoTmpl  = "$runDir/HEMCO_Config.template";
   my $hcoCfg   = "$runDir/HEMCO_Config.rc";
   my $histTmpl = "$runDir/HISTORY.rc.template";
@@ -207,13 +203,6 @@ sub makeInputs($$$$$$$$) {
 
   # Make the input.geos file in the run directory
   &makeInputGeos( $d0, $h0, $d1, $h1, $met, $DATA_ROOT, $inpTmpl, $inpGeos );
-
-  # Make the runConfig.sh and CAP.rc files for GCHP run directories
-  if ( $met =~ m/gchp/ ) {
-    &makeGCHPcfg( $d0, $h0, $d1, $h1, $sim, $runcTmpl, $runConf );
-    &makeGCHPcfg( $d0, $h0, $d1, $h1, $sim, $capTmpl, $capRc );
-    &makeGCHPcfg( $d0, $h0, $d1, $h1, $sim, $gchpTmpl, $GCHPRc );
-  }
 
   # Make the HEMCO_Config.rc file in the run directory
   &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
@@ -460,11 +449,7 @@ sub doCopyDirs($$) {
 	  $notDir   = &baseName( $runDir );
 
 	  # Directory in the remote location
-	  if ( $met eq "gchp" ) {
-	    $copyDir = "$COPY_PATH/$met\_$sim";
-	  } else {
-	    $copyDir = "$COPY_PATH/$met\_$grid\_$sim";
-	  }
+	  $copyDir = "$COPY_PATH/$met\_$grid\_$sim";
 
 	  # Append nested grid string if necessary
 	  if ( length( $nest ) > 0 ) { $copyDir .= "_$nest"; }
@@ -541,101 +526,16 @@ sub doCopyDirs($$) {
             $cmd = "cp ./getRunInfo $copyDir/getRunInfo"; 
             qx/$cmd/;
 
-          } elsif ( $met =~ m/gchp/ ) {
-
-	    #----------------------------------------
-	    # Copy the directories for gchp
-	    #----------------------------------------
-
-	    # Execute the copy command
-	    qx/$cmd/;
-
-            # Copy GCHP Makefile to copied run directory
-            $cmd = "cp ../runs/shared_inputs/Makefiles/Makefile_GCHP $copyDir/Makefile";
-            qx/$cmd/;
-
-	    # Make the input.geos, HEMCO_Config.rc, HISTORY.rc, CAP.rc, 
-            # runConfig.sh, and GCHP.rc files from templates.
-	    &makeInputs( $start, $end,  $copyDir, $met, $grid, $nest, $sim );
-
-	    # Remove any output and template files that might be in the 
-            # copied run dir
-	    $cmd =  "rm -f ${copyDir}/input.geos.*";
-	    $cmd .= " ${copyDir}/HEMCO_Config.template";
-	    $cmd .= " ${copyDir}/runConfig.template";
-	    $cmd .= " ${copyDir}/CAP.template";
-	    $cmd .= " ${copyDir}/GCHP.template";
-	    $cmd .= " ${copyDir}/OutputDir/GCHP.center.*";
-	    $cmd .= " ${copyDir}/OutputDir/GCHP.regrid.*";
-	    $cmd .= " ${copyDir}/trac_avg.*";
-	    $cmd .= " ${copyDir}/tracerinfo.dat";
-	    $cmd .= " ${copyDir}/diaginfo.dat";
-	    $cmd .= " ${copyDir}/cap_restart";
-	    $cmd .= " ${copyDir}/regrid.rcx";
-	    $cmd .= " ${copyDir}/center.rcx";
-	    $cmd .= " ${copyDir}/*~";
-	    $cmd .= " ${copyDir}/HEMCO.log";
-	    $cmd .= " ${copyDir}/PET*";
-	    $cmd .= " ${copyDir}/logfile*";
-	    $cmd .= " ${copyDir}/*.log";
-	    $cmd .= " ${copyDir}/slurm-*";
-	    $cmd .= " ${copyDir}/1";
-	    $cmd .= " ${copyDir}/EGRESS";
-	    $cmd .= " ${copyDir}/geos";
-      	    qx/$cmd/;
-
-	    # Rename HISTORY.rc.template to HISTORY.rc
-	    $cmd = "mv ${copyDir}/HISTORY.rc.template ${copyDir}/HISTORY.rc";
-	    qx/$cmd/;
-
-	    # Set permissions for runConfig.sh
-	    $cmd = "[ -f ${copyDir}/runConfig.sh ] && chmod 755 ${copyDir}/runConfig.sh";
-	    qx/$cmd/;
-
-	    # Make symbolic links to restart files at 4 resolutions
-	    @resolutions = (24,48,90,180,360);
-	    foreach my $res (@resolutions) {
-	      if ( $sim =~ m/RnPbBe/ ) {
-		$rstName = "${rstPref}c${res}_${sim}Pasv.nc";
-	      } else {
-		$rstName = "${rstPref}c${res}_${sim}.nc";
-	      }
-	      $rstFile = "${rstRoot}${rstName}";
-	      if ( !( -f $rstFile ) ) {
- 	        print "\nWARNING: File ${rstFile} does not exist so it cannot be included in your run directory. Sample restart files can be found in the SPC_RESTARTS directory or you can use your own restart file.\n\n";
- 	      } else {
-	        $cmd = "ln -sf ${rstFile} ${copyDir}/${rstName}";
-	        qx/$cmd/;		
- 	      }
-	    }
-
-	    # Make symbolic link to gcgrid for accessing met fields
-	    $cmd = "ln -sf ${DATA_ROOT}/GEOS_0.25x0.3125/GEOS_FP ${copyDir}/MetDir";
-	    qx/$cmd/;		
-
-	    # Make symbolic link to HEMCO emissions directory
-	    $cmd = "ln -sf ${DATA_ROOT}/HEMCO ${copyDir}/MainDataDir";
-	    qx/$cmd/;		
-
-	    # make symbolic link to chemistry data directory
-	    $cmd = "ln -sf ${DATA_ROOT}/CHEM_INPUTS ${copyDir}/ChemDataDir";
-	    qx/$cmd/;		
-
-	    # Make symbolic link to tile files used for lat-lon <-> cubed sphere
-	    $cmd = "ln -sf ${DATA_ROOT}/GCHP/TileFiles ${copyDir}/TileFiles";
-	    qx/$cmd/;	
-
-          } else {
+	} else {
 
 	    #---------------------------------------------
-	    # NOT DRY RUN: Copy the directories (non-GCHP)
+	    # NOT DRY RUN: Copy the directories
 	    #---------------------------------------------
 
 	    # Execute the copy command
 	    qx/$cmd/;
 
 	    # Make the input.geos and HEMCO_Config.rc file from templates.
-            # Also makes the CAP.rc and runConfig.sh files for GCHP.
 	    &makeInputs( $start, $end,  $copyDir, $met, $grid, $nest, $sim );
 
 	    # Remove the output files from the copied run dir
