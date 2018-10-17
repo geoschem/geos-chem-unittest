@@ -30,6 +30,7 @@ COLLECTIONS: 'SpeciesConc',
              'Budget',
              'CloudConvFlux',
              'DryDep',
+             'POPS',
              'LevelEdgeDiags',      
              'StateMet',      
              'WetLossConv',
@@ -119,6 +120,47 @@ COLLECTIONS: 'SpeciesConc',
                               'DryDepMix_?DRY?               ', 'GIGCchem',
                               'DryDepChm_?DRY?               ', 'GIGCchem',
                               'DryDep_?DRY?                  ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE POPS COLLECTION %%%%%
+#
+# Emissions, fluxes, and chemical prod/loss for persistent organic pollutants
+#
+# Available for the POPs simulation only
+#==============================================================================
+  POPS.template:         '%y4%m2%d2_%h2%n2z.nc4',
+  POPS.format:           'CFIO',
+  POPS.frequency:        {FREQUENCY}
+  POPS.duration:         {DURATION}
+  POPS.mode:             'time-averaged'
+  POPS.fields:           'EmisPOPPOCPO                       ', 'GIGCchem',
+                         'EmisPOPPBCPO                       ', 'GIGCchem',
+                         'EmisPOPG                           ', 'GIGCchem',
+                         'EmisPOPGfromSoil                   ', 'GIGCchem',
+                         'EmisPOPGfromLake                   ', 'GIGCchem',
+                         'EmisPOPGfromLeaf                   ', 'GIGCchem',
+                         'FluxPOPGfromSoilToAir              ', 'GIGCchem',
+                         'FluxPOPGfromAirToSoil              ', 'GIGCchem',
+                         'FluxPOPGfromLakeToAir              ', 'GIGCchem',
+                         'FluxPOPGfromAirToLake              ', 'GIGCchem',
+                         'FluxPOPGfromLeafToAir              ', 'GIGCchem',
+                         'FluxPOPGfromAirToLeaf              ', 'GIGCchem',
+                         'FugacitySoilToAir                  ', 'GIGCchem',
+                         'FugacityLakeToAir                  ', 'GIGCchem',
+                         'FugacityLeafToAir                  ', 'GIGCchem',
+                         'LossPOPPOCPObyGasPhase             ', 'GIGCchem',
+                         'ProdPOPPOCPOfromGasPhase           ', 'GIGCchem',
+                         'LossPOPPBCPObyGasPhase             ', 'GIGCchem',
+                         'ProdPOPPBCPOfromGasPhase           ', 'GIGCchem',
+                         'ProdPOPGfromOH                     ', 'GIGCchem',
+                         'ProdPOPPOCPOfromO3                 ', 'GIGCchem',
+                         'ProdPOPPOCPIfromO3                 ', 'GIGCchem',
+                         'ProdPOPPBCPIfromO3                 ', 'GIGCchem',
+                         'ProdPOPPBCPOfromO3                 ', 'GIGCchem',
+                         'ProdPOPPOCPOfromNO3                ', 'GIGCchem',
+                         'ProdPOPPOCPIfromNO3                ', 'GIGCchem',
+                         'ProdPOPPBCPIfromNO3                ', 'GIGCchem',
+                         'ProdPOPPBCPOfromNO3                ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE LevelEdgeDiags COLLECTION %%%%%
