@@ -28,6 +28,7 @@ EXPID:  ./GEOSChem
 #==============================================================================
 COLLECTIONS: 'SpeciesConc',
              'Budget',
+             'CO2,
              'CloudConvFlux',
              'LevelEdgeDiags',      
              'StateMet',      
@@ -85,6 +86,21 @@ COLLECTIONS: 'SpeciesConc',
                        'BudgetWetDepFull_?WET?               ', 'GIGCchem',
                        'BudgetWetDepTrop_?WET?               ', 'GIGCchem',
                        'BudgetWetDepPBL_?WET?                ', 'GIGCchem',  
+::
+#==============================================================================
+# %%%%% THE CO2 COLLECTION %%%%%
+#
+# Diagnostics for the CO2 specialty simulation.  (NOTE: Several other relevant
+# CO2 specialty-simulation diagnostics are sent to the HEMCO diagnostics.)
+#
+# Only available for the CO2 specialty simulation only
+#==============================================================================
+  CO2.template:        '%y4%m2%d2_%h2%n2z.nc4',
+  CO2.format:          'CFIO',
+  CO2.frequency:       {FREQUENCY}
+  CO2.duration:        {DURATION}
+  CO2.mode:            'time-averaged'
+  CO2.fields:          'ProdCO2fromCO                        ', 'GIGCchem',  
 ::
 #==============================================================================
 # %%%%% THE CloudConvFlux COLLECTION %%%%%
