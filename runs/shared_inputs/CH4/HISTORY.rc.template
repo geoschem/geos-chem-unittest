@@ -28,6 +28,7 @@ EXPID:  ./GEOSChem
 #==============================================================================
 COLLECTIONS: 'SpeciesConc',
              'Budget',
+	     'CH4',
              'CloudConvFlux',
              'ConcAfterChem',
              'LevelEdgeDiags',      
@@ -86,6 +87,23 @@ COLLECTIONS: 'SpeciesConc',
                        'BudgetWetDepFull_?WET?               ', 'GIGCchem',
                        'BudgetWetDepTrop_?WET?               ', 'GIGCchem',
                        'BudgetWetDepPBL_?WET?                ', 'GIGCchem',  
+::
+#==============================================================================
+# %%%%% THE CH4 COLLECTION %%%%%
+#
+# Cloud convective flux (default = advected species)
+#
+# Available for all simulations
+#==============================================================================
+  CH4.template:               '%y4%m2%d2_%h2%n2z.nc4',
+  CH4.format:                 'CFIO',
+  CH4.frequency:              {FREQUENCY}
+  CH4.duration:               {DURATION}
+  CH4.mode:                   'time-averaged'
+  CH4.fields:                 'OHconcAfterChem               ', 'GIGCchem',
+                              'LossCH4byClinTrop             ', 'GIGCchem',
+                              'LossCH4byOHinTrop             ', 'GIGCchem',
+                              'LossCH4inStrat                ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE CloudConvFlux COLLECTION %%%%%
