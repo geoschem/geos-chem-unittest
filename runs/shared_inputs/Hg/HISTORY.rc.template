@@ -31,6 +31,7 @@ COLLECTIONS: 'SpeciesConc',
              'CloudConvFlux',
              'DryDep',
              'LevelEdgeDiags',      
+             'Mercury',
              'StateMet',      
              'WetLossConv',
              'WetLossLS',
@@ -139,6 +140,50 @@ COLLECTIONS: 'SpeciesConc',
                               'Met_PFILSAN                   ', 'GIGCchem',
                               'Met_PFLCU                     ', 'GIGCchem',
                               'Met_PFLLSAN                   ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE Mercury COLLECTION %%%%%
+#
+# Emissions, concentrations, and prod/loss quantities for Hg species
+# (NOTE: Emissions are from HEMCO manual diagnostic outputs)
+#
+# Available for the Hg and tagged Hg simulations
+#==============================================================================
+  Mercury.template:           '%y4%m2%d2_%h2%n2z.nc4',
+  Mercury.format:             'CFIO',
+  Mercury.frequency:          {FREQUENCY}
+  Mercury.duration:           {DURATION}
+  Mercury.mode:               'time-averaged'
+  Mercury.fields:             'EmisHg0anthro                 ', 'GIGCchem',
+                              'EmisHg0biomass                ', 'GIGCchem',
+                              'EmisHg0geogenic               ', 'GIGCchem',
+                              'EmisHg0land                   ', 'GIGCchem',
+                              'EmisHg0ocean                  ', 'GIGCchem',
+                              'EmisHg0soil                   ', 'GIGCchem',
+                              'EmisHg0snow                   ', 'GIGCchem',
+                              'EmisHg0vegetation             ', 'GIGCchem',
+                              'EmisHg2HgPanthro              ', 'GIGCchem',
+                              'ConcBr                        ', 'GIGCchem',
+                              'ConcBrO                       ', 'GIGCchem',
+                              'LossHg2bySeaSalt              ', 'GIGCchem',
+                              'LossRateHg2bySeaSalt          ', 'GIGCchem',
+                              'PolarConcBr                   ', 'GIGCchem',
+                              'PolarConcBrO                  ', 'GIGCchem',
+                              'PolarConcO3                   ', 'GIGCchem',
+			      'ProdHg2fromBr                 ', 'GIGCchem',
+                              'ProdHg2fromBrY                ', 'GIGCchem',
+                              'ProdHg2fromClY                ', 'GIGCchem',
+                              'ProdHg2fromHg0                ', 'GIGCchem',
+                              'ProdHg2fromHgBrPlusBr2        ', 'GIGCchem',
+                              'ProdHg2fromHgBrPlusBrBrO      ', 'GIGCchem',
+                              'ProdHg2fromHgBrPlusBrClO      ', 'GIGCchem',
+                              'ProdHg2fromHgBrPlusBrHO2      ', 'GIGCchem',
+                              'ProdHg2fromHgBrPlusBrNO2      ', 'GIGCchem',
+                              'ProdHg2fromHgBrPlusBrOH       ', 'GIGCchem',
+                              'ProdHg2fromO3                 ', 'GIGCchem',
+                              'ProdHg2fromOH                 ', 'GIGCchem',
+#                              'ReactiveParticulateHg         ', 'GIGCchem',
+#                              'ReactiveGaseousHg             ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% The StateMet COLLECTION %%%%%
