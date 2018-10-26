@@ -24,24 +24,25 @@ CoresPerNode: 6
 #==============================================================================
 # %%%%% COLLECTION NAME DECLARATIONS %%%%%
 #
-# To disable a collection, place a "#" character in front of its name
+# To enable a collection, remove the "#" character in front of its name. The
+# Restart collection should always be turned on.
 #
 # NOTE: These are the "default" collections for GEOS-Chem, but you can create
 # your own customized diagnostic collections as well.
 #==============================================================================
 COLLECTIONS: 'Restart',
-             'SpeciesConc',
-             'Budget',
-             'AerosolMass',
-             'Aerosols',
-             'CloudConvFlux',
-             'DryDep',
-             'LevelEdgeDiags',
-             'ProdLoss',
-             'StateChm',     
-             'StateMet',      
-             'WetLossConv',
-             'WetLossLS',
+             #'SpeciesConc',
+             #'Budget',
+             #'AerosolMass',
+             #'Aerosols',
+             #'CloudConvFlux',
+             #'DryDep',
+             #'LevelEdgeDiags',
+             #'ProdLoss',
+             #'StateChm',     
+             #'StateMet',      
+             #'WetLossConv',
+             #'WetLossLS',
 ::
 ###############################################################################
 ### The rest of this file consists of collection definitions.               ###
