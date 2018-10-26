@@ -30,9 +30,11 @@ COLLECTIONS: 'SpeciesConc',
              'Budget',
              'CloudConvFlux',
              'DryDep',
-             'LevelEdgeDiags',      
-             'Mercury',
-             'StateMet',      
+             'LevelEdgeDiags',
+             'MercuryEmis',
+             'MercuryChem',
+             'MercuryOcean',
+             'StateMet',
              'WetLossConv',
              'WetLossLS',
 ::
@@ -142,19 +144,19 @@ COLLECTIONS: 'SpeciesConc',
                               'Met_PFLLSAN                   ', 'GIGCchem',
 ::
 #==============================================================================
-# %%%%% THE Mercury COLLECTION %%%%%
+# %%%%% THE MercuryEmis COLLECTION %%%%%
 #
-# Emissions, concentrations, and prod/loss quantities for Hg species
-# (NOTE: Emissions are from HEMCO manual diagnostic outputs)
+# Diagnostics for mercury emissions
+# (mostly from HEMCO manual diagnostic outputs)
 #
 # Available for the Hg and tagged Hg simulations
 #==============================================================================
-  Mercury.template:           '%y4%m2%d2_%h2%n2z.nc4',
-  Mercury.format:             'CFIO',
-  Mercury.frequency:          {FREQUENCY}
-  Mercury.duration:           {DURATION}
-  Mercury.mode:               'time-averaged'
-  Mercury.fields:             'EmisHg0anthro                 ', 'GIGCchem',
+  MercuryEmis.template:       '%y4%m2%d2_%h2%n2z.nc4',
+  MercuryEmis.format:         'CFIO',
+  MercuryEmis.frequency:      {FREQUENCY}
+  MercuryEmis.duration:       {DURATION}
+  MercuryEmis.mode:           'time-averaged'
+  MercuryEmis.fields:         'EmisHg0anthro                 ', 'GIGCchem',
                               'EmisHg0biomass                ', 'GIGCchem',
                               'EmisHg0geogenic               ', 'GIGCchem',
                               'EmisHg0land                   ', 'GIGCchem',
@@ -163,7 +165,23 @@ COLLECTIONS: 'SpeciesConc',
                               'EmisHg0snow                   ', 'GIGCchem',
                               'EmisHg0vegetation             ', 'GIGCchem',
                               'EmisHg2HgPanthro              ', 'GIGCchem',
-                              'ConcBr                        ', 'GIGCchem',
+                              'EmisHg2snowToOcean            ', 'GIGCchem',
+                              'EmisHg2rivers                 ', 'GIGCchem',
+                              'FluxHg2HgPfromAirToSnow       ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE MercuryChem COLLECTION %%%%%
+#
+# Concentration and prod/loss diagnostics for mercury species
+#
+# Available for the Hg and tagged Hg simulations
+#==============================================================================
+  MercuryChem.template:       '%y4%m2%d2_%h2%n2z.nc4',
+  MercuryChem.format:         'CFIO',
+  MercuryChem.frequency:      {FREQUENCY}
+  MercuryChem.duration:       {DURATION}
+  MercuryChem.mode:           'time-averaged'
+  MercuryChem.fields:         'ConcBr                        ', 'GIGCchem',
                               'ConcBrO                       ', 'GIGCchem',
                               'LossHg2bySeaSalt              ', 'GIGCchem',
                               'LossRateHg2bySeaSalt          ', 'GIGCchem',
@@ -182,8 +200,30 @@ COLLECTIONS: 'SpeciesConc',
                               'ProdHg2fromHgBrPlusBrOH       ', 'GIGCchem',
                               'ProdHg2fromO3                 ', 'GIGCchem',
                               'ProdHg2fromOH                 ', 'GIGCchem',
-#                              'ReactiveParticulateHg         ', 'GIGCchem',
-#                              'ReactiveGaseousHg             ', 'GIGCchem',
+                              'ParticulateBoundHg            ', 'GIGCchem',
+                              'ReactiveGaseousHg             ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE MercuryOcean COLLECTION %%%%%
+#
+# Oceanic masses and fluxes of mercury species
+#
+# Available for the Hg and tagged Hg simulations
+#==============================================================================
+  MercuryOcean.template:      '%y4%m2%d2_%h2%n2z.nc4',
+  MercuryOcean.format:        'CFIO',
+  MercuryOcean.frequency:     {FREQUENCY}
+  MercuryOcean.duration:      {DURATION
+  MercuryOcean.mode:          'time-averaged'
+  MercuryOcean.fields:        'FluxHg0fromAirToOcean         ', 'GIGCchem',
+                              'FluxHg0fromOceanToAir         ', 'GIGCchem',
+                              'FluxHg2HgPfromAirToOcean      ', 'GIGCchem',
+                              'FluxHg2toDeepOcean            ', 'GIGCchem',
+                              'FluxOCtoDeepOcean             ', 'GIGCchem',
+                              'MassHg0inOcean                ', 'GIGCchem',
+                              'MassHg2inOcean                ', 'GIGCchem',
+                              'MassHgPinOcean                ', 'GIGCchem',
+                              'MassHgTotalInOcean            ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% The StateMet COLLECTION %%%%%
