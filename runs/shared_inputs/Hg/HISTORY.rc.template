@@ -213,7 +213,7 @@ COLLECTIONS: 'SpeciesConc',
   MercuryOcean.template:      '%y4%m2%d2_%h2%n2z.nc4',
   MercuryOcean.format:        'CFIO',
   MercuryOcean.frequency:     {FREQUENCY}
-  MercuryOcean.duration:      {DURATION
+  MercuryOcean.duration:      {DURATION}
   MercuryOcean.mode:          'time-averaged'
   MercuryOcean.fields:        'FluxHg0fromAirToOcean         ', 'GIGCchem',
                               'FluxHg0fromOceanToAir         ', 'GIGCchem',
