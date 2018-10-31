@@ -2914,6 +2914,23 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 * NOAA_GMD_CH4 $ROOT/NOAA_GMD/v2018-01/monthly.gridded.surface.methane.1979-2020.1x1.nc SFC_CH4 1979-2020/1-12/1/0 C xy ppbv * - 1 1 
 
+#==============================================================================
+# --- Climatological inputs for the RRTMG radiative transfer model ---
+#
+# These fields will only be read if the +RRTMG+ toggle is activated.
+# +RRTMG+ can be set explicitly above as a setting of the base extension 
+# (--> +RRTMG+: true/false). If not defined, it will be set automatically 
+# based on the RRTMG toggle in input.geos (recommended).
+#==============================================================================
+(((+RRTMG+
+* TES_CLIM_CCL4  $ROOT/RRTMG/v2018-11/species_clim_profiles.2x25.nc CCl4  2000/1/1/0 C xyz 1 * - 1 1
+* TES_CLIM_CFC11 $ROOT/RRTMG/v2018-11/species_clim_profiles.2x25.nc CFC11 2000/1/1/0 C xyz 1 * - 1 1
+* TES_CLIM_CFC12 $ROOT/RRTMG/v2018-11/species_clim_profiles.2x25.nc CFC12 2000/1/1/0 C xyz 1 * - 1 1
+* TES_CLIM_CFC22 $ROOT/RRTMG/v2018-11/species_clim_profiles.2x25.nc CFC22 2000/1/1/0 C xyz 1 * - 1 1
+* TES_CLIM_CH4   $ROOT/RRTMG/v2018-11/species_clim_profiles.2x25.nc CH4   2000/1/1/0 C xyz 1 * - 1 1
+* TES_CLIM_N2O   $ROOT/RRTMG/v2018-11/species_clim_profiles.2x25.nc N2O   2000/1/1/0 C xyz 1 * - 1 1
+)))+RRTMG+
+
 ### END SECTION BASE EMISSIONS ###
 
 ###############################################################################
