@@ -1,5 +1,5 @@
 ###############################################################################
-###  HISTORY.rc file for GEOS-Chem Hg specialty simulations                 ###
+###  HISTORY.rc file for GEOS-Chem CH4 specialty simulations                ###
 ###  Contact: GEOS-Chem Support Team (geos-chem-support@as.harvard.edu)     ###
 ###############################################################################
 
@@ -15,8 +15,11 @@
 #      Will create netCDF files whose names begin with "GEOSChem"
 #      in the OutputDir sub-folder of this run directory.
 #
+# EXPDSC and CoresPerNode are only used by GCHP simulations.
 #============================================================================
 EXPID:  ./GEOSChem
+EXPDSC: GEOS-Chem_devel
+CoresPerNode: 6
 
 #==============================================================================
 # %%%%% COLLECTION NAME DECLARATIONS %%%%%
@@ -31,14 +34,9 @@ COLLECTIONS: 'Restart',
              #'SpeciesConc',
              #'Budget',
              #'CloudConvFlux',
-             #'DryDep',
-             #'MercuryEmis',
-             #'MercuryChem',
-             #'MercuryOcean',
+             #'ConcAfterChem',
              #'LevelEdgeDiags',      
              #'StateMet',      
-             #'WetLossConv',
-             #'WetLossLS',
 ::
 ###############################################################################
 ### The rest of this file consists of collection definitions.               ###
@@ -65,13 +63,6 @@ COLLECTIONS: 'Restart',
                               'Met_PS1DRY                     ', 'GIGCchem',
                               'Met_SPHU1                      ', 'GIGCchem',
                               'Met_TMPU1                      ', 'GIGCchem',
-                              'Chem_OceanHg0                  ', 'GIGCchem',
-                              'Chem_OceanHg2                  ', 'GIGCchem',
-                              'Chem_OceanHgP                  ', 'GIGCchem',
-                              'Chem_SnowHgOcean               ', 'GIGCchem',
-                              'Chem_SnowHgLand                ', 'GIGCchem',
-                              'Chem_SnowHgOceanStored         ', 'GIGCchem',
-                              'Chem_SnowHgLandStored          ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE SpeciesConc COLLECTION %%%%%
@@ -112,7 +103,7 @@ COLLECTIONS: 'Restart',
                        'BudgetTransportPBL_?ADV?             ', 'GIGCchem',  
                        'BudgetMixingFull_?ADV?               ', 'GIGCchem',
                        'BudgetMixingTrop_?ADV?               ', 'GIGCchem',
-                       'BudgetMixingPBL_?ADV?                ', 'GIGCchem',  
+                       'BudgetMixingPBL_?ADV?                ', 'GIGCchem',    
                        'BudgetConvectionFull_?ADV?           ', 'GIGCchem',
                        'BudgetConvectionTrop_?ADV?           ', 'GIGCchem',
                        'BudgetConvectionPBL_?ADV?            ', 'GIGCchem',  
@@ -135,21 +126,19 @@ COLLECTIONS: 'Restart',
   CloudConvFlux.fields:       'CloudConvFlux_?ADV?           ', 'GIGCchem',
 ::
 #==============================================================================
-# %%%%% THE DryDep COLLECTION %%%%%
+# %%%%% THE ConcAfterChem COLLECTION %%%%%
 #
-# Dry depositon fluxes and velocities (for all dry-depositing species)
+# Concentrations of OH, HO2, O1D, O3P immediately after exiting the KPP solver
+# or OH after the CH4 specialty-simulation chemistry routine.
 #
-# Available for all simuations that have dry-depositing species
+# OH:       Available for all full-chemistry simulations and CH4 specialty sim
 #==============================================================================
-  DryDep.template:            '%y4%m2%d2_%h2%n2z.nc4',
-  DryDep.format:              'CFIO',
-  DryDep.frequency:           {FREQUENCY}
-  DryDep.duration:            {DURATION}
-  DryDep.mode:                'time-averaged'
-  DryDep.fields:              'DryDepVel_?DRY?               ', 'GIGCchem',
-                              'DryDepMix_?DRY?               ', 'GIGCchem',
-                              'DryDepChm_?DRY?               ', 'GIGCchem',
-                              'DryDep_?DRY?                  ', 'GIGCchem',
+  ConcAfterChem.template:     '%y4%m2%d2_%h2%n2z.nc4',
+  ConcAfterChem.format:       'CFIO',
+  ConcAfterChem.frequency:    {FREQUENCY}
+  ConcAfterChem.duration:     {DURATION}
+  ConcAfterChem.mode:         'time-averaged'
+  ConcAfterChem.fields:       'OHconcAfterChem               ', 'GIGCchem',  
 ::
 #==============================================================================
 # %%%%% THE LevelEdgeDiags COLLECTION %%%%%
@@ -170,88 +159,6 @@ COLLECTIONS: 'Restart',
                               'Met_PFILSAN                   ', 'GIGCchem',
                               'Met_PFLCU                     ', 'GIGCchem',
                               'Met_PFLLSAN                   ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE MercuryEmis COLLECTION %%%%%
-#
-# Diagnostics for mercury emissions
-# (mostly from HEMCO manual diagnostic outputs)
-#
-# Available for the Hg and tagged Hg simulations
-#==============================================================================
-  MercuryEmis.template:       '%y4%m2%d2_%h2%n2z.nc4',
-  MercuryEmis.format:         'CFIO',
-  MercuryEmis.frequency:      {FREQUENCY}
-  MercuryEmis.duration:       {DURATION}
-  MercuryEmis.mode:           'time-averaged'
-  MercuryEmis.fields:         'EmisHg0anthro                 ', 'GIGCchem',
-                              'EmisHg0biomass                ', 'GIGCchem',
-                              'EmisHg0geogenic               ', 'GIGCchem',
-                              'EmisHg0land                   ', 'GIGCchem',
-                              'EmisHg0ocean                  ', 'GIGCchem',
-                              'EmisHg0soil                   ', 'GIGCchem',
-                              'EmisHg0snow                   ', 'GIGCchem',
-                              'EmisHg0vegetation             ', 'GIGCchem',
-                              'EmisHg2HgPanthro              ', 'GIGCchem',
-                              'EmisHg2snowToOcean            ', 'GIGCchem',
-                              'EmisHg2rivers                 ', 'GIGCchem',
-                              'FluxHg2HgPfromAirToSnow       ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE MercuryChem COLLECTION %%%%%
-#
-# Concentration and prod/loss diagnostics for mercury species
-#
-# Available for the Hg and tagged Hg simulations
-#==============================================================================
-  MercuryChem.template:       '%y4%m2%d2_%h2%n2z.nc4',
-  MercuryChem.format:         'CFIO',
-  MercuryChem.frequency:      {FREQUENCY}
-  MercuryChem.duration:       {DURATION}
-  MercuryChem.mode:           'time-averaged'
-  MercuryChem.fields:         'ConcBr                        ', 'GIGCchem',
-                              'ConcBrO                       ', 'GIGCchem',
-                              'LossHg2bySeaSalt              ', 'GIGCchem',
-                              'LossRateHg2bySeaSalt          ', 'GIGCchem',
-                              'PolarConcBr                   ', 'GIGCchem',
-                              'PolarConcBrO                  ', 'GIGCchem',
-                              'PolarConcO3                   ', 'GIGCchem',
-			      'ProdHg2fromBr                 ', 'GIGCchem',
-                              'ProdHg2fromBrY                ', 'GIGCchem',
-                              'ProdHg2fromClY                ', 'GIGCchem',
-                              'ProdHg2fromHg0                ', 'GIGCchem',
-                              'ProdHg2fromHgBrPlusBr2        ', 'GIGCchem',
-                              'ProdHg2fromHgBrPlusBrBrO      ', 'GIGCchem',
-                              'ProdHg2fromHgBrPlusBrClO      ', 'GIGCchem',
-                              'ProdHg2fromHgBrPlusBrHO2      ', 'GIGCchem',
-                              'ProdHg2fromHgBrPlusBrNO2      ', 'GIGCchem',
-                              'ProdHg2fromHgBrPlusBrOH       ', 'GIGCchem',
-                              'ProdHg2fromO3                 ', 'GIGCchem',
-                              'ProdHg2fromOH                 ', 'GIGCchem',
-                              'ParticulateBoundHg            ', 'GIGCchem',
-                              'ReactiveGaseousHg             ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE MercuryOcean COLLECTION %%%%%
-#
-# Oceanic masses and fluxes of mercury species
-#
-# Available for the Hg and tagged Hg simulations
-#==============================================================================
-  MercuryOcean.template:      '%y4%m2%d2_%h2%n2z.nc4',
-  MercuryOcean.format:        'CFIO',
-  MercuryOcean.frequency:     {FREQUENCY}
-  MercuryOcean.duration:      {DURATION}
-  MercuryOcean.mode:          'time-averaged'
-  MercuryOcean.fields:        'FluxHg0fromAirToOcean         ', 'GIGCchem',
-                              'FluxHg0fromOceanToAir         ', 'GIGCchem',
-                              'FluxHg2HgPfromAirToOcean      ', 'GIGCchem',
-                              'FluxHg2toDeepOcean            ', 'GIGCchem',
-                              'FluxOCtoDeepOcean             ', 'GIGCchem',
-                              'MassHg0inOcean                ', 'GIGCchem',
-                              'MassHg2inOcean                ', 'GIGCchem',
-                              'MassHgPinOcean                ', 'GIGCchem',
-                              'MassHgTotalInOcean            ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% The StateMet COLLECTION %%%%%
@@ -345,34 +252,4 @@ COLLECTIONS: 'Restart',
                               'Met_V                         ', 'GIGCchem',
                               'Met_V10M                      ', 'GIGCchem',
                               'Met_Z0                        ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE WetLossConv COLLECTION %%%%%
-#
-# Loss of soluble species in convective updrafts
-#
-# Available for all simulations that have soluble species
-#==============================================================================
-  WetLossConv.template:       '%y4%m2%d2_%h2%n2z.nc4',
-  WetLossConv.format:         'CFIO',
-  WetLossConv.frequency:      {FREQUENCY}
-  WetLossConv.duration:       {DURATION}
-  WetLossConv.mode:           'time-averaged'
-  WetLossConv.fields:         'WetLossConv_?WET?             ', 'GIGCchem',
-                              'WetLossConvFrac_?WET?         ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE WetLossLS COLLECTION %%%%%
-#
-# Loss of soluble species in large-scale wetdep (i.e. rainout and washout)
-#
-# Available for all simulations that have soluble species
-#==============================================================================
-# Loss due to rainout and washout (per deposited species)
-  WetLossLS.template:         '%y4%m2%d2_%h2%n2z.nc4',
-  WetLossLS.format:           'CFIO',
-  WetLossLS.frequency:        {FREQUENCY}
-  WetLossLS.duration:         {DURATION}
-  WetLossLS.mode:             'time-averaged'
-  WetLossLS.fields:           'WetLossLS_?WET?               ', 'GIGCchem',
 ::

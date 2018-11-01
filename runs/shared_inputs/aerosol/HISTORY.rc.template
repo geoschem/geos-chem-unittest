@@ -21,23 +21,25 @@ EXPID:  ./GEOSChem
 #==============================================================================
 # %%%%% COLLECTION NAME DECLARATIONS %%%%%
 #
-# To disable a collection, place a "#" character in front of its name
+# To enable a collection, remove the "#" character in front of its name. The
+# Restart collection should always be turned on.
 #
 # NOTE: These are the "default" collections for GEOS-Chem, but you can create
 # your own customized diagnostic collections as well.
 #==============================================================================
-COLLECTIONS: 'SpeciesConc',
-             'Budget',
-             'AerosolMass',
-             'Aerosols',
-             'CloudConvFlux',
-             'DryDep',
-             'LevelEdgeDiags',
-             'ProdLoss',
-             'StateChm',     
-             'StateMet',      
-             'WetLossConv',
-             'WetLossLS',
+COLLECTIONS: 'Restart',
+             #'SpeciesConc',
+             #'Budget',
+             #'AerosolMass',
+             #'Aerosols',
+             #'CloudConvFlux',
+             #'DryDep',
+             #'LevelEdgeDiags',
+             #'ProdLoss',
+             #'StateChm',     
+             #'StateMet',      
+             #'WetLossConv',
+             #'WetLossLS',
 ::
 ###############################################################################
 ### The rest of this file consists of collection definitions.               ###
@@ -46,6 +48,29 @@ COLLECTIONS: 'SpeciesConc',
 ### collections above, ends with a double-colon ("::").                     ###
 ###############################################################################
 
+#==============================================================================
+# %%%%% THE Restart COLLECTION %%%%%
+#
+# GEOS-Chem restart file fields
+#
+# Available for all simulations
+#==============================================================================
+  Restart.template:           '%y4%m2%d2_%h2%n2z.nc4',
+  Restart.format:             'CFIO',
+  Restart.frequency:          'End',
+  Restart.duration:           'End',
+  Restart.mode:               'instantaneous'
+  Restart.fields:             'SpeciesConc_?ALL?              ', 'GIGCchem',
+                              'Chem_H2O2AfterChem             ', 'GIGCchem',
+                              'Chem_SO2AfterChem              ', 'GIGCchem',
+                              'Chem_DryDepNitrogen            ', 'GIGCchem',
+                              'Chem_WetDepNitrogen            ', 'GIGCchem',
+                              'Met_DELPDRY                    ', 'GIGCchem',
+                              'Met_PS1WET                     ', 'GIGCchem',
+                              'Met_PS1DRY                     ', 'GIGCchem',
+                              'Met_SPHU1                      ', 'GIGCchem',
+                              'Met_TMPU1                      ', 'GIGCchem',
+::
 #==============================================================================
 # %%%%% THE SpeciesConc COLLECTION %%%%%
 #
