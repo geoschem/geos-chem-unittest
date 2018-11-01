@@ -96,6 +96,7 @@ Warnings:                    {WARNINGS}
 ###############################################################################
 # ExtNr ExtName                on/off  Species
 0       Base                   : on    *
+    --> GC_RESTART             :       true	
     --> HEMCO_RESTART          :       true
     --> AEIC                   :       true
     --> BIOFUEL                :       true
@@ -2531,6 +2532,28 @@ Warnings:                    {WARNINGS}
 * TMPU      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NEST.$NC     T        1980-2018/1-12/1-31/* C xyz 1  * -  1 1
 
 #==============================================================================
+# --- GEOS-Chem restart file ---
+#
+# PSC state only needed for UCX
+#==============================================================================
+(((GC_RESTART
+* SPC_           ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 SpeciesConc_?ALL?   $YYYY/$MM/$DD/$HH C xyz 1 * - 1 1
+* TMPU1          ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_TMPU1           $YYYY/$MM/$DD/$HH E xyz 1 * - 1 1
+* SPHU1          ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_SPHU1           $YYYY/$MM/$DD/$HH E xyz 1 * - 1 1
+* PS1DRY         ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_PS1DRY          $YYYY/$MM/$DD/$HH E xy  1 * - 1 1
+* PS1WET         ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_PS1WET          $YYYY/$MM/$DD/$HH E xy  1 * - 1 1
+* DELPDRY        ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_DELPDRY         $YYYY/$MM/$DD/$HH E xyz 1 * - 1 1
+* KPP_HVALUE     ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Chem_KPPHvalue      $YYYY/$MM/$DD/$HH E xyz 1 * - 1 1
+* WETDEP_N       ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Chem_WetDepNitrogen $YYYY/$MM/$DD/$HH E xy  1 * - 1 1
+* DRYDEP_N       ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Chem_DryDepNitrogen $YYYY/$MM/$DD/$HH E xy  1 * - 1 1
+* SO2_AFTERCHEM  ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Chem_SO2AfterChem   $YYYY/$MM/$DD/$HH E xyz 1 * - 1 1
+* H2O2_AFTERCHEM ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Chem_H2O2AfterChem  $YYYY/$MM/$DD/$HH E xyz 1 * - 1 1
+(((+STATE_PSC+
+* STATE_PSC      ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Chem_StatePSC       $YYYY/$MM/$DD/$HH E xyz count       * - 1 1
+)))+STATE_PSC+
+)))GC_RESTART
+
+#==============================================================================
 # --- Time zones (offset to UTC) ---
 #==============================================================================
 * TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
@@ -2552,15 +2575,6 @@ Warnings:                    {WARNINGS}
 * DTOMS1_O3_COL -                                                       DTOMS1 -                  - -  dobsons/day * - 1 1 
 * DTOMS2_O3_COL -                                                       DTOMS2 -                  - -  dobsons/day * - 1 1
 )))+TOMS_SBUV_O3+
-
-#==============================================================================
-# --- PSC state, only needed for UCX ---
-#==============================================================================
-(((+STATE_PSC+
-(((HEMCO_RESTART
-* STATE_PSC  ./HEMCO_restart.$YYYY$MM$DD$HH00.nc STATE_PSC $YYYY/$MM/$DD/$HH E xyz count * - 1 1
-)))HEMCO_RESTART
-)))+STATE_PSC+
 
 #==============================================================================
 # --- Linear stratospheric chemistry fields ---
