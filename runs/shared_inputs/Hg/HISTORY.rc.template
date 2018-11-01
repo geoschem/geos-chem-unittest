@@ -65,6 +65,13 @@ COLLECTIONS: 'Restart',
                               'Met_PS1DRY                     ', 'GIGCchem',
                               'Met_SPHU1                      ', 'GIGCchem',
                               'Met_TMPU1                      ', 'GIGCchem',
+                              'Chem_OceanHg0                  ', 'GIGCchem',
+                              'Chem_OceanHg2                  ', 'GIGCchem',
+                              'Chem_OceanHgP                  ', 'GIGCchem',
+                              'Chem_SnowHgOcean               ', 'GIGCchem',
+                              'Chem_SnowHgLand                ', 'GIGCchem',
+                              'Chem_SnowHgOceanStored         ', 'GIGCchem',
+                              'Chem_SnowHgLandStored          ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE SpeciesConc COLLECTION %%%%%
