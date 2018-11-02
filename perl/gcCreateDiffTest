@@ -325,6 +325,8 @@ sub doCopyDirs($$) {
   my $runDir  = "";
   my $sim     = "";
   my $start   = "";
+  my $yyyymmdd= "";
+  my $hhmm    = "";
   my $home    = "";
   my $file    = "";
   my $filename= "";
@@ -485,6 +487,11 @@ sub doCopyDirs($$) {
 	  $extra   =~ s/\_//g;
 	  $extra   =~ s/\.//g;
 
+	  # Get start date and hour
+	  $yyyymmdd= substr( $start, 0, 8 );
+	  $hhmm    = substr( $start, 8, 2 );
+	  $hhmm   .= "00";
+	  
 	  # Define the run directory name
 	  $runDir   = &getRunDir( $met, $grid, $nest, $sim );
 	  &checkDir( $runDir );
@@ -587,7 +594,7 @@ sub doCopyDirs($$) {
 	  $cmd .= " $devDir/HISTORY.rc.template";
 	  $cmd .= " $devDir/HEMCO_Config.template";
 	  $cmd .= " $devDir/trac_avg.*";
-	  $cmd .= " $devDir/GEOSChem_restart.*";
+	  $cmd .= " $devDir/GEOSChem.Restart.*";
 	  $cmd .= " $devDir/lastbuild*";
 	  $cmd .= " $devDir/geos.*";
 	  $cmd .= " $devDir/Ox.mass.*";
@@ -599,7 +606,7 @@ sub doCopyDirs($$) {
    	  qx/$cmd/;
 
 	  # Create symbolic link to initial GC restart file
-	  $rstRoot = "$DATA_ROOT/SPC_RESTARTS/initial_GEOSChem_rst.";
+	  $rstRoot = "$DATA_ROOT/GEOSCHEM_RESTARTS/v2018-11/initial_GEOSChem_rst.";
 	  if ( length( $nest ) > 0 ) {
 	    $rstFile = "$rstRoot$grid\_$sim\_$nest.nc";
 	  } else {
@@ -612,9 +619,9 @@ sub doCopyDirs($$) {
 	    }
 	  }
 	  if ( !( -f $rstFile ) ){
-	    print "\nWARNING: File $rstFile does not exist, so a sample restart file will not be included in your run directory. Sample restart files can be found in the SPC_RESTARTS directory or you can use your own restart file.\n\n";
+	    print "\nWARNING: File $rstFile does not exist, so a sample restart file will not be included in your run directory. Sample restart files can be found in the SPECIESCONC_RESTARTS directory or you can use your own restart file.\n\n";
   	  } else {
-	    $cmd = "ln -sf $rstFile $devDir/GEOSChem_restart.${start}00.nc";
+	    $cmd = "ln -sf $rstFile $devDir/GEOSChem.Restart.${yyyymmdd}_{hhmm}z.nc4";
 	    qx/$cmd/;
           }
 
@@ -622,7 +629,7 @@ sub doCopyDirs($$) {
 	  @files = <$copyDir/Dev/*>;
 	  foreach $file (@files) {
 	    if ( $file =~ /\.dat$/i || $file =~ m/HEMCO_restart/ ||
-                 $file =~ m/GEOSChem_restart/ ) {
+                 $file =~ m/GEOSChem.Restart/ ) {
 	      $filename   = &baseName( $file );
 	      $cmd = "ln -s $file $refDir/$filename";
 	      qx/$cmd/;	      

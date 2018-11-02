@@ -281,6 +281,8 @@ sub doCopyDirs($$) {
   my $runDir  = "";
   my $sim     = "";
   my $start   = "";
+  my $yyyymmdd= "";
+  my $hhmm    = "";
   my $home    = "";
   my $user    = "";
   my $res     = "";
@@ -441,6 +443,11 @@ sub doCopyDirs($$) {
 	  $extra   =~ s/\_//g;
 	  $extra   =~ s/\.//g;
 
+          # Get start date and hour
+          $yyyymmdd= substr( $start, 0, 8 );
+          $hhmm    = substr( $start, 8, 2 );
+          $hhmm   .= "00";
+	  
 	  # Define the run directory name
 	  $runDir   = &getRunDir( $met, $grid, $nest, $sim );
 	  &checkDir( $runDir );
@@ -479,7 +486,7 @@ sub doCopyDirs($$) {
 	  $cmd = "$COPY_CMD $runDir $copyDir";
 
 	  # Set path to restart files
-	  $rstRoot = "$DATA_ROOT/SPC_RESTARTS/";
+	  $rstRoot = "$DATA_ROOT/GEOSCHEM_RESTARTS/v2018-11/";
 	  $rstPref = "initial_GEOSChem_rst.";
 
 	  # Test if this is a dry run or not
@@ -543,7 +550,7 @@ sub doCopyDirs($$) {
 	    $cmd .= " ${copyDir}/HISTORY.rc.template";
 	    $cmd .= " ${copyDir}/HEMCO_Config.template";
 	    $cmd .= " ${copyDir}/trac_avg.*";
-	    $cmd .= " ${copyDir}/GEOSChem_restart.*";
+	    $cmd .= " ${copyDir}/GEOSChem.Restart.*";
 	    $cmd .= " ${copyDir}/lastbuild*";
 	    $cmd .= " ${copyDir}/geos.*";
 	    $cmd .= " ${copyDir}/Ox.mass.*";
@@ -584,9 +591,9 @@ sub doCopyDirs($$) {
 	      }
 	    }
 	    if ( !( -f $rstFile ) ){
-	      print "\nWARNING: File $rstFile does not exist, so a sample restart file will not be included in your run directory. Sample restart files can be found in the SPC_RESTARTS directory or you can use your own restart file.\n\n";
+	      print "\nWARNING: File $rstFile does not exist, so a sample restart file will not be included in your run directory. Sample restart files can be found in the SPECIESCONC_RESTARTS directory or you can use your own restart file.\n\n";
   	    } else {
-	      $cmd = "ln -sf $rstFile $copyDir/GEOSChem_restart.${start}00.nc";
+	      $cmd = "ln -sf $rstFile $copyDir/GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4";
 	      qx/$cmd/;
             }
           }

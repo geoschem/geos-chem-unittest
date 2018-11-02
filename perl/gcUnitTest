@@ -467,6 +467,8 @@ sub doUnitTest($$) {
   my $status   = "";
   my $stdout   = "";
   my $start    = "";
+  my $yyyymmdd = "";
+  my $hhmm     = "";
   my $locTime  = "";
   my $rstRoot  = "";
   my $rstFile  = "";
@@ -682,6 +684,11 @@ sub doUnitTest($$) {
 	  $extra   =~ s/\_//g;
 	  $extra   =~ s/\.//g;
 
+          # Get start date and hour
+          $yyyymmdd= substr( $start, 0, 8 );
+          $hhmm    = substr( $start, 8, 2 );
+          $hhmm   .= "00";
+	  
 	  # Define the run directory name
 	  $runDir   = &getRunDir( $met, $grid, $nest, $sim );
 	  &checkDir( $runDir );
@@ -707,7 +714,7 @@ sub doUnitTest($$) {
 	  # Set GEOS-Chem restart file path. A symbolic link will be created
 	  # in the run directory pointing to this restart file.
 	  #-----------------------------------------------------------------
-	  $rstRoot = "$DATA_ROOT/SPC_RESTARTS/initial_GEOSChem_rst.";
+	  $rstRoot = "$DATA_ROOT/GEOSCHEM_RESTARTS/v2018-11/initial_GEOSChem_rst.";
 	  if ( length( $nest ) > 0 ) {
 	    $rstFile = "$rstRoot$grid\_$sim\_$nest.nc";
 	  } else {
@@ -763,10 +770,10 @@ sub doUnitTest($$) {
 		    "rm -f input.geos.$met\_$grid\_$sim >> $stdout\n",
 		    "cp -f HEMCO_Config.rc.$met\_$grid\_$sim HEMCO_Config.rc >> $stdout\n",
 		    "rm -f HEMCO_Config.rc.$met\_$grid\_$sim >> $stdout\n",
-		    "ln -sf $rstFile GEOSChem_restart.${start}00.nc\n",
+		    "ln -sf $rstFile GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",
  	            "$makeCmd unittest >> $stdout\n",
 		    "rm -f Makefile\n",
-		    "rm -f GEOSChem_restart.${start}00.nc\n",
+		    "rm -f GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",
                     "\n\# %%% Create web page w/ unit test matrix %%%\n",
                     "cd $PERL_DIR >> $stdout\n",
                     "./gcUtWeb $RUN_ROOT $RESULTS $TXT_GRID $TEMPLATE $WEB_GRID $WEB_PUSH >>$stdout\n"
