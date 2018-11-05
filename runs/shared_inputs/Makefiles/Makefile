@@ -197,6 +197,8 @@ NEST         :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 3)
 START        :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 4)
 END          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 5)
 STARTDATE    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 7)
+ENDDATE      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 8)
+ENDTIME      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 10)
 HMCO_END     :=$(END)
 
 # By default, TOMAS40 and RRTMG are set to "n".  But if we are doing
@@ -299,7 +301,7 @@ EXE_HMCO_SA  :=hemco_standalone.x
 # Output data files
 GC_DIAG      :=trac_avg.$(RUNID).$(START)
 HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
-GC_RST       :=GEOSChem_restart.$(END).nc
+GC_RST       :=GEOSChem.Restart.$(ENDDATE)_$(ENDTIME)z.nc4
 
 # Unit test validation script and results file
 VALIDATE     :=/usr/bin/perl $(PERL_DIR)/validate.pl
@@ -664,7 +666,6 @@ printruninfosp:
 	@echo "  Version tag         : $(VERSION_TAG)"
 	@echo "  GC Diagnostic File  : $(GC_DIAG).sp"
 	@echo "  GC Restart File     : $(GC_RST).sp"
-	@echo "  History file (inst) ; $(HIST_INS).sp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).sp"
 	@echo "  GC Run Log File     : $(LOG_SP)"
 	@echo "  HEMCO Log File      : $(LOG_HMCO).sp"
@@ -680,7 +681,6 @@ printruninfomp:
 	@echo "  Version tag         : $(VERSION_TAG)"
 	@echo "  GC Diagnostic File  : $(GC_DIAG).mp"
 	@echo "  GC Restart File     : $(GC_RST).mp"
-	@echo "  History file (inst) ; $(HIST_INS).mp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).mp"
 	@echo "  GC Run Log File     : $(LOG_MP)"
 	@echo "  HEMCO Log File      : $(LOG_HMCO).mp"
@@ -769,7 +769,8 @@ addsuffixsp:
            if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
         done
 	@for f in ./GEOSChem*.nc4; do                               \
-           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
+           if [[ "$$f" != "./GEOSChem.Restart.$(STARTDATE)_0000z.nc4" ]]; \
+	      then mv -f $$f $$f.sp; fi;              \
         done
 
 addsuffixmp:
@@ -790,7 +791,8 @@ addsuffixmp:
            if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
         done
 	@for f in ./GEOSChem*.nc4; do                               \
-           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
+           if [[ "$$f" != "./GEOSChem.Restart.$(STARTDATE)_0000z.nc4" ]]; \
+	      then mv -f $$f $$f.mp; fi;              \
         done
 
 check:

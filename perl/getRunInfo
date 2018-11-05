@@ -45,6 +45,8 @@ use strict;                      # Use "IMPLICIT NONE" syntax
 #  6          Root data directory
 #  7          Start date only     (in YYYYMMDD format               )
 #  8          End   date only     (in YYYYMMDD format               )
+#  9          Start time only     (in hhmm format                   )
+#  10         End   time only     (in hhmm format                   )
 #
 # !REVISION HISTORY: 
 #  06 Apr 2015 - E. Lundgren - Initial version
@@ -78,6 +80,8 @@ sub getInfo($$) {
 #                              YYYYMMDD and hh:mm:ss to hhmmss
 #  19 Sep 2017 - R. Yantosca - Add options to return start & end time in just
 #                              YYYYMMDD format (e.g. for use in filenames)
+#  05 Nov 2018 - M. Sulprizio- Add options to return start & end time in hhmm
+#                              format for use in filenames
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -99,10 +103,10 @@ sub getInfo($$) {
   if ( -f "$rundir/input.geos" ) {
   
     # get start run time if $id is 4 or 7, end run time is $id is 5 or 8
-    if ( $id == 4 || $id == 5 || $id == 7 || $id == 8 )  {
+    if ( $id == 4 || $id == 5 || $id == 7 || $id == 8 || $id == 9 || $id == 10)  {
         
-      if    ( $id == 4 || $id == 7 ) { $runstr = "Start"; }
-      elsif ( $id == 5 || $id == 8 ) { $runstr = "End";   }
+      if    ( $id == 4 || $id == 7 || $id == 9 ) { $runstr = "Start"; }
+      elsif ( $id == 5 || $id == 8 || $id == 10) { $runstr = "End";   }
    
       # Grep for date & time in input.geos
       $line = qx( grep "$runstr.*YYYYMMDD" $rundir/input.geos );
@@ -112,10 +116,11 @@ sub getInfo($$) {
       @linestrings = split( ' ', $line );
   
       # Place start and end times into YYYYMMDDhhmm format (ID = 4 or 5)
-      # or just YYYYMMDD format (ID = 7 or 8)
+      # or just YYYYMMDD format (ID = 7 or 8) or just hhmm format (ID = 9 or 10)
       $runinfo = "$linestrings[4]$linestrings[5]";
       if    ( $id == 4 || $id == 5 ) { $runinfo = substr( $runinfo, 0, 12 ); } 
       elsif ( $id == 7 || $id == 8 ) { $runinfo = substr( $runinfo, 0, 8  ); }
+      elsif ( $id == 9 || $id == 10) { $runinfo = substr( $runinfo, 9, 4 ); }
 
     } else {
  
@@ -167,13 +172,13 @@ sub getInfo($$) {
 
        $runinfo = "n"
 
-    # Get start run time if $id is 4 or 7, end run time is $id is 5 or 8
-    } elsif ( $id == 4 || $id == 5 || $id == 7 || $id == 8 ) {
+    # Get start run time if $id is 4,7,or 9, end run time if $id is 5,8,or 10
+    } elsif ( $id == 4 || $id == 5 || $id == 7 || $id == 8 || $id == 9 || $id == 10 ) {
 
       if ( -f "$rundir/HEMCO_sa_Time.rc" ) {
 
-	if ( $id == 4 || $id == 7 ) { $runstr = "START"; }
-	if ( $id == 5 || $id == 8 ) { $runstr = "END";   }
+	if ( $id == 4 || $id == 7 || $id == 9  ) { $runstr = "START"; }
+	if ( $id == 5 || $id == 8 || $id == 10 ) { $runstr = "END";   }
 
 	# Grep for start and date
 	$line = qx( grep "$runstr" $rundir/HEMCO_sa_Time.rc );
@@ -188,9 +193,11 @@ sub getInfo($$) {
 	@times = split( ':', $linestrings[2] );
 
         # Return start and end times in YYYYMMDDhhmm format (ID = 4 or 5)
-	# or just YYYYMMDD format (ID = 7 or 8)
+	# or just YYYYMMDD format (ID = 7 or 8) or hhmm format (ID = 9 or 10)
 	if ( $id == 7 || $id == 8 ) { 
 	  $runinfo = "$dates[0]$dates[1]$dates[2]";
+        } elsif ( $id == 9 || $id == 10 ) {
+ 	  $runinfo = "$times[0]$times[1]";
         } elsif ( $id == 4 || $id == 5 ) {
  	  $runinfo = "$dates[0]$dates[1]$dates[2]$times[0]$times[1]";
         }
@@ -241,6 +248,7 @@ sub main() {
 # !REVISION HISTORY:
 #  07 Apr 2015 - E. Lundgren - Initial version
 #  20 Sep 2017 - R. Yantosca - ID can now be from 0-8
+#  05 Nov 2018 - M. Sulprizio- ID can now be from 0-10
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -251,7 +259,7 @@ sub main() {
   my $msg   = "";
 
   # Exits with an error message if the ID argument is not within valid range
-  if ( $nArgs >= 0 && $nArgs <= 8 ) {
+  if ( $nArgs >= 0 && $nArgs <= 10 ) {
     &getInfo( @ARGV ); 
   } else { 
     $msg = "getRunInfo: $ARGV[1] is an invalid value for the ID argument!";
