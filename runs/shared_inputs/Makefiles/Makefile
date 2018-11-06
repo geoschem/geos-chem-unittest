@@ -545,7 +545,10 @@ dataclean:
 	rm -f diaginfo.dat tracerinfo.dat
 	rm -f tracer_mass*.dat
 	rm -f core.*
-	rm -f *.nc4
+	@for f in ./*.nc4; do                               \
+           if [[ "$$f" != "./GEOSChem.Restart.$(STARTDATE)_0000z.nc4" ]]; \
+	      then rm -f $$f; fi;              \
+        done
 	rm -f *.nc4.sp
 	rm -f *.nc4.mp
 
