@@ -1364,7 +1364,7 @@ Warnings:                    {WARNINGS}
 # --- GEOS-Chem restart file ---
 #==============================================================================
 (((GC_RESTART
-* SPC_           ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 SpeciesConc_?ALL?   $YYYY/$MM/$DD/$HH CS xyz 1 * - 1 1
+* SPC_           ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 SpeciesRst_?ALL?    $YYYY/$MM/$DD/$HH CS xyz 1 * - 1 1
 * TMPU1          ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_TMPU1           $YYYY/$MM/$DD/$HH E  xyz 1 * - 1 1
 * SPHU1          ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_SPHU1           $YYYY/$MM/$DD/$HH E  xyz 1 * - 1 1
 * PS1DRY         ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_PS1DRY          $YYYY/$MM/$DD/$HH E  xy  1 * - 1 1

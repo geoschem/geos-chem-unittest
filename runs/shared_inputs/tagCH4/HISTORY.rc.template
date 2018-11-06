@@ -57,7 +57,7 @@ COLLECTIONS: 'Restart',
   Restart.frequency:          'End',
   Restart.duration:           'End',
   Restart.mode:               'instantaneous'
-  Restart.fields:             'SpeciesConc_?ALL?              ', 'GIGCchem',
+  Restart.fields:             'SpeciesRst_?ALL?               ', 'GIGCchem',
                               'Met_DELPDRY                    ', 'GIGCchem',
                               'Met_PS1WET                     ', 'GIGCchem',
                               'Met_PS1DRY                     ', 'GIGCchem',
