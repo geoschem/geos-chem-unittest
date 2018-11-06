@@ -580,8 +580,8 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- Seasonal scaling factors ----
 #==============================================================================
-10 MANURE_SF $ROOT/CH4/v2017-10/Seasonal_SF/EMICH4_Manure_ScalingFactors_$YYYY.nc sf_ch4 $YYYY/1-12/1/0 C xy 1 1
-11 RICE_SF   $ROOT/CH4/v2017-10/Seasonal_SF/EMICH4_Rice_ScalingFactors.nc         sf_ch4 2012/1-12/1/0  C xy 1 1
+10 MANURE_SF $ROOT/CH4/v2017-10/Seasonal_SF/EMICH4_Manure_ScalingFactors.WithClimatology.nc  sf_ch4 2008-2016/1-12/1/0 C xy 1 1
+11 RICE_SF   $ROOT/CH4/v2017-10/Seasonal_SF/EMICH4_Rice_ScalingFactors.SetMissing.nc         sf_ch4 2012/1-12/1/0  C xy 1 1
 
 #==============================================================================
 # --- QFED2 diurnal scale factors ---
