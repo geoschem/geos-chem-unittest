@@ -1,5 +1,5 @@
 ###############################################################################
-###  HISTORY.rc file for GEOS-Chem "tropchem" full chemistry simulations    ###
+###  HISTORY.rc file for GEOS-Chem CH4 specialty simulations                ###
 ###  Contact: GEOS-Chem Support Team (geos-chem-support@as.harvard.edu)     ###
 ###############################################################################
 
@@ -15,8 +15,11 @@
 #      Will create netCDF files whose names begin with "GEOSChem"
 #      in the OutputDir sub-folder of this run directory.
 #
+# EXPDSC and CoresPerNode are only used by GCHP simulations.
 #============================================================================
 EXPID:  ./GEOSChem
+EXPDSC: GEOS-Chem_devel
+CoresPerNode: 6
 
 #==============================================================================
 # %%%%% COLLECTION NAME DECLARATIONS %%%%%
@@ -30,19 +33,10 @@ EXPID:  ./GEOSChem
 COLLECTIONS: 'Restart',
              #'SpeciesConc',
              #'Budget',
-             #'AerosolMass',
-             #'Aerosols',
              #'CloudConvFlux',
              #'ConcAfterChem',
-             #'DryDep',
-             #'JValues',
-             #'JValuesLocalNoon',
              #'LevelEdgeDiags',      
-             #'ProdLoss',
-             #'StateChm',     
              #'StateMet',      
-             #'WetLossConv',
-             #'WetLossLS',
 ::
 ###############################################################################
 ### The rest of this file consists of collection definitions.               ###
@@ -64,11 +58,6 @@ COLLECTIONS: 'Restart',
   Restart.duration:           'End',
   Restart.mode:               'instantaneous'
   Restart.fields:             'SpeciesConc_?ALL?              ', 'GIGCchem',
-                              'Chem_H2O2AfterChem             ', 'GIGCchem',
-                              'Chem_SO2AfterChem              ', 'GIGCchem',
-                              'Chem_DryDepNitrogen            ', 'GIGCchem',
-                              'Chem_WetDepNitrogen            ', 'GIGCchem',
-                              'Chem_KPPHvalue                 ', 'GIGCchem',
                               'Met_DELPDRY                    ', 'GIGCchem',
                               'Met_PS1WET                     ', 'GIGCchem',
                               'Met_PS1DRY                     ', 'GIGCchem',
@@ -114,113 +103,13 @@ COLLECTIONS: 'Restart',
                        'BudgetTransportPBL_?ADV?             ', 'GIGCchem',  
                        'BudgetMixingFull_?ADV?               ', 'GIGCchem',
                        'BudgetMixingTrop_?ADV?               ', 'GIGCchem',
-                       'BudgetMixingPBL_?ADV?                ', 'GIGCchem',  
+                       'BudgetMixingPBL_?ADV?                ', 'GIGCchem',    
                        'BudgetConvectionFull_?ADV?           ', 'GIGCchem',
                        'BudgetConvectionTrop_?ADV?           ', 'GIGCchem',
                        'BudgetConvectionPBL_?ADV?            ', 'GIGCchem',  
                        'BudgetWetDepFull_?WET?               ', 'GIGCchem',
                        'BudgetWetDepTrop_?WET?               ', 'GIGCchem',
                        'BudgetWetDepPBL_?WET?                ', 'GIGCchem',  
-::
-#==============================================================================
-# %%%%% THE AerosolMass COLLECTION %%%%%
-#
-# Aerosol and PM2.5 mass
-#
-# Available for full-chemistry and aerosol-only simulations
-#==============================================================================
-  AerosolMass.template:       '%y4%m2%d2_%h2%n2z.nc4',
-  AerosolMass.format:         'CFIO',
-  AerosolMass.frequency:      {FREQUENCY}
-  AerosolMass.duration:       {DURATION}
-  AerosolMass.mode:           'time-averaged'
-  AerosolMass.fields:         'AerMassBC                    ', 'GIGCchem',
-                              'AerMassNH4                   ', 'GIGCchem',
-                              'AerMassNIT                   ', 'GIGCchem',
-                              'AerMassPOA                   ', 'GIGCchem',
-                              'AerMassSAL                   ', 'GIGCchem',
-                              'AerMassSO4                   ', 'GIGCchem',
-                              'AerMassSOAGX                 ', 'GIGCchem',
-                              'AerMassSOAMG                 ', 'GIGCchem',
-                              'AerMassTSOA                  ', 'GIGCchem',
-                              'PM25                         ', 'GIGCchem',
-                              'TotalOA                      ', 'GIGCchem',
-                              'TotalOC                      ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% The Aerosols COLLECTION %%%%%
-#
-# Aerosol optical depth, surface area, number density, and hygroscopic growth
-#
-# Available for full-chemistry or aerosol-only simulations
-#==============================================================================
-  Aerosols.template:          '%y4%m2%d2_%h2%n2z.nc4',
-  Aerosols.format:            'CFIO',
-  Aerosols.frequency:         {FREQUENCY}
-  Aerosols.duration:          {DURATION}
-  Aerosols.mode:              'time-averaged'
-  Aerosols.fields:            'AODDust                       ', 'GIGCchem',
-                              'AODDustWL1_?DUSTBIN?          ', 'GIGCchem',
-                              'AODHygWL1_?HYG?               ', 'GIGCchem',
-                              'AODSOAfromAqIsopreneWL1       ', 'GIGCchem',
-                              'AODStratLiquidAerWL1          ', 'GIGCchem',
-                              'AODPolarStratCloudWL1         ', 'GIGCchem',
-                              'AerHygroscopicGrowth_?HYG?    ', 'GIGCchem',
-                              'AerNumDensityStratLiquid      ', 'GIGCchem',
-                              'AerNumDensityStratParticulate ', 'GIGCchem',
-                              'AerAqueousVolume              ', 'GIGCchem',
-                              'AerSurfAreaDust               ', 'GIGCchem',
-                              'AerSurfAreaHyg_?HYG?          ', 'GIGCchem',
-                              'AerSurfAreaStratLiquid        ', 'GIGCchem',
-                              'AerSurfAreaPolarStratCloud    ', 'GIGCchem',
-                              'Chem_AeroAreaMDUST1           ', 'GIGCchem',
-                              'Chem_AeroAreaMDUST2           ', 'GIGCchem',
-                              'Chem_AeroAreaMDUST3'          ', 'GIGCchem',
-                              'Chem_AeroAreaMDUST4           ', 'GIGCchem',
-                              'Chem_AeroAreaMDUST5           ', 'GIGCchem',
-                              'Chem_AeroAreaMDUST6           ', 'GIGCchem',
-                              'Chem_AeroAreaMDUST7           ', 'GIGCchem',
-                              'Chem_AeroAreaSULF             ', 'GIGCchem',
-                              'Chem_AeroAreaBC               ', 'GIGCchem',
-                              'Chem_AeroAreaOC               ', 'GIGCchem',
-                              'Chem_AeroAreaSSA              ', 'GIGCchem',
-                              'Chem_AeroAreaSSC              ', 'GIGCchem',
-                              'Chem_AeroRadiMDUST1           ', 'GIGCchem',
-                              'Chem_AeroRadiMDUST2           ', 'GIGCchem',
-                              'Chem_AeroRadiMDUST3           ', 'GIGCchem',
-                              'Chem_AeroRadiMDUST4           ', 'GIGCchem',
-                              'Chem_AeroRadiMDUST5           ', 'GIGCchem',
-                              'Chem_AeroRadiMDUST6           ', 'GIGCchem',
-                              'Chem_AeroRadiMDUST7           ', 'GIGCchem',
-                              'Chem_AeroRadiSULF             ', 'GIGCchem',
-                              'Chem_AeroRadiBC               ', 'GIGCchem',
-                              'Chem_AeroRadiOC               ', 'GIGCchem',
-                              'Chem_AeroRadiSSA              ', 'GIGCchem',
-                              'Chem_AeroRadiSSC              ', 'GIGCchem',
-                              'Chem_WetAeroAreaMDUST1        ', 'GIGCchem',
-                              'Chem_WetAeroAreaMDUST2        ', 'GIGCchem',
-                              'Chem_WetAeroAreaMDUST3        ', 'GIGCchem',
-                              'Chem_WetAeroAreaMDUST4        ', 'GIGCchem',
-                              'Chem_WetAeroAreaMDUST5        ', 'GIGCchem',
-                              'Chem_WetAeroAreaMDUST6        ', 'GIGCchem',
-                              'Chem_WetAeroAreaMDUST7        ', 'GIGCchem',
-                              'Chem_WetAeroAreaSULF          ', 'GIGCchem',
-                              'Chem_WetAeroAreaBC            ', 'GIGCchem',
-                              'Chem_WetAeroAreaOC            ', 'GIGCchem',
-                              'Chem_WetAeroAreaSSA           ', 'GIGCchem',
-                              'Chem_WetAeroAreaSSC           ', 'GIGCchem',
-                              'Chem_WetAeroRadiMDUST1        ', 'GIGCchem',
-                              'Chem_WetAeroRadiMDUST2        ', 'GIGCchem',
-                              'Chem_WetAeroRadiMDUST3        ', 'GIGCchem',
-                              'Chem_WetAeroRadiMDUST4        ', 'GIGCchem',
-                              'Chem_WetAeroRadiMDUST5        ', 'GIGCchem',
-                              'Chem_WetAeroRadiMDUST6        ', 'GIGCchem',
-                              'Chem_WetAeroRadiMDUST7        ', 'GIGCchem',
-                              'Chem_WetAeroRadiSULF          ', 'GIGCchem',
-                              'Chem_WetAeroRadiBC            ', 'GIGCchem',
-                              'Chem_WetAeroRadiOC            ', 'GIGCchem',
-                              'Chem_WetAeroRadiSSA           ', 'GIGCchem',
-                              'Chem_WetAeroRadiSSC           ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE CloudConvFlux COLLECTION %%%%%
@@ -243,8 +132,6 @@ COLLECTIONS: 'Restart',
 # or OH after the CH4 specialty-simulation chemistry routine.
 #
 # OH:       Available for all full-chemistry simulations and CH4 specialty sim
-# HO2:      Available for all full-chemistry simulations
-# O1D, O3P: Availalbe for full-chemistry simulations using UCX mechanism
 #==============================================================================
   ConcAfterChem.template:     '%y4%m2%d2_%h2%n2z.nc4',
   ConcAfterChem.format:       'CFIO',
@@ -252,52 +139,6 @@ COLLECTIONS: 'Restart',
   ConcAfterChem.duration:     {DURATION}
   ConcAfterChem.mode:         'time-averaged'
   ConcAfterChem.fields:       'OHconcAfterChem               ', 'GIGCchem',  
-                              'HO2concAfterChem              ', 'GIGCchem',  
-::
-#==============================================================================
-# %%%%% THE DryDep COLLECTION %%%%%
-#
-# Dry depositon fluxes and velocities (for all dry-depositing species)
-#
-# Available for all simuations that have dry-depositing species
-#==============================================================================
-  DryDep.template:            '%y4%m2%d2_%h2%n2z.nc4',
-  DryDep.format:              'CFIO',
-  DryDep.frequency:           {FREQUENCY}
-  DryDep.duration:            {DURATION}
-  DryDep.mode:                'time-averaged'
-  DryDep.fields:              'DryDepVel_?DRY?               ', 'GIGCchem',
-                              'DryDepMix_?DRY?               ', 'GIGCchem',
-                              'DryDepChm_?DRY?               ', 'GIGCchem',
-                              'DryDep_?DRY?                  ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE JValues COLLECTION %%%%%
-#
-# Photolysis rates (from the FAST-JX photolysis module)
-#
-# Available for all full-chemistry simulations
-#==============================================================================
-  JValues.template:           '%y4%m2%d2_%h2%n2z.nc4',
-  JValues.format:             'CFIO',
-  JValues.frequency:          {FREQUENCY}
-  JValues.duration:           {DURATION}
-  JValues.mode:               'time-averaged'
-  JValues.fields:             'Jval_?PHO?                    ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE JValuesLocalNoon COLLECTION %%%%%
-#
-# Photolysis rates at local solar noon (from the FAST-JX photolysis module)
-#
-# Available for all full-chemistry simulations
-#==============================================================================
-  JValuesLocalNoon.template:  '%y4%m2%d2_%h2%n2z.nc4',
-  JValuesLocalNoon.format:    'CFIO',
-  JValuesLocalNoon.frequency: {FREQUENCY}
-  JValuesLocalNoon.duration:  {DURATION}
-  JValuesLocalNoon.mode:      'time-averaged'
-  JValuesLocalNoon.fields:    'JNoon_?PHO?                   ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE LevelEdgeDiags COLLECTION %%%%%
@@ -318,58 +159,6 @@ COLLECTIONS: 'Restart',
                               'Met_PFILSAN                   ', 'GIGCchem',
                               'Met_PFLCU                     ', 'GIGCchem',
                               'Met_PFLLSAN                   ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE ProdLoss COLLECTION %%%%%
-#
-# Chemical production and loss rates
-#
-# Available for full-chemistry, aerosol-only, tagO3, and tagCO simulations
-#==============================================================================
-  ProdLoss.template:          '%y4%m2%d2_%h2%n2z.nc4',
-  ProdLoss.format:            'CFIO',
-  ProdLoss.frequency:         {FREQUENCY}
-  ProdLoss.duration:          {DURATION}
-  ProdLoss.mode:              'time-averaged'
-  ProdLoss.fields:            'Prod_?PRD?                    ', 'GIGCchem', 
-                              'ProdBCPIfromBCPO              ', 'GIGCchem', 
-                              'ProdOCPIfromOCPO              ', 'GIGCchem',
-                              'ProdSO4fromH2O2inCloud        ', 'GIGCchem',
-#                              'ProdSO4fromO2inCloudMetal     ', 'GIGCchem',
-                              'ProdSO4fromO3inCloud          ', 'GIGCchem',
-                              'ProdSO4fromO3inSeaSalt        ', 'GIGCchem',
-                              'ProdSO4fromHOBrInCloud        ', 'GIGCchem',
-                              'ProdSO4fromSRO3               ', 'GIGCchem',
-                              'ProdSO4fromSRHObr             ', 'GIGCchem',
-                              'ProdSO4fromO3s                ', 'GIGCchem',
-                              'Loss_?LOS?                    ', 'GIGCchem',
-                              'LossHNO3onSeaSalt             ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE StateChm COLLECTION %%%%%
-#
-# Fields of the State_Chm object (see also Aerosols collection)
-#
-# Available for full-chemistry and aerosols-only simulations
-#==============================================================================
-  StateChm.template:          '%y4%m2%d2_%h2%n2z.nc4',
-  StateChm.format:            'CFIO',
-  StateChm.frequency:         {FREQUENCY}
-  StateChm.duration:          {DURATION}
-  StateChm.mode:              'time-averaged'
-  StateChm.fields:            'Chem_phSav                    ', 'GIGCchem',  
-                              'Chem_HplusSav                 ', 'GIGCchem',  
-                              'Chem_WaterSav                 ', 'GIGCchem',  
-                              'Chem_SulRatSav                ', 'GIGCchem',  
-                              'Chem_NaRatSav                 ', 'GIGCchem',  
-                              'Chem_AcidPurSav               ', 'GIGCchem',  
-                              'Chem_BiSulSav                 ', 'GIGCchem',
-                              'Chem_pHCloud                  ', 'GIGCchem',
-                              'Chem_SSAlkAccum               ', 'GIGCchem',
-                              'Chem_SSAlkCoarse              ', 'GIGCchem',
-                              'Chem_HSO3AQ                   ', 'GIGCchem',
-                              'Chem_SO3AQ                    ', 'GIGCchem',
-                              'Chem_fupdateHOBr              ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% The StateMet COLLECTION %%%%%
@@ -463,34 +252,4 @@ COLLECTIONS: 'Restart',
                               'Met_V                         ', 'GIGCchem',
                               'Met_V10M                      ', 'GIGCchem',
                               'Met_Z0                        ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE WetLossConv COLLECTION %%%%%
-#
-# Loss of soluble species in convective updrafts
-#
-# Available for all simulations that have soluble species
-#==============================================================================
-  WetLossConv.template:       '%y4%m2%d2_%h2%n2z.nc4',
-  WetLossConv.format:         'CFIO',
-  WetLossConv.frequency:      {FREQUENCY}
-  WetLossConv.duration:       {DURATION}
-  WetLossConv.mode:           'time-averaged'
-  WetLossConv.fields:         'WetLossConv_?WET?             ', 'GIGCchem',
-                              'WetLossConvFrac_?WET?         ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE WetLossLS COLLECTION %%%%%
-#
-# Loss of soluble species in large-scale wetdep (i.e. rainout and washout)
-#
-# Available for all simulations that have soluble species
-#==============================================================================
-# Loss due to rainout and washout (per deposited species)
-  WetLossLS.template:         '%y4%m2%d2_%h2%n2z.nc4',
-  WetLossLS.format:           'CFIO',
-  WetLossLS.frequency:        {FREQUENCY}
-  WetLossLS.duration:         {DURATION}
-  WetLossLS.mode:             'time-averaged'
-  WetLossLS.fields:           'WetLossLS_?WET?               ', 'GIGCchem',
 ::

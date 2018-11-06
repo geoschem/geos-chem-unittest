@@ -434,6 +434,25 @@ Warnings:                    {WARNINGS}
 * TMPU      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     T        1980-2018/1-12/1-31/* C xyz 1  * -  1 1
 
 #==============================================================================
+# --- GEOS-Chem restart file ---
+#==============================================================================
+(((GC_RESTART
+* SPC_                 ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 SpeciesConc_?ALL?      $YYYY/$MM/$DD/$HH CS xyz 1 * - 1 1
+* TMPU1                ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_TMPU1              $YYYY/$MM/$DD/$HH E  xyz 1 * - 1 1
+* SPHU1                ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_SPHU1              $YYYY/$MM/$DD/$HH E  xyz 1 * - 1 1
+* PS1DRY               ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_PS1DRY             $YYYY/$MM/$DD/$HH E  xy  1 * - 1 1
+* PS1WET               ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_PS1WET             $YYYY/$MM/$DD/$HH E  xy  1 * - 1 1
+* DELPDRY              ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_DELPDRY            $YYYY/$MM/$DD/$HH E  xyz 1 * - 1 1
+* OCEAN_Hg0            ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Chem_OceanHg0          $YYYY/$MM/$DD/$HH E  xy  1 * - 1 1
+* OCEAN_Hg2            ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Chem_OceanHg2          $YYYY/$MM/$DD/$HH E  xy  1 * - 1 1
+* OCEAN_HgP            ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Chem_OceanHgP          $YYYY/$MM/$DD/$HH E  xy  1 * - 1 1
+* SNOW_HG_OCEAN        ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Chem_SnowHgOcean       $YYYY/$MM/$DD/$HH E  xy  1 * - 1 1
+* SNOW_HG_LAND         ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Chem_SnowHgLand        $YYYY/$MM/$DD/$HH E  xy  1 * - 1 1
+* SNOW_HG_OCEAN_STORED ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Chem_SnowHgOceanStored $YYYY/$MM/$DD/$HH E  xy  1 * - 1 1
+* SNOW_HG_LAND_STORED  ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Chem_SnowHgLandStored  $YYYY/$MM/$DD/$HH E  xy  1 * - 1 1
+)))GC_RESTART
+
+#==============================================================================
 # --- Time zones (offset to UTC) ---
 #==============================================================================
 * TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
