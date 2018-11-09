@@ -7,7 +7,7 @@ log.*
 trac_avg.*
 trac_rst.*
 ocean_rst.*
-GEOSChem_restart*
+GEOSChem.Restart*
 GEOSChem_diagnostics*
 diaginfo.dat
 tracerinfo.dat

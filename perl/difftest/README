@@ -142,7 +142,7 @@ indicated by validation output that lists "IDENTICAL" for sizes, checksums,
 and diffs for the GEOS-Chem diagnostic files, GEOS-Chem restart files, and 
 HEMCO restart file, then the Dev code passed the difference test.
 
-If the restart files (GEOSChem_restart.YYYYMMDDhhmm.nc.*) are identical, 
+If the restart files (GEOSChem.Restart.YYYYMMDD_hhmmz.nc4.*) are identical, 
 but the diagnostic files (trac_avg.YYYYMMDDhhmm*) differ, then there is 
 a problem in the diagnostic output that needs to be further addressed.
 

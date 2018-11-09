@@ -537,8 +537,8 @@ dataclean:
 	if [ -f HEMCO_restart.$(START).nc ]; then mv -f HEMCO_restart.$(START).nc HC.nc; fi;
 	rm -f HEMCO_restart.*;
 	if [ -f HC.nc ]; then mv -f HC.nc HEMCO_restart.$(START).nc; fi;
-	rm -f GEOSChem_restart.*.sp*
-	rm -f GEOSChem_restart.*.mp*
+	rm -f GEOSChem.Restart.*.sp*
+	rm -f GEOSChem.Restart.*.mp*
 	rm -f GEOSCHEM_diagnostics.*
 	rm -f trac_avg*
 	rm -f Ox.mass.*

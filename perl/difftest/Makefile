@@ -294,7 +294,7 @@ EXEC_DEV     :=geos.Dev
 TRAC_AVG     :=trac_avg.$(RUNID).$(START)
 HMCO_AVG     :=HEMCO_diagnostics.$(END).nc
 HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
-TRAC_RST     :=GEOSChem_restart.$(END).nc
+TRAC_RST     :=GEOSChem.Restart.$(END).nc4
 
 # Diff test validation script and results file
 VALIDATE     :=/usr/bin/perl $(RUN_DEV)/validate.pl
