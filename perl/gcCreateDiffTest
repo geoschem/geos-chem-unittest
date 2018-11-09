@@ -621,7 +621,7 @@ sub doCopyDirs($$) {
 	  if ( !( -f $rstFile ) ){
 	    print "\nWARNING: File $rstFile does not exist, so a sample restart file will not be included in your run directory. Sample restart files can be found in the SPECIESCONC_RESTARTS directory or you can use your own restart file.\n\n";
   	  } else {
-	    $cmd = "ln -sf $rstFile $devDir/GEOSChem.Restart.${yyyymmdd}_{hhmm}z.nc4";
+	    $cmd = "ln -sf $rstFile $devDir/GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4";
 	    qx/$cmd/;
           }
 

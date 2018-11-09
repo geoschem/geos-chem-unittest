@@ -74,8 +74,9 @@ addsuffixref:
 	@for f in ./HEMCO.log; do                       \
            if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi; \
         done
-	@for f in ./GEOSChem*.nc4; do                   \
-           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi; \
+	@for f in ./GEOSChem*.nc4; do                                     \
+           if [[ "$$f" != "./GEOSChem.Restart.$(STARTDATE)_0000z.nc4" ]]; \
+              then mv -f $$f $$f.Ref; fi;                                 \
         done
 
 clean:
