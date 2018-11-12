@@ -45,10 +45,10 @@ FinalFile_2 : %RUNDIR_2%/Ox.mass.final
 ##### Parameters for Plotting #####
 OutputDir   : %RUNDIR_2%/output
 Max_Alt_km  : 20
-Budget      : %OUTPUTDIR%/%VERSION_2%.budget.fullchem
+Budget      : %OUTPUTDIR%/%VERSION_2%.budget.txt
 Conc_Maps   : %OUTPUTDIR%/%VERSION_2%.concentrations.ps
 Differences : %OUTPUTDIR%/%VERSION_2%.differences.ps
-Emissions   : %OUTPUTDIR%/%VERSION_2%.emissions.fullchem
+Emissions   : %OUTPUTDIR%/%VERSION_2%.emission_totals.txt
 Freq_Dist   : %OUTPUTDIR%/%VERSION_2%.freq_distribution.ps
 J-Values    : %OUTPUTDIR%/%VERSION_2%.jvalue_ratios.ps
 JV_Diffs    : %OUTPUTDIR%/%VERSION_2%.jvalue_differences.ps
