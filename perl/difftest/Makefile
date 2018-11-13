@@ -149,27 +149,14 @@ ifndef TAU_PROF
  TAU_PROF    :=n
 endif
 
-
-# Default: BPCH_DIAG is always turned ON unless the user specifies
-# otherwise or if NC_DIAG=y is specified
-ifndef BPCH_DIAG
- BPCH_DIAG   :=y
- ifdef NC_DIAG
-  ifeq ($(NC_DIAG),y)
-   BPCH_DIAG   :=n
-  endif
- endif
+# Always have netcdf diagnostics on to output restart file
+ifdef NC_DIAG
+ NC_DIAG   :=y
 endif
 
-# Default: NC_DIAG is always turned OFF unless the user specifies
-# otherwise or only BPCH_DIAG=n is specified 
-ifndef NC_DIAG
- NC_DIAG     :=n
- ifdef BPCH_DIAG
-  ifeq ($(BPCH_DIAG),n)
-   NC_DIAG   :=y
-  endif
- endif
+# Default: Binary diagnostics are currently default in GEOS-Chem
+ifndef BPCH_DIAG
+ BPCH_DIAG   :=y
 endif
 
 ###############################################################################
@@ -385,6 +372,7 @@ endif
 .PHONY: tvsp_ref        tvmp_ref
 .PHONY: tvsp_dev        tvmp_dev
 .PHONY: printbuildinfo
+.PHONY: printcodeinforef printcodeinfodev
 .PHONY: printruninforef printruninfodev
 .PHONY: printallinforef printallinfodev
 
@@ -424,7 +412,8 @@ refonly:
                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)    \
                                TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
                                NC_DIAG=$(NC_DIAG)     BPCH_DIAG=$(BPCH_DIAG) 
-	@$(MAKE) printbuildinfo > $(RUN_REF)/$(LOG_COMP).Ref
+	@$(MAKE) printcodeinforef > $(RUN_REF)/$(LOG_COMP).Ref
+	@$(MAKE) printbuildinfo >> $(RUN_REF)/$(LOG_COMP).Ref
 	@$(MAKE) printruninforef >> $(LOG_REF)
 	@$(MAKE) printallinforef
 
@@ -445,7 +434,8 @@ devonly:
                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)    \
                                TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
                                NC_DIAG=$(NC_DIAG)     BPCH_DIAG=$(BPCH_DIAG)
-	@$(MAKE) printbuildinfo > $(RUN_DEV)/$(LOG_COMP).Dev
+	@$(MAKE) printcodeinfodev > $(RUN_DEV)/$(LOG_COMP).Dev
+	@$(MAKE) printbuildinfo >> $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
 	@$(MAKE) printallinfodev
 
@@ -470,7 +460,8 @@ devlib:
                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)    \
                                TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
                                NC_DIAG=$(NC_DIAG)     BPCH_DIAG=$(BPCH_DIAG)
-	@$(MAKE) printbuildinfo > $(RUN_DEV)/$(LOG_COMP).Dev
+	@$(MAKE) printcodeinfodev > $(RUN_DEV)/$(LOG_COMP).Dev
+	@$(MAKE) printbuildinfo >> $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
 	@$(MAKE) printallinfodev
 
@@ -495,7 +486,6 @@ devrun:
                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)    \
                                TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
                                NC_DIAG=$(NC_DIAG)     BPCH_DIAG=$(BPCH_DIAG)
-	@$(MAKE) printbuildinfo > $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
 	@$(MAKE) printallinfodev
 
@@ -533,7 +523,10 @@ fileclean:
 	rm -f $(RUN_REF)/*info.dat
 	rm -f $(RUN_REF)/*.log
 	rm -f $(RUN_REF)/Ox.mass.*
-	rm -f $(RUN_REF)/*.nc4
+	@for f in ./*.nc4; do                               \
+           if [[ "$$f" != "$(RUN_REF)/GEOSChem.Restart.$(STARTDATE)_0000z.nc4" ]]; \
+	      then rm -f $$f; fi;              \
+        done
 	rm -f $(RUN_DEV)/*.Dev
 	rm -f $(RUN_DEV)/core.*
 	rm -f $(RUN_DEV)/GEOSCHEM*.nc*
@@ -541,7 +534,10 @@ fileclean:
 	rm -f $(RUN_DEV)/*info.dat
 	rm -f $(RUN_DEV)/*.log
 	rm -f $(RUN_DEV)/Ox.mass.*
-	rm -f $(RUN_DEV)/*.nc4
+	@for f in ./*.nc4; do                               \
+           if [[ "$$f" != "$(RUN_DEV)/GEOSChem.Restart.$(STARTDATE)_0000z.nc4" ]]; \
+	      then rm -f $$f; fi;              \
+        done
 
 reftauclean:
 	@$(MAKE) -C $(CODE_REF) tauclean
@@ -587,12 +583,22 @@ tvmp_dev:
 #  Print information      %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-printruninforef:
-	@echo "RUN SETTINGS:"
+printcodeinforef:
+	@echo "CODE STATUS:"
 	@echo "  Code directory      : $(CODE_REF)"
 	@echo "  Code branch         : $(CODE_BRANCH_REF)"
 	@echo "  Last commit         : $(LAST_COMMIT_REF)"
 	@echo "  Commit date         : $(COMMIT_DATE_REF)"
+
+printcodeinfodev:
+	@echo "CODE STATUS:"
+	@echo "  Code directory      : $(CODE_DEV)"
+	@echo "  Code branch         : $(CODE_BRANCH_DEV)"
+	@echo "  Last commit         : $(LAST_COMMIT_DEV)"
+	@echo "  Commit date         : $(COMMIT_DATE_DEV)"
+
+printruninforef:
+	@echo "RUN SETTINGS:"
 	@echo "  Run directory       : $(RUN_REF)"
 	@echo "  Run ID              : $(RUNID)"
 	@echo "  Simulation Start    : $(START)"
@@ -607,10 +613,6 @@ printruninforef:
 
 printruninfodev:
 	@echo "RUN SETTINGS:"
-	@echo "  Code directory      : $(CODE_DEV)"
-	@echo "  Code branch         : $(CODE_BRANCH_DEV)"
-	@echo "  Last commit         : $(LAST_COMMIT_DEV)"
-	@echo "  Commit date         : $(COMMIT_DATE_DEV)"
 	@echo "  Run directory       : $(RUN_DEV)"
 	@echo "  Run ID              : $(RUNID)"
 	@echo "  Simulation Start    : $(START)"
@@ -651,10 +653,12 @@ printbuildinfo:
 
 printallinforef: 
 	@$(MAKE) printbuildinfo
+	@$(MAKE) printcodeinforef
 	@$(MAKE) printruninforef
 
 printallinfodev: 
 	@$(MAKE) printbuildinfo
+	@$(MAKE) printcodeinfodev
 	@$(MAKE) printruninfodev
 
 ###############################################################################
@@ -724,11 +728,13 @@ help:
 	@echo 'tvmp_dev          Runs totalview for DEV (multi  processor)'
 	@echo ''
 	@echo '%%% PRINT INFORMATION %%%'
+	@echo 'printcodeinforef  Prints the code info for REF executable'
+	@echo 'printcodeinfodev  Prints the code info for DEV executable'
 	@echo 'printruninforef   Prints the run settings for REF simulations'
 	@echo 'printruninfodev   Prints the run settings for DEV simulations'
 	@echo 'printbuildinfo    Prints the build settings for GEOS-Chem simulations'
-	@echo 'prinallinforef    Synonym for: printbuildinfo printruninforef'
-	@echo 'prinallinfodev    Synonym for: printbuildinfo printruninfodev'
+	@echo 'prinallinforef    Synonym for: printbuildinfo printcodeinforef printruninforef'
+	@echo 'prinallinfodev    Synonym for: printbuildinfo printcodeinfodev printruninfodev'
 	@echo ''
 	@echo '%%% UTILITIES %%%'
 	@echo 'help              Prints this help screen'
