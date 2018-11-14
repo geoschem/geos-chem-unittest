@@ -4,7 +4,7 @@
 #SBATCH -N 1
 #SBATCH -t 0-12:00
 #SBATCH -p jacob_dev
-#SBATCH --mem=10000
+#SBATCH --mem=15000
 #SBATCH --mail-type=END
 
 #------------------------------------------------------------------------------
