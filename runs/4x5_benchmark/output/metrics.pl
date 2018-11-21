@@ -56,7 +56,7 @@ my $val2  = 0.0;
 my $pct   = 0.0;
 
 # Open output file
-my $outFile = "$v2.metrics.fullchem";
+my $outFile = "$v2.metrics.txt";
 open( O, ">$outFile") or die "Can't open $outFile\n";
 
 #--------------------------------------------
@@ -105,8 +105,8 @@ print O "% Difference : $pct\n";
 #--------------------------------------------
 
 # Budget files
-$file1 = "../../$v1/output/$v1.budget.fullchem";
-$file2 = "./$v2.budget.fullchem";
+$file1 = "../../$v1/output/$v1.budget.txt";
+$file2 = "./$v2.budget.txt";
 
 # Parse budget files for the line w/ MCF lifetimes
 $line1 = qx( grep 'MCF' $file1 );
@@ -148,8 +148,8 @@ print O "% Difference : $pct\n";
 #--------------------------------------------
 
 # Budget files
-$file1 = "../../$v1/output/$v1.budget.fullchem";
-$file2 = "./$v2.budget.fullchem";
+$file1 = "../../$v1/output/$v1.budget.txt";
+$file2 = "./$v2.budget.txt";
 
 # Parse budget files for the line w/ MCF lifetimes
 $line1 = qx( grep 'CH4' $file1 );
