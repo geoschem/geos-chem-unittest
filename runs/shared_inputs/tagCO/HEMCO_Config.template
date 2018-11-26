@@ -109,6 +109,7 @@ Mask fractions:              false
     --> RCP_60               :       false
     --> RCP_85               :       false
     --> QFED2                :       true
+    --> GFAS                 :       false
     --> SHIP                 :       true
     --> CEDS_SHIP            :       true
     --> EMEP_SHIP            :       true
@@ -785,6 +786,16 @@ Mask fractions:              false
 0 QFED_CObbOth_FT  -                                                               -       -                     - -             -       CObboth 54/75/312/1109  5 2 
 )))QFED2
 
+(((GFAS
+0 GFAS_CO      $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc cofire        2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s CO      75      5 3
+0 GFAS_CObbAm  -                                          -             -                     - -             -       CObbam  75/1104 5 3
+0 GFAS_CObbAf  -                                          -             -                     - -             -       CObbaf  75/1105 5 3
+0 GFAS_CObbAs  -                                          -             -                     - -             -       CObbas  75/1106 5 3
+0 GFAS_CObbOc  -                                          -             -                     - -             -       CObboc  75/1107 5 3
+0 GFAS_CObbEu  -                                          -             -                     - -             -       CObbeu  75/1108 5 3
+0 GFAS_CObbOth -                                          -             -                     - -             -       CObboth 75/1109 5 3
+)))GFAS
+
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
 ###
@@ -1084,6 +1095,11 @@ Mask fractions:              false
 # No. 178-6, July 2005
 #==============================================================================
 75 QFED2_TOD 0.1392/0.1392/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.48/0.96/1.68/2.4/3.12/3.84/4.08/2.88/1.68/0.96/0.1368/0.1368/0.1368/0.1368/0.1368 - - - xy 1 1
+
+#==============================================================================
+# --- GFAS scale factors ---
+#==============================================================================
+300 GFAS_EMITL $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc mami 2003-2018/1-12/1-31/0 C xy m 1
 
 #==============================================================================
 # --- AEIC aircraft emissions ---

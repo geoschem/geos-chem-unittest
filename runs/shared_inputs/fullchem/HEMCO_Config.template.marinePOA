@@ -122,6 +122,7 @@ Warnings:                    {WARNINGS}
     --> RCP_60                 :       false
     --> RCP_85                 :       false
     --> QFED2                  :       false
+    --> GFAS                   :       false
     --> DECAYING_PLANTS        :       true
     --> SHIP                   :       true
     --> CEDS_SHIP              :       true
@@ -546,7 +547,7 @@ Warnings:                    {WARNINGS}
 0 CEDS_OCPI_ENE   $ROOT/CEDS/v2018-08/$YYYY/OC-em-anthro_CMIP_CEDS_$YYYY.nc            OC_ene            1950-2014/1-12/1/0 C xy kg/m2/s OCPI  267       1/2/12 5
 0 CEDS_OCPO_ENE   -                                                                    -                 -                  - -  -       OCPO  268       1/2/12 5
 0 CEDS_POG1_ENE   -                                                                    -                 -                  - -  -       POG1  268/74/76 1/2/12 5
-0 CEDS_POG2_ENE   -                                                                    -                 -                  - -  -       POG2  26874/77  1/2/12 5
+0 CEDS_POG2_ENE   -                                                                    -                 -                  - -  -       POG2  268/74/77 1/2/12 5
 0 CEDS_OCPI_IND   $ROOT/CEDS/v2018-08/$YYYY/OC-em-anthro_CMIP_CEDS_$YYYY.nc            OC_ind            1950-2014/1-12/1/0 C xy kg/m2/s OCPI  267       1/2/12 5
 0 CEDS_OCPO_IND   -                                                                    -                 -                  - -  -       OCPO  268       1/2/12 5
 0 CEDS_POG1_IND   -                                                                    -                 -                  - -  -       POG1  268/74/76 1/2/12 5
@@ -2038,14 +2039,14 @@ Warnings:                    {WARNINGS}
 0 BOND_BF_POG1   -                                        -    -             - -  -       POG1 74/76 2 1
 0 BOND_BF_POG2   -                                        -    -             - -  -       POG2 74/77 2 1
 
-(((.not.GFED.or.FINN.or.QFED2
+(((.not.GFED.or.FINN.or.QFED2.or.GFAS
 0 BOND_BM_BCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc BC   2000/1-12/1/0 C xy kg/m2/s BCPI 70    2 1
 0 BOND_BM_BCPO   -                                        -    -             - -  -       BCPO 71    2 1
 0 BOND_BM_OCPI   $ROOT/BCOC_BOND/v2014-07/Bond_biomass.nc OC   2000/1-12/1/0 C xy kg/m2/s OCPI 72    2 1
 0 BOND_BM_OCPO   -                                        -    -             - -  -       OCPO 73    2 1
 0 BOND_BM_POG1   -                                        -    -             - -  -       POG1 74/76 2 1
 0 BOND_BM_POG2   -                                        -    -             - -  -       POG2 74/77 2 1
-))).not.GFED.or.FINN.or.QFED2
+))).not.GFED.or.FINN.or.QFED2.or.GFAS
 
 )))BOND
 
@@ -2238,6 +2239,37 @@ Warnings:                    {WARNINGS}
 0 QFED_C3H6_PBL  $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_c3h6.006.$YYYY$MM$DD.nc4 biomass 2000-2017/1-12/1-31/0 C xyL=1:PBL     kg/m2/s PRPE 75/311        5 2 
 0 QFED_C3H6_FT   $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_c3h6.006.$YYYY$MM$DD.nc4 biomass 2000-2017/1-12/1-31/0 C xyL=PBL:5500m kg/m2/s PRPE 75/312        5 2 
 )))QFED2
+
+#==============================================================================
+# --- GFAS biomass burning ---
+#==============================================================================
+(((GFAS
+0 GFAS_CO    $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc cofire        2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s CO   75     5 3
+0 GFAS_SOAP  -                                          -             -                     - -             -       SOAP 75/281 5 3
+0 GFAS_NO    $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc noxfire       2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s NO   75     5 3
+0 GFAS_BCPI  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc bcfire        2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s BCPI 70/75  5 3
+0 GFAS_BCPO  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc bcfire        2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s BCPO 71/75  5 3
+0 GFAS_OCPI  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc ocfire        2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s OCPI 72/75  5 3
+0 GFAS_OCPO  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc ocfire        2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s OCPO 73/75  5 3
+0 GFAS_CO2   $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc co2fire       2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s CO2  75     5 3
+0 GFAS_CH4   $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc ch4fire       2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s CH4  75     5 3
+0 GFAS_SO2   $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc so2fire       2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s SO2  75     5 3
+0 GFAS_NH3   $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc nh3fire       2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s NH3  75     5 3
+0 GFAS_ACET  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc c3h6ofire     2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s ACET 75     5 3
+0 GFAS_ALD2  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc c2h4ofire     2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s ALD2 75     5 3
+0 GFAS_ALK4  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc hialkanesfire 2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s ALK4 75     5 3
+0 GFAS_PRPE1 $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc hialkenesfire 2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s PRPE 75     5 3
+0 GFAS_PRPE2 $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc c3h6fire      2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s PRPE 75     5 3
+0 GFAS_C2H6  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc c2h6fire      2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s C2H6 75     5 3
+0 GFAS_C3H8  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc c3h8fire      2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s C3H8 75     5 3
+0 GFAS_CH2O  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc ch2ofire      2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s CH2O 75     5 3
+0 GFAS_C2H4  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc c2h4fire      2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s C2H4 75     5 3
+0 GFAS_ISOP  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc c5h8fire      2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s ISOP 75     5 3
+0 GFAS_DMS   $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc c2h6sfire     2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s DMS  75     5 3
+0 GFAS_TOLU  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc c7h8fire      2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s TOLU 75     5 3
+0 GFAS_BENZ  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc c6h6fire      2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s BENZ 75     5 3
+0 GFAS_XYLE  $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc c8h10fire     2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s XYLE 75     5 3
+)))GFAS
 
 #==============================================================================
 # --- Volcanic emissions ---
@@ -3040,6 +3072,11 @@ Warnings:                    {WARNINGS}
 # No. 178-6, July 2005
 #==============================================================================
 75 QFED2_TOD 0.1392/0.1392/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.48/0.96/1.68/2.4/3.12/3.84/4.08/2.88/1.68/0.96/0.1368/0.1368/0.1368/0.1368/0.1368 - - - xy unitless 1
+
+#==============================================================================
+# --- GFAS scale factors ---
+#==============================================================================
+300 GFAS_EMITL $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc mami 2003-2018/1-12/1-31/0 C xy m 1
 
 #==============================================================================
 # --- NAP scale factors ---
