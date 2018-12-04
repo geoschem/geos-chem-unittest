@@ -90,7 +90,6 @@ Mask fractions:              false
     --> HEMCO_RESTART        :       true
     --> AEIC                 :       true
     --> BIOFUEL              :       true
-    --> BRAVO                :       true
     --> APEI                 :       true
     --> C2H6                 :       true
     --> EDGARv43             :       false
@@ -348,15 +347,6 @@ Mask fractions:              false
 0 EMEP_CO_asia -                                       -   -               - -  -        COasia   26/33/52/1000/1102 1/2 10 
 0 EMEP_CO_oth  -                                       -   -               - -  -        COoth    26/33/52/1000/1103 1/2 10 
 )))EMEP
-
-#==============================================================================
-# --- BRAVO (Mexico) ---
-#==============================================================================
-(((BRAVO
-0 BRAVO_CO     $ROOT/BRAVO/v2014-07/BRAVO.generic.1x1.nc CO  1999/1/1/0 C xy kg/m2/s CO     6/8/26/52/1001      1/2 20
-0 BRAVO_COus   -                                         -   -          - -  -       COus   6/8/26/52/1001/1100 1/2 20
-0 BRAVO_COoth  -                                         -   -          - -  -       COoth  6/8/26/52/1001/1103 1/2 20
-)))BRAVO
 
 #==============================================================================
 # --- APEI (Canada) ---
@@ -1163,7 +1153,7 @@ Mask fractions:              false
 # Country/region masks
 #==============================================================================
 1000 EMEP_MASK   $ROOT/MASKS/v2018-09/EMEP_mask.geos.1x1.20151222.nc           MASK     2000/1/1/0 C xy 1 1 -30/30/45/70
-1001 MEXICO_MASK $ROOT/MASKS/v2018-09/BRAVO.MexicoMask.generic.1x1.nc          MASK     2000/1/1/0 C xy 1 1 -118/17/-95/33
+1001 MEXICO_MASK $ROOT/MASKS/v2018-09/Mexico_Mask.001x001.nc                   MASK     2000/1/1/0 C xy 1 1 -118/17/-95/33
 1002 CANADA_MASK $ROOT/MASKS/v2018-09/Canada_mask.geos.1x1.nc                  MASK     2000/1/1/0 C xy 1 1 -141/40/-52/85
 1003 SEASIA_MASK $ROOT/MASKS/v2018-09/SE_Asia_mask.generic.1x1.nc              MASK     2000/1/1/0 C xy 1 1  60/-12/153/55
 1006 ASIA_MASK   $ROOT/MASKS/v2018-09/MIX_Asia_mask.generic.025x025.nc         MASK     2000/1/1/0 C xy 1 1 46/-12/180/82
