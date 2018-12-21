@@ -14,14 +14,35 @@ Chem/emis timestep [sec]: 1200
 %%% ADVECTED SPECIES MENU %%%:
 Type of simulation      : 1
 Species Entries ------->: Name
-Species #1              : Rn
-Species #2              : Pb
-Species #3              : Be7
-Species #4              : PASV
+Species name            : Rn222
+Species name            : Pb210
+Species name            : Pb210Strat
+Species name            : Be7
+Species name            : Be7Strat
+Species name            : Be10
+Species name            : Be10Strat
+Species name            : Passive
+Species name            : TR_SF6
+Species name            : TR_CH3I
+Species name            : TR_CO_25
+Species name            : TR_CO_50
+Species name            : TR_e90
+Species name            : TR_e90_N
+Species name            : TR_e90_S
+Species name            : TR_Uniform
+Species name            : TR_Clock
 ------------------------+------------------------------------------------------
 %%% PASSIVE SPECIES MENU %%%:
-Number of passive spec. : 1
-Passive species #1      : PASV 1.0 -1 1.0e-7
+Passive species name    : Passive    1.0    -1      1.0e-7   Passive_tracer_for_mass_conservation_eval
+Passive species name    : TR_SF6     146.0  1.0e11  1.0e-20  Sulfur_hexafluoride
+Passive species name    : TR_CH3I    142.0  4.32e5  1.0e-20  Methyl_iodide
+Passive species name    : TR_CO_25   28.0   2.16e6  1.0e-20  Anthro_CO_25day_tracer
+Passive species name    : TR_CO_50   28.0   4.32e6  1.0e-20  Anthro_CO_50day_tracer
+Passive species name    : TR_e90     1.0    7.776e6 1.0e-20  Constant_emission_tracer
+Passive species name    : TR_e90_N   1.0    7.776e6 1.0e-20  Constant_emission_tracer_for_NH
+Passive species name    : TR_e90_S   1.0    7.776e6 1.0e-20  Constant_emission_tracer_for_SH
+Passive species name    : TR_Uniform 28.0   2.16e6  1.0e-20  CO-like_tracer_with_uniform_emission
+Passive species name    : TR_Clock   1.0    -1      0.0      Age_of_air_in_seconds
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
@@ -123,8 +144,8 @@ tracerinfo.dat path     : tracerinfo.dat
 %%% DIAGNOSTIC MENU %%% :
 Binary punch file name  : trac_avg.{MET}_4x5_RnPbBe.YYYYMMDDhhmm
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
-ND01: Rn/Pb/Be source   : 72   1 2 3
-ND02: Rn/Pb/Be decay    : 72   1 2 3
+ND01: Rn/Pb/Be source   : 72   1 2 3 4 5 6 7
+ND02: Rn/Pb/Be decay    : 72   1 2 3 4 5 6 7
 ND03: Hg emissions, P/L :  0   all
 ND04: CO2 Sources       :  0   all
 ND05: Sulfate prod/loss :  0   all

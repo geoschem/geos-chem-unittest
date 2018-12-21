@@ -82,7 +82,7 @@ Warnings:                    {WARNINGS}
 0       Base              : on    *
     --> GC_RESTART        :       true
 #------------------------------------------------------------------------------
-1001    GC_Rn-Pb-Be       : on    Rn/Be7
+1001    GC_Rn-Pb-Be       : on    Rn222/Be7/Be7Strat/Be10/Be10Strat
 
 ### END SECTION EXTENSION SWITCHES ###
 
@@ -91,6 +91,26 @@ Warnings:                    {WARNINGS}
 ###############################################################################
 
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
+
+# SF6 emissions from EDGAR
+#0 SRC_2D_SF6  /n/regal/jacob_lab/msulprizio/from_discover/CCM/EXT_DATA/SF6/EDGAR_IPCC.sf6.x144_y91_t12.$YYYY.nc sf6 1969-2008/1-12/1/0 C xy kg/m2/s TR_SF6 - 1 1
+0 SRC_2D_SF6  /n/regal/jacob_lab/msulprizio/v42_SF6_2008-1970_IPCC_2_nc/v42_SF6_$YYYY_IPCC_2.0.1x0.1.nc emi_sf6 1970-2008/1-12/1/0 C xy kg/m2/s TR_SF6 - 1 1
+
+# CH3I emitted over the oceans at rate of 1 molec/cm2/s
+#0 SRC_2D_CH3I /n/regal/jacob_lab/msulprizio/from_discover/ExtData/g5chem/sfc/unity.x144_y91.nc unity_array 2000/1/1/0 C xy molec/cm2/s TR_CH3I 1000 1 1
+0 SRC_2D_CH3I 1.0 - - - xy molec/cm2/s TR_CH3I 1000 1 1
+
+# Anthropogenic CO 25-day and 50-day tracers
+0 SRC_2D_CO_25    /n/regal/jacob_lab/msulprizio/from_discover/ExtData/g5chem/sfc/RETRO.co.x144_y91_t12.2000.nc emission_flux $YYYY/$MM/$DD/1/1 C xy kg/m2/s TR_CO_25    - 1 1
+0 SRC_2D_CO_50    /n/regal/jacob_lab/msulprizio/from_discover/ExtData/g5chem/sfc/RETRO.co.x144_y91_t12.2000.nc emission_flux $YYYY/$MM/$DD/1/1 C xy kg/m2/s TR_CO_50    - 1 1
+
+# e90 tracer is emitted with a uniform flux of 100 ppbv
+0 SRC_2D_e90   100 - - - xy ppbv TR_e90   -    1 1
+0 SRC_2D_e90n  100 - - - xy ppbv TR_e90_N 1001 1 1
+0 SRC_2D_e90s  100 - - - xy ppbv TR_e90_S 1002 1 1
+
+# Uniform surface emission of 2400 Tg/yr
+0 SRC_2D_Uniform 1.5e-7 - - - xy kg/m2/s TR_Uniform - 1 1
 
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
@@ -236,6 +256,13 @@ Warnings:                    {WARNINGS}
 ###############################################################################
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
+1000 OCEAN_MASK $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NC FROCEAN 2000/1/1/0 C xy 1 1 -180/-90/180/90
+1001 NH_MASK    -180/0/180/90  - 2000/1/1/0 C xy 1 1 -180/0/180/90
+1002 SH_MASK    -180/-90/180/0 - 2000/1/1/0 C xy 1 1 -180/-90/180/0
+
+#1003 TR_regionMask  /n/regal/jacob_lab/msulprizio/from_discover/ExtData/g5chem/sfc/RADON.region_mask.x540_y361.2001.nc   REGION_MASK 2000/1/1/0 C xy 1 1 -180/-90/180/90
+#1004 TR_regionMask2 /n/regal/jacob_lab/msulprizio/from_discover/ExtData/AeroCom/sfc/ARCTAS.region_mask.x540_y361.2008.nc REGION_MASK 2000/1/1/0 C xy 1 1 -180/-90/180/90
+
 
 ### END SECTION MASKS ###
  
