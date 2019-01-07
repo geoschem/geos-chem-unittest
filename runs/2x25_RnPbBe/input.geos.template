@@ -30,7 +30,6 @@ Species name            : TR_e90
 Species name            : TR_e90_N
 Species name            : TR_e90_S
 Species name            : TR_Uniform
-Species name            : TR_Clock
 ------------------------+------------------------------------------------------
 %%% PASSIVE SPECIES MENU %%%:
 Passive species name    : Passive    1.0    -1      1.0e-7   Passive_tracer_for_mass_conservation_eval
@@ -42,7 +41,6 @@ Passive species name    : TR_e90     1.0    7.776e6 1.0e-20  Constant_emission_t
 Passive species name    : TR_e90_N   1.0    7.776e6 1.0e-20  Constant_emission_tracer_for_NH
 Passive species name    : TR_e90_S   1.0    7.776e6 1.0e-20  Constant_emission_tracer_for_SH
 Passive species name    : TR_Uniform 28.0   2.16e6  1.0e-20  CO-like_tracer_with_uniform_emission
-Passive species name    : TR_Clock   1.0    -1      0.0      Age_of_air_in_seconds
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
