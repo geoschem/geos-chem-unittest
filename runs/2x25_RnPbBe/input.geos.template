@@ -21,26 +21,26 @@ Species name            : Be7
 Species name            : Be7Strat
 Species name            : Be10
 Species name            : Be10Strat
-Species name            : Passive
-Species name            : TR_SF6
-Species name            : TR_CH3I
-Species name            : TR_CO_25
-Species name            : TR_CO_50
-Species name            : TR_e90
-Species name            : TR_e90_N
-Species name            : TR_e90_S
-Species name            : TR_Uniform
+Species name            : PassiveTracer
+Species name            : SF6tracer
+Species name            : CH3Itracer
+Species name            : COtracer25days
+Species name            : COtracer50days
+Species name            : Emis90dayTracer
+Species name            : Emis90dayTracerNH
+Species name            : Emis90dayTracerSH
+Species name            : UniformTracer
 ------------------------+------------------------------------------------------
 %%% PASSIVE SPECIES MENU %%%:
-Passive species name    : Passive    1.0    -1      1.0e-7   Passive_tracer_for_mass_conservation_eval
-Passive species name    : TR_SF6     146.0  1.0e11  1.0e-20  Sulfur_hexafluoride
-Passive species name    : TR_CH3I    142.0  4.32e5  1.0e-20  Methyl_iodide
-Passive species name    : TR_CO_25   28.0   2.16e6  1.0e-20  Anthro_CO_25day_tracer
-Passive species name    : TR_CO_50   28.0   4.32e6  1.0e-20  Anthro_CO_50day_tracer
-Passive species name    : TR_e90     1.0    7.776e6 1.0e-20  Constant_emission_tracer
-Passive species name    : TR_e90_N   1.0    7.776e6 1.0e-20  Constant_emission_tracer_for_NH
-Passive species name    : TR_e90_S   1.0    7.776e6 1.0e-20  Constant_emission_tracer_for_SH
-Passive species name    : TR_Uniform 28.0   2.16e6  1.0e-20  CO-like_tracer_with_uniform_emission
+Passive species name    : PassiveTracer     1.0    -1      1.0e-7   Passive_tracer_for_mass_conservation_eval
+Passive species name    : SF6tracer         146.0  1.0e11  1.0e-20  Sulfur_hexafluoride
+Passive species name    : CH3Itracer        142.0  4.32e5  1.0e-20  Methyl_iodide
+Passive species name    : COtracer25days    28.0   2.16e6  1.0e-20  Anthro_CO_25day_tracer
+Passive species name    : COtracer50days    28.0   4.32e6  1.0e-20  Anthro_CO_50day_tracer
+Passive species name    : Emis90dayTracer   1.0    7.776e6 1.0e-20  Constant_emission_tracer
+Passive species name    : Emis90dayTracerNH 1.0    7.776e6 1.0e-20  Constant_emission_tracer_for_NH
+Passive species name    : Emis90dayTracerSH 1.0    7.776e6 1.0e-20  Constant_emission_tracer_for_SH
+Passive species name    : UniformTracer     28.0   2.16e6  1.0e-20  CO-like_tracer_with_uniform_emission
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
