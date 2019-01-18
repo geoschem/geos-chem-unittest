@@ -5,11 +5,11 @@
 #
 # !MODULE: HEMCO_Config.rc
 #
-# !DESCRIPTION: Contains configuration information for HEMCO. Define the
-#  emissions inventories and corresponding file paths here. Entire
+# !DESCRIPTION: Contains configuration information for the HEMCO standalone
+#  model.  You can define global settings here.  You can also insert entire
 #  configuration files can be inserted into this configuration file with
 #  an '>>>include' statement, e.g. '>>>include HEMCO\_Config\_test.rc'
-#  The settings of include-files will be ignored.
+#  The settings of include-files will overridden by settings in this file.
 #\\
 #\\
 # !REMARKS:
@@ -34,132 +34,118 @@
 ###############################################################################
 ### BEGIN SECTION SETTINGS
 ###############################################################################
-ROOT:                        {DATA_ROOT}/HEMCO
-GridFile:                    HEMCO_sa_Grid.{GRID}.rc
-SpecFile:                    HEMCO_sa_Spec.rc
-TimeFile:                    HEMCO_sa_Time.rc
-DiagnFile:                   HEMCO_sa_Diagn.rc
-DefaultDiagnOn:              false
-DefaultDiagnSname:           TOTAL_
-DefaultDiagnLname:           HEMCO_total_emissions_
-DefaultDiagnDim:             2
-DefaultDiagnUnit:            kgm-2s-1
-DiagnPrefix:                 output/HEMCO_sa.diagnostics
-DiagnFreq:                   00000001 000000
-Logfile:                     HEMCO.log
-Unit tolerance:              2
-Negative values:             0
-Verbose:                     {VERBOSE}
-Warnings:                    {WARNINGS}
-MET:                         {MET}
-RES:                         {GRID}
-METDIR:                      {DATA_ROOT}/GEOS_{GRID_DIR}/{MET_DIR}
-PBL dry deposition:          False
-
+ROOT:                /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData/HEMCO
+GridFile:            HEMCO_sa_Grid.4x5.rc
+SpecFile:            HEMCO_sa_Spec.rc
+TimeFile:            HEMCO_sa_Time.rc
+DiagnFile:           HEMCO_sa_Diagn.rc
+DefaultDiagnOn:      false
+DefaultDiagnSname:   TOTAL_
+DefaultDiagnLname:   HEMCO_total_emissions_
+DefaultDiagnDim:     2
+DefaultDiagnUnit:    kgm-2s-1
+DiagnPrefix:         output/HEMCO_sa.diagnostics
+DiagnFreq:           00000100 000000
+Logfile:             HEMCO.log
+Unit tolerance:      2
+Negative values:     0
+Verbose:             0
+Warnings:            1
+PBL dry deposition:  False
+#=============================================================================
+# NOTE: MET and RES should be automatically specified in the build
+# process, at least for geosfp and merra2.  Comment these out for now.
+# If you are using other met input, then you may have to manually
+# specify these values (bmy, 1/18/19)
+#
+#MET:                 geosfp
+#RES:                 4x5
+#=============================================================================
+# NOTE: Specify the met field directory here.  By default we will use 
+# GEOS-FP 4x5 data.  Change this value if you need to use e.g MERRA-2.
+#
+METDIR:              /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData/GEOS_4x5/GEOS_FP
+#=============================================================================
 ### END SECTION SETTINGS ###
 
 ###############################################################################
 ### BEGIN SECTION EXTENSION SWITCHES
 ###############################################################################
 ###
-### This section lists all emission extensions available to HEMCO and whether
-### they shall be used or not. Extension 'base' must have extension number
-### zero, all other extension numbers can be freely chosen. Data fields in
-### section 'base emissions' will only be read if the corresponding extension
-### (identified by ExtNr) is enabled. Similarly, fields grouped into data
-### collections ('(((CollectionName', ')))CollectionName') are only considered
-### if the corresponding data collection is enabled in this section. Data
-### listed within a disabled extension are always ignored, even if they are
-### grouped in an enabled collection (e.g. GFED-4 data will never be considered
-### if the GFED extension is disabled, even if the GFED4 option is set to true).
+### NOTE FOR HEMCO STANDALONE SIMULATIONS:
+### ===========================================================================
+### We can just "drop in" an existing HEMCO_Config.rc file from another
+### GEOS-Chem run directory, and those settings will be activated.  This is
+### done with the ">>>include HEMCO_Config.rc" statement.  
 ###
-### It is possible to define collections that are only evaluated if a
-### collection name is *not* enabled. This is achieved by leading the
-### collection name with '.not.', e.g. '(((.not.FINN_daily' ...
-### '))).not.FINN_daily' for FINN monthly data (only used if daily data is
-### not being used).
+### Settings in HEMCO_sa_Config.rc will always override any settings in
+### the included HEMCO_Config.rc. 
 ###
-### The ExtNr provided in this section must match with the ExtNr assigned to
-### the data listed in the base emissions sections. Otherwise, the listed
-### files won't be read!
+### By default, we will include HEMCO_Config.rc from the geosfp_4x5_standard 
+### simulation (which is also used for geosfp_4x5_benchmark).  You can, 
+### of course, include a HEMCO_Config.rc for a different simulation.
 ###
-### NOTES:
-### --> You can only select one biomass burning option (GFED, QFED, FINN).
+### Because the included HEMCO_Config.rc (in GEOS-Chem 12.1.0 and later) 
+### contains entries for reading in met fields via FlexGrid), we will use 
+### these entries instead of overriding them in HEMCO_sa_Config.rc.
 ###
-### --> BOND_BIOMASS must be set to false if GFED, QFED, or FINN is enabled.
+### We recommend to use the emissions options in HEMCO_Config.rc (rather than
+### overriding them in HEMCO_sa_Config.rc) so that the standalone simulation
+### will provide the same emissions as would the corresponding GEOS-Chem
+### simulation.
 ###
-### --> The biomass burning POA scale factor is the same as for the biofuel
-###     and anthro sources.
+### We have set the following switches to false.  These are only needed for
+### regular GEOS-Chem simualations, but not for HEMCO standalone simulations.
 ###
-### --> The NAP scale factor is determined as in the original simulation:
-###     Obtain NAP emissions using scale factor from Hays 2002 ES&T
-###     (0.0253 g NAP/kg DM) and Andreae and Merlet 2001 GBC (92 g CO/kg DM)
+###   (1) GC_RESTART      : Reads GEOS-Chem species restart file
+###   (2) +UValbedo+      : Reads UV albedo data for photolysis
+###   (3) +TOMS_SBUV_O3+  : Reads TOMS/SBUV data for photolysis
+###   (4) +STATE_PSC+     : Reads polar strat cloud info for UCX
+###   (5) +LinStratChem+  : Reads strat chemistry P/L data for UCX
+###
+### We have also turned off several extensions (at least for now) in this
+### HEMCO_sa_Config.rc file.  This will avoid having to supply certain data
+### fields for these extentions that usually are obtained directly from
+### GEOS-Chem.
+###
+###   (1) ParaNOx
+###   (2) SoilNOx
+###   (3) MEGAN_Mono
+###   (4) Inorg_Iodine
+###
+###   -- GEOS-Chem Support Team (18 Jan 2019)
 ###############################################################################
 # ExtNr ExtName           on/off  Species
-0       Base              : on    *
-    --> +UValbedo+        :       false
-    --> +TOMS_SBUV_O3+    :       false
-    --> +STATE_PSC+       :       false
-    --> +LinStratChem+    :       false
-    --> MET_FIELDS        :       true  
+0       Base                   : on    *
+    --> GC_RESTART             :       false
+    --> +UValbedo+             :       false
+    --> +TOMS_SBUV_O3+         :       false
+    --> +STATE_PSC+            :       false
+    --> +LinStratChem+         :       false
 # -----------------------------------------------------------------------------
-102     ParaNOx              : off   NO/NO2/O3/HNO3
-104     SoilNOx              : off   NO
-108     MEGAN                : off   ISOP/ACET/PRPE/C2H4/ALD2
-    --> Isoprene scaling     :       1.0 
-    --> CO2 inhibition       :       true
-    --> CO2 conc (ppmv)      :       390.0
-109     MEGAN_Mono           : off   CO/OCPI/MONX
-110     MEGAN_SOA            : off   MTPA/MTPO/LIMO/SESQ
+102     ParaNOx                : off   NO/NO2/O3/HNO3
+    --> LUT data format        :       nc
+    --> LUT source dir         :       $ROOT/PARANOX/v2015-02
+104     SoilNOx                : off   NO 
+    --> Use fertilizer NOx     :       true
+109     MEGAN_Mono             : off   CO/MTPA/MTPO/LIMO/SESQ
+    --> Monoterp to SOAP       :       0.050
+    --> Monoterp to SOAS       :       0.050
+#10% mass yield from monoterpenes to SOA
+    --> Othrterp to SOAP       :       0.050
+    --> Othrterp to SOAS       :       0.050
+#10% mass yield from other terpenes to SOA
+120     Inorg_Iodine           : off   HOI/I2
+    --> Emit HOI               :       true
+    --> Emit I2                :       true
 ### END SECTION EXTENSION SWITCHES ###
 
 ###############################################################################
 ### BEGIN SECTION BASE EMISSIONS
 ###############################################################################
 
-# ExtNr Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
-#
-# NOTE: we can just "drop in" an existing HEMCO_Config.rc file from another
-# GEOS-Chem run directory, and those settings will be activated.
-#
-# NOTE: Settings in HEMCO_sa_Config.rc  will override those in HEMCO_Config.rc. 
-# (bmy, 7/3/18)
+### Drop in a "HEMCO_Config.rc" file from a GEOS-Chem run directory here
 >>>include HEMCO_Config.rc
-
-#==============================================================================
-# --- MET fields (HEMCO standalone only ) ---
-#==============================================================================
-(((MET_FIELDS
-# --- 2D fields ---
-* WLI      $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     LWI      2011-2018/1-12/1-31/0-23 C xy  count  * -   1 1
-* LAI      $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     LAI      2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-* T2M      $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     T2M      2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-* PARDR    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     PARDR    2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-* PARDF    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     PARDF    2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-* GWETROOT $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     GWETROOT 2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-* GWETTOP  $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     GWETTOP  2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-* ALBD     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     ALBEDO   2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-* TSKIN    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     TS       2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-* U10M     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     U10M     2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-* V10M     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     V10M     2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-* TROPP    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     TROPPT   2011-2018/1-12/1-31/0-23 C xy  1      * 301 1 1
-* PSFC     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     SLP      2011-2018/1-12/1-31/0-23 C xy  1      * 301 1 1
-* USTAR    $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     USTAR    2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-* Z0       $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     Z0M      2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-* RADSWG   $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     SWGDN    2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-* SNOWHGT  $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     SNOMAS   2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-* CLDFRC   $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A1.4x5.nc     CLDTOT   2011-2018/1-12/1-31/0-23 C xy  1      * -   1 1
-
-# --- 3D fields ---
-* TK       $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.I3.4x5.nc     T        2011-2018/1-12/1-31/0-23 C xyz 1      * -   1 1
-* CNV_MFC  $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.A3mstE.4x5.nc CMFMC    2011-2018/1-12/1-31/0-23 C xyz 1      * -   1 1
-* SPHU     $METDIR/$YYYY/$MM/GEOSFP.$YYYY$MM$DD.I3.4x5.nc     QV       2011-2018/1-12/1-31/0-23 C xyz 1      * -   1 1
-
-# --- Dummy variables ---
-# FRAC_OF_PBL is expected by the air-sea exchange module, but not used if setting 'PBL dry deposition' is disabled.
-* FRAC_OF_PBL 1.0 - - - xyz 1 * - 1 1
-
-)))MET_FIELDS
 
 ### END SECTION BASE EMISSIONS ###
 
@@ -168,9 +154,6 @@ PBL dry deposition:          False
 ###############################################################################
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
-
-### Scale factors applied to met-fields (standalone only)
-301 hPa2Pa 100.0 - - - - 1 1
 
 ### END SECTION SCALE FACTORS ###
 
