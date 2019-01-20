@@ -139,7 +139,6 @@ Warnings:                    {WARNINGS}
     --> LUT data format        :       nc
     --> LUT source dir         :       $ROOT/PARANOX/v2015-02
 103     LightNOx               : on    NO
-    --> OTD-LIS factors        :       true
     --> CDF table              :       $ROOT/LIGHTNOX/v2014-07/light_dist.ott2010.dat
 104     SoilNOx                : on    NO 
     --> Use fertilizer NOx     :       true
@@ -2277,12 +2276,14 @@ Warnings:                    {WARNINGS}
 101 ALD2_SEAWATER   $ROOT/ALD2/v2017-03/ALD2_seawater.geos.2x25.nc   ALD2       1985/1-12/1/0 C xy kg/m3 ALD2 - 1 1
 
 #==============================================================================
-# --- LIGHTNOX emissions (Extension 103) ---
+# --- Lightning emissions (Extension 103) ---
 #
-# Local redistribution factors: These are model-specific and hence need to be 
-# redefined for different model/resolution simulations!!!
+# Native-resolution lightning flash rates constrained to LIS/OTD climatology
+# and convective depth are now prescribed as offline meteorology.
+#                                                    --Lee Murray (16 Jan 2019)
 #==============================================================================
-103 LIGHTNOX_OTDLIS $ROOT/LIGHTNOX/v2017-09/OTD-LIS-Local-Redist.CTH.v5.$met.$RES.v20170928.nc OTD $YYYY/1-12/1/0 C xy unitless NO - 1 1
+* FLASH_DENS $ROOT/LIGHTNING/v2019-01/$MET/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY.nc4  LDENS 1980-2018/1-12/1-31/0-23/+90minute RF xy  1  * -  1 1
+* CONV_DEPTH $ROOT/LIGHTNING/v2019-01/$MET/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY.nc4  CTH   1980-2018/1-12/1-31/0-23/+90minute RF xy  1  * -  1 1
 
 #==============================================================================
 # --- SOILNOX emissions (Extension 104) ---

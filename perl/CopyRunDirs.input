@@ -28,22 +28,22 @@
 #
 # %%% Data path and HEMCO settings %%%
 #
-   GCGRID_ROOT    : /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid
+   GCGRID_ROOT    : /Users/ltmurray
    DATA_ROOT      : {GCGRIDROOT}/data/ExtData
    VERBOSE        : 0
    WARNINGS       : 1
 #
 # %%% Unit tester path names %%%
 #
-   UNIT_TEST_ROOT : {HOME}/UT
+   UNIT_TEST_ROOT : /Users/ltmurray/projects/GIL/geos-chem-unittest
    RUN_ROOT       : {UTROOT}/runs
    RUN_DIR        : {RUNROOT}/{RUNDIR}
    PERL_DIR       : {UTROOT}/perl
 #
 # %%% Target directory and copy command %%%
 # 
-   COPY_PATH      : {HOME}/GC/rundirs
-   COPY_CMD       : cp -rfL
+   COPY_PATH      : /Users/ltmurray/projects/GIL/rundirs
+   COPY_CMD       : cp -rf
 #
 # !RUNS:
 #  Specify the runs directories that you want to copy below.
@@ -55,7 +55,7 @@
 # MET    | GRID      | NEST | SIMULATION     | START DATE | END DATE     |EXTRA|
 #--------|-----------|------|----------------|------------|--------------|-----|
 # ======= Standard ===========================================================
-  geosfp   4x5         -      standard         2016070100   2016080100     -
+# geosfp   4x5         -      standard         2016070100   2016080100     -
 # merra2   4x5         -      standard         2016070100   2016080100     -
 # geosfp   2x25        -      standard         2016070100   2016080100     -
 # merra2   2x25        -      standard         2016070100   2016080100     -
@@ -115,8 +115,8 @@
 # geosfp   2x25        -      aerosol          2016070100   2016080100     -
 # merra2   2x25        -      aerosol          2016070100   2016080100     -
 ## ======= Tropchem ===========================================================
-# geosfp   4x5         -      tropchem         2016070100   2016080100     -
-# merra2   4x5         -      tropchem         2016070100   2016080100     -
+geosfp   4x5         -      tropchem         2016070100   2016080100     -
+merra2   4x5         -      tropchem         2016070100   2016080100     -
 # geosfp   2x25        -      tropchem         2016070100   2016080100     -
 # merra2   2x25        -      tropchem         2016070100   2016080100     -
 ## ======= Complex SOA (w/o and w/ SVPOA) =====================================
