@@ -124,20 +124,9 @@ METDIR:              /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData/GEO
     --> +LinStratChem+         :       false
 # -----------------------------------------------------------------------------
 102     ParaNOx                : off   NO/NO2/O3/HNO3
-    --> LUT data format        :       nc
-    --> LUT source dir         :       $ROOT/PARANOX/v2015-02
 104     SoilNOx                : off   NO 
-    --> Use fertilizer NOx     :       true
 109     MEGAN_Mono             : off   CO/MTPA/MTPO/LIMO/SESQ
-    --> Monoterp to SOAP       :       0.050
-    --> Monoterp to SOAS       :       0.050
-#10% mass yield from monoterpenes to SOA
-    --> Othrterp to SOAP       :       0.050
-    --> Othrterp to SOAS       :       0.050
-#10% mass yield from other terpenes to SOA
 120     Inorg_Iodine           : off   HOI/I2
-    --> Emit HOI               :       true
-    --> Emit I2                :       true
 ### END SECTION EXTENSION SWITCHES ###
 
 ###############################################################################
