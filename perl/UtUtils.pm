@@ -455,7 +455,7 @@ sub makeHemcoCfg($$$$$$$) {
   #-------------------------------------------------------------------------
   if ( $met =~ m/geosfp/ ) {
     $metDir = "GEOS_FP";
-    $native = "0.25x0.5x0.3125";
+    $native = "0.25x0.3125";
   } elsif ( $met =~ m/merra2/ ) {
     $metDir = "MERRA2";
     $native = "0.5x0.625";
