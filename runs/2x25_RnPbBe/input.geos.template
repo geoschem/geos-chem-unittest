@@ -232,7 +232,7 @@ Station #1 (I,J,Lmax,N) : 133 29 15 2
 %%% ND49 MENU %%%       :
 Turn on ND49 diagnostic : T
 Inst 3-D timeser. file  : species_mass_kg.txt
-Tracers to include      : 4
+Tracers to include      : 8
 Frequency [sec]         : 21600
 IMIN, IMAX of region    :   1  72
 JMIN, JMAX of region    :   1  46
