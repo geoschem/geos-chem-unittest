@@ -157,9 +157,9 @@ ND12: BL fraction       :  0   all
 ND13: Sulfur sources    :  0   all
 ND14: Cld conv mass flx :  0   all
 ND15: BL mix mass flx   :  0   all
-ND16: LS/Conv prec frac : 72   2 3
-ND17: Rainout fraction  : 72   2 3
-ND18: Washout fraction  : 72   2 3
+ND16: LS/Conv prec frac : 72   2 3 4 5 6 7
+ND17: Rainout fraction  : 72   2 3 4 5 6 7
+ND18: Washout fraction  : 72   2 3 4 5 6 7
 ND19: CH4 loss          :  0   all
 ND21: Optical depths    :  0   all
 ND22: J-Values          :  0   all
@@ -177,9 +177,9 @@ ND33: Column tracer     :  0   all
 ND34: Biofuel emissions :  0   all
 ND35: Tracers at 500 mb :  0   all
 ND36: Anthro emissions  :  0   all
-ND37: Updraft scav frac : 72   2 3
-ND38: Cld Conv scav loss: 72   2 3
-ND39: Wetdep scav loss  : 72   2 3
+ND37: Updraft scav frac : 72   2 3 4 5 6 7
+ND38: Cld Conv scav loss: 72   2 3 4 5 6 7
+ND39: Wetdep scav loss  : 72   2 3 4 5 6 7
 ND41: Afternoon PBL ht  :  0   all
 ND42: SOA concentrations:  0   all
 ND43: Chem prod OH, HO2 :  0   all
@@ -284,7 +284,7 @@ Save O3 P/L (ND20)?     : F
 Save CO Production?     : F
 ------------------------+------------------------------------------------------
 %%% BENCHMARK MENU %%%  :
-Save benchmark output?  : F
+Save benchmark output?  : T
 File w/ initial Ox      : Rn.mass.initial
 File w/ final Ox        : Rn.mass.final
 ------------------------+------------------------------------------------------
