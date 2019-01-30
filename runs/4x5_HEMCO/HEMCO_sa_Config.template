@@ -15,6 +15,7 @@
 # !REMARKS:
 #  The following tokens will be replaced:
 #  (1) ROOT    : Filepath to HEMCO root directory
+#  (2) METDIR  : Filepath to met field directory
 #  (2) CFDIR   : Filepath to directory of this configuration file.
 #  (3) MET     : Met field type (from G-C compilation command)
 #  (4) GRID    : Horizontal grid type (from G-C compilation command)
@@ -33,6 +34,41 @@
 #BOC
 ###############################################################################
 ### BEGIN SECTION SETTINGS
+###
+### NOTES about settings:
+### ---------------------
+### (1) Make sure that DiagnFreq matches the duration of the run
+###     that is specified in HEMCO_sa_Time.  You can also use "End",
+###     "Monthly", "Daily", etc. as described in the HEMCO user's guide.
+###
+### (2) MET and RES should be automatically specified in the build
+###     process, at least for geosfp and merra2.  Comment these out
+###     for now. If you are using other met input, then you may have
+###     to manually specify these values (bmy,
+###
+### (3) You will have to point METDIR to the folder in which your met
+###     field data lives.  The default is to point the GEOS-FP folder
+###     on the Harvard "Odyssey" cluster.
+###
+### (4) You can leave DefaultDiagnOn set at "false".  This will archive
+###     extra diagnostics for each HEMCO species.  In most cases, you 
+###     would only be interested in archiving out the diagnostics as 
+###     specified in the diagnostic configuration file.
+###
+### (5) By default, the diagnostics will be saved to the output folder
+###     with template HEMCO_sa_Diagnostics.YYYYYMMDD_hhmmss.nc.  You
+###     can modify this by changing the DiagnPrefix setting.
+###  
+### (5) PBL dry deposition is set to false, as we are not running HEMCO
+###     within GEOS-Chem.
+###
+### (6) The HEMCO standalone will read the diagnostic configuration 
+###     file (named HEMCO_sa_Diagn.rc) by default.  But we also provide 
+###     the diagnostic configuration file corresponding to the GEOS-Chem 
+###     benchmark simulation (named HEMCO_Diagn.rc) in the HEMCO standalone
+###     run directory that you generate with the GEOS-Chem unit tester.  
+###     You can change the HEMCO diagnostic configuration file by modifying
+###     the DiagnFile setting below.
 ###############################################################################
 ROOT:                /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData/HEMCO
 GridFile:            HEMCO_sa_Grid.4x5.rc
@@ -52,20 +88,9 @@ Negative values:     0
 Verbose:             0
 Warnings:            1
 PBL dry deposition:  False
-#=============================================================================
-# NOTE: MET and RES should be automatically specified in the build
-# process, at least for geosfp and merra2.  Comment these out for now.
-# If you are using other met input, then you may have to manually
-# specify these values (bmy, 1/18/19)
-#
+METDIR:              /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData/GEOS_4x5/GEOS_FP
 #MET:                 geosfp
 #RES:                 4x5
-#=============================================================================
-# NOTE: Specify the met field directory here.  By default we will use 
-# GEOS-FP 4x5 data.  Change this value if you need to use e.g MERRA-2.
-#
-METDIR:              /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData/GEOS_4x5/GEOS_FP
-#=============================================================================
 ### END SECTION SETTINGS ###
 
 ###############################################################################
