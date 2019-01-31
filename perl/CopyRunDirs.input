@@ -28,21 +28,21 @@
 #
 # %%% Data path and HEMCO settings %%%
 #
-   GCGRID_ROOT    : /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid
-   DATA_ROOT      : {GCGRIDROOT}/data/ExtData
+   GCGRID_ROOT    : /home/ubuntu
+   DATA_ROOT      : {GCGRIDROOT}/ExtData
    VERBOSE        : 0
    WARNINGS       : 1
 #
 # %%% Unit tester path names %%%
 #
-   UNIT_TEST_ROOT : {HOME}/UT
+   UNIT_TEST_ROOT : {HOME}/GC/UT
    RUN_ROOT       : {UTROOT}/runs
    RUN_DIR        : {RUNROOT}/{RUNDIR}
    PERL_DIR       : {UTROOT}/perl
 #
 # %%% Target directory and copy command %%%
 # 
-   COPY_PATH      : {HOME}/GC/rundirs
+   COPY_PATH      : {HOME}/GC
    COPY_CMD       : cp -rfL
 #
 # !RUNS:
