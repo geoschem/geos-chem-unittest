@@ -195,7 +195,7 @@ sub checkTheFiles($$$$) {
 	    
 	# Second file to examine
 	$file2 =  "$dir2/$file";
-	$file2 =~ s/$suf1/$suf2/g;
+	$file2 =~ s/\$suf1/$suf2/g;
  
 	# Create combined file name for display
 	$baseName = substr( $file, 0, length($file) - length($suf1) );
