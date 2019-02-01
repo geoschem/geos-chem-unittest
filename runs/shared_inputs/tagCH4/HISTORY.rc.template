@@ -37,6 +37,7 @@ COLLECTIONS: 'Restart',
              #'ConcAfterChem',
              #'LevelEdgeDiags',      
              #'StateMet',      
+             #'Transport',
 ::
 ###############################################################################
 ### The rest of this file consists of collection definitions.               ###
@@ -252,4 +253,18 @@ COLLECTIONS: 'Restart',
                               'Met_V                         ', 'GIGCchem',
                               'Met_V10M                      ', 'GIGCchem',
                               'Met_Z0                        ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE Transport COLLECTION %%%%%
+#
+# Diagnostics for evaluating transport, including age of air [s]
+#
+# Available for all simulations
+#==============================================================================
+  Transport.template:         '%y4%m2%d2_%h2%n2z.nc4',
+  Transport.format:           'CFIO',
+  Transport.frequency:        'End',
+  Transport.duration:         'End',
+  Transport.mode:             'instantaneous'
+  Transport.fields:           'Met_AgeOfAir                  ', 'GIGCchem',
 ::

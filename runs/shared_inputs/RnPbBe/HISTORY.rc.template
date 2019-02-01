@@ -29,12 +29,13 @@ EXPID:  ./GEOSChem
 #==============================================================================
 COLLECTIONS: 'Restart',
              'SpeciesConc',
+             'RadioNuclide',
+             'Transport',
              #'Budget',
              #'CloudConvFlux',
              #'DryDep',
              #'LevelEdgeDiags',      
-             'RadioNuclide',
-             'StateMet',      
+             #'StateMet',      
              #'WetLossConv',
              #'WetLossLS',
 ::
@@ -195,8 +196,7 @@ COLLECTIONS: 'Restart',
   StateMet.frequency:         {FREQUENCY}
   StateMet.duration:          {DURATION}
   StateMet.mode:              'time-averaged'
-  StateMet.fields:            'Met_Clock                     ', 'GIGCchem',
-#                              'Met_AD                        ', 'GIGCchem',
+  StateMet.fields:            #'Met_AD                        ', 'GIGCchem',
 #                              'Met_AIRDEN                    ', 'GIGCchem',
 #                              'Met_AIRVOL                    ', 'GIGCchem',
 #                              'Met_ALBD                      ', 'GIGCchem',
@@ -306,4 +306,18 @@ COLLECTIONS: 'Restart',
   WetLossLS.duration:         {DURATION}
   WetLossLS.mode:             'time-averaged'
   WetLossLS.fields:           'WetLossLS_?WET?               ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE Transport COLLECTION %%%%%
+#
+# Diagnostics for evaluating transport, including age of air [s]
+#
+# Available for all simulations
+#==============================================================================
+  Transport.template:         '%y4%m2%d2_%h2%n2z.nc4',
+  Transport.format:           'CFIO',
+  Transport.frequency:        'End',
+  Transport.duration:         'End',
+  Transport.mode:             'instantaneous'
+  Transport.fields:           'Met_AgeOfAir                  ', 'GIGCchem',
 ::
