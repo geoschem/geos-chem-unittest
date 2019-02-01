@@ -38,7 +38,7 @@ use strict;                      # Use "IMPLICIT NONE" syntax
 #  -------------------------------------------------------------------
 #  0          Met field type      (geosfp, merra2, etc.             )
 #  1          Horizontal grid     (4x5, 2x25, etc.                  )
-#  2          Simulation type     (standard, benchmark, RnPbBe, etc.)
+#  2          Simulation type     (standard, benchmark, etc.        )
 #  3          Nested grid option  (na, ch, as, etc.                 )
 #  4          Start date & time   (in YYYYMMDDhhmm format           )
 #  5          End   date & time   (in YYYYMMDDhhmm format           )

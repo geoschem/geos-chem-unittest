@@ -253,7 +253,7 @@ ifeq ($(SIM),masscons)
  MASSCONS    :=y
 endif
 
-ifeq ($(SIM),RnPbBe)
+ifeq ($(SIM),TransportTracers)
  NO_REDUCED  :=y
 endif
 

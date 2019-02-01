@@ -584,8 +584,8 @@ sub doCopyDirs($$) {
 	    	$rstFile = "$rstRoot$rstPref$grid\_standard.nc";
 	      } elsif ( $sim =~ m/RRTMG/ ) {
 	    	$rstFile = "$rstRoot$rstPref$grid\_tropchem.nc";
-	      } elsif ( $sim =~ m/RnPbBe/ ) {
-		$rstFile = "$rstRoot$rstPref$grid\_RnPbBePasv_72L.nc";
+	      } elsif ( $sim =~ m/TransportTracers/ ) {
+		$rstFile = "$rstRoot$rstPref$grid\_TransportTracers.nc";
 	      } else {
 	    	$rstFile = "$rstRoot$rstPref$notDir.nc";
 	      }

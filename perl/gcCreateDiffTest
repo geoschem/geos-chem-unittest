@@ -554,8 +554,8 @@ sub doCopyDirs($$) {
              $nTracers = "23";
           } elsif ( $sim =~ m/POPs/      ) {
              $nTracers = "5";
-          } elsif ( $sim =~ m/RnPbBe/    ) {
-             $nTracers = "4";
+          } elsif ( $sim =~ m/TransportTracers/ ) {
+             $nTracers = "16";
           } elsif ( $sim =~ m/Hg/        ) {
              $nTracers = "3";
           } else {
@@ -612,8 +612,8 @@ sub doCopyDirs($$) {
 	  } else {
 	    if ( ( $sim =~ m/RRTMG/ ) ) {
 	      $rstFile = "$rstRoot$grid\_tropchem.nc";
-	    } elsif ( $sim =~ m/RnPbBe/ ) {
-	      $rstFile = "$rstRoot$grid\_RnPbBePasv_72L.nc";
+	    } elsif ( $sim =~ m/TransportTracers/ ) {
+	      $rstFile = "$rstRoot$grid\_TransportTracers.nc";
 	    } else {
 	      $rstFile = "$rstRoot$notDir.nc";
 	    }

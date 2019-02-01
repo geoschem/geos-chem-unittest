@@ -1,5 +1,5 @@
-This folder (runs/shared_inputs/RnPbBe) contains input files
-for GEOS-Chem RADON-LEAD-BERYLLIUM simulations, namely:
+This folder (runs/shared_inputs/TransportTracers) contains input files
+for GEOS-Chem Transport Tracer simulations, namely:
 
 (1) HEMCO configuration files
 (2) A HISTORY.rc file for netCDF diagnostics

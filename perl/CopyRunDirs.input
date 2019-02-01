@@ -63,11 +63,11 @@
 # geosfp   4x5         -      benchmark        2016070100   2016080100     -
 ## ======= GEOS-Chem 7-day time test ==========================================
 # geosfp   4x5         -      gc_timing        2016070100   2016070800     -
-## ======= Radon-Lead-Beryllium ===============================================
-# geosfp   4x5         -      RnPbBe           2016010100   2016020100     -
-# merra2   4x5         -      RnPbBe           2016010100   2016020100     -
-# geosfp   2x25        -      RnPbBe           2016010100   2016020100     -
-# merra2   2x25        -      RnPbBe           2016010100   2016020100     -
+## ======= Transport Tracers (formerly RnPbBe) ================================
+# geosfp   4x5         -      TransportTracers 2016010100   2016020100     -
+# merra2   4x5         -      TransportTracers 2016010100   2016020100     -
+# geosfp   2x25        -      TransportTracers 2016010100   2016020100     -
+# merra2   2x25        -      TransportTracers 2016010100   2016020100     -
 ## ======= Mercury ============================================================
 # geosfp   4x5         -      Hg               2016010100   2016020100     -
 # merra2   4x5         -      Hg               2016010100   2016020100     -
