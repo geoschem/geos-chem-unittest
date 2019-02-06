@@ -33,3 +33,4 @@ tracer*mass*.dat
 core.*
 HISTORY.rc
 GEOSChem.*nc4*
+Rn.mass.*
