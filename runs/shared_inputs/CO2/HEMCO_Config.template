@@ -452,7 +452,7 @@ END SECTION EXTENSION SWITCHES
 # ---> Recommended for use in forward modelling, optional for
 #      inversion/assimilation
 #==============================================================================
-* CO2_COPROD $ROOT/CO2/v2015-04/CHEM/CO2_prod_rates.GEOS5.2x25.47L.nc LCO 2004-2009/1-12/1/0 C xyz kg/m3/s * - 1 1
+* CO2_COPROD $ROOT/CO2/v2019-02/CHEM/CO2_prod_rates.GEOS5.2x25.47L.nc LCO 2004-2009/1-12/1/0 C xyz kg/m3/s * - 1 1
 
 ### END SECTION BASE EMISSIONS ###
 
