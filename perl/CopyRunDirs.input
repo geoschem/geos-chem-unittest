@@ -33,6 +33,10 @@
    VERBOSE        : 0
    WARNINGS       : 1
 #
+# %%% Code and queue settings %%%
+#
+   CODE_DIR       : {HOME}/GC/Code.{VERSION}
+#
 # %%% Unit tester path names %%%
 #
    UNIT_TEST_ROOT : {HOME}/UT

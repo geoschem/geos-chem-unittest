@@ -32,6 +32,7 @@ use UtUtils qw/&baseName
 #
 our $COPY_CMD    = "";                # Command to copy directories
 our $COPY_PATH   = "";                # Path to copy Run directories to
+our $CODE_DIR    = "";                # GEOS-Chem code directory
 our $UT_ROOT     = "";                # Root path for the unit tester
 our $GCGRID_ROOT = "";                # Root path for GEOS-Chem data directory
 our $DATA_ROOT   = "";                # Root path for ExtData data directory
@@ -346,6 +347,7 @@ sub doCopyDirs($$) {
       elsif ( $txt[$i] =~ "WARNINGS"    ) { $WARNINGS  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "DESCRIPTION" ) { $DESCRIBE  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "VERSION"     ) { $VERSION   = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "CODE_DIR"    ) { $CODE_DIR  = &parse( $txt[$i] ); }
     }
 
     #------------------------------------------------------------------------
@@ -359,6 +361,7 @@ sub doCopyDirs($$) {
       $DATA_ROOT  =~ s/ //g;
       $RUN_ROOT   =~ s/ //g; 
       $UT_ROOT    =~ s/ //g;
+      $CODE_DIR   =~ s/ //g;
 
       # Replace tokens in a few more variables
       $UT_ROOT    =~ s/{HOME}/$home/g;
@@ -376,6 +379,8 @@ sub doCopyDirs($$) {
       $DATA_ROOT  =~ s/{GCGRIDROOT}/$GCGRID_ROOT/g;
       $RUN_DIR    =~ s/{RUNROOT}/$RUN_ROOT/g;
       $RUN_DIR    =~ s/{UTROOT}/$UT_ROOT/g;
+      $CODE_DIR   =~ s/{HOME}/$home/g;
+      $CODE_DIR   =~ s/{VERSION}/$VERSION/g;
 
       # Replace user token
       $UT_ROOT    =~ s/{USER}/$user/g;
@@ -383,6 +388,7 @@ sub doCopyDirs($$) {
       $RUN_ROOT   =~ s/{USER}/$user/g;
       $JOB_DIR    =~ s/{USER}/$user/g;
       $LOG_DIR    =~ s/{USER}/$user/g;
+      $CODE_DIR   =~ s/{USER}/$user/g;
       
       # Make sure each of these directories exist before proceeding
       &checkDir( $GCGRID_ROOT );
@@ -576,6 +582,14 @@ sub doCopyDirs($$) {
 	    $cmd = "[ -f HEMCO_restart* ] && chmod 444 $copyDir/HEMCO_restart.*";
 	    qx/$cmd/;
 
+	    # Create symbolic link to the GEOS-Chem code directory
+	    if ( !( -d $CODE_DIR ) ){
+	      print "\nWARNING: Directory $CODE_DIR does not exist, so the CodeDir symbolic link will not be included in your run directory. Please check your CODE_DIR setting in CopyRunDirs.input. You may also create the CodeDir symbolic link manually or pass CODE_DIR={yourpath} when compiling.\n\n";
+            } else {
+	      $cmd = "ln -s $CODE_DIR $copyDir/CodeDir";
+	      qx/$cmd/;
+	    }
+	    
 	    # Create symbolic link to the restart file
 	    if ( length( $nest ) > 0 ) {
 	      $rstFile = "$rstRoot$rstPref$grid\_$sim\_$nest.nc";

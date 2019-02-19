@@ -73,7 +73,7 @@ endif
 
 # Source code location (you can modify as necessary)
 ifndef CODE_DIR
- CODE_DIR    :=$(HOME)/GC/Code.$(VERSION)
+ CODE_DIR    :=./CodeDir
 endif
 
 # Check if the code directory is not valid
