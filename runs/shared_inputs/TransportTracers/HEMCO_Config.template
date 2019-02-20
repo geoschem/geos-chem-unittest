@@ -84,6 +84,7 @@ Warnings:                    {WARNINGS}
     --> EDGARv43          :       false
     --> HTAP              :       false
     --> CEDS              :       true
+    --> MODIS_XLAI        :       true
 #------------------------------------------------------------------------------
 100     GC_Rn-Pb-Be       : on    Rn222/Be7/Be7Strat/Be10/Be10Strat
 
@@ -364,7 +365,7 @@ Warnings:                    {WARNINGS}
 * LANDTYPE59 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE59 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE60 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE60 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE61 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE61 1985/1/1/0 C xy 1 * - 1 1
-* LANDTYPE62 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE61 1985/1/1/0 C xy 1 * - 1 1
+* LANDTYPE62 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE62 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE63 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE63 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE64 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE64 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE65 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE65 1985/1/1/0 C xy 1 * - 1 1
@@ -382,9 +383,12 @@ Warnings:                    {WARNINGS}
 # NOTES:
 # (1) LAI data corresponding to each Olson land type is stored in
 #     separate netCDF variables (XLAI00, XLAI01, ... XLAI72).
-# (2) Units are "cm2 leaf/cm2 grid box".
-# (3) Data is timestamped on the 15th of each month.
+# (2) These files were created from the data in the folder
+#     ExtData/CHEM_INPUTS/MODIS_LAI_201707.
+# (3) Units are "cm2 leaf/cm2 grid box".
+# (4) Data is timestamped on the 15th of each month.
 #==============================================================================
+(((MODIS_XLAI
 * XLAI00 $ROOT/MODIS_XLAI/v2017-07/$YYYY/MODIS_XLAI.025x025.$YYYY$MM.nc XLAI00 2005-2011/1-12/15/0 C xy cm2/cm2 * - 1 1
 * XLAI01 $ROOT/MODIS_XLAI/v2017-07/$YYYY/MODIS_XLAI.025x025.$YYYY$MM.nc XLAI01 2005-2011/1-12/15/0 C xy cm2/cm2 * - 1 1
 * XLAI02 $ROOT/MODIS_XLAI/v2017-07/$YYYY/MODIS_XLAI.025x025.$YYYY$MM.nc XLAI02 2005-2011/1-12/15/0 C xy cm2/cm2 * - 1 1
@@ -458,6 +462,7 @@ Warnings:                    {WARNINGS}
 * XLAI70 $ROOT/MODIS_XLAI/v2017-07/$YYYY/MODIS_XLAI.025x025.$YYYY$MM.nc XLAI70 2005-2011/1-12/15/0 C xy cm2/cm2 * - 1 1
 * XLAI71 $ROOT/MODIS_XLAI/v2017-07/$YYYY/MODIS_XLAI.025x025.$YYYY$MM.nc XLAI71 2005-2011/1-12/15/0 C xy cm2/cm2 * - 1 1
 * XLAI72 $ROOT/MODIS_XLAI/v2017-07/$YYYY/MODIS_XLAI.025x025.$YYYY$MM.nc XLAI72 2005-2011/1-12/15/0 C xy cm2/cm2 * - 1 1
+)))MODIS_XLAI
 
 ### END SECTION BASE EMISSIONS ###
 
