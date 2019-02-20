@@ -149,11 +149,6 @@ ifndef TAU_PROF
  TAU_PROF    :=n
 endif
 
-# Always have netcdf diagnostics on to output restart file
-ifdef NC_DIAG
- NC_DIAG   :=y
-endif
-
 # Default: Binary diagnostics are currently default in GEOS-Chem
 ifndef BPCH_DIAG
  BPCH_DIAG   :=y
@@ -411,7 +406,7 @@ refonly:
                                START=$(START)         END=$(END)              \
                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)    \
                                TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
-                               NC_DIAG=$(NC_DIAG)     BPCH_DIAG=$(BPCH_DIAG) 
+                               BPCH_DIAG=$(BPCH_DIAG) 
 	@$(MAKE) printcodeinforef > $(RUN_REF)/$(LOG_COMP).Ref
 	@$(MAKE) printbuildinfo >> $(RUN_REF)/$(LOG_COMP).Ref
 	@$(MAKE) printruninforef >> $(LOG_REF)
@@ -433,7 +428,7 @@ devonly:
                                START=$(START)         END=$(END)              \
                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)    \
                                TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
-                               NC_DIAG=$(NC_DIAG)     BPCH_DIAG=$(BPCH_DIAG)
+                               BPCH_DIAG=$(BPCH_DIAG)
 	@$(MAKE) printcodeinfodev > $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printbuildinfo >> $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
@@ -459,7 +454,7 @@ devlib:
                                START=$(START)         END=$(END)              \
                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)    \
                                TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
-                               NC_DIAG=$(NC_DIAG)     BPCH_DIAG=$(BPCH_DIAG)
+                               BPCH_DIAG=$(BPCH_DIAG)
 	@$(MAKE) printcodeinfodev > $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printbuildinfo >> $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
@@ -485,7 +480,7 @@ devrun:
                                START=$(START)         END=$(END)              \
                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)    \
                                TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
-                               NC_DIAG=$(NC_DIAG)     BPCH_DIAG=$(BPCH_DIAG)
+                               BPCH_DIAG=$(BPCH_DIAG)
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
 	@$(MAKE) printallinfodev
 
@@ -647,7 +642,6 @@ printbuildinfo:
 	@echo "  TIMERS       : $(TIMERS)"
 	@echo "  TAU_PROF     : $(TAU_PROF)"
 	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"
-	@echo "  NC_DIAG      : $(NC_DIAG)"
 	@echo "  COMPILER     : $(FC) $(COMPILER_VERSION)"
 	@echo "  Datetime     : $(TIMESTAMP)"
 
@@ -748,5 +742,4 @@ help:
 	@echo 'TRACEBACK=y       Compiles with traceback error printout'
 	@echo 'NO_ISO=n          Compiles with ISORROPIA on (default is off for diff testing)'
 	@echo 'TIMERS=1          Compiles GEOS-Chem with timers turned on'
-	@echo 'NC_DIAG=y         Compiles GEOS-Chem such that diagnostics are output in NetCDF format (default is binary-punch)'
 #EOC

@@ -162,15 +162,9 @@ ifndef TAU_PROF
  TAU_PROF    :=n
 endif
 
-# Default: BPCH_DIAG is always turned ON unless the user specifies
-# otherwise or if NC_DIAG=y is specified
+# BPCH_DIAG is always turned ON unless the user specifies otherwise
 ifndef BPCH_DIAG
  BPCH_DIAG   :=y
-endif
-
-# Default: NC_DIAG is always turned ON unless the user specifies otherwise
-ifndef NC_DIAG
- NC_DIAG   :=y
 endif
 
 ###############################################################################
@@ -410,7 +404,7 @@ sp:
                                 MASSCONS=$(MASSCONS)   OMP=no                 \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
                                 TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
-                                NO_REDUCED=$(NO_REDUCED) NC_DIAG=$(NC_DIAG)   \
+                                NO_REDUCED=$(NO_REDUCED)                      \
                                 > $(LOG_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
@@ -429,7 +423,7 @@ mp:
                                 MASSCONS=$(MASSCONS)   OMP=yes                \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
                                 TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
-                                NO_REDUCED=$(NO_REDUCED) NC_DIAG=$(NC_DIAG)   \
+                                NO_REDUCED=$(NO_REDUCED)                      \
                                 > $(LOG_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
@@ -453,7 +447,7 @@ spbuild:
                                 MASSCONS=$(MASSCONS)   OMP=no                 \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
                                 TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
-                                NO_REDUCED=$(NO_REDUCED) NC_DIAG=$(NC_DIAG)
+                                NO_REDUCED=$(NO_REDUCED)                   
 	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
 	@$(MAKE) printbuildinfo
@@ -469,7 +463,7 @@ mpbuild:
                                 MASSCONS=$(MASSCONS)   OMP=yes                \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
                                 TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
-                                NO_REDUCED=$(NO_REDUCED) NC_DIAG=$(NC_DIAG)
+                                NO_REDUCED=$(NO_REDUCED)                    
 	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
 	@$(MAKE) printbuildinfo
@@ -516,7 +510,7 @@ hcobuild:
                                 MASSCONS=$(MASSCONS)   OMP=yes                \
                                 TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
                                 TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
-                                NC_DIAG=$(NC_DIAG)     libhemcosa
+                                libhemcosa
 	cp -f $(CODE_DIR)/bin/hemco_standalone.x $(EXE_HMCO_SA)
 	@$(MAKE) printbuildinfo > $(LOG_COMP).hemco
 	@$(MAKE) printbuildinfo
@@ -728,7 +722,6 @@ printbuildinfo:
 	@echo "  TIMERS       : $(TIMERS)"
 	@echo "  TAU_PROF     : $(TAU_PROF)"
 	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"
-	@echo "  NC_DIAG      : $(NC_DIAG)"
 	@echo "  COMPILER     : $(FC) $(COMPILER_VERSION)"
 	@echo "  Datetime     : $(TIMESTAMP)"
 
@@ -903,5 +896,4 @@ help:
 	@echo 'TRACEBACK=y       Compiles GEOS-Chem with traceback error printout (this is the default)'
 	@echo 'NO_ISO=y          Compiles GEOS-Chem and turns off ISORROPIA'
 	@echo 'TIMERS=1          Compiles GEOS-Chem with timers turned on'
-	@echo 'NC_DIAG=y       Compiles GEOS-Chem such that diagnostics are output in NetCDF format (default is binary-punch)'
 #EOC
