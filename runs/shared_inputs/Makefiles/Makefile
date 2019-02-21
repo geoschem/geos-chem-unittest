@@ -77,7 +77,7 @@ ifndef CODE_DIR
 endif
 
 # Check if the code directory is not valid
-NO_CODE_FOUND:=$(shell test -d $(CODE_DIR) -a ! -h $(CODE_DIR); echo $$?)
+NO_CODE_FOUND:=$(shell test -d $(CODE_DIR); echo $$?)
 ifeq ($(NO_CODE_FOUND),1)
  $(error Could not find source code directory CODE_DIR=$(CODE_DIR))
 endif
