@@ -184,6 +184,7 @@ Warnings:                    {WARNINGS}
     --> hydrophilic OC         :       0.5
     --> fraction POG1          :       0.49
     --> CO to SOAP             :       0.013
+    --> GFED_subgrid_coag      :       false
 #see the note near scale factor 281 for the source of this emis factor
 114     FINN                   : off   NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPI/BCPO/OCPI/OCPO/GLYC/HAC/SOAP
     --> FINN_daily             :       false
@@ -191,6 +192,7 @@ Warnings:                    {WARNINGS}
     --> Scaling_SOAP           :       0.013
     --> hydrophilic BC         :       0.2
     --> hydrophilic OC         :       0.5
+    --> FINN_subgrid_coag      :       false
 115     DustAlk                : off   DSTAL1/DSTAL2/DSTAL3/DSTAL4
 116     MarinePOA              : off   MOPO/MOPI 
 ### NOTE: Until further notice, deactivate the AeroCom volcano extension (bmy, 5/3/18)
@@ -2432,6 +2434,10 @@ Warnings:                    {WARNINGS}
 111 GFED_PEAT       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_PEAT       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
 111 GFED_SAVA       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_SAVA       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
 
+(((GFED_subgrid_coag
+111 FINN_DAILY_NUMBER   $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25_with_num.nc   number   $YYYY/1-12/1/0       C xy unitless  * - 1 1
+)))GFED_subgrid_coag
+
 (((GFED_daily
 111 GFED_FRAC_DAY   $ROOT/GFED4/v2015-10/$YYYY/GFED4_dailyfrac_gen.025x025.$YYYY$MM.nc GFED_FRACDAY 2003-2016/1-12/1-31/0  C xy 1 * - 1 1
 )))GFED_daily
@@ -2460,6 +2466,11 @@ Warnings:                    {WARNINGS}
 114 FINN_DAILY_VEGTYP4 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype4 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
 114 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype5 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
 114 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype9 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+
+(((FINN_subgrid_coag
+114 FINN_DAILY_NUMBER  $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25_with_num.nc     number        $YYYY/1-12/1/0 C xy unitless * - 1 1
+)))FINN_subgrid_coag
+
 )))FINN_daily
 
 #==============================================================================
