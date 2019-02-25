@@ -539,6 +539,14 @@ sub doCopyDirs($$) {
             $cmd = "cp ./getRunInfo $copyDir/getRunInfo"; 
             qx/$cmd/;
 
+	    # Create symbolic link to the GEOS-Chem code directory
+	    if ( !( -d $CODE_DIR ) ){
+	      print "\nWARNING: Directory $CODE_DIR does not exist, so the CodeDir symbolic link will not be included in your run directory. Please check your CODE_DIR setting in CopyRunDirs.input. You may also create the CodeDir symbolic link manually or pass CODE_DIR={yourpath} when compiling.\n\n";
+            } else {
+	      $cmd = "ln -s $CODE_DIR $copyDir/CodeDir";
+	      qx/$cmd/;
+	    }
+
 	} else {
 
 	    #---------------------------------------------
