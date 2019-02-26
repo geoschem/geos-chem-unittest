@@ -89,7 +89,7 @@ COLLECTIONS: 'Restart',
   SpeciesConc.frequency:      {FREQUENCY}
   SpeciesConc.duration:       {DURATION}
   SpeciesConc.mode:           'time-averaged'
-  SpeciesConc.fields:         'SpeciesConc_?ADV?             ', 'GIGCchem',
+  SpeciesConc.fields:         'SpeciesConc_?ALL?             ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE Budget COLLECTION %%%%%
