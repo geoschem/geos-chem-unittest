@@ -23,6 +23,7 @@ rm -f *.pdf
 rm -f *.ps
 rm -f *.gif
 rm -f *.fullchem
+rm -f *.txt
 rm -f emission_differences/*
 rm -f emission_maps/*
 rm -f emission_ratios/*

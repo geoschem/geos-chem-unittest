@@ -123,10 +123,6 @@ Warnings:                    {WARNINGS}
     --> NEI2011_SHIP_HOURLY    :       false
     --> NEI2011_SHIP_MONMEAN   :       false
     --> MODIS_XLAI             :       true
-### NOTE: For now use the prior volcano emissions.  The AeroCom
-### extension will die if it can't find a file for every day of the
-### year, and the data set ends in September 2012.
-    --> VOLCANO                :       true
 # -----------------------------------------------------------------------------
 100     Custom                 : off   - 
 101     SeaFlux                : on    DMS
@@ -174,10 +170,9 @@ Warnings:                    {WARNINGS}
     --> hydrophilic OC         :       0.5
 115     DustAlk                : off   DSTAL1/DSTAL2/DSTAL3/DSTAL4
 116     MarinePOA              : off   MOPO/MOPI 
-### NOTE: Until further notice, deactivate the AeroCom volcano extension (bmy, 5/3/18)
-117     AeroCom_Volcano        : off   SO2
+117     AeroCom_Volcano        : on    SO2
     --> Volcano_Source         :       OMI
-    --> AeroCom_Table          :       $ROOT/VOLCANO/v2018-03/$YYYY/so2_volcanic_emissions_Carns.$YYYY$MM$DD.rc
+    --> AeroCom_Table          :       $ROOT/VOLCANO/v2019-03/$YYYY/MSVOLSO2L4_v3.$YYYY$MM$DD.rc
 ### END SECTION EXTENSION SWITCHES ###
 
 ###############################################################################
@@ -1111,25 +1106,6 @@ Warnings:                    {WARNINGS}
 0 GFAS_NH3   $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc nh3fire       2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s NH3  75     5 3
 0 GFAS_DMS   $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc c2h6sfire     2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s DMS  75     5 3
 )))GFAS
-
-#==============================================================================
-# --- Volcanic emissions ---
-#
-# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# %%% NOTE: In v11-02 we will keep these emissions activated.  The AeroCom %%%
-# %%% extension (#117) has a bug in it in that it will die unless it finds %%%
-# %%% file for every day of the year.  Because the latest OMI volcano      %%%
-# %%% dataset ends in September 2012, this will cause runs for any year    %%%
-# %%% after 2012 to die in September thru December.  We will fix this      %%%
-# %%% for v11-03, but in the meantime revert to the prior volcano          %%%
-# %%% emisisons version.                                                   %%%
-# %%%      -- Bob Yantosca (03 May 2018)                                   %%%
-# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-#==============================================================================
-(((VOLCANO
-0 VOLCANO_SO2_ERUPT $ROOT/VOLCANO/v2015-02/$YYYY/volc_so2_gen.1x1.47L.$YYYY$MM.nc SO2_erupt 1979-2009/1-12/1-31/0 C xyz kg/m2/s SO2 - 51 1
-0 VOLCANO_SO2_DEGAS $ROOT/VOLCANO/v2015-02/$YYYY/volc_so2_gen.1x1.47L.$YYYY$MM.nc SO2_degas 1979-2009/1-12/1-31/0 C xyz kg/m2/s SO2 - 52 1
-)))VOLCANO
 
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
