@@ -637,15 +637,15 @@ sub doCopyDirs($$) {
 	  }
 
 	  # Make a symbolic link in Ref to Dev/HEMCO_Config.rc
-	  $cmd = "ln -s $devDir/HEMCO_Config.rc $refDir/HEMCO_Config.rc";
+	  $cmd = "ln -s ../Dev/HEMCO_Config.rc $refDir/HEMCO_Config.rc";
 	  qx/$cmd/;	      
 
 	  # Make a symbolic link in Ref to Dev/HEMCO_Diagn.rc
-	  $cmd = "ln -s $devDir/HEMCO_Diagn.rc $refDir/HEMCO_Diagn.rc";
+	  $cmd = "ln -s ../Dev/HEMCO_Diagn.rc $refDir/HEMCO_Diagn.rc";
 	  qx/$cmd/;
 
 	  # Make a symbolic link in Ref to Dev/input.geos
-	  $cmd = "ln -s $devDir/input.geos $refDir/input.geos";
+	  $cmd = "ln -s ../Dev/input.geos $refDir/input.geos";
 	  qx/$cmd/;	      
 	  
           # Copy UT/perl/getRunInfo to Dev directory
@@ -653,7 +653,7 @@ sub doCopyDirs($$) {
           qx/$cmd/; 
 
 	  # Make a symbolic link in Ref to Dev/HISTORY.rc
-	  $cmd = "ln -s $devDir/HISTORY.rc $refDir/HISTORY.rc";
+	  $cmd = "ln -s ../Dev/HISTORY.rc $refDir/HISTORY.rc";
 	  qx/$cmd/;
 
 	  # Copy UT/perl/validate to Dev directory 
