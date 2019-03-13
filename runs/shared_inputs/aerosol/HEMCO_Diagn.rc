@@ -58,12 +58,9 @@ EmisDST3_Natural   DST3   105    -1  -1   2   kg/m2/s  DST3_emission_flux_from_n
 EmisDST4_Natural   DST4   105    -1  -1   2   kg/m2/s  DST4_emission_flux_from_natural_sources
 
 ###############################################################################
-#####  LIMO / MTPO / SESQ / SOAS emissions                                #####
+#####  LIMO emissions                                                     #####
 ###############################################################################
-EmisLIMO_Biogenic  MTPA   108    -1  -1   2   kg/m2/s  LIMO_emission_flux_from_biogenic_sources
-EmisMTPO_Biogenic  MTPA   108    -1  -1   2   kg/m2/s  MTPO_emission_flux_from_biogenic_sources
-EmisSESQ_Biogenic  MTPA   108    -1  -1   2   kg/m2/s  SESQ_emission_flux_from_biogenic_sources
-EmisSOAS_Biogenic  MTPA   108    -1  -1   2   kg/m2/s  SOAS_emission_flux_from_biogenic_sources
+EmisLIMO_Biogenic  LIMO   108    -1  -1   2   kg/m2/s  LIMO_emission_flux_from_biogenic_sources
 
 ###############################################################################
 #####  MTPA emissions                                                     #####
@@ -71,6 +68,11 @@ EmisSOAS_Biogenic  MTPA   108    -1  -1   2   kg/m2/s  SOAS_emission_flux_from_b
 EmisMTPA_Total     MTPA   -1     -1  -1   3   kg/m2/s  MTPA_emission_flux_from_all_sectors
 EmisMTPA_BioBurn   MTPA   111    -1  -1   2   kg/m2/s  MTPA_emission_flux_from_biomass_burning
 EmisMTPA_Biogenic  MTPA   108    -1  -1   2   kg/m2/s  MTPA_emission_flux_from_biogenic_sources
+
+###############################################################################
+#####  MTPO emissions                                                     #####
+###############################################################################
+EmisMTPO_Biogenic  MTPO   108    -1  -1   2   kg/m2/s  MTPO_emission_flux_from_biogenic_sources
 
 ###############################################################################
 #####  NH3 emissions                                                      #####
@@ -81,7 +83,7 @@ EmisNH3_BioBurn    NH3    111    -1  -1   2   kg/m2/s  NH3_emission_flux_from_bi
 EmisNH3_Biofuel    NH3    0      2   -1   2   kg/m2/s  NH3_emission_flux_from_biofuel
 EmisNH3_Natural    NH3    0      3   -1   2   kg/m2/s  NH3_emission_flux_from_natural_sources
 EmisNH3_Seabirds   NH3    0      30  -1   2   kg/m2/s  NH3_emission_flux_from_seabirds
-EmisNH3_Ship       NH3    0      10  -1   2   kg/m2/s  NO_emission_flux_from_ships
+EmisNH3_Ship       NH3    0      10  -1   2   kg/m2/s  NH3_emission_flux_from_ships
 
 ###############################################################################
 #####  OCPI and OCPO emissions                                            ##### 
@@ -101,11 +103,16 @@ EmisOCPO_Ship      OCPO   0      10  -1   2   kg/m2/s  OCPO_emission_flux_from_s
 ###############################################################################
 #####  pFe emissions                                                      ##### 
 ###############################################################################
-EmispFe_Total      pFe    -1    -1   -1   3   kg/m2/s  pFe_emission_flux_from_all_sectors
-EmispFe_Anthro     pFe    0     1    -1   3   kg/m2/s  pFe_emission_flux_from_anthropogenic
-EmispFe_Biofuel    pFe    0     2    -1   2   kg/m2/s  pFe_emission_flux_from_biofuel_sector
-EmispFe_Bioburn    pFe    111   -1   -1   2   kg/m2/s  pFe_emission_flux_from_GFED_inventory
-EmispFe_Ship       pFe    0     10   -1   2   kg/m2/s  pFe_emission_flux_from_ships
+EmispFe_Total      pFe    -1     -1  -1   3   kg/m2/s  pFe_emission_flux_from_all_sectors
+EmispFe_Anthro     pFe    0      1   -1   3   kg/m2/s  pFe_emission_flux_from_anthropogenic
+EmispFe_Biofuel    pFe    0      2   -1   2   kg/m2/s  pFe_emission_flux_from_biofuel_sector
+EmispFe_Bioburn    pFe    111    -1  -1   2   kg/m2/s  pFe_emission_flux_from_GFED_inventory
+EmispFe_Ship       pFe    0      10  -1   2   kg/m2/s  pFe_emission_flux_from_ships
+
+###############################################################################
+#####  SESQ emissions                                                     #####
+###############################################################################
+EmisSESQ_Biogenic  SESQ   108    -1  -1   2   kg/m2/s  SESQ_emission_flux_from_biogenic_sources
 
 ###############################################################################
 #####  Sea salt emissions                                                 ##### 
@@ -140,12 +147,17 @@ EmisSO4_Ship       SO4    0      10  -1   2   kg/m2/s  SO4_emission_flux_from_sh
 ###############################################################################
 #####  SOAP sources                                                       ##### 
 ###############################################################################
-EmisSOAP_Total     SOAP   -1    -1   -1   3   kg/m2/s  SOAP_emission_flux_from_all_sectors
-EmisSOAP_Aircraft  SOAP   0     20   -1   3   kg/m2/s  SOAP_emission_flux_from_aircraft
-EmisSOAP_Anthro    SOAP   0     1    -1   3   kg/m2/s  SOAP_emission_flux_from_anthropogenic
-EmisSOAP_Biofuel   SOAP   0     2    -1   2   kg/m2/s  SOAP_emission_flux_from_biofuel_sector
-EmisSOAP_Biogenic  SOAP   108   -1   -1   2   kg/m2/s  SOAP_emission_flux_from_monoterpenes
-EmisSOAP_Bioburn   SOAP   111   -1   -1   2   kg/m2/s  SOAP_emission_flux_from_biomass_burning
-EmisSOAP_Ship      SOAP   0     10   -1   2   kg/m2/s  SOAP_emission_flux_from_ships
+EmisSOAP_Total     SOAP   -1     -1  -1   3   kg/m2/s  SOAP_emission_flux_from_all_sectors
+EmisSOAP_Aircraft  SOAP   0      20  -1   3   kg/m2/s  SOAP_emission_flux_from_aircraft
+EmisSOAP_Anthro    SOAP   0      1   -1   3   kg/m2/s  SOAP_emission_flux_from_anthropogenic
+EmisSOAP_Biofuel   SOAP   0      2   -1   2   kg/m2/s  SOAP_emission_flux_from_biofuel_sector
+EmisSOAP_Biogenic  SOAP   108    -1  -1   2   kg/m2/s  SOAP_emission_flux_from_monoterpenes
+EmisSOAP_Bioburn   SOAP   111    -1  -1   2   kg/m2/s  SOAP_emission_flux_from_biomass_burning
+EmisSOAP_Ship      SOAP   0      10  -1   2   kg/m2/s  SOAP_emission_flux_from_ships
+
+###############################################################################
+#####  SOAS sources                                                       ##### 
+###############################################################################
+EmisSOAS_Biogenic  SOAS   108    -1  -1   2   kg/m2/s  SOAS_emission_flux_from_biogenic_sources
 
 #EOC
