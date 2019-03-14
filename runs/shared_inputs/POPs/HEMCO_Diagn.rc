@@ -1,0 +1,24 @@
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: HEMCO_Diagn.rc 
+#
+# !DESCRIPTION: Configuration file for netCDF diagnostic output from HEMCO.
+#\\
+#\\
+# !REMARKS:
+#  Customized for the POPs simulation.
+#
+# !REVISION HISTORY:
+#  13 Mar 2019 - M. Sulprizio- Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+# Name               Spec     ExtNr Cat Hier Dim OutUnit  LongName
+EmisPOPG             POPG     1002  -1  -1   2   kg/m2/s  POPG_emission_flux
+EmisPOPPOCPO         POPPOCPO 1002  -1  -1   2   kg/m2/s  POPPOCPO_emission_flux
+EmisPOPPBCPO         POPPBCPO 1002  -1  -1   2   kg/m2/s  POPPBCPO_emission_flux
+
+#EOC
