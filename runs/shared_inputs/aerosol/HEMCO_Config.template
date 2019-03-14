@@ -122,8 +122,8 @@ Warnings:                    {WARNINGS}
     --> EMEP_SHIP              :       true
     --> NEI2011_SHIP_HOURLY    :       false
     --> NEI2011_SHIP_MONMEAN   :       false
-    --> MODIS_XLAI             :       false
-    --> Yuan_XLAI              :       true
+    --> MODIS_XLAI             :       true
+    --> Yuan_XLAI              :       false
 # -----------------------------------------------------------------------------
 100     Custom                 : off   - 
 101     SeaFlux                : on    DMS

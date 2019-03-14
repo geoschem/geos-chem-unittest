@@ -98,8 +98,8 @@ Warnings:                    {WARNINGS}
     --> LOHO3CHEM         :       false
     --> QFED2             :       false
     --> LRED_INPLUME      :       false
-    --> MODIS_XLAI        :       false
-    --> Yuan_XLAI         :       true
+    --> MODIS_XLAI        :       true
+    --> Yuan_XLAI         :       false
 # ----------------------------------------------------------------------------
 # NOTE: Changing these options will require a change in reduction rate in order
 #       to maintain agreement with observations. Please see wiki for details

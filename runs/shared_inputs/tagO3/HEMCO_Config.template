@@ -80,8 +80,8 @@ Warnings:                    {WARNINGS}
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
     --> GC_RESTART        :       true
-    --> MODIS_XLAI        :       false
-    --> Yuan_XLAI         :       true
+    --> MODIS_XLAI        :       true
+    --> Yuan_XLAI         :       false
 
 ### END SECTION EXTENSION SWITCHES ###
 

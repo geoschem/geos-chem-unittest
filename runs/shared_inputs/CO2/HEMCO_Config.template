@@ -92,8 +92,8 @@ Warnings:                    {WARNINGS}
     --> SHIP              :       true
     --> AVIATION          :       true
     --> CO2CORR           :       true
-    --> MODIS_XLAI        :       false
-    --> Yuan_XLAI         :       true
+    --> MODIS_XLAI        :       true
+    --> Yuan_XLAI         :       false
 # ----------------------------------------------------------------------------
 111     GFED              : on    CO2/CO2bb
     --> GFED4             :       true

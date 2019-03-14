@@ -84,8 +84,8 @@ Warnings:                    {WARNINGS}
     --> EDGARv43          :       false
     --> HTAP              :       false
     --> CEDS              :       true
-    --> MODIS_XLAI        :       false
-    --> Yuan_XLAI         :       true
+    --> MODIS_XLAI        :       true
+    --> Yuan_XLAI         :       false
 #------------------------------------------------------------------------------
 100     GC_Rn-Pb-Be       : on    Rn222/Be7/Be7Strat/Be10/Be10Strat
 

@@ -101,8 +101,8 @@ Warnings:                    {WARNINGS}
     --> RCP_45            :       false
     --> RCP_60            :       false
     --> RCP_85            :       false
-    --> MODIS_XLAI        :       false
-    --> Yuan_XLAI         :       true
+    --> MODIS_XLAI        :       true
+    --> Yuan_XLAI         :       false
 # ----------------------------------------------------------------------------
 111     GFED              : off   CH4
     --> GFED4             :       true
