@@ -44,8 +44,10 @@ echo " "
 # Copy entire contents of 1-month benchmark run directory
 cp -avL ../../$version $dir
 
-# Remove large files not needed for permanent storage
+# Remove files and directories not needed for permanent storage
 rm -v $dir$version/geos.mp
+rm -v $dir$version/validate.pl
+rm -rf $dir$version/CodeDir
 
 # Change group name of new directories and files
 chgrp jacob_gcst $dir$version
@@ -57,13 +59,16 @@ chgrp jacob_gcst $dir$version/output/*/*
 chmod 775 $dir$version
 chmod 664 $dir$version/*
 chmod 775 $dir$version/output
-chmod 664 $dir$version/output/*
-chmod 775 $dir$version/output/emission_*
-chmod 664 $dir$version/output/emission_*/*
+chmod 775 $dir$version/output/*
+chmod 664 $dir$version/output/*/*
+chmod 664 $dir$version/output/*pdf
+chmod 664 $dir$version/output/*txt
+chmod 664 $dir$version/output/*json
+chmod 664 $dir$version/output/*1mon
+chmod 664 $dir$version/output/*results*
 chmod 775 $dir$version/getRunInfo
 chmod 775 $dir$version/Makefile
 chmod 775 $dir$version/$version.run
-chmod 775 $dir$version/validate.pl
 
 # Print reminders to screen
 echo " "
