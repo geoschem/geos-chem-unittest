@@ -74,7 +74,7 @@ ROOT:                /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData/HEM
 GridFile:            HEMCO_sa_Grid.4x5.rc
 SpecFile:            HEMCO_sa_Spec.rc
 TimeFile:            HEMCO_sa_Time.rc
-DiagnFile:           HEMCO_sa_Diagn.rc
+DiagnFile:           HEMCO_Diagn.rc
 DefaultDiagnOn:      false
 DefaultDiagnSname:   TOTAL_
 DefaultDiagnLname:   HEMCO_total_emissions_
