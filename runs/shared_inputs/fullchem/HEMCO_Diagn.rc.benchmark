@@ -437,8 +437,8 @@ EmisSO2_Aircraft   SO2    0      20  -1   3   kg/m2/s  SO2_emission_flux_from_ai
 EmisSO2_Anthro     SO2    0      1   -1   3   kg/m2/s  SO2_emission_flux_from_anthropogenic
 EmisSO2_BioBurn    SO2    111    -1  -1   2   kg/m2/s  SO2_emission_flux_from_biomass_burning
 EmisSO2_Biofuel    SO2    0      2   -1   2   kg/m2/s  SO2_emission_flux_from_biofuel
-EmisSO2_VolcErupt  SO2    117    51  -1   3   kg/m2/s  SO2_emission_flux_from_eruptive_volcano
-EmisSO2_VolcDegas  SO2    117    52  -1   3   kg/m2/s  SO2_emission_flux_from_noneruptive_volcano
+EmisSO2_VolcErupt  SO2    0      51  -1   3   kg/m2/s  SO2_emission_flux_from_eruptive_volcano
+EmisSO2_VolcDegas  SO2    0      52  -1   3   kg/m2/s  SO2_emission_flux_from_noneruptive_volcano
 EmisSO2_Ship       SO2    0      10  -1   2   kg/m2/s  SO2_emission_flux_from_ships
 
 ###############################################################################
@@ -714,8 +714,8 @@ InvNH3_Seabirds      NH3    0    30  1   2   kg/m2/s  NH3_emission_flux_from_sea
 #=============================
 # VOLCANO
 #=============================
-InvSO2_VOLCerupt     SO2    117  51  1   3   kg/m2/s  SO2_emission_flux_from_VOLCerupt_inventory
-InvSO2_VOLCdegas     SO2    117  52  1   3   kg/m2/s  SO2_emission_flux_from_VOLCdegas_inventory
+InvSO2_VOLCerupt     SO2    0    51  1   3   kg/m2/s  SO2_emission_flux_from_VOLCerupt_inventory
+InvSO2_VOLCdegas     SO2    0    52  1   3   kg/m2/s  SO2_emission_flux_from_VOLCdegas_inventory
 
 #=============================
 # Decaying plants
