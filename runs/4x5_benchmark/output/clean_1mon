@@ -19,14 +19,27 @@
 #------------------------------------------------------------------------------
 #BOC
 
-rm -f *.pdf
-rm -f *.ps
-rm -f *.gif
-rm -f *.fullchem
-rm -f *.txt
-rm -f emission_differences/*
-rm -f emission_maps/*
-rm -f emission_ratios/*
+rm -f  *.pdf
+rm -f  *.ps
+rm -f  *.gif
+rm -f  *.fullchem
+rm -f  *.txt
+rm -f  *.json
+rm -f  *results*
+rm -f  emission_differences/*
+rm -f  emission_maps/*
+rm -f  emission_ratios/*
+rm -rf Aerosols
+rm -rf Bromine
+rm -rf Chlorine
+rm -rf Emissions
+rm -rf Iodine
+rm -rf Nitrogen
+rm -rf Primary
+rm -rf Primary_Organics
+rm -rf Secondary_Organics
+rm -rf ROy
+rm -rf Sulfur
 
 # Exit normally
 exit 0
