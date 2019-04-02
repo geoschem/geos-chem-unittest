@@ -106,7 +106,7 @@ EmisOCPO_Ship      OCPO   0      10  -1   2   kg/m2/s  OCPO_emission_flux_from_s
 EmispFe_Total      pFe    -1     -1  -1   3   kg/m2/s  pFe_emission_flux_from_all_sectors
 EmispFe_Anthro     pFe    0      1   -1   3   kg/m2/s  pFe_emission_flux_from_anthropogenic
 EmispFe_Biofuel    pFe    0      2   -1   2   kg/m2/s  pFe_emission_flux_from_biofuel_sector
-EmispFe_Bioburn    pFe    111    -1  -1   2   kg/m2/s  pFe_emission_flux_from_GFED_inventory
+EmispFe_BioBurn    pFe    111    -1  -1   2   kg/m2/s  pFe_emission_flux_from_GFED_inventory
 EmispFe_Ship       pFe    0      10  -1   2   kg/m2/s  pFe_emission_flux_from_ships
 
 ###############################################################################
@@ -152,7 +152,7 @@ EmisSOAP_Aircraft  SOAP   0      20  -1   3   kg/m2/s  SOAP_emission_flux_from_a
 EmisSOAP_Anthro    SOAP   0      1   -1   3   kg/m2/s  SOAP_emission_flux_from_anthropogenic
 EmisSOAP_Biofuel   SOAP   0      2   -1   2   kg/m2/s  SOAP_emission_flux_from_biofuel_sector
 EmisSOAP_Biogenic  SOAP   108    -1  -1   2   kg/m2/s  SOAP_emission_flux_from_monoterpenes
-EmisSOAP_Bioburn   SOAP   111    -1  -1   2   kg/m2/s  SOAP_emission_flux_from_biomass_burning
+EmisSOAP_BioBurn   SOAP   111    -1  -1   2   kg/m2/s  SOAP_emission_flux_from_biomass_burning
 EmisSOAP_Ship      SOAP   0      10  -1   2   kg/m2/s  SOAP_emission_flux_from_ships
 
 ###############################################################################
