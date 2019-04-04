@@ -2282,16 +2282,6 @@ Warnings:                    {WARNINGS}
 101 ALD2_SEAWATER   $ROOT/ALD2/v2017-03/ALD2_seawater.geos.2x25.nc   ALD2       1985/1-12/1/0 C xy kg/m3 ALD2 - 1 1
 
 #==============================================================================
-# --- Lightning emissions (Extension 103) ---
-#
-# Native-resolution lightning flash rates constrained to LIS/OTD climatology
-# and convective depth are now prescribed as offline meteorology.
-#                                                    --Lee Murray (16 Jan 2019)
-#==============================================================================
-* FLASH_DENS $ROOT/LIGHTNING/v2019-01/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  LDENS 1980-2018/1-12/1-31/0-23/+90minute RFY xy  1  * -  1 1
-* CONV_DEPTH $ROOT/LIGHTNING/v2019-01/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  CTH   1980-2018/1-12/1-31/0-23/+90minute RFY xy  1  * -  1 1
-
-#==============================================================================
 # --- SOILNOX emissions (Extension 104) ---
 #==============================================================================
 104 DEP_RESERVOIR_DEFAULT $ROOT/SOILNOX/v2014-07/DepReservoirDefault.nc                 DEP_RESERVOIR 2013/7/1/0        C xy kg/m3 NO - 1 1
@@ -2551,6 +2541,16 @@ Warnings:                    {WARNINGS}
 * SPHU2     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     QV       1980-2018/1-12/1-31/0-23/+3hour    RFY xyz 1  * -  1 1
 * TMPU1     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     T        1980-2018/1-12/1-31/0-23           RFY xyz 1  * -  1 1
 * TMPU2     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     T        1980-2018/1-12/1-31/0-23/+3hour    RFY xyz 1  * -  1 1
+
+#==============================================================================
+# --- Fields for lightning emissions (Extension 103) ---
+#
+# Native-resolution lightning flash rates constrained to LIS/OTD climatology
+# and convective depth are now prescribed as offline meteorology.
+#                                                    --Lee Murray (16 Jan 2019)
+#==============================================================================
+* FLASH_DENS $ROOT/LIGHTNING/v2019-01/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  LDENS 1980-2018/1-12/1-31/0-23/+90minute RFY xy  1  * -  1 1
+* CONV_DEPTH $ROOT/LIGHTNING/v2019-01/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  CTH   1980-2018/1-12/1-31/0-23/+90minute RFY xy  1  * -  1 1
 
 #==============================================================================
 # --- GEOS-Chem restart file ---
