@@ -62,7 +62,7 @@ SHELL        :=/bin/bash
 
 # GEOS-Chem version number (X.Y.Z)
 ifndef VERSION
- VERSION     :=12.3.0
+ VERSION     :=12.3.1
 endif
 
 # If VERSION_TAG is not specified, then prefix "GC_" to the version number.
