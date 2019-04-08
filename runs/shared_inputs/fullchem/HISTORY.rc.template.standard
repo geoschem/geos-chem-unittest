@@ -321,6 +321,7 @@ COLLECTIONS: 'Restart',
   JValuesLocalNoon.duration:  {DURATION}
   JValuesLocalNoon.mode:      'time-averaged'
   JValuesLocalNoon.fields:    'JNoon_?PHO?                   ', 'GIGCchem',
+                              'JNoonFrac                     ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE LevelEdgeDiags COLLECTION %%%%%
