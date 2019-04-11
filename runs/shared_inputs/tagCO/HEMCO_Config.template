@@ -254,37 +254,37 @@ Mask fractions:              false
 # ==> CEDS includes trash emissions (Cat=12) from Wiedinmyer et al. (2014)
 #==============================================================================
 (((CEDS
-0 CEDS_CO_AGR      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_agr 1950-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
+0 CEDS_CO_AGR      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_agr 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
 0 CEDS_CO_AGR_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
 0 CEDS_CO_AGR_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
 0 CEDS_CO_AGR_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
 0 CEDS_CO_AGR_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
-0 CEDS_CO_ENE      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_ene 1950-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
+0 CEDS_CO_ENE      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_ene 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
 0 CEDS_CO_ENE_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
 0 CEDS_CO_ENE_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
 0 CEDS_CO_ENE_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
 0 CEDS_CO_ENE_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
-0 CEDS_CO_IND      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_ind 1950-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
+0 CEDS_CO_IND      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_ind 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
 0 CEDS_CO_IND_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
 0 CEDS_CO_IND_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
 0 CEDS_CO_IND_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
 0 CEDS_CO_IND_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
-0 CEDS_CO_TRA      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_tra 1950-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
+0 CEDS_CO_TRA      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_tra 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
 0 CEDS_CO_TRA_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
 0 CEDS_CO_TRA_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
 0 CEDS_CO_TRA_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
 0 CEDS_CO_TRA_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
-0 CEDS_CO_RCO      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_rco 1950-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
+0 CEDS_CO_RCO      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_rco 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
 0 CEDS_CO_RCO_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
 0 CEDS_CO_RCO_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
 0 CEDS_CO_RCO_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
 0 CEDS_CO_RCO_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
-0 CEDS_CO_SLV      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_slv 1950-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
+0 CEDS_CO_SLV      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_slv 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
 0 CEDS_CO_SLV_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
 0 CEDS_CO_SLV_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
 0 CEDS_CO_SLV_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
 0 CEDS_CO_SLV_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
-0 CEDS_CO_WST      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_wst 1950-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
+0 CEDS_CO_WST      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_wst 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
 0 CEDS_CO_WST_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
 0 CEDS_CO_WST_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
 0 CEDS_CO_WST_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
@@ -670,7 +670,7 @@ Mask fractions:              false
 #0 HTAP_SHIP_CO_oth     -                                                               -      -                   - -  -        COoth  6/28/1103     10 4
 
 (((CEDS_SHIP
-0 CEDS_CO_SHP           $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc       CO_shp 1950-2014/1-12/1/0  C xy kg/m2/s  CO     26            10 5
+0 CEDS_CO_SHP           $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc       CO_shp 1750-2014/1-12/1/0  C xy kg/m2/s  CO     26            10 5
 0 CEDS_CO_SHP_us        -                                                               -      -                   - -  -        COus   26/1100       10 5
 0 CEDS_CO_SHP_eur       -                                                               -      -                   - -  -        COeur  26/1101       10 5
 0 CEDS_CO_SHP_asia      -                                                               -      -                   - -  -        COasia 26/1102       10 5
