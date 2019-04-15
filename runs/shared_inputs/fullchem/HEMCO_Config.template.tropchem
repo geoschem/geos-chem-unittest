@@ -2066,8 +2066,8 @@ Warnings:                    {WARNINGS}
 # --- Emissions from decaying plants ---
 #==============================================================================
 (((DECAYING_PLANTS
-0 ALD2_SEN $ROOT/ALD2/v2017-03/resp.geos.2x25.nc HET_RESP 1985/1-12/1/0 C xy kgC/m2/s ALD2 85 4 1
-0 EOH_SEN  -                                     -        -             - -  -        EOH  86 4 1
+0 ALD2_PLANTDECAY $ROOT/ALD2/v2017-03/resp.geos.2x25.nc HET_RESP 1985/1-12/1/0 C xy kgC/m2/s ALD2 85 4 1
+0 EOH_PLANTDECAY  -                                     -        -             - -  -        EOH  86 4 1
 )))DECAYING_PLANTS
 
 #==============================================================================
