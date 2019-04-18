@@ -131,6 +131,7 @@ Warnings:                    {WARNINGS}
     --> MODIS_XLAI             :       true
     --> Yuan_XLAI              :       false
     --> VOLCANO                :       true
+    --> OFFLINE_DUST           :       true
 # -----------------------------------------------------------------------------
 100     Custom                 : off   - 
 101     SeaFlux                : on    DMS/ACET/ALD2
@@ -141,7 +142,7 @@ Warnings:                    {WARNINGS}
     --> CDF table              :       $ROOT/LIGHTNOX/v2014-07/light_dist.ott2010.dat
 104     SoilNOx                : on    NO 
     --> Use fertilizer NOx     :       true
-105     DustDead               : on    DST1/DST2/DST3/DST4 
+105     DustDead               : off   DST1/DST2/DST3/DST4 
 106     DustGinoux             : off   DST1/DST2/DST3/DST4
 107     SeaSalt                : on    SALA/SALC/Br2/BrSALA/BrSALC
     --> SALA lower radius      :       0.01 
@@ -2263,6 +2264,18 @@ Warnings:                    {WARNINGS}
 0 VOLCANO_SO2_DEGAS $ROOT/VOLCANO/v2015-02/$YYYY/volc_so2_gen.1x1.47L.$YYYY$MM.nc SO2_degas 1979-2009/1-12/1-31/0 C xyz kg/m2/s SO2 - 52 1
 )))VOLCANO
 
+#==============================================================================
+# --- OFFLINE DUST ---
+#==============================================================================
+(((OFFLINE_DUST
+(((.not.DustDead.or.DustGinoux
+0 EMIS_DST1 $ROOT/OFFLINE_DUST/v2019-01/0.25x0.3125/$YYYY/$MM/dust_emissions_025.$YYYY$MM$DD.nc EMIS_DST1 1980-2017/1-12/1-31/0-23 C xy kg/m2/s DST1 606 3 2
+0 EMIS_DST2 $ROOT/OFFLINE_DUST/v2019-01/0.25x0.3125/$YYYY/$MM/dust_emissions_025.$YYYY$MM$DD.nc EMIS_DST2 1980-2017/1-12/1-31/0-23 C xy kg/m2/s DST2 606 3 2
+0 EMIS_DST3 $ROOT/OFFLINE_DUST/v2019-01/0.25x0.3125/$YYYY/$MM/dust_emissions_025.$YYYY$MM$DD.nc EMIS_DST3 1980-2017/1-12/1-31/0-23 C xy kg/m2/s DST3 606 3 2
+0 EMIS_DST4 $ROOT/OFFLINE_DUST/v2019-01/0.25x0.3125/$YYYY/$MM/dust_emissions_025.$YYYY$MM$DD.nc EMIS_DST4 1980-2017/1-12/1-31/0-23 C xy kg/m2/s DST4 606 3 2
+))).not.DustDead.or.DustGinoux
+)))OFFLINE_DUST
+
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
 ###
@@ -3492,6 +3505,11 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 311 QFED_PBL_FRAC 0.65 - - - xy 1 1
 312 QFED_FT_FRAC  0.35 - - - xy 1 1
+
+#==============================================================================
+# --- Offline dust emissions ---
+#==============================================================================
+606 DUST_EMISSIONS 0.0004 - - - xy 1 1
 
 ### END SECTION SCALE FACTORS ###
 
