@@ -134,6 +134,7 @@ Warnings:                    {WARNINGS}
     --> OFFLINE_DUST           :       true
     --> OFFLINE_BIOGENICVOC    :       true
     --> OFFLINE_SEASALT        :       true
+    --> OFFLINE_SOILNOX        :       true
 # -----------------------------------------------------------------------------
 100     Custom                 : off   - 
 101     SeaFlux                : on    DMS/ACET/ALD2
@@ -142,7 +143,7 @@ Warnings:                    {WARNINGS}
     --> LUT source dir         :       $ROOT/PARANOX/v2015-02
 103     LightNOx               : on    NO
     --> CDF table              :       $ROOT/LIGHTNOX/v2014-07/light_dist.ott2010.dat
-104     SoilNOx                : on    NO 
+104     SoilNOx                : off   NO 
     --> Use fertilizer NOx     :       true
 105     DustDead               : off   DST1/DST2/DST3/DST4 
 106     DustGinoux             : off   DST1/DST2/DST3/DST4
@@ -188,7 +189,7 @@ Warnings:                    {WARNINGS}
     --> Scaling_SOAP           :       0.013
     --> hydrophilic BC         :       0.2
     --> hydrophilic OC         :       0.5
-115     DustAlk                : off   DSTAL1/DSTAL2/DSTAL3/DSTAL4
+115     DustAlk                : on    DSTAL1/DSTAL2/DSTAL3/DSTAL4
 116     MarinePOA              : off   MOPO/MOPI 
 117     AeroCom_Volcano        : off   SO2
     --> Volcano_Source         :       OMI
@@ -2318,6 +2319,15 @@ Warnings:                    {WARNINGS}
 #0 SEASALT_BrSALC $ROOT/OFFLINE_SEASALT/v2019-01/0.25x0.3125/$YYYY/$MM/seasalt_025.$YYYY$MM$DD.nc BrSALC_TOTAL 1980-2017/1-12/1-31/0-23 C xy kg/m2/s BrSALC - 3 2
 ))).not.SeaSalt
 )))OFFLINE_SEASALT
+
+#==============================================================================
+# --- Offline soil NOx emissions ---
+#==============================================================================
+(((OFFLINE_SOILNOX
+(((.not.SoilNOx
+0 SOILNOX_NO  $ROOT/OFFLINE_SOILNOX/v2019-01/0.25x0.3125/$YYYY/$MM/soilnox_025.$YYYY$MM$DD.nc SOIL_NOx 1980-2017/1-12/1-31/0-23 C xy kg/m2/s NO - 3 2
+))).not.SoilNOx
+)))OFFLINE_SOILNOX
 
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
