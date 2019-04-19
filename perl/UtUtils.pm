@@ -428,6 +428,8 @@ sub makeHemcoCfg($$$$$$$) {
   my $levFull    = "";
   my $metDir     = "";
   my $native     = "";
+  my $latres     = "";
+  my $lonres     = "";
   my $gridDir    = "";
   
   # Scalars
@@ -456,13 +458,13 @@ sub makeHemcoCfg($$$$$$$) {
   if ( $met =~ m/geosfp/ ) {
     $metDir = "GEOS_FP";
     $native = "0.25x0.3125";
-    $latres = "025"
-    $lonres = "03125"
+    $latres = "025";
+    $lonres = "03125";
   } elsif ( $met =~ m/merra2/ ) {
     $metDir = "MERRA2";
     $native = "0.5x0.625";
-    $latres = "05"
-    $lonres = "0625"
+    $latres = "05";
+    $lonres = "0625";
   }
 
   if ( $grid =~ m/4x5/ ) {
