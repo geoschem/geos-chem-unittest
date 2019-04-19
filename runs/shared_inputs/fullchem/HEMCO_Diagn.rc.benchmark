@@ -419,11 +419,11 @@ EmisSESQ_Biogenic  SESQ   0      3   -1   2   kg/m2/s  SESQ_emission_flux_from_b
 ###############################################################################
 #####  Sea salt emissions                                                 ##### 
 ###############################################################################
-EmisBr2_Natural    Br2    107    -1  -1   2   kg/m2/s  Br2_emission_flux_from_natural_sources
-EmisBrSALA_Natural BrSALA 107    -1  -1   2   kg/m2/s  BrSALA_emission_flux_from_natural_sources
-EmisBrSALC_Natural BrSALC 107    -1  -1   2   kg/m2/s  BrSALC_emission_flux_from_natural_sources
-EmisSALA_Natural   SALA   107    -1  -1   2   kg/m2/s  SALA_emission_flux_from_natural_sources
-EmisSALC_Natural   SALC   107    -1  -1   2   kg/m2/s  SALC_emission_flux_from_natural_sources
+EmisBr2_Natural    Br2    0      3   -1   2   kg/m2/s  Br2_emission_flux_from_natural_sources
+EmisBrSALA_Natural BrSALA 0      3   -1   2   kg/m2/s  BrSALA_emission_flux_from_natural_sources
+EmisBrSALC_Natural BrSALC 0      3   -1   2   kg/m2/s  BrSALC_emission_flux_from_natural_sources
+EmisSALA_Natural   SALA   0      3   -1   2   kg/m2/s  SALA_emission_flux_from_natural_sources
+EmisSALC_Natural   SALC   0      3   -1   2   kg/m2/s  SALC_emission_flux_from_natural_sources
 
 ###############################################################################
 #####  SO2 emissions                                                      ##### 
@@ -809,6 +809,15 @@ InvOFFLINEBIOVOC_BCAR BCAR  0    3   -1  2   kg/m2/s  BCAR_biogenic_emission_flu
 InvOFFLINEBIOVOC_OSQT OSQT  0    3   -1  2   kg/m2/s  OSQT_biogenic_emission_flux_from_offline_model
 
 #=============================
+# OFFLINE_SEASALT
+#=============================
+InvOFFLINESEASALT_Br2    Br2    0 3  -1  2   kg/m2/s  Br2_emission_flux_from_SeaSalt_extension
+InvOFFLINESEASALT_BrSALA BrSALA 0 3  -1  2   kg/m2/s  BrSALA_emission_flux_from_SeaSalt_extension
+InvOFFLINESEASALT_BrSALC BrSALC 0 3  -1  2   kg/m2/s  BrSALC_emission_flux_from_SeaSalt_extension
+InvOFFLINESEASALT_SALA   SALA   0 3  -1  2   kg/m2/s  SALA_emission_flux_from_SeaSalt_extension
+InvOFFLINESEASALT_SALC   SALC   0 3  -1  2   kg/m2/s  SALC_emission_flux_from_SeaSalt_extension
+
+#=============================
 # Seaflux extension
 #=============================
 InvSeaFlux_ACET      ACET   101  -1  -1  2   kg/m2/s  ACET_emission_flux_from_SeaFlux_extension
@@ -833,15 +842,6 @@ InvLIGHTNOX_NO       NO     103  -1  -1  3   kg/m2/s  NO_emission_flux_from_ligh
 # SOILNOX extension
 #=============================
 InvSOILNOX_NO        NO     104  -1  -1  2   kg/m2/s  NO_emission_flux_from_SOILNOX_extension_including_soil_and_fertilizer_emissions
-
-#=============================
-# SeaSalt extension
-#=============================
-InvSeaSalt_Br2       Br2    107  -1  -1  2   kg/m2/s  Br2_emission_flux_from_SeaSalt_extension
-InvSeaSalt_BrSALA    BrSALA 107  -1  -1  2   kg/m2/s  BrSALA_emission_flux_from_SeaSalt_extension
-InvSeaSalt_BrSALC    BrSALC 107  -1  -1  2   kg/m2/s  BrSALC_emission_flux_from_SeaSalt_extension
-InvSeaSalt_SALA      SALA   107  -1  -1  2   kg/m2/s  SALA_emission_flux_from_SeaSalt_extension
-InvSeaSalt_SALC      SALC   107  -1  -1  2   kg/m2/s  SALC_emission_flux_from_SeaSalt_extension
 
 #=============================
 # GFED Extension

@@ -128,12 +128,13 @@ Warnings:                    {WARNINGS}
     --> VOLCANO                :       true
     --> OFFLINE_DUST           :       true
     --> OFFLINE_BIOGENICVOC    :       true
+    --> OFFLINE_SEASALT        :       true
 # -----------------------------------------------------------------------------
 100     Custom                 : off   - 
 101     SeaFlux                : on    DMS
 105     DustDead               : off   DST1/DST2/DST3/DST4 
 106     DustGinoux             : off   DST1/DST2/DST3/DST4
-107     SeaSalt                : on    SALA/SALC
+107     SeaSalt                : off   SALA/SALC
     --> SALA lower radius      :       0.01 
     --> SALA upper radius      :       0.5
     --> SALC lower radius      :       0.5
@@ -1159,6 +1160,17 @@ Warnings:                    {WARNINGS}
 0 BIOGENIC_OSQT $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc BIOGENIC_OSQT 1980-2017/1-12/1-31/0-23 C xy kg/m2/s OSQT - 3 2
 ))).not.MEGAN.or.MEGAN_Mono
 )))OFFLINE_BIOGENICVOC
+
+#==============================================================================
+# --- Offline sea salt emissions ---
+#==============================================================================
+(((OFFLINE_SEASALT
+(((.not.SeaSalt
+0 SEASALT_SALA   $ROOT/OFFLINE_SEASALT/v2019-01/0.25x0.3125/$YYYY/$MM/seasalt_025.$YYYY$MM$DD.nc SALA_TOTAL   1980-2017/1-12/1-31/0-23 C xy kg/m2/s SALA   - 3 2
+0 SEASALT_SALC   $ROOT/OFFLINE_SEASALT/v2019-01/0.25x0.3125/$YYYY/$MM/seasalt_025.$YYYY$MM$DD.nc SALC_TOTAL   1980-2017/1-12/1-31/0-23 C xy kg/m2/s SALC   - 3 2
+))).not.SeaSalt
+)))OFFLINE_SEASALT
+
 
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)

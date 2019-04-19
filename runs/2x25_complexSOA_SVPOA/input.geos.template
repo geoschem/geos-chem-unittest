@@ -291,7 +291,7 @@ ND04: CO2 Sources       :  0   all
 ND05: Sulfate prod/loss : 47   all
 ND06: Dust aer source   :  0   all
 ND07: Carbon aer source : 47   all
-ND08: Seasalt aer source:  1   all
+ND08: Seasalt aer source:  0   all
 ND09: -                 :  0   all
 ND10: -                 :  0   all
 ND11: Acetone sources   :  1   all
