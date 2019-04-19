@@ -341,7 +341,7 @@ ND43: Chem prod OH, HO2 : 72   all
 ND44: Drydep flx/vel    :  1   all
 ND45: Tracer Conc's     : 72   all
   ==> ND45 Time range   :       0 24
-ND46: Biogenic emissions:  1   all
+ND46: Biogenic emissions:  0   all
 ND47: 24-h avg trc conc :  0   all
 ND52: GAMMA values      :  0   all
 ND53: POPs Emissions    :  0   all

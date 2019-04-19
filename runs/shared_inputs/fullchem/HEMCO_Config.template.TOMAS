@@ -135,6 +135,7 @@ Warnings:                    {WARNINGS}
     --> Yuan_XLAI              :       false
     --> VOLCANO                :       true
     --> OFFLINE_DUST           :       true
+    --> OFFLINE_BIOGENICVOC    :       true
 # -----------------------------------------------------------------------------
 100     Custom                 : off   - 
 101     SeaFlux                : on    DMS/ACET/ALD2
@@ -156,14 +157,14 @@ Warnings:                    {WARNINGS}
     --> Br2 scaling            :       1.0
     --> Model sea salt Br-     :       false
     --> Br- mass ratio         :       2.11e-3
-108     MEGAN                  : on    ISOP/ACET/PRPE/C2H4/ALD2/EOH/SOAP/SOAS
+108     MEGAN                  : off   ISOP/ACET/PRPE/C2H4/ALD2/EOH/SOAP/SOAS
     --> Isoprene scaling       :       1.0 
     --> CO2 inhibition         :       true
     --> CO2 conc (ppmv)        :       390.0
     --> Isoprene to SOAP       :       0.015
     --> Isoprene to SOAS       :       0.015
 #3% mass yield from isoprene to SOA
-109     MEGAN_Mono             : on    CO/MTPA/MTPO/LIMO/SESQ
+109     MEGAN_Mono             : off   CO/MTPA/MTPO/LIMO/SESQ
     --> Monoterp to SOAP       :       0.050
     --> Monoterp to SOAS       :       0.050
 #10% mass yield from monoterpenes to SOA
@@ -2271,7 +2272,7 @@ Warnings:                    {WARNINGS}
 )))VOLCANO
 
 #==============================================================================
-# --- OFFLINE DUST ---
+# --- Offline dust emissions ---
 #==============================================================================
 (((OFFLINE_DUST
 (((.not.DustDead.or.DustGinoux
@@ -2281,6 +2282,34 @@ Warnings:                    {WARNINGS}
 0 EMIS_DST4 $ROOT/OFFLINE_DUST/v2019-01/0.25x0.3125/$YYYY/$MM/dust_emissions_025.$YYYY$MM$DD.nc EMIS_DST4 1980-2017/1-12/1-31/0-23 C xy kg/m2/s DST4 606 3 2
 ))).not.DustDead.or.DustGinoux
 )))OFFLINE_DUST
+
+#==============================================================================
+# --- Offline bogenic VOC emissions ---
+#==============================================================================
+(((OFFLINE_BIOGENICVOC
+(((.not.MEGAN.or.MEGAN_Mono
+0 BIOGENIC_ACET $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc ACET_MEGAN    1980-2017/1-12/1-31/0-23 C xy kg/m2/s ACET - 3 2
+0 BIOGENIC_ALD2 $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc ALD2_MEGAN    1980-2017/1-12/1-31/0-23 C xy kg/m2/s ALD2 - 3 2
+0 BIOGENIC_C2H4 $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc C2H4_MEGAN    1980-2017/1-12/1-31/0-23 C xy kg/m2/s C2H4 - 3 2
+0 BIOGENIC_EOH  $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc EOH_MEGAN     1980-2017/1-12/1-31/0-23 C xy kg/m2/s EOH  - 3 2
+0 BIOGENIC_ISOP $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc ISOP_MEGAN    1980-2017/1-12/1-31/0-23 C xy kg/m2/s ISOP - 3 2
+0 BIOGENIC_PRPE $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc PRPE_MEGAN    1980-2017/1-12/1-31/0-23 C xy kg/m2/s PRPE - 3 2
+0 BIOGENIC_SOAP $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc SOAP_MEGAN    1980-2017/1-12/1-31/0-23 C xy kg/m2/s SOAP - 3 2
+0 BIOGENIC_SOAS $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc SOAS_MEGAN    1980-2017/1-12/1-31/0-23 C xy kg/m2/s SOAS - 3 2
+0 BIOGENIC_CO   $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc BIOGENIC_CO   1980-2017/1-12/1-31/0-23 C xy kg/m2/s CO   - 3 2
+0 BIOGENIC_APIN $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc BIOGENIC_APIN 1980-2017/1-12/1-31/0-23 C xy kg/m2/s APIN - 3 2
+0 BIOGENIC_BPIN $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc BIOGENIC_BPIN 1980-2017/1-12/1-31/0-23 C xy kg/m2/s BPIN - 3 2
+0 BIOGENIC_SABI $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc BIOGENIC_SABI 1980-2017/1-12/1-31/0-23 C xy kg/m2/s SABI - 3 2
+0 BIOGENIC_CARE $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc BIOGENIC_CARE 1980-2017/1-12/1-31/0-23 C xy kg/m2/s CARE - 3 2
+0 BIOGENIC_MYRC $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc BIOGENIC_MYRC 1980-2017/1-12/1-31/0-23 C xy kg/m2/s MYRC - 3 2
+0 BIOGENIC_OCIM $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc BIOGENIC_OCIM 1980-2017/1-12/1-31/0-23 C xy kg/m2/s OCIM - 3 2
+0 BIOGENIC_OMON $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc BIOGENIC_OMON 1980-2017/1-12/1-31/0-23 C xy kg/m2/s OMON - 3 2
+0 BIOGENIC_LIMO $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc BIOGENIC_LIMO 1980-2017/1-12/1-31/0-23 C xy kg/m2/s LIMO - 3 2
+0 BIOGENIC_FARN $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc BIOGENIC_FARN 1980-2017/1-12/1-31/0-23 C xy kg/m2/s FARN - 3 2
+0 BIOGENIC_BCAR $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc BIOGENIC_BCAR 1980-2017/1-12/1-31/0-23 C xy kg/m2/s BCAR - 3 2
+0 BIOGENIC_OSQT $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc BIOGENIC_OSQT 1980-2017/1-12/1-31/0-23 C xy kg/m2/s OSQT - 3 2
+))).not.MEGAN.or.MEGAN_Mono
+)))OFFLINE_BIOGENICVOC
 
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)

@@ -116,12 +116,13 @@ Mask fractions:              false
     --> NEI2011_SHIP_MONMEAN :       false
     --> MODIS_XLAI           :       true
     --> Yuan_XLAI            :       false
+    --> OFFLINE_BIOGENICVOC  :       true
 # -----------------------------------------------------------------------------
-108     MEGAN                : on    ISOP/ACET
+108     MEGAN                : off   ISOP/ACET
     --> Isoprene scaling     :       1.0 
     --> CO2 inhibition       :       true
     --> CO2 conc (ppmv)      :       390.0
-109     MEGAN_Mono           : on    MTPA/LIMO/MTPO
+109     MEGAN_Mono           : off   MTPA/LIMO/MTPO
 
 ### END SECTION EXTENSION SWITCHES ###
 
@@ -787,6 +788,15 @@ Mask fractions:              false
 0 GFAS_CObbEu  -                                          -             -                     - -             -       CObbeu  75/1108 5 3
 0 GFAS_CObbOth -                                          -             -                     - -             -       CObboth 75/1109 5 3
 )))GFAS
+
+#==============================================================================
+# --- Offline bogenic VOC emissions ---
+#==============================================================================
+(((OFFLINE_BIOGENICVOC
+(((.not.MEGAN.or.MEGAN_Mono
+0 BIOGENIC_CO   $ROOT/OFFLINE_BIOVOC/v2019-01/0.25x0.3125/$YYYY/$MM/biovoc_025.$YYYY$MM$DD.nc BIOGENIC_CO   1980-2017/1-12/1-31/0-23 C xy kg/m2/s CO   - 3 2
+))).not.MEGAN.or.MEGAN_Mono
+)))OFFLINE_BIOGENICVOC
 
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
