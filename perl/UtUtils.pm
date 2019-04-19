@@ -456,9 +456,13 @@ sub makeHemcoCfg($$$$$$$) {
   if ( $met =~ m/geosfp/ ) {
     $metDir = "GEOS_FP";
     $native = "0.25x0.3125";
+    $latres = "025"
+    $lonres = "03125"
   } elsif ( $met =~ m/merra2/ ) {
     $metDir = "MERRA2";
     $native = "0.5x0.625";
+    $latres = "05"
+    $lonres = "0625"
   }
 
   if ( $grid =~ m/4x5/ ) {
@@ -488,6 +492,8 @@ sub makeHemcoCfg($$$$$$$) {
     $line =~ s/{DATA_ROOT}/$rootDir/g;
     $line =~ s/{MET}/$met/g;
     $line =~ s/{NATIVE_RES}/$native/g;    
+    $line =~ s/{LATRES}/$latres/g;    
+    $line =~ s/{LONRES}/$lonres/g;    
     $line =~ s/{GRID}/$grid/g;
     $line =~ s/{NEST}/uc($nest)/g;
     $line =~ s/{SIM}/$simType/g;
