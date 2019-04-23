@@ -574,7 +574,7 @@ InvEMEP_SOAP         SOAP   0    1   10  2   kg/m2/s  SOAP_emission_flux_from_EM
 #=============================
 InvAPEI_BCPI         BCPI   0    1   30  2   kg/m2/s  BCPI_emission_flux_from_APEI_inventory
 InvAPEI_BCPO         BCPO   0    1   30  2   kg/m2/s  BCPO_emission_flux_from_APEI_inventory
-InvAPEI_CO_          CO     0    1   30  2   kg/m2/s  CO_emission_flux_from_APEI_inventory
+InvAPEI_CO           CO     0    1   30  2   kg/m2/s  CO_emission_flux_from_APEI_inventory
 InvAPEI_NH3          NH3    0    1   30  2   kg/m2/s  NH3_emission_flux_from_APEI_inventory
 InvAPEI_NO           NO     0    1   30  2   kg/m2/s  NO_emission_flux_from_APEI_inventory
 InvAPEI_OCPI         OCPI   0    1   30  2   kg/m2/s  OCPI_emission_flux_from_APEI_inventory
@@ -684,7 +684,7 @@ InvLIANG_CHBr3       CHBr3  0    1   1   2   kg/m2/s  CHBr3_emission_flux_from_L
 #=============================
 # ORDONEZ_IODOCARB
 #=============================
-InvORDONEZ_CH2I2_    CH2I2  0    1   1   2   kg/m2/s  CH2I2_emission_flux_from_ORDONEZ_IODOCARB_inventory
+InvORDONEZ_CH2I2     CH2I2  0    1   1   2   kg/m2/s  CH2I2_emission_flux_from_ORDONEZ_IODOCARB_inventory
 InvORDONEZ_CH2ICl    CH2ICl 0    1   1   2   kg/m2/s  CH2ICl_emission_flux_from_ORDONEZ_IODOCARB_inventory
 InvORDONEZ_CH2IBr    CH2IBr 0    1   1   2   kg/m2/s  CH2IBr_emission_flux_from_ORDONEZ_IODOCARB_inventory
 InvORDONEZ_CH3I      CH3I   0    1   1   2   kg/m2/s  CH3I_emission_flux_from_ORDONEZ_IODOCARB_inventory
@@ -776,7 +776,7 @@ InvVOLCANOerupt_SO2  SO2    0    51  1   3   kg/m2/s  SO2_emission_flux_from_VOL
 InvVOLCANdegas_SO2   SO2    0    52  1   3   kg/m2/s  SO2_emission_flux_from_VOLCANOdegas_inventory
 
 #=============================
-# OFFLINE_DUST
+# Offline dust emissions
 #=============================
 InvOFFLINEDUST_DST1  DST1   0    3   -1  2   kg/m2/s  DST1_emission_flux_from_offline_model
 InvOFFLINEDUST_DST2  DST2   0    3   -1  2   kg/m2/s  DST2_emission_flux_from_offline_model
@@ -784,7 +784,7 @@ InvOFFLINEDUST_DST3  DST3   0    3   -1  2   kg/m2/s  DST3_emission_flux_from_of
 InvOFFLINEDUST_DST4  DST4   0    3   -1  2   kg/m2/s  DST4_emission_flux_from_offline_model
 
 #=============================
-# OFFLINE_BIOGENICVOC
+# Offline biogenic VOC emissions
 #=============================
 InvOFFLINEBIOVOC_ACET ACET  0    3   -1  2   kg/m2/s  ACET_biogenic_emission_flux_from_offline_model
 InvOFFLINEBIOVOC_ALD2 ALD2  0    3   -1  2   kg/m2/s  ALD2_biogenic_emission_flux_from_offline_model
@@ -808,18 +808,18 @@ InvOFFLINEBIOVOC_BCAR BCAR  0    3   -1  2   kg/m2/s  BCAR_biogenic_emission_flu
 InvOFFLINEBIOVOC_OSQT OSQT  0    3   -1  2   kg/m2/s  OSQT_biogenic_emission_flux_from_offline_model
 
 #=============================
-# OFFLINE_SEASALT
+# Offline sea salt emissions
 #=============================
-InvOFFLINESEASALT_Br2    Br2    0 3  -1  2   kg/m2/s  Br2_emission_flux_from_SeaSalt_extension
-InvOFFLINESEASALT_BrSALA BrSALA 0 3  -1  2   kg/m2/s  BrSALA_emission_flux_from_SeaSalt_extension
-InvOFFLINESEASALT_BrSALC BrSALC 0 3  -1  2   kg/m2/s  BrSALC_emission_flux_from_SeaSalt_extension
-InvOFFLINESEASALT_SALA   SALA   0 3  -1  2   kg/m2/s  SALA_emission_flux_from_SeaSalt_extension
-InvOFFLINESEASALT_SALC   SALC   0 3  -1  2   kg/m2/s  SALC_emission_flux_from_SeaSalt_extension
+InvOFFLINESEASALT_Br2    Br2    0 3  -1  2   kg/m2/s  Br2_seasalt_emission_flux_from_offline_model
+InvOFFLINESEASALT_BrSALA BrSALA 0 3  -1  2   kg/m2/s  BrSALA_seasalt_emission_flux_from_offline_model
+InvOFFLINESEASALT_BrSALC BrSALC 0 3  -1  2   kg/m2/s  BrSALC_seasalt_emission_flux_from_offline_model
+InvOFFLINESEASALT_SALA   SALA   0 3  -1  2   kg/m2/s  SALA_seasalt_emission_flux_from_offline_model
+InvOFFLINESEASALT_SALC   SALC   0 3  -1  2   kg/m2/s  SALC_seasalt_emission_flux_from_offline_model
 
 #=============================
-# OFFLINE_SOILNOX
+# Offline soil NOx emissions
 #=============================
-InvSOILNOX_NO        NO     0    3   -1  2   kg/m2/s  NO_emission_flux_from_SOILNOX_extension_including_soil_and_fertilizer_emissions
+InvOFFLINESOILNOX_NO NO     0    3   -1  2   kg/m2/s  NO_soil_and_fertilizer_emission_flux_from_offline_model
 
 #=============================
 # Seaflux extension
