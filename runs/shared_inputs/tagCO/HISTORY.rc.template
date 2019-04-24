@@ -36,6 +36,7 @@ COLLECTIONS: 'Restart',
              #'CO',
              #'StateMet',      
              #'Transport',
+             #'BoundaryConditions',
 ::
 ###############################################################################
 ### The rest of this file consists of collection definitions.               ###
@@ -279,4 +280,18 @@ COLLECTIONS: 'Restart',
   Transport.duration:         'End',
   Transport.mode:             'instantaneous'
   Transport.fields:           'Met_AgeOfAir                  ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE BoundaryConditions COLLECTION %%%%%
+#
+# GEOS-Chem boundary conditions for use in nested grid simulations
+#
+# Available for all simulations
+#==============================================================================
+  BoundaryConditions.template:   '%y4%m2%d2_%h2%n2z.nc4',
+  BoundaryConditions.format:     'CFIO',
+  BoundaryConditions.frequency:  00000000 030000
+  BoundaryConditions.duration:   00000001 000000
+  BoundaryConditions.mode:       'instantaneous'
+  BoundaryConditions.fields:     'SpeciesBC_?ALL?             ', 'GIGCchem',
 ::

@@ -97,6 +97,7 @@ Warnings:                    {WARNINGS}
 # ExtNr ExtName                on/off  Species
 0       Base                   : on    *
     --> GC_RESTART             :       true	
+    --> GC_BCs                 :       true
     --> HEMCO_RESTART          :       true
     --> AEIC                   :       true
     --> BIOFUEL                :       true
@@ -2575,6 +2576,13 @@ Warnings:                    {WARNINGS}
 * STATE_PSC      ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Chem_StatePSC       $YYYY/$MM/$DD/$HH EY  xyz count       * - 1 1
 )))+STATE_PSC+
 )))GC_RESTART
+
+#==============================================================================
+# --- GEOS-Chem boundary condition file ---
+#==============================================================================
+(((GC_BCs
+* BC_           ./GEOSChem.BoundaryConditions.$YYYY$MM$DD_$HH$MNz.nc4 SpeciesBC_?ALL?  $YYYY/$MM/$DD/$HH CYS xyz 1 * - 1 1
+)))GC_BCs
 
 #==============================================================================
 # --- Time zones (offset to UTC) ---

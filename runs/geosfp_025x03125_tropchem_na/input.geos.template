@@ -5,7 +5,16 @@ Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
 End   YYYYMMDD, hhmmss  : {DATE2} {TIME2}
 Run directory           : ./
 Root data directory     : {DATA_ROOT}
-Global offsets I0, J0   : 160 399
+Met field               : {MET}
+------------------------+------------------------------------------------------
+%%% GRID MENU %%%       :
+Grid resolution         : 0.25x0.3125
+Longitude min/max       : -130.0 -60.0
+Latitude  min/max       :   9.75  60.0
+ Half-sized polar boxes?: F
+Number of levels        : 47
+Nested grid simulation? : T
+ Buffer zone (N S E W ) :  3  3  3  3
 ------------------------+------------------------------------------------------
 %%% TIMESTEP MENU %%%   :
 Tran/conv timestep [sec]: 300
@@ -403,24 +412,6 @@ Save CO Production?     : F
 Save benchmark output?  : F
 File w/ initial Ox      : Ox.mass.initial
 File w/ final Ox        : Ox.mass.final
-------------------------+------------------------------------------------------
-%%% NESTED GRID MENU %%%:
-Save TPCORE BC's        : F
-Input BCs at 2x2.5?     : F
-Over North America?     : T
-TPCORE NA BC directory  : BC_4x5_NA/
-Over Europe?            : F
-TPCORE EU BC directory  : BC_4x5_EU/
-Over China?             : F
-TPCORE CH BC directory  : BC_4x5_CH/
-Over Asia?              : F
-TPCORE AS BC directory  : BC_4x5_AS/
-Over Custom Region?     : F
-TPCORE BC directory     : BC_4x5/
-BC timestep [sec]       : 10800
-LL box of BC region     :   9  26
-UR box of BC region     :  29  41
-I0_W, J0_W, I0_E, J0_E  :   3   3   3   3
 ------------------------+------------------------------------------------------
 END OF FILE             :
 ------------------------+------------------------------------------------------
