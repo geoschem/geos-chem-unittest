@@ -432,8 +432,8 @@ EmisSO2_Aircraft   SO2    0      20  -1   3   kg/m2/s  SO2_emission_flux_from_ai
 EmisSO2_Anthro     SO2    0      1   -1   3   kg/m2/s  SO2_emission_flux_from_anthropogenic
 EmisSO2_BioBurn    SO2    111    -1  -1   2   kg/m2/s  SO2_emission_flux_from_biomass_burning
 EmisSO2_Biofuel    SO2    0      2   -1   2   kg/m2/s  SO2_emission_flux_from_biofuel
-EmisSO2_VolcErupt  SO2    0      51  -1   3   kg/m2/s  SO2_emission_flux_from_eruptive_volcano
-EmisSO2_VolcDegas  SO2    0      52  -1   3   kg/m2/s  SO2_emission_flux_from_noneruptive_volcano
+EmisSO2_VolcErupt  SO2    117    51  -1   3   kg/m2/s  SO2_emission_flux_from_eruptive_volcano
+EmisSO2_VolcDegas  SO2    117    52  -1   3   kg/m2/s  SO2_emission_flux_from_noneruptive_volcano
 EmisSO2_Ship       SO2    0      10  -1   2   kg/m2/s  SO2_emission_flux_from_ships
 
 ###############################################################################
@@ -772,8 +772,8 @@ InvPLANTDECAY_EOH    EOH    0    4   1   2   kg/m2/s  EOH_emission_flux_from_PLA
 #=============================
 # VOLCANO
 #=============================
-InvVOLCANOerupt_SO2  SO2    0    51  1   3   kg/m2/s  SO2_emission_flux_from_VOLCANOerupt_inventory
-InvVOLCANdegas_SO2   SO2    0    52  1   3   kg/m2/s  SO2_emission_flux_from_VOLCANOdegas_inventory
+InvVOLCANOerupt_SO2  SO2    117  51  1   3   kg/m2/s  SO2_emission_flux_from_VOLCANOerupt_inventory
+InvVOLCANdegas_SO2   SO2    117  52  1   3   kg/m2/s  SO2_emission_flux_from_VOLCANOdegas_inventory
 
 #=============================
 # Offline dust emissions
