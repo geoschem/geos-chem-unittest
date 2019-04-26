@@ -624,9 +624,9 @@ ND02: Rn/Pb/Be decay    :  0   all
 ND03: Hg emissions, P/L :  0   all
 ND04: CO2 Sources       :  0   all
 ND05: Sulfate prod/loss : 47   all
-ND06: Dust aer source   :  0   all
+ND06: Dust aer source   :  1   all
 ND07: Carbon aer source : 47   all
-ND08: Seasalt aer source:  0   all
+ND08: Seasalt aer source:  1   all
 ND09: -                 :  0   all
 ND10: -                 :  0   all
 ND11: Acetone sources   :  1   all
@@ -649,7 +649,7 @@ ND28: Biomass emissions : 47   all
 ND29: CO sources        : 47   all
 ND30: Land Map          :  0   all
 ND31: Pressure edges    : 48   all
-ND32: NOx sources       :  0   all
+ND32: NOx sources       : 47   all
 ND33: Column tracer     :  0   all
 ND34: Biofuel emissions :  1   all
 ND35: Tracers at 500 mb :  0   all
@@ -664,7 +664,7 @@ ND43: Chem prod OH, HO2 : 47   all
 ND44: Drydep flx/vel    :  1   all
 ND45: Tracer Conc's     : 47   all
   ==> ND45 Time range   :       0 24
-ND46: Biogenic emissions:  0   all
+ND46: Biogenic emissions:  1   all
 ND47: 24-h avg trc conc :  0   all
 ND52: GAMMA values      :  0   all
 ND53: POPs Emissions    :  0   all
