@@ -195,7 +195,7 @@ Warnings:                    {WARNINGS}
 116     MarinePOA              : off   MOPO/MOPI 
 117     Volcano                : on    SO2
     --> Volcano_Source         :       AeroCom
-    --> AeroCom_Table          :       $ROOT/VOLCANO/v2019-04/$YYYY/$MM/so2_volcanic_emissions_Carns.$YYYY$MM$DD.rc
+    --> Volcano_Table          :       $ROOT/VOLCANO/v2019-04/$YYYY/$MM/so2_volcanic_emissions_Carns.$YYYY$MM$DD.rc
 120     Inorg_Iodine           : on    HOI/I2
     --> Emit HOI               :       true
     --> Emit I2                :       true

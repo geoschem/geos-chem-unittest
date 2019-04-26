@@ -116,13 +116,12 @@ Mask fractions:              false
     --> NEI2011_SHIP_MONMEAN :       false
     --> MODIS_XLAI           :       true
     --> Yuan_XLAI            :       false
-    --> OFFLINE_BIOGENICVOC  :       true
 # -----------------------------------------------------------------------------
-108     MEGAN                : off   ISOP/ACET
+108     MEGAN                : on    ISOP/ACET
     --> Isoprene scaling     :       1.0 
     --> CO2 inhibition       :       true
     --> CO2 conc (ppmv)      :       390.0
-109     MEGAN_Mono           : off   MTPA/LIMO/MTPO
+109     MEGAN_Mono           : on    MTPA/LIMO/MTPO
 
 ### END SECTION EXTENSION SWITCHES ###
 
