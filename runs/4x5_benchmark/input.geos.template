@@ -275,6 +275,9 @@ Overhead O3 for FAST-JX :---
  => TOMS/SBUV O3        : F
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
+%%% PHOTOLYSIS MENU %%% :
+FAST-JX directory       : {DATA_ROOT}/CHEM_INPUTS/FAST_JX/v2019-04/
+------------------------+------------------------------------------------------
 %%% RADIATION MENU %%%  :
 AOD Wavelength (nm)     : 550
 Turn on RRTMG?          : F
@@ -329,7 +332,7 @@ ND22: J-Values          : 72   all
       => JV time range  :      11 13
 ND24: E/W transpt flx   :  0   all
 ND25: N/S transpt flx   :  0   all
-ND26: U/D transpt flx   : 72   all
+ND26: U/D transpt flx   :  0   all
 ND27: Strat NOx,Ox,HNO3 :  0   1 2 7
 ND28: Biomass emissions : 72   all
 ND29: CO sources        : 72   all

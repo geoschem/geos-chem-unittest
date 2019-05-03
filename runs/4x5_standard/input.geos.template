@@ -254,6 +254,9 @@ Overhead O3 for FAST-JX :---
  => TOMS/SBUV O3        : F
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
+%%% PHOTOLYSIS MENU %%% :
+FAST-JX directory       : {DATA_ROOT}/CHEM_INPUTS/FAST_JX/v2019-04/
+------------------------+------------------------------------------------------
 %%% RADIATION MENU %%%  :
 AOD Wavelength (nm)     : 550
 Turn on RRTMG?          : F
@@ -426,7 +429,7 @@ Save O3 P/L (ND20)?     : F
 Save CO Production?     : F
 ------------------------+------------------------------------------------------
 %%% BENCHMARK MENU %%%  :
-Save benchmark output?  : T
+Save benchmark output?  : F
 File w/ initial Ox      : Ox.mass.initial
 File w/ final Ox        : Ox.mass.final
 ------------------------+------------------------------------------------------
