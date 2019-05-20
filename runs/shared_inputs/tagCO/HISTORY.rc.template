@@ -292,5 +292,5 @@ COLLECTIONS: 'Restart',
   BoundaryConditions.frequency:  00000000 030000
   BoundaryConditions.duration:   00000001 000000
   BoundaryConditions.mode:       'instantaneous'
-  BoundaryConditions.fields:     'SpeciesBC_?ALL?             ', 'GIGCchem',
+  BoundaryConditions.fields:     'SpeciesBC_?ADV?             ', 'GIGCchem',
 ::
