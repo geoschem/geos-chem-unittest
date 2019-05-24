@@ -181,7 +181,7 @@ EmisCO_Anthro      CO     0      1   -1   3   kg/m2/s  CO_emission_flux_from_ant
 EmisCO_Biofuel     CO     0      2   -1   2   kg/m2/s  CO_emission_flux_from_biofuel_sector
 EmisCO_BioBurn     CO     111    -1  -1   2   kg/m2/s  CO_emission_flux_from_biomass_burning
 EmisCO_Ship        CO     0      10  -1   2   kg/m2/s  CO_emission_flux_from_ships
-EmisCO_Monoterp    CO     0      3   -1   2   kg/m2/s  CO_emission_flux_from_monoterpenes
+EmisCO_Monoterp    CO     0      4   -1   2   kg/m2/s  CO_emission_flux_from_monoterpenes
 
 ###############################################################################
 #####  CO2 emissions                                                      ##### 
@@ -770,10 +770,10 @@ InvPLANTDECAY_ALD2   ALD2   0    3   1   2   kg/m2/s  ALD2_emission_flux_from_PL
 InvPLANTDECAY_EOH    EOH    0    3   1   2   kg/m2/s  EOH_emission_flux_from_PLANTDECAY_inventory
 
 #=============================
-# VOLCANO
+# Volcano extension
 #=============================
-InvVOLCANOerupt_SO2  SO2    117  51  1   3   kg/m2/s  SO2_emission_flux_from_VOLCANOerupt_inventory
-InvVOLCANdegas_SO2   SO2    117  52  1   3   kg/m2/s  SO2_emission_flux_from_VOLCANOdegas_inventory
+InvVOLCANOerupt_SO2  SO2    117  51  -1  3   kg/m2/s  SO2_emission_flux_from_VOLCANOerupt_inventory
+InvVOLCANdegas_SO2   SO2    117  52  -1  3   kg/m2/s  SO2_emission_flux_from_VOLCANOdegas_inventory
 
 #=============================
 # Offline dust emissions
