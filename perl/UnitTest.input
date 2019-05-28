@@ -179,7 +179,7 @@
 # ======= Nested model runs ==================================================
   merra2   05x0625     as     tropchem         2016070100   201607010020   -
   merra2   05x0625     na     tropchem         2016070100   201607010020   -
-  geosfp   025x03125   ch     tropchem         2016070100   201607010010   -
+  geosfp   025x03125   as     tropchem         2016070100   201607010010   -
   geosfp   025x03125   na     tropchem         2016070100   201607010010   -
  !END OF RUNS:
 #EOP
