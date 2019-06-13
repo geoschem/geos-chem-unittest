@@ -11,51 +11,20 @@
 #\\
 # !REMARKS:
 #  The following tokens will be replaced:
-#  (1) ROOT : Filepath to HEMCO root data directory
-#  (2) MET  : Met field type (from G-C compilation command)
-#  (3) GRID : Horizontal grid type (from G-C compilation command)
-# 
-#  NOTES:
-#  ------
-#  (1) HEMCO by default uses a binary masking (either 0 or 1).  If a grid box
-#      straddles the mask boundary, then HEMCO will count the entire box
-#      as part of the masked region.  You can disable this behavior by
-#      setting "Mask fractions: true" in the settings section below.
-#      But this may lead to some further discrepancies.  It may be best to
-#      use the binary masking but use as fine resolution mask files 
-#      (e.g. 0.5 x 0.5, 0.25 x 0.25) as possible. 
-#
-#  (2) For each file that is read from disk, we add underneath that file
-#      listing an entry to apply a regional mask to the total emissions.
-#
-#  (3) Yevich & Logan biofuels are added into the same CAT & HIER as EDGAR.  
-#      Because other inventories often do not separate biofuels from anthro, 
-#      it makes sense to lump biofuels into anthro.  This will make it easier
-#      for the tagged tracers to sum together.
-#
-#  (4) At present, there is no way to apply regional masks to emissions that
-#      are computed from the GFED or FINN biomass burning emissions (which
-#      are implemented as HEMCO extensions).  For this reason, we the default
-#      biomass burning emissions is the QFED inventory (which is simply read 
-#      from disk, and thus can have be separated into tagged tracers with
-#      regional masks).  Perhaps in a future HEMCO version we will be able 
-#      to apply regional masks to extension-computed emissions.
-#
-#  (5) If you would like to use either GFED or FINN biomass emissions with
-#      the tagged CO simulation, then we recommend that you use the HEMCO
-#      standalone code to archive the total CO emissions for a given set of
-#      met fields (e.g. GEOS-FP, MERRA) and years.  Then you can add entries
-#      to this HEMCO_Config file (following the example of QFED) to apply
-#      the regional masks to the total CO biomass emissions.
-#
-#  (6) We have removed the +LinStratChem+ block around the GMI_PROD_CO
-#      and GMI_LOSS_CO.  +LinStratChem+ is automatically toggled when
-#      stratospheric chemistry is turned on in input.geos.  But for the
-#      tagged CO simulation, we read GMI_PROD_CO and GMI_LOSS_CO directly
-#      from HEMCO without having to invoke the strat chem module.
+#  (1) ROOT    : Filepath to HEMCO root directory
+#  (2) CFDIR   : Filepath to directory of this configuration file. 
+#  (3) MET     : Met field type (from G-C compilation command)
+#  (4) GRID    : Horizontal grid type (from G-C compilation command)
+#  (5) SIM     : Simulation type (from G-C compilation command)
+#  (6) NEST    : Nested-grid type (CH, EU, NA, SE)
+#  (7) LEVRED  : String w/ the # of levels in the reduced GEOS-Chem grid
+#                as used in some filenames (e.g. "23L", "30L", "47L")
+#  (8) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
+#                as used in some filenames (e.g. "55L", "72L")
 #
 # !REVISION HISTORY: 
-#  Use the "gitk" browser to view the Git version history
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -77,51 +46,62 @@ Only unitless scale factors: false
 Verbose:                     {VERBOSE}
 Warnings:                    {WARNINGS}
 Mask fractions:              false
-#
+
 ### END SECTION SETTINGS ###
 
 ###############################################################################
 ### BEGIN SECTION EXTENSION SWITCHES
 ###############################################################################
 #
-# ExtNr ExtName              on/off  Species 
-0       Base                 : on    *             
-    --> GC_RESTART           :       true
-    --> HEMCO_RESTART        :       true
-    --> AEIC                 :       true
-    --> BIOFUEL              :       true
-    --> APEI                 :       true
-    --> C2H6                 :       true
-    --> EDGARv43             :       false
-    --> HTAP                 :       false
-    --> CEDS                 :       true
-    --> EMEP                 :       true
-    --> GEIA                 :       true
-    --> NEI2011_HOURLY       :       false
-    --> NEI2011_MONMEAN      :       true
-    --> MIX                  :       true
-    --> STREETS              :       false
-    --> DICE_Africa          :       true
-    --> TRASH                :       false
-    --> RCP_3PD              :       false 
-    --> RCP_45               :       false
-    --> RCP_60               :       false
-    --> RCP_85               :       false
-    --> QFED2                :       true
-    --> GFAS                 :       false
-    --> SHIP                 :       true
-    --> CEDS_SHIP            :       true
-    --> EMEP_SHIP            :       true
-    --> NEI2011_SHIP_HOURLY  :       false
-    --> NEI2011_SHIP_MONMEAN :       false
-    --> MODIS_XLAI           :       true
-    --> Yuan_XLAI            :       false
+# ExtNr ExtName                 on/off  Species 
+0       Base                    : on    *             
+# ----- RESTART FIELDS ----------------------
+    --> GC_RESTART              :       true
+    --> HEMCO_RESTART           :       true
+# ----- REGIONAL INVENTORIES ----------------
+    --> APEI                   :       true
+    --> NEI2011_HOURLY         :       false
+    --> NEI2011_MONMEAN        :       true
+    --> MIX                    :       true
+    --> STREETS                :       false
+    --> DICE_Africa            :       true 
+# ----- GLOBAL INVENTORIES ------------------
+    --> CEDS                   :       true
+    --> EDGARv43               :       false
+    --> HTAP                   :       false
+    --> GEIA_NH3               :       true
+    --> POET_EOH               :       true
+    --> C2H6_2010              :       true
+    --> LIANG_BROMOCARB        :       true
+    --> ORDONEZ_IODOCARB       :       true
+    --> SHIP                   :       true
+    --> CEDS_SHIP              :       true
+    --> NEI2011_SHIP_HOURLY    :       false
+    --> NEI2011_SHIP_MONMEAN   :       false
+    --> AEIC                   :       true
+    --> DECAYING_PLANTS        :       true
+# ----- FUTURE EMISSIONS --------------------
+    --> RCP_3PD                :       false 
+    --> RCP_45                 :       false
+    --> RCP_60                 :       false
+    --> RCP_85                 :       false
+# ----- BIOMASS BURNING EMISSIONS -----------
+    --> QFED2                  :       false
+    --> GFAS                   :       false
+# ----- OFFLINE EMISSIONS -------------------
+    --> OFFLINE_DUST           :       true
+    --> OFFLINE_BIOGENICVOC    :       true
+    --> OFFLINE_SEASALT        :       true
+    --> OFFLINE_SOILNOX        :       true
+# ----- NON-EMISSIONS DATA ------------------
+    --> MODIS_XLAI             :       true
+    --> Yuan_XLAI              :       false
 # -----------------------------------------------------------------------------
-108     MEGAN                : on    ISOP/ACET
-    --> Isoprene scaling     :       1.0 
-    --> CO2 inhibition       :       true
-    --> CO2 conc (ppmv)      :       390.0
-109     MEGAN_Mono           : on    MTPA/LIMO/MTPO
+108     MEGAN                  : on    ISOP/ACET
+    --> Isoprene scaling       :       1.0 
+    --> CO2 inhibition         :       true
+    --> CO2 conc (ppmv)        :       390.0
+109     MEGAN_Mono             : on    MTPA/LIMO/MTPO
 
 ### END SECTION EXTENSION SWITCHES ###
 
@@ -132,231 +112,12 @@ Mask fractions:              false
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
 
 #==============================================================================
-# --- EDGAR v4.3 ---
-#
-# %%% NOTE: This is an optional inventory. You may select either CEDS, EDGAR,
-#  or HTAP for the global base emissions %%%
-# 
-# Aviation and shipping emissions are not included
-# Do not include the following sources (meng,3/6/2014)
-#  - Soil emissions of NOx (SOL). These emissions are calculated via the 
-#    SoilNOx extension.
-#  - Open biomass burning (AWB). These emissions are obtained from
-#    GFED or FINN.
-#==============================================================================
-(((EDGARv43
-0  EDGAR_CO_POW      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.POW.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1201/26/52      1 2
-0  EDGAR_CO_POW_us   -                                                    -       -               - -  -       COus   1201/26/52/1100 1 2
-0  EDGAR_CO_POW_eur  -                                                    -       -               - -  -       COeur  1201/26/52/1101 1 2
-0  EDGAR_CO_POW_asia -                                                    -       -               - -  -       COasia 1201/26/52/1102 1 2
-0  EDGAR_CO_POW_oth  -                                                    -       -               - -  -       COoth  1201/26/52/1103 1 2
-0  EDGAR_CO_ENG      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.ENG.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1202/26/52      1 2
-0  EDGAR_CO_ENG_us   -                                                    -       -               - -  -       COus   1202/26/52/1100 1 2
-0  EDGAR_CO_ENG_eur  -                                                    -       -               - -  -       COeur  1202/26/52/1101 1 2
-0  EDGAR_CO_ENG_asia -                                                    -       -               - -  -       COasia 1202/26/52/1102 1 2
-0  EDGAR_CO_ENG_oth  -                                                    -       -               - -  -       COoth  1202/26/52/1103 1 2
-0  EDGAR_CO_IND      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.IND.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1203/26/52      1 2
-0  EDGAR_CO_IND_us   -                                                    -       -               - -  -       COus   1203/26/52/1100 1 2
-0  EDGAR_CO_IND_eur  -                                                    -       -               - -  -       COeur  1203/26/52/1101 1 2
-0  EDGAR_CO_IND_asia -                                                    -       -               - -  -       COasia 1203/26/52/1102 1 2
-0  EDGAR_CO_IND_oth  -                                                    -       -               - -  -       COoth  1203/26/52/1103 1 2
-0  EDGAR_CO_TRO      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.TRO.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1204/26/52      1 2
-0  EDGAR_CO_TRO_us   -                                                    -       -               - -  -       COus   1204/26/52/1100 1 2
-0  EDGAR_CO_TRO_eur  -                                                    -       -               - -  -       COeur  1204/26/52/1101 1 2
-0  EDGAR_CO_TRO_asia -                                                    -       -               - -  -       COasia 1204/26/52/1102 1 2
-0  EDGAR_CO_TRO_oth  -                                                    -       -               - -  -       COoth  1204/26/52/1103 1 2
-0  EDGAR_CO_TNG      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.TNG.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1205/26/52      1 2
-0  EDGAR_CO_TNG_us   -                                                    -       -               - -  -       COus   1205/26/52/1100 1 2
-0  EDGAR_CO_TNG_eur  -                                                    -       -               - -  -       COeur  1205/26/52/1101 1 2
-0  EDGAR_CO_TNG_asia -                                                    -       -               - -  -       COasia 1205/26/52/1102 1 2
-0  EDGAR_CO_TNG_oth  -                                                    -       -               - -  -       COoth  1205/26/52/1103 1 2
-0  EDGAR_CO_RCO      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.RCO.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1206/26/52      1 2
-0  EDGAR_CO_RCO_us   -                                                    -       -               - -  -       COus   1206/26/52/1100 1 2
-0  EDGAR_CO_RCO_eur  -                                                    -       -               - -  -       COeur  1206/26/52/1101 1 2
-0  EDGAR_CO_RCO_asia -                                                    -       -               - -  -       COasia 1206/26/52/1102 1 2
-0  EDGAR_CO_RCO_oth  -                                                    -       -               - -  -       COoth  1206/26/52/1103 1 2
-0  EDGAR_CO_PPA      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.PPA.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1207/26/52      1 2
-0  EDGAR_CO_PPA_us   -                                                    -       -               - -  -       COus   1207/26/52/1100 1 2
-0  EDGAR_CO_PPA_eur  -                                                    -       -               - -  -       COeur  1207/26/52/1101 1 2
-0  EDGAR_CO_PPA_asia -                                                    -       -               - -  -       COasia 1207/26/52/1102 1 2
-0  EDGAR_CO_PPA_oth  -                                                    -       -               - -  -       COoth  1207/26/52/1103 1 2
-#0 EDGAR_CO_AWB      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.AWB.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1209/26/52      1 2
-#0 EDGAR_CO_AWB_us   -                                                    -       -               - -  -       COus   1209/26/52/1100 1 2
-#0 EDGAR_CO_AWB_eur  -                                                    -       -               - -  -       COeur  1209/26/52/1101 1 2
-#0 EDGAR_CO_AWB_asia -                                                    -       -               - -  -       COasia 1209/26/52/1102 1 2
-#0 EDGAR_CO_AWB_oth  -                                                    -       -               - -  -       COoth  1209/26/52/1103 1 2
-0  EDGAR_CO_SWD      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.SWD.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1211/26/52      1 2
-0  EDGAR_CO_SWD_us   -                                                    -       -               - -  -       COus   1211/26/52/1100 1 2
-0  EDGAR_CO_SWD_eur  -                                                    -       -               - -  -       COeur  1211/26/52/1101 1 2
-0  EDGAR_CO_SWD_asia -                                                    -       -               - -  -       COasia 1211/26/52/1102 1 2
-0  EDGAR_CO_SWD_oth  -                                                    -       -               - -  -       COoth  1211/26/52/1103 1 2
-0  EDGAR_CO_FFF      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.FFF.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1212/26/52      1 2
-0  EDGAR_CO_FFF_us   -                                                    -       -               - -  -       COus   1212/26/52/1100 1 2
-0  EDGAR_CO_FFF_eur  -                                                    -       -               - -  -       COeur  1212/26/52/1101 1 2
-0  EDGAR_CO_FFF_asia -                                                    -       -               - -  -       COasia 1212/26/52/1102 1 2
-0  EDGAR_CO_FFF_oth  -                                                    -       -               - -  -       COoth  1212/26/52/1103 1 2
-)))EDGARv43
-
-#==============================================================================
-# --- HTAP v2 ---
-#
-# %%% NOTE: This is an optional inventory. You may select either CEDS, EDGAR,
-#  or HTAP for the global base emissions %%%
-#
-# ==> HTAP ship emissions are listed in the ship emissions section below
-# ==> Disable aircraft emissions and get them from AEIC instead.
-#==============================================================================
-(((HTAP
-0 HTAP_CO_IND      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_INDUSTRY.generic.01x01.nc    emi_co 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26      1/2 4
-0 HTAP_CO_IND_us   -                                                                 -      -                  - -  -       COus   6/28/26/1100 1/2 4
-0 HTAP_CO_IND_eur  -                                                                 -      -                  - -  -       COeur  6/28/26/1101 1/2 4
-0 HTAP_CO_IND_asia -                                                                 -      -                  - -  -       COasia 6/28/26/1102 1/2 4
-0 HTAP_CO_IND_oth  -                                                                 -      -                  - -  -       COoth  6/28/26/1103 1/2 4
-0 HTAP_CO_POW      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_ENERGY.generic.01x01.nc      emi_co 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26      1/2 4
-0 HTAP_CO_POW_us   -                                                                 -      -                  - -  -       COus   6/28/26/1100 1/2 4
-0 HTAP_CO_POW_eur  -                                                                 -      -                  - -  -       COeur  6/28/26/1101 1/2 4
-0 HTAP_CO_POW_asia -                                                                 -      -                  - -  -       COasia 6/28/26/1102 1/2 4
-0 HTAP_CO_POW_oth  -                                                                 -      -                  - -  -       COoth  6/28/26/1103 1/2 4
-0 HTAP_CO_RES      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_RESIDENTIAL.generic.01x01.nc emi_co 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26      1/2 4
-0 HTAP_CO_RES_us   -                                                                 -      -                  - -  -       COus   6/28/26/1100 1/2 4
-0 HTAP_CO_RES_eur  -                                                                 -      -                  - -  -       COeur  6/28/26/1101 1/2 4
-0 HTAP_CO_RES_asia -                                                                 -      -                  - -  -       COasia 6/28/26/1102 1/2 4
-0 HTAP_CO_RES_oth  -                                                                 -      -                  - -  -       COoth  6/28/26/1103 1/2 4
-0 HTAP_CO_TRA      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_TRANSPORT.generic.01x01.nc   emi_co 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26      1/2 4
-0 HTAP_CO_TRA_us   -                                                                 -      -                  - -  -       COus   6/28/26/1100 1/2 4
-0 HTAP_CO_TRA_eur  -                                                                 -      -                  - -  -       COeur  6/28/26/1101 1/2 4
-0 HTAP_CO_TRA_asia -                                                                 -      -                  - -  -       COasia 6/28/26/1102 1/2 4
-0 HTAP_CO_TRA_oth  -                                                                 -      -                  - -  -       COoth  6/28/26/1103 1/2 4
-#0 HTAP_CO_AIR1      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_LTO.generic.01x01.nc   emi_co 2008-2010/1/1/0    C xy kg/m2/s CO     6/28/26      1/2 4
-#0 HTAP_CO_AIR1_us   -                                                               -      -                  - -  -       COus   6/28/26/1100 1/2 4
-#0 HTAP_CO_AIR1_eur  -                                                               -      -                  - -  -       COeur  6/28/26/1101 1/2 4
-#0 HTAP_CO_AIR1_asia -                                                               -      -                  - -  -       COasia 6/28/26/1102 1/2 4
-#0 HTAP_CO_AIR1_oth  -                                                               -      -                  - -  -       COoth  6/28/26/1103 1/2 4
-#0 HTAP_CO_AIR2      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_CDS.generic.01x01.nc   emi_co 2008-2010/1/1/0    C xy kg/m2/s CO     6/28/26      1/2 4
-#0 HTAP_CO_AIR2_us   -                                                               -      -                  - -  -       COus   6/28/26/1100 1/2 4
-#0 HTAP_CO_AIR2_eur  -                                                               -      -                  - -  -       COeur  6/28/26/1101 1/2 4
-#0 HTAP_CO_AIR2_asia -                                                               -      -                  - -  -       COasia 6/28/26/1102 1/2 4
-#0 HTAP_CO_AIR2_oth  -                                                               -      -                  - -  -       COoth  6/28/26/1103 1/2 4
-#0 HTAP_CO_AIR3      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_CRS.generic.01x01.nc   emi_co 2008-2010/1/1/0    C xy kg/m2/s CO     6/28/26      1/2 4
-#0 HTAP_CO_AIR3_us   -                                                               -      -                  - -  -       COus   6/28/26/1100 1/2 4
-#0 HTAP_CO_AIR3_eur  -                                                               -      -                  - -  -       COeur  6/28/26/1101 1/2 4
-#0 HTAP_CO_AIR3_asia -                                                               -      -                  - -  -       COasia 6/28/26/1102 1/2 4
-#0 HTAP_CO_AIR3_oth  -                                                               -      -                  - -  -       COoth  6/28/26/1103 1/2 4
-)))HTAP
-
-#==============================================================================
-# --- CEDS ---
-#
-# %%% NOTE: This is the default global inventory. You may select either CEDS,
-# EDGAR, or HTAP for the global base emissions %%%
-#
-# ==> CEDS ship emissions are listed in the ship emissions section below
-# ==> CEDS includes trash emissions (Cat=12) from Wiedinmyer et al. (2014)
-#==============================================================================
-(((CEDS
-0 CEDS_CO_AGR      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_agr 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
-0 CEDS_CO_AGR_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
-0 CEDS_CO_AGR_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
-0 CEDS_CO_AGR_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
-0 CEDS_CO_AGR_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
-0 CEDS_CO_ENE      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_ene 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
-0 CEDS_CO_ENE_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
-0 CEDS_CO_ENE_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
-0 CEDS_CO_ENE_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
-0 CEDS_CO_ENE_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
-0 CEDS_CO_IND      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_ind 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
-0 CEDS_CO_IND_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
-0 CEDS_CO_IND_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
-0 CEDS_CO_IND_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
-0 CEDS_CO_IND_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
-0 CEDS_CO_TRA      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_tra 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
-0 CEDS_CO_TRA_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
-0 CEDS_CO_TRA_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
-0 CEDS_CO_TRA_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
-0 CEDS_CO_TRA_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
-0 CEDS_CO_RCO      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_rco 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
-0 CEDS_CO_RCO_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
-0 CEDS_CO_RCO_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
-0 CEDS_CO_RCO_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
-0 CEDS_CO_RCO_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
-0 CEDS_CO_SLV      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_slv 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
-0 CEDS_CO_SLV_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
-0 CEDS_CO_SLV_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
-0 CEDS_CO_SLV_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
-0 CEDS_CO_SLV_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
-0 CEDS_CO_WST      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_wst 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1/2/12 5
-0 CEDS_CO_WST_us   -                                                          -      -                  - -  -       COus   26/1100 1/2/12 5
-0 CEDS_CO_WST_eur  -                                                          -      -                  - -  -       COeur  26/1101 1/2/12 5
-0 CEDS_CO_WST_asia -                                                          -      -                  - -  -       COasia 26/1102 1/2/12 5
-0 CEDS_CO_WST_oth  -                                                          -      -                  - -  -       COoth  26/1103 1/2/12 5
-)))CEDS
-
-#==============================================================================
-# --- BIOFUEL EMISSIONS (Yevich and Logan, 2003) ---
-#
-# ==> Note that this inventory does not contain emissions over the US!!
-#     Add to EDGAR emissions, i.e assign same category and hierarchy as EDGAR!
-#     Don't read VOCs that are included in RETRO!!
-#
-# ==> It turns out that biofuel SO2 emissions in some regions are very
-#     different (up to a factor of 2 for some grid boxes) when using the
-#     high-resolution biofuel field compared to the 4x5 degrees input file.
-#     For backwards consistency, I'd recommend using the 4x5 biofuel file
-#     instead of the 1x1 file.
-#        -- Christoph Keller (03 Nov 2014)
-#
-# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-# %%% NOTE: We put BIOFUEL into the CATEGORY 1, HIER 2 so that they will  %%%
-# %%% be added in globally with the EDGAR emissions.  This will help to   %%%
-# %%% ensure that the tagged tracers sum together properly.               %%%
-# %%%                                                                     %%%
-# %%% This makes sense because some inventories lump anthro + biofuel     %%%
-# %%% together, so it is difficult to separate these out.                 %%%
-# %%%   -- Bob Yantosca, 16 Mar 2016                                      %%%
-# %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-#==============================================================================
-(((BIOFUEL
-0 BIOFUEL_CO     $ROOT/BIOFUEL/v2014-07/biofuel.geos.4x5.nc BIOFUEL_CO 1985/1/1/0 C xy kg/m2/s  CO     53       1 2
-0 BIOFUEL_COus   -                                          -          -          - -  -        COus   53/1100  1 2
-0 BIOFUEL_COeur  -                                          -          -          - -  -        COeur  53/1101  1 2
-0 BIOFUEL_COasia -                                          -          -          - -  -        COasia 53/1102  1 2
-0 BIOFUEL_COoth  -                                          -          -          - -  -        COoth  53/1103  1 2
-)))BIOFUEL
-
-#==============================================================================
-# --- Wiedinmyer et al. (2014) global trash emissions ---
-#
-# CEDS emissions already include trash emissions from Wiedinmyer et al. (2014)
-# so we will not use TRASH emissions when CEDS emissions are used.
-#==============================================================================
-(((TRASH
-(((.notCEDS
-0 TRASH_CO     $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc CO 2008/1/1/0 C xy kg/m2/s CO     -       12 1
-0 TRASH_COus   -                                                      -  -          - -  -       COus   53/1100 12 1
-0 TRASH_COeur  -                                                      -  -          - -  -       COeur  53/1101 12 1
-0 TRASH_COasia -                                                      -  -          - -  -       COasia 53/1102 12 1
-0 TRASH_COoth  -                                                      -  -          - -  -       COoth  53/1103 12 1
-))).notCEDS
-)))TRASH
-
-#==============================================================================
-# --- EMEP (Europe) ---
-#==============================================================================
-(((EMEP
-0 EMEP_CO      $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc CO  1990-2012/1/1/0 C xy kg/m2/s  CO       26/33/52/1000      1/2 10 
-0 EMEP_CO_us   -                                       -   -               - -  -        COus     26/33/52/1000/1100 1/2 10 
-0 EMEP_CO_eur  -                                       -   -               - -  -        COeur    26/33/52/1000/1101 1/2 10 
-0 EMEP_CO_asia -                                       -   -               - -  -        COasia   26/33/52/1000/1102 1/2 10 
-0 EMEP_CO_oth  -                                       -   -               - -  -        COoth    26/33/52/1000/1103 1/2 10 
-)))EMEP
-
-#==============================================================================
 # --- APEI (Canada) ---
 #==============================================================================
 (((APEI
-0 APEI_CO    $ROOT/APEI/v2016-11/APEI.0.1x0.1.nc CO 1989-2014/1/1/0 C xy kg/m2/s CO    26/52/1002      1/2 30
-0 APEI_COus  -                                   -  -               - -  -       COus  26/52/1002/1100 1/2 30
-0 APEI_COoth -                                   -  -               - -  -       COoth 26/52/1002/1103 1/2 30
+0 APEI_CO    $ROOT/APEI/v2016-11/APEI.0.1x0.1.nc CO 1989-2014/1/1/0 C xy kg/m2/s CO    26/52/1002      1 30
+0 APEI_COus  -                                   -  -               - -  -       COus  26/52/1002/1100 1 30
+0 APEI_COoth -                                   -  -               - -  -       COoth 26/52/1002/1103 1 30
 )))APEI
 
 #==============================================================================
@@ -368,13 +129,12 @@ Mask fractions:              false
 #------------------------------------------------
 # HOURLY NEI2011
 #------------------------------------------------
-
 (((NEI2011_HOURLY
 # SURFACE INVENTORY
-0 NEI11_SURFACE_CO       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          CO 2006-2013/1-12/1-31/* R xy  kg/m2/s  CO    252/1007       1/2 50
-0 NEI11_SURFACE_CO_us    -                                                               -  -                     - -   -        COus  252/1007/1100  1/2 50
-0 NEI11_SURFACE_CO_eur   -                                                               -  -                     - -   -        COeur 252/1007/1101  1/2 50
-0 NEI11_SURFACE_CO_oth   -                                                               -  -                     - -   -        COoth 252/1007/1103  1/2 50
+0 NEI11_SURFACE_CO       $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD.nc          CO 2006-2013/1-12/1-31/* R xy  kg/m2/s  CO    252/1007       1 50
+0 NEI11_SURFACE_CO_us    -                                                               -  -                     - -   -        COus  252/1007/1100  1 50
+0 NEI11_SURFACE_CO_eur   -                                                               -  -                     - -   -        COeur 252/1007/1101  1 50
+0 NEI11_SURFACE_CO_oth   -                                                               -  -                     - -   -        COoth 252/1007/1103  1 50
 
 # ELECTRIC GENERATING UNITS (EGUs)
 0 NEI11_EGU_CO           $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_egu.nc      CO 2006-2013/1-12/1-31/* R xyz kg/m2/s  CO    252/1007       1   50
@@ -410,13 +170,12 @@ Mask fractions:              false
 #------------------------------------------------
 # MONTHLY MEAN NEI2011
 #------------------------------------------------
-
 (((NEI2011_MONMEAN
 # SURFACE INVENTORY
-0 NEI11_SURFACE_CO       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          CO 2006-2013/1-12/1/0 C xy  kg/m2/s  CO    26/211/252/1007       1/2 50
-0 NEI11_SURFACE_CO_us    -                                                                       -  -                  - -   -        COus  26/211/252/1007/1100  1/2 50
-0 NEI11_SURFACE_CO_eur   -                                                                       -  -                  - -   -        COeur 26/211/252/1007/1101  1/2 50
-0 NEI11_SURFACE_CO_oth   -                                                                       -  -                  - -   -        COoth 26/211/252/1007/1103  1/2 50
+0 NEI11_SURFACE_CO       $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean.nc          CO 2006-2013/1-12/1/0 C xy  kg/m2/s  CO    26/211/252/1007       1 50
+0 NEI11_SURFACE_CO_us    -                                                                       -  -                  - -   -        COus  26/211/252/1007/1100  1 50
+0 NEI11_SURFACE_CO_eur   -                                                                       -  -                  - -   -        COeur 26/211/252/1007/1101  1 50
+0 NEI11_SURFACE_CO_oth   -                                                                       -  -                  - -   -        COoth 26/211/252/1007/1103  1 50
 
 # ELECTRIC GENERATING UNITS (EGUs)
 0 NEI11_EGU_CO           $ROOT/NEI2011/v2017-02-MM/$MM/NEI11_0.1x0.1_2011$MM_monmean_egu.nc      CO 2006-2013/1-12/1/0 C xyz kg/m2/s  CO    26/211/252/1007       1   50
@@ -453,50 +212,50 @@ Mask fractions:              false
 # --- STREETS SE ASIA (Zhang et al., 2009) ---
 #==============================================================================
 (((STREETS
-0 ZHANG_CO__IND      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_ind  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1/2 40 
-0 ZHANG_CO__IND_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1/2 40 
-0 ZHANG_CO__IND_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1/2 40 
-0 ZHANG_CO__IND_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1/2 40 
+0 ZHANG_CO__IND      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_ind  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1 40 
+0 ZHANG_CO__IND_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1 40 
+0 ZHANG_CO__IND_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1 40 
+0 ZHANG_CO__IND_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1 40 
 
-0 ZHANG_CO__POW      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_pow  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1/2 40 
-0 ZHANG_CO__POW_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1/2 40 
-0 ZHANG_CO__POW_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1/2 40 
-0 ZHANG_CO__POW_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1/2 40 
+0 ZHANG_CO__POW      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_pow  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1 40 
+0 ZHANG_CO__POW_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1 40 
+0 ZHANG_CO__POW_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1 40 
+0 ZHANG_CO__POW_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1 40 
 
-0 ZHANG_CO__RES      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_res  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1/2 40 
-0 ZHANG_CO__RES_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1/2 40 
-0 ZHANG_CO__RES_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1/2 40 
-0 ZHANG_CO__RES_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1/2 40 
+0 ZHANG_CO__RES      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_res  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1 40 
+0 ZHANG_CO__RES_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1 40 
+0 ZHANG_CO__RES_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1 40 
+0 ZHANG_CO__RES_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1 40 
 
-0 ZHANG_CO__TRA      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_tra  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1/2 40 
-0 ZHANG_CO__TRA_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1/2 40 
-0 ZHANG_CO__TRA_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1/2 40 
-0 ZHANG_CO__TRA_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1/2 40 
+0 ZHANG_CO__TRA      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_tra  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1 40 
+0 ZHANG_CO__TRA_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1 40 
+0 ZHANG_CO__TRA_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1 40 
+0 ZHANG_CO__TRA_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1 40 
 )))STREETS
 
 #==============================================================================
 # --- MIX v1.1 (Asia) ---
 #==============================================================================
 (((MIX
-0 MIX_CO_IND       $ROOT/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc CO_INDUSTRY    2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26/1006       1/2 45
-0 MIX_CO_IND_eur   -                                                 -              -                  - -  -       COeur  6/28/26/1006/1101  1/2 45
-0 MIX_CO_IND_asia  -                                                 -              -                  - -  -       COasia 6/28/26/1006/1102  1/2 45
-0 MIX_CO_IND_oth   -                                                 -              -                  - -  -       COoth  6/28/26/1006/1103  1/2 45
+0 MIX_CO_IND       $ROOT/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc CO_INDUSTRY    2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26/1006       1 45
+0 MIX_CO_IND_eur   -                                                 -              -                  - -  -       COeur  6/28/26/1006/1101  1 45
+0 MIX_CO_IND_asia  -                                                 -              -                  - -  -       COasia 6/28/26/1006/1102  1 45
+0 MIX_CO_IND_oth   -                                                 -              -                  - -  -       COoth  6/28/26/1006/1103  1 45
 
-0 MIX_CO_POW       $ROOT/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc CO_POWER       2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26/1006       1/2 45
-0 MIX_CO_POW_eur   -                                                 -              -                  - -  -       COeur  6/28/26/1006/1101  1/2 45
-0 MIX_CO_POW_asia  -                                                 -              -                  - -  -       COasia 6/28/26/1006/1102  1/2 45
-0 MIX_CO_POW_oth   -                                                 -              -                  - -  -       COoth  6/28/26/1006/1103  1/2 45
+0 MIX_CO_POW       $ROOT/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc CO_POWER       2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26/1006       1 45
+0 MIX_CO_POW_eur   -                                                 -              -                  - -  -       COeur  6/28/26/1006/1101  1 45
+0 MIX_CO_POW_asia  -                                                 -              -                  - -  -       COasia 6/28/26/1006/1102  1 45
+0 MIX_CO_POW_oth   -                                                 -              -                  - -  -       COoth  6/28/26/1006/1103  1 45
 
-0 MIX_CO_RES       $ROOT/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc CO_RESIDENTIAL 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26/1006       1/2 45
-0 MIX_CO_RES_eur   -                                                 -              -                  - -  -       COeur  6/28/26/1006/1101  1/2 45
-0 MIX_CO_RES_asia  -                                                 -              -                  - -  -       COasia 6/28/26/1006/1102  1/2 45
-0 MIX_CO_RES_oth   -                                                 -              -                  - -  -       COoth  6/28/26/1006/1103  1/2 45
+0 MIX_CO_RES       $ROOT/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc CO_RESIDENTIAL 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26/1006       1 45
+0 MIX_CO_RES_eur   -                                                 -              -                  - -  -       COeur  6/28/26/1006/1101  1 45
+0 MIX_CO_RES_asia  -                                                 -              -                  - -  -       COasia 6/28/26/1006/1102  1 45
+0 MIX_CO_RES_oth   -                                                 -              -                  - -  -       COoth  6/28/26/1006/1103  1 45
 
-0 MIX_CO_TRA       $ROOT/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc CO_TRANSPORT   2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26/1006       1/2 45
-0 MIX_CO_TRA_eur   -                                                 -              -                  - -  -       COeur  6/28/26/1006/1101  1/2 45
-0 MIX_CO_TRA_asia  -                                                 -              -                  - -  -       COasia 6/28/26/1006/1102  1/2 45
-0 MIX_CO_TRA_oth   -                                                 -              -                  - -  -       COoth  6/28/26/1006/1103  1/2 45
+0 MIX_CO_TRA       $ROOT/MIX/v2015-03/MIX_Asia_CO.generic.025x025.nc CO_TRANSPORT   2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26/1006       1 45
+0 MIX_CO_TRA_eur   -                                                 -              -                  - -  -       COeur  6/28/26/1006/1101  1 45
+0 MIX_CO_TRA_asia  -                                                 -              -                  - -  -       COasia 6/28/26/1006/1102  1 45
+0 MIX_CO_TRA_oth   -                                                 -              -                  - -  -       COoth  6/28/26/1006/1103  1 45
 )))MIX
 
 #==============================================================================
@@ -613,42 +372,213 @@ Mask fractions:              false
 #  Efficient Combustion Emissions from EDGAR
 #  This makes up for sources that DICE-Africa lacks
 # ---------------------------------------------------
-0 AF_EDGAR_CO_POW      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.POW.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1201/26/52/1008      1/2 60
-0 AF_EDGAR_CO_POW_eur  -                                                   -       -               - -  -       COeur  1201/26/52/1008/1101 1/2 60
-0 AF_EDGAR_CO_POW_asia -                                                   -       -               - -  -       COasia 1201/26/52/1008/1102 1/2 60
-0 AF_EDGAR_CO_POW_oth  -                                                   -       -               - -  -       COoth  1201/26/52/1008/1103 1/2 60
+0 AF_EDGAR_CO_POW      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.POW.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1201/26/52/1008      1 60
+0 AF_EDGAR_CO_POW_eur  -                                                   -       -               - -  -       COeur  1201/26/52/1008/1101 1 60
+0 AF_EDGAR_CO_POW_asia -                                                   -       -               - -  -       COasia 1201/26/52/1008/1102 1 60
+0 AF_EDGAR_CO_POW_oth  -                                                   -       -               - -  -       COoth  1201/26/52/1008/1103 1 60
 
-0 AF_EDGAR_CO_ENG      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.ENG.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1202/26/52/1008      1/2 60
-0 AF_EDGAR_CO_ENG_eur  -                                                   -       -               - -  -       COeur  1202/26/52/1008/1101 1/2 60
-0 AF_EDGAR_CO_ENG_asia -                                                   -       -               - -  -       COasia 1202/26/52/1008/1102 1/2 60
-0 AF_EDGAR_CO_ENG_oth  -                                                   -       -               - -  -       COoth  1202/26/52/1008/1103 1/2 60
+0 AF_EDGAR_CO_ENG      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.ENG.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1202/26/52/1008      1 60
+0 AF_EDGAR_CO_ENG_eur  -                                                   -       -               - -  -       COeur  1202/26/52/1008/1101 1 60
+0 AF_EDGAR_CO_ENG_asia -                                                   -       -               - -  -       COasia 1202/26/52/1008/1102 1 60
+0 AF_EDGAR_CO_ENG_oth  -                                                   -       -               - -  -       COoth  1202/26/52/1008/1103 1 60
 
-0 AF_EDGAR_CO_IND      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.IND.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1203/26/52/1008      1/2 60
-0 AF_EDGAR_CO_IND_eur  -                                                   -       -               - -  -       COeur  1203/26/52/1008/1101 1/2 60
-0 AF_EDGAR_CO_IND_asia -                                                   -       -               - -  -       COasia 1203/26/52/1008/1102 1/2 60
-0 AF_EDGAR_CO_IND_oth  -                                                   -       -               - -  -       COoth  1203/26/52/1008/1103 1/2 60
+0 AF_EDGAR_CO_IND      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.IND.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1203/26/52/1008      1 60
+0 AF_EDGAR_CO_IND_eur  -                                                   -       -               - -  -       COeur  1203/26/52/1008/1101 1 60
+0 AF_EDGAR_CO_IND_asia -                                                   -       -               - -  -       COasia 1203/26/52/1008/1102 1 60
+0 AF_EDGAR_CO_IND_oth  -                                                   -       -               - -  -       COoth  1203/26/52/1008/1103 1 60
 
-0 AF_EDGAR_CO_TNG      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.TNG.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1205/26/52/1008      1/2 60
-0 AF_EDGAR_CO_TNG_eur  -                                                   -       -               - -  -       COeur  1205/26/52/1008/1101 1/2 60
-0 AF_EDGAR_CO_TNG_asia -                                                   -       -               - -  -       COasia 1205/26/52/1008/1102 1/2 60
-0 AF_EDGAR_CO_TNG_oth  -                                                   -       -               - -  -       COoth  1205/26/52/1008/1103 1/2 60
+0 AF_EDGAR_CO_TNG      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.TNG.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1205/26/52/1008      1 60
+0 AF_EDGAR_CO_TNG_eur  -                                                   -       -               - -  -       COeur  1205/26/52/1008/1101 1 60
+0 AF_EDGAR_CO_TNG_asia -                                                   -       -               - -  -       COasia 1205/26/52/1008/1102 1 60
+0 AF_EDGAR_CO_TNG_oth  -                                                   -       -               - -  -       COoth  1205/26/52/1008/1103 1 60
 
-0 AF_EDGAR_CO_PPA      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.PPA.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1207/26/52/1008      1/2 60
-0 AF_EDGAR_CO_PPA_eur  -                                                   -       -               - -  -       COeur  1207/26/52/1008/1101 1/2 60
-0 AF_EDGAR_CO_PPA_asia -                                                   -       -               - -  -       COasia 1207/26/52/1008/1102 1/2 60
-0 AF_EDGAR_CO_PPA_oth  -                                                   -       -               - -  -       COoth  1207/26/52/1008/1103 1/2 60
+0 AF_EDGAR_CO_PPA      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.PPA.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1207/26/52/1008      1 60
+0 AF_EDGAR_CO_PPA_eur  -                                                   -       -               - -  -       COeur  1207/26/52/1008/1101 1 60
+0 AF_EDGAR_CO_PPA_asia -                                                   -       -               - -  -       COasia 1207/26/52/1008/1102 1 60
+0 AF_EDGAR_CO_PPA_oth  -                                                   -       -               - -  -       COoth  1207/26/52/1008/1103 1 60
 
-0 AF_EDGAR_CO_SWD      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.SWD.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1211/26/52/1008      1/2 60
-0 AF_EDGAR_CO_SWD_eur  -                                                   -       -               - -  -       COeur  1211/26/52/1008/1101 1/2 60
-0 AF_EDGAR_CO_SWD_asia -                                                   -       -               - -  -       COasia 1211/26/52/1008/1102 1/2 60
-0 AF_EDGAR_CO_SWD_oth  -                                                   -       -               - -  -       COoth  1211/26/52/1008/1103 1/2 60
+0 AF_EDGAR_CO_SWD      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.SWD.0.1x0.1.nc emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1211/26/52/1008      1 60
+0 AF_EDGAR_CO_SWD_eur  -                                                   -       -               - -  -       COeur  1211/26/52/1008/1101 1 60
+0 AF_EDGAR_CO_SWD_asia -                                                   -       -               - -  -       COasia 1211/26/52/1008/1102 1 60
+0 AF_EDGAR_CO_SWD_oth  -                                                   -       -               - -  -       COoth  1211/26/52/1008/1103 1 60
 )))DICE_Africa
+
+#==============================================================================
+# --- CEDS ---
+#
+# %%% NOTE: This is the default global inventory. You may select either CEDS,
+# EDGAR, or HTAP for the global base emissions %%%
+#
+# ==> CEDS ship emissions are listed in the ship emissions section below
+# ==> CEDS includes trash emissions (Cat=12) from Wiedinmyer et al. (2014)
+#==============================================================================
+(((CEDS
+0 CEDS_CO_AGR      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_agr 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1 5
+0 CEDS_CO_AGR_us   -                                                          -      -                  - -  -       COus   26/1100 1 5
+0 CEDS_CO_AGR_eur  -                                                          -      -                  - -  -       COeur  26/1101 1 5
+0 CEDS_CO_AGR_asia -                                                          -      -                  - -  -       COasia 26/1102 1 5
+0 CEDS_CO_AGR_oth  -                                                          -      -                  - -  -       COoth  26/1103 1 5
+0 CEDS_CO_ENE      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_ene 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1 5
+0 CEDS_CO_ENE_us   -                                                          -      -                  - -  -       COus   26/1100 1 5
+0 CEDS_CO_ENE_eur  -                                                          -      -                  - -  -       COeur  26/1101 1 5
+0 CEDS_CO_ENE_asia -                                                          -      -                  - -  -       COasia 26/1102 1 5
+0 CEDS_CO_ENE_oth  -                                                          -      -                  - -  -       COoth  26/1103 1 5
+0 CEDS_CO_IND      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_ind 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1 5
+0 CEDS_CO_IND_us   -                                                          -      -                  - -  -       COus   26/1100 1 5
+0 CEDS_CO_IND_eur  -                                                          -      -                  - -  -       COeur  26/1101 1 5
+0 CEDS_CO_IND_asia -                                                          -      -                  - -  -       COasia 26/1102 1 5
+0 CEDS_CO_IND_oth  -                                                          -      -                  - -  -       COoth  26/1103 1 5
+0 CEDS_CO_TRA      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_tra 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1 5
+0 CEDS_CO_TRA_us   -                                                          -      -                  - -  -       COus   26/1100 1 5
+0 CEDS_CO_TRA_eur  -                                                          -      -                  - -  -       COeur  26/1101 1 5
+0 CEDS_CO_TRA_asia -                                                          -      -                  - -  -       COasia 26/1102 1 5
+0 CEDS_CO_TRA_oth  -                                                          -      -                  - -  -       COoth  26/1103 1 5
+0 CEDS_CO_RCO      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_rco 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1 5
+0 CEDS_CO_RCO_us   -                                                          -      -                  - -  -       COus   26/1100 1 5
+0 CEDS_CO_RCO_eur  -                                                          -      -                  - -  -       COeur  26/1101 1 5
+0 CEDS_CO_RCO_asia -                                                          -      -                  - -  -       COasia 26/1102 1 5
+0 CEDS_CO_RCO_oth  -                                                          -      -                  - -  -       COoth  26/1103 1 5
+0 CEDS_CO_SLV      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_slv 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1 5
+0 CEDS_CO_SLV_us   -                                                          -      -                  - -  -       COus   26/1100 1 5
+0 CEDS_CO_SLV_eur  -                                                          -      -                  - -  -       COeur  26/1101 1 5
+0 CEDS_CO_SLV_asia -                                                          -      -                  - -  -       COasia 26/1102 1 5
+0 CEDS_CO_SLV_oth  -                                                          -      -                  - -  -       COoth  26/1103 1 5
+0 CEDS_CO_WST      $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc  CO_wst 1750-2014/1-12/1/0 C xy kg/m2/s CO     26      1 5
+0 CEDS_CO_WST_us   -                                                          -      -                  - -  -       COus   26/1100 1 5
+0 CEDS_CO_WST_eur  -                                                          -      -                  - -  -       COeur  26/1101 1 5
+0 CEDS_CO_WST_asia -                                                          -      -                  - -  -       COasia 26/1102 1 5
+0 CEDS_CO_WST_oth  -                                                          -      -                  - -  -       COoth  26/1103 1 5
+)))CEDS
+
+#==============================================================================
+# --- EDGAR v4.3 ---
+#
+# %%% NOTE: This is an optional inventory. You may select either CEDS, EDGAR,
+#  or HTAP for the global base emissions %%%
+# 
+# The following emissions are not included in EDGAR and will be added:
+#  * Wiedinmyer et al. (2014) global trash emissions
+#
+# Aviation and shipping emissions from EDGAR are not included here.
+# We also do not include the following sources:
+#  - Open biomass burning (AWB). These emissions are obtained from
+#    GFED or FINN.
+#==============================================================================
+(((EDGARv43
+0  EDGAR_CO_POW      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.POW.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1201/26/52      1 2
+0  EDGAR_CO_POW_us   -                                                    -       -               - -  -       COus   1201/26/52/1100 1 2
+0  EDGAR_CO_POW_eur  -                                                    -       -               - -  -       COeur  1201/26/52/1101 1 2
+0  EDGAR_CO_POW_asia -                                                    -       -               - -  -       COasia 1201/26/52/1102 1 2
+0  EDGAR_CO_POW_oth  -                                                    -       -               - -  -       COoth  1201/26/52/1103 1 2
+0  EDGAR_CO_ENG      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.ENG.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1202/26/52      1 2
+0  EDGAR_CO_ENG_us   -                                                    -       -               - -  -       COus   1202/26/52/1100 1 2
+0  EDGAR_CO_ENG_eur  -                                                    -       -               - -  -       COeur  1202/26/52/1101 1 2
+0  EDGAR_CO_ENG_asia -                                                    -       -               - -  -       COasia 1202/26/52/1102 1 2
+0  EDGAR_CO_ENG_oth  -                                                    -       -               - -  -       COoth  1202/26/52/1103 1 2
+0  EDGAR_CO_IND      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.IND.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1203/26/52      1 2
+0  EDGAR_CO_IND_us   -                                                    -       -               - -  -       COus   1203/26/52/1100 1 2
+0  EDGAR_CO_IND_eur  -                                                    -       -               - -  -       COeur  1203/26/52/1101 1 2
+0  EDGAR_CO_IND_asia -                                                    -       -               - -  -       COasia 1203/26/52/1102 1 2
+0  EDGAR_CO_IND_oth  -                                                    -       -               - -  -       COoth  1203/26/52/1103 1 2
+0  EDGAR_CO_TRO      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.TRO.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1204/26/52      1 2
+0  EDGAR_CO_TRO_us   -                                                    -       -               - -  -       COus   1204/26/52/1100 1 2
+0  EDGAR_CO_TRO_eur  -                                                    -       -               - -  -       COeur  1204/26/52/1101 1 2
+0  EDGAR_CO_TRO_asia -                                                    -       -               - -  -       COasia 1204/26/52/1102 1 2
+0  EDGAR_CO_TRO_oth  -                                                    -       -               - -  -       COoth  1204/26/52/1103 1 2
+0  EDGAR_CO_TNG      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.TNG.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1205/26/52      1 2
+0  EDGAR_CO_TNG_us   -                                                    -       -               - -  -       COus   1205/26/52/1100 1 2
+0  EDGAR_CO_TNG_eur  -                                                    -       -               - -  -       COeur  1205/26/52/1101 1 2
+0  EDGAR_CO_TNG_asia -                                                    -       -               - -  -       COasia 1205/26/52/1102 1 2
+0  EDGAR_CO_TNG_oth  -                                                    -       -               - -  -       COoth  1205/26/52/1103 1 2
+0  EDGAR_CO_RCO      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.RCO.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1206/26/52      1 2
+0  EDGAR_CO_RCO_us   -                                                    -       -               - -  -       COus   1206/26/52/1100 1 2
+0  EDGAR_CO_RCO_eur  -                                                    -       -               - -  -       COeur  1206/26/52/1101 1 2
+0  EDGAR_CO_RCO_asia -                                                    -       -               - -  -       COasia 1206/26/52/1102 1 2
+0  EDGAR_CO_RCO_oth  -                                                    -       -               - -  -       COoth  1206/26/52/1103 1 2
+0  EDGAR_CO_PPA      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.PPA.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1207/26/52      1 2
+0  EDGAR_CO_PPA_us   -                                                    -       -               - -  -       COus   1207/26/52/1100 1 2
+0  EDGAR_CO_PPA_eur  -                                                    -       -               - -  -       COeur  1207/26/52/1101 1 2
+0  EDGAR_CO_PPA_asia -                                                    -       -               - -  -       COasia 1207/26/52/1102 1 2
+0  EDGAR_CO_PPA_oth  -                                                    -       -               - -  -       COoth  1207/26/52/1103 1 2
+#0 EDGAR_CO_AWB      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.AWB.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1209/26/52      1 2
+#0 EDGAR_CO_AWB_us   -                                                    -       -               - -  -       COus   1209/26/52/1100 1 2
+#0 EDGAR_CO_AWB_eur  -                                                    -       -               - -  -       COeur  1209/26/52/1101 1 2
+#0 EDGAR_CO_AWB_asia -                                                    -       -               - -  -       COasia 1209/26/52/1102 1 2
+#0 EDGAR_CO_AWB_oth  -                                                    -       -               - -  -       COoth  1209/26/52/1103 1 2
+0  EDGAR_CO_SWD      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.SWD.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1211/26/52      1 2
+0  EDGAR_CO_SWD_us   -                                                    -       -               - -  -       COus   1211/26/52/1100 1 2
+0  EDGAR_CO_SWD_eur  -                                                    -       -               - -  -       COeur  1211/26/52/1101 1 2
+0  EDGAR_CO_SWD_asia -                                                    -       -               - -  -       COasia 1211/26/52/1102 1 2
+0  EDGAR_CO_SWD_oth  -                                                    -       -               - -  -       COoth  1211/26/52/1103 1 2
+0  EDGAR_CO_FFF      $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.FFF.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO     1212/26/52      1 2
+0  EDGAR_CO_FFF_us   -                                                    -       -               - -  -       COus   1212/26/52/1100 1 2
+0  EDGAR_CO_FFF_eur  -                                                    -       -               - -  -       COeur  1212/26/52/1101 1 2
+0  EDGAR_CO_FFF_asia -                                                    -       -               - -  -       COasia 1212/26/52/1102 1 2
+0  EDGAR_CO_FFF_oth  -                                                    -       -               - -  -       COoth  1212/26/52/1103 1 2
+
+#==============================================================================
+# --- Wiedinmyer et al. (2014) global trash emissions to be added to EDGAR ---
+#==============================================================================
+0 TRASH_CO     $ROOT/TrashEmis/v2015-03/TrashBurn_v2_generic.01x01.nc CO 2008/1/1/0 C xy kg/m2/s CO     -       1 2
+0 TRASH_COus   -                                                      -  -          - -  -       COus   53/1100 1 2
+0 TRASH_COeur  -                                                      -  -          - -  -       COeur  53/1101 1 2
+0 TRASH_COasia -                                                      -  -          - -  -       COasia 53/1102 1 2
+0 TRASH_COoth  -                                                      -  -          - -  -       COoth  53/1103 1 2
+
+)))EDGARv43
+
+#==============================================================================
+# --- HTAP v2 ---
+#
+# %%% NOTE: This is an optional inventory. You may select either CEDS, EDGAR,
+#  or HTAP for the global base emissions %%%
+#
+# ==> HTAP ship emissions are listed in the ship emissions section below
+# ==> Disable aircraft emissions and get them from AEIC instead.
+#==============================================================================
+(((HTAP
+0 HTAP_CO_IND      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_INDUSTRY.generic.01x01.nc    emi_co 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26      1 4
+0 HTAP_CO_IND_us   -                                                                 -      -                  - -  -       COus   6/28/26/1100 1 4
+0 HTAP_CO_IND_eur  -                                                                 -      -                  - -  -       COeur  6/28/26/1101 1 4
+0 HTAP_CO_IND_asia -                                                                 -      -                  - -  -       COasia 6/28/26/1102 1 4
+0 HTAP_CO_IND_oth  -                                                                 -      -                  - -  -       COoth  6/28/26/1103 1 4
+0 HTAP_CO_POW      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_ENERGY.generic.01x01.nc      emi_co 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26      1 4
+0 HTAP_CO_POW_us   -                                                                 -      -                  - -  -       COus   6/28/26/1100 1 4
+0 HTAP_CO_POW_eur  -                                                                 -      -                  - -  -       COeur  6/28/26/1101 1 4
+0 HTAP_CO_POW_asia -                                                                 -      -                  - -  -       COasia 6/28/26/1102 1 4
+0 HTAP_CO_POW_oth  -                                                                 -      -                  - -  -       COoth  6/28/26/1103 1 4
+0 HTAP_CO_RES      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_RESIDENTIAL.generic.01x01.nc emi_co 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26      1 4
+0 HTAP_CO_RES_us   -                                                                 -      -                  - -  -       COus   6/28/26/1100 1 4
+0 HTAP_CO_RES_eur  -                                                                 -      -                  - -  -       COeur  6/28/26/1101 1 4
+0 HTAP_CO_RES_asia -                                                                 -      -                  - -  -       COasia 6/28/26/1102 1 4
+0 HTAP_CO_RES_oth  -                                                                 -      -                  - -  -       COoth  6/28/26/1103 1 4
+0 HTAP_CO_TRA      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_TRANSPORT.generic.01x01.nc   emi_co 2008-2010/1-12/1/0 C xy kg/m2/s CO     6/28/26      1 4
+0 HTAP_CO_TRA_us   -                                                                 -      -                  - -  -       COus   6/28/26/1100 1 4
+0 HTAP_CO_TRA_eur  -                                                                 -      -                  - -  -       COeur  6/28/26/1101 1 4
+0 HTAP_CO_TRA_asia -                                                                 -      -                  - -  -       COasia 6/28/26/1102 1 4
+0 HTAP_CO_TRA_oth  -                                                                 -      -                  - -  -       COoth  6/28/26/1103 1 4
+#0 HTAP_CO_AIR1      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_LTO.generic.01x01.nc   emi_co 2008-2010/1/1/0    C xy kg/m2/s CO     6/28/26      1 4
+#0 HTAP_CO_AIR1_us   -                                                               -      -                  - -  -       COus   6/28/26/1100 1 4
+#0 HTAP_CO_AIR1_eur  -                                                               -      -                  - -  -       COeur  6/28/26/1101 1 4
+#0 HTAP_CO_AIR1_asia -                                                               -      -                  - -  -       COasia 6/28/26/1102 1 4
+#0 HTAP_CO_AIR1_oth  -                                                               -      -                  - -  -       COoth  6/28/26/1103 1 4
+#0 HTAP_CO_AIR2      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_CDS.generic.01x01.nc   emi_co 2008-2010/1/1/0    C xy kg/m2/s CO     6/28/26      1 4
+#0 HTAP_CO_AIR2_us   -                                                               -      -                  - -  -       COus   6/28/26/1100 1 4
+#0 HTAP_CO_AIR2_eur  -                                                               -      -                  - -  -       COeur  6/28/26/1101 1 4
+#0 HTAP_CO_AIR2_asia -                                                               -      -                  - -  -       COasia 6/28/26/1102 1 4
+#0 HTAP_CO_AIR2_oth  -                                                               -      -                  - -  -       COoth  6/28/26/1103 1 4
+#0 HTAP_CO_AIR3      $ROOT/HTAP/v2015-03/CO/EDGAR_HTAP_CO_AIR_CRS.generic.01x01.nc   emi_co 2008-2010/1/1/0    C xy kg/m2/s CO     6/28/26      1 4
+#0 HTAP_CO_AIR3_us   -                                                               -      -                  - -  -       COus   6/28/26/1100 1 4
+#0 HTAP_CO_AIR3_eur  -                                                               -      -                  - -  -       COeur  6/28/26/1101 1 4
+#0 HTAP_CO_AIR3_asia -                                                               -      -                  - -  -       COasia 6/28/26/1102 1 4
+#0 HTAP_CO_AIR3_oth  -                                                               -      -                  - -  -       COoth  6/28/26/1103 1 4
+)))HTAP
+
 
 #==============================================================================
 # --- Ship emissions ---
 #
 # ==> In the defaults, ARCTAS SO2 has priority over ICOADS, CORBETT, and HTAP.
-#     This can be ovewritten by EMEP over Europe.
 # ==> For CO and NO, ICOADS has priority.
 # ==> Do not use ship emissions from EDGAR v4.2 since they are lumped with
 #     other non-road transportation (aircraft, rail, etc.) emissions
@@ -676,14 +606,6 @@ Mask fractions:              false
 0 CEDS_CO_SHP_asia      -                                                               -      -                   - -  -        COasia 26/1102       10 5
 0 CEDS_CO_SHP_oth       -                                                               -      -                   - -  -        COoth  26/1103       10 5
 )))CEDS_SHIP
-
-(((EMEP_SHIP
-0 EMEP_SHIP_CO          $ROOT/EMEP/v2015-03/EMEP.generic.1x1.nc                         ShipCO 1990-2012/1/1/0     C xy kg/m2/s  CO     1000          10 10
-0 EMEP_SHIP_CO_us       -                                                               -      -                   - -  -        COus   1000/1100     10 10
-0 EMEP_SHIP_CO_eur      -                                                               -      -                   - -  -        COeur  1000/1101     10 10
-0 EMEP_SHIP_CO_asia     -                                                               -      -                   - -  -        COasia 1000/1102     10 10
-0 EMEP_SHIP_CO_oth      -                                                               -      -                   - -  -        COoth  1000/1103     10 10
-)))EMEP_SHIP
 
 (((NEI2011_SHIP_HOURLY
 0 NEI11_C3MARINE_CO     $ROOT/NEI2011/v2015-03/$MM/NEI11_0.1x0.1_2011$MM$DD_c3marine.nc CO     2006-2013/$MM/$DD/* R xy kg/m2/s  CO     252/1007      10 50
@@ -778,6 +700,9 @@ Mask fractions:              false
 0 QFED_CObbOth_FT  -                                                               -       -                     - -             -       CObboth 54/75/312/1109  5 2 
 )))QFED2
 
+#==============================================================================
+# --- GFAS biomass burning ---
+#==============================================================================
 (((GFAS
 0 GFAS_CO      $ROOT/GFAS/v2018-09/$YYYY/GFAS_$YYYY$MM.nc cofire        2003-2018/1-12/1-31/0 C xyL=1:scal300 kg/m2/s CO      75      5 3
 0 GFAS_CObbAm  -                                          -             -                     - -             -       CObbam  75/1104 5 3
@@ -1291,19 +1216,6 @@ Mask fractions:              false
 24 TOTFUEL_2008      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2008/1/1/0      C xy 1 -1
 
 #==============================================================================
-# --- temporary scale factors for comparisons
-#==============================================================================
-918 CO_ratio $ROOT/AnnualScalar/v2014-07/CO_ratio_2005_1985.nc COscalar 2005/1/1/0 C xy 1 1
-
-#==============================================================================
-# --- day-of-week scale factors ---
-# ==> data is Sun/Mon/.../Sat 
-#==============================================================================
-20 GEIA_DOW_NOX 0.784/1.0706/1.0706/1.0706/1.0706/1.0706/0.863 - - - xy 1 1
-21 GEIA_DOW_CO  0.683/1.1076/1.0706/1.0706/1.0706/1.0706/0.779 - - - xy 1 1
-22 GEIA_DOW_HC  0.671/1.1102/1.1102/1.1102/1.1102/1.1102/0.768 - - - xy 1 1 
-
-#==============================================================================
 # --- diurnal scale factors --- 
 #==============================================================================
 26 GEIA_TOD_FOSSIL 0.45/0.45/0.6/0.6/0.6/0.6/1.45/1.45/1.45/1.45/1.4/1.4/1.4/1.4/1.45/1.45/1.45/1.45/0.65/0.65/0.65/0.65/0.45/0.45 - - - xy 1 1
@@ -1311,9 +1223,6 @@ Mask fractions:              false
 #==============================================================================
 # --- seasonal scale factors ---
 #==============================================================================
-
-# from EMEP:
-33 EMEP_SEASON_CO   $ROOT/EMEP/v2015-03/EMEP.Seasonal.geos.1x1.nc                               COrat  2005/1-12/1/0 C xy 1 1
 
 # from Streets:
 37 ZHANG_SEASON_CO  $ROOT/STREETS/v2014-07/2006/Streets_2001_CO_MonthFctr_total.generic.1x1.nc  ratio  2001/1-12/1/0 C xy 1 1 
@@ -1347,7 +1256,6 @@ Mask fractions:              false
 # 11%. More information is given in Duncan et al, JGR, 112, D22301 (2007). 
 #==============================================================================
 52 COPROD_FOSSIL   1.19  - - - xy 1 1
-53 COPROD_BIOFUEL  1.189 - - - xy 1 1
 54 COPROD_BIOMASS  1.11  - - - xy 1 1
 
 #==============================================================================
@@ -1381,21 +1289,7 @@ Mask fractions:              false
 # the fuelburn emissions) in the original AEIC code. I'm not sure if this 
 # is because the netCDF data is in g instead of kg?
 #==============================================================================
-101 AEICACET 3.693477e-3 - -  - xy 1 1
-102 AEICALD2 4.271822e-2 - -  - xy 1 1
-103 AEICALK4 2.137911e-1 - -  - xy 1 1
-104 AEICC2H6 5.214505e-3 - -  - xy 1 1
-105 AEICC3H8 7.808710e-4 - -  - xy 1 1
-106 AEICCH2O 1.230811e-1 - -  - xy 1 1
-107 AEICPRPE 1.780418e-1 - -  - xy 1 1
-108 AEICMACR 5.362609e-2 - -  - xy 1 1
-109 AEICRCHO 3.676944e-2 - -  - xy 1 1
 110 AEICNOCO 1.000000e-3 - -  - xy 1 1
-111 AEICSO2  1.176000e-3 - -  - xy 1 1
-112 AEICSO4  3.600000e-5 - -  - xy 1 1
-113 AEICBC   3.000000e-5 - -  - xy 1 1
-114 AEICHC   1.160000e-3 - -  - xy 1 1
-115 NO2toNO  6.521739e-1 - -  - xy 1 1
 
 #==============================================================================
 # --- NEI 2005 scale factors ---
