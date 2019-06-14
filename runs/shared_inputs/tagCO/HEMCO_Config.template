@@ -63,7 +63,6 @@ Mask fractions:              false
     --> NEI2011_HOURLY         :       false
     --> NEI2011_MONMEAN        :       true
     --> MIX                    :       true
-    --> STREETS                :       false
     --> DICE_Africa            :       true 
 # ----- GLOBAL INVENTORIES ------------------
     --> CEDS                   :       true
@@ -207,31 +206,6 @@ Mask fractions:              false
 0 NEI11_PTNONIPM_CO_eur  -                                                                       -  -                  - -   -        COeur 26/211/252/1007/1101  1   50
 0 NEI11_PTNONIPM_CO_oth  -                                                                       -  -                  - -   -        COoth 26/211/252/1007/1103  1   50
 )))NEI2011_MONMEAN
-
-#==============================================================================
-# --- STREETS SE ASIA (Zhang et al., 2009) ---
-#==============================================================================
-(((STREETS
-0 ZHANG_CO__IND      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_ind  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1 40 
-0 ZHANG_CO__IND_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1 40 
-0 ZHANG_CO__IND_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1 40 
-0 ZHANG_CO__IND_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1 40 
-
-0 ZHANG_CO__POW      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_pow  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1 40 
-0 ZHANG_CO__POW_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1 40 
-0 ZHANG_CO__POW_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1 40 
-0 ZHANG_CO__POW_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1 40 
-
-0 ZHANG_CO__RES      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_res  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1 40 
-0 ZHANG_CO__RES_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1 40 
-0 ZHANG_CO__RES_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1 40 
-0 ZHANG_CO__RES_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1 40 
-
-0 ZHANG_CO__TRA      $ROOT/STREETS/v2014-07/2006/Streets_CO_NO_SO2_2006.generic.1x1.nc CO_tra  2006/1/1/0 C xy kg/m2/s  CO      6/9/26/37/52/1003       1 40 
-0 ZHANG_CO__TRA_eur  -                                                                 -       -          - -  -        COeur   6/9/26/37/52/1003/1101  1 40 
-0 ZHANG_CO__TRA_asia -                                                                 -       -          - -  -        COasia  6/9/26/37/52/1003/1102  1 40 
-0 ZHANG_CO__TRA_oth  -                                                                 -       -          - -  -        COoth   6/9/26/37/52/1003/1103  1 40 
-)))STREETS
 
 #==============================================================================
 # --- MIX v1.1 (Asia) ---
@@ -1224,9 +1198,6 @@ Mask fractions:              false
 # --- seasonal scale factors ---
 #==============================================================================
 
-# from Streets:
-37 ZHANG_SEASON_CO  $ROOT/STREETS/v2014-07/2006/Streets_2001_CO_MonthFctr_total.generic.1x1.nc  ratio  2001/1-12/1/0 C xy 1 1 
-
 # for EDGAR 4.3.1:
 # Using data of 2010, the calculated seasonal ratio for different species in the 
 # same sector are nearly identical, possibly due to consistent activity data used.
@@ -1322,7 +1293,6 @@ Mask fractions:              false
 #==============================================================================
 1000 EMEP_MASK   $ROOT/MASKS/v2018-09/EMEP_mask.geos.1x1.20151222.nc           MASK     2000/1/1/0 C xy 1 1 -30/30/45/70
 1002 CANADA_MASK $ROOT/MASKS/v2018-09/Canada_mask.geos.1x1.nc                  MASK     2000/1/1/0 C xy 1 1 -141/40/-52/85
-1003 SEASIA_MASK $ROOT/MASKS/v2018-09/SE_Asia_mask.generic.1x1.nc              MASK     2000/1/1/0 C xy 1 1  60/-12/153/55
 1006 ASIA_MASK   $ROOT/MASKS/v2018-09/MIX_Asia_mask.generic.025x025.nc         MASK     2000/1/1/0 C xy 1 1 46/-12/180/82
 1007 CONUS_MASK  $ROOT/MASKS/v2018-09/CONUS_Mask.01x01.nc                      MASK     2000/1/1/0 C xy 1 1 -140/20/-50/60
 1008 AFRICA_MASK $ROOT/MASKS/v2018-09/AF_LANDMASK.geos.05x0666.global.nc       LANDMASK 1985/1/1/0 C xy 1 1 -20/-37/54/40
