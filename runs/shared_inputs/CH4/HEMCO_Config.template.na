@@ -103,8 +103,6 @@ Warnings:                    {WARNINGS}
     --> GFED_daily        :       true
     --> GFED_3hourly      :       false
     --> Scaling_CO        :       1.05
-    --> Scaling_POG1      :       1.27
-    --> Scaling_POG2      :       1.27
     --> Scaling_NAP       :       2.75e-4
     --> hydrophilic BC    :       0.2
     --> hydrophilic OC    :       0.5
@@ -386,19 +384,19 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 
 (((GFED4
-111 GFED_TEMP       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_TEMP       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_AGRI       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_AGRI       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_DEFO       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_DEFO       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_BORF       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_BORF       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_PEAT       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_PEAT       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
-111 GFED_SAVA       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_SAVA       1997-2016/1-12/01/0    C xy kgDM/m2/s * - 1 1
+111 GFED_TEMP       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_TEMP       1997-2016/1-12/01/0    RF xy kgDM/m2/s * - 1 1
+111 GFED_AGRI       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_AGRI       1997-2016/1-12/01/0    RF xy kgDM/m2/s * - 1 1
+111 GFED_DEFO       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_DEFO       1997-2016/1-12/01/0    RF xy kgDM/m2/s * - 1 1
+111 GFED_BORF       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_BORF       1997-2016/1-12/01/0    RF xy kgDM/m2/s * - 1 1
+111 GFED_PEAT       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_PEAT       1997-2016/1-12/01/0    RF xy kgDM/m2/s * - 1 1
+111 GFED_SAVA       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_SAVA       1997-2016/1-12/01/0    RF xy kgDM/m2/s * - 1 1
 
 (((GFED_daily
-111 GFED_FRAC_DAY   $ROOT/GFED4/v2015-10/$YYYY/GFED4_dailyfrac_gen.025x025.$YYYY$MM.nc GFED_FRACDAY 2003-2016/1-12/1-31/0  C xy 1 * - 1 1
+111 GFED_FRAC_DAY   $ROOT/GFED4/v2015-10/$YYYY/GFED4_dailyfrac_gen.025x025.$YYYY$MM.nc GFED_FRACDAY 2003-2016/1-12/1-31/0  RF xy 1 * - 1 1
 )))GFED_daily
 
 (((GFED_3hourly
-111 GFED_FRAC_3HOUR $ROOT/GFED4/v2015-10/$YYYY/GFED4_3hrfrac_gen.025x025.$YYYY$MM.nc   GFED_FRAC3HR 2003-2016/1-12/1/0-23  C xy 1 * - 1 1
+111 GFED_FRAC_3HOUR $ROOT/GFED4/v2015-10/$YYYY/GFED4_3hrfrac_gen.025x025.$YYYY$MM.nc   GFED_FRAC3HR 2003-2016/1-12/1/0-23  RF xy 1 * - 1 1
 )))GFED_3hourly
 )))GFED4
 
@@ -406,21 +404,21 @@ Warnings:                    {WARNINGS}
 # --- FINN v1.5 biomass burning emissions (Extension 114) 
 #==============================================================================
 (((.not.FINN_daily
-114 FINN_VEGTYP1       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype1 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP2       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype2 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP3       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype3 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP4       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype4 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP5       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype5 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_VEGTYP9       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype9 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_VEGTYP1       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype1 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
+114 FINN_VEGTYP2       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype2 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
+114 FINN_VEGTYP3       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype3 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
+114 FINN_VEGTYP4       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype4 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
+114 FINN_VEGTYP5       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype5 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
+114 FINN_VEGTYP9       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype9 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
 ))).not.FINN_daily
 
 (((FINN_daily
-114 FINN_DAILY_VEGTYP1 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype1 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_DAILY_VEGTYP2 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype2 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_DAILY_VEGTYP3 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype3 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_DAILY_VEGTYP4 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype4 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype5 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
-114 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype9 $YYYY/1-12/1/0 C xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP1 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype1 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP2 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype2 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP3 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype3 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP4 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype4 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP5 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype5 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
+114 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype9 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
 )))FINN_daily
 
 #==============================================================================
@@ -655,14 +653,14 @@ Warnings:                    {WARNINGS}
 * LANDTYPE72 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE72 1985/1/1/0 C xy 1 * - 1 1
 
 #==============================================================================
-# --- MODIS "XLAI" leaf area index data ---
+# --- MODIS "XLAI" Land Map data ---
 #
 # NOTES:
 # (1) LAI data corresponding to each Olson land type is stored in
-#      separate netCDF variables (XLAI00, XLAI01, ... XLAI72).
-#      The "XLAI" denotes that the files are prepared in this way.
+#     separate netCDF variables (XLAI00, XLAI01, ... XLAI72).
+#     The "XLAI" denotes that the files are prepared in this way.
 # (2) These files were created from the data in the folder
-#      ExtData/CHEM_INPUTS/MODIS_LAI_201707.
+#     ExtData/CHEM_INPUTS/MODIS_LAI_201707.
 # (3) Units are "cm2 leaf/cm2 grid box".
 # (4) Data is timestamped on the 15th of each month.
 # (5) Do not turn on MODIS_XLAI and Yuan_XLAI at the same time!
@@ -746,15 +744,15 @@ Warnings:                    {WARNINGS}
 )))MODIS_XLAI
 
 #==============================================================================
-# --- Yuan processed MODIS leaf area index data ---
+# --- Yuan processed MODIS LAI leaf area index data ---
 #
 # Source: Yuan et al 2011, doi:10.1016/j.rse.2011.01.001
 #         http://globalchange.bnu.edu.cn/research/lai
 #
 # NOTES:
 # (1) LAI data corresponding to each Olson land type is stored in
-#      separate netCDF variables (XLAI00, XLAI01, ... XLAI72).
-#      The "XLAI" denotes that the files are prepared in this way.
+#     separate netCDF variables (XLAI00, XLAI01, ... XLAI72).
+#     The "XLAI" denotes that the files are prepared in this way.
 # (2) Units are "cm2 leaf/cm2 grid box".
 # (3) Data is timestamped every 8 days, starting from the 2nd of the month.
 # (4) Do not turn on MODIS_XLAI and Yuan_XLAI at the same time!
