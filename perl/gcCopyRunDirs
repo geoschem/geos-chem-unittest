@@ -343,11 +343,11 @@ sub doCopyDirs($$) {
       elsif ( $txt[$i] =~ "WEB_PUSH"    ) { $WEB_PUSH  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "COPY_CMD"    ) { $COPY_CMD  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "COPY_PATH"   ) { $COPY_PATH = &parse( $txt[$i] ); }
+      elsif ( $txt[$i] =~ "CODE_DIR"    ) { $CODE_DIR  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "VERBOSE"     ) { $VERBOSE   = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "WARNINGS"    ) { $WARNINGS  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "DESCRIPTION" ) { $DESCRIBE  = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "VERSION"     ) { $VERSION   = &parse( $txt[$i] ); }
-      elsif ( $txt[$i] =~ "CODE_DIR"    ) { $CODE_DIR  = &parse( $txt[$i] ); }
     }
 
     #------------------------------------------------------------------------
