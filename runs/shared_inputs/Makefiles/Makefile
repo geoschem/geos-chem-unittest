@@ -721,6 +721,7 @@ printbuildinfo:
 	@echo "  TOMAS15      : $(TOMAS15)"
 	@echo "  TOMAS30      : $(TOMAS30)"
 	@echo "  TOMAS40      : $(TOMAS40)"
+        @echo "  APM          : $(APM)"
 	@echo "  RRTMG        : $(RRTMG)"
 	@echo "  MASSCONS     : $(MASSCONS)"
 	@echo "  TIMERS       : $(TIMERS)"
