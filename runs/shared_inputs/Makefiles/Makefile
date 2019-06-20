@@ -270,6 +270,10 @@ ifeq ($(SIM),TransportTracers)
  NO_REDUCED  :=y
 endif
 
+ifeq ($(SIM),APM)
+ APM         :=y
+endif
+
 # General run information
 TIMESTAMP    :=$(shell date +"%Y/%m/%d %H:%M")	
 RUNID        :=$(MET)_$(GRID)_$(SIM)
