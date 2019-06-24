@@ -1,7 +1,7 @@
 README -- describes contents of runs/shared_inputs
 13 Feb 2018
 GEOS-Chem Support Team
-geos-chem-support@as.harvard.edu
+geos-chem-support@g.harvard.edu
 
 The sub-folders of runs/shared_inputs contain input files for the different
 types of GEOS-Chem Classic simulations.  The following files are provided for all

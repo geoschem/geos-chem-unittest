@@ -5,6 +5,7 @@ Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
 End   YYYYMMDD, hhmmss  : {DATE2} {TIME2}
 Run directory           : ./
 Root data directory     : {DATA_ROOT}
+Met field               : {MET}
 ------------------------+------------------------------------------------------
 %%% GRID MENU %%%       :
 Grid resolution         : 4.0x5.0

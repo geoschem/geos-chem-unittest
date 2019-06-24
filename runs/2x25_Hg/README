@@ -4,7 +4,7 @@ directory can be used with GEOS-FP or MERRA-2 meteorology.
 NOTE FOR Hg USERS:
 Please see the wiki for notes on using options other than the defaults!
 (e.g. if using dynamic ocean)
-http://wiki.seas.harvard.edu/geos-chem/index.php/Mercury
+http://wiki.seg.harvard.edu/geos-chem/index.php/Mercury
 
 The various input files (e.g. HEMCO_Config.template, HISTORY.rc, etc.) are
 stored in ../shared_inputs/Hg.  This allows us to keep a single set of 
@@ -18,4 +18,4 @@ files to be customized for each user.
 
 13 Feb 2018
 GEOS-Chem Support Team
-geos-chem-support@as.harvard.edu
+geos-chem-support@g.harvard.edu
