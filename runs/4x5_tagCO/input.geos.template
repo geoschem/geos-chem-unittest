@@ -83,6 +83,9 @@ Enhance BC Absorption?  : F
 %%% DEPOSITION MENU %%% :
 Turn on Dry Deposition? : T
 Turn on Wet Deposition? : F
+Turn on CO2 Effect?     : F
+CO2 level               : 600.0
+Reference CO2 level     : 380.0
 ------------------------+------------------------------------------------------
 %%% CHEMISTRY MENU %%%  :
 Turn on Chemistry?      : T
