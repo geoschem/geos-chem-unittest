@@ -29,7 +29,7 @@ EXPID:  ./OutputDir/GEOSChem
 #==============================================================================
 COLLECTIONS: 'Restart',
 	     'RRTMG',
-             #'SpeciesConc',
+             'SpeciesConc',
              #'Budget',
              #'AerosolMass',
              #'Aerosols',

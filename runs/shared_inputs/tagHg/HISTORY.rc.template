@@ -28,13 +28,13 @@ EXPID:  ./OutputDir/GEOSChem
 # your own customized diagnostic collections as well.
 #==============================================================================
 COLLECTIONS: 'Restart',
-             #'SpeciesConc',
+             'MercuryEmis',
+             'MercuryChem',
+             'MercuryOcean',
+             'SpeciesConc',
              #'Budget',
              #'CloudConvFlux',
              #'DryDep',
-             #'MercuryEmis',
-             #'MercuryChem',
-             #'MercuryOcean',
              #'LevelEdgeDiags',      
              #'StateMet',      
              #'WetLossConv',

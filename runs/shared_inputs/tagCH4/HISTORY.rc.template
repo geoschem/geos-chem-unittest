@@ -31,7 +31,7 @@ CoresPerNode: 6
 # your own customized diagnostic collections as well.
 #==============================================================================
 COLLECTIONS: 'Restart',
-             #'SpeciesConc',
+             'SpeciesConc',
              #'Budget',
              #'CloudConvFlux',
              #'ConcAfterChem',

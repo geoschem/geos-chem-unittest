@@ -28,9 +28,9 @@ EXPID:  ./OutputDir/GEOSChem
 # your own customized diagnostic collections as well.
 #==============================================================================
 COLLECTIONS: 'Restart',
-             #'SpeciesConc',
+	     'CH4',
+             'SpeciesConc',
              #'Budget',
-	     #'CH4',
              #'CloudConvFlux',
              #'ConcAfterChem',
              #'LevelEdgeDiags',      
