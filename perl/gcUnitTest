@@ -771,6 +771,7 @@ sub doUnitTest($$) {
 		    "cp -f HEMCO_Config.rc.$met\_$grid\_$sim HEMCO_Config.rc >> $stdout\n",
 		    "rm -f HEMCO_Config.rc.$met\_$grid\_$sim >> $stdout\n",
 		    "ln -sf $rstFile GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",
+		    "mkdir -p OutputDir\n",
  	            "$makeCmd unittest >> $stdout\n",
 		    "rm -f Makefile\n",
 		    "rm -f GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",

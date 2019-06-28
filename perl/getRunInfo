@@ -120,7 +120,7 @@ sub getInfo($$) {
       $runinfo = "$linestrings[4]$linestrings[5]";
       if    ( $id == 4 || $id == 5 ) { $runinfo = substr( $runinfo, 0, 12 ); } 
       elsif ( $id == 7 || $id == 8 ) { $runinfo = substr( $runinfo, 0, 8  ); }
-      elsif ( $id == 9 || $id == 10) { $runinfo = substr( $runinfo, 9, 4 ); }
+      elsif ( $id == 9 || $id == 10) { $runinfo = substr( $runinfo, 8, 4 ); }
 
     } else {
  

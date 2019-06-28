@@ -232,6 +232,7 @@ sub main() {
           $cmd .= "input.geos.m* GEOSChem.Restart* core.* *.nc4 ";
 	  $cmd .= "HEMCO_Config.rc.g* HEMCO_Config.rc.m* trac_avg.* ";
 	  $cmd .= "Rn.mass.*;";
+	  $cmd .= "rm -rf OutputDir;";
 	  $cmd .= "cd ..";
           #print "$cmd\n";
 	  qx/$cmd/;

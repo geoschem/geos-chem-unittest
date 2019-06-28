@@ -16,7 +16,7 @@
 #      in the OutputDir sub-folder of this run directory.
 #
 #============================================================================
-EXPID:  ./GEOSChem
+EXPID:  ./OutputDir/GEOSChem
 
 #==============================================================================
 # %%%%% COLLECTION NAME DECLARATIONS %%%%%
@@ -61,7 +61,7 @@ COLLECTIONS: 'Restart',
 #
 # Available for all simulations
 #==============================================================================
-  Restart.template:           '%y4%m2%d2_%h2%n2z.nc4',
+  Restart.filename:           './GEOSChem.Restart.%y4%m2%d2_%h2%n2z.nc4',
   Restart.format:             'CFIO',
   Restart.frequency:          'End',
   Restart.duration:           'End',

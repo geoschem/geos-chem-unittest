@@ -167,7 +167,7 @@ sub checkTheFiles($$$$) {
   opendir( my $dh, $dir1 ) || die( "validate.pl: Can't open $dir1\n" );
   @files = readdir( $dh );
   closedir( $dh );
-
+  
   #=========================================================================
   # Print the top header
   #=========================================================================
@@ -185,8 +185,8 @@ sub checkTheFiles($$$$) {
     chomp( $file );
 
     # Only consider files that are bpch or netCDF
-    if ( ( $file =~ m/trac_avg.$sim/ ) || ( $file =~ m/\.nc/ ) ) {
-	 
+    if ( ( $file =~ m/trac_avg.$sim/ ) || ( $file =~ m/\.nc/ ) ){
+      
       # Look for the first file
       if ( $file =~ m/$suf1/ ) {
 
@@ -210,6 +210,48 @@ sub checkTheFiles($$$$) {
     } 
   }
 
+  #=========================================================================
+  # Now repeat for files in OutputDir
+  #=========================================================================
+  my $outdir1 = "$dir1/OutputDir";
+  my $outdir2 = "$dir2/OutputDir";
+
+  # Read files in the directory
+  opendir( $dh, $outdir1 ) || die( "validate.pl: Can't open $outdir1\n" );
+  @files = readdir( $dh );
+  closedir( $dh );
+  
+  # Test if files are identical
+  foreach $file ( sort( @files ) ) {
+
+    # Strip new lines
+    chomp( $file );
+
+    # Only consider files that are netCDF
+    if ( ( $file =~ m/\.nc/ ) ){
+      
+      # Look for the first file
+      if ( $file =~ m/$suf1/ ) {
+
+	# First file to examine
+	$file1 =  "$outdir1/$file";
+	    
+	# Second file to examine
+	$file2 =  "$outdir2/$file";
+	if    ( $type =~ m/[Dd][Tt]/ ) { $file2 =~ s/$suf1/$suf2/g;  }
+	elsif ( $type =~ m/[Uu][Tt]/ ) { $file2 =~ s/\$suf1/$suf2/g; }
+
+	# Create combined file name for display
+	$baseName = substr( $file, 0, length($file) - length($suf1) );
+	$combName = "$baseName.\{$ext1,$ext2}";
+ 
+	# Test if files are identical and write status to stdout
+	$status = &getCheckSums( $file1, $file2, $combName );
+	print "### $status\n";
+
+      }	   
+    } 
+  }
 
   #=========================================================================
   # Print the bottom header
@@ -244,7 +286,7 @@ sub main() {
 # !LOCAL VARIABLES:
 #
   # Scalars
-  my $errMsg = "Usage: validate.pl DIR1 DIR2 SIM TYPE\n";
+  my $errMsg = "Usage: validate.pl SIM DIR1 DIR2 TYPE\n";
 
   # If the proper # of args are passed, then validate the GEOS-Chem files
   # from a unit test or difference test.  Otherwise exit with error.
