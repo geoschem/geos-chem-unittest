@@ -26,9 +26,6 @@ rm -f  *.fullchem
 rm -f  *.txt
 rm -f  *.json
 rm -f  *results*
-rm -f  emission_differences/*
-rm -f  emission_maps/*
-rm -f  emission_ratios/*
 rm -rf Aerosols
 rm -rf Bromine
 rm -rf Chlorine

@@ -25,19 +25,19 @@
 ###############################################################################
 
 ##### Parameters for Model #1 #####
-Version_1   : GC_12.0.0
+Version_1   : GC_12.4.0
 Model_1     : GEOSFP
 Date_1      : 20160701
 N_Tracers_1 : 183
-RunDir_1    : ~/SR/%VERSION_1%
+RunDir_1    : ../../%VERSION_1%
 File_1      : %RUNDIR_1%/trac_avg.%VERSION_1%
 
 ##### Parameters for Model #2 #####
-Version_2   : GC_12.1.0
+Version_2   : GC_12.5.0
 Model_2     : GEOSFP
 Date_2      : 20160701
 N_Tracers_2 : 183
-RunDir_2    : ~/SR/%VERSION_2%
+RunDir_2    : ../../%VERSION_2%
 File_2      : %RUNDIR_2%/trac_avg.%VERSION_2%
 InitFile_2  : %RUNDIR_2%/Ox.mass.initial
 FinalFile_2 : %RUNDIR_2%/Ox.mass.final

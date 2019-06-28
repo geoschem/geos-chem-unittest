@@ -52,20 +52,20 @@ rm -rf $dir$version/CodeDir
 # Change group name of new directories and files
 chgrp jacob_gcst $dir$version
 chgrp jacob_gcst $dir$version/*
-chgrp jacob_gcst $dir$version/output/*
-chgrp jacob_gcst $dir$version/output/*/*
+chgrp jacob_gcst $dir$version/Plots/*
+chgrp jacob_gcst $dir$version/Plots/*/*
 
 # Change permissions of new directory and files
 chmod 775 $dir$version
 chmod 664 $dir$version/*
-chmod 775 $dir$version/output
-chmod 775 $dir$version/output/*
-chmod 664 $dir$version/output/*/*
-chmod 664 $dir$version/output/*pdf
-chmod 664 $dir$version/output/*txt
-chmod 664 $dir$version/output/*json
-chmod 664 $dir$version/output/*1mon
-chmod 664 $dir$version/output/*results*
+chmod 775 $dir$version/Plots
+chmod 775 $dir$version/Plots/*
+chmod 664 $dir$version/Plots/*/*
+chmod 664 $dir$version/Plots/*pdf
+chmod 664 $dir$version/Plots/*txt
+chmod 664 $dir$version/Plots/*json
+chmod 664 $dir$version/Plots/*1mon
+chmod 664 $dir$version/Plots/*results*
 chmod 775 $dir$version/getRunInfo
 chmod 775 $dir$version/Makefile
 chmod 775 $dir$version/$version.run
