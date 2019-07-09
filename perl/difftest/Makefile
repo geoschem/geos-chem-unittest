@@ -252,6 +252,10 @@ ifeq ($(SIM),TransportTracers)
  NO_REDUCED  :=y
 endif
 
+ifeq ($(SIM),APM)
+ APM         :=y
+endif
+
 # General run information
 TIMESTAMP    :=$(shell date +"%Y/%m/%d %H:%M")	
 RUNID        :=$(MET)_$(GRID)_$(SIM)
@@ -406,7 +410,7 @@ refonly:
                                START=$(START)         END=$(END)              \
                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)    \
                                TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
-                               BPCH_DIAG=$(BPCH_DIAG) 
+                               BPCH_DIAG=$(BPCH_DIAG) APM=$(APM)
 	@$(MAKE) printcodeinforef > $(RUN_REF)/$(LOG_COMP).Ref
 	@$(MAKE) printbuildinfo >> $(RUN_REF)/$(LOG_COMP).Ref
 	@$(MAKE) printruninforef >> $(LOG_REF)
@@ -428,7 +432,7 @@ devonly:
                                START=$(START)         END=$(END)              \
                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)    \
                                TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
-                               BPCH_DIAG=$(BPCH_DIAG)
+                               BPCH_DIAG=$(BPCH_DIAG) APM=$(APM)
 	@$(MAKE) printcodeinfodev > $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printbuildinfo >> $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
@@ -454,7 +458,7 @@ devlib:
                                START=$(START)         END=$(END)              \
                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)    \
                                TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
-                               BPCH_DIAG=$(BPCH_DIAG)
+                               BPCH_DIAG=$(BPCH_DIAG) APM=$(APM)
 	@$(MAKE) printcodeinfodev > $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printbuildinfo >> $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
@@ -480,7 +484,7 @@ devrun:
                                START=$(START)         END=$(END)              \
                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)    \
                                TAU_OPTIONS=$(TAU_OPT) STARTDATE=$(STARTDATE)  \
-                               BPCH_DIAG=$(BPCH_DIAG)
+                               BPCH_DIAG=$(BPCH_DIAG) APM=$(APM)
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
 	@$(MAKE) printallinfodev
 
@@ -637,6 +641,7 @@ printbuildinfo:
 	@echo "  TOMAS15      : $(TOMAS15)"
 	@echo "  TOMAS30      : $(TOMAS30)"
 	@echo "  TOMAS40      : $(TOMAS40)"
+	@echo "  APM          : $(APM)"
 	@echo "  RRTMG        : $(RRTMG)"
 	@echo "  MASSCONS     : $(MASSCONS)"
 	@echo "  TIMERS       : $(TIMERS)"

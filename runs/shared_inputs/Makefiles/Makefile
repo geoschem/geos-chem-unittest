@@ -270,6 +270,10 @@ ifeq ($(SIM),TransportTracers)
  NO_REDUCED  :=y
 endif
 
+ifeq ($(SIM),APM)
+ APM         :=y
+endif
+
 # General run information
 TIMESTAMP    :=$(shell date +"%Y/%m/%d %H:%M")	
 RUNID        :=$(MET)_$(GRID)_$(SIM)
@@ -397,7 +401,7 @@ unittest:
 sp:
 	@$(MAKE) spclean
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)                                  \
+                                NEST=$(NEST)           APM=$(APM)             \
                                 CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
                                 TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
                                 TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
@@ -416,7 +420,7 @@ sp:
 mp:
 	@$(MAKE) mpclean
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)                                  \
+                                NEST=$(NEST)           APM=$(APM)             \
                                 CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
                                 TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
                                 TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
@@ -440,7 +444,7 @@ spbuild:
 	@$(MAKE) spexeclean
 	@$(MAKE) splogclean
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)                                  \
+                                NEST=$(NEST)           APM=$(APM)             \
                                 CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
                                 TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
                                 TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
@@ -456,7 +460,7 @@ mpbuild:
 	@$(MAKE) mpexeclean
 	@$(MAKE) mplogclean
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)                                  \
+                                NEST=$(NEST)           APM=$(APM)             \
                                 CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
                                 TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
                                 TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
@@ -503,7 +507,7 @@ hcobuild:
 	@$(MAKE) hcoexeclean
 	@$(MAKE) hcologclean
 	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)                                  \
+                                NEST=$(NEST)           APM=$(APM)             \
                                 CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
                                 TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
                                 TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
@@ -717,6 +721,7 @@ printbuildinfo:
 	@echo "  TOMAS15      : $(TOMAS15)"
 	@echo "  TOMAS30      : $(TOMAS30)"
 	@echo "  TOMAS40      : $(TOMAS40)"
+	@echo "  APM          : $(APM)"
 	@echo "  RRTMG        : $(RRTMG)"
 	@echo "  MASSCONS     : $(MASSCONS)"
 	@echo "  TIMERS       : $(TIMERS)"
