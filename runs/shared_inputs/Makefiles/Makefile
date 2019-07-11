@@ -543,6 +543,7 @@ dataclean:
 	rm -f diaginfo.dat tracerinfo.dat
 	rm -f tracer_mass*.dat
 	rm -f core.*
+	rm -f OutputDir/*
 	@for f in ./*.nc4; do                               \
            if [[ "$$f" != "./GEOSChem.Restart.$(STARTDATE)_0000z.nc4" ]]; \
 	      then rm -f $$f; fi;              \
@@ -553,6 +554,7 @@ dataclean:
 spdataclean:
 	rm -f $(GC_DIAG)*.sp
 	rm -f $(GC_RST)*.sp
+	rm -f OutputDir/*.sp
 	rm -f *.nc4.sp
 	rm -f HEMCO_restart*.sp
 	rm -f diaginfo.dat tracerinfo.dat
@@ -560,6 +562,7 @@ spdataclean:
 mpdataclean:
 	rm -f $(GC_DIAG)*.mp
 	rm -f $(GC_RST)*.mp
+	rm -f OutputDir/*.mp
 	rm -f *.nc4.mp
 	rm -f HEMCO_restart*.mp
 	rm -f diaginfo.dat tracerinfo.dat
@@ -759,19 +762,17 @@ addsuffixsp:
 	@for f in ./$(GC_DIAG); do                                  \
            if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
         done
-	@for f in ./HEMCO_restart*.nc; do                           \
-           if [[ "$$f" != "./HEMCO_restart.$(STARTDATE)0000.nc" ]]; \
-              then mv -f $$f $$f.sp; fi;                            \
+	@for f in ./$(HMCO_RST); do                                 \
+           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
         done
-	@for f in ./HEMCO_diagnostics*.nc; do                       \
+	@for f in ./OutputDir/HEMCO_diagnostics*.nc; do             \
            if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
         done
 	@for f in ./HEMCO.log; do                                   \
            if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
         done
-	@for f in ./GEOSChem*.nc4; do                               \
-           if [[ "$$f" != "./GEOSChem.Restart.$(STARTDATE)_0000z.nc4" ]]; \
-	      then mv -f $$f $$f.sp; fi;              \
+	@for f in ./OutputDir/GEOSChem*.nc4; do                     \
+           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
         done
 
 addsuffixmp:
@@ -781,19 +782,17 @@ addsuffixmp:
 	@for f in ./$(GC_DIAG); do                                  \
            if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
         done
-	@for f in ./HEMCO_restart*.nc; do                           \
-           if [[ "$$f" != "./HEMCO_restart.$(STARTDATE)0000.nc" ]]; \
-              then  mv -f $$f $$f.mp; fi;                           \
+	@for f in ./$(HMCO_RST); do                                 \
+           if [[ -f $$f ]]; then  mv -f $$f $$f.mp; fi;             \
         done
-	@for f in ./HEMCO_diagnostics*.nc; do                       \
+	@for f in ./OutputDir/HEMCO_diagnostics*.nc; do             \
            if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
         done
 	@for f in ./HEMCO.log; do                                   \
            if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
         done
-	@for f in ./GEOSChem*.nc4; do                               \
-           if [[ "$$f" != "./GEOSChem.Restart.$(STARTDATE)_0000z.nc4" ]]; \
-	      then mv -f $$f $$f.mp; fi;              \
+	@for f in ./OutputDir/GEOSChem*.nc4; do                     \
+           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
         done
 
 check:

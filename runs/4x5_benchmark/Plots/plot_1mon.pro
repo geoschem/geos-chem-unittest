@@ -81,34 +81,40 @@ pro Plot_1mon, InFile, _EXTRA=e
       InFile = InFile[0]
 
    endif
-
-   ; Create the benchmark plots!
-   Benchmark_1Mon, InFile, /No_Profiles, /No_2D_Met, /No_3D_Met, _EXTRA=e
-
+   
+;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+; The GEOS-Chem Support Team is transitioning to the GCPy package for
+; creation of benchmark plots. As of GEOS-Chem 12.5.0, only the budget
+; files are needed from the GAMAP benchmarking routines. (mps, 6/28/19)
+;     
+;   ; Create the benchmark plots!
+;   Benchmark_1Mon, InFile, /No_Profiles, /No_2D_Met, /No_3D_Met, _EXTRA=e
+;
    ; To customize set of maps, uncomment all of the below and then
    ; selectively comment out lines
-;   Benchmark_1Mon, InFile, $ 
-;        /NO_AOD_DIFFS,  $; difference maps of aerosol optical depths.
-;        /NO_AOD_MAPS,   $; aerosol optical depths.
+   Benchmark_1Mon, InFile, $ 
+        /NO_AOD_DIFFS,  $; difference maps of aerosol optical depths.
+        /NO_AOD_MAPS,   $; aerosol optical depths.
 ;        /NO_BUDGET,     $; table of Ox and CO budgets, mean OH and CH3CCl3 LT.
-;        /NO_CONC_MAPS,  $; tracer concentrations maps
-;        /NO_DIFFS,      $; tracer differences maps
-;        /NO_EMISSIONS,  $; table of emissions totals. 
-;        /NO_FREQ_DIST,  $; frequency distribution histogram plot.
-;        /NO_JVALUES,    $; J-value ratios maps
-;        /NO_JVDIFFS,    $; J-value differences maps
-;        /NO_JVMAPS,     $; J-values maps
-;        /NO_PROFILES,   $; plot of vertical profiles of tracer differences
-;        /NO_RATIOS,     $; tracer ratios maps
-;        /NO_STRATDIFF,  $; zonal mean differences maps in strat (100-0.01hPa)
-;        /NO_STRATCONC,  $; zonal mean conc maps in strat (100-0.01hPa)
-;        /NO_ZONALDIFF,  $; zonal mean differences maps
-;        /NO_ZONALCONC,  $; zonal tracer concentrations maps
-;        /NO_CLOUDDIFF,  $; difference plots of cloud optical depth
-;        /NO_2D_MET,     $; difference plots for 2-D met fields
-;        /NO_3D_MET,     $; difference plots for 3-D met fields
+        /NO_CONC_MAPS,  $; tracer concentrations maps
+        /NO_DIFFS,      $; tracer differences maps
+        /NO_EMISSIONS,  $; table of emissions totals. 
+        /NO_FREQ_DIST,  $; frequency distribution histogram plot.
+        /NO_JVALUES,    $; J-value ratios maps
+        /NO_JVDIFFS,    $; J-value differences maps
+        /NO_JVMAPS,     $; J-values maps
+        /NO_PROFILES,   $; plot of vertical profiles of tracer differences
+        /NO_RATIOS,     $; tracer ratios maps
+        /NO_STRATDIFF,  $; zonal mean differences maps in strat (100-0.01hPa)
+        /NO_STRATCONC,  $; zonal mean conc maps in strat (100-0.01hPa)
+        /NO_ZONALDIFF,  $; zonal mean differences maps
+        /NO_ZONALCONC,  $; zonal tracer concentrations maps
+        /NO_CLOUDDIFF,  $; difference plots of cloud optical depth
+        /NO_2D_MET,     $; difference plots for 2-D met fields
+        /NO_3D_MET,     $; difference plots for 3-D met fields
 ;        /NO_FULLCHEM,   $; enable if chemistry is turned off
-;         _EXTRA = e
+         _EXTRA = e
+;%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
    ; Create PDF files from the postscript files
    Make_Pdf, './'
@@ -116,9 +122,9 @@ pro Plot_1mon, InFile, _EXTRA=e
    ; Remove PS files and only keep PDF files
    Spawn, 'rm -v *.ps'
 
-   ; Move emission plots into appropriate folder
-   Spawn, 'mv -v *_emission_differences.pdf ./emission_differences/'
-   Spawn, 'mv -v *_emission_maps.pdf ./emission_maps/'
-   Spawn, 'mv -v *_emission_ratios.pdf ./emission_ratios/'
+;   ; Move emission plots into appropriate folder
+;   Spawn, 'mv -v *_emission_differences.pdf ./emission_differences/'
+;   Spawn, 'mv -v *_emission_maps.pdf ./emission_maps/'
+;   Spawn, 'mv -v *_emission_ratios.pdf ./emission_ratios/'
 
 end
