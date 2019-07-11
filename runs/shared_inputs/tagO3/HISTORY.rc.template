@@ -31,6 +31,7 @@ COLLECTIONS: 'Restart',
              'SpeciesConc',
              #'Budget',
              #'CloudConvFlux',
+             #'ConcAboveSfc',
              #'DryDep',
              #'LevelEdgeDiags',      
              #'ProdLoss',
@@ -124,6 +125,24 @@ COLLECTIONS: 'Restart',
   CloudConvFlux.duration:     {DURATION}
   CloudConvFlux.mode:         'time-averaged'
   CloudConvFlux.fields:       'CloudConvFlux_?ADV?           ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE ConcAboveSfc COLLECTION %%%%%
+#
+# Concentrations of O3 species at a user-specified altitude above
+# the surface, such as 10m.  Set the desired output altitude in meters
+# in the DEPOSITION MENU of input.geos.
+#
+# NOTE: All of the fields in the collection must be turned on.
+#==============================================================================
+  ConcAboveSfc.template:      '%y4%m2%d2_%h2%n2z.nc4',
+  ConcAboveSfc.format:        'CFIO',
+  ConcAboveSfc.frequency:     {FREQUENCY}
+  ConcAboveSfc.duration:      {DURATION}
+  ConcAboveSfc.mode:          'time-averaged'
+  ConcAboveSfc.fields:        'DryDepRaALT1                  ', 'GIGCchem',  
+                              'DryDepZLALT1                  ', 'GIGCchem',  
+                              'SpeciesConcALT1_?DRYALT?      ', 'GIGCchem',   
 ::
 #==============================================================================
 # %%%%% THE DryDep COLLECTION %%%%%
