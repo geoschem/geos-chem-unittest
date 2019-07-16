@@ -272,9 +272,10 @@ COLLECTIONS: 'Restart',
   ConcAboveSfc.frequency:     {FREQUENCY}
   ConcAboveSfc.duration:      {DURATION}
   ConcAboveSfc.mode:          'time-averaged'
-  ConcAboveSfc.fields:        'DryDepRaALT1                  ', 'GIGCchem',  
-                              'DryDepZLALT1                  ', 'GIGCchem',  
-                              'SpeciesConcALT1_?DRYALT?      ', 'GIGCchem',   
+  ConcAboveSfc.fields:        'DryDepRaALT1                  ', 'GIGCchem',
+                              'DryDepZLALT1                  ', 'GIGCchem',
+                              'DryDepVelForALT1_?DRYALT?     ', 'GIGCchem',
+                              'SpeciesConcALT1_?DRYALT?      ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE ConcAfterChem COLLECTION %%%%%
@@ -291,10 +292,10 @@ COLLECTIONS: 'Restart',
   ConcAfterChem.frequency:    {FREQUENCY}
   ConcAfterChem.duration:     {DURATION}
   ConcAfterChem.mode:         'time-averaged'
-  ConcAfterChem.fields:       'OHconcAfterChem               ', 'GIGCchem',  
-                              'HO2concAfterChem              ', 'GIGCchem',  
-                              'O1DconcAfterChem              ', 'GIGCchem',  
-                              'O3PconcAfterChem              ', 'GIGCchem',  
+  ConcAfterChem.fields:       'OHconcAfterChem               ', 'GIGCchem',
+                              'HO2concAfterChem              ', 'GIGCchem',
+                              'O1DconcAfterChem              ', 'GIGCchem',
+                              'O3PconcAfterChem              ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE DryDep COLLECTION %%%%%
