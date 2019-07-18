@@ -297,7 +297,7 @@ EXE_MP       :=geos.mp
 EXE_HMCO_SA  :=hemco_standalone.x
 
 # Output data files
-GC_DIAG      :=trac_avg.$(RUNID).$(START)
+TRAC_AVG     :=trac_avg.$(RUNID).$(START)
 HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
 GC_RST       :=GEOSChem.Restart.$(ENDDATE)_$(ENDTIME)z.nc4
 
@@ -552,7 +552,7 @@ dataclean:
 	rm -f *.nc4.mp
 
 spdataclean:
-	rm -f $(GC_DIAG)*.sp
+	rm -f $(TRAC_AVG)*.sp
 	rm -f $(GC_RST)*.sp
 	rm -f OutputDir/*.sp
 	rm -f *.nc4.sp
@@ -560,7 +560,7 @@ spdataclean:
 	rm -f diaginfo.dat tracerinfo.dat
 
 mpdataclean:
-	rm -f $(GC_DIAG)*.mp
+	rm -f $(TRAC_AVG)*.mp
 	rm -f $(GC_RST)*.mp
 	rm -f OutputDir/*.mp
 	rm -f *.nc4.mp
@@ -668,7 +668,7 @@ printruninfosp:
 	@echo "  HEMCO End           : $(HMCO_END)"
 	@echo "  Version number      : $(VERSION)"
 	@echo "  Version tag         : $(VERSION_TAG)"
-	@echo "  GC Diagnostic File  : $(GC_DIAG).sp"
+	@echo "  GC Diagnostic File  : $(TRAC_AVG).sp"
 	@echo "  GC Restart File     : $(GC_RST).sp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).sp"
 	@echo "  GC Run Log File     : $(LOG_SP)"
@@ -683,7 +683,7 @@ printruninfomp:
 	@echo "  HEMCO End           : $(HMCO_END)"
 	@echo "  Version number      : $(VERSION)"
 	@echo "  Version tag         : $(VERSION_TAG)"
-	@echo "  GC Diagnostic File  : $(GC_DIAG).mp"
+	@echo "  GC Diagnostic File  : $(TRAC_AVG).mp"
 	@echo "  GC Restart File     : $(GC_RST).mp"
 	@echo "  HEMCO Restart File  : $(HMCO_RST).mp"
 	@echo "  GC Run Log File     : $(LOG_MP)"
@@ -759,7 +759,7 @@ addsuffixsp:
 	@for f in ./$(GC_RST); do                                   \
            if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
         done
-	@for f in ./$(GC_DIAG); do                                  \
+	@for f in ./$(TRAC_AVG); do                                  \
            if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
         done
 	@for f in ./$(HMCO_RST); do                                 \
@@ -779,7 +779,7 @@ addsuffixmp:
 	@for f in ./$(GC_RST); do                                   \
            if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
         done
-	@for f in ./$(GC_DIAG); do                                  \
+	@for f in ./$(TRAC_AVG); do                                  \
            if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
         done
 	@for f in ./$(HMCO_RST); do                                 \
