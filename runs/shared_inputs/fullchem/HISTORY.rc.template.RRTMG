@@ -30,9 +30,10 @@ EXPID:  ./OutputDir/GEOSChem
 COLLECTIONS: 'Restart',
 	     'RRTMG',
              'SpeciesConc',
-             #'Budget',
+             #'AdvFluxVert',
              #'AerosolMass',
              #'Aerosols',
+             #'Budget',
              #'CloudConvFlux',
              #'ConcAboveSfc',
              #'ConcAfterChem',
@@ -42,9 +43,9 @@ COLLECTIONS: 'Restart',
              #'ProdLoss',
              #'StateChm',     
              #'StateMet',      
+             #'Transport',
              #'WetLossConv',
              #'WetLossLS',
-             #'Transport',
              #'BoundaryConditions',
 ::
 ###############################################################################
@@ -93,37 +94,18 @@ COLLECTIONS: 'Restart',
   SpeciesConc.fields:         'SpeciesConc_?ADV?             ', 'GIGCchem',
 ::
 #==============================================================================
-# %%%%% THE Budget COLLECTION %%%%%
+# %%%%% THE AdvFluxVert COLLECTION %%%%%
 #
-# GEOS-Chem budget diagnostics defined as species kg/s in the column
-# (full, troposphere, or PBL) due to a single component (e.g. chemistry)
-# (default = advected species)
+# GEOS-Chem vertical mass flux of species in kg/s (default = O3 only)
 #
 # Available for all simulations
 #==============================================================================
-  Budget.template:     '%y4%m2%d2_%h2%n2z.nc4',
-  Budget.format:       'CFIO',
-  Budget.frequency:    {FREQUENCY}
-  Budget.duration:     {DURATION}
-  Budget.mode:         'time-averaged'
-  Budget.fields:       'BudgetEmisDryDepFull_?ADV?           ', 'GIGCchem',  
-                       'BudgetEmisDryDepTrop_?ADV?           ', 'GIGCchem',  
-                       'BudgetEmisDryDepPBL_?ADV?            ', 'GIGCchem',  
-                       'BudgetChemistryFull_?ADV?            ', 'GIGCchem',
-                       'BudgetChemistryTrop_?ADV?            ', 'GIGCchem',
-                       'BudgetChemistryPBL_?ADV?             ', 'GIGCchem',  
-                       'BudgetTransportFull_?ADV?            ', 'GIGCchem',
-                       'BudgetTransportTrop_?ADV?            ', 'GIGCchem',
-                       'BudgetTransportPBL_?ADV?             ', 'GIGCchem',  
-                       'BudgetMixingFull_?ADV?               ', 'GIGCchem',
-                       'BudgetMixingTrop_?ADV?               ', 'GIGCchem',
-                       'BudgetMixingPBL_?ADV?                ', 'GIGCchem',
-                       'BudgetConvectionFull_?ADV?           ', 'GIGCchem',
-                       'BudgetConvectionTrop_?ADV?           ', 'GIGCchem',
-                       'BudgetConvectionPBL_?ADV?            ', 'GIGCchem',  
-                       'BudgetWetDepFull_?WET?               ', 'GIGCchem',
-                       'BudgetWetDepTrop_?WET?               ', 'GIGCchem',
-                       'BudgetWetDepPBL_?WET?                ', 'GIGCchem',  
+  AdvFluxVert.template:       '%y4%m2%d2_%h2%n2z.nc4',
+  AdvFluxVert.format:         'CFIO',
+  AdvFluxVert.frequency:      {FREQUENCY}
+  AdvFluxVert.duration:       {DURATION}
+  AdvFluxVert.mode:           'time-averaged'
+  AdvFluxVert.fields:         'SpeciesConc_O3               ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE AerosolMass COLLECTION %%%%%
@@ -145,7 +127,6 @@ COLLECTIONS: 'Restart',
                               'AerMassSO4                   ', 'GIGCchem',
                               'AerMassSOAGX                 ', 'GIGCchem',
                               'AerMassSOAMG                 ', 'GIGCchem',
-                              'AerMassTSOA                  ', 'GIGCchem',
                               'PM25                         ', 'GIGCchem',
                               'TotalOA                      ', 'GIGCchem',
                               'TotalOC                      ', 'GIGCchem',
@@ -224,6 +205,39 @@ COLLECTIONS: 'Restart',
                               'Chem_WetAeroRadiOC            ', 'GIGCchem',
                               'Chem_WetAeroRadiSSA           ', 'GIGCchem',
                               'Chem_WetAeroRadiSSC           ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE Budget COLLECTION %%%%%
+#
+# GEOS-Chem budget diagnostics defined as species kg/s in the column
+# (full, troposphere, or PBL) due to a single component (e.g. chemistry)
+# (default = advected species)
+#
+# Available for all simulations
+#==============================================================================
+  Budget.template:     '%y4%m2%d2_%h2%n2z.nc4',
+  Budget.format:       'CFIO',
+  Budget.frequency:    {FREQUENCY}
+  Budget.duration:     {DURATION}
+  Budget.mode:         'time-averaged'
+  Budget.fields:       'BudgetEmisDryDepFull_?ADV?           ', 'GIGCchem',  
+                       'BudgetEmisDryDepTrop_?ADV?           ', 'GIGCchem',  
+                       'BudgetEmisDryDepPBL_?ADV?            ', 'GIGCchem',  
+                       'BudgetChemistryFull_?ADV?            ', 'GIGCchem',
+                       'BudgetChemistryTrop_?ADV?            ', 'GIGCchem',
+                       'BudgetChemistryPBL_?ADV?             ', 'GIGCchem',  
+                       'BudgetTransportFull_?ADV?            ', 'GIGCchem',
+                       'BudgetTransportTrop_?ADV?            ', 'GIGCchem',
+                       'BudgetTransportPBL_?ADV?             ', 'GIGCchem',  
+                       'BudgetMixingFull_?ADV?               ', 'GIGCchem',
+                       'BudgetMixingTrop_?ADV?               ', 'GIGCchem',
+                       'BudgetMixingPBL_?ADV?                ', 'GIGCchem',
+                       'BudgetConvectionFull_?ADV?           ', 'GIGCchem',
+                       'BudgetConvectionTrop_?ADV?           ', 'GIGCchem',
+                       'BudgetConvectionPBL_?ADV?            ', 'GIGCchem',  
+                       'BudgetWetDepFull_?WET?               ', 'GIGCchem',
+                       'BudgetWetDepTrop_?WET?               ', 'GIGCchem',
+                       'BudgetWetDepPBL_?WET?                ', 'GIGCchem',  
 ::
 #==============================================================================
 # %%%%% THE CloudConvFlux COLLECTION %%%%%
@@ -432,11 +446,13 @@ COLLECTIONS: 'Restart',
                               'Met_CLDF                      ', 'GIGCchem',
                               'Met_CLDFRC                    ', 'GIGCchem',
                               'Met_CLDTOPS                   ', 'GIGCchem',
+                              'Met_CONV_DEPTH                ', 'GIGCchem',
                               'Met_DELP                      ', 'GIGCchem',
                               'Met_DQRCU                     ', 'GIGCchem',
                               'Met_DQRLSAN                   ', 'GIGCchem',
                               'Met_DTRAIN                    ', 'GIGCchem',
                               'Met_EFLUX                     ', 'GIGCchem',
+                              'Met_FLASH_DENS                ', 'GIGCchem',
                               'Met_FRCLND                    ', 'GIGCchem',
                               'Met_FRLAKE                    ', 'GIGCchem',
                               'Met_FRLAND                    ', 'GIGCchem',
@@ -503,6 +519,20 @@ COLLECTIONS: 'Restart',
                               'Met_Z0                        ', 'GIGCchem',
 ::
 #==============================================================================
+# %%%%% THE Transport COLLECTION %%%%%
+#
+# Diagnostics for evaluating transport, including age of air [s]
+#
+# Available for all simulations
+#==============================================================================
+  Transport.template:         '%y4%m2%d2_%h2%n2z.nc4',
+  Transport.format:           'CFIO',
+  Transport.frequency:        'End',
+  Transport.duration:         'End',
+  Transport.mode:             'instantaneous'
+  Transport.fields:           'Met_AgeOfAir                  ', 'GIGCchem',
+::
+#==============================================================================
 # %%%%% THE WetLossConv COLLECTION %%%%%
 #
 # Loss of soluble species in convective updrafts
@@ -531,20 +561,6 @@ COLLECTIONS: 'Restart',
   WetLossLS.duration:         {DURATION}
   WetLossLS.mode:             'time-averaged'
   WetLossLS.fields:           'WetLossLS_?WET?               ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE Transport COLLECTION %%%%%
-#
-# Diagnostics for evaluating transport, including age of air [s]
-#
-# Available for all simulations
-#==============================================================================
-  Transport.template:         '%y4%m2%d2_%h2%n2z.nc4',
-  Transport.format:           'CFIO',
-  Transport.frequency:        'End',
-  Transport.duration:         'End',
-  Transport.mode:             'instantaneous'
-  Transport.fields:           'Met_AgeOfAir                  ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE BoundaryConditions COLLECTION %%%%%
