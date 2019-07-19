@@ -104,7 +104,7 @@ COLLECTIONS: 'Restart',
   AdvFluxVert.frequency:      {FREQUENCY}
   AdvFluxVert.duration:       {DURATION}
   AdvFluxVert.mode:           'time-averaged'
-  AdvFluxVert.fields:         'SpeciesConc_O3               ', 'GIGCchem',
+  AdvFluxVert.fields:         'AdvFluxVert_O3                 ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE AerosolMass COLLECTION %%%%%
@@ -160,7 +160,7 @@ COLLECTIONS: 'Restart',
                               'AerSurfAreaPolarStratCloud    ', 'GIGCchem',
                               'Chem_AeroAreaMDUST1           ', 'GIGCchem',
                               'Chem_AeroAreaMDUST2           ', 'GIGCchem',
-                              'Chem_AeroAreaMDUST3'          ', 'GIGCchem',
+                              'Chem_AeroAreaMDUST3           ', 'GIGCchem',
                               'Chem_AeroAreaMDUST4           ', 'GIGCchem',
                               'Chem_AeroAreaMDUST5           ', 'GIGCchem',
                               'Chem_AeroAreaMDUST6           ', 'GIGCchem',
