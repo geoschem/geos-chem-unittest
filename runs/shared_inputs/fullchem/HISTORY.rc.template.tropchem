@@ -253,7 +253,6 @@ COLLECTIONS: 'Restart',
   ConcAboveSfc.duration:      {DURATION}
   ConcAboveSfc.mode:          'time-averaged'
   ConcAboveSfc.fields:        'DryDepRaALT1                  ', 'GIGCchem',
-                              'DryDepZLfrac                  ', 'GIGCchem',
                               'DryDepVelForALT1_?DRYALT?     ', 'GIGCchem',
                               'SpeciesConcALT1_?DRYALT?      ', 'GIGCchem',
 ::
