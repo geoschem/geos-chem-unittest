@@ -281,10 +281,10 @@ Mask fractions:              false
 # ------------------------
 #  Charcoal production 
 # ------------------------
-0 DICE_CHARCOALPROD_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      1 60
-0 DICE_CHARCOALPROD_CO_eur  -                                                                               -  -          - -  -       COeur  26/1008/1101 1 60
-0 DICE_CHARCOALPROD_CO_asia -                                                                               -  -          - -  -       COasia 26/1008/1102 1 60
-0 DICE_CHARCOALPROD_CO_oth  -                                                                               -  -          - -  -       COoth  26/1008/1103 1 60
+0 DICE_CHARCOALPROD_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008/320      1 60
+0 DICE_CHARCOALPROD_CO_eur  -                                                                               -  -          - -  -       COeur  26/1008/320/1101 1 60
+0 DICE_CHARCOALPROD_CO_asia -                                                                               -  -          - -  -       COasia 26/1008/320/1102 1 60
+0 DICE_CHARCOALPROD_CO_oth  -                                                                               -  -          - -  -       COoth  26/1008/320/1103 1 60
 
 # ------------------------
 #  Flaring of natural gas 
@@ -1279,6 +1279,12 @@ Mask fractions:              false
 #==============================================================================
 311 QFED_PBL_FRAC 0.65 - - - xy 1 1
 312 QFED_FT_FRAC  0.35 - - - xy 1 1
+
+#==============================================================================
+# DICE-Africa charcoal production scale factor to reduce charcoal production
+# by a factor of 5 after finding error in implementation of emission factors.
+#==============================================================================
+320 DICE_CP_SF    0.20 - - - xy 1 1
 
 ### END SECTION SCALE FACTORS ###
 
