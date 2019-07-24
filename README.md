@@ -1,6 +1,6 @@
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/geoschem/geos-chem-unittest/blob/dev/12.6.0/LICENSE.txt)
 
-#README for the GEOS-Chem Unit Tester repository
+# README for the GEOS-Chem Unit Tester repository
 
 This repository (https://github.com/gcst/geos-chem-unittest) contains GEOS-Chem Unit Tester package.
 
