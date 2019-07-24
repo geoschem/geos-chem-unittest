@@ -2,19 +2,6 @@
 
 This repository (https://github.com/gcst/geos-chem-unittest) contains GEOS-Chem Unit Tester package.
 
-
----
----
----
-## Important notes
-
-### We have migrated from Bitbucket to Github!
-As of June 2018, we have migrated the GEOS-Chem source code repository to back Github.  Going forward, please make sure to clone or pull code updates ONLY from this repository.
-
----
----
----
-
 ## Overview
 
 ### Description
@@ -81,6 +68,13 @@ For detailed instructions on how to run GEOS-Chem difference tests, please see o
 We encourage GEOS-Chem users to use the Github issue tracker attached to this repository to report  bugs or technical issues with the GEOS-Chem code.
 
 You are also invited to direct GEOS-Chem support requests to the GEOS-Chem Support Team at geos-chem-support@as.harvard.edu.
+
+## License
+
+GEOS-Chem and Related Software (such as this Unit Tester) are distributed
+under the MIT license.  Please read the license documents LICENSE.txt and
+AUTHORS.txt, both of which are located in the root folder.
+
 
 ----
 
