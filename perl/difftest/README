@@ -88,8 +88,7 @@ After cleaning the difftest directory, type the following to compile and run the
 
      make -j4 TRACEBACK=y difftest
 
-NOTE: ISORROPIA is turned off by default for diff testing (NO_ISO=y). 
-You can add the other debug flags (BOUNDS=y DEBUG=y FPE=y etc.) if you wish.
+You can add other debug flags (BOUNDS=y DEBUG=y FPE=y etc.) if you wish.
 
 The difftest Makefile has several other options for compiling and running
 Dev and Ref. Options include the following (other compile options are

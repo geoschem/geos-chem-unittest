@@ -41,7 +41,7 @@
 # %%% Code and queue settings %%%
 #
    CODE_DIR         : {HOME}/GC/Code.{VERSION}
-   MAKE_CMD         : make -j4 BOUNDS=y DEBUG=y FPEX=y NO_ISO=y
+   MAKE_CMD         : make -j4 BOUNDS=y DEBUG=y FPEX=y
    SUBMIT           : sbatch
 #
 # %%% Unit tester path names %%%

@@ -122,10 +122,6 @@ ifndef FPEX
  FPEX        :=n
 endif
 
-ifndef NO_ISO
- NO_ISO      :=n
-endif
-
 ifndef NO_REDUCED
  NO_REDUCED  :=n
 endif
@@ -717,7 +713,6 @@ printbuildinfo:
 	@echo "  BOUNDS       : $(BOUNDS)"
 	@echo "  DEBUG        : $(DEBUG)"
 	@echo "  FPE          : $(FPE)"
-	@echo "  NO_ISO       : $(NO_ISO)"	
 	@echo "  NO_REDUCED   : $(NO_REDUCED)"
 	@echo "  CHEM         : $(CHEM)"
 	@echo "  TOMAS12      : $(TOMAS12)"	
@@ -898,6 +893,5 @@ help:
 	@echo 'BOUNDS=y          Compiles GEOS-Chem with out-of-bounds error checks'
 	@echo 'FPE=y             Compiles GEOS-Chem with floating-point math error checks'
 	@echo 'TRACEBACK=y       Compiles GEOS-Chem with traceback error printout (this is the default)'
-	@echo 'NO_ISO=y          Compiles GEOS-Chem and turns off ISORROPIA'
 	@echo 'TIMERS=1          Compiles GEOS-Chem with timers turned on'
 #EOC

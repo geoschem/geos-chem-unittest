@@ -108,11 +108,6 @@ ifndef OMP
  OMP         :=y
 endif
 
-# Turn off ISORROPIA for all diff testing
-ifndef NO_ISO
- NO_ISO      :=y
-endif
-
 ifndef NO_REDUCED
  NO_REDUCED  :=n
 endif
@@ -402,7 +397,7 @@ refonly:
                                TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)      \
                                TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)      \
                                MASSCONS=$(MASSCONS)   OMP=$(OMP)              \
-                               NO_ISO=$(NO_ISO)       CODE=$(CODE_REF)        \
+                               CODE=$(CODE_REF)                               \
                                EXEC=$(EXEC_REF)       TRAC_AVG=$(TRAC_AVG)    \
                                TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG)    \
                                HMCO_RST=$(HMCO_RST)   HIST_INS=$(HIST_INS)    \
@@ -424,7 +419,7 @@ devonly:
                                TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)      \
                                TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)      \
                                MASSCONS=$(MASSCONS)   OMP=$(OMP)              \
-                               NO_ISO=$(NO_ISO)       CODE=$(CODE_DEV)        \
+                               CODE=$(CODE_DEV)                               \
                                EXEC=$(EXEC_DEV)       TRAC_AVG=$(TRAC_AVG)    \
                                TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG)    \
                                HMCO_RST=$(HMCO_RST)   HIST_INS=$(HIST_INS)    \
@@ -450,7 +445,7 @@ devlib:
                                TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)      \
                                TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)      \
                                MASSCONS=$(MASSCONS)   OMP=$(OMP)              \
-                               NO_ISO=$(NO_ISO)       CODE=$(CODE_DEV)        \
+                               CODE=$(CODE_DEV)                               \
                                EXEC=$(EXEC_DEV)       TRAC_AVG=$(TRAC_AVG)    \
                                TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG)    \
                                HMCO_RST=$(HMCO_RST)   HIST_INS=$(HIST_INS)    \
@@ -476,7 +471,7 @@ devrun:
                                TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)      \
                                TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)      \
                                MASSCONS=$(MASSCONS)   OMP=$(OMP)              \
-                               NO_ISO=$(NO_ISO)       CODE=$(CODE_DEV)        \
+                               CODE=$(CODE_DEV)                               \
                                EXEC=$(EXEC_DEV)       TRAC_AVG=$(TRAC_AVG)    \
                                TRAC_RST=$(TRAC_RST)   HMCO_AVG=$(HMCO_AVG)    \
                                HMCO_RST=$(HMCO_RST)   HIST_INS=$(HIST_INS)    \
@@ -634,7 +629,6 @@ printbuildinfo:
 	@echo "  BOUNDS       : $(BOUNDS)"
 	@echo "  DEBUG        : $(DEBUG)"
 	@echo "  FPE          : $(FPE)"
-	@echo "  NO_ISO       : $(NO_ISO)"	
 	@echo "  NO_REDUCED   : $(NO_REDUCED)"
 	@echo "  CHEM         : $(CHEM)"
 	@echo "  TOMAS12      : $(TOMAS12)"	
@@ -745,6 +739,5 @@ help:
 	@echo 'BOUNDS=y          Compiles with out-of-bounds error checks'
 	@echo 'FPE=y             Compiles with floating-point math error checks'
 	@echo 'TRACEBACK=y       Compiles with traceback error printout'
-	@echo 'NO_ISO=n          Compiles with ISORROPIA on (default is off for diff testing)'
 	@echo 'TIMERS=1          Compiles GEOS-Chem with timers turned on'
 #EOC
