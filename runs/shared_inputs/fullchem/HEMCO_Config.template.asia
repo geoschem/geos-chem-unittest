@@ -99,6 +99,8 @@ Warnings:                    {WARNINGS}
     --> APEI                   :       false
     --> NEI2011_HOURLY         :       false
     --> NEI2011_MONMEAN        :       false
+    --> NEI2011_SHIP_HOURLY    :       false
+    --> NEI2011_SHIP_MONMEAN   :       false
     --> MIX                    :       true
     --> DICE_Africa            :       false
 # ----- GLOBAL INVENTORIES ------------------
@@ -113,10 +115,9 @@ Warnings:                    {WARNINGS}
     --> ORDONEZ_IODOCARB       :       true
     --> SHIP                   :       true
     --> CEDS_SHIP              :       true
-    --> NEI2011_SHIP_HOURLY    :       false
-    --> NEI2011_SHIP_MONMEAN   :       false
     --> AEIC                   :       true
     --> DECAYING_PLANTS        :       true
+    --> ANTHRO_PM25_DUST       :       true
 # ----- FUTURE EMISSIONS --------------------
     --> RCP_3PD                :       false 
     --> RCP_45                 :       false
@@ -2111,6 +2112,15 @@ Warnings:                    {WARNINGS}
 )))GFAS
 
 #==============================================================================
+# --- Anthropogenic dust emissions (Philip et al., 2017, ERL)---
+#==============================================================================
+(((ANTHRO_PM25_DUST
+0 PM25FINE_1 $ROOT/ANTHRO_PM25_DUST/v2018-04/PM25FINE_ECLIPSE_2015.geos.2x25.nc     PM25FINE 2015/1-12/1/0 C xy kg/m2/s  DST1 -    1 1
+0 PM25FINE_2 $ROOT/ANTHRO_PM25_DUST/v2018-04/PM25FINE_MEIC_2012.generic.025x025.nc  PM25FINE 2012/1-12/1/0 C xy kg/m2/s  DST1 1009 1 2
+0 PM25FINE_3 $ROOT/ANTHRO_PM25_DUST/v2018-04/PM25FINE_IITB_2013.generic.025x025.nc  PM25FINE 2013/1-12/1/0 C xy kg/m2/s  DST1 1010 1 3
+)))ANTHRO_PM25_DUST
+
+#==============================================================================
 # --- Offline dust emissions ---
 #==============================================================================
 (((OFFLINE_DUST
@@ -2239,9 +2249,6 @@ Warnings:                    {WARNINGS}
 105 DEAD_SFC_TYP    $ROOT/DUST_DEAD/v2019-06/dst_tibds.geos.4x5.nc                  SFC_TYP  1985/1/1/0    C xy unitless *    -    1 1
 105 DEAD_GOC_SRC    $ROOT/DUST_DEAD/v2019-06/GOCART_src_fn.geos.4x5.nc              GOC_SRC  1985/1/1/0    C xy unitless *    -    1 1
 105 DEAD_VAI        $ROOT/DUST_DEAD/v2019-06/dst_tvbds.geos.4x5.nc                  VAI      1985/1-12/1/0 C xy unitless *    -    1 1
-105 DEAD_PM25FINE_1 $ROOT/DUST_DEAD/v2018-04/PM25FINE_ECLIPSE_2015.geos.2x25.nc     PM25FINE 2015/1-12/1/0 C xy kg/m2/s  DST1 -    1 1
-105 DEAD_PM25FINE_2 $ROOT/DUST_DEAD/v2018-04/PM25FINE_MEIC_2012.generic.025x025.nc  PM25FINE 2012/1-12/1/0 C xy kg/m2/s  DST1 1009 1 2
-105 DEAD_PM25FINE_3 $ROOT/DUST_DEAD/v2018-04/PM25FINE_IITB_2013.generic.025x025.nc  PM25FINE 2013/1-12/1/0 C xy kg/m2/s  DST1 1010 1 3
 
 #==============================================================================
 # --- Dust emissions using Paul Ginoux's mechanism (Extension 106) 
