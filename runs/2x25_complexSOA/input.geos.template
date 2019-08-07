@@ -1,4 +1,3 @@
-GEOS-CHEM UNIT TEST SIMULATION: {MET}_2x25_complexSOA
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
@@ -6,6 +5,7 @@ End   YYYYMMDD, hhmmss  : {DATE2} {TIME2}
 Run directory           : ./
 Root data directory     : {DATA_ROOT}
 Met field               : {MET}
+Simulation name         : {SIM_NAME}
 ------------------------+------------------------------------------------------
 %%% GRID MENU %%%       :
 Grid resolution         : 2.0x2.5
@@ -21,8 +21,6 @@ Tran/conv timestep [sec]: 600
 Chem/emis timestep [sec]: 1200
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
-Type of simulation      : 3
-Species Entries ------->: Name
 Species name            : NO
 Species name            : O3
 Species name            : PAN

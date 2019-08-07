@@ -1,4 +1,3 @@
-GEOS-CHEM UNIT TEST SIMULATION: {MET}_4x5_POPs
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
@@ -6,6 +5,7 @@ End   YYYYMMDD, hhmmss  : {DATE2} {TIME2}
 Run directory           : ./
 Root data directory     : {DATA_ROOT}
 Met field               : {MET}
+Simulation name         : {SIM_NAME}
 ------------------------+------------------------------------------------------
 %%% GRID MENU %%%       :
 Grid resolution         : 4.0x5.0
@@ -21,13 +21,11 @@ Tran/conv timestep [sec]: 600
 Chem/emis timestep [sec]: 1200
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
-Type of simulation      : 14
-Species Entries ------->: Name
-Species #1              : POPG
-Species #2              : POPPOCPO
-Species #3              : POPPOCPI
-Species #4              : POPPBCPO
-Species #5              : POPPBCPI
+Species name            : POPG
+Species name            : POPPOCPO
+Species name            : POPPOCPI
+Species name            : POPPBCPO
+Species name            : POPPBCPI
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
