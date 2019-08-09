@@ -88,9 +88,23 @@ Negative values:     0
 Verbose:             0
 Warnings:            1
 PBL dry deposition:  False
-METDIR:              /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData/GEOS_4x5/GEOS_FP
-#MET:                 geosfp
+###############################################################
+# Uncomment these lines if you are using GEOS-FP met fields!
+#METDIR:              /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData/GEOS_4x5/GEOS_FP
+#MET:                 GEOSFP
+#met:                 geosfp
+#CNYR:                2011
 #RES:                 4x5
+#NC:                  nc
+###############################################################
+# Uncomment these lines if you are using MERRA-2 met fields
+#METDIR:              /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData/GEOS_4x5/MERRA2
+#MET:                 MERRA2
+#met:                 merra2
+#CNYR:                2015
+#RES:                 4x5
+#NC:                  nc4
+###############################################################
 ### END SECTION SETTINGS ###
 
 ###############################################################################
