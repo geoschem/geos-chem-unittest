@@ -5,16 +5,16 @@ End   YYYYMMDD, hhmmss  : {DATE2} {TIME2}
 Run directory           : ./
 Root data directory     : {DATA_ROOT}
 Met field               : {MET}
-Simulation name         : {SIM_NAME}
+Simulation name         : {SIM}
 ------------------------+------------------------------------------------------
 %%% GRID MENU %%%       :
-Grid resolution         : 0.25x0.3125
-Longitude min/max       : -130.0 -60.0
-Latitude  min/max       :   9.75  60.0
- Half-sized polar boxes?: F
-Number of levels        : 47
-Nested grid simulation? : T
- Buffer zone (N S E W ) :  3  3  3  3
+Grid resolution         : {RES}
+Longitude min/max       : {LON_RANGE}
+Latitude  min/max       : {LAT_RANGE}
+ Half-sized polar boxes?: {HALF_POLAR}
+Number of levels        : {NLEV}
+Nested grid simulation? : {NESTED_SIM}
+ Buffer zone (N S E W ) :  {BUFFER_ZONE}
 ------------------------+------------------------------------------------------
 %%% TIMESTEP MENU %%%   :
 Tran/conv timestep [sec]: 300
