@@ -5,45 +5,9 @@
 #
 # !MODULE: Makefile
 #
-# !DESCRIPTION: Makefile for unit testing and GEOS-Chem run directories 
-#  copied from UnitTest.
+# !DESCRIPTION: Makefile for GEOS-Chem run directories.
 #\\
 #\\
-# !REMARKS:
-#  (1) CODE_DIR (source code location), VERSION (output log prefix), and 
-#      LOG_DIR (output log path) are automatically passed to the make 
-#      command using the default values defined in this file.
-#      Alternatively, they can be defined for single use at the terminal 
-#      within the make call (e.g. make -4 VERSION=v10-01i mp).
-#                                                                             .
-#  (2) MET and GRID are read from input.geos using perl script
-#      getRunInfo and are automatically passed to the make command. 
-#      Simulation-dependent optional flags NEST, TOMAS40, and RRTMG
-#      are also automatically passed. 
-#                                                                             .
-#  (3) There are two processing modes available: sp and mp. sp uses a single
-#      processor and mp uses multiple processors. Output files 
-#      have .sp or .mp suffix depending on what processing mode is used.
-#                                                                             .
-#  (4) All output files will be overwritten between runs unless renamed or
-#      moved. Unique run log filenames can be generated between runs
-#      by specifying different VERSION definitions in the make calls.
-#                                                                             .
-#  (4) Most recent build settings are output to a file called lastbuildinfo.
-#                                                                             .
-#  (5) Example make commands:	
-#        make -j4 mpbuild                    # build with default settings
-#        make -j4 CODE_DIR=~/mycode mpbuild  # manually specify code path
-#        make -j4 TRACEBACK=y mpbuild        # build with optional settings
-#        make mprun                          # run GEOS-Chem
-#        make -j4 mp                         # build and run GEOS-Chem
-#        make logclean                       # remove log files
-#        make dataclean                      # remove output data files
-#        make execlean                       # remove executables
-#	 make fileclean                      # do the previous 3 commands
-#        make superclean                     # Remove all output files and
-#                                              make code dir realclean
-# 
 # !REVISION HISTORY: 
 #  Navigate to your unit tester directory and type 'gitk' at the prompt
 #  to browse the revision history.
@@ -76,15 +40,14 @@ ifndef CODE_DIR
  CODE_DIR    :=./CodeDir
 endif
 
+ifndef SIM
+ SIM         :=Standard
+endif
+
 # Check if the code directory is not valid
 NO_CODE_FOUND:=$(shell test -d $(CODE_DIR); echo $$?)
 ifeq ($(NO_CODE_FOUND),1)
  $(error Could not find source code directory CODE_DIR=$(CODE_DIR))
-endif
-
-# Output log file destination (default is run directory) 
-ifndef LOG_DIR 
- LOG_DIR     :=.
 endif
 
 ###############################################################################
@@ -93,13 +56,8 @@ endif
 #####                                                                     #####
 ###############################################################################
 
-ifndef NEST
- NEST        :=n
-else
- # NOTE: If Nest is passed, then also set BPCH_DIAG=y.  We have to activate
- # the bpch I/O code to read the nested boundary conditions.  We can remove
- # this ELSE block once the bpch diagnostics have been from GC. (bmy, 1/22/18)
- BPCH_DIAG   :=y
+ifndef OMP
+ OMP         :=y
 endif
 
 ifndef TRACEBACK 
@@ -122,8 +80,16 @@ ifndef FPEX
  FPEX        :=n
 endif
 
-ifndef NO_REDUCED
- NO_REDUCED  :=n
+ifndef TIMERS
+ TIMERS      :=0
+endif
+
+ifndef TAU_PROF
+ TAU_PROF    :=n
+endif
+
+ifndef APM
+ APM         :=n
 endif
 
 ifndef TOMAS12
@@ -150,18 +116,11 @@ ifndef MASSCONS
  MASSCONS    :=n
 endif
 
-ifndef TIMERS
- TIMERS      :=0
-endif
-
-ifndef TAU_PROF
- TAU_PROF    :=n
-endif
-
 # BPCH_DIAG is always turned ON unless the user specifies otherwise
 ifndef BPCH_DIAG
  BPCH_DIAG   :=y
 endif
+
 
 ###############################################################################
 #####                                                                     #####
@@ -178,22 +137,13 @@ ifndef PERL_DIR
  PERL_DIR    :=$(RUN_DIR)
 endif
 
-# Get start & end dates, met source, grid resolution, and nested grid region
-# These are obtained by running the "getRunInfo" perl script
-MET          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 0)
-GRID         :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 1)
-SIM          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 2)
-NEST         :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 3)
-START        :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 4)
-END          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 5)
-STARTDATE    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 7)
-ENDDATE      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 8)
-ENDTIME      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 10)
-HMCO_END     :=$(END)
+# Get start & end dates from the "getRunInfo" perl script
+START        :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 1)
+END          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 2)
+STARTDATE    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 3)
+ENDDATE      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 4)
 
-# By default, TOMAS40 and RRTMG are set to "n".  But if we are doing
-# one of thess simulations, reset the corresponding makefile variable to "y".
-# Also define the proper setting for CHEM, which picks the correct KPP files.
+# Define the proper setting for CHEM, which picks the correct KPP files
 ifeq ($(SIM),TOMAS12)
  TOMAS12     :=y
  CHEM        :=Tropchem
@@ -221,23 +171,19 @@ endif
 
 ifeq ($(SIM),standard)
  CHEM        :=Standard
- NO_REDUCED  :=y
 endif
 
 ifeq ($(SIM),benchmark)
  CHEM        :=Standard
- NO_REDUCED  :=y
  TIMERS      :=1
 endif
 
 ifeq ($(SIM),aciduptake)
  CHEM        :=Standard
- NO_REDUCED  :=y
 endif
 
 ifeq ($(SIM),marinePOA)
  CHEM        :=Standard
- NO_REDUCED  :=y
 endif
 
 ifeq ($(SIM),complexSOA)
@@ -255,51 +201,33 @@ endif
 
 ifeq ($(SIM),custom)
  CHEM        :=Custom
- NO_REDUCED  :=y
 endif
 
 ifeq ($(SIM),masscons)
  MASSCONS    :=y
 endif
 
-ifeq ($(SIM),TransportTracers)
- NO_REDUCED  :=y
-endif
-
 ifeq ($(SIM),APM)
  APM         :=y
+ CHEM        :=Tropchem
+endif
+
+ifndef CHEM
+ CHEM        :=Standard
 endif
 
 # General run information
 TIMESTAMP    :=$(shell date +"%Y/%m/%d %H:%M")	
-RUNID        :=$(MET)_$(GRID)_$(SIM)
-ifneq ($(NEST),n) 
- RUNID       :=$(RUNID)_$(NEST)
-endif
 
 # Log files that will be written to the log directory
-LOG_COMP     :="$(RUN_DIR)/lastbuild"
-LOG_SP       :="$(LOG_DIR)/$(VERSION_TAG).$(RUNID).log.sp"
-LOG_MP       :="$(LOG_DIR)/$(VERSION_TAG).$(RUNID).log.mp"
-LOG_HMCO_SA  :="$(LOG_DIR)/$(VERSION_TAG).$(RUNID).log"
-
-# Log files that will be written to the run directory
-# (For copied run directories, the log & run directories are the same)
+LOG_COMP     :="compile.log"
+LOG_GC       :="$(VERSION_TAG).log"
 LOG_HMCO     :="HEMCO.log"
+BUILDINFO    :="lastbuild"
 
 # Executables
-EXE_SP       :=geos.sp
-EXE_MP       :=geos.mp
+EXE          :=geos
 EXE_HMCO_SA  :=hemco_standalone.x
-
-# Output data files
-TRAC_AVG     :=trac_avg.$(RUNID).$(START)
-HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
-GC_RST       :=GEOSChem.Restart.$(ENDDATE)_$(ENDTIME)z.nc4
-
-# Unit test validation script and results file
-VALIDATE     :=/usr/bin/perl $(PERL_DIR)/validate.pl
-RESULTS      :=$(LOG_DIR)/$(VERSION_TAG).results.log
 
 # Get information about the Git version, because some features
 # (like -C) are not available in older Git versions.  The git 
@@ -376,115 +304,54 @@ endif
 
 # PHONY targets don't actually compile anything. They either are
 # synonyms for other targets, they remove files, or they print output.
-.PHONY: all     dataclean  logclean   fileclean  spclean      tauclean
-.PHONY: mpclean spexeclean mpexeclean superclean printallinfo check
+.PHONY: all             dataclean        logclean       execlean
+.PHONY: cleanup_output  cleanup_data     cleanup_logs   cleanup_exe
+.PHONY: printruninfo    printbuildinfo   printcodeinfo  printallinfo
+.PHONY: hemco           hcobuild         hcorun         cleanup_hco
+.PHONY: hcodataclean    printruninfohco
+
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#  Default make is to print help screen            %
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+default:
+	@$(MAKE) help
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Build and Run          %
+#  Compile Source Code    %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-all: unittest
+# Build and run
+all: clean build run
 
-ut: unittest
-
-unittest:
-	@$(MAKE) realclean
-	@$(MAKE) sp
-	@$(MAKE) realclean
-	@$(MAKE) mp
-	@$(MAKE) check
-
-sp:
-	@$(MAKE) spclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)           APM=$(APM)             \
-                                CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
-                                TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
-                                TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
-                                MASSCONS=$(MASSCONS)   OMP=no                 \
-                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
-                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
+#  Build only
+build:
+	@$(MAKE) cleanup_logs
+	@$(MAKE) cleanup_exe
+	@$(MAKE) -C $(CODE_DIR) APM=$(APM)                                    \
+                                CHEM=$(CHEM)                                  \
+				RRTMG=$(RRTMG)                                \
+                                TOMAS12=$(TOMAS12)                            \
+				TOMAS15=$(TOMAS15)                            \
+                                TOMAS30=$(TOMAS30)                            \
+				TOMAS40=$(TOMAS40)                            \
+                                MASSCONS=$(MASSCONS)                          \
+				OMP=${OMP}                                    \
+                                TIMERS=$(TIMERS)                              \
+				TAU_PROF=$(TAU_PROF)                          \
+                                TAU_OPTIONS=$(TAU_OPT)                        \
+				BPCH_DIAG=$(BPCH_DIAG)                        \
                                 NO_REDUCED=$(NO_REDUCED)                      \
-                                > $(LOG_SP)
-	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
-	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
-	./$(EXE_SP) >> $(LOG_SP)
-	@$(MAKE) addsuffixsp
-	@$(MAKE) printruninfosp >> $(LOG_SP)
-	@$(MAKE) printallinfosp
+                                2>&1 | tee -a $(LOG_COMP)
+	cp -f $(CODE_DIR)/bin/geos $(EXE)
+	@$(MAKE) printbuildinfo 2>&1 | tee -a $(LOG_COMP)
+	@$(MAKE) printbuildinfo >> $(BUILDINFO)
 
-mp:
-	@$(MAKE) mpclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)           APM=$(APM)             \
-                                CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
-                                TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
-                                TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
-                                MASSCONS=$(MASSCONS)   OMP=yes                \
-                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
-                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
-                                NO_REDUCED=$(NO_REDUCED)                      \
-                                > $(LOG_MP)
-	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
-	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
-	./$(EXE_MP) >> $(LOG_MP)
-	@$(MAKE) addsuffixmp
-	@$(MAKE) printruninfomp >> $(LOG_MP)
-	@$(MAKE) printallinfomp
-
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Build Only             %
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-spbuild:
-	@$(MAKE) spexeclean
-	@$(MAKE) splogclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)           APM=$(APM)             \
-                                CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
-                                TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
-                                TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
-                                MASSCONS=$(MASSCONS)   OMP=no                 \
-                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
-                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
-                                NO_REDUCED=$(NO_REDUCED)                   
-	cp -f $(CODE_DIR)/bin/geos $(EXE_SP)
-	@$(MAKE) printbuildinfo > $(LOG_COMP).sp
-	@$(MAKE) printbuildinfo
-
-mpbuild:
-	@$(MAKE) mpexeclean
-	@$(MAKE) mplogclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)           APM=$(APM)             \
-                                CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
-                                TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
-                                TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
-                                MASSCONS=$(MASSCONS)   OMP=yes                \
-                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
-                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
-                                NO_REDUCED=$(NO_REDUCED)                    
-	cp -f $(CODE_DIR)/bin/geos $(EXE_MP)
-	@$(MAKE) printbuildinfo > $(LOG_COMP).mp
-	@$(MAKE) printbuildinfo
-
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Run Only               %
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-sprun:
-	@$(MAKE) spdataclean
-	./$(EXE_SP) > $(LOG_SP)
-	@$(MAKE) addsuffixsp
-	@$(MAKE) printruninfosp >> $(LOG_SP)
-	@$(MAKE) printruninfosp
-
-mprun:
-	@$(MAKE) mpdataclean
-	./$(EXE_MP) > $(LOG_MP)
-	@$(MAKE) addsuffixmp
-	@$(MAKE) printruninfomp >> $(LOG_MP)
-	@$(MAKE) printruninfomp
+# Run only
+run:
+	@$(MAKE) cleanup_output
+	./geos > $(LOG_GC)
+	@$(MAKE) printruninfo >> $(LOG_GC)
+	@$(MAKE) printruninfo
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  HEMCO Standalone       %
@@ -495,45 +362,56 @@ hemco:      hco
 hemcobuild: hcobuild
 hemcorun:   hcorun
 
+# Build and run
 hco:
 	@$(MAKE) hcobuild
 	@$(MAKE) hcorun
 
+# Build only
 hcobuild:
-	@$(MAKE) hcoexeclean
-	@$(MAKE) hcologclean
-	@$(MAKE) -C $(CODE_DIR) MET=$(MET)             GRID=$(GRID)           \
-                                NEST=$(NEST)           APM=$(APM)             \
-                                CHEM=$(CHEM)           RRTMG=$(RRTMG)         \
-                                TOMAS12=$(TOMAS12)     TOMAS15=$(TOMAS15)     \
-                                TOMAS30=$(TOMAS30)     TOMAS40=$(TOMAS40)     \
-                                MASSCONS=$(MASSCONS)   OMP=yes                \
-                                TIMERS=$(TIMERS)       TAU_PROF=$(TAU_PROF)   \
-                                TAU_OPTIONS=$(TAU_OPT) BPCH_DIAG=$(BPCH_DIAG) \
-                                libhemcosa
-	cp -f $(CODE_DIR)/bin/hemco_standalone.x $(EXE_HMCO_SA)
-	@$(MAKE) printbuildinfo > $(LOG_COMP).hemco
-	@$(MAKE) printbuildinfo
+	@$(MAKE) -C $(CODE_DIR) APM=$(APM)                                    \
+                                CHEM=$(CHEM)                                  \
+                                RRTMG=$(RRTMG)                                \
+                                TOMAS12=$(TOMAS12)                            \
+                                TOMAS15=$(TOMAS15)                            \
+                                TOMAS30=$(TOMAS30)                            \
+                                TOMAS40=$(TOMAS40)                            \
+                                MASSCONS=$(MASSCONS)                          \
+                                OMP=yes                                       \
+                                TIMERS=$(TIMERS)                              \
+                                TAU_PROF=$(TAU_PROF)                          \
+                                TAU_OPTIONS=$(TAU_OPT)                        \
+                                BPCH_DIAG=$(BPCH_DIAG)                        \
+                                libhemcosa 2>&1 | tee -a $(LOG_COMP)
+	cp -f $(CODE_DIR)/bin/hemco_standalone.x $(EXE_HMCO_SA) 2>&1 | tee -a $(LOG_COMP)
+	@$(MAKE) printbuildinfo 2>&1 | tee -a $(LOG_COMP)
+	@$(MAKE) printbuildinfo > $(BUILDINFO)
 
+# Run only
 hcorun:
-	@$(MAKE) hcodataclean
-	./$(EXE_HMCO_SA) HEMCO_sa_Config.rc  > $(LOG_HMCO_SA)
-	@$(MAKE) printruninfohco >> $(LOG_HMCO_SA)
+	@$(MAKE) cleanup_hco
+	./$(EXE_HMCO_SA) HEMCO_sa_Config.rc  > $(LOG_HMCO)
+	@$(MAKE) printruninfohco >> $(LOG_HMCO)
 	@$(MAKE) printruninfohco
 
 
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Remove Output Data     %
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+#  Clean up run directory                          %
+#%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-dataclean: 
+# Synonyms
+dataclean: cleanup_data
+hcodataclean: cleanup_hco
+logclean: cleanup_logs
+execlean: cleanup_exe
+
+cleanup_output: cleanup_data cleanup_logs
+
+cleanup_data: 
 	rm -f HEMCO_diagnostics*
 	if [ -f HEMCO_restart.$(START).nc ]; then mv -f HEMCO_restart.$(START).nc HC.nc; fi;
 	rm -f HEMCO_restart.*;
 	if [ -f HC.nc ]; then mv -f HC.nc HEMCO_restart.$(START).nc; fi;
-	rm -f GEOSChem.Restart.*.sp*
-	rm -f GEOSChem.Restart.*.mp*
-	rm -f GEOSCHEM_diagnostics.*
 	rm -f trac_avg*
 	rm -f Ox.mass.*
 	rm -f diaginfo.dat tracerinfo.dat
@@ -544,94 +422,21 @@ dataclean:
            if [[ "$$f" != "./GEOSChem.Restart.$(STARTDATE)_0000z.nc4" ]]; \
 	      then rm -f $$f; fi;              \
         done
-	rm -f *.nc4.sp
-	rm -f *.nc4.mp
 
-spdataclean:
-	rm -f $(TRAC_AVG)*.sp
-	rm -f $(GC_RST)*.sp
-	rm -f OutputDir/*.sp
-	rm -f *.nc4.sp
-	rm -f HEMCO_restart*.sp
-	rm -f diaginfo.dat tracerinfo.dat
-
-mpdataclean:
-	rm -f $(TRAC_AVG)*.mp
-	rm -f $(GC_RST)*.mp
-	rm -f OutputDir/*.mp
-	rm -f *.nc4.mp
-	rm -f HEMCO_restart*.mp
-	rm -f diaginfo.dat tracerinfo.dat
-
-hcodataclean:
+cleanup_hco:
 	rm -f HEMCO_restart*
 	rm -f diaginfo.dat tracerinfo.dat
 	rm -f output/*.nc
 
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Remove Logs            %
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-logclean: 
-	@$(MAKE) splogclean 
-	@$(MAKE) mplogclean
-	@$(MAKE) hcologclean
-	rm -f $(LOG_HMCO)
+cleanup_logs:
 	rm -f *.log
+	rm -f slurm-*
 
-splogclean:
-	rm -f $(LOG_SP)
-	rm -f $(LOG_HMCO).sp
-
-mplogclean:
-	rm -f $(LOG_MP)
-	rm -f $(LOG_HMCO).mp
-
-hcologclean:
-	rm -f $(LOG_HMCO)
-	rm -f $(LOG_HMCO_SA)
-
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Remove Executables     %
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-execlean: 
-	@$(MAKE) spexeclean 
-	@$(MAKE) mpexeclean
-	rm -f geos
-
-spexeclean:
-	rm -f $(EXE_SP)
-	rm -f $(LOG_COMP).sp
-
-mpexeclean:
-	rm -f $(EXE_MP)
-	rm -f $(LOG_COMP).mp
-
-hcoexeclean:
+cleanup_exe:
+	rm -f $(EXE)
 	rm -f $(EXE_HMCO_SA)
-	rm -f $(LOG_COMP).hemco_sa
-
-tauclean:
-	@$(MAKE) -C $(CODE_DIR) tauclean
-
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Remove All             %
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-fileclean: dataclean logclean execlean
-
-spclean: spdataclean splogclean spexeclean
-
-mpclean: mpdataclean mplogclean mpexeclean
-
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Remove Config Files    %
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-extrafileclean:
-	rm -f input.geos
-	rm -f HEMCO_Config.rc
+	rm -f $(LOG_COMP)
+	rm -f $(BUILDINFO)
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Clean Source           % 
@@ -642,48 +447,38 @@ clean:
 
 realclean:
 	@$(MAKE) -C $(CODE_DIR) realclean
-	@$(MAKE) execlean
-	rm -f lastbuild.*
+
+tauclean:
+	@$(MAKE) -C $(CODE_DIR) tauclean
+
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Clean and Remove All   %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-superclean: fileclean realclean tauclean
+superclean:
+	@$(MAKE) realclean
+	@$(MAKE) tauclean
+	@$(MAKE) cleanup_output
+	@$(MAKE) cleanup_exe
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Print information      %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-printruninfosp:
+printruninfo:
 	@echo "RUN SETTINGS:"
 	@echo "  Run directory       : $(RUN_DIR)"
 	@echo "  Run ID              : $(RUNID)"
 	@echo "  Simulation Start    : $(START)"
 	@echo "  Simulation End      : $(END)"
-	@echo "  HEMCO End           : $(HMCO_END)"
 	@echo "  Version number      : $(VERSION)"
 	@echo "  Version tag         : $(VERSION_TAG)"
-	@echo "  GC Diagnostic File  : $(TRAC_AVG).sp"
-	@echo "  GC Restart File     : $(GC_RST).sp"
-	@echo "  HEMCO Restart File  : $(HMCO_RST).sp"
+	@echo "  GC Diagnostic File  : $(TRAC_AVG)"
+	@echo "  GC Restart File     : $(GC_RST)"
+	@echo "  HEMCO Restart File  : $(HMCO_RST)"
 	@echo "  GC Run Log File     : $(LOG_SP)"
-	@echo "  HEMCO Log File      : $(LOG_HMCO).sp"
-
-printruninfomp:
-	@echo "RUN SETTINGS:"
-	@echo "  Run directory       : $(RUN_DIR)"
-	@echo "  Run ID              : $(RUNID)"
-	@echo "  Simulation Start    : $(START)"
-	@echo "  Simulation End      : $(END)"
-	@echo "  HEMCO End           : $(HMCO_END)"
-	@echo "  Version number      : $(VERSION)"
-	@echo "  Version tag         : $(VERSION_TAG)"
-	@echo "  GC Diagnostic File  : $(TRAC_AVG).mp"
-	@echo "  GC Restart File     : $(GC_RST).mp"
-	@echo "  HEMCO Restart File  : $(HMCO_RST).mp"
-	@echo "  GC Run Log File     : $(LOG_MP)"
-	@echo "  HEMCO Log File      : $(LOG_HMCO).mp"
+	@echo "  HEMCO Log File      : $(LOG_HMCO)"
 
 printruninfohco:
 	@echo "RUN SETTINGS:"
@@ -705,15 +500,11 @@ printbuildinfo:
 	@echo "  COMMIT_DATE  : $(COMMIT_DATE)"
 	@echo "  VERSION      : $(VERSION)"
 	@echo "  VERSION_TAG  : $(VERSION_TAG)"
-	@echo "  MET          : $(MET)"
-	@echo "  GRID         : $(GRID)"
-	@echo "  SIM          : $(SIM)"
-	@echo "  NEST         : $(NEST)"
 	@echo "  TRACEBACK    : $(TRACEBACK)"
 	@echo "  BOUNDS       : $(BOUNDS)"
 	@echo "  DEBUG        : $(DEBUG)"
 	@echo "  FPE          : $(FPE)"
-	@echo "  NO_REDUCED   : $(NO_REDUCED)"
+	@echo "  OMP          : $(OMP)"
 	@echo "  CHEM         : $(CHEM)"
 	@echo "  TOMAS12      : $(TOMAS12)"	
 	@echo "  TOMAS15      : $(TOMAS15)"
@@ -728,13 +519,9 @@ printbuildinfo:
 	@echo "  COMPILER     : $(FC) $(COMPILER_VERSION)"
 	@echo "  Datetime     : $(TIMESTAMP)"
 
-printallinfosp: 
+printallinfo: 
 	@$(MAKE) printbuildinfo
-	@$(MAKE) printruninfosp
-
-printallinfomp: 
-	@$(MAKE) printbuildinfo
-	@$(MAKE) printruninfomp
+	@$(MAKE) printruninfo
 
 printcodeinfo:
 	@echo -e "Code directory:  $(CODE_DIR)"
@@ -746,53 +533,6 @@ printcodeinfo:
 	@echo -e "   Hash abbrev:  $(COMMIT_HASH)"
 	@echo -e "Uncommitted files (if any):\n$(CODE_STATUS)"
 
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Utilities              %
-#%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-addsuffixsp:
-	@for f in ./$(GC_RST); do                                   \
-           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
-        done
-	@for f in ./$(TRAC_AVG); do                                  \
-           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
-        done
-	@for f in ./$(HMCO_RST); do                                 \
-           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
-        done
-	@for f in ./OutputDir/HEMCO_diagnostics*.nc; do             \
-           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
-        done
-	@for f in ./HEMCO.log; do                                   \
-           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
-        done
-	@for f in ./OutputDir/GEOSChem*.nc4; do                     \
-           if [[ -f $$f ]]; then mv -f $$f $$f.sp; fi;              \
-        done
-
-addsuffixmp:
-	@for f in ./$(GC_RST); do                                   \
-           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
-        done
-	@for f in ./$(TRAC_AVG); do                                  \
-           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
-        done
-	@for f in ./$(HMCO_RST); do                                 \
-           if [[ -f $$f ]]; then  mv -f $$f $$f.mp; fi;             \
-        done
-	@for f in ./OutputDir/HEMCO_diagnostics*.nc; do             \
-           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
-        done
-	@for f in ./HEMCO.log; do                                   \
-           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
-        done
-	@for f in ./OutputDir/GEOSChem*.nc4; do                     \
-           if [[ -f $$f ]]; then mv -f $$f $$f.mp; fi;              \
-        done
-
-check:
-	@$(VALIDATE) $(RUNID) . . ut >> $(RESULTS)
-
 ###############################################################################
 #####                                                                     #####
 #####                             HELP SCREEN                             #####
@@ -801,7 +541,7 @@ check:
 
 help:
 	@echo '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
-	@echo '%%%    GEOS-Chem Run Directory Makefile Help Screen    %%%'
+	@echo '%%%    GEOS-Chem Run Directory Makefile Options        %%%'
 	@echo '%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%'
 	@echo
 	@echo 'Usage: make -jN TARGET [OPTIONAL-FLAGS]'
@@ -811,52 +551,25 @@ help:
 	@echo '----------------------------------------------------------'
 	@echo 'TARGET may be one of the following:'
 	@echo '----------------------------------------------------------'
-	@echo 'all               Default target (synonym for "unittest")'
 	@echo ''
 	@echo '%%% COMPILE AND RUN %%%'
-	@echo 'unittest          Runs a GEOS-Chem unit test:'
-	@echo '                  (1) Builds & runs GEOS-Chem with parallelization OFF;'
-	@echo '                  (2) Builds & runs GEOS-Chem with parallelzation ON;'
-	@echo '                  (3) Checks to see if the output is identical.'
-	@echo 'sp                Builds and runs GEOS-Chem with parallelization OFF.'
-	@echo 'mp                Builds and runs GEOS-Chem with parallelization ON.'
+	@echo 'all               Cleans, compiles, and runs GEOS-Chem'
+	@echo 'hco               Cleans, compiles, and runs HEMCO'
 	@echo ''
 	@echo '%%% BUILD ONLY %%%'
-	@echo 'spbuild           Just builds GEOS-Chem with parallelization OFF.'
-	@echo 'mpbuild           Just builds GEOS-Chem with parallelization ON.'
+	@echo 'build             Compiles GEOS-Chem'
+	@echo 'hcobuild          Compiles HEMCO'
 	@echo ''
 	@echo '%%% RUN ONLY %%%'
-	@echo 'sprun             Just runs GEOS-Chem with parallelization OFF.'
-	@echo 'mprun             Just runs GEOS_Chem with parallelization ON.'  
+	@echo 'run               Runs GEOS-Chem'
+	@echo 'hcorun            Runs HEMCO'
 	@echo ''
-	@echo '%%% REMOVE DATA FILES %%%'
-	@echo 'dataclean         Removes ALL GEOS-Chem diagnostic and restart files'
-	@echo 'spdataclean       Removes diagnostic and restart files from GEOS-Chem'
-	@echo '                    simulations with parallelization turned OFF.'
-	@echo 'mpdataclean       Removes diagnostic and restart files from GEOS-Chem'
-	@echo '                    simulations with parallelization turned ON.'
-	@echo ''
-	@echo '%%% REMOVE LOG FILES %%%'
-	@echo 'logclean          Removes all GEOS-Chem and HEMCO output log files.'
-	@echo 'splogclean        Removes GEOS-Chem and HEMCO log files from GEOS-Chem'
-	@echo '                    simulations with parallelization turned OFF.'
-	@echo 'mplogclean        Removes GEOS-Chem and HEMCO log files from GEOS-Chems'
-	@echo '                    simulations with parallelization turned ON.'
-	@echo ''
-	@echo '%%% REMOVE EXECUTABLE FILES %%%'
-	@echo 'execlean          Removes all GEOS-Chem executable files'
-	@echo 'spexeclean        Removes GEOS-Chem executable files for which the'
-	@echo '                    parallelization has been turned OFF.'
-	@echo 'mpexeclean        Removes GEOS-Chem executable files for which the'
-	@echo '                    parallelization has been turned ON.'
-	@echo ''
-	@echo '%%% REMOVE ALL FILES %%%'
-	@echo 'fileclean         Synonym for: dataclean   logclean   execlean'
-	@echo 'spclean           Synonym for: spdataclean splogclean spexeclean'
-	@echo 'mpclean           Synonym for: mpdataclean mplogclean mpexeclean'
-	@echo ''
-	@echo '%%% REMOVE CONFIG FILES %%%'
-	@echo 'extrafileclean  Removes input.geos and HEMCO_Config.rc files'
+	@echo '%%% CLEAN UP %%%'
+	@echo 'cleanup_output    Synonym for: cleanup_data cleanup_logs'
+	@echo 'cleanup_data      Removes all GEOS-Chem diagnostic and restart file'
+	@echo 'cleanup_hco       Removes all HEMCO diagnostic and restart files'
+	@echo 'cleanup_logs      Removes all GEOS-Chem and HEMCO output log files'
+	@echo 'cleanup_exe       Removes all GEOS-Chem and HEMCO executable files'
 	@echo ''
 	@echo '%%% CLEAN SOURCE CODE %%%'
 	@echo 'clean             Makes "clean" in source code directory $CODE_DIR'
@@ -864,26 +577,16 @@ help:
 	@echo 'tauclean          Removes all TAU files in the source code directory $CODE_DIR'
 	@echo ''
 	@echo '%%% CLEAN AND REMOVE ALL %%%'
-	@echo 'superclean        Synonym for: fileclean realclean'
+	@echo 'superclean        Synonym for: realclean tauclean cleanup_output cleanup_exe'
 	@echo ''
 	@echo '%%% PRINT INFORMATION %%%'
-	@echo 'printruninfosp    Prints the run settings for GEOS-Chem simulations'
-	@echo '                    for which the parallelization is turned OFF.'
-	@echo 'printruninfomp    Prints the run settings for GEOS-Chem simulations'
-	@echo '                    for which the parallelization is turned ON'
+	@echo 'printruninfo      Prints the run settings for GEOS-Chem simulations'
+	@echo 'printruninfohco   Prints the run settings for HEMCO standalone simulations'
 	@echo 'printbuildinfo    Prints the build settings for GEOS-Chem simulations'
-	@echo 'printallinfosp    Synonym for: printbuildinfosp printruninfosp'
-	@echo 'printallinfomp    Synonym for: printbuildinfomp printruninfomp'
+	@echo 'printallinfo      Synonym for: printbuildinfo printruninfo'
 	@echo 'printcodeinfo     Print code directory git information'
 	@echo ''
 	@echo '%%% UTILITIES %%%'
-	@echo 'addsuffixsp       Adds ".sp" to files generated by GEOS-Chem simulations'
-	@echo '                    for which the parallelization is turned OFF.'
-	@echo 'addsuffixmp       Adds ".mp" to files generated by GEOS-Chem simulations'
-	@echo '                    for which the parallelization is turned ON.'
-	@echo 'check             Executes the "validate" script to test if the files'
-	@echo '                    ending in ".sp" contain identical results to the'
-	@echo '                    files ending in ".mp".'
 	@echo 'help              Prints this help screen'
 	@echo ''
 	@echo '----------------------------------------------------------'
