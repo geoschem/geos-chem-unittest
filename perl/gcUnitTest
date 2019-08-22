@@ -91,22 +91,8 @@ our $SLURM_MAILTYPE  = "";         # SLURM: When to send emails?
 #
 # !REVISION HISTORY: 
 #  22 Aug 2013 - R. Yantosca - Initial version
-#  04 Apr 2014 - R. Yantosca - Now can push the web page to a remote server
-#  27 Jun 2014 - R. Yantosca - Updated for HEMCO emissions
-#  02 Jul 2014 - R. Yantosca - Now accepts optional DRYRUN argument, which
-#                              will set up input files but not run unit tests
-#  28 Jul 2014 - R. Yantosca - End date/time can be YYYYMMDDhh or YYYYMMDDhhmm
-#  19 May 2015 - R. Yantosca - Now add VERBOSE and WARNINGS global variables
-#  19 Jun 2015 - R. Yantosca - Added optional SLURM tags
-#  22 Jun 2015 - R. Yantosca - Now write out unit test results to a text file
-#                              in case a web push is disallowed
-#  17 Dec 2015 - R. Yantosca - Now get constraints for the SLURM job
-#  18 Dec 2015 - R. Yantosca - Add UT_ROOT directory.  This lets us place the
-#                              unit test directory in scratch space if needed.
-#  28 Apr 2016 - R. Yantosca - Now use -c $SLURM_CPUS (i.e. cpus-per-task)
-#  06 Aug 2018 - R. Yantosca - Now add VERSION_TAG as a separate input
-#  30 Aug 2018 - M. Sulprizio- Remove $HEMCO_ROOT; Now pass $DATA_ROOT to
-#                              makeHemcoCfg instead
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -140,9 +126,8 @@ sub getRunDir($$$$) {
 #
 # !REVISION HISTORY:
 #  22 Aug 2013 - R. Yantosca - Initial version
-#  31 Jan 2014 - R. Yantosca - Now append the nested grid suffix if
-#                              length( $nest ) is greater than zero
-#  13 Jul 2016 - M. Sulprizio- Modify runLoc for consolidated run directories
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -198,20 +183,8 @@ sub makeInputs($$$$$$$$) {
 #
 # !REVISION HISTORY:
 #  22 Aug 2013 - R. Yantosca - Initial version
-#  27 Jun 2014 - R. Yantosca - Updated for the HEMCO_Config.rc file
-#  30 Jun 2014 - R. Yantosca - Now accept $nest via the arg list
-#  02 Jul 2014 - R. Yantosca - Now pass $start to routine &makeHemcoCfg
-#  28 Jul 2014 - R. Yantosca - Now accept $end as YYYYMMDDhhmm or YYYMMDDhh
-#  03 Sep 2014 - R. Yantosca - Now call &getHemcoEndTime
-#  23 Sep 2014 - R. Yantosca - Remove call to &getHemcoEndTime.  The HEMCO
-#                              restart timestamp is now the same as $end.
-#  19 May 2015 - R. Yantosca - Pass $VERBOSE, $WARNINGS to &makeHemcoCfg
-#  29 Apr 2016 - E. Lundgren - Allow start date to include minutes
-#  13 Jul 2016 - M. Sulprizio- Specify inpGeos file as input.geos.met_grid_sim
-#                              and copy that to input.geos immediately before
-#                              make command. This allows us to use one directory
-#                              (e.g. 4x5_tropchem) for GEOS-5, GEOS-FP, MERRA,
-#                              and MERRA-2.
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -253,10 +226,11 @@ sub makeInputs($$$$$$$$) {
   else                           { print "$errMsg\n"; exit(1);          }
 
   # Make the input.geos file in the run directory
-  &makeInputGeos( $d0, $h0, $d1, $h1, $met, $DATA_ROOT, $inpTmpl, $inpGeos );
+  &makeInputGeos( $d0, $h0, $d1, $h1, $met, $grid, $nest, $sim, $DATA_ROOT,
+		  $inpTmpl, $inpGeos );
 
   # Make the HEMCO_Config.rc file in the run directory
-  &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
+  &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,      $nest,    
                  $sim,     $VERBOSE, $WARNINGS, $DATA_ROOT, $hcoCfg );
 
   # Make the HISTORY.rc file in the run directory
@@ -289,13 +263,8 @@ sub makeSlurmTags() {
 #
 # !REVISION HISTORY:
 #  21 Mar 2014 - R. Yantosca - Initial version
-#  24 Mar 2014 - R. Yantosca - Now pass %unitTests hash as an argument
-#  07 Apr 2014 - R. Yantosca - Now make $webFile chmod 664
-#  05 Oct 2015 - E. Lundgren - Move export CPU number to after SBATCH commands
-#  04 Dec 2015 - R. Yantosca - Remove comments above #SBATCH tags
-#  17 Dec 2015 - R. Yantosca - Now add optional #SBATCH --constraint tag
-#  28 Apr 2016 - R. Yantosca - Now use -c $SLURM_CPUS which is more efficient
-#  19 Oct 2017 - R. Yantosca - Added #SBATCH --no-requeue to SLURM commands
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -405,43 +374,8 @@ sub doUnitTest($$) {
 #  &doUnitTest( $fileName );
 #
 # !REVISION HISTORY:
-#  22 Aug 2013 - R. Yantosca - Initial version, based on sleepNrt
-#  27 Aug 2013 - R. Yantosca - Now add $PERL_DIR to the make command
-#  28 Aug 2013 - R. Yantosca - Now call &cleanDir from UtUtils.pm
-#  28 Aug 2013 - R. Yantosca - Minor bug fixes.  Also now send results
-#                              to a separate file from stdout.
-#  29 Aug 2013 - R. Yantosca - Make sure that $met, $grid, $nest are in
-#                              lowercase, regardless of input
-#  05 Sep 2013 - R. Yantosca - Now the user must explicitly call the separate
-#                              cleanFiles program to remove files in the
-#                              job & log dirs.  Still need to work on cleaning
-#                              up all files in the run dirs.
-#  05 Sep 2013 - R. Yantosca - Now print log directory name
-#  30 Jan 2014 - R. Yantosca - Improve informational output
-#  31 Jan 2014 - R. Yantosca - Now allow for extra Makefile flags
-#  24 Apr 2014 - R. Yantosca - Now update the web page after each unit test
-#                              so that we can have a running display
-#  30 Jun 2014 - R. Yantosca - Now pass $nest to &makeInputs
-#  28 Jul 2014 - R. Yantosca - Improved comments.  Now call routine &makeInputs
-#                              before saving the commands for the master script
-#  03 Sep 2014 - R. Yantosca - If $end is in YYYYMMDDhh format, then convert
-#                              to YYYYMMDDhhmm format by adding "00"
-#  23 Sep 2014 - R. Yantosca - The timestamp for the HEMCO restart file is
-#                              now the same as $end.
-#  06 Mar 2015 - R. Yantosca - Skip lines that only have whitespace
-#  11 Mar 2015 - R. Yantosca - Now do not write START, END, HMCO_END to the
-#                              job script.  We now get these values by parsing
-#                              the input.geos in each run directory.
-#  13 Mar 2015 - M. Sulprizio- Now get username for file paths
-#  10 Apr 2015 - E. Lundgren - Remove MET and GRID from make command and
-#                              now use UT/perl/Makefile for unit testing.
-#  19 May 2015 - R. Yantosca - Now look for VERBOSE, WARNINGS in input file
-#  18 Jun 2015 - M. Sulprizio- Now use home directory for file paths
-#  18 Jun 2015 - R. Yantosca - Use mkdir -p instead of mkdirhier
-#  22 Jun 2015 - R. Yantosca - Now append SLURM #SBATCH tags to job file
-#  17 Dec 2015 - R. Yantosca - Now get optional SLURM_CONSTRAINT info
-#  18 Dec 2015 - R. Yantosca - Add UT_ROOT variable
-#  23 Aug 2016 - R. Yantosca - Bug fix: Replace {HOME} in $HEMCO_ROOT
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -458,8 +392,9 @@ sub doUnitTest($$) {
   my $logHdr   = "";
   my $logRslt  = "";
   my $logTop   = "";
+  my $logGC    = "";
+  my $runID    = "";
   my $met      = "";
-  my $makeCmd  = ""; 
   my $nest     = "";
   my $notDir   = "";
   my $runDir   = "";
@@ -472,7 +407,8 @@ sub doUnitTest($$) {
   my $locTime  = "";
   my $rstRoot  = "";
   my $rstFile  = "";
-
+  my $first    = 1;
+  
   # Arrays
   my @cmds     = ();
   my @slurm    = ();
@@ -729,57 +665,135 @@ sub doUnitTest($$) {
 	  if ( !( -f $rstFile ) ){
 	    print "\nFile $rstFile does not exist!\n";
 	    exit(999)
-  	  }
-
+  	  } 
+	  
 	  #-----------------------------------------------------------------
 	  # Create the list of comamnds that will execute each requested
 	  # unit test.  Store these commands in the @cmds array.
 	  #-----------------------------------------------------------------
 
-	  # Construct the make command, for single & multi processor.
-	  # MET, GRID, NEST, START, and END are retrieved from
-	  # within Makefile using getRunInfo (ewl, 4/10/15) 
-	  $makeCmd  = "$MAKE_CMD RUN_DIR=$runDir";
-	  $makeCmd .= " SIM=$sim VERSION=$VERSION";
-	  $makeCmd .= " VERSION_TAG=$VERSION_TAG LOG_DIR=$LOG_DIR";
-	  $makeCmd .= " CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR";
- 
 	  # Stdout log file.  If we are using the SLURM scheduler, then
 	  # set the $stdout variable to the value in $SLURM_STDOUT.
 	  $stdout   = "$LOG_DIR/$VERSION_TAG.stdout.log";
 	  if ( length( $SLURM_STDOUT ) > 0 ) { $stdout = $SLURM_STDOUT; }
-
-	  # The main log file
+	
+	  # Results log file
 	  $logRslt  = "$LOG_DIR/$VERSION_TAG.results.log";
 	  $RESULTS  = $logRslt;
 
-	  # If necessary, also add on the nested grid flags
-	  if ( length( $nest ) > 0  ) { $makeCmd .= " NEST=$nest"; }
-	
-	  # If necessary, also add extra Makefile options that are specific 
-	  # to each simulaton.  Specify these in the "EXTRA?" column.
-	  if ( length( $extra ) > 0 ) { $makeCmd .= " $extra"; }
+	  # Log file for each simulation
+	  if ( length( $nest ) > 0 ) {
+	    $runID  = "$met\_$grid\_$sim\_$nest";
+          } else {
+	    $runID  = "$met\_$grid\_$sim";
+	  }
+	  $logGC  = "$LOG_DIR/$VERSION_TAG.$runID.log";
 
-	  # Save make commands to an array for use below.
-	  # Temporarily copy Makefile to run dir for unit test (ewl, 4/10/15)
-	  @cmds = ( @cmds, 
-		    "\n\n\# %%% $notDir %%%\n",
-		    "cp -f $RUN_ROOT/shared_inputs/Makefiles/Makefile $runDir\n",
-		    "cd $runDir >> $stdout\n\n",
-		    "cp -f input.geos.$met\_$grid\_$sim input.geos >> $stdout\n",
-		    "rm -f input.geos.$met\_$grid\_$sim >> $stdout\n",
-		    "cp -f HEMCO_Config.rc.$met\_$grid\_$sim HEMCO_Config.rc >> $stdout\n",
-		    "rm -f HEMCO_Config.rc.$met\_$grid\_$sim >> $stdout\n",
-		    "ln -sf $rstFile GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",
-		    "mkdir -p OutputDir\n",
- 	            "$makeCmd unittest >> $stdout\n",
-		    "rm -f Makefile\n",
-		    "rm -f GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",
+	  # Build mp and sp executables
+	  if ( ( $first )  &&
+	     ( ( $sim !~ m/APM/     ) && ( $sim !~ m/RRTMG/   ) &&
+	       ( $sim !~ m/TOMAS15/ ) && ( $sim !~ m/TOMAS40/ ) ) ) {
+
+	    # On first pass build executables for single and multi-processors
+	    @cmds = ( @cmds,
+		      "cp -f $RUN_ROOT/shared_inputs/Makefiles/Makefile $RUN_ROOT\n",
+		      "cd $RUN_ROOT\n",
+		      "make CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR realclean\n",
+		      "$MAKE_CMD CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR SIM=$sim OMP=n build\n",
+		      "mv -v geos geos.sp\n",
+		      "mv compile.log $LOG_DIR/compile.log.sp\n",
+		      "mv lastbuild lastbuild.sp\n",
+		      "make CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR realclean\n",
+		      "$MAKE_CMD CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR SIM=$sim OMP=y build\n",
+		      "mv geos geos.mp\n",
+		      "mv compile.log $LOG_DIR/compile.log.mp\n",
+		      "mv lastbuild lastbuild.mp\n" );
+
+	    # Set first to false
+	    $first=0
+	      
+          } elsif ( ( $sim =~ m/APM/     ) || ( $sim =~ m/RRTMG/   ) ||
+	            ( $sim =~ m/TOMAS15/ ) || ( $sim =~ m/TOMAS40/ ) ) {
+
+	    # For simulations like APM, RRTMG, and TOMAS that require extra
+	    # compiler flags. Here we build GEOS-Chem for those simulations,
+	    # save to separate executables and run.
+	    @cmds = ( @cmds,
+		      "cp -f $RUN_ROOT/shared_inputs/Makefiles/Makefile $RUN_ROOT\n",
+		      "cd $RUN_ROOT\n",
+		      "make CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR realclean\n",
+		      "$MAKE_CMD CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR SIM=$sim OMP=n build\n",
+		      "mv geos geos.$sim.sp\n",
+		      "mv compile.log $LOG_DIR/compile.log.$sim.sp\n",
+		      "mv lastbuild lastbuild.$sim.sp\n",
+		      "make CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR realclean\n",
+		      "$MAKE_CMD CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR SIM=$sim OMP=y build\n",
+		      "mv geos geos.$sim.mp\n",
+		      "mv compile.log $LOG_DIR/compile.log.$sim.mp\n",
+		      "mv lastbuild lastbuild.$sim.mp\n",
+		      "\n\n\# %%% $notDir %%%\n",
+	    	      "cd $runDir >> $stdout\n",
+	    	      "cp -f input.geos.$met\_$grid\_$sim input.geos >> $stdout\n",
+	    	      "rm -f input.geos.$met\_$grid\_$sim >> $stdout\n",
+	    	      "cp -f HEMCO_Config.rc.$met\_$grid\_$sim HEMCO_Config.rc >> $stdout\n",
+	    	      "rm -f HEMCO_Config.rc.$met\_$grid\_$sim >> $stdout\n",
+	    	      "ln -sf $rstFile GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",
+	    	      "mkdir -p OutputDir\n",
+	    	      "ln -sf $RUN_ROOT/geos.$sim.sp .\n",
+ 	              "./geos.$sim.sp >> $logGC.sp\n",
+	    	      "for f in *nc; do mv \$f \$f.sp; done\n",
+	    	      "for f in *nc4; do mv \$f \$f.sp; done\n",
+	    	      "for f in ./OutputDir/*nc4; do mv \$f \$f.sp; done\n",
+	    	      "mv GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4.sp GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",
+	    	      "rm -f geos.$sim.sp\n",
+	    	      "ln -sf $RUN_ROOT/geos.$sim.mp .\n",
+ 	              "./geos.$sim.mp >> $logGC.mp\n",
+	    	      "for f in *nc; do mv \$f \$f.mp; done\n",
+	    	      "for f in *nc4; do mv \$f \$f.mp; done\n",
+	    	      "for f in ./OutputDir/*nc4; do mv \$f \$f.mp; done\n",
+	    	      "rm -f geos.$sim.mp\n",
+	    	      "rm -f GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4.mp\n",
+	    	      "/usr/bin/perl $PERL_DIR/validate.pl $runID . . ut >> $RESULTS\n",
+                      "\n\# %%% Create web page w/ unit test matrix %%%\n",
+                      "/usr/bin/perl $PERL_DIR/gcUtWeb $RUN_ROOT $RESULTS $TXT_GRID $TEMPLATE $WEB_GRID $WEB_PUSH >>$stdout\n" );
+
+          }
+
+	  # For rest of simulations use standard geos.sp and geos.mp executables
+          if ( ( $sim !~ m/APM/     ) && ( $sim !~ m/RRTMG/   ) &&
+	       ( $sim !~ m/TOMAS15/ ) && ( $sim !~ m/TOMAS40/ ) ) {
+	  
+	    # Save commands to an array for use below.
+	    @cmds = ( @cmds, 
+	    	    "\n\n\# %%% $notDir %%%\n",
+	    	    "cd $runDir >> $stdout\n",
+	    	    "cp -f input.geos.$met\_$grid\_$sim input.geos >> $stdout\n",
+	    	    "rm -f input.geos.$met\_$grid\_$sim >> $stdout\n",
+	    	    "cp -f HEMCO_Config.rc.$met\_$grid\_$sim HEMCO_Config.rc >> $stdout\n",
+	    	    "rm -f HEMCO_Config.rc.$met\_$grid\_$sim >> $stdout\n",
+	    	    "ln -sf $rstFile GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",
+	    	    "mkdir -p OutputDir\n",
+	    	    "ln -sf $RUN_ROOT/geos.sp .\n",
+ 	            "./geos.sp >> $logGC.sp\n",
+	    	    "for f in *nc; do mv \$f \$f.sp; done\n",
+	    	    "for f in *nc4; do mv \$f \$f.sp; done\n",
+	    	    "for f in ./OutputDir/*nc4; do mv \$f \$f.sp; done\n",
+	    	    "mv GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4.sp GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",
+	    	    "rm -f geos.sp\n",
+	    	    "ln -sf $RUN_ROOT/geos.mp .\n",
+ 	            "./geos.mp >> $logGC.mp\n",
+	    	    "for f in *nc; do mv \$f \$f.mp; done\n",
+	    	    "for f in *nc4; do mv \$f \$f.mp; done\n",
+	    	    "for f in ./OutputDir/*nc4; do mv \$f \$f.mp; done\n",
+	    	    "rm -f geos.mp\n",
+	    	    "rm -f GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4.mp\n",
+	    	    "/usr/bin/perl $PERL_DIR/validate.pl $runID . . ut >> $RESULTS\n",
                     "\n\# %%% Create web page w/ unit test matrix %%%\n",
                     "cd $PERL_DIR >> $stdout\n",
-                    "./gcUtWeb $RUN_ROOT $RESULTS $TXT_GRID $TEMPLATE $WEB_GRID $WEB_PUSH >>$stdout\n"
-	          );
-        }
+                    "./gcUtWeb $RUN_ROOT $RESULTS $TXT_GRID $TEMPLATE $WEB_GRID $WEB_PUSH >>$stdout\n" );
+	  }
+
+	}
 
 	# Increment counter
 	$i++;
@@ -888,8 +902,8 @@ sub main(@) {
 #
 # !REVISION HISTORY:
 #  23 May 2013 - R. Yantosca - Initial version, based on NRT-ARCTAS
-#  02 Jul 2014 - R. Yantosca - Now accepts DRYRUN argument, which will set up
-#                              input files but not submit the unit test job
+#  Navigate to your unit tester directory and type 'gitk' at the prompt
+#  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC

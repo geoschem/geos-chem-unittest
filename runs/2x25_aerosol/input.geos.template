@@ -1,4 +1,3 @@
-GEOS-CHEM UNIT TEST SIMULATION: {MET}_2x25_aerosol
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
@@ -6,46 +5,45 @@ End   YYYYMMDD, hhmmss  : {DATE2} {TIME2}
 Run directory           : ./
 Root data directory     : {DATA_ROOT}
 Met field               : {MET}
+Simulation name         : {SIM}
 ------------------------+------------------------------------------------------
 %%% GRID MENU %%%       :
-Grid resolution         : 2.0x2.5
-Longitude min/max       : -180.0 180.0
-Latitude  min/max       : -90.0   90.0
- Half-sized polar boxes?: T
-Number of levels        : 47
-Nested grid simulation? : F
- Buffer zone (N S E W ) :  0  0  0  0
+Grid resolution         : {RES}
+Longitude min/max       : {LON_RANGE}
+Latitude  min/max       : {LAT_RANGE}
+ Half-sized polar boxes?: {HALF_POLAR}
+Number of levels        : {NLEV}
+Nested grid simulation? : {NESTED_SIM}
+ Buffer zone (N S E W ) :  {BUFFER_ZONE}
 ------------------------+------------------------------------------------------
 %%% TIMESTEP MENU %%%   :
 Tran/conv timestep [sec]: 600
 Chem/emis timestep [sec]: 1200
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
-Type of simulation      : 10
-Species Entries ------->: Name
-Species #1              : DMS
-Species #2              : SO2
-Species #3              : SO4
-Species #4              : SO4s
-Species #5              : MSA
-Species #6              : NH3
-Species #7              : NH4
-Species #8              : NIT
-Species #9              : NITs
-Species #10             : H2O2
-Species #11             : BCPI
-Species #12             : OCPI
-Species #13             : BCPO
-Species #14             : OCPO
-Species #15             : DST1
-Species #16             : DST2
-Species #17             : DST3
-Species #18             : DST4
-Species #19             : SALA
-Species #20             : SALC
-Species #21             : SOAP
-Species #22             : SOAS
-Species #23             : pFe
+Species name            : DMS
+Species name            : SO2
+Species name            : SO4
+Species name            : SO4s
+Species name            : MSA
+Species name            : NH3
+Species name            : NH4
+Species name            : NIT
+Species name            : NITs
+Species name            : H2O2
+Species name            : BCPI
+Species name            : OCPI
+Species name            : BCPO
+Species name            : OCPO
+Species name            : DST1
+Species name            : DST2
+Species name            : DST3
+Species name            : DST4
+Species name            : SALA
+Species name            : SALC
+Species name            : SOAP
+Species name            : SOAS
+Species name            : pFe
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T

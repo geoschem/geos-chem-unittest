@@ -1,4 +1,3 @@
-GEOS-CHEM UNIT TEST SIMULATION: {MET}_4x5_tagCO
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
 Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
@@ -6,36 +5,35 @@ End   YYYYMMDD, hhmmss  : {DATE2} {TIME2}
 Run directory           : ./
 Root data directory     : {DATA_ROOT}
 Met field               : {MET}
+Simulation name         : {SIM}
 ------------------------+------------------------------------------------------
 %%% GRID MENU %%%       :
-Grid resolution         : 4.0x5.0
-Longitude min/max       : -180.0 180.0
-Latitude  min/max       : -90.0   90.0
- Half-sized polar boxes?: T
-Number of levels        : 47
-Nested grid simulation? : F
- Buffer zone (N S E W ) :  0  0  0  0
+Grid resolution         : {RES}
+Longitude min/max       : {LON_RANGE}
+Latitude  min/max       : {LAT_RANGE}
+ Half-sized polar boxes?: {HALF_POLAR}
+Number of levels        : {NLEV}
+Nested grid simulation? : {NESTED_SIM}
+ Buffer zone (N S E W ) :  {BUFFER_ZONE}
 ------------------------+------------------------------------------------------
 %%% TIMESTEP MENU %%%   :
 Tran/conv timestep [sec]: 600
 Chem/emis timestep [sec]: 1200
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
-Type of simulation      : 7
-Species Entries ------->: Name
-Species #1              : CO
-Species #2              : COus
-Species #3              : COeur
-Species #4              : COasia
-Species #5              : COoth
-Species #6              : CObbam
-Species #7              : CObbaf
-Species #8              : CObbas
-Species #9              : CObboc
-Species #10             : CObbeu
-Species #11             : CObboth
-Species #12             : COch4
-Species #13             : COnmvoc
+Species name            : CO
+Species name            : COus
+Species name            : COeur
+Species name            : COasia
+Species name            : COoth
+Species name            : CObbam
+Species name            : CObbaf
+Species name            : CObbas
+Species name            : CObboc
+Species name            : CObbeu
+Species name            : CObboth
+Species name            : COch4
+Species name            : COnmvoc
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T

@@ -239,7 +239,10 @@ sub main() {
         }
       }
     }
-  }	
+  }
+
+  $cmd = "cd $runRoot; rm -f Makefile geos *log *mp *sp";
+  qx/$cmd/;
 
   # Return w/ status
   return( $? );
