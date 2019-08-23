@@ -375,7 +375,7 @@ sub makeInputGeos($$$$$$$$$$$) {
       if ( $nest =~ m/as/ ) {
 	if ( $grid =~ m/05x0625/ ) {
 	  $line =~ s/{LON_RANGE}/ 60.0 150.0/g;
-	  $line =~ s/{LAT_RANGE}/-11.0  55.0/g;
+	  $line =~ s/{LAT_RANGE}/-11.0 55.0/g;
         } elsif ( $grid =~ m/025x03125/ ) {
 	  $line =~ s/{LON_RANGE}/70.0 140.0/g;
 	  $line =~ s/{LAT_RANGE}/15.0  55.0/g;
@@ -385,7 +385,7 @@ sub makeInputGeos($$$$$$$$$$$) {
 	  $line =~ s/{LON_RANGE}/-30.0 50.0/g;
 	  $line =~ s/{LAT_RANGE}/ 30.0 70.0/g;
         } elsif ( $grid =~ m/025x03125/ ) {
-	  $line =~ s/{LON_RANGE}/-15.0 40.0 /g;
+	  $line =~ s/{LON_RANGE}/-15.0 40.0/g;
 	  $line =~ s/{LAT_RANGE}/32.75 61.25/g;
         }
       } elsif ( $nest =~ m/na/ ) {
@@ -394,12 +394,12 @@ sub makeInputGeos($$$$$$$$$$$) {
 	  $line =~ s/{LAT_RANGE}/  10.0  70.0/g;
         } elsif ( $grid =~ m/025x03125/ ) {
 	  $line =~ s/{LON_RANGE}/-130.0 -60.0/g;
-	  $line =~ s/{LAT_RANGE}/ 9.75  60.0/g;
+	  $line =~ s/{LAT_RANGE}/  9.75  60.0/g;
         }
       }
     } else {
       $line =~ s/{LON_RANGE}/-180.0 180.0/g;
-      $line =~ s/{LAT_RANGE}/-90.0   90.0/g;
+      $line =~ s/{LAT_RANGE}/ -90.0  90.0/g;
       $line =~ s/{HALF_POLAR}/T/g;
       $line =~ s/{NESTED_SIM}/F/g;
       $line =~ s/{BUFFER_ZONE}/0  0  0  0/g;

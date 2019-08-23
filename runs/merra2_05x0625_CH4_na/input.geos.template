@@ -10,7 +10,7 @@ Simulation name         : {SIM}
 %%% GRID MENU %%%       :
 Grid resolution         : {RES}
 Longitude min/max       : {LON_RANGE}
-Latitude  min/max       : (LAT_RANGE}
+Latitude  min/max       : {LAT_RANGE}
  Half-sized polar boxes?: {HALF_POLAR}
 Number of levels        : {NLEV}
 Nested grid simulation? : {NESTED_SIM}
