@@ -192,7 +192,8 @@ sub makeInputs($$$$$$$$) {
   else                           { print "$errMsg\n"; exit(1);          }
 
   # Make the input.geos file in the run directory
-  &makeInputGeos( $d0, $h0, $d1, $h1, $met, $DATA_ROOT, $inpTmpl, $inpGeos );
+  &makeInputGeos( $d0, $h0, $d1, $h1, $met, $grid, $nest, $sim, $DATA_ROOT,
+		  $inpTmpl, $inpGeos );
 
   # Make the HEMCO_Config.rc file in the run directory
   &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
