@@ -121,7 +121,6 @@ ifndef BPCH_DIAG
  BPCH_DIAG   :=y
 endif
 
-
 ###############################################################################
 #####                                                                     #####
 #####  RUN OPTIONS: Get various settings from the run directory name,     #####
@@ -142,6 +141,7 @@ START        :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 1)
 END          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 2)
 STARTDATE    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 3)
 ENDDATE      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 4)
+SIM          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 5)
 
 # Define the proper setting for CHEM, which picks the correct KPP files
 ifeq ($(SIM),TOMAS12)
@@ -329,18 +329,17 @@ build:
 	@$(MAKE) cleanup_exe
 	@$(MAKE) -C $(CODE_DIR) APM=$(APM)                                    \
                                 CHEM=$(CHEM)                                  \
-				RRTMG=$(RRTMG)                                \
+                                RRTMG=$(RRTMG)                                \
                                 TOMAS12=$(TOMAS12)                            \
-				TOMAS15=$(TOMAS15)                            \
+                                TOMAS15=$(TOMAS15)                            \
                                 TOMAS30=$(TOMAS30)                            \
-				TOMAS40=$(TOMAS40)                            \
+                                TOMAS40=$(TOMAS40)                            \
                                 MASSCONS=$(MASSCONS)                          \
-				OMP=${OMP}                                    \
+                                OMP=$(OMP)                                    \
                                 TIMERS=$(TIMERS)                              \
-				TAU_PROF=$(TAU_PROF)                          \
+                                TAU_PROF=$(TAU_PROF)                          \
                                 TAU_OPTIONS=$(TAU_OPT)                        \
-				BPCH_DIAG=$(BPCH_DIAG)                        \
-                                NO_REDUCED=$(NO_REDUCED)                      \
+                                BPCH_DIAG=$(BPCH_DIAG)                        \
                                 2>&1 | tee -a $(LOG_COMP)
 	cp -f $(CODE_DIR)/bin/geos $(EXE)
 	@$(MAKE) printbuildinfo 2>&1 | tee -a $(LOG_COMP)

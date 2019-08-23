@@ -40,6 +40,7 @@ use strict;                      # Use "IMPLICIT NONE" syntax
 #  2          End   date & time   (in YYYYMMDDhhmm format           )
 #  3          Start date only     (in YYYYMMDD format               )
 #  4          End   date only     (in YYYYMMDD format               )
+#  5          Simulation name
 #
 # !REVISION HISTORY: 
 #  06 Apr 2015 - E. Lundgren - Initial version
@@ -114,6 +115,18 @@ sub getInfo($$) {
       if    ( $id == 1 || $id == 2 ) { $runinfo = substr( $runinfo, 0, 12 ); } 
       elsif ( $id == 3 || $id == 4 ) { $runinfo = substr( $runinfo, 0, 8  ); }
 
+    } elsif ( $id == 5 ) {
+
+      # Grep for line in input.geos
+      $line = qx( grep "Simulation name" $rundir/input.geos );
+      chomp( $line );
+
+      # Split by spaces
+      @linestrings = split( ' ', $line );
+      
+      # Extract the simulation name
+      $runinfo = "$linestrings[3]";
+      
     } 
 
   } elsif ( -f "$rundir/HEMCO_sa_Config.rc" ) {
@@ -147,6 +160,11 @@ sub getInfo($$) {
         }
       }
 
+    } elsif ( $id == 5 ) {
+
+      # Hardcode simulation name; it doesn't matter for HEMCO SA
+      $runinfo = "standard";
+      
     }
 
   }

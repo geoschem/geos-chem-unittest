@@ -641,15 +641,10 @@ printruninfodev:
 
 printbuildinfo:
 	@echo "LAST BUILD INFORMATION:"
-	@echo "  MET          : $(MET)"
-	@echo "  GRID         : $(GRID)"
-	@echo "  SIM          : $(SIM)"
-	@echo "  NEST         : $(NEST)"
 	@echo "  TRACEBACK    : $(TRACEBACK)"
 	@echo "  BOUNDS       : $(BOUNDS)"
 	@echo "  DEBUG        : $(DEBUG)"
 	@echo "  FPE          : $(FPE)"
-	@echo "  NO_REDUCED   : $(NO_REDUCED)"
 	@echo "  CHEM         : $(CHEM)"
 	@echo "  TOMAS12      : $(TOMAS12)"	
 	@echo "  TOMAS15      : $(TOMAS15)"
