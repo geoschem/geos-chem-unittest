@@ -241,15 +241,9 @@ BUILDINFO    :="lastbuild"
 EXEC_REF     :=geos.Ref
 EXEC_DEV     :=geos.Dev
 
-# Output data files
-TRAC_AVG     :=trac_avg.$(RUNID).$(START)
-HMCO_AVG     :=HEMCO_diagnostics.$(END).nc
-HMCO_RST     :=HEMCO_restart.$(HMCO_END).nc
-TRAC_RST     :=GEOSChem.Restart.$(END).nc4
-
 # Diff test validation script and results file
 VALIDATE     :=/usr/bin/perl $(RUN_DEV)/validate.pl
-RESULTS      :=$(LOG_DIR)/log.$(RUNID).Results
+RESULTS      :=$(LOG_DIR)/log.$(SIM).Results
 
 # Get information about the Git version, because some features
 # (like -C) are not available in older Git versions.  The git 
@@ -373,19 +367,10 @@ refonly:
                                TIMERS=$(TIMERS)                               \
                                TAU_PROF=$(TAU_PROF)                           \
                                TAU_OPTIONS=$(TAU_OPT)                         \
+                               BPCH_DIAG=$(BPCH_DIAG)                         \
                                CODE=$(CODE_REF)                               \
                                EXEC=$(EXEC_REF)                               \
-                               TRAC_AVG=$(TRAC_AVG)                           \
-                               TRAC_RST=$(TRAC_RST)                           \
-                               HMCO_AVG=$(HMCO_AVG)                           \
-                               HMCO_RST=$(HMCO_RST)                           \
-                               HIST_INS=$(HIST_INS)                           \
-                               HMCO_LOG=$(LOG_HMCO)                           \
                                LOG=$(LOG_REF)                                 \
-                               START=$(START)                                 \
-                               END=$(END)                                     \
-                               STARTDATE=$(STARTDATE)                         \
-                               BPCH_DIAG=$(BPCH_DIAG)                         \
                                2>&1 | tee -a $(RUN_REF)/$(LOG_COMP).Ref
 	@$(MAKE) printcodeinforef > $(RUN_REF)/$(LOG_COMP).Ref
 	@$(MAKE) printbuildinfo >> $(RUN_REF)/$(LOG_COMP).Ref
@@ -408,19 +393,10 @@ devonly:
                                TIMERS=$(TIMERS)                               \
                                TAU_PROF=$(TAU_PROF)                           \
                                TAU_OPTIONS=$(TAU_OPT)                         \
+                               BPCH_DIAG=$(BPCH_DIAG)                         \
                                CODE=$(CODE_DEV)                               \
                                EXEC=$(EXEC_DEV)                               \
-                               TRAC_AVG=$(TRAC_AVG)                           \
-                               TRAC_RST=$(TRAC_RST)                           \
-                               HMCO_AVG=$(HMCO_AVG)                           \
-                               HMCO_RST=$(HMCO_RST)                           \
-                               HIST_INS=$(HIST_INS)                           \
-                               HMCO_LOG=$(LOG_HMCO)                           \
                                LOG=$(LOG_DEV)                                 \
-                               START=$(START)                                 \
-                               END=$(END)                                     \
-                               STARTDATE=$(STARTDATE)                         \
-                               BPCH_DIAG=$(BPCH_DIAG)                         \
                                2>&1 | tee -a $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printcodeinfodev > $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printbuildinfo >> $(RUN_DEV)/$(LOG_COMP).Dev
@@ -447,19 +423,10 @@ devlib:
                                TIMERS=$(TIMERS)                               \
                                TAU_PROF=$(TAU_PROF)                           \
                                TAU_OPTIONS=$(TAU_OPT)                         \
+                               BPCH_DIAG=$(BPCH_DIAG)                         \
                                CODE=$(CODE_DEV)                               \
                                EXEC=$(EXEC_DEV)                               \
-                               TRAC_AVG=$(TRAC_AVG)                           \
-                               TRAC_RST=$(TRAC_RST)                           \
-                               HMCO_AVG=$(HMCO_AVG)                           \
-                               HMCO_RST=$(HMCO_RST)                           \
-                               HIST_INS=$(HIST_INS)                           \
-                               HMCO_LOG=$(LOG_HMCO)                           \
                                LOG=$(LOG_DEV)                                 \
-                               START=$(START)                                 \
-                               END=$(END)                                     \
-                               STARTDATE=$(STARTDATE)                         \
-                               BPCH_DIAG=$(BPCH_DIAG)                         \
                                2>&1 | tee -a $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printcodeinfodev > $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printbuildinfo >> $(RUN_DEV)/$(LOG_COMP).Dev
@@ -486,19 +453,10 @@ devrun:
                                TIMERS=$(TIMERS)                               \
                                TAU_PROF=$(TAU_PROF)                           \
                                TAU_OPTIONS=$(TAU_OPT)                         \
+                               BPCH_DIAG=$(BPCH_DIAG)                         \
                                CODE=$(CODE_DEV)                               \
                                EXEC=$(EXEC_DEV)                               \
-                               TRAC_AVG=$(TRAC_AVG)                           \
-                               TRAC_RST=$(TRAC_RST)                           \
-                               HMCO_AVG=$(HMCO_AVG)                           \
-                               HMCO_RST=$(HMCO_RST)                           \
-                               HIST_INS=$(HIST_INS)                           \
-                               HMCO_LOG=$(LOG_HMCO)                           \
                                LOG=$(LOG_DEV)                                 \
-                               START=$(START)                                 \
-                               END=$(END)                                     \
-                               STARTDATE=$(STARTDATE)                         \
-                               BPCH_DIAG=$(BPCH_DIAG)                         \
                                2>&1 | tee -a $(RUN_DEV)/$(LOG_COMP).Dev
 	@$(MAKE) printruninfodev >> $(LOG_DEV)
 	@$(MAKE) printallinfodev
@@ -512,8 +470,8 @@ devcheck:
 	@$(MAKE) check
 
 check:
-	@$(VALIDATE) $(RUNID) ./Ref ./Dev dt >> $(RESULTS)
-	@$(VALIDATE) $(RUNID) ./Ref ./Dev dt
+	@$(VALIDATE) $(SIM) ./Ref ./Dev dt >> $(RESULTS)
+	@$(VALIDATE) $(SIM) ./Ref ./Dev dt
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Remove Output Data     %
@@ -614,28 +572,18 @@ printcodeinfodev:
 printruninforef:
 	@echo "RUN SETTINGS:"
 	@echo "  Run directory       : $(RUN_REF)"
-	@echo "  Run ID              : $(RUNID)"
+	@echo "  Simulation          : $(SIM)"
 	@echo "  Simulation Start    : $(START)"
 	@echo "  Simulation End      : $(END)"
-	@echo "  HEMCO End           : $(HMCO_END)"
-	@echo "  Tracer Data File    : $(TRAC_AVG).Ref"
-	@echo "  Tracer Restart File : $(TRAC_RST).Ref"
-	@echo "  History File (inst) : $(HIST_INS).Ref"
-	@echo "  HEMCO Restart File  : $(HMCO_RST).Ref"
 	@echo "  GC Run Log File     : $(LOG_REF)"
 	@echo "  HEMCO Log File      : $(LOG_HMCO).Ref"
 
 printruninfodev:
 	@echo "RUN SETTINGS:"
 	@echo "  Run directory       : $(RUN_DEV)"
-	@echo "  Run ID              : $(RUNID)"
+	@echo "  Simulation          : $(SIM)"
 	@echo "  Simulation Start    : $(START)"
 	@echo "  Simulation End      : $(END)"
-	@echo "  HEMCO End           : $(HMCO_END)"
-	@echo "  Tracer Data File    : $(TRAC_AVG).Dev"
-	@echo "  Tracer Restart File : $(TRAC_RST).Dev"
-	@echo "  HEMCO Restart File  : $(HMCO_RST).Dev"
-	@echo "  History File (inst) : $(HIST_INS).Dev"
 	@echo "  GC Run Log File     : $(LOG_DEV)"
 	@echo "  HEMCO Log File      : $(LOG_HMCO).Dev"
 

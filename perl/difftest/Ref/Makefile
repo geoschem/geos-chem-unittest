@@ -58,13 +58,13 @@ run:
 	@$(MAKE) addsuffixref
 
 addsuffixref:
-	@for f in ./$(GC_RST); do                                  \
+	@for f in ./*nc4; do                                  \
            if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi;            \
         done
-	@for f in ./$(TRAC_AVG); do                                \
+	@for f in ./trac_avg*; do                                \
            if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi;            \
         done
-	@for f in ./$(HMCO_RST); do                                \
+	@for f in ./*nc; do                                \
            if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi;            \
         done
 	@for f in ./OutputDir/HEMCO_diagnostics*.nc; do            \
