@@ -408,6 +408,7 @@ sub doUnitTest($$) {
   my $rstRoot  = "";
   my $rstFile  = "";
   my $first    = 1;
+  my $chem     = "";
   
   # Arrays
   my @cmds     = ();
@@ -689,6 +690,16 @@ sub doUnitTest($$) {
 	  }
 	  $logGC  = "$LOG_DIR/$VERSION_TAG.$runID.log";
 
+	  if ( $sim =~ m/complexSOA_SVPOA/ ) {
+	    $chem = "SOA_SVPOA";
+	  } elsif ( ( $sim =~ m/tropchem/ ) || ( $sim =~ m/complexSOA/ ) ||
+	            ( $sim =~ m/APM/      ) || ( $sim =~ m/RRTMG/      ) ||
+	            ( $sim =~ m/TOMAS15/  ) || ( $sim =~ m/TOMAS40/    ) ) {
+	    $chem = "Tropchem";
+	  } else {
+	    $chem = "Standard";
+	  }
+
 	  # Build mp and sp executables
 	  if ( ( $first )  &&
 	     ( ( $sim !~ m/APM/     ) && ( $sim !~ m/RRTMG/   ) &&
@@ -698,16 +709,18 @@ sub doUnitTest($$) {
 	    @cmds = ( @cmds,
 		      "cp -f $RUN_ROOT/shared_inputs/Makefiles/Makefile $RUN_ROOT\n",
 		      "cd $RUN_ROOT\n",
+		      'for CHEM_MECH in "Standard" "Tropchem" "SOA_SVPOA"; do',
+		      "\nmake CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR realclean\n",
+		      "$MAKE_CMD CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR CHEM=\$CHEM_MECH OMP=n build\n",
+		      "mv -v geos geos.\$CHEM_MECH.sp\n",
+		      "mv compile.log $LOG_DIR/compile.log.\$CHEM_MECH.sp\n",
+		      "mv lastbuild lastbuild.\$CHEM_MECH.sp\n",
 		      "make CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR realclean\n",
-		      "$MAKE_CMD CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR OMP=n build\n",
-		      "mv -v geos geos.sp\n",
-		      "mv compile.log $LOG_DIR/compile.log.sp\n",
-		      "mv lastbuild lastbuild.sp\n",
-		      "make CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR realclean\n",
-		      "$MAKE_CMD CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR OMP=y build\n",
-		      "mv geos geos.mp\n",
-		      "mv compile.log $LOG_DIR/compile.log.mp\n",
-		      "mv lastbuild lastbuild.mp\n" );
+		      "$MAKE_CMD CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR CHEM=\$CHEM_MECH OMP=y build\n",
+		      "mv geos geos.\$CHEM_MECH.mp\n",
+		      "mv compile.log $LOG_DIR/compile.log.\$CHEM_MECH.mp\n",
+		      "mv lastbuild lastbuild.\$CHEM_MECH.mp\n",
+	              "done\n" );
 
 	    # Set first to false
 	    $first=0
@@ -722,12 +735,12 @@ sub doUnitTest($$) {
 		      "cp -f $RUN_ROOT/shared_inputs/Makefiles/Makefile $RUN_ROOT\n",
 		      "cd $RUN_ROOT\n",
 		      "make CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR realclean\n",
-		      "$MAKE_CMD CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR OMP=n build\n",
+		      "$MAKE_CMD CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR CHEM=$chem OMP=n build\n",
 		      "mv geos geos.$sim.sp\n",
 		      "mv compile.log $LOG_DIR/compile.log.$sim.sp\n",
 		      "mv lastbuild lastbuild.$sim.sp\n",
 		      "make CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR realclean\n",
-		      "$MAKE_CMD CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR OMP=y build\n",
+		      "$MAKE_CMD CODE_DIR=$CODE_DIR PERL_DIR=$PERL_DIR CHEM=$chem OMP=y build\n",
 		      "mv geos geos.$sim.mp\n",
 		      "mv compile.log $LOG_DIR/compile.log.$sim.mp\n",
 		      "mv lastbuild lastbuild.$sim.mp\n",
@@ -773,19 +786,19 @@ sub doUnitTest($$) {
 	    	    "rm -f HEMCO_Config.rc.$met\_$grid\_$sim >> $stdout\n",
 	    	    "ln -sf $rstFile GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",
 	    	    "mkdir -p OutputDir\n",
-	    	    "ln -sf $RUN_ROOT/geos.sp .\n",
- 	            "./geos.sp >> $logGC.sp\n",
+	    	    "ln -sf $RUN_ROOT/geos.$chem.sp .\n",
+ 	            "./geos.$chem.sp >> $logGC.sp\n",
 	    	    "for f in *nc; do mv \$f \$f.sp; done\n",
 	    	    "for f in *nc4; do mv \$f \$f.sp; done\n",
 	    	    "for f in ./OutputDir/*nc4; do mv \$f \$f.sp; done\n",
 	    	    "mv GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4.sp GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",
-	    	    "rm -f geos.sp\n",
-	    	    "ln -sf $RUN_ROOT/geos.mp .\n",
- 	            "./geos.mp >> $logGC.mp\n",
+	    	    "rm -f geos.$chem.sp\n",
+	    	    "ln -sf $RUN_ROOT/geos.$chem.mp .\n",
+ 	            "./geos.$chem.mp >> $logGC.mp\n",
 	    	    "for f in *nc; do mv \$f \$f.mp; done\n",
 	    	    "for f in *nc4; do mv \$f \$f.mp; done\n",
 	    	    "for f in ./OutputDir/*nc4; do mv \$f \$f.mp; done\n",
-	    	    "rm -f geos.mp\n",
+	    	    "rm -f geos.$chem.mp\n",
 	    	    "rm -f GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4.mp\n",
 	    	    "/usr/bin/perl $PERL_DIR/validate.pl $runID . . ut >> $RESULTS\n",
                     "\n\# %%% Create web page w/ unit test matrix %%%\n",
