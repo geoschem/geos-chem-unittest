@@ -34,50 +34,53 @@ fi
 
 # Set variables
 version=$1
-dir="/n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/geos-chem/1mo_benchmarks/GC_12/"
+dir="/n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/geos-chem/1mo_benchmarks/GC_12/$version/GCC/"
 
 echo "======================================================================="
-echo "Copying 1-month benchmark output to $dir$version"
+echo "Copying 1-month benchmark output to $dir"
 echo "======================================================================="
 echo " "
 
 # Copy entire contents of 1-month benchmark run directory
-cp -avL ../../$version $dir
+cp -av ../../GC_$version/* $dir
 
 # Remove files and directories not needed for permanent storage
-rm -v $dir$version/geos.mp
-rm -v $dir$version/validate.pl
-rm -rf $dir$version/CodeDir
+rm -v $dir/geos.mp
+rm -v $dir/validate.pl
+rm -rf $dir/CodeDir
 
 # Change group name of new directories and files
-chgrp jacob_gcst $dir$version
-chgrp jacob_gcst $dir$version/*
-chgrp jacob_gcst $dir$version/Plots/*
-chgrp jacob_gcst $dir$version/Plots/*/*
+chgrp jacob_gcst $dir
+chgrp jacob_gcst $dir/*
+chgrp jacob_gcst $dir/OutputDir/*
+chgrp jacob_gcst $dir/Plots/*
+chgrp jacob_gcst $dir/Plots/*/*
 
 # Change permissions of new directory and files
-chmod 775 $dir$version
-chmod 664 $dir$version/*
-chmod 775 $dir$version/Plots
-chmod 775 $dir$version/Plots/*
-chmod 664 $dir$version/Plots/*/*
-chmod 664 $dir$version/Plots/*pdf
-chmod 664 $dir$version/Plots/*txt
-chmod 664 $dir$version/Plots/*json
-chmod 664 $dir$version/Plots/*1mon
-chmod 664 $dir$version/Plots/*results*
-chmod 775 $dir$version/getRunInfo
-chmod 775 $dir$version/Makefile
-chmod 775 $dir$version/$version.run
+chmod 775 $dir
+chmod 664 $dir/*
+chmod 775 $dir/OutputDir
+chmod 664 $dir/OutputDir/*
+chmod 775 $dir/Plots
+chmod 775 $dir/Plots/*
+chmod 664 $dir/Plots/*/*
+chmod 664 $dir/Plots/*pdf
+chmod 664 $dir/Plots/*txt
+chmod 664 $dir/Plots/*json
+chmod 664 $dir/Plots/input.1mon
+chmod 664 $dir/Plots/*results*
+chmod 775 $dir/getRunInfo
+chmod 775 $dir/Makefile
+chmod 775 $dir/$version.run
 
 # Print reminders to screen
 echo " "
 echo "======================================================================="
-echo "Done copying 1-month benchmark output to $dir$version"
+echo "Done copying 1-month benchmark output to $dirn"
 echo " "
 echo "*** REMINDERS ***"
-echo " - Update README file to reflect version updates"
-echo " - Copy $version.results.* from UT to output directory"
+echo " - Update README file to reflect current version"
+echo " - Copy results files from UT to output directory"
 echo "======================================================================="
 
 # Clear variables
