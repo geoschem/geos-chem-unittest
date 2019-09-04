@@ -40,15 +40,28 @@ ifndef CODE_DIR
  CODE_DIR    :=./CodeDir
 endif
 
-ifndef SIM
- SIM         :=Standard
-endif
-
 # Check if the code directory is not valid
 NO_CODE_FOUND:=$(shell test -d $(CODE_DIR); echo $$?)
 ifeq ($(NO_CODE_FOUND),1)
  $(error Could not find source code directory CODE_DIR=$(CODE_DIR))
 endif
+
+# Run directory path
+ifndef RUN_DIR
+ RUN_DIR     :=$(shell pwd)
+endif
+
+# getRunInfo perl script location (default is run directory) 
+ifndef PERL_DIR
+ PERL_DIR    :=$(RUN_DIR)
+endif
+
+# Get start & end dates from the "getRunInfo" perl script
+START        :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 1)
+END          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 2)
+STARTDATE    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 3)
+ENDDATE      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 4)
+SIM          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 5)
 
 ###############################################################################
 #####                                                                     #####
@@ -127,21 +140,6 @@ endif
 #####               or from the type of simulation that is being used.    #####
 #####                                                                     #####
 ###############################################################################
-
-# Run directory path
-RUN_DIR      :=$(shell pwd)
-
-# getRunInfo perl script location (default is run directory) 
-ifndef PERL_DIR
- PERL_DIR    :=$(RUN_DIR)
-endif
-
-# Get start & end dates from the "getRunInfo" perl script
-START        :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 1)
-END          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 2)
-STARTDATE    :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 3)
-ENDDATE      :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 4)
-SIM          :=$(shell $(PERL_DIR)/getRunInfo $(RUN_DIR) 5)
 
 # Define the proper setting for CHEM, which picks the correct KPP files
 ifeq ($(SIM),TOMAS12)
