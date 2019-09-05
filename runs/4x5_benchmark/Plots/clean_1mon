@@ -32,9 +32,10 @@ rm -rf Chlorine
 rm -rf Emissions
 rm -rf Iodine
 rm -rf Nitrogen
-rm -rf Primary
+rm -rf Oxidants
 rm -rf Primary_Organics
 rm -rf Secondary_Organics
+rm -rf Secondary_Organic_Aerosols
 rm -rf ROy
 rm -rf Sulfur
 
