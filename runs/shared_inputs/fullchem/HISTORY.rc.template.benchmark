@@ -78,6 +78,8 @@ COLLECTIONS: 'Restart',
                               'Met_PS1DRY                     ', 'GIGCchem',
                               'Met_SPHU1                      ', 'GIGCchem',
                               'Met_TMPU1                      ', 'GIGCchem',
+                              'Met_BXHEIGHT                   ', 'GIGCchem',
+                              'Met_TropLev                    ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE SpeciesConc COLLECTION %%%%%
