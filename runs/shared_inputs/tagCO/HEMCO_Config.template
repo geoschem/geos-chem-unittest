@@ -6,13 +6,13 @@
 # !MODULE: HEMCO_Config.template.tagCO
 #
 # !DESCRIPTION: Template file used to create the HEMCO_Config.rc file
-#  for the tagged CO ("tagCO") simulation. 
+#  for the tagged CO ("tagCO") simulation.
 #\\
 #\\
 # !REMARKS:
 #  The following tokens will be replaced:
 #  (1) ROOT    : Filepath to HEMCO root directory
-#  (2) CFDIR   : Filepath to directory of this configuration file. 
+#  (2) CFDIR   : Filepath to directory of this configuration file.
 #  (3) MET     : Met field type (from G-C compilation command)
 #  (4) GRID    : Horizontal grid type (from G-C compilation command)
 #  (5) SIM     : Simulation type (from G-C compilation command)
@@ -22,13 +22,12 @@
 #  (8) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
 #                as used in some filenames (e.g. "55L", "72L")
 #
-# !REVISION HISTORY: 
+# !REVISION HISTORY:
 #  Navigate to your unit tester directory and type 'gitk' at the prompt
 #  to browse the revision history.
 #EOP
 #------------------------------------------------------------------------------
 #BOC
-
 ###############################################################################
 ### BEGIN SECTION SETTINGS
 ###############################################################################
@@ -53,8 +52,8 @@ Mask fractions:              false
 ### BEGIN SECTION EXTENSION SWITCHES
 ###############################################################################
 #
-# ExtNr ExtName                 on/off  Species 
-0       Base                    : on    *             
+# ExtNr ExtName                 on/off  Species
+0       Base                    : on    *
 # ----- RESTART FIELDS ----------------------
     --> GC_RESTART              :       true
     --> HEMCO_RESTART           :       true
@@ -63,7 +62,7 @@ Mask fractions:              false
     --> NEI2011_HOURLY         :       false
     --> NEI2011_MONMEAN        :       true
     --> MIX                    :       true
-    --> DICE_Africa            :       true 
+    --> DICE_Africa            :       true
 # ----- GLOBAL INVENTORIES ------------------
     --> CEDS                   :       true
     --> EDGARv43               :       false
@@ -80,7 +79,7 @@ Mask fractions:              false
     --> AEIC                   :       true
     --> DECAYING_PLANTS        :       true
 # ----- FUTURE EMISSIONS --------------------
-    --> RCP_3PD                :       false 
+    --> RCP_3PD                :       false
     --> RCP_45                 :       false
     --> RCP_60                 :       false
     --> RCP_85                 :       false
@@ -97,7 +96,7 @@ Mask fractions:              false
     --> Yuan_XLAI              :       false
 # -----------------------------------------------------------------------------
 108     MEGAN                  : on    ISOP/ACET
-    --> Isoprene scaling       :       1.0 
+    --> Isoprene scaling       :       1.0
     --> CO2 inhibition         :       true
     --> CO2 conc (ppmv)        :       390.0
 109     MEGAN_Mono             : on    MTPA/LIMO/MTPO
@@ -105,7 +104,7 @@ Mask fractions:              false
 ### END SECTION EXTENSION SWITCHES ###
 
 ###############################################################################
-### BEGIN SECTION BASE EMISSIONS 
+### BEGIN SECTION BASE EMISSIONS
 ###############################################################################
 
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
@@ -235,27 +234,27 @@ Mask fractions:              false
 #==============================================================================
 # --- DICE-Africa emission inventory (Marais and Wiedinmyer, ES&T, 2016) ---
 #
-# DICE-Africa includes regional (Africa) emissions of biofuel and diffuse 
-# anthropogenic emissions from cars and motorcycles, biofuels, charcoal making 
-# and use, backup generators, agricultural waste burning for cooking, gas 
+# DICE-Africa includes regional (Africa) emissions of biofuel and diffuse
+# anthropogenic emissions from cars and motorcycles, biofuels, charcoal making
+# and use, backup generators, agricultural waste burning for cooking, gas
 # flares, and ad-hoc/informal oil refining.
 #
-# Other pollution sources (formal industry, power generation using fossil 
-# fuels) are from the EDGAR v4.3 inventory for CO, SO2, NH3, NOx BC, and OC. 
+# Other pollution sources (formal industry, power generation using fossil
+# fuels) are from the EDGAR v4.3 inventory for CO, SO2, NH3, NOx BC, and OC.
 #
-# NMVOCs from sources not accounted for in DICE-Africa aren't included here, 
-# as these emissions are likely to be low compared to the DICE pollution 
-# sources and RETRO v1 as implemented in GEOS-Chem doesn't distinguish 
+# NMVOCs from sources not accounted for in DICE-Africa aren't included here,
+# as these emissions are likely to be low compared to the DICE pollution
+# sources and RETRO v1 as implemented in GEOS-Chem doesn't distinguish
 # emissions by sector/activity.
 #
-# Emissions for 2013 are defined below, but DICE-Africa also includes 
-# emissions for 2006.  Developers recommend using population change to 
-# estimate emissions, if users want to use annual trends in pollutant 
+# Emissions for 2013 are defined below, but DICE-Africa also includes
+# emissions for 2006.  Developers recommend using population change to
+# estimate emissions, if users want to use annual trends in pollutant
 # emissions to estimate in other years.
 #==============================================================================
 (((DICE_Africa
 # ------------------------
-#  Cars 
+#  Cars
 # ------------------------
 0 DICE_CARS_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-cars-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      1 60
 0 DICE_CARS_CO_eur  -                                                                -  -          - -  -       COeur  26/1008/1101 1 60
@@ -263,7 +262,7 @@ Mask fractions:              false
 0 DICE_CARS_CO_oth  -                                                                -  -          - -  -       COoth  26/1008/1103 1 60
 
 # ------------------------
-#  Motorcycles 
+#  Motorcycles
 # ------------------------
 0 DICE_MOTORCYCLES_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-motorcycles-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      1 60
 0 DICE_MOTORCYCLES_CO_eur  -                                                                       -  -          - -  -       COeur  26/1008/1101 1 60
@@ -271,7 +270,7 @@ Mask fractions:              false
 0 DICE_MOTORCYCLES_CO_oth  -                                                                       -  -          - -  -       COoth  26/1008/1103 1 60
 
 # ------------------------
-#  Backup generators 
+#  Backup generators
 # ------------------------
 0 DICE_BACKUPGEN_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-generator-use-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      1 60
 0 DICE_BACKUPGEN_CO_eur  -                                                                         -  -          - -  -       COeur  26/1008/1101 1 60
@@ -279,7 +278,7 @@ Mask fractions:              false
 0 DICE_BACKUPGEN_CO_oth  -                                                                         -  -          - -  -       COoth  26/1008/1103 1 60
 
 # ------------------------
-#  Charcoal production 
+#  Charcoal production
 # ------------------------
 0 DICE_CHARCOALPROD_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-production-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008/320      1 60
 0 DICE_CHARCOALPROD_CO_eur  -                                                                               -  -          - -  -       COeur  26/1008/320/1101 1 60
@@ -287,7 +286,7 @@ Mask fractions:              false
 0 DICE_CHARCOALPROD_CO_oth  -                                                                               -  -          - -  -       COoth  26/1008/320/1103 1 60
 
 # ------------------------
-#  Flaring of natural gas 
+#  Flaring of natural gas
 # ------------------------
 0 DICE_GASFLARE_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-gas-flares-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      1 60
 0 DICE_GASFLARE_CO_eur  -                                                                      -  -          - -  -       COeur  26/1008/1101 1 60
@@ -295,7 +294,7 @@ Mask fractions:              false
 0 DICE_GASFLARE_CO_oth  -                                                                      -  -          - -  -       COoth  26/1008/1103 1 60
 
 # ------------------------------
-#  Ag waste burning for energy 
+#  Ag waste burning for energy
 # ------------------------------
 0 DICE_AGBURNING_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-crop-residue-use-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      2 60
 0 DICE_AGBURNING_CO_eur  -                                                                                      -  -          - -  -       COeur  26/1008/1101 2 60
@@ -303,7 +302,7 @@ Mask fractions:              false
 0 DICE_AGBURNING_CO_oth  -                                                                                      -  -          - -  -       COoth  26/1008/1103 2 60
 
 # ------------------------------
-#  Charcoal use 
+#  Charcoal use
 # ------------------------------
 0 DICE_CHARCOALUSE_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-charcoal-use-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      2 60
 0 DICE_CHARCOALUSE_CO_eur  -                                                                        -  -          - -  -       COeur  26/1008/1101 2 60
@@ -311,7 +310,7 @@ Mask fractions:              false
 0 DICE_CHARCOALUSE_CO_oth  -                                                                        -  -          - -  -       COoth  26/1008/1103 2 60
 
 # ------------------------------
-#  Kerosene use 
+#  Kerosene use
 # ------------------------------
 0 DICE_KEROSENE_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-kerosene-use-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      1 60
 0 DICE_KEROSENE_CO_eur  -                                                                        -  -          - -  -       COeur  26/1008/1101 1 60
@@ -319,7 +318,7 @@ Mask fractions:              false
 0 DICE_KEROSENE_CO_oth  -                                                                        -  -          - -  -       COoth  26/1008/1103 1 60
 
 # ------------------------------
-#  Artisanal oil refining 
+#  Artisanal oil refining
 # ------------------------------
 0 DICE_OILREFINING_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-adhoc-oil-refining-2006-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      1 60
 0 DICE_OILREFINING_CO_eur  -                                                                              -  -          - -  -       COeur  26/1008/1101 1 60
@@ -327,7 +326,7 @@ Mask fractions:              false
 0 DICE_OILREFINING_CO_oth  -                                                                              -  -          - -  -       COoth  26/1008/1103 1 60
 
 # --------------------------
-#  Household fuelwood use 
+#  Household fuelwood use
 # --------------------------
 0 DICE_HOUSEFUELWOOD_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-household-fuelwood-use-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      2 60
 0 DICE_HOUSEFUELWOOD_CO_eur  -                                                                                  -  -          - -  -       COeur  26/1008/1101 2 60
@@ -335,7 +334,7 @@ Mask fractions:              false
 0 DICE_HOUSEFUELWOOD_CO_oth  -                                                                                  -  -          - -  -       COoth  26/1008/1103 2 60
 
 # ---------------------------------
-#  Commercial (other) fuelwood use 
+#  Commercial (other) fuelwood use
 # ---------------------------------
 0 DICE_OTHERFUELWOOD_CO      $ROOT/DICE_Africa/v2016-10/DICE-Africa-other-fuelwood-use-2013-v01-4Oct2016.nc CO 2013/1/1/0 C xy g/m2/yr CO     26/1008      2 60
 0 DICE_OTHERFUELWOOD_CO_eur  -                                                                              -  -          - -  -       COeur  26/1008/1101 2 60
@@ -429,7 +428,7 @@ Mask fractions:              false
 #
 # %%% NOTE: This is an optional inventory. You may select either CEDS, EDGAR,
 #  or HTAP for the global base emissions %%%
-# 
+#
 # The following emissions are not included in EDGAR and will be added:
 #  * Wiedinmyer et al. (2014) global trash emissions
 #
@@ -658,20 +657,20 @@ Mask fractions:              false
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #==============================================================================
 (((QFED2
-0 QFED_CO_PBL      $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4 biomass 2000-2017/1-12/1-31/0 C xyL=1:PBL     kg/m2/s CO      54/75/311       5 2 
-0 QFED_CObbAm_PBL  -                                                               -       -                     - -             -       CObbam  54/75/311/1104  5 2 
-0 QFED_CObbAf_PBL  -                                                               -       -                     - -             -       CObbaf  54/75/311/1105  5 2 
-0 QFED_CObbAs_PBL  -                                                               -       -                     - -             -       CObbas  54/75/311/1106  5 2 
-0 QFED_CObbOc_PBL  -                                                               -       -                     - -             -       CObboc  54/75/311/1107  5 2 
-0 QFED_CObbEu_PBL  -                                                               -       -                     - -             -       CObbeu  54/75/311/1108  5 2 
-0 QFED_CObbOth_PBL -                                                               -       -                     - -             -       CObboth 54/75/311/1109  5 2 
+0 QFED_CO_PBL      $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4 biomass 2000-2017/1-12/1-31/0 C xyL=1:PBL     kg/m2/s CO      54/75/311       5 2
+0 QFED_CObbAm_PBL  -                                                               -       -                     - -             -       CObbam  54/75/311/1104  5 2
+0 QFED_CObbAf_PBL  -                                                               -       -                     - -             -       CObbaf  54/75/311/1105  5 2
+0 QFED_CObbAs_PBL  -                                                               -       -                     - -             -       CObbas  54/75/311/1106  5 2
+0 QFED_CObbOc_PBL  -                                                               -       -                     - -             -       CObboc  54/75/311/1107  5 2
+0 QFED_CObbEu_PBL  -                                                               -       -                     - -             -       CObbeu  54/75/311/1108  5 2
+0 QFED_CObbOth_PBL -                                                               -       -                     - -             -       CObboth 54/75/311/1109  5 2
 0 QFED_CO_FT       $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4 biomass 2000-2017/1-12/1-31/0 C xyL=PBL:5500m kg/m2/s CO      54/75/312       5 2
-0 QFED_CObbAm_FT   -                                                               -       -                     - -             -       CObbam  54/75/312/1104  5 2 
-0 QFED_CObbAf_FT   -                                                               -       -                     - -             -       CObbaf  54/75/312/1105  5 2 
-0 QFED_CObbAs_FT   -                                                               -       -                     - -             -       CObbas  54/75/312/1106  5 2 
-0 QFED_CObbOc_FT   -                                                               -       -                     - -             -       CObboc  54/75/312/1107  5 2 
-0 QFED_CObbEu_FT   -                                                               -       -                     - -             -       CObbeu  54/75/312/1108  5 2 
-0 QFED_CObbOth_FT  -                                                               -       -                     - -             -       CObboth 54/75/312/1109  5 2 
+0 QFED_CObbAm_FT   -                                                               -       -                     - -             -       CObbam  54/75/312/1104  5 2
+0 QFED_CObbAf_FT   -                                                               -       -                     - -             -       CObbaf  54/75/312/1105  5 2
+0 QFED_CObbAs_FT   -                                                               -       -                     - -             -       CObbas  54/75/312/1106  5 2
+0 QFED_CObbOc_FT   -                                                               -       -                     - -             -       CObboc  54/75/312/1107  5 2
+0 QFED_CObbEu_FT   -                                                               -       -                     - -             -       CObbeu  54/75/312/1108  5 2
+0 QFED_CObbOth_FT  -                                                               -       -                     - -             -       CObboth 54/75/312/1109  5 2
 )))QFED2
 
 #==============================================================================
@@ -690,20 +689,20 @@ Mask fractions:              false
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
 ###
-### These fields are needed by the extensions listed above. The assigned ExtNr 
-### must match the ExtNr entry in section 'Extension switches'. These fields 
+### These fields are needed by the extensions listed above. The assigned ExtNr
+### must match the ExtNr entry in section 'Extension switches'. These fields
 ### are only read if the extension is enabled.  The fields are imported by the
-### extensions by field name.  The name given here must match the name used 
-### in the extension's source code. 
+### extensions by field name.  The name given here must match the name used
+### in the extension's source code.
 ###############################################################################
 
 #==============================================================================
 # --- MEGAN biogenic emissions (Extension 108)
 #
-# NOTE: These are the base emissions, which will be converted to kgC/m2/s by 
-# HEMCO. The specified species (OCPI/ISOP/ACET) are required for proper unit 
-# conversion. Since netCDF files are already in mass carbon (ug(C)), the only 
-# important thing is to specify a VOC with a specified MW of 12g/mol. 
+# NOTE: These are the base emissions, which will be converted to kgC/m2/s by
+# HEMCO. The specified species (OCPI/ISOP/ACET) are required for proper unit
+# conversion. Since netCDF files are already in mass carbon (ug(C)), the only
+# important thing is to specify a VOC with a specified MW of 12g/mol.
 # This is the case for OCPI, ISOP and ACET.
 #
 # We don't need to read EF maps for acetone, a-pinene or myrcene. We now
@@ -746,10 +745,10 @@ Mask fractions:              false
 ###############################################################################
 ### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
 ###
-### Non-emissions data. The following fields are read through HEMCO but do 
-### not contain emissions data. The extension number is set to wildcard 
-### character denoting that these fields will not be considered for emission 
-### calculation. A given entry is only read if the assigned species name is 
+### Non-emissions data. The following fields are read through HEMCO but do
+### not contain emissions data. The extension number is set to wildcard
+### character denoting that these fields will not be considered for emission
+### calculation. A given entry is only read if the assigned species name is
 ### an HEMCO species.
 ###############################################################################
 
@@ -888,7 +887,7 @@ Mask fractions:              false
 #==============================================================================
 # --- NOAA GMD monthly mean surface CH4 ---
 #==============================================================================
-* NOAA_GMD_CH4 $ROOT/NOAA_GMD/v2018-01/monthly.gridded.surface.methane.1979-2020.1x1.nc SFC_CH4 1979-2020/1-12/1/0 C xy ppbv * - 1 1 
+* NOAA_GMD_CH4 $ROOT/NOAA_GMD/v2018-01/monthly.gridded.surface.methane.1979-2020.1x1.nc SFC_CH4 1979-2020/1-12/1/0 C xy ppbv * - 1 1
 
 #==============================================================================
 # --- Olson land map masks ---
@@ -1153,7 +1152,7 @@ Mask fractions:              false
 ### END SECTION BASE EMISSIONS ###
 
 ###############################################################################
-### BEGIN SECTION SCALE FACTORS 
+### BEGIN SECTION SCALE FACTORS
 ###############################################################################
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
@@ -1190,7 +1189,7 @@ Mask fractions:              false
 24 TOTFUEL_2008      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2008/1/1/0      C xy 1 -1
 
 #==============================================================================
-# --- diurnal scale factors --- 
+# --- diurnal scale factors ---
 #==============================================================================
 26 GEIA_TOD_FOSSIL 0.45/0.45/0.6/0.6/0.6/0.6/1.45/1.45/1.45/1.45/1.4/1.4/1.4/1.4/1.45/1.45/1.45/1.45/0.65/0.65/0.65/0.65/0.45/0.45 - - - xy 1 1
 
@@ -1199,9 +1198,9 @@ Mask fractions:              false
 #==============================================================================
 
 # for EDGAR 4.3.1:
-# Using data of 2010, the calculated seasonal ratio for different species in the 
+# Using data of 2010, the calculated seasonal ratio for different species in the
 # same sector are nearly identical, possibly due to consistent activity data used.
-# Therefore we use the seasonal scale factors of CO in 2010 for most sectors, 
+# Therefore we use the seasonal scale factors of CO in 2010 for most sectors,
 # except for AGR, AWB and SOL.
 # For AGR, the NH3 AGR seasonal scale factors are used.
 # For AWB, the CO AGR seasonal scale factors are used.
@@ -1222,9 +1221,9 @@ Mask fractions:              false
 #==============================================================================
 # --- VOC speciations ---
 #
-# CO sources are scaled to account for co-emitted VOCs. Fossil fuel and 
-# emissions are scaled by 19% and biomass burning emissions are scaled by 
-# 11%. More information is given in Duncan et al, JGR, 112, D22301 (2007). 
+# CO sources are scaled to account for co-emitted VOCs. Fossil fuel and
+# emissions are scaled by 19% and biomass burning emissions are scaled by
+# 11%. More information is given in Duncan et al, JGR, 112, D22301 (2007).
 #==============================================================================
 52 COPROD_FOSSIL   1.19  - - - xy 1 1
 54 COPROD_BIOMASS  1.11  - - - xy 1 1
@@ -1247,17 +1246,17 @@ Mask fractions:              false
 #==============================================================================
 # --- AEIC aircraft emissions ---
 #
-# Sulfur conversion factors are calculated as 
+# Sulfur conversion factors are calculated as
 #     so4 = 3 * a * b and so2 = 2 * a * (1-b)
 #
-# where 
-#     a = fraction by mass (6.0e-4) and 
+# where
+#     a = fraction by mass (6.0e-4) and
 #     b = conversion efficiency (2.0e-2).
 #
 # The factors 2 and 3 come from sulfur mass conversions (96/32 and 64/32).
 # All factors are taken from AEIC_mod.F, following Seb Estham's appraoch.
-# Note that all emissions become multiplied by a factor of 1e-3 (except for 
-# the fuelburn emissions) in the original AEIC code. I'm not sure if this 
+# Note that all emissions become multiplied by a factor of 1e-3 (except for
+# the fuelburn emissions) in the original AEIC code. I'm not sure if this
 # is because the netCDF data is in g instead of kg?
 #==============================================================================
 110 AEICNOCO 1.000000e-3 - -  - xy 1 1
@@ -1270,7 +1269,7 @@ Mask fractions:              false
 #==============================================================================
 # --- NEI 20011 scale factors ---
 #==============================================================================
-252 NEI11_CO_YRSCALE  1.271/1.227/1.104/0.998/1.019/1.0/0.981/0.962 - 2006-2013/1/1/0 C xy 1 1 
+252 NEI11_CO_YRSCALE  1.271/1.227/1.104/0.998/1.019/1.0/0.981/0.962 - 2006-2013/1/1/0 C xy 1 1
 
 #==============================================================================
 # --- QFED vertical partitioning ---
@@ -1289,7 +1288,7 @@ Mask fractions:              false
 ### END SECTION SCALE FACTORS ###
 
 ###############################################################################
-### BEGIN SECTION MASKS 
+### BEGIN SECTION MASKS
 ###############################################################################
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
@@ -1320,5 +1319,5 @@ Mask fractions:              false
 1109 TAGCO_BBOTH_MASK $ROOT/MASKS/v2018-09/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBOTH_MASK 2000/1/1/0 C xy 1 1 -180/-90/180/90
 
 ### END SECTION MASKS ###
- 
+
 ### END OF HEMCO INPUT FILE ###
