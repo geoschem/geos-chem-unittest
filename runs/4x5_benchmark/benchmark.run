@@ -20,8 +20,8 @@
 # !REMARKS:
 #  Designed to be used with the geosfp_4x5_standard run directory created
 #  by the GEOS-Chem Unit Tester. To use this script, you must first compile
-#  the GEOS-Chem code using the command "make -j4 mpbuild" to create the
-#  geos.mp executable.
+#  the GEOS-Chem code using the command "make -j4 build" to create the
+#  geos executable.
 #
 #  NOTES:
 #  (1) This script is customized for the Harvard "Odyssey" cluster.  If you
@@ -87,7 +87,7 @@ log=$id.log
 #-------------------------------------------------
 
 # Run GEOS-Chem and pipe output to log
-srun -c $OMP_NUM_THREADS time -p ./geos.mp >> $log
+srun -c $OMP_NUM_THREADS time -p ./geos >> $log
 
 # Echo end time
 echo '===> Run ended at' `date` >> $log
