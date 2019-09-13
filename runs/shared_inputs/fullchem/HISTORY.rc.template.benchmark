@@ -523,6 +523,7 @@ COLLECTIONS: 'Restart',
                               'Met_V                         ', 'GIGCchem',
                               'Met_V10M                      ', 'GIGCchem',
                               'Met_Z0                        ', 'GIGCchem',
+                              'FracOfTimeInTrop              ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE Transport COLLECTION %%%%%
