@@ -1005,6 +1005,14 @@ Warnings:                    {WARNINGS}
 # ---------------------------------------------------
 0 AF_EDGAR_BCPI_POW $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.POW.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1201/1008/70         1 60
 0 AF_EDGAR_BCPO_POW -                                                    -       -               - -  -       BCPO 1201/1008/71         1 60
+0  EDGAR_BCPI_ENG $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.ENG.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1202/1008/70         1 2
+0  EDGAR_BCPO_ENG -                                                    -       -               - -  -       BCPO 1202/71         1 2
+0  EDGAR_BCPI_IND $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.IND.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1203/1008/70         1 2
+0  EDGAR_BCPO_IND -                                                    -       -               - -  -       BCPO 1203/71         1 2
+0  EDGAR_BCPI_TNG $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.TNG.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1205/1008/70         1 2
+0  EDGAR_BCPO_TNG -                                                    -       -               - -  -       BCPO 1205/71         1 2
+0  EDGAR_BCPI_SWD $ROOT/EDGARv43/v2016-11/EDGAR_v43.BC.SWD.0.1x0.1.nc  emi_bc  1970-2010/1/1/0 C xy kg/m2/s BCPI 1211/1008/70         1 2
+0  EDGAR_BCPO_SWD -                                                    -       -               - -  -       BCPO 1211/1008/71         1 2
 
 0 AF_EDGAR_CO_POW   $ROOT/EDGARv43/v2016-11/EDGAR_v43.CO.POW.0.1x0.1.nc  emi_co  1970-2010/1/1/0 C xy kg/m2/s CO   1201/26/52/1008      1 60
 0 AF_EDGAR_SOAP_POW -                                                    -       -               - -  -       SOAP 1201/26/52/1008/280  1 60
