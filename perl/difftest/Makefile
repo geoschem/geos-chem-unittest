@@ -490,7 +490,7 @@ realclean:
 fileclean:
 	rm -f $(RUN_REF)/*.Ref
 	rm -f $(RUN_REF)/core.*
-	rm -f $(RUN_REF)/GEOSCHEM*.nc*
+	rm -f $(RUN_REF)/OutputDir/*.nc*
 	rm -f $(RUN_REF)/HEMCO.log*
 	rm -f $(RUN_REF)/*info.dat
 	rm -f $(RUN_REF)/*.log
@@ -501,7 +501,7 @@ fileclean:
         done
 	rm -f $(RUN_DEV)/*.Dev
 	rm -f $(RUN_DEV)/core.*
-	rm -f $(RUN_DEV)/GEOSCHEM*.nc*
+	rm -f $(RUN_DEV)/OutputDir/*.nc*
 	rm -f $(RUN_DEV)/HEMCO.log*
 	rm -f $(RUN_DEV)/*info.dat
 	rm -f $(RUN_DEV)/*.log
