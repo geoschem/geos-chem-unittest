@@ -28,9 +28,9 @@
 #
 # %%% ID tags %%%
 #
-   VERSION          : 12.6.0
+   VERSION          : 12.7.0
    VERSION_TAG      : GC_{VERSION}_{TODAYSDATE}
-   DESCRIPTION      : Tests GEOS-Chem 12.6.0 (edit description as necessary)
+   DESCRIPTION      : Tests GEOS-Chem 12.7.0 (edit description as necessary)
 #
 # %%% Data path and HEMCO settings %%%
 #
