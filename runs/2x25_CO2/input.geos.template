@@ -113,6 +113,21 @@ Clear-sky flux?         : F
 All-sky flux?           : F
 Radiation Timestep [sec]: 10800
 ------------------------+------------------------------------------------------
+%%% CO2 SIM MENU %%%    :
+Fossil Fuel Emissions   : T
+Ocean Exchange          : T
+Balanced Biosphere Exch : T
+Net Terrestrial Exch    : T
+Ship emissions          : T
+Aviation emissions 3-D  : T
+3-D Chemical Oxid Source: T
+Tagged CO2 runs         :---
+  Save Fossil in Bckgrnd: F
+  Tag Bio/Ocean CO2 reg : F
+  Tag Land FF CO2 reg   : F
+  Tag Global Ship CO2   : F
+  Tag Global Plane CO2  : F
+------------------------+------------------------------------------------------
 %%% OBSPACK MENU %%%    :
 Turn on ObsPack diag?   : F
 Quiet logfile output    : F
