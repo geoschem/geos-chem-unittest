@@ -125,6 +125,10 @@ Clear-sky flux?         : F
 All-sky flux?           : F
 Radiation Timestep [sec]: 10800
 ------------------------+------------------------------------------------------
+%%% CO SIM MENU %%%     :
+Use full chem. P(CO)|CH4: T
+Use full chem. P(CO)|VOC: T
+------------------------+------------------------------------------------------
 %%% OBSPACK MENU %%%    :
 Turn on ObsPack diag?   : F
 Quiet logfile output    : F

@@ -130,9 +130,8 @@ ifndef MASSCONS
  MASSCONS    :=n
 endif
 
-# BPCH_DIAG is always turned ON unless the user specifies otherwise
 ifndef BPCH_DIAG
- BPCH_DIAG   :=y
+ BPCH_DIAG   :=n
 endif
 
 ###############################################################################
@@ -158,26 +157,46 @@ SIM          :=$(shell $(RUN_DEV)/getRunInfo $(RUN_DEV) 5)
 ifeq ($(SIM),TOMAS12)
  TOMAS12     :=y
  CHEM        :=Tropchem
+ BPCH_DIAG   :=y
 endif
 
 ifeq ($(SIM),TOMAS15)
  TOMAS15     :=y
  CHEM        :=Tropchem
+ BPCH_DIAG   :=y
 endif
 
 ifeq ($(SIM),TOMAS30)
  TOMAS30     :=y
  CHEM        :=Tropchem
+ BPCH_DIAG   :=y
 endif
 
 ifeq ($(SIM),TOMAS40)
  TOMAS40     :=y
  CHEM        :=Tropchem
+ BPCH_DIAG   :=y
 endif
 
 ifeq ($(SIM),RRTMG)
  RRTMG       :=y
  CHEM        :=Tropchem
+ BPCH_DIAG   :=y
+endif
+
+ifeq ($(SIM),Hg)
+ CHEM        :=Tropchem
+ BPCH_DIAG   :=y
+endif
+
+ifeq ($(SIM),tagHg)
+ CHEM        :=Tropchem
+ BPCH_DIAG   :=y
+endif
+
+ifeq ($(SIM),POPs)
+ CHEM        :=Tropchem
+ BPCH_DIAG   :=y
 endif
 
 ifeq ($(SIM),standard)
