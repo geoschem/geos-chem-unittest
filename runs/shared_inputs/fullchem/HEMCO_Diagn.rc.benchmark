@@ -445,6 +445,18 @@ EmisXYLE_BioBurn   XYLE   111    -1  -1   2   kg/m2/s  XYLE_emission_flux_from_b
 EmisXYLE_Ship      XYLE   0      10  -1   2   kg/m2/s  XYLE_emission_flux_from_ships
 
 ###############################################################################
+#####  Additional diagnostics saved out via HEMCO extensions              #####
+###############################################################################
+
+#=============================
+# LIGHTNOX extension
+#=============================
+LightningFlashRate_Total       -1 103 -1 -1 2 flashes/min/km2 Total_lightning_flash_rate
+LightningFlashRate_IntraCloud  -1 103 -1 -1 2 flashes/min/km2 Intra-cloud_lightning_flash_rate
+LightningFlashRate_CloudGround -1 103 -1 -1 2 flashes/min/km2 Cloud-ground_lightning_flash_rate
+ConvectiveCloudTopHeight       -1 103 -1 -1 2 level           Convective_cloud_top_height
+
+###############################################################################
 #####  INVENTORY DIAGNOSTICS, needed for benchmarking simulations only    #####
 #####  Listed in same order as HEMCO_Config.rc                            #####
 #####  (You can comment these out for production runs, to save memory)    #####

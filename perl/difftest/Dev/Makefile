@@ -58,13 +58,10 @@ run:
 	@$(MAKE) addsuffixdev
 
 addsuffixdev:
-	@for f in ./*nc4; do                                        \
-           if [[ -f $$f ]]; then mv -f $$f $$f.Dev; fi;             \
-        done
 	@for f in ./trac_avg*; do                                   \
            if [[ -f $$f ]]; then mv -f $$f $$f.Dev; fi;             \
         done
-	@for f in ./*nc; do                                         \
+	@for f in ./HEMCO_restart*nc; do                            \
            if [[ -f $$f ]]; then mv -f $$f $$f.Dev; fi;             \
         done
 	@for f in ./OutputDir/HEMCO_diagnostics*.nc; do             \
