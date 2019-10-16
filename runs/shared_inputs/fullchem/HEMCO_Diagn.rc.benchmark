@@ -203,6 +203,11 @@ EmisEOH_PlantDecay EOH    0      3   -1   2   kg/m2/s  EOH_emission_flux_from_de
 EmisEOH_Ship       EOH    0      10  -1   2   kg/m2/s  EOH_emission_flux_from_ships
 
 ###############################################################################
+#####  ETNO3 emissions                                                    #####
+###############################################################################
+EmisETNO3_Ocean    ETNO3  101    -1  -1   2   kg/m2/s  ETNO3_emission_flux_from_ocean
+
+###############################################################################
 #####  HAC emissions                                                     #####
 ###############################################################################
 EmisHAC_Total      HAC    -1     -1  -1   3   kg/m2/s  HAC_emission_flux_from_all_sectors
@@ -263,6 +268,11 @@ EmisMEK_Total      MEK    -1     -1  -1   3   kg/m2/s  MEK_emission_flux_from_al
 EmisMEK_Anthro     MEK    0      1   -1   3   kg/m2/s  MEK_emission_flux_from_anthropogenic
 EmisMEK_BioBurn    MEK    111    -1  -1   2   kg/m2/s  MEK_emission_flux_from_biomass_burning
 EmisMEK_Ship       MEK    0      10  -1   2   kg/m2/s  MEK_emission_flux_from_ships
+
+###############################################################################
+#####  MENO3 emissions                                                    #####
+###############################################################################
+EmisMENO3_Ocean    MENO3  101    -1  -1   2   kg/m2/s  MENO3_emission_flux_from_ocean
 
 ###############################################################################
 #####  MGLY emissions                                                     #####
@@ -739,6 +749,8 @@ InvSeaFlux_ACET      ACET   101  -1  -1  2   kg/m2/s  ACET_emission_flux_from_Se
 InvSeaFlux_ALD2      ALD2   101  -1  -1  2   kg/m2/s  ALD2_emission_flux_from_SeaFlux_extension
 InvSeaFlux_DMS       DMS    101  -1  -1  2   kg/m2/s  DMS_emission_flux_from_SeaFlux_extension
 InvSeaFlux_CH3I      CH3I   101  -1  -1  2   kg/m2/s  CH3I_emission_flux_from_SeaFlux_extension
+InvSeaFlux_ETNO3     ETNO3  101  -1  -1  2   kg/m2/s  ETNO3_emission_flux_from_SeaFlux_extension
+InvSeaFlux_MENO3     MENO3  101  -1  -1  2   kg/m2/s  MENO3_emission_flux_from_SeaFlux_extension
 
 #=============================
 # PARANOX extension
