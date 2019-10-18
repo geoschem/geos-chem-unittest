@@ -210,6 +210,11 @@ ifeq ($(SIM),masscons)
  MASSCONS    :=y
 endif
 
+ifeq ($(SIM),APM)
+ APM         :=y
+ CHEM        :=Tropchem
+endif
+
 ifndef CHEM
  CHEM        :=Standard
 endif
