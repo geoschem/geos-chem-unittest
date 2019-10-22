@@ -123,6 +123,14 @@ Warnings:                    {WARNINGS}
     --> QFED2                  :       false
     --> GFAS                   :       false
 # ----- OFFLINE EMISSIONS -------------------
+# To use online emissions instead set the
+# offline emissions to 'false' and the
+# corresponding HEMCO extension to 'on':
+#   OFFLINE_DUST        - DustDead or DustGinoux
+#   OFFLINE_BIOGENICVOC - MEGAN and MEGAN_Mono
+#   OFFLINE_SEASALT     - SeaSalt
+#   OFFLINE_SOILNOX     - SoilNOx
+#--------------------------------------------
     --> OFFLINE_DUST           :       true
     --> OFFLINE_BIOGENICVOC    :       true
     --> OFFLINE_SEASALT        :       true
