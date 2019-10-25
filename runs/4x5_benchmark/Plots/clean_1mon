@@ -38,6 +38,8 @@ rm -rf Secondary_Organics
 rm -rf Secondary_Organic_Aerosols
 rm -rf ROy
 rm -rf Sulfur
+rm -rf JValues
+rm -rf Budget
 
 # Exit normally
 exit 0
