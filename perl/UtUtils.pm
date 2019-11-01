@@ -7,7 +7,7 @@
 #
 # !MODULE: UtUtils.pm
 #
-# !DESCRIPTION: Contains utility functions that are used by the 
+# !DESCRIPTION: Contains utility functions that are used by the
 #  GEOS-Chem Unit Tester package.
 #\\
 #\\
@@ -36,7 +36,7 @@ use Dates qw( &julDay &calDate );   # Get routines from Dates.pm
 #  &readResults   : Reads unit test results into a Perl hash
 #  &makeTxtMatrix : Summarizes unit test results into an text file
 #  &makeMatrix    : Summarizes unit test results into an HTML file
-# 
+#
 # !CALLING SEQUENCE:
 #  use UtUtils qw( function-name1, function-name2, ... );
 #
@@ -71,15 +71,15 @@ BEGIN {
                    &cleanDir
                    &fmtStr
                    &getDuration
-                   &makeHcoSaCfg        
-                   &makeHemcoCfg        
+                   &makeHcoSaCfg
+                   &makeHemcoCfg
                    &makeHistoryRc
-                   &makeInputGeos 
+                   &makeInputGeos
                    &parse
                    &replaceDate
                    &readResults
-                   &makeMatrix      
-                   &makeTxtMatrix   ); 
+                   &makeMatrix
+                   &makeTxtMatrix   );
 }
 #EOC
 #------------------------------------------------------------------------------
@@ -95,7 +95,7 @@ BEGIN {
 #\\
 # !INTERFACE:
 #
-sub baseName($) { 
+sub baseName($) {
 #
 # !INPUT PARAMETERS:
 #
@@ -116,7 +116,7 @@ sub baseName($) {
 
   # Take the text following the colon
   my @result = split( '/', $dir );
-  
+
   # Return the last part of the directory
   $baseName = $result[ scalar( @result ) - 1 ];
 
@@ -137,7 +137,7 @@ sub baseName($) {
 #\\
 # !INTERFACE:
 #
-sub checkDir($) { 
+sub checkDir($) {
 #
 # !INPUT PARAMETERS:
 #
@@ -153,11 +153,11 @@ sub checkDir($) {
 #BOC
 
   # Halt execution if directory is not found
-  if ( !( -d $dir ) ) {    
+  if ( !( -d $dir ) ) {
     print "Directory $dir does not exist!  Exiting.\n";
     exit(999)
   }
-  
+
   # Otherwise return w/ error status
   return( $? );
 }
@@ -195,7 +195,7 @@ sub cleanDir($) {
   # Scalars
   my $cmd   = "";
   my $file  = "";
-  
+
   # Arrays
   my @files = ();
 
@@ -213,7 +213,7 @@ sub cleanDir($) {
       print "$cmd\n";
       qx( $cmd );
     }
-  }	
+  }
 }
 #EOC
 #------------------------------------------------------------------------------
@@ -242,7 +242,7 @@ sub fmtStr($) {
 # !CALLING SEQUENCE:
 #  $dateStr = &fmtStr( 20160101 );
 #  $dateStr = &fmtStr( 0        );
-# 
+#
 # !REMARKS:
 #  Used by routine &makeInputGeosbelow.
 #
@@ -277,7 +277,7 @@ sub fmtStr($) {
 #
 # !IROUTINE: makeInputGeos
 #
-# !DESCRIPTION: Constructs the "input.geos" file for GEOS-Chem.  It reads a 
+# !DESCRIPTION: Constructs the "input.geos" file for GEOS-Chem.  It reads a
 #  pre-defined template file and then just replaces tokens with the values
 #  passed via the argument list.
 #\\
@@ -288,10 +288,10 @@ sub makeInputGeos($$$$$$$$$$$) {
 #
 # !INPUT PARAMETERS:
 #
-  # $date1    : Starting date for GEOS-Chem model run (e.g. 20160101) 
-  # $time1    : Starting time for GEOS-Chem model run (e.g. 000000  ) 
+  # $date1    : Starting date for GEOS-Chem model run (e.g. 20160101)
+  # $time1    : Starting time for GEOS-Chem model run (e.g. 000000  )
   # $date2    : Ending   date for GEOS-Chem model run (e.g. 20160102)
-  # $time2    : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
+  # $time2    : Ending   time for GEOS-Chem model run (e.g. 000000  )
   # $met      : Met field type
   # $grid     : Grid resolution
   # $nest     : Nested grid domain
@@ -303,8 +303,8 @@ sub makeInputGeos($$$$$$$$$$$) {
        $inFile, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
-# &makeInputGeos( 20160101,             000000, 
-#                 20160102,             000000, 
+# &makeInputGeos( 20160101,             000000,
+#                 20160102,             000000,
 #                 'geosfp', '4x5', '',  'standard',
 #                 "/as/data/geos/",
 #                 "input.geos.template", "input.geos" );
@@ -327,32 +327,32 @@ sub makeInputGeos($$$$$$$$$$$) {
   my $tStr1  = &fmtStr( $time1 );
   my $tStr2  = &fmtStr( $time2 );
 
-  #------------------------------  
+  #------------------------------
   # Read template file
-  #------------------------------ 
+  #------------------------------
 
   # Read template "input.geos" file into an array
   open( I, "$inFile" ) or croak( "Cannot open $inFile!\n" );
   @lines = <I>;
   close( I );
 
-  #------------------------------  
+  #------------------------------
   # Create "input.geos" file
-  #------------------------------ 
+  #------------------------------
 
   # Open file
   open( O, ">$outFile") or die "Can't open $outFile\n";
 
   # Loop thru each line
   foreach $line ( @lines ) {
-    
+
     # Remove newline character
     chomp( $line );
 
     # Replace tokens
     $line =~ s/{DATE1}/$dStr1/g;
     $line =~ s/{TIME1}/$tStr1/g;
-    $line =~ s/{DATE2}/$dStr2/g; 
+    $line =~ s/{DATE2}/$dStr2/g;
     $line =~ s/{TIME2}/$tStr2/g;
     $line =~ s/{MET}/$met/g;
     $line =~ s/{SIM}/$sim/g;
@@ -434,7 +434,7 @@ sub makeInputGeos($$$$$$$$$$$) {
 #
 # !IROUTINE: makeHemcoCfg
 #
-# !DESCRIPTION: Constructs the "HEMCO_Config.rc" file for GEOS-Chem.  It reads 
+# !DESCRIPTION: Constructs the "HEMCO_Config.rc" file for GEOS-Chem.  It reads
 #  a pre-defined template file and then just replaces tokens with the values
 #  passed via the argument list.
 #\\
@@ -454,15 +454,15 @@ sub makeHemcoCfg($$$$$$$) {
   # $warnings : HEMCO warnings setting (0=no warnings, 3=most warnings)
   # $rootDir  : Filepath to data directory
   # $outFile  : HEMCO_Config.rc file w/ all tokens replaced
-  my ( $inFile,  $start,   $met,      $grid,    $nest,   
+  my ( $inFile,  $start,   $met,      $grid,    $nest,
        $simType, $verbose, $warnings, $rootDir, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
-# &makeHemcoCfg( "HEMCO_Config.template", 20160101, 000000,     
-#                "geosfp",                "4x5",    "-",      
-#                "tropchem",              "3",      "3",  
+# &makeHemcoCfg( "HEMCO_Config.template", 20160101, 000000,
+#                "geosfp",                "4x5",    "-",
+#                "tropchem",              "3",      "3",
 #                "HEMCO_Config.rc" )
-#                 
+#
 #
 # !REMARKS:
 #
@@ -491,11 +491,12 @@ sub makeHemcoCfg($$$$$$$) {
   my $latres     = "";
   my $lonres     = "";
   my $gridDir    = "";
-  
+  my $dustsf     = "";
+
   # Scalars
   my $date       = 0;
 
-  #-------------------------------------------------------------------------  
+  #-------------------------------------------------------------------------
   # Read template file
   #-------------------------------------------------------------------------
 
@@ -505,9 +506,9 @@ sub makeHemcoCfg($$$$$$$) {
   close( I );
 
   #-------------------------------------------------------------------------
-  # Define the values used to replace the {LEVRED} and {LEVFULL} tokens in 
-  # file names.  These are needed for certain specialty simulations that 
-  # read archived OH or O3 concentrations.  
+  # Define the values used to replace the {LEVRED} and {LEVFULL} tokens in
+  # file names.  These are needed for certain specialty simulations that
+  # read archived OH or O3 concentrations.
   #-------------------------------------------------------------------------
   $levReduced = "47L";
   $levFull = "72L";
@@ -520,11 +521,13 @@ sub makeHemcoCfg($$$$$$$) {
     $native = "0.25x0.3125";
     $latres = "025";
     $lonres = "03125";
+    $dustsf = "6.42e-5";
   } elsif ( $met =~ m/merra2/ ) {
     $metDir = "MERRA2";
     $native = "0.5x0.625";
     $latres = "05";
     $lonres = "0625";
+    $dustsf = "3.86e-4";
   }
 
   if ( $grid =~ m/4x5/ ) {
@@ -536,7 +539,7 @@ sub makeHemcoCfg($$$$$$$) {
   } elsif ( $grid =~ m/025x03125/ ) {
     $gridDir = "0.25x0.3125" . "_" . uc($nest);
   }
-  
+
   #-------------------------------------------------------------------------
   # Create HEMCO_Config file
   #-------------------------------------------------------------------------
@@ -546,16 +549,16 @@ sub makeHemcoCfg($$$$$$$) {
 
   # Loop thru each line
   foreach $line ( @lines ) {
-    
+
     # Remove newline character
     chomp( $line );
 
     # Replace start & end dates
     $line =~ s/{DATA_ROOT}/$rootDir/g;
     $line =~ s/{MET}/$met/g;
-    $line =~ s/{NATIVE_RES}/$native/g;    
-    $line =~ s/{LATRES}/$latres/g;    
-    $line =~ s/{LONRES}/$lonres/g;    
+    $line =~ s/{NATIVE_RES}/$native/g;
+    $line =~ s/{LATRES}/$latres/g;
+    $line =~ s/{LONRES}/$lonres/g;
     $line =~ s/{GRID}/$grid/g;
     $line =~ s/{NEST}/uc($nest)/g;
     $line =~ s/{SIM}/$simType/g;
@@ -565,7 +568,8 @@ sub makeHemcoCfg($$$$$$$) {
     $line =~ s/{WARNINGS}/$warnings/g;
     $line =~ s/{MET_DIR}/$metDir/g;
     $line =~ s/{GRID_DIR}/$gridDir/g;
-    
+    $line =~ s/{DUST_SF}/$dustsf/g;
+
     # Write to output file
     print O "$line\n";
   }
@@ -587,7 +591,7 @@ sub makeHemcoCfg($$$$$$$) {
 #
 # !IROUTINE: makeHemcoCfg
 #
-# !DESCRIPTION: Constructs the "HEMCO_Config.rc" file for GEOS-Chem.  It reads 
+# !DESCRIPTION: Constructs the "HEMCO_Config.rc" file for GEOS-Chem.  It reads
 #  a pre-defined template file and then just replaces tokens with the values
 #  passed via the argument list.
 #\\
@@ -599,17 +603,17 @@ sub makeHistoryRc($$$$$$) {
 # !INPUT PARAMETERS:
 #
   # $infile   : HISTORY.rc.template file w/ replaceable tokens
-  # $date1    : Starting date for GEOS-Chem model run (e.g. 20160101) 
-  # $time1    : Starting time for GEOS-Chem model run (e.g. 000000  ) 
+  # $date1    : Starting date for GEOS-Chem model run (e.g. 20160101)
+  # $time1    : Starting time for GEOS-Chem model run (e.g. 000000  )
   # $date2    : Ending   date for GEOS-Chem model run (e.g. 20160102)
-  # $time2    : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
+  # $time2    : Ending   time for GEOS-Chem model run (e.g. 000000  )
   # $outFile  : HISTORY.rc file w/ all tokens replaced
   my ( $inFile, $date1, $time1, $date2, $time2, $outFile ) = @_;
 #
 # !CALLING SEQUENCE:
-# &makeHistoryRc( "HISTORY.rc.template", 20160101, 000000, 
+# &makeHistoryRc( "HISTORY.rc.template", 20160101, 000000,
 #                 20160102               000000,   "HISTORY.rc" );
-#                 
+#
 # !REMARKS:
 #
 # !REVISION HISTORY:
@@ -630,7 +634,7 @@ sub makeHistoryRc($$$$$$) {
   if ( $date =~ m/00000000/ ) { $durationStr = "$time";       }
   else                        { $durationStr = "$date $time"; }
 
-  #-------------------------------------------------------------------------  
+  #-------------------------------------------------------------------------
   # Read template file
   #-------------------------------------------------------------------------
 
@@ -648,7 +652,7 @@ sub makeHistoryRc($$$$$$) {
 
   # Loop thru each line
   foreach $line ( @lines ) {
-    
+
     # Remove newline character
     chomp( $line );
 
@@ -683,7 +687,7 @@ sub makeHistoryRc($$$$$$) {
 #\\
 # !INTERFACE:
 #
-sub parse($) { 
+sub parse($) {
 #
 # !INPUT PARAMETERS:
 #
@@ -703,7 +707,7 @@ sub parse($) {
 
   # Take the text following the colon
   my @result = split( ':', $str );
-  
+
   # If there are more than 2 substrings, then lump the other
   # substrings into the second substring, and preserve the colon
   if ( scalar( @result ) > 2 ) {
@@ -713,7 +717,7 @@ sub parse($) {
   }
 
   # Strip leading spaces
-  $result[1] =~ s/^\s+//; 
+  $result[1] =~ s/^\s+//;
 
   # Strip trailing spaces
   $result[1] =~ s/^\s+$//;
@@ -739,12 +743,12 @@ sub replaceDate($$) {
 #
 # !INPUT PARAMETERS:
 #
-  my ( $str, $date ) = @_;  # $str: String w/ tokens; 
+  my ( $str, $date ) = @_;  # $str: String w/ tokens;
                             # $date: YYYYMMDD date
 #
 # !RETURN VALUE:
 #
-  my $newStr = "";          # Updated string 
+  my $newStr = "";          # Updated string
 #
 # !CALLING SEQUENCE:
 #  $newStr = &replaceDate( "file.YYYYMMDD", 20160101 );
@@ -762,8 +766,8 @@ sub replaceDate($$) {
   my $dd   = substr( $date, 6, 2 );    # Extract day   from $date
 
   # Replace tokens
-  $newStr =  $str;          
-  $newStr =~ s/YYYY/$yyyy/g;           # Replace year 
+  $newStr =  $str;
+  $newStr =~ s/YYYY/$yyyy/g;           # Replace year
   $newStr =~ s/MM/$mm/g;               # Replace month
   $newStr =~ s/DD/$dd/g;               # Replace day
 
@@ -780,7 +784,7 @@ sub replaceDate($$) {
 #
 # !DESCRIPTION: Reads a results.log file from a set of unit test simulations
 #  and determines the color (red, green, yellow) that will be displayed in
-#  each slot of the unit test matrix web and text pages.  RED = unsuccessful, 
+#  each slot of the unit test matrix web and text pages.  RED = unsuccessful,
 #  GREEN = successful, YELLOW = needs further investigation.
 #\\
 #\\
@@ -792,7 +796,7 @@ sub readResults($$) {
 #
   # $runRoot  : Unit test root run directory
   # $fileName : File containing unit test results (i.e. a "*.results.log")
-  my ( $runRoot, $fileName ) = @_;  
+  my ( $runRoot, $fileName ) = @_;
 #
 # !RETURN VALUE:
 #
@@ -880,14 +884,14 @@ sub readResults($$) {
       $dateRan     =~ s/^\s+$//;
 
       # Description
-      ++$i;     
+      ++$i;
       @subStr      =  split( '\:', $txt[++$i] );
       $describe    =  $subStr[1];
       $describe    =~ s/^\s+//;
       $describe    =~ s/^\s+$//;
 
       # Make command
-      ++$i;     
+      ++$i;
       @subStr      =  split( '\:', $txt[++$i] );
       $makeCmd     =  $subStr[1];
       $makeCmd     =~ s/^\s+//;
@@ -899,7 +903,7 @@ sub readResults($$) {
       $unitTests{ "UNIT_TEST_DESCRIBE"   } = $describe;
       $unitTests{ "UNIT_TEST_MAKECMD"    } = "($compiler) $makeCmd";
     }
-    
+
     #-------------------------------------------------------------------------
     # Determine if each unit test in the results log file passed or failed
     #-------------------------------------------------------------------------
@@ -969,15 +973,15 @@ sub readResults($$) {
 	    $color = $YELLOW;
           }
 	}
-      }			      
+      }
 
       #-----------------------------------------------------------------------
       # Save the proper color to the unit test output
       #-----------------------------------------------------------------------
 SaveColorIntoHash:
       $unitTests{ $utName } = $color;
-    }	
-  }				
+    }
+  }
 
   # Return the hash to the calling program
   return( %unitTests );
@@ -1002,7 +1006,7 @@ sub makeMatrix($$%) {
 # !INPUT PARAMETERS:
 #
   # $template  : Template HTML page for the unit test results matrix
-  # $webFile   : Output HTML page for unit test results that will be created 
+  # $webFile   : Output HTML page for unit test results that will be created
   # %unitTests : Hash contaning the unit test results (from &readResults)
   my ( $template, $webFile, %unitTests ) = @_;
 #
@@ -1013,7 +1017,7 @@ sub makeMatrix($$%) {
 #  21 Mar 2014 - R. Yantosca - Initial version
 #  24 Mar 2014 - R. Yantosca - Now pass %unitTests hash as an argument
 #  07 Apr 2014 - R. Yantosca - Now make $webFile chmod 664
-#  14 Jul 2016 - M. Sulprizio- Update to replace #FFFFFF string with utColor 
+#  14 Jul 2016 - M. Sulprizio- Update to replace #FFFFFF string with utColor
 #                              if utName matches the name in the html file
 #EOP
 #------------------------------------------------------------------------------
@@ -1048,9 +1052,9 @@ sub makeMatrix($$%) {
 
     # Strip newlines
     chomp( $line );
- 
+
     # Loop over unit test names
-    while ( ( $utName, $utColor ) = each( %unitTests ) ) { 
+    while ( ( $utName, $utColor ) = each( %unitTests ) ) {
 
       # Text-replace header information
       if ( $line =~ m/UNIT_TEST/ ) {
@@ -1066,7 +1070,7 @@ sub makeMatrix($$%) {
 
           @subStr = split( '--', $line );
           $name   = $subStr[1];
-          $name   =~ s/^\s+//; 
+          $name   =~ s/^\s+//;
           $name   =~ s/\s+$//;
 
 	  # Check if utName matches the name in html file
@@ -1078,7 +1082,7 @@ sub makeMatrix($$%) {
 	  }
         }
       }
-    }	
+    }
 
     # Write to output file
     print O "$line\n";
@@ -1148,10 +1152,10 @@ sub makeTxtMatrix($%) {
   print O '-'x42 . "\n";
 
   # Print out the results from each unit test
-  while ( ( $utName, $utColor ) = each( %unitTests ) ) { 
+  while ( ( $utName, $utColor ) = each( %unitTests ) ) {
 
     # Skip unit tests that weren't done
-    if ( !( $utName =~ m/UNIT_TEST/ ) ) { 
+    if ( !( $utName =~ m/UNIT_TEST/ ) ) {
       if ( !( $utColor =~ m/#FFFFFF/ ) ) {
 
         # Replace HTML colors with descriptive names
@@ -1166,7 +1170,7 @@ sub makeTxtMatrix($%) {
 	print O "$utName". ' 'x$padSpc, ": $utColor\n";
       }
     }
-  }	
+  }
 
   # Close output file
   close( O );
@@ -1195,21 +1199,21 @@ sub getDuration($$$$) {
 #
 # !INPUT PARAMETERS:
 #
-  # $date1 : Starting date for GEOS-Chem model run (e.g. 20160101) 
-  # $time1 : Starting time for GEOS-Chem model run (e.g. 000000  ) 
+  # $date1 : Starting date for GEOS-Chem model run (e.g. 20160101)
+  # $time1 : Starting time for GEOS-Chem model run (e.g. 000000  )
   # $date2 : Ending   date for GEOS-Chem model run (e.g. 20160102)
-  # $time2 : Ending   time for GEOS-Chem model run (e.g. 000000  ) 
+  # $time2 : Ending   time for GEOS-Chem model run (e.g. 000000  )
   my ( $date1, $time1,  $date2, $time2 ) = @_;
 #
 # !RETURN VALUE:
 #
   # $durStrDate : Duration string, YYYYMMDD format
   # $durStrTime : Duration string, hhmmss   format
-  my $durStrDate = ""; 
+  my $durStrDate = "";
   my $durStrTime = "";
 #
 # !CALLING SEQUENCE:
-# &getDuration( 20160101, 000000, 
+# &getDuration( 20160101, 000000,
 #               20160102, 000000 );
 #
 # !REVISION HISTORY:
@@ -1243,8 +1247,8 @@ sub getDuration($$$$) {
   my $dyroffset  = 0;
   my $modays     = 31;
   my $mo1i       = 0;
-  
-  #---------------------------------------  
+
+  #---------------------------------------
   # Determine run duration as Start - End
   # NOTE: does not handle leap years
   #---------------------------------------
@@ -1258,7 +1262,7 @@ sub getDuration($$$$) {
   $mo2  = substr( $date2, 4, 2 );
   $yr1  = substr( $date1, 0, 4 );
   $yr2  = substr( $date2, 0, 4 );
-  
+
   # Calculate # minutes
   $dmin = int($min2) - int($min1);
   if ( $dmin < 0 ) {
@@ -1272,13 +1276,13 @@ sub getDuration($$$$) {
     $dhr = 24 + $dhr;
     $ddayoffset = 1;
   }
-  
+
   # Calculate # days
   $dday = int($day2) - int($day1) - $ddayoffset;
   if ( $dday < 0 ) {
     $mo1i = int($mo1);
     if ( $mo1i eq 2 ) {
-      if ( ( int($yr1) % 4 eq 0 && int($yr1) % 100 ne 0 ) 
+      if ( ( int($yr1) % 4 eq 0 && int($yr1) % 100 ne 0 )
   	   || int($yr1) % 400 eq 0 ) {
   	$modays = 29;
       } else {
@@ -1290,17 +1294,17 @@ sub getDuration($$$$) {
     $dday = $modays + $dday;
     $dmooffset = 1;
   }
-  
+
   # Calculate # months
   $dmo = int($mo2) - int($mo1) - $dmooffset;
   if ( $dmo < 0 ) {
     $dmo = 12 + int($dmo);
     $dyroffset = 1;
   }
-  
+
   # Calculate # year
   $dyr = int($yr2) - int($yr1) - $dyroffset;
-  
+
   # Set the date and hour strings to be put into the file
   $durStrDate = &fmtStr( int($dyr)*10000 + int($dmo)*100 + int($dday) );
   $durStrDate = "00$durStrDate";
