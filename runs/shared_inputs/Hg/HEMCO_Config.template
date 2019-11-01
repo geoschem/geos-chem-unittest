@@ -477,7 +477,7 @@ Warnings:                    {WARNINGS}
 * GLOBAL_O3        $ROOT/O3/v2014-09/MERGE.O3.geos5.72L.2x25.nc                 O3             1985/1-12/1/0 C xyz v/v * - 1 1
 * GLOBAL_OH_trop   $ROOT/MERCURY/v2018-04/Johan.OH.kgm3.2007.nc                 CHEM_L_S__OH   2007/1-12/1/0 C xyz 1   * - 1 1
 * GLOBAL_OH_strat  $ROOT/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.geos5.72L.2x25.nc OH             1985/1-12/1/0 C xyz 1   * - 1 1
-* GLOBAL_HO2_strat $ROOT/GMI/v2015-02/gmi.clim.HO2.geos5.2x25.nc                species        1985/1-12/1/0 C xyz 1   * - 1 1
+* GLOBAL_HO2_strat $ROOT/GMI/v2015-02/gmi.clim.HO2.geos5.2x25.nc                species        2005/1-12/1/0 C xyz 1   * - 1 1
 * GLOBAL_HO2_trop  $ROOT/MERCURY/v2018-04/Johan.HO2.2007.nc                     CHEM_L_S__HO2  2007/1-12/1/0 C xyz 1   * - 1 1
 * GLOBAL_Cl        $ROOT/MERCURY/v2018-04/halogens.Johan.Mar16.2007.nc          IJ_24H_S__Cl   2007/1-12/1/0 C xyz 1   * - 1 1
 * GLOBAL_HOCl      $ROOT/MERCURY/v2018-04/halogens.Johan.Mar16.2007.nc          IJ_24H_S__HOCl 2007/1-12/1/0 C xyz 1   * - 1 1
@@ -485,7 +485,7 @@ Warnings:                    {WARNINGS}
 * GLOBAL_NO2       $ROOT/MERCURY/v2018-04/halogens.Johan.Mar16.2007.nc          IJ_24H_S__NO2  2007/1-12/1/0 C xyz 1   * - 1 1
 * GLOBAL_NO        $ROOT/MERCURY/v2018-04/halogens.Johan.Mar16.2007.nc          IJ_24H_S__NO   2007/1-12/1/0 C xyz 1   * - 1 1
 * GLOBAL_OA        $ROOT/MERCURY/v2018-04/OA_3Dglobal.geosfp.4x5.2013.nc        IJ_SOA_S__     2013/1-12/1/0 C xyz 1   * - 1 1
-* GLOBAL_OCEAN     $ROOT/MERCURY/v2018-04/ocean_fixed.nc                        ocean_conc     1985/1-12/1/0 C xyz 1   * - 1 1
+* GLOBAL_OCEAN     $ROOT/MERCURY/v2018-04/ocean_fixed.nc                        ocean_conc     2007/1-12/1/0 C xyz 1   * - 1 1
 
 #==============================================================================
 # --- BrOx fields --

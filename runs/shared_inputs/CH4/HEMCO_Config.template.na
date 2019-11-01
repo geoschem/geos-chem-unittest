@@ -6,18 +6,18 @@
 # !MODULE: HEMCO_Config.rc
 #
 # !DESCRIPTION: Contains configuration information for HEMCO. Define the
-#  emissions inventories and corresponding file paths here. Entire 
+#  emissions inventories and corresponding file paths here. Entire
 #  configuration files can be inserted into this configuration file with
-#  an '>>>include' statement, e.g. '>>>include HEMCO\_Config\_test.rc' 
+#  an '>>>include' statement, e.g. '>>>include HEMCO\_Config\_test.rc'
 #  The settings of include-files will be ignored.
 #\\
 #\\
 # !REMARKS:
-#  Customized for the CH4 simulation. 
+#  Customized for the CH4 simulation.
 #
 #  The following tokens will be replaced:
 #  (1) ROOT    : Filepath to HEMCO root directory
-#  (2) CFDIR   : Filepath to directory of this configuration file. 
+#  (2) CFDIR   : Filepath to directory of this configuration file.
 #  (3) MET     : Met field type (from G-C compilation command)
 #  (4) GRID    : Horizontal grid type (from G-C compilation command)
 #  (5) SIM     : Simulation type (from G-C compilation command)
@@ -26,8 +26,8 @@
 #                as used in some filenames (e.g. "23L", "30L", "47L")
 #  (8) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
 #                as used in some filenames (e.g. "55L", "72L")
-# 
-# !REVISION HISTORY: 
+#
+# !REVISION HISTORY:
 #  Navigate to your unit tester directory and type 'gitk' at the prompt
 #  to browse the revision history.
 #EOP
@@ -57,11 +57,11 @@ Warnings:                    {WARNINGS}
 ### BEGIN SECTION EXTENSION SWITCHES
 ###############################################################################
 ###
-### This section lists all emission extensions available to HEMCO and whether 
-### they shall be used or not. Extension 'base' must have extension number 
-### zero, all other extension numbers can be freely chosen. Data fields in 
-### section 'base emissions' will only be read if the corresponding extension 
-### (identified by ExtNr) is enabled. Similarly, fields grouped into data 
+### This section lists all emission extensions available to HEMCO and whether
+### they shall be used or not. Extension 'base' must have extension number
+### zero, all other extension numbers can be freely chosen. Data fields in
+### section 'base emissions' will only be read if the corresponding extension
+### (identified by ExtNr) is enabled. Similarly, fields grouped into data
 ### collections ('(((CollectionName', ')))CollectionName') are only considered
 ### if the corresponding data collection is enabled in this section. Data
 ### listed within a disabled extension are always ignored, even if they are
@@ -72,7 +72,7 @@ Warnings:                    {WARNINGS}
 ### collection name is *not* enabled. This is achieved by leading the
 ### collection name with '.not.', e.g. '(((.not.FINN_daily' ...
 ### '))).not.FINN_daily' for FINN monthly data (only used if daily data is
-### not being used). 
+### not being used).
 ###
 ### The ExtNr provided in this section must match with the ExtNr assigned to
 ### the data listed in the base emissions sections. Otherwise, the listed files
@@ -91,7 +91,7 @@ Warnings:                    {WARNINGS}
     --> SEEPS             :       true
     --> LAKES             :       false
     --> FUNG              :       true
-    --> RCP_3PD           :       false 
+    --> RCP_3PD           :       false
     --> RCP_45            :       false
     --> RCP_60            :       false
     --> RCP_85            :       false
@@ -118,7 +118,7 @@ Warnings:                    {WARNINGS}
 ### END SECTION EXTENSION SWITCHES ###
 
 ###############################################################################
-### BEGIN SECTION BASE EMISSIONS 
+### BEGIN SECTION BASE EMISSIONS
 ###############################################################################
 
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
@@ -157,7 +157,7 @@ Warnings:                    {WARNINGS}
 0 CH4_OTHER__1A3a_CDS    $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3a_CDS.generic.01x01.nc                                    emi_ch4 1970-2012/1/1/0 C xy kg/m2/s     CH4 -  8 1
 0 CH4_OTHER__1A3a_CRS    $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3a_CRS.generic.01x01.nc                                    emi_ch4 1970-2012/1/1/0 C xy kg/m2/s     CH4 -  8 1
 0 CH4_OTHER__1A3a_LTO    $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3a_LTO.generic.01x01.nc                                    emi_ch4 1970-2012/1/1/0 C xy kg/m2/s     CH4 -  8 1
-0 CH4_OTHER__1A3a_SPS    $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3a_SPS.generic.01x01.nc                                    emi_ch4 1970-2012/1/1/0 C xy kg/m2/s     CH4 -  8 1
+0 CH4_OTHER__1A3a_SPS    $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3a_SPS.generic.01x01.nc                                    emi_ch4 1970-2003/1/1/0 C xy kg/m2/s     CH4 -  8 1
 0 CH4_OTHER__1A3b        $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3b.generic.01x01.nc                                        emi_ch4 1970-2012/1/1/0 C xy kg/m2/s     CH4 -  8 1
 0 CH4_OTHER__1A3c_1A3e   $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3c_1A3e.generic.01x01.nc                                   emi_ch4 1970-2012/1/1/0 C xy kg/m2/s     CH4 -  8 1
 0 CH4_OTHER__1A3d_1C2    $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3d_1C2.generic.01x01.nc                                    emi_ch4 1970-2012/1/1/0 C xy kg/m2/s     CH4 -  8 1
@@ -344,8 +344,7 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 (((FUNG
 0 CH4_TERMITES     $ROOT/CH4/v2014-09/4x5/termites.geos.4x5.nc          CH4 1985/1/1/0         C xy kg/m2/s     CH4 - 13 1
-#0 CH4_SOILABSORB  $ROOT/CH4/v2014-09/4x5/soilabs.geos.4x5.nc           CH4 1985/1/1/0         C xy kg/m2/s     CH4 1 14 1
-0 CH4_SOILABSORB   $ROOT/CH4/v2017-10/Fung/Soil_Absorption_4x5_$YYYY.nc CH4 2009-2015/1-12/1/0 C xy molec/cm2/s CH4 1 14 1
+0 CH4_SOILABSORB   $ROOT/CH4/v2019-10/Fung_SoilAbs/Soil_Absorption_4x5_$YYYY.nc CH4 2009-2015/1-12/1/0 C xy molec/cm2/s CH4 1 14 1
 )))FUNG
 
 #==============================================================================
@@ -355,30 +354,30 @@ Warnings:                    {WARNINGS}
 0 RCP3PD_CH4 $ROOT/RCP/v2015-02/RCP_3PD/RCPs_anthro_CH4_2005-2100_23474.nc  ACCMIP 2005-2100/1/1/0 ID xy kg/m2/s  CH4 - 1 1
 )))RCP_3PD
 
-(((RCP_45 
+(((RCP_45
 0 RCP45_CH4  $ROOT/RCP/v2015-02/RCP_45/RCPs_anthro_CH4_2005-2100_27424.nc   ACCMIP 2005-2100/1/1/0 ID xy kg/m2/s  CH4 - 1 1
 )))RCP_45
 
-(((RCP_60 
+(((RCP_60
 0 RCP60_CH4  $ROOT/RCP/v2015-02/RCP_60/RCPs_anthro_CH4_2005-2100_43190.nc   ACCMIP 2005-2100/1/1/0 ID xy kg/m2/s  CH4 - 1 1
 )))RCP_60
 
-(((RCP_85 
+(((RCP_85
 0 RCP85_CH4  $ROOT/RCP/v2015-02/RCP_85/RCPs_anthro_CH4_2005-2100_43533.nc   ACCMIP 2005-2100/1/1/0 ID xy kg/m2/s  CH4 - 1 1
 )))RCP_85
 
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
 ###
-### These fields are needed by the extensions listed above. The assigned ExtNr 
-### must match the ExtNr entry in section 'Extension switches'. These fields 
+### These fields are needed by the extensions listed above. The assigned ExtNr
+### must match the ExtNr entry in section 'Extension switches'. These fields
 ### are only read if the extension is enabled.  The fields are imported by the
-### extensions by field name.  The name given here must match the name used 
-### in the extension's source code. 
+### extensions by field name.  The name given here must match the name used
+### in the extension's source code.
 ###############################################################################
 
 #==============================================================================
-# --- GFED biomass burning emissions (Extension 111) 
+# --- GFED biomass burning emissions (Extension 111)
 # NOTE: These are the base emissions in kgDM/m2/s.
 #==============================================================================
 
@@ -400,7 +399,7 @@ Warnings:                    {WARNINGS}
 )))GFED4
 
 #==============================================================================
-# --- FINN v1.5 biomass burning emissions (Extension 114) 
+# --- FINN v1.5 biomass burning emissions (Extension 114)
 #==============================================================================
 (((.not.FINN_daily
 114 FINN_VEGTYP1       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype1 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
@@ -421,7 +420,7 @@ Warnings:                    {WARNINGS}
 )))FINN_daily
 
 #==============================================================================
-# --- CH4 wetland and rice emissions (Extension 121) 
+# --- CH4 wetland and rice emissions (Extension 121)
 #==============================================================================
 121 CH4_RICE     $ROOT/CH4/v2014-09/v42_CH4.0.1x0.1.nc               ch4_4C_4D 2004-2008/1/1/0    C xy kg/m2/s  CH4 - 1 1
 121 CH4_GWET_YR  $ROOT/CH4/v2014-09/4x5/GWETTOP.annual.geos5.4x5.nc  GWETTOP   2004-2011/1/1/0    C xy 1        *   - 1 1
@@ -434,10 +433,10 @@ Warnings:                    {WARNINGS}
 ###############################################################################
 ### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
 ###
-### Non-emissions data. The following fields are read through HEMCO but do 
-### not contain emissions data. The extension number is set to wildcard 
-### character denoting that these fields will not be considered for emission 
-### calculation. A given entry is only read if the assigned species name is 
+### Non-emissions data. The following fields are read through HEMCO but do
+### not contain emissions data. The extension number is set to wildcard
+### character denoting that these fields will not be considered for emission
+### calculation. A given entry is only read if the assigned species name is
 ### an HEMCO species.
 ###############################################################################
 
@@ -743,7 +742,7 @@ Warnings:                    {WARNINGS}
 ### END SECTION BASE EMISSIONS ###
 
 ###############################################################################
-### BEGIN SECTION SCALE FACTORS 
+### BEGIN SECTION SCALE FACTORS
 ###############################################################################
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
@@ -780,7 +779,7 @@ Warnings:                    {WARNINGS}
 ### END SECTION SCALE FACTORS ###
 
 ###############################################################################
-### BEGIN SECTION MASKS 
+### BEGIN SECTION MASKS
 ###############################################################################
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
@@ -797,6 +796,6 @@ Warnings:                    {WARNINGS}
 1011 CAN_MASK_MIRROR $ROOT/MASKS/v2018-09/Canada_Mask_Mirror.001x001.nc    MASK     2000/1/1/0 C xy 1 1 -141/40/-52/85
 
 ### END SECTION MASKS ###
- 
+
 ### END OF HEMCO INPUT FILE ###
 #EOC

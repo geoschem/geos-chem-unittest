@@ -430,6 +430,7 @@ cleanup_data:
 	rm -f Ox.mass.*
 	rm -f diaginfo.dat tracerinfo.dat
 	rm -f tracer_mass*.dat
+	rm -f GEOS-Chem_Species_Database.json
 	rm -f core.*
 	rm -f OutputDir/*
 	@for f in ./*.nc4; do                               \

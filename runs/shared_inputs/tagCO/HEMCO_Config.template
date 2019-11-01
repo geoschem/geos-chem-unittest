@@ -881,15 +881,15 @@ Mask fractions:              false
 #==============================================================================
 # --- Quantities needed for CH4 chemistry ---
 #==============================================================================
-* GLOBAL_OH  $ROOT/OH/v2017-04/OH_3Dglobal.geosfp.2x25.nc         OH        1985/1-12/1/0 C xyz kg/m3   * - 1 1
-* PCO_CH4    $ROOT/TAGGED_CO/v2017-04/PCO_3Dglobal.geosfp.2x25.nc PCO_CH4   1985/1-12/1/0 C xyz kg/m3/s * - 1 1
-* PCO_NMVOC  $ROOT/TAGGED_CO/v2017-04/PCO_3Dglobal.geosfp.2x25.nc PCO_NMVOC 1985/1-12/1/0 C xyz kg/m3/s * - 1 1
+* GLOBAL_OH  $ROOT/OH/v2017-04/OH_3Dglobal.geosfp.2x25.nc         OH        2013/1-12/1/0 C xyz kg/m3   * - 1 1
+* PCO_CH4    $ROOT/TAGGED_CO/v2017-04/PCO_3Dglobal.geosfp.2x25.nc PCO_CH4   2013/1-12/1/0 C xyz kg/m3/s * - 1 1
+* PCO_NMVOC  $ROOT/TAGGED_CO/v2017-04/PCO_3Dglobal.geosfp.2x25.nc PCO_NMVOC 2013/1-12/1/0 C xyz kg/m3/s * - 1 1
 
 #==============================================================================
 # --- GMI chemistry: prod/loss rates (for strato-/mesosphere) ---
 #==============================================================================
-* GMI_LOSS_CO  $ROOT/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc  loss     2000/1-12/1/0 C xyz s-1   CO  - 1  1
-* GMI_PROD_CO  $ROOT/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc  prod     2000/1-12/1/0 C xyz v/v/s CO  - 1  1
+* GMI_LOSS_CO  $ROOT/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc  loss     2005/1-12/1/0 C xyz s-1   CO  - 1  1
+* GMI_PROD_CO  $ROOT/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc  prod     2005/1-12/1/0 C xyz v/v/s CO  - 1  1
 
 #==============================================================================
 # --- NOAA GMD monthly mean surface CH4 ---

@@ -156,7 +156,7 @@ Warnings:                    {WARNINGS}
 0 CH4_OTHER__1A3a_CDS    $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3a_CDS.generic.01x01.nc                                    emi_ch4 1970-2012/1/1/0 C xy kg/m2/s     CH4 -  8 1
 0 CH4_OTHER__1A3a_CRS    $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3a_CRS.generic.01x01.nc                                    emi_ch4 1970-2012/1/1/0 C xy kg/m2/s     CH4 -  8 1
 0 CH4_OTHER__1A3a_LTO    $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3a_LTO.generic.01x01.nc                                    emi_ch4 1970-2012/1/1/0 C xy kg/m2/s     CH4 -  8 1
-0 CH4_OTHER__1A3a_SPS    $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3a_SPS.generic.01x01.nc                                    emi_ch4 1970-2012/1/1/0 C xy kg/m2/s     CH4 -  8 1
+0 CH4_OTHER__1A3a_SPS    $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3a_SPS.generic.01x01.nc                                    emi_ch4 1970-2003/1/1/0 C xy kg/m2/s     CH4 -  8 1
 0 CH4_OTHER__1A3b        $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3b.generic.01x01.nc                                        emi_ch4 1970-2012/1/1/0 C xy kg/m2/s     CH4 -  8 1
 0 CH4_OTHER__1A3c_1A3e   $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3c_1A3e.generic.01x01.nc                                   emi_ch4 1970-2012/1/1/0 C xy kg/m2/s     CH4 -  8 1
 0 CH4_OTHER__1A3d_1C2    $ROOT/CH4/v2017-10/EDGARv432/EDGAR_v432_CH4_IPCC_1A3d_1C2.generic.01x01.nc                                    emi_ch4 1970-2012/1/1/0 C xy kg/m2/s     CH4 -  8 1
@@ -343,8 +343,7 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 (((FUNG
 0 CH4_TERMITES     $ROOT/CH4/v2014-09/4x5/termites.geos.4x5.nc          CH4 1985/1/1/0         C xy kg/m2/s     CH4 - 13 1
-#0 CH4_SOILABSORB  $ROOT/CH4/v2014-09/4x5/soilabs.geos.4x5.nc           CH4 1985/1/1/0         C xy kg/m2/s     CH4 1 14 1
-0 CH4_SOILABSORB   $ROOT/CH4/v2017-10/Fung/Soil_Absorption_4x5_$YYYY.nc CH4 2009-2015/1-12/1/0 C xy molec/cm2/s CH4 1 14 1
+0 CH4_SOILABSORB   $ROOT/CH4/v2019-10/Fung_SoilAbs/Soil_Absorption_4x5_$YYYY.nc CH4 2009-2015/1-12/1/0 C xy molec/cm2/s CH4 1 14 1
 )))FUNG
 
 #==============================================================================
