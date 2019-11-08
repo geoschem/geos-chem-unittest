@@ -216,7 +216,7 @@ Turn on emissions?      : T
 HEMCO Input file        : HEMCO_Config.rc
 Switches for UCX        :---
  => Use CH4 emissions?  : F
- => Set strat. H2O?     : T
+ => Set init. strat. H2O: T
 ------------------------+------------------------------------------------------
 %%% AEROSOL MENU %%%    :
 Online SULFATE AEROSOLS : T
