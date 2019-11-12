@@ -2826,7 +2826,7 @@ Warnings:                    {WARNINGS}
 # --- CMIP6 monthly mean surface CH4 ---
 # NOTE: This is only used if NOAA data is unavailible (pre 1979)
 #==============================================================================
-* CMIP6_Sfc_CH4  $ROOT/CMIP6/v2010-09/CMIP6_GHG_surface_VMR_1750_2014_for_CH4.nc CH4     1750-1978/1-12/1/0 C xy ppbv * - 1 1
+* CMIP6_Sfc_CH4  $ROOT/CMIP6/v2019-09/CMIP6_GHG_surface_VMR_1750_2014_for_CH4.nc CH4     1750-1978/1-12/1/0 C xy ppbv * - 1 1
 
 #==============================================================================
 # --- Olson land map masks ---
