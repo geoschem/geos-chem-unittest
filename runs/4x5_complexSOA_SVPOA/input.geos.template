@@ -57,9 +57,9 @@ Species name            : NH4
 Species name            : NIT
 Species name            : NITs
 Species name            : BCPI
-Species name            : POA1
+Species name            : OCPI
 Species name            : BCPO
-Species name            : POG1
+Species name            : OCPO
 Species name            : DST1
 Species name            : DST2
 Species name            : DST3
@@ -221,6 +221,8 @@ Species name            : ISALC
 Species name            : AERI
 Species name            : pFe
 Species name            : NAP
+Species name            : POG1
+Species name            : POA1
 Species name            : POG2
 Species name            : POA2
 Species name            : OPOG1
