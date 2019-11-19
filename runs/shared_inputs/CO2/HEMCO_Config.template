@@ -6,28 +6,18 @@
 # !MODULE: HEMCO_Config.rc
 #
 # !DESCRIPTION: Contains configuration information for HEMCO. Define the
-#  emissions inventories and corresponding file paths here. Entire 
+#  emissions inventories and corresponding file paths here. Entire
 #  configuration files can be inserted into this configuration file with
-#  an '>>>include' statement, e.g. '>>>include HEMCO\_Config\_test.rc' 
+#  an '>>>include' statement, e.g. '>>>include HEMCO\_Config\_test.rc'
 #  The settings of include-files will be ignored.
 #\\
 #\\
 # !REMARKS:
-#  Customized for the CO2 specialty simulation.
+#  This file has been customized for the CO2 simulation.
+#  See The HEMCO User's Guide for file details:
+#    http://wiki.geos-chem.org/The_HEMCO_User%27s_Guide
 #
-#  The following tokens will be replaced:
-#  (1) ROOT    : Filepath to HEMCO root directory
-#  (2) CFDIR   : Filepath to directory of this configuration file. 
-#  (3) MET     : Met field type (from G-C compilation command)
-#  (4) GRID    : Horizontal grid type (from G-C compilation command)
-#  (5) SIM     : Simulation type (from G-C compilation command)
-#  (6) NEST    : Nested-grid type (CH, EU, NA, SE)
-#  (7) LEVRED  : String w/ the # of levels in the reduced GEOS-Chem grid
-#                as used in some filenames (e.g. "23L", "30L", "47L")
-#  (8) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
-#                as used in some filenames (e.g. "55L", "72L")
-# 
-# !REVISION HISTORY: 
+# !REVISION HISTORY:
 #  Navigate to your unit tester directory and type 'gitk' at the prompt
 #  to browse the revision history.
 #EOP
@@ -55,66 +45,74 @@ Warnings:                    {WARNINGS}
 ###############################################################################
 ### BEGIN SECTION EXTENSION SWITCHES
 ###############################################################################
-###
-### This section lists all emission extensions available to HEMCO and whether 
-### they shall be used or not. Extension 'base' must have extension number 
-### zero, all other extension numbers can be freely chosen. Data fields in 
-### section 'base emissions' will only be read if the corresponding extension 
-### (identified by ExtNr) is enabled. Similarly, fields grouped into data 
-### collections ('(((CollectionName', ')))CollectionName') are only considered
-### if the corresponding data collection is enabled in this section. Data
-### listed within a disabled extension are always ignored, even if they are
-### grouped in an enabled collection (e.g. GFED-4 data will never be considered
-### if the GFED extension is disabled, even if the GFED4 option is set to true).
-###
-### It is possible to define collections that are only evaluated if a
-### collection name is *not* enabled. This is achieved by leading the
-### collection name with '.not.', e.g. '(((.not.FINN_daily' ...
-### '))).not.FINN_daily' for FINN monthly data (only used if daily data is
-### not being used). 
-###
-### The ExtNr provided in this section must match with the ExtNr assigned to
-### the data listed in the base emissions sections. Otherwise, the listed files
-### won't be read!
-###############################################################################
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
-    --> GC_RESTART        :       true
-    --> FOSSIL_ODIAC      :       true
-    --> FOSSIL_CDIAC      :       false
-    --> MIX               :       false
-    --> OCEAN_EXCH_TAKA09 :       false
-    --> OCEAN_EXCH_SCALED :       true
-    --> BBIO_DIURNAL      :       false
-    --> BBIO_SIB3         :       true
-    --> NET_TERR_EXCH     :       true
-    --> SHIP              :       true
-    --> AVIATION          :       true
-    --> CO2CORR           :       true
-    --> Yuan_XLAI         :       true
+# ----- MASTER SWITCHES ---------------------
+    --> EMISSIONS              :       true
+    --> METEOROLOGY            :       true
+    --> CHEMISTRY_INPUT        :       true
+    --> DRYDEP_INPUT           :       true
+# ----- RESTART FIELDS ----------------------
+    --> GC_RESTART             :       true
+# ----- REGIONAL INVENTORIES ----------------
+    --> MIX                    :       false
+# ----- GLOBAL INVENTORIES ------------------
+    --> FOSSIL_ODIAC           :       true
+    --> FOSSIL_CDIAC           :       false
+    --> OCEAN_EXCH_TAKA09      :       false
+    --> OCEAN_EXCH_SCALED      :       true
+    --> BBIO_DIURNAL           :       false
+    --> BBIO_SIB3              :       true
+    --> NET_TERR_EXCH          :       true
+    --> AVIATION               :       true
+    --> CO2CORR                :       true
+# ----- SHIP EMISSIONS ----------------------
+    --> SHIP                   :       true
+    --> CEDS_SHIP              :       true
+    --> ICOADS_SHIP            :       false
+# ----- NON-EMISSIONS DATA ------------------
+    --> CO2_COPROD             :       true
+    --> OLSON_LANDMAP          :       true
+    --> YUAN_MODIS_LAI         :       true
 # ----------------------------------------------------------------------------
-111     GFED              : on    CO2/CO2bb
-    --> GFED4             :       true
-    --> GFED_daily        :       true
-    --> GFED_3hourly      :       false
-    --> Scaling_CO        :       1.05
-    --> Scaling_NAP       :       2.75e-4
-    --> hydrophilic BC    :       0.2
-    --> hydrophilic OC    :       0.5
-    --> fraction POG1     :       0.49
-114     FINN              : off   CO2/CO2bb
-    --> FINN_daily        :       true
-    --> Scaling_CO        :       1.0
-    --> hydrophilic BC    :       0.2
-    --> hydrophilic OC    :       0.5
+111     GFED                   : on    CO2/CO2bb
+    --> GFED4                  :       true
+    --> GFED_daily             :       true
+    --> GFED_3hourly           :       false
+    --> Scaling_CO             :       1.05
+    --> Scaling_NAP            :       2.75e-4
+    --> hydrophilic BC         :       0.2
+    --> hydrophilic OC         :       0.5
+    --> fraction POG1          :       0.49
+114     FINN                   : off   CO2/CO2bb
+    --> FINN_daily             :       true
+    --> Scaling_CO             :       1.0
+    --> hydrophilic BC         :       0.2
+    --> hydrophilic OC         :       0.5
 
-END SECTION EXTENSION SWITCHES 
+END SECTION EXTENSION SWITCHES
 
 ###############################################################################
-### BEGIN SECTION BASE EMISSIONS 
+### BEGIN SECTION BASE EMISSIONS
 ###############################################################################
 
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
+
+(((EMISSIONS
+
+#==============================================================================
+# --- MIX v1.1 (Asia) ---
+#==============================================================================
+(((MIX
+0 MIX_CO2_IND   $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_INDUSTRY    2008-2010/1-12/1/0 C xy kg/m2/s CO2   1006 1 45
+0 MIX_CO2FF_IND -                                                  -               -                  - -  -       CO2ff 1006 1 45
+0 MIX_CO2_POW   $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_POWER       2008-2010/1-12/1/0 C xy kg/m2/s CO2   1006 1 45
+0 MIX_CO2FF_POW -                                                  -               -                  - -  -       CO2ff 1006 1 45
+0 MIX_CO2_RES   $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_RESIDENTIAL 2008-2010/1-12/1/0 C xy kg/m2/s CO2   1006 1 45
+0 MIX_CO2FF_RES -                                                  -               -                  - -  -       CO2ff 1006 1 45
+0 MIX_CO2_TRA   $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_TRANSPORT   2008-2010/1-12/1/0 C xy kg/m2/s CO2   1006 1 45
+0 MIX_CO2FF_TRA -                                                  -               -                  - -  -       CO2ff 1006 1 45
+)))MIX
 
 #==============================================================================
 # --- FOSSIL FUEL EMISSIONS ---
@@ -136,20 +134,6 @@ END SECTION EXTENSION SWITCHES
 0 FOSSILCO2_ODIAC   $ROOT/CO2/v2015-04/FOSSIL/ODIAC_CO2.monthly.generic.1x1.nc   CO2 2000-2014/1-12/1/0 C xy kg/m2/s CO2   40/41/80 1 2
 0 FOSSILCO2FF_ODIAC -                                                            -   -                  - -  -       CO2ff 40/41/80 1 2
 )))FOSSIL_ODIAC
-
-#==============================================================================
-# --- MIX v1.1 (Asia) ---
-#==============================================================================
-(((MIX
-0 MIX_CO2_IND   $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_INDUSTRY    2008-2010/1-12/1/0 C xy kg/m2/s CO2   1006 1 45
-0 MIX_CO2FF_IND -                                                  -               -                  - -  -       CO2ff 1006 1 45
-0 MIX_CO2_POW   $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_POWER       2008-2010/1-12/1/0 C xy kg/m2/s CO2   1006 1 45
-0 MIX_CO2FF_POW -                                                  -               -                  - -  -       CO2ff 1006 1 45
-0 MIX_CO2_RES   $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_RESIDENTIAL 2008-2010/1-12/1/0 C xy kg/m2/s CO2   1006 1 45
-0 MIX_CO2FF_RES -                                                  -               -                  - -  -       CO2ff 1006 1 45
-0 MIX_CO2_TRA   $ROOT/MIX/v2015-03/MIX_Asia_CO2.generic.025x025.nc CO2_TRANSPORT   2008-2010/1-12/1/0 C xy kg/m2/s CO2   1006 1 45
-0 MIX_CO2FF_TRA -                                                  -               -                  - -  -       CO2ff 1006 1 45
-)))MIX
 
 #==============================================================================
 # --- OCEAN EXCHANGE EMISSIONS ---
@@ -175,9 +159,9 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # --- BALANCED BIOSPHERE EXCHANGE ---
 #
-# These emissions have a seasonal cycle of uptake/emission but have a net 
+# These emissions have a seasonal cycle of uptake/emission but have a net
 # annual uptake of close to zero (balanced).
-# CASA model daily emissions for a single year at coarse resolution have a 
+# CASA model daily emissions for a single year at coarse resolution have a
 # diurnal cycle imposed (Olsen & Randerson, 2004)
 # SiB3 emissions are from Nick Parazoo (Messerschmidt et al., 2011) for
 # 2006-2010.
@@ -208,25 +192,33 @@ END SECTION EXTENSION SWITCHES
 )))NET_TERR_EXCH
 
 #==============================================================================
-# --- ICOADS SHIP EMISSIONS ---
-#
-# The spatial distribution is scaled with global annual scale factors #50
+# --- SHIP EMISSIONS ---
 #==============================================================================
 (((SHIP
-0 CO2_SHIP_ICOADS    $ROOT/ICOADS_SHIP/v2014-07/ICOADS_ship_CO2_2004.generic.1x1.nc CO2 2004/1-12/1/0 C xy kg/m2/s CO2   50 6 1
-0 CO2SE_SHIP_ICOADS  -                                                              -   -             - -  -       CO2se 50 6 1
+
+(((ICOADS_SHIP
+# The spatial distribution is scaled with global annual scale factors #50
+0 ICOADS_CO2_SHIP    $ROOT/ICOADS_SHIP/v2014-07/ICOADS_ship_CO2_2004.generic.1x1.nc CO2 2004/1-12/1/0 C xy kg/m2/s CO2   50 6 1
+0 ICOADS_CO2SE_SHIP  -                                                              -   -             - -  -       CO2se 50 6 1
+)))ICOADS_SHIP
+
+(((CEDS_SHIP
+0 CEDS_CO2_SHP       $ROOT/CEDS/v2018-08/$YYYY/CO2-em-anthro_CMIP_CEDS_$YYYY.nc     CO2_shp  1750-2014/1-12/1/0 C xy kg/m2/s CO2   - 6 1
+0 CEDS_CO2SE_SHIP    -                                                              -        -                  - -  -       CO2se - 6 1
+)))CEDS_SHOP
+
 )))SHIP
 
 #==============================================================================
 # --- AVIATION EMISSIONS ---
 #
-# Aviation fuel burn spatial and seaonal distribution from AEIC (Simone et al. 
+# Aviation fuel burn spatial and seaonal distribution from AEIC (Simone et al.
 # 2013) scaled with global annual CO2 emission totals calculated from the IEA
 # (Olsen et al., 2013)
 #==============================================================================
 (((AVIATION
-0 AEIC_CO2    $ROOT/AEIC/v2015-01/AEIC.47L.gen.1x1.nc FUELBURN 2005/1-12/1/0 C xyz kg/m2/s CO2   60/70 7 1 
-0 AEIC_CO2AV  -                                       -        -             - -   -       CO2av 60/70 7 1 
+0 AEIC_CO2    $ROOT/AEIC/v2015-01/AEIC.47L.gen.1x1.nc FUELBURN 2005/1-12/1/0 C xyz kg/m2/s CO2   60/70 7 1
+0 AEIC_CO2AV  -                                       -        -             - -   -       CO2av 60/70 7 1
 )))AVIATION
 
 #==============================================================================
@@ -265,18 +257,17 @@ END SECTION EXTENSION SWITCHES
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
 ###
-### These fields are needed by the extensions listed above. The assigned ExtNr 
-### must match the ExtNr entry in section 'Extension switches'. These fields 
+### These fields are needed by the extensions listed above. The assigned ExtNr
+### must match the ExtNr entry in section 'Extension switches'. These fields
 ### are only read if the extension is enabled.  The fields are imported by the
-### extensions by field name.  The name given here must match the name used 
-### in the extension's source code. 
+### extensions by field name.  The name given here must match the name used
+### in the extension's source code.
 ###############################################################################
 
 #==============================================================================
-# --- GFED biomass burning emissions (Extension 111) 
+# --- GFED biomass burning emissions (Extension 111)
 # NOTE: These are the base emissions in kgDM/m2/s.
 #==============================================================================
-
 (((GFED4
 111 GFED_TEMP       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_TEMP       1997-2016/1-12/01/0    RF xy kgDM/m2/s * - 1 1
 111 GFED_AGRI       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_AGRI       1997-2016/1-12/01/0    RF xy kgDM/m2/s * - 1 1
@@ -295,7 +286,7 @@ END SECTION EXTENSION SWITCHES
 )))GFED4
 
 #==============================================================================
-# --- FINN v1.5 biomass burning emissions (Extension 114) 
+# --- FINN v1.5 biomass burning emissions (Extension 114)
 #==============================================================================
 (((.not.FINN_daily
 114 FINN_VEGTYP1       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype1 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
@@ -315,20 +306,28 @@ END SECTION EXTENSION SWITCHES
 114 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype9 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
 )))FINN_daily
 
+))) EMISSIONS
+
 ###############################################################################
 ### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
 ###
-### Non-emissions data. The following fields are read through HEMCO but do 
-### not contain emissions data. The extension number is set to wildcard 
-### character denoting that these fields will not be considered for emission 
-### calculation. A given entry is only read if the assigned species name is 
+### Non-emissions data. The following fields are read through HEMCO but do
+### not contain emissions data. The extension number is set to wildcard
+### character denoting that these fields will not be considered for emission
+### calculation. A given entry is only read if the assigned species name is
 ### an HEMCO species.
 ###############################################################################
 
 #==============================================================================
-# --- Meteorology fields for FlexGrid ---
+# --- Time zones (offset to UTC) ---
 #==============================================================================
+* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
 
+(((METEOROLOGY
+
+#==============================================================================
+# --- Meteorology fields ---
+#==============================================================================
 # --- CN fields ---
 * FRLAKE    $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NC        FRLAKE   */1/1/0               C xy  1  * -  1 1
 * FRLAND    $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NC        FRLAND   */1/1/0               C xy  1  * -  1 1
@@ -427,6 +426,8 @@ END SECTION EXTENSION SWITCHES
 * FLASH_DENS $ROOT/OFFLINE_LIGHTNING/v2019-01/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  LDENS 1980-2019/1-12/1-31/0-23/+90minute RFY xy  1  * -  1 1
 * CONV_DEPTH $ROOT/OFFLINE_LIGHTNING/v2019-01/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  CTH   1980-2019/1-12/1-31/0-23/+90minute RFY xy  1  * -  1 1
 
+)))METEOROLOGY
+
 #==============================================================================
 # --- GEOS-Chem restart file ---
 #==============================================================================
@@ -440,21 +441,22 @@ END SECTION EXTENSION SWITCHES
 )))GC_RESTART
 
 #==============================================================================
-# --- Time zones (offset to UTC) ---
-#==============================================================================
-* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
-
-#==============================================================================
 # --- CHEMICAL PRODUCTION FROM CO OXIDATION ---
 #
 # ---> Recommended for use in forward modelling, optional for
 #      inversion/assimilation
 #==============================================================================
+(((CHEMISTRY_INPUT
+(((CO2_COPROD
 * CO2_COPROD $ROOT/CO2/v2019-02/CHEM/CO2_prod_rates.GEOS5.2x25.47L.nc LCO 2004-2009/1-12/1/0 C xyz kgC/m3/s * - 1 1
+)))CO2_COPROD
+)))CHEMISTRY_INPUT
 
 #==============================================================================
 # --- Olson land map masks ---
 #==============================================================================
+(((DRYDEP_INPUT
+(((OLSON_LANDMAP
 * LANDTYPE00 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE00 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE01 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE01 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE02 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE02 1985/1/1/0 C xy 1 * - 1 1
@@ -528,6 +530,8 @@ END SECTION EXTENSION SWITCHES
 * LANDTYPE70 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE70 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE71 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE71 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE72 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE72 1985/1/1/0 C xy 1 * - 1 1
+)))OLSON_LANDMAP
+)))DRYDEP_INPUT
 
 #==============================================================================
 # --- Yuan processed MODIS leaf area index data ---
@@ -542,7 +546,8 @@ END SECTION EXTENSION SWITCHES
 # (2) Units are "cm2 leaf/cm2 grid box".
 # (3) Data is timestamped every 8 days, starting from the 2nd of the month.
 #==============================================================================
-(((Yuan_XLAI
+(((EMISSIONS.or.DRYDEP_INPUT
+(((YUAN_MODIS_LAI
 * XLAI00 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI00 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI01 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI01 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI02 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI02 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
@@ -616,30 +621,34 @@ END SECTION EXTENSION SWITCHES
 * XLAI70 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI70 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI71 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI71 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI72 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI72 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
-)))Yuan_XLAI
+)))YUAN_MODIS_LAI
+)))EMISSIONS.or.DRYDEP_INPUT
 
 ### END SECTION BASE EMISSIONS ###
 
 ###############################################################################
-### BEGIN SECTION SCALE FACTORS 
+### BEGIN SECTION SCALE FACTORS
 ###############################################################################
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
 
+(((EMISSIONS
+
 #==============================================================================
 # --- FOSSIL FUEL CO2 SURFACE CORRECTION FACTOR ---
 #
-# Fossil fuel CO2 emissions must be scaled down to avoid counting emissions 
+# Fossil fuel CO2 emissions must be scaled down to avoid counting emissions
 # already accounted for by CO and CH4 oxidation to CO2.
 #
-# The necssary annual reduction in emissions related to fossil fuels is 
+# The necssary annual reduction in emissions related to fossil fuels is
 # determined as:  global C mass from FF (CO+CH4) / global C mass from FF CO2
 #
-# Note: GEOS-Chem v8-03-02 to v9-02, assumed: 0.0489 for all years but that  
+# Note: GEOS-Chem v8-03-02 to v9-02, assumed: 0.0489 for all years but that
 # value seems to correspond to mid-1980s fossil fuel combustion since CO
 # emissions have held constant (Granier et al., 2011) while CO2 has risen.
-# 
+#
 #==============================================================================
+(((CO2CORR
 #10 CO2_FOSSFUEL_CORR 0.0489 - - - xy 1 1
 
 ## CO2 scale factors from CO oxidation by decade (comment out for now)
@@ -650,6 +659,7 @@ END SECTION EXTENSION SWITCHES
 
 # All scale factors for years 2000-2013 lumped into a single entry
 10 CO2_FOSSFUEL_CORR 0.041495/0.040525/0.040125/0.037853/0.035957/0.034686/0.033538/0.032771/0.031961/0.032118/0.030622/0.029674/0.029029/0.028355 - 2000-2013/1/1/0 C xy 1 1
+)))CO2CORR
 
 #==============================================================================
 # --- CO2 CONVERSION FACTORS ---
@@ -661,18 +671,23 @@ END SECTION EXTENSION SWITCHES
 #==============================================================================
 # ---- TIMES diurnal and weekly scale factors for national fossil fuel CO2 ---
 #
-# These temporal scale factors are described in Nassar et al. (2013) 
+# These temporal scale factors are described in Nassar et al. (2013)
 #==============================================================================
+(((FOSSIL_CDIAC.or.FOSSIL_ODIAC.or.CO2CORR
 40 CO2_DIURNAL $ROOT/CO2/v2015-04/FOSSIL/TIMES_diurnal_scale_factors.nc diurnal_scale_factors 2006/1/1/1-24 C xy 1 1
 41 CO2_WEEKLY  $ROOT/CO2/v2015-04/FOSSIL/TIMES_weekly_scale_factors.nc  weekly_scale_factors  2006/1/WD/0 C xy 1 1
+)))FOSSIL_CDIAC.or.FOSSIL_ODIAC.or.CO2CORR
 
 #==============================================================================
 # --- SHIP ANNUAL SCALE FACTOR ---
 #
 # Based on a linear fit of 1985-2002 values from Endresen et al. (2007).
 #==============================================================================
+(((ICOADS_SHIP
 50 CO2_SHIP_SCALE 1.043/1.068/1.094/1.128/1.154/1.180/1.205/1.231/1.265/1.291/1.316/1.342/1.368/1.393/1.427/1.453/1.479/1.504/1.530/1.556/1.590/1.615/1.641/1.667/1.641 - 1985-2009/1/1/0 C xy 1 1
+)))ICOADS_SHIP
 
+(((AVIATION
 #==============================================================================
 # --- AVIATION FUEL BURN SCALE FACTOR ( kg C / kg fuel ) ---
 #==============================================================================
@@ -682,48 +697,53 @@ END SECTION EXTENSION SWITCHES
 # --- AVIATION GLOBAL ANNUAL EMISSION SCALE FACTOR ---
 #
 # AEIC global annual emissions 0.15574 TgC for 2005
-# IEA values from Olsen et al. (2013) to scale 1990-2008 
+# IEA values from Olsen et al. (2013) to scale 1990-2008
 #==============================================================================
 70 CO2_AVIATION_SCALE 0.9034/0.8867/0.8923/0.9034/0.9759/1.0038/1.0596/1.0875/1.1154/1.1544/1.1990/1.1711/1.1711/1.1711/1.2492/1.3105/1.3273/1.3496/1.3440 - 1990-2008/1/1/0 C xy 1 1
+)))AVIATION
 
 #==============================================================================
 # --- DOMESTIC AVIATION SURFACE CORRECTION FACTOR ---
 #
-# Regional scale factors slightly less than 1 remove surface contribution from 
-# domestic aviation in national fossil fuel emisisons, which should instead be 
+# Regional scale factors slightly less than 1 remove surface contribution from
+# domestic aviation in national fossil fuel emisisons, which should instead be
 # counted in the air as a 3D field. This scale factor should be applied to the
 # main/national fossil fuel emission field if using avaition emissions.
 #==============================================================================
+(((FOSSIL_CDIAC.or.FOSSIL_ODIAC.or.CO2CORR
 80 AVIATION_SURF_CORR $ROOT/CO2/v2015-04/FOSSIL/Aviation_SurfCorr_SclFac.1x1.nc CO2 2004/1/1/0 C xy 1 1
+)))FOSSIL_CDIAC.or.FOSSIL_ODIAC.or.CO2CORR
 
 #==============================================================================
 # Scale factor to make emissions negative
 #==============================================================================
+(((CO2CORR
 90 CO2_NEGATIVE -1.0 - 2000/1/1/0 C xy 1 1
+)))CO2CORR
+
+)))EMISSIONS
 
 ### END SECTION SCALE FACTORS ###
 
 ###############################################################################
-### BEGIN SECTION MASKS 
+### BEGIN SECTION MASKS
 ###############################################################################
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
 
+(((EMISSIONS
+
 #==============================================================================
 # Country/region masks
 #==============================================================================
-1000 EMEP_MASK   $ROOT/MASKS/v2018-09/EMEP_mask.geos.1x1.20151222.nc           MASK     2000/1/1/0 C xy 1 1 -30/30/45/70
-1001 MEXICO_MASK $ROOT/MASKS/v2018-09/Mexico_Mask.001x001.nc                   MASK     2000/1/1/0 C xy 1 1 -118/17/-95/33
-1002 CANADA_MASK $ROOT/MASKS/v2018-09/Canada_mask.geos.1x1.nc                  MASK     2000/1/1/0 C xy 1 1 -141/40/-52/85
-1003 SEASIA_MASK $ROOT/MASKS/v2018-09/SE_Asia_mask.generic.1x1.nc              MASK     2000/1/1/0 C xy 1 1  60/-12/153/55
+(((MIX
 1006 ASIA_MASK   $ROOT/MASKS/v2018-09/MIX_Asia_mask.generic.025x025.nc         MASK     2000/1/1/0 C xy 1 1 46/-12/180/82
-1007 CONUS_MASK  $ROOT/MASKS/v2018-09/CONUS_Mask.01x01.nc                      MASK     2000/1/1/0 C xy 1 1 -140/20/-50/60
-1008 AFRICA_MASK $ROOT/MASKS/v2018-09/AF_LANDMASK.geos.05x0666.global.nc       LANDMASK 1985/1/1/0 C xy 1 1 -20/-37/54/40
-1009 CHINA_MASK  $ROOT/MASKS/v2018-09/China_mask.generic.1x1.nc                MASK     2000/1/1/0 C xy 1 1  70/10/150/60
-1010 INDIA_MASK  $ROOT/MASKS/v2018-09/India_mask.generic.1x1.nc                MASK     2000/1/1/0 C xy 1 1  67/7/99/39
+)))MIX
+
+)))EMISSIONS
 
 ### END SECTION MASKS ###
- 
+
 ###############################################################################
 ### REFERNCES
 ###############################################################################
@@ -732,8 +752,8 @@ END SECTION EXTENSION SWITCHES
 # global emissions of carbon dioxide from fossil fuel consumption, Tellus 63B,
 # 309-327.
 #
-# Baker, D.F. et al. (2006) TransCom3 inversion intercomparison: Impact of 
-# transport model errors on the interannual variability of regional CO2 fluxes, 
+# Baker, D.F. et al. (2006) TransCom3 inversion intercomparison: Impact of
+# transport model errors on the interannual variability of regional CO2 fluxes,
 # 1998-2003, Global Biogeochem., Cy., 20, GB1002, doi:10.29/2004GB002439.
 #
 # Endresen, O. et al. (2007), A historical reconstuctino of ships fuel
@@ -744,47 +764,47 @@ END SECTION EXTENSION SWITCHES
 # emissions of air pollutants at global and regional scales during the 1980-2010
 # period, Climatic Change, 109:163-190, doi:10.1007/s10584-011-0154-1.
 #
-# Keller, C.A., M.S. Long, R.M. Yantosca, A.M. DaSilva, S. Pawson, D.J. Jacob 
-# (2014), HEMCO v1.0: a versatile, ESMF-compliant component for calculating 
+# Keller, C.A., M.S. Long, R.M. Yantosca, A.M. DaSilva, S. Pawson, D.J. Jacob
+# (2014), HEMCO v1.0: a versatile, ESMF-compliant component for calculating
 # emissions in atmospheric models, Geosci., Model Dev., 7, 1409?1417,
 # doi:10.5194/gmd-7-1409-2014.
 #
-# Messerschmidt, J., N. Parazoo, N.M. Deutscher, C. Roehl, T. Warneke, P.O. 
-# Wennberg, and D. Wunch (2012) Evaluation of atmosphere-biosphere exchange 
-# estimations with TCCON measurements, Atmos. Chem. Phys. Discussions, 12, 
-# 12759-12800, doi:10.5194/acpd-12-12759-2012. 
+# Messerschmidt, J., N. Parazoo, N.M. Deutscher, C. Roehl, T. Warneke, P.O.
+# Wennberg, and D. Wunch (2012) Evaluation of atmosphere-biosphere exchange
+# estimations with TCCON measurements, Atmos. Chem. Phys. Discussions, 12,
+# 12759-12800, doi:10.5194/acpd-12-12759-2012.
 #
-# Nassar, R., D.B.A. Jones, P. Suntharalingam, J.M. Chen, R.J. Andres, K.J. 
+# Nassar, R., D.B.A. Jones, P. Suntharalingam, J.M. Chen, R.J. Andres, K.J.
 # Wecht, R.M. Yantosca, S.S. Kulawik, K.W. Bowman, J.R. Worden, T. Machida and
-# H. Matsueda (2010), Modeling global atmospheric CO2 with improved emission 
-# inventories and CO2 production from the oxidation of other carbon species, 
+# H. Matsueda (2010), Modeling global atmospheric CO2 with improved emission
+# inventories and CO2 production from the oxidation of other carbon species,
 # Geoscientific Model Development, 3, 689-716.
 #
-# Nassar, R., L. Napier-Linton, K.R. Gurney, R.J. Andres, T. Oda, F.R. Vogel, 
-# F. Deng (2013), Improving the temporal and spatial distribution of CO2 
-# emissions from global fossil fuel emission datasets, Journal of Geophysical 
+# Nassar, R., L. Napier-Linton, K.R. Gurney, R.J. Andres, T. Oda, F.R. Vogel,
+# F. Deng (2013), Improving the temporal and spatial distribution of CO2
+# emissions from global fossil fuel emission datasets, Journal of Geophysical
 # Research: Atmospheres, 118, 917-933, doi:10.1029/2012JD018196.
 #
-# Oda, T. and S. Maksyutov (2011), A very high-resolution (1 km x 1 km) global 
-# fossil fuel CO2 emission inventory derived using a point source database and 
-# satellite observations of nighttime lights, Atmos. Chem. Phys., 11, 543?556, 
+# Oda, T. and S. Maksyutov (2011), A very high-resolution (1 km x 1 km) global
+# fossil fuel CO2 emission inventory derived using a point source database and
+# satellite observations of nighttime lights, Atmos. Chem. Phys., 11, 543?556,
 # doi:10.5194/acp-11-543-2011.
 #
 # Olsen, S.C. and J.T. Randerson (2004), Differences between surface and column
 # atmospheric CO2 and implications for carbon cycle research, J. Geophys. Res.
 # 109, D02301, doi:10.1029/2003JD003968.
 #
-# Olsen, S.C., D.J. Weubbles, B. Owen (2013) Comparison of global 3-D aviation 
+# Olsen, S.C., D.J. Weubbles, B. Owen (2013) Comparison of global 3-D aviation
 # datasets, Atmos. Chem. Phys., 13, 429?441, doi:10.5194/acp-13-429-2013.
 #
 # Simone, N., M. Stettler, S. Eastham, S. Barrett, Aviation Emissions Inventory
-# Code (AEIC ) User Manual (R1), Laboratory for Aviation and the Environment, 
+# Code (AEIC ) User Manual (R1), Laboratory for Aviation and the Environment,
 # Massachusetts Institute of Technology, January 2013, Report No:
 # LAE-2013-001-N,
 # www.LAE.MIT.edu.
 #
-# Takahashi, T., et al. (2009), Climatological mean and decadal change in 
-# surface ocean pCO2, and net sea-air CO2 flux over the global oceans, Deep-Sea 
+# Takahashi, T., et al. (2009), Climatological mean and decadal change in
+# surface ocean pCO2, and net sea-air CO2 flux over the global oceans, Deep-Sea
 # Res. II, 56(8?10), 554?577, doi:10.1016/j.dsr2.2008.12.009.
 #
 ### END OF HEMCO INPUT FILE ###

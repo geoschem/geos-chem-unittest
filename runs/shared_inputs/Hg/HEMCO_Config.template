@@ -6,28 +6,18 @@
 # !MODULE: HEMCO_Config.rc
 #
 # !DESCRIPTION: Contains configuration information for HEMCO. Define the
-#  emissions inventories and corresponding file paths here. Entire 
+#  emissions inventories and corresponding file paths here. Entire
 #  configuration files can be inserted into this configuration file with
-#  an '>>>include' statement, e.g. '>>>include HEMCO\_Config\_test.rc' 
+#  an '>>>include' statement, e.g. '>>>include HEMCO\_Config\_test.rc'
 #  The settings of include-files will be ignored.
 #\\
 #\\
 # !REMARKS:
-#  Customized for the Hg simulation simulation. 
+#  This file has been customized for the Hg simulation.
+#  See The HEMCO User's Guide for file details:
+#    http://wiki.geos-chem.org/The_HEMCO_User%27s_Guide
 #
-#  The following tokens will be replaced:
-#  (1) ROOT    : Filepath to HEMCO root directory
-#  (2) CFDIR   : Filepath to directory of this configuration file. 
-#  (3) MET     : Met field type (from G-C compilation command)
-#  (4) GRID    : Horizontal grid type (from G-C compilation command)
-#  (5) SIM     : Simulation type (from G-C compilation command)
-#  (6) NEST    : Nested-grid type (CH, EU, NA, SE)
-#  (7) LEVRED  : String w/ the # of levels in the reduced GEOS-Chem grid
-#                as used in some filenames (e.g. "23L", "30L", "47L")
-#  (8) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
-#                as used in some filenames (e.g. "55L", "72L")
-# 
-# !REVISION HISTORY: 
+# !REVISION HISTORY:
 #  Navigate to your unit tester directory and type 'gitk' at the prompt
 #  to browse the revision history.
 #EOP
@@ -55,50 +45,45 @@ Warnings:                    {WARNINGS}
 ###############################################################################
 ### BEGIN SECTION EXTENSION SWITCHES
 ###############################################################################
-###
-### This section lists all emission extensions available to HEMCO and whether 
-### they shall be used or not. Extension 'base' must have extension number 
-### zero, all other extension numbers can be freely chosen. Data fields in 
-### section 'base emissions' will only be read if the corresponding extension 
-### (identified by ExtNr) is enabled. Similarly, fields grouped into data 
-### collections ('(((CollectionName', ')))CollectionName') are only considered
-### if the corresponding data collection is enabled in this section. Data
-### listed within a disabled extension are always ignored, even if they are
-### grouped in an enabled collection (e.g. GFED-4 data will never be considered
-### if the GFED extension is disabled, even if the GFED4 option is set to true).
-###
-### It is possible to define collections that are only evaluated if a
-### collection name is *not* enabled. This is achieved by leading the
-### collection name with '.not.', e.g. '(((.not.FINN_daily' ...
-### '))).not.FINN_daily' for FINN monthly data (only used if daily data is
-### not being used). 
-###
-### The ExtNr provided in this section must match with the ExtNr assigned to
-### the data listed in the base emissions sections. Otherwise, the listed files
-### won't be read!
-###############################################################################
 # ExtNr ExtName           on/off  Species
 0       Base              : on    *
-    --> GC_RESTART        :       true
-    --> AMAP_COMB         :       false
-    --> AMAP_INDS         :       false
-    --> AMAP_INTW         :       false
-    --> WHET              :       true
-    --> ZHAOZHANG         :       false
-    --> CHAKRABORTY       :       false
-    --> EMISS_CONT        :       false 
-    --> ARTISANAL         :       false
-    --> NATURAL           :       true
-    --> SOILDIST          :       true
-    --> BrOx_GC           :       true
-    --> BrOx_GMI          :       true
-    --> LRED_JNO2         :       true
-    --> LHALOGENCHEM      :       true
-    --> LHGAQCHEM         :       true
-    --> LOHO3CHEM         :       false
-    --> QFED2             :       false
-    --> LRED_INPLUME      :       false
-    --> Yuan_XLAI         :       true
+# ----- MASTER SWITCHES ---------------------
+    --> EMISSIONS              :       true
+    --> METEOROLOGY            :       true
+    --> CHEMISTRY_INPUT        :       true
+    --> DRYDEP_INPUT           :       true
+# ----- RESTART FIELDS ----------------------
+    --> GC_RESTART             :       true
+    --> GC_BCs                 :       false
+# ----- REGIONAL INVENTORIES ----------------
+    --> ZHAOZHANG              :       false
+    --> CHAKRABORTY            :       false
+    --> EMISS_CONTROLS         :       false
+# ----- GLOBAL INVENTORIES ------------------
+    --> AMAP_COMB              :       false
+    --> AMAP_INDS              :       false
+    --> AMAP_INTW              :       false
+    --> WHET                   :       true
+    --> ARTISANAL              :       false
+    --> NATURAL                :       true
+    --> SOILDIST               :       true
+    --> QFED2                  :       false
+# ----- NON-EMISSIONS DATA ------------------
+    --> OXIDANT_FIELDS         :       true
+    --> BrOx_GC                :       true
+    --> BrOx_GMI               :       true
+    --> JBrO                   :       true
+    --> LRED_JNO2              :       true
+    --> AERO_HG2_PARTITION     :       true
+    --> OCEAN_Hg               :       true
+    --> TOMS_SBUV_O3           :       true
+    --> LHALOGENCHEM           :       true
+    --> LHGAQCHEM              :       true
+    --> LOHO3CHEM              :       false
+    --> LRED_INPLUME           :       false
+
+    --> OLSON_LANDMAP          :       true
+    --> YUAN_MODIS_LAI         :       true
 # ----------------------------------------------------------------------------
 # NOTE: Changing these options will require a change in reduction rate in order
 #       to maintain agreement with observations. Please see wiki for details
@@ -113,7 +98,7 @@ Warnings:                    {WARNINGS}
     --> hydrophilic BC    :       0.2
     --> hydrophilic OC    :       0.5
     --> fraction POG1     :       0.49
-114     FINN              : off   Hg0 
+114     FINN              : off   Hg0
     --> FINN_daily        :       false
     --> Scaling_CO        :       1.0
     --> hydrophilic BC    :       0.2
@@ -123,10 +108,12 @@ Warnings:                    {WARNINGS}
 ### END SECTION EXTENSION SWITCHES ###
 
 ###############################################################################
-### BEGIN SECTION BASE EMISSIONS 
+### BEGIN SECTION BASE EMISSIONS
 ###############################################################################
 
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
+
+(((EMISSIONS
 
 #==============================================================================
 # NOTE: HgP emissions must be added as Hg2 emissions under the Species column
@@ -218,21 +205,21 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- Emissions Controls for Coal Fired Power Plants  ---
 # Only applies to US, Canada, EU, and China
-# NOTE: Should only be used with the AMAP/UNEP 2010 emissions (AMAP_COMB, 
-#       AMAP_INDS, AMAP_CONT set to true) 
+# NOTE: Should only be used with the AMAP/UNEP 2010 emissions (AMAP_COMB,
+#       AMAP_INDS, AMAP_CONT set to true)
 # See Yanxu Zhang et al. 2016 for details
 #==============================================================================
 
-(((EMISS_CONT
+(((EMISS_CONTROLS
 0 NPRI2011_HG0 $ROOT/MERCURY/v2014-09/NPRI2011/Hg0.NPRI_2011_def_spec.025x03125.nc Hg0 2011/1/1/0 C xy kg/m2/s Hg0 10/1008 1 2
 0 NPRI2011_HG2 $ROOT/MERCURY/v2014-09/NPRI2011/Hg2.NPRI_2011_def_spec.025x03125.nc Hg2 2011/1/1/0 C xy kg/m2/s Hg2 9/1008  1 2
 0 NPRI2011_HGP $ROOT/MERCURY/v2014-09/NPRI2011/HgP.NPRI_2011_def_spec.025x03125.nc HgP 2011/1/1/0 C xy kg/m2/s Hg2 1008    1 2
 0 EU_CONT_HG0  $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc               Hg0 2010/1/1/0 C xy kg/m2/s Hg0 11/1009 1 3
 0 EU_INDS_HG0  $ROOT/MERCURY/v2014-09/AMAP/AMAP_inds.0.5x0.5.2010.nc               Hg0 2010/1/1/0 C xy kg/m2/s Hg0 1009    1 3
-0 EU_INTW_HG0  $ROOT/MERCURY/v2014-09/AMAP/AMAP_intw.0.5x0.5.2010.nc               Hg0 2010/1/1/0 C xy kg/m2/s Hg0 1009    1 3 	
+0 EU_INTW_HG0  $ROOT/MERCURY/v2014-09/AMAP/AMAP_intw.0.5x0.5.2010.nc               Hg0 2010/1/1/0 C xy kg/m2/s Hg0 1009    1 3
 0 EU_CONT_HG2  $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc               Hg2 2010/1/1/0 C xy kg/m2/s Hg2 9/1009  1 3
 0 EU_INDS_HG2  $ROOT/MERCURY/v2014-09/AMAP/AMAP_inds.0.5x0.5.2010.nc               Hg2 2010/1/1/0 C xy kg/m2/s Hg2 1009    1 3
-0 EU_INTW_HG2  $ROOT/MERCURY/v2014-09/AMAP/AMAP_intw.0.5x0.5.2010.nc               Hg2 2010/1/1/0 C xy kg/m2/s Hg2 1009    1 3 
+0 EU_INTW_HG2  $ROOT/MERCURY/v2014-09/AMAP/AMAP_intw.0.5x0.5.2010.nc               Hg2 2010/1/1/0 C xy kg/m2/s Hg2 1009    1 3
 0 EU_COMB_HGP  $ROOT/MERCURY/v2014-09/AMAP/AMAP_comb.0.5x0.5.2010.nc               HgP 2010/1/1/0 C xy kg/m2/s Hg2 1009    1 3
 0 EU_INTW_HGP  $ROOT/MERCURY/v2014-09/AMAP/AMAP_intw.0.5x0.5.2010.nc               HgP 2010/1/1/0 C xy kg/m2/s Hg2 1009    1 3
 0 EU_INDS_HGP  $ROOT/MERCURY/v2014-09/AMAP/AMAP_inds.0.5x0.5.2010.nc               HgP 2010/1/1/0 C xy kg/m2/s Hg2 1009    1 3
@@ -248,7 +235,7 @@ Warnings:                    {WARNINGS}
 0 NEI2011_HG0  $ROOT/MERCURY/v2014-09/NEI2011/US_NEI2011_Hg0.geos5.05x0666.nc      Hg0 2010/1/1/0 C xy kg/m2/s Hg0 1005    1 5
 0 NEI2011_HG2  $ROOT/MERCURY/v2014-09/NEI2011/US_NEI2011_Hg2.geos5.05x0666.nc      Hg2 2010/1/1/0 C xy kg/m2/s Hg2 1005    1 5
 0 NEI2011_HGP  $ROOT/MERCURY/v2014-09/NEI2011/US_NEI2011_HgP.geos5.05x0666.nc      HgP 2010/1/1/0 C xy kg/m2/s Hg2 1005    1 5
-)))EMISS_CONT
+)))EMISS_CONTROLS
 
 #==============================================================================
 # --- Artisanal mining ---
@@ -278,25 +265,24 @@ Warnings:                    {WARNINGS}
 # --- QFED2 biomass burning ---
 #==============================================================================
 (((QFED2
-0 QFED_Hg_PBL    $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4   biomass 2000-2017/1-12/1-31/0 C xyL=1:PBL     kg/m2/s Hg0  54/75/311 5 2 
-0 QFED_Hg_FT     $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4   biomass 2000-2017/1-12/1-31/0 C xyL=PBL:5500m kg/m2/s Hg0  54/75/312 5 2 
+0 QFED_Hg_PBL    $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4   biomass 2000-2017/1-12/1-31/0 C xyL=1:PBL     kg/m2/s Hg0  54/75/311 5 2
+0 QFED_Hg_FT     $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4   biomass 2000-2017/1-12/1-31/0 C xyL=PBL:5500m kg/m2/s Hg0  54/75/312 5 2
 )))QFED2
 
 ###############################################################################
 ### EXTENSION DATA (subsection of BASE EMISSIONS SECTION)
 ###
-### These fields are needed by the extensions listed above. The assigned ExtNr 
-### must match the ExtNr entry in section 'Extension switches'. These fields 
+### These fields are needed by the extensions listed above. The assigned ExtNr
+### must match the ExtNr entry in section 'Extension switches'. These fields
 ### are only read if the extension is enabled.  The fields are imported by the
-### extensions by field name.  The name given here must match the name used 
-### in the extension's source code. 
+### extensions by field name.  The name given here must match the name used
+### in the extension's source code.
 ###############################################################################
 
 #==============================================================================
-# --- GFED biomass burning emissions (Extension 111) 
+# --- GFED biomass burning emissions (Extension 111)
 # NOTE: These are the base emissions in kgDM/m2/s.
 #==============================================================================
-
 (((GFED4
 111 GFED_TEMP       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_TEMP       1997-2016/1-12/01/0    RF xy kgDM/m2/s * - 1 1
 111 GFED_AGRI       $ROOT/GFED4/v2015-10/$YYYY/GFED4_gen.025x025.$YYYY$MM.nc  DM_AGRI       1997-2016/1-12/01/0    RF xy kgDM/m2/s * - 1 1
@@ -315,7 +301,7 @@ Warnings:                    {WARNINGS}
 )))GFED4
 
 #==============================================================================
-# --- FINN v1.5 biomass burning emissions (Extension 114) 
+# --- FINN v1.5 biomass burning emissions (Extension 114)
 #==============================================================================
 (((.not.FINN_daily
 114 FINN_VEGTYP1       $ROOT/FINN/v2015-02/FINN_monthly_$YYYY_0.25x0.25.compressed.nc fire_vegtype1 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
@@ -335,20 +321,28 @@ Warnings:                    {WARNINGS}
 114 FINN_DAILY_VEGTYP9 $ROOT/FINN/v2015-02/FINN_daily_$YYYY_0.25x0.25.compressed.nc   fire_vegtype9 2002-2016/1-12/1/0 RF xy kg/m2/s * - 1 1
 )))FINN_daily
 
+)))EMISSIONS
+
 ###############################################################################
 ### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
 ###
-### Non-emissions data. The following fields are read through HEMCO but do 
-### not contain emissions data. The extension number is set to wildcard 
-### character denoting that these fields will not be considered for emission 
-### calculation. A given entry is only read if the assigned species name is 
+### Non-emissions data. The following fields are read through HEMCO but do
+### not contain emissions data. The extension number is set to wildcard
+### character denoting that these fields will not be considered for emission
+### calculation. A given entry is only read if the assigned species name is
 ### an HEMCO species.
 ###############################################################################
 
 #==============================================================================
+# --- Time zones (offset to UTC) ---
+#==============================================================================
+* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
+
+(((METEOROLOGY
+
+#==============================================================================
 # --- Meteorology fields for FlexGrid ---
 #==============================================================================
-
 # --- CN fields ---
 * FRLAKE    $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NC        FRLAKE   */1/1/0               C xy  1  * -  1 1
 * FRLAND    $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NC        FRLAND   */1/1/0               C xy  1  * -  1 1
@@ -447,6 +441,8 @@ Warnings:                    {WARNINGS}
 * FLASH_DENS $ROOT/OFFLINE_LIGHTNING/v2019-01/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  LDENS 1980-2019/1-12/1-31/0-23/+90minute RFY xy  1  * -  1 1
 * CONV_DEPTH $ROOT/OFFLINE_LIGHTNING/v2019-01/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  CTH   1980-2019/1-12/1-31/0-23/+90minute RFY xy  1  * -  1 1
 
+)))METEOROLOGY
+
 #==============================================================================
 # --- GEOS-Chem restart file ---
 #==============================================================================
@@ -467,13 +463,18 @@ Warnings:                    {WARNINGS}
 )))GC_RESTART
 
 #==============================================================================
-# --- Time zones (offset to UTC) ---
+# --- GEOS-Chem boundary condition file ---
 #==============================================================================
-* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
+(((GC_BCs
+* BC_  $ROOT/SAMPLE_BCs/v2019-05/tropchem/GEOSChem.BoundaryConditions.$YYYY$MM$DD_$HH$MNz.nc4 SpeciesBC_?ADV?  1980-2019/1-12/1-31/0-23 RFY xyz 1 * - 1 1
+)))GC_BCs
+
+(((CHEMISTRY_INPUT
 
 #==============================================================================
-# --- Oxidant fields (O3, OH) ---
+# --- Oxidant fields ---
 #==============================================================================
+(((OXIDANT_FIELDS
 * GLOBAL_O3        $ROOT/O3/v2014-09/MERGE.O3.geos5.72L.2x25.nc                 O3             1985/1-12/1/0 C xyz v/v * - 1 1
 * GLOBAL_OH_trop   $ROOT/MERCURY/v2018-04/Johan.OH.kgm3.2007.nc                 CHEM_L_S__OH   2007/1-12/1/0 C xyz 1   * - 1 1
 * GLOBAL_OH_strat  $ROOT/OH/v2014-09/v7-02-03.GMI/OH_3Dglobal.geos5.72L.2x25.nc OH             1985/1-12/1/0 C xyz 1   * - 1 1
@@ -486,6 +487,7 @@ Warnings:                    {WARNINGS}
 * GLOBAL_NO        $ROOT/MERCURY/v2018-04/halogens.Johan.Mar16.2007.nc          IJ_24H_S__NO   2007/1-12/1/0 C xyz 1   * - 1 1
 * GLOBAL_OA        $ROOT/MERCURY/v2018-04/OA_3Dglobal.geosfp.4x5.2013.nc        IJ_SOA_S__     2013/1-12/1/0 C xyz 1   * - 1 1
 * GLOBAL_OCEAN     $ROOT/MERCURY/v2018-04/ocean_fixed.nc                        ocean_conc     2007/1-12/1/0 C xyz 1   * - 1 1
+)))OXIDANT_FIELDS
 
 #==============================================================================
 # --- BrOx fields --
@@ -508,7 +510,9 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- J-value fields ---
 #==============================================================================
+(((JBrO
 * JBrO $ROOT/MERCURY/v2014-09/JVALUES/jBrO.daytime.geos5.2x25.nc JBrO 2002/1-12/1/0 C xyz s-1 * - 1 1
+)))JBrO
 (((LRED_JNO2
 * JNO2 $ROOT/MERCURY/v2014-09/JVALUES/jvalues.noon.geos5.2x25.nc JNO2 2005/1-12/1/0 C xyz s-1 * - 1 1
 )))LRED_JNO2
@@ -516,6 +520,7 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- Aerosol data for Hg2 partitioning ---
 #==============================================================================
+(((AERO_HG2_PARTITION
 * AERO_SO4  $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc SO4  2007/1/1/0 C xyz ppbv * - 1 1
 * AERO_NH4  $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc NH4  2007/1/1/0 C xyz ppbv * - 1 1
 * AERO_NIT  $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc NIT  2007/1/1/0 C xyz ppbv * - 1 1
@@ -524,11 +529,12 @@ Warnings:                    {WARNINGS}
 * AERO_OCPI $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc OCPI 2007/1/1/0 C xyz ppbv * - 1 1
 * AERO_OCPO $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc OCPO 2007/1/1/0 C xyz ppbv * - 1 1
 * AERO_DST1 $ROOT/MERCURY/v2014-09/Hg2_PARTITION/aero.IJ_AVG.2007.geos5.2x25.nc DST1 2007/1/1/0 C xyz ppbv * - 1 1
+)))AERO_HG2_PARTITION
 
 #==============================================================================
-# --- Data for the ocean mercury module --- 
+# --- Data for the ocean mercury module ---
 #==============================================================================
-(((+OCEAN_Hg+
+(((OCEAN_Hg
 * OCEAN_CHLA    $ROOT/CHLA/v2014-07/Chl_2003.geos.1x1.nc               CHLA    2003/1-12/1/0 C xy kg/m3 * - 1 1
 * OCEAN_CHLA_A  $ROOT/MERCURY/v2014-09/OCEAN/CHL_ocn_2009.geos.2x25.nc CHLO_A  2009/1-12/1/0 C xy 1 * - 1 1
 * OCEAN_EKMAN_V $ROOT/MERCURY/v2014-09/OCEAN/ekman_upvel.geos.2x25.nc  EKMAN_V 1985/1-12/1/0 C xy m/s   * - 1 1
@@ -536,21 +542,25 @@ Warnings:                    {WARNINGS}
 * OCEAN_NPP     $ROOT/MERCURY/v2014-09/OCEAN/NPP_2003.geos.2x25.nc     NPP     2003/1-12/1/0 C xy kg/m2 * - 1 1
 * OCEAN_NPP_A   $ROOT/MERCURY/v2014-09/OCEAN/NPP_ocn_2009.geos.2x25.nc NPP_A   2009/1-12/1/0 C xy 1 * - 1 1
 * OCEAN_dMLD1   $ROOT/MERCURY/v2014-09/OCEAN/dMLD1_DreqDT.geos.2x25.nc dMLD1   1985/1-12/1/0 C xy cm/s  * - 1 1
-* OCEAN_dMLD2   $ROOT/MERCURY/v2014-09/OCEAN/dMLD2_DreqDT.geos.2x25.nc dMLD2   1985/1-12/1/0 C xy cm/s  * - 1 1 
-)))+OCEAN_Hg+
+* OCEAN_dMLD2   $ROOT/MERCURY/v2014-09/OCEAN/dMLD2_DreqDT.geos.2x25.nc dMLD2   1985/1-12/1/0 C xy cm/s  * - 1 1
+)))OCEAN_Hg
 
 #==============================================================================
 # --- TOMS/SBUV overhead ozone columns ---
 #==============================================================================
-(((+TOMS_SBUV_O3+
+(((TOMS_SBUV_O3
 * TOMS_O3_COL $ROOT/TOMS_SBUV/v2015-03/TOMS_O3col_$YYYY.geos.1x1.nc       TOMS    1971-2010/1-12/1/0 C xy dobsons   * - 1 1
 * TOMS_O3_PD  $ROOT/TOMS_SBUV/v2015-03/TOMS_O3col_presentday.geos.2x25.nc TOMS_PD  1085/1-12/1/0 C     xy dobsons       * - 1 1
 * TOMS_O3_LT  $ROOT/TOMS_SBUV/v2015-03/TOMS_O3col_longterm.geos.2x25.nc   TOMS_LT  1985/1-12/1/0 C     xy dobsons       * - 1 1
-)))+TOMS_SBUV_O3+
+)))TOMS_SBUV_O3
+
+)))CHEMISTRY_INPUTS
 
 #==============================================================================
 # --- Olson land map masks ---
 #==============================================================================
+(((DRYDEP_INPUT
+(((OLSON_LANDMAP
 * LANDTYPE00 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE00 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE01 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE01 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE02 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE02 1985/1/1/0 C xy 1 * - 1 1
@@ -624,6 +634,8 @@ Warnings:                    {WARNINGS}
 * LANDTYPE70 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE70 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE71 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE71 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE72 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE72 1985/1/1/0 C xy 1 * - 1 1
+)))OLSON_LANDMAP
+)))DRYDEP_INPUT
 
 #==============================================================================
 # --- Yuan processed MODIS leaf area index data ---
@@ -638,7 +650,8 @@ Warnings:                    {WARNINGS}
 # (2) Units are "cm2 leaf/cm2 grid box".
 # (3) Data is timestamped every 8 days, starting from the 2nd of the month.
 #==============================================================================
-(((Yuan_XLAI
+(((EMISSIONS.or.DRYDEP_INPUT
+(((YUAN_MODIS_LAI
 * XLAI00 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI00 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI01 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI01 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI02 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI02 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
@@ -712,12 +725,13 @@ Warnings:                    {WARNINGS}
 * XLAI70 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI70 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI71 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI71 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI72 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI72 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
-)))Yuan_XLAI
+)))YUAN_MODIS_LAI
+)))EMISSIONS.or.DRYDEP_INPUT
 
 ### END SECTION BASE EMISSIONS ###
 
 ###############################################################################
-### BEGIN SECTION SCALE FACTORS 
+### BEGIN SECTION SCALE FACTORS
 ###############################################################################
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
@@ -756,7 +770,7 @@ Warnings:                    {WARNINGS}
 ### END SECTION SCALE FACTORS ###
 
 ###############################################################################
-### BEGIN SECTION MASKS 
+### BEGIN SECTION MASKS
 ###############################################################################
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
@@ -771,6 +785,6 @@ Warnings:                    {WARNINGS}
 1009 EUROPE_MASK $ROOT/MASKS/v2014-07/EU_mask.generic.1x1.nc    MASK 1985/1/1/0 C xy 1 1 20/35/50/80
 
 ### END SECTION MASKS ###
- 
+
 ### END OF HEMCO INPUT FILE ###
 #EOC
