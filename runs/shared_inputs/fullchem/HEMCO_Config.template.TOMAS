@@ -52,7 +52,6 @@ Warnings:                    {WARNINGS}
     --> EMISSIONS              :       true
     --> METEOROLOGY            :       true
     --> CHEMISTRY_INPUT        :       true
-    --> DRYDEP_INPUT           :       true
 # ----- RESTART FIELDS ----------------------
     --> GC_RESTART             :       true
     --> GC_BCs                 :       false
@@ -3157,7 +3156,6 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- Olson land map masks ---
 #==============================================================================
-(((DRYDEP_INPUT
 (((OLSON_LANDMAP
 * LANDTYPE00 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE00 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE01 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE01 1985/1/1/0 C xy 1 * - 1 1
@@ -3233,7 +3231,6 @@ Warnings:                    {WARNINGS}
 * LANDTYPE71 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE71 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE72 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE72 1985/1/1/0 C xy 1 * - 1 1
 )))OLSON_LANDMAP
-)))DRYDEP_INPUT
 
 #==============================================================================
 # --- Yuan processed MODIS leaf area index data ---
@@ -3248,7 +3245,6 @@ Warnings:                    {WARNINGS}
 # (2) Units are "cm2 leaf/cm2 grid box".
 # (3) Data is timestamped every 8 days, starting from the 2nd of the month.
 #==============================================================================
-(((EMISSIONS.or.DRYDEP_INPUT
 (((YUAN_MODIS_LAI
 * XLAI00 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI00 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI01 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI01 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
@@ -3324,7 +3320,6 @@ Warnings:                    {WARNINGS}
 * XLAI71 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI71 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI72 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI72 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 )))YUAN_MODIS_LAI
-)))EMISSIONS.or.DRYDEP_INPUT
 
 #==============================================================================
 # --- Inputs for the RRTMG radiative transfer model ---
