@@ -8,7 +8,7 @@
 # !DESCRIPTION: Makefile for GEOS-Chem run directories.
 #\\
 #\\
-# !REVISION HISTORY: 
+# !REVISION HISTORY:
 #  Navigate to your unit tester directory and type 'gitk' at the prompt
 #  to browse the revision history.
 #EOP
@@ -51,7 +51,7 @@ ifndef RUN_DIR
  RUN_DIR     :=$(shell pwd)
 endif
 
-# getRunInfo perl script location (default is run directory) 
+# getRunInfo perl script location (default is run directory)
 ifndef PERL_DIR
  PERL_DIR    :=$(RUN_DIR)
 endif
@@ -73,7 +73,7 @@ ifndef OMP
  OMP         :=y
 endif
 
-ifndef TRACEBACK 
+ifndef TRACEBACK
  TRACEBACK   :=y
 endif
 
@@ -125,7 +125,7 @@ ifndef RRTMG
  RRTMG       :=n
 endif
 
-ifndef MASSCONS 
+ifndef MASSCONS
  MASSCONS    :=n
 endif
 
@@ -219,20 +219,20 @@ ifndef CHEM
  CHEM        :=Standard
 endif
 
-ifeq ($(SIM),Hg) 
+ifeq ($(SIM),Hg)
  BPCH_DIAG   :=y
 endif
 
-ifeq ($(SIM),tagHg) 
+ifeq ($(SIM),tagHg)
  BPCH_DIAG   :=y
 endif
 
-ifeq ($(SIM),POPs) 
+ifeq ($(SIM),POPs)
  BPCH_DIAG   :=y
 endif
 
 # General run information
-TIMESTAMP    :=$(shell date +"%Y/%m/%d %H:%M")	
+TIMESTAMP    :=$(shell date +"%Y/%m/%d %H:%M")
 
 # Log files that will be written to the log directory
 LOG_COMP     :="compile.log"
@@ -245,7 +245,7 @@ EXE          :=geos
 EXE_HMCO_SA  :=hemco_standalone.x
 
 # Get information about the Git version, because some features
-# (like -C) are not available in older Git versions.  The git 
+# (like -C) are not available in older Git versions.  The git
 # version command returns "git version X.Y.Z", so we will just take
 # the 3rd word and strip all the dots. (bmy, 12/21/16)
 GIT_VERSION    :=$(subst .,,$(word 3, $(shell git --version)))
@@ -257,11 +257,11 @@ ifeq ($(NEWER_THAN_185),1)
  # directories other than the current directory.  Use this to
  # get info about the last committed state of the code.
  CODE_BRANCH  :=$(shell git -C $(CODE_DIR) rev-parse --abbrev-ref HEAD)
- LAST_COMMIT  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%s") 
- COMMIT_DATE  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cd") 
- COMMIT_USER  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cn") 
- COMMIT_HASH  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%h") 
- CODE_STATUS  :=$(shell git -C $(CODE_DIR) status -s) 
+ LAST_COMMIT  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%s")
+ COMMIT_DATE  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cd")
+ COMMIT_USER  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%cn")
+ COMMIT_HASH  :=$(shell git -C $(CODE_DIR) log -n 1 --pretty=format:"%h")
+ CODE_STATUS  :=$(shell git -C $(CODE_DIR) status -s)
 
 else
 
@@ -269,11 +269,11 @@ else
  # so we have to manually change to the code dir to get information
  # about the last committed state of the code. (bmy, 12/21/16)
  CODE_BRANCH  :=$(shell cd $(CODE_DIR); git rev-parse --abbrev-ref HEAD; cd $(PWD))
- LAST_COMMIT  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%s"; cd $(PWD)) 
- COMMIT_DATE  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%cd"; cd $(PWD)) 
- COMMIT_USER  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%cn"; cd $(PWD)) 
- COMMIT_HASH  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%h"; cd $(PWD)) 
- CODE_STATUS  :=$(shell cd $(CODE_DIR); git status -s; cd $(PWD)) 
+ LAST_COMMIT  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%s"; cd $(PWD))
+ COMMIT_DATE  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%cd"; cd $(PWD))
+ COMMIT_USER  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%cn"; cd $(PWD))
+ COMMIT_HASH  :=$(shell cd $(CODE_DIR); git log -n 1 --pretty=format:"%h"; cd $(PWD))
+ CODE_STATUS  :=$(shell cd $(CODE_DIR); git status -s; cd $(PWD))
 
 endif
 
@@ -304,7 +304,7 @@ TAU_OPT     :=""
 # TAU_SF sets the -optTauSelectFile option for removing throttled files
 REGEXP      :=(^[Yy]|^[Yy][Ee][Ss])
 ifeq ($(shell [[ "$(TAU_PROF)" =~ $(REGEXP) ]] && echo true),true)
-  ifdef TAU_SF 
+  ifdef TAU_SF
     TAU_OPT :="$(TAU_OPTIONS) -optTauSelectFile=$(TAU_SF)"
   else
     TAU_OPT :="$(TAU_OPTIONS)"
@@ -367,6 +367,13 @@ run:
 	@$(MAKE) printruninfo >> $(LOG_GC)
 	@$(MAKE) printruninfo
 
+# Run only
+dryrun:
+	@$(MAKE) cleanup_output
+	./geos --dry-run > $(LOG_GC)
+	@$(MAKE) printruninfo >> $(LOG_GC)
+	@$(MAKE) printruninfo
+
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  HEMCO Standalone       %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -404,10 +411,16 @@ hcobuild:
 # Run only
 hcorun:
 	@$(MAKE) cleanup_hco
-	./$(EXE_HMCO_SA) HEMCO_sa_Config.rc  > $(LOG_HMCO)
+	./$(EXE_HMCO_SA) -c HEMCO_sa_Config.rc  > $(LOG_HMCO)
 	@$(MAKE) printruninfohco >> $(LOG_HMCO)
 	@$(MAKE) printruninfohco
 
+# Dry Run only
+hcodryrun:
+	@$(MAKE) cleanup_hco
+	./$(EXE_HMCO_SA) -c HEMCO_sa_Config.rc --dry-run > $(LOG_HMCO)
+	@$(MAKE) printruninfohco >> $(LOG_HMCO)
+	@$(MAKE) printruninfohco
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Clean up run directory                          %
@@ -421,7 +434,7 @@ execlean: cleanup_exe
 
 cleanup_output: cleanup_data cleanup_logs
 
-cleanup_data: 
+cleanup_data:
 	rm -f HEMCO_diagnostics*
 	if [ -f HEMCO_restart.$(START).nc ]; then mv -f HEMCO_restart.$(START).nc HC.nc; fi;
 	rm -f HEMCO_restart.*;
@@ -454,7 +467,7 @@ cleanup_exe:
 	rm -f $(BUILDINFO)
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
-#  Clean Source           % 
+#  Clean Source           %
 #%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clean:
@@ -521,7 +534,7 @@ printbuildinfo:
 	@echo "  FPE          : $(FPE)"
 	@echo "  OMP          : $(OMP)"
 	@echo "  CHEM         : $(CHEM)"
-	@echo "  TOMAS12      : $(TOMAS12)"	
+	@echo "  TOMAS12      : $(TOMAS12)"
 	@echo "  TOMAS15      : $(TOMAS15)"
 	@echo "  TOMAS30      : $(TOMAS30)"
 	@echo "  TOMAS40      : $(TOMAS40)"
@@ -534,7 +547,7 @@ printbuildinfo:
 	@echo "  COMPILER     : $(FC) $(COMPILER_VERSION)"
 	@echo "  Datetime     : $(TIMESTAMP)"
 
-printallinfo: 
+printallinfo:
 	@$(MAKE) printbuildinfo
 	@$(MAKE) printruninfo
 
@@ -577,7 +590,9 @@ help:
 	@echo ''
 	@echo '%%% RUN ONLY %%%'
 	@echo 'run               Runs GEOS-Chem'
+	@echo 'dryrun            Runs GEOS-Chem in dry-run mode'
 	@echo 'hcorun            Runs HEMCO'
+	@echo 'hcodryrun         Runs HEMCO in dry-run mode'
 	@echo ''
 	@echo '%%% CLEAN UP %%%'
 	@echo 'cleanup_output    Synonym for: cleanup_data cleanup_logs'
