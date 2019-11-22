@@ -358,8 +358,17 @@ sub makeInputGeos($$$$$$$$$$$) {
     $line =~ s/{SIM}/$sim/g;
     $line =~ s/{DATA_ROOT}/$dataRoot/g;
 
+    if ( $grid =~ m/4x5/ ) {
+      $line =~ s/{RES}/4.0x5.0/g;
+    } elsif ( $grid =~ m/2x25/ ) {
+      $line =~ s/{RES}/2.0x2.5/g;
+    } elsif ( $grid =~ m/05x0625/ ) {
+      $line =~ s/{RES}/0.5x0.625/g;
+    } elsif ( $grid =~ m/025x03125/ ) {
+      $line =~ s/{RES}/0.25x0.3125/g;
+    }
+
     if ( length( $nest ) > 0 ) {
-      # Replace strings for nested grids
       $line =~ s/{HALF_POLAR}/F/g;
       $line =~ s/{NESTED_SIM}/T/g;
       $line =~ s/{BUFFER_ZONE}/3  3  3  3/g;
@@ -367,49 +376,33 @@ sub makeInputGeos($$$$$$$$$$$) {
 	if ( $grid =~ m/05x0625/ ) {
 	  $line =~ s/{LON_RANGE}/ 60.0 150.0/g;
 	  $line =~ s/{LAT_RANGE}/-11.0 55.0/g;
-	  $line =~ s/{RES}/0.5x0.625.AS/g;
         } elsif ( $grid =~ m/025x03125/ ) {
 	  $line =~ s/{LON_RANGE}/70.0 140.0/g;
 	  $line =~ s/{LAT_RANGE}/15.0  55.0/g;
-	  $line =~ s/{RES}/0.25x0.3125.AS/g;
         }
       } elsif ( $nest =~ m/eu/ ) {
 	if ( $grid =~ m/05x0625/ ) {
 	  $line =~ s/{LON_RANGE}/-30.0 50.0/g;
 	  $line =~ s/{LAT_RANGE}/ 30.0 70.0/g;
-	  $line =~ s/{RES}/0.5x0.625.EU/g;
         } elsif ( $grid =~ m/025x03125/ ) {
 	  $line =~ s/{LON_RANGE}/-15.0 40.0/g;
 	  $line =~ s/{LAT_RANGE}/32.75 61.25/g;
-	  $line =~ s/{RES}/0.25x0.3125.EU/g;
         }
       } elsif ( $nest =~ m/na/ ) {
 	if ( $grid =~ m/05x0625/ ) {
 	  $line =~ s/{LON_RANGE}/-140.0 -40.0/g;
 	  $line =~ s/{LAT_RANGE}/  10.0  70.0/g;
-	  $line =~ s/{RES}/0.5x0.625.NA/g;
         } elsif ( $grid =~ m/025x03125/ ) {
 	  $line =~ s/{LON_RANGE}/-130.0 -60.0/g;
 	  $line =~ s/{LAT_RANGE}/  9.75  60.0/g;
-	  $line =~ s/{RES}/0.25x0.3125.NA/g;
         }
       }
     } else {
-      # Replace strings for global grids
       $line =~ s/{LON_RANGE}/-180.0 180.0/g;
       $line =~ s/{LAT_RANGE}/ -90.0  90.0/g;
       $line =~ s/{HALF_POLAR}/T/g;
       $line =~ s/{NESTED_SIM}/F/g;
       $line =~ s/{BUFFER_ZONE}/0  0  0  0/g;
-      if ( $grid =~ m/4x5/ ) {
-	$line =~ s/{RES}/4.0x5.0/g;
-      } elsif ( $grid =~ m/2x25/ ) {
-	$line =~ s/{RES}/2.0x2.5/g;
-      } elsif ( $grid =~ m/05x0625/ ) {
-	$line =~ s/{RES}/0.5x0.625/g;
-      } elsif ( $grid =~ m/025x03125/ ) {
-	$line =~ s/{RES}/0.25x0.3125/g;
-      }
     }
 
     if ( ( $sim =~ m/benchmark/ ) || ( $sim =~ m/standard/   ) ||
