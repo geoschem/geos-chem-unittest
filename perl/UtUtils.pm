@@ -532,9 +532,9 @@ sub makeHemcoCfg($$$$$$$) {
   } elsif ( $grid =~ m/2x25/ ) {
     $gridDir = "2x2.5";
   } elsif ( $grid =~ m/05x0625/ ) {
-    $gridDir = "0.5x0.625". "_" . uc($nest);
+    $gridDir = "0.5x0.625";
   } elsif ( $grid =~ m/025x03125/ ) {
-    $gridDir = "0.25x0.3125" . "_" . uc($nest);
+    $gridDir = "0.25x0.3125";
   }
 
   #-------------------------------------------------------------------------
