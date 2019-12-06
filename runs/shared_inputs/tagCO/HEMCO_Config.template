@@ -10,17 +10,9 @@
 #\\
 #\\
 # !REMARKS:
-#  The following tokens will be replaced:
-#  (1) ROOT    : Filepath to HEMCO root directory
-#  (2) CFDIR   : Filepath to directory of this configuration file.
-#  (3) MET     : Met field type (from G-C compilation command)
-#  (4) GRID    : Horizontal grid type (from G-C compilation command)
-#  (5) SIM     : Simulation type (from G-C compilation command)
-#  (6) NEST    : Nested-grid type (CH, EU, NA, SE)
-#  (7) LEVRED  : String w/ the # of levels in the reduced GEOS-Chem grid
-#                as used in some filenames (e.g. "23L", "30L", "47L")
-#  (8) LEVFULL : String w/ the # of levels in the full GEOS-Chem grid
-#                as used in some filenames (e.g. "55L", "72L")
+#  This file has been customized for the tagged CO simulation.
+#  See The HEMCO User's Guide for file details:
+#    http://wiki.geos-chem.org/The_HEMCO_User%27s_Guide
 #
 # !REVISION HISTORY:
 #  Navigate to your unit tester directory and type 'gitk' at the prompt
@@ -52,11 +44,15 @@ Mask fractions:              false
 ### BEGIN SECTION EXTENSION SWITCHES
 ###############################################################################
 #
-# ExtNr ExtName                 on/off  Species
-0       Base                    : on    *
+# ExtNr ExtName                on/off  Species
+0       Base                   : on    *
+# ----- MASTER SWITCHES ---------------------
+    --> EMISSIONS              :       true
+    --> METEOROLOGY            :       true
+    --> CHEMISTRY_INPUT        :       true
 # ----- RESTART FIELDS ----------------------
-    --> GC_RESTART              :       true
-    --> HEMCO_RESTART           :       true
+    --> GC_RESTART             :       true
+    --> HEMCO_RESTART          :       true
 # ----- REGIONAL INVENTORIES ----------------
     --> APEI                   :       true
     --> NEI2011_HOURLY         :       false
@@ -67,40 +63,32 @@ Mask fractions:              false
     --> CEDS                   :       true
     --> EDGARv43               :       false
     --> HTAP                   :       false
-    --> GEIA_NH3               :       true
-    --> POET_EOH               :       true
-    --> C2H6_2010              :       true
-    --> LIANG_BROMOCARB        :       true
-    --> ORDONEZ_IODOCARB       :       true
+    --> AEIC                   :       true
+# ----- SHIP EMISSIONS ----------------------
     --> SHIP                   :       true
     --> CEDS_SHIP              :       true
+    --> HTAP_SHIP              :       false
+    --> ICOADS_SHIP            :       false
+    --> ARCTAS_SHIP            :       false
+    --> CORBETT_SHIP           :       false
     --> NEI2011_SHIP_HOURLY    :       false
     --> NEI2011_SHIP_MONMEAN   :       false
-    --> AEIC                   :       true
-    --> DECAYING_PLANTS        :       true
 # ----- FUTURE EMISSIONS --------------------
     --> RCP_3PD                :       false
     --> RCP_45                 :       false
     --> RCP_60                 :       false
     --> RCP_85                 :       false
 # ----- BIOMASS BURNING EMISSIONS -----------
-    --> QFED2                  :       false
+    --> QFED                   :       true
     --> GFAS                   :       false
-# ----- OFFLINE EMISSIONS -------------------
-# To use online emissions instead set the
-# offline emissions to 'false' and the
-# corresponding HEMCO extension to 'on':
-#   OFFLINE_DUST        - DustDead or DustGinoux
-#   OFFLINE_BIOGENICVOC - MEGAN and MEGAN_Mono
-#   OFFLINE_SEASALT     - SeaSalt
-#   OFFLINE_SOILNOX     - SoilNOx
-#--------------------------------------------
-    --> OFFLINE_DUST           :       true
-    --> OFFLINE_BIOGENICVOC    :       true
-    --> OFFLINE_SEASALT        :       true
-    --> OFFLINE_SOILNOX        :       true
 # ----- NON-EMISSIONS DATA ------------------
-    --> Yuan_XLAI              :       true
+    --> GLOBAL_OH              :       true
+    --> PROD_CO_CH4            :       true
+    --> PROD_CO_NMVOC          :       true
+    --> GMI_PROD_LOSS          :       true
+    --> GMD_CH4                :       true
+    --> OLSON_LANDMAP          :       true
+    --> YUAN_MODIS_LAI         :       true
 # -----------------------------------------------------------------------------
 108     MEGAN                  : on    ISOP/ACET
     --> Isoprene scaling       :       1.0
@@ -115,6 +103,8 @@ Mask fractions:              false
 ###############################################################################
 
 # ExtNr	Name sourceFile	sourceVar sourceTime C/R/E SrcDim SrcUnit Species ScalIDs Cat Hier
+
+(((EMISSIONS
 
 #==============================================================================
 # --- APEI (Canada) ---
@@ -554,7 +544,6 @@ Mask fractions:              false
 #0 HTAP_CO_AIR3_oth  -                                                               -      -                  - -  -       COoth  6/28/26/1103 1 4
 )))HTAP
 
-
 #==============================================================================
 # --- Ship emissions ---
 #
@@ -567,17 +556,21 @@ Mask fractions:              false
 #     zero.
 #==============================================================================
 (((SHIP
+(((ICOADS_SHIP
 0  ICOADS_SHIP_CO       $ROOT/ICOADS_SHIP/v2014-07/ICOADS.generic.1x1.nc                CO     2002/1-12/1/0       C xy kg/m2/s  CO     6/10          10 2
 0  ICOADS_SHIP_CO_us    -                                                               -      -                   - -  -        COus   6/10/1100     10 2
 0  ICOADS_SHIP_CO_eur   -                                                               -      -                   - -  -        COeur  6/10/1101     10 2
 0  ICOADS_SHIP_CO_asia  -                                                               -      -                   - -  -        COasia 6/10/1102     10 2
 0  ICOADS_SHIP_CO_oth   -                                                               -      -                   - -  -        COoth  6/10/1103     10 2
+)))ICOADS_SHIP
 
-#0 HTAP_SHIP_CO         $ROOT/HTAP/v2015-03/EDGAR_HTAP_CO_SHIPS.generic.01x01.nc        CO     2008-2010/1/1/0     C xy kg/m2/s  CO     6/28          10 4
-#0 HTAP_SHIP_CO_us      -                                                               -      -                   - -  -        COus   6/28/1100     10 4
-#0 HTAP_SHIP_CO_eur     -                                                               -      -                   - -  -        COeur  6/28/1101     10 4
-#0 HTAP_SHIP_CO_asia    -                                                               -      -                   - -  -        COasia 6/28/1102     10 4
-#0 HTAP_SHIP_CO_oth     -                                                               -      -                   - -  -        COoth  6/28/1103     10 4
+(((HTAP_SHIP
+0 HTAP_SHIP_CO          $ROOT/HTAP/v2015-03/EDGAR_HTAP_CO_SHIPS.generic.01x01.nc        CO     2008-2010/1/1/0     C xy kg/m2/s  CO     6/28          10 4
+0 HTAP_SHIP_CO_us       -                                                               -      -                   - -  -        COus   6/28/1100     10 4
+0 HTAP_SHIP_CO_eur      -                                                               -      -                   - -  -        COeur  6/28/1101     10 4
+0 HTAP_SHIP_CO_asia     -                                                               -      -                   - -  -        COasia 6/28/1102     10 4
+0 HTAP_SHIP_CO_oth      -                                                               -      -                   - -  -        COoth  6/28/1103     10 4
+)))HTAP_SHIP
 
 (((CEDS_SHIP
 0 CEDS_CO_SHP           $ROOT/CEDS/v2018-08/$YYYY/CO-em-anthro_CMIP_CEDS_$YYYY.nc       CO_shp 1750-2014/1-12/1/0  C xy kg/m2/s  CO     26            10 5
@@ -663,7 +656,7 @@ Mask fractions:              false
 # %%%     -- Bob Yantosca (17 Mar 2016)                           %%%
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #==============================================================================
-(((QFED2
+(((QFED
 0 QFED_CO_PBL      $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4 biomass 2000-2017/1-12/1-31/0 C xyL=1:PBL     kg/m2/s CO      54/75/311       5 2
 0 QFED_CObbAm_PBL  -                                                               -       -                     - -             -       CObbam  54/75/311/1104  5 2
 0 QFED_CObbAf_PBL  -                                                               -       -                     - -             -       CObbaf  54/75/311/1105  5 2
@@ -678,7 +671,7 @@ Mask fractions:              false
 0 QFED_CObbOc_FT   -                                                               -       -                     - -             -       CObboc  54/75/312/1107  5 2
 0 QFED_CObbEu_FT   -                                                               -       -                     - -             -       CObbeu  54/75/312/1108  5 2
 0 QFED_CObbOth_FT  -                                                               -       -                     - -             -       CObboth 54/75/312/1109  5 2
-)))QFED2
+)))QFED
 
 #==============================================================================
 # --- GFAS biomass burning ---
@@ -715,6 +708,7 @@ Mask fractions:              false
 # We don't need to read EF maps for acetone, a-pinene or myrcene. We now
 # compute those values in the MEGAN extension.
 #==============================================================================
+(((MEGAN
 (((HEMCO_RESTART
 108  T_DAVG                       ./HEMCO_restart.$YYYY$MM$DD$HH00.nc                T_DAVG                  $YYYY/$MM/$DD/$HH E xy K        * - 1 1
 108  T_PREVDAY                    ./HEMCO_restart.$YYYY$MM$DD$HH00.nc                T_PREVDAY               $YYYY/$MM/$DD/$HH E xy K        * - 1 1
@@ -723,6 +717,7 @@ Mask fractions:              false
 108  PARDF_DAVG                   ./HEMCO_restart.$YYYY$MM$DD$HH00.nc                PARDF_DAVG              $YYYY/$MM/$DD/$HH E xy W/m2     * - 1 1
 )))HEMCO_RESTART
 108  MEGAN_AEF_ISOP               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_ISOPRENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
+(((MEGAN_Mono
 109  MEGAN_AEF_MBOX               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_MBO                 1985/1/1/0        C xy kgC/m2/s * - 1 1
 #109 MEGAN_AEF_APIN               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_ALPHA_PINENE        1985/1/1/0        C xy kgC/m2/s * - 1 1
 109  MEGAN_AEF_BPIN               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_BETA_PINENE         1985/1/1/0        C xy kgC/m2/s * - 1 1
@@ -731,6 +726,7 @@ Mask fractions:              false
 #109 MEGAN_AEF_MYRC               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_MYRCENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
 109  MEGAN_AEF_OCIM               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_OCIMENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
 109  MEGAN_AEF_SABI               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_SABINENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
+)))MEGAN_Mono
 108  CLM4_PFT_BARE                $ROOT/MEGAN/v2018-05/CLM4_PFT.geos.025x03125.v201805.nc PFT_BARE                2000/1/1/0        C xy 1        * - 1 1
 108  CLM4_PFT_NDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2018-05/CLM4_PFT.geos.025x03125.v201805.nc PFT_NDLF_EVGN_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
 108  CLM4_PFT_NDLF_EVGN_BORL_TREE $ROOT/MEGAN/v2018-05/CLM4_PFT.geos.025x03125.v201805.nc PFT_NDLF_EVGN_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
@@ -747,7 +743,12 @@ Mask fractions:              false
 108  CLM4_PFT_C3_NARC_GRSS        $ROOT/MEGAN/v2018-05/CLM4_PFT.geos.025x03125.v201805.nc PFT_C3_NARC_GRSS        2000/1/1/0        C xy 1        * - 1 1
 108  CLM4_PFT_C4_GRSS             $ROOT/MEGAN/v2018-05/CLM4_PFT.geos.025x03125.v201805.nc PFT_C4_GRSS             2000/1/1/0        C xy 1        * - 1 1
 108  CLM4_PFT_CROP                $ROOT/MEGAN/v2018-05/CLM4_PFT.geos.025x03125.v201805.nc PFT_CROP                2000/1/1/0        C xy 1        * - 1 1
+(((MEGAN_Mono
 109  MEGAN_ORVC                   $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc                     OCPI                    1990/1-12/1/0     C xy kgC/m2/s * - 1 1
+)))MEGAN_Mono
+)))MEGAN
+
+)))EMISSIONS
 
 ###############################################################################
 ### NON-EMISSIONS DATA (subsection of BASE EMISSIONS SECTION)
@@ -760,9 +761,15 @@ Mask fractions:              false
 ###############################################################################
 
 #==============================================================================
+# --- Time zones (offset to UTC) ---
+#==============================================================================
+* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
+
+(((METEOROLOGY
+
+#==============================================================================
 # --- Meteorology fields for FlexGrid ---
 #==============================================================================
-
 # --- CN fields ---
 * FRLAKE    $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NC        FRLAKE   */1/1/0               C xy  1  * -  1 1
 * FRLAND    $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NC        FRLAND   */1/1/0               C xy  1  * -  1 1
@@ -771,85 +778,86 @@ Mask fractions:              false
 * PHIS      $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NC        PHIS     */1/1/0               C xy  1  * -  1 1
 
 # --- A1 fields ---
-* ALBEDO    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     ALBEDO   1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* CLDTOT    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     CLDTOT   1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* EFLUX     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     EFLUX    1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* EVAP      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     EVAP     1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* FRSEAICE  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     FRSEAICE 1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* FRSNO     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     FRSNO    1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* GRN       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     GRN      1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* GWETROOT  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     GWETROOT 1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* GWETTOP   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     GWETTOP  1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* HFLUX     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     HFLUX    1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* LAI       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     LAI      1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* LWI       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     LWI      1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* LWGNT     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     LWGNT    1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* PARDF     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PARDF    1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* PARDR     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PARDR    1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* PBLH      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PBLH     1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* PRECANV   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECANV  1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* PRECCON   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECCON  1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* PRECLSC   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECLSC  1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* PRECSNO   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECSNO  1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* PRECTOT   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECTOT  1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* SEAICE00  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE00 1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* SEAICE10  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE10 1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* SEAICE20  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE20 1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* SEAICE30  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE30 1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* SEAICE40  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE40 1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* SEAICE50  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE50 1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* SEAICE60  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE60 1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* SEAICE70  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE70 1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* SEAICE80  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE80 1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* SEAICE90  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE90 1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* SLP       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SLP      1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* SNODP     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SNODP    1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* SNOMAS    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SNOMAS   1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* SWGDN     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SWGDN    1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* TO3       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     TO3      1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* TROPPT    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     TROPPT   1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* TS        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     TS       1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* T2M       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     T2M      1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* U10M      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     U10M     1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* USTAR     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     USTAR    1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* V10M      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     V10M     1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
-* Z0M       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     Z0M      1980-2019/1-12/1-31/0-23/+30minute RFY xy  1  * -  1 1
+* ALBEDO    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     ALBEDO   1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* CLDTOT    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     CLDTOT   1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* EFLUX     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     EFLUX    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* EVAP      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     EVAP     1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* FRSEAICE  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     FRSEAICE 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* FRSNO     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     FRSNO    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* GRN       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     GRN      1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* GWETROOT  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     GWETROOT 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* GWETTOP   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     GWETTOP  1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* HFLUX     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     HFLUX    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* LAI       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     LAI      1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* LWI       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     LWI      1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* LWGNT     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     LWGNT    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PARDF     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PARDF    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PARDR     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PARDR    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PBLH      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PBLH     1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PRECANV   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECANV  1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PRECCON   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECCON  1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PRECLSC   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECLSC  1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PRECSNO   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECSNO  1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PRECTOT   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECTOT  1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE00  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE00 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE10  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE10 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE20  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE20 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE30  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE30 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE40  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE40 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE50  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE50 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE60  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE60 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE70  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE70 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE80  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE80 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE90  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE90 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SLP       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SLP      1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SNODP     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SNODP    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SNOMAS    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SNOMAS   1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SWGDN     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SWGDN    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* TO3       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     TO3      1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* TROPPT    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     TROPPT   1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* TS        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     TS       1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* T2M       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     T2M      1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* U10M      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     U10M     1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* USTAR     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     USTAR    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* V10M      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     V10M     1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* Z0M       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     Z0M      1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
 
 # --- A3cld fields ---
-* CLOUD     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  CLOUD    1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* OPTDEPTH  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  OPTDEPTH 1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* QI        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  QI       1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* QL        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  QL       1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* TAUCLI    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  TAUCLI   1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* TAUCLW    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  TAUCLW   1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
+* CLOUD     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  CLOUD    1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* OPTDEPTH  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  OPTDEPTH 1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* QI        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  QI       1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* QL        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  QL       1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* TAUCLI    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  TAUCLI   1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* TAUCLW    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  TAUCLW   1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
 
 # --- A3dyn fields ---
-* DTRAIN    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  DTRAIN   1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* OMEGA     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  OMEGA    1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* RH        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  RH       1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* U         $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  U        1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* V         $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  V        1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
+* DTRAIN    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  DTRAIN   1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* OMEGA     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  OMEGA    1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* RH        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  RH       1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* U         $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  U        1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* V         $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  V        1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
 
 # --- A3mstC fields ---
-* DQRCU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC DQRCU    1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* DQRLSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC DQRLSAN  1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* REEVAPCN  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC REEVAPCN 1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* REEVAPLS  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC REEVAPLS 1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
+* DQRCU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC DQRCU    1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* DQRLSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC DQRLSAN  1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* REEVAPCN  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC REEVAPCN 1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* REEVAPLS  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC REEVAPLS 1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
 
 # --- A3mstE fields ---
-* CMFMC     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC CMFMC    1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* PFICU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFICU    1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* PFILSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFILSAN  1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* PFLCU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFLCU    1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
-* PFLLSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFLLSAN  1980-2019/1-12/1-31/0-23/+90minute RFY xyz 1  * -  1 1
+* CMFMC     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC CMFMC    1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* PFICU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFICU    1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* PFILSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFILSAN  1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* PFLCU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFLCU    1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* PFLLSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFLLSAN  1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
 
 # --- I3 fields ---
-* PS1       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     PS       1980-2019/1-12/1-31/0-23           RFY xy  1  * -  1 1
-* PS2       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     PS       1980-2019/1-12/1-31/0-23/+3hour    RFY xy  1  * -  1 1
-* SPHU1     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     QV       1980-2019/1-12/1-31/0-23           RFY xyz 1  * -  1 1
-* SPHU2     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     QV       1980-2019/1-12/1-31/0-23/+3hour    RFY xyz 1  * -  1 1
-* TMPU1     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     T        1980-2019/1-12/1-31/0-23           RFY xyz 1  * -  1 1
-* TMPU2     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     T        1980-2019/1-12/1-31/0-23/+3hour    RFY xyz 1  * -  1 1
+* PS       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     PS       1980-2019/1-12/1-31/*           RFY xy  1  * -  1 1
+* SPHU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     QV       1980-2019/1-12/1-31/*           RFY xyz 1  * -  1 1
+* TMPU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     T        1980-2019/1-12/1-31/*           RFY xyz 1  * -  1 1
+
+* PS_NEXTDAY   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC PS       1980-2019/1-12/1-31/1/+1day     RFY xy  1  * -  1 1
+* SPHU_NEXTDAY $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC QV       1980-2019/1-12/1-31/1/+1day     RFY xyz 1  * -  1 1
+* TMPU_NEXTDAY $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC T        1980-2019/1-12/1-31/1/+1day     RFY xyz 1  * -  1 1
 
 #==============================================================================
 # --- Fields for lightning emissions (Extension 103) ---
@@ -861,44 +869,56 @@ Mask fractions:              false
 * FLASH_DENS $ROOT/OFFLINE_LIGHTNING/v2019-01/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  LDENS 1980-2019/1-12/1-31/0-23/+90minute RFY xy  1  * -  1 1
 * CONV_DEPTH $ROOT/OFFLINE_LIGHTNING/v2019-01/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  CTH   1980-2019/1-12/1-31/0-23/+90minute RFY xy  1  * -  1 1
 
+)))METEOROLOGY
+
 #==============================================================================
 # --- GEOS-Chem restart file ---
 #==============================================================================
 (((GC_RESTART
 * SPC_           ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 SpeciesRst_?ALL?    $YYYY/$MM/$DD/$HH CYS xyz 1 * - 1 1
-* TMPU           ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_TMPU1           $YYYY/$MM/$DD/$HH EY  xyz 1 * - 1 1
-* SPHU           ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_SPHU1           $YYYY/$MM/$DD/$HH EY  xyz 1 * - 1 1
-* PSDRY          ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_PS1DRY          $YYYY/$MM/$DD/$HH EY  xy  1 * - 1 1
-* PSWET          ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_PS1WET          $YYYY/$MM/$DD/$HH EY  xy  1 * - 1 1
+* TMPU1          ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_TMPU1           $YYYY/$MM/$DD/$HH EY  xyz 1 * - 1 1
+* SPHU1          ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_SPHU1           $YYYY/$MM/$DD/$HH EY  xyz 1 * - 1 1
+* PS1DRY         ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_PS1DRY          $YYYY/$MM/$DD/$HH EY  xy  1 * - 1 1
+* PS1WET         ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_PS1WET          $YYYY/$MM/$DD/$HH EY  xy  1 * - 1 1
 * DELPDRY        ./GEOSChem.Restart.$YYYY$MM$DD_$HH$MNz.nc4 Met_DELPDRY         $YYYY/$MM/$DD/$HH EY  xyz 1 * - 1 1
 )))GC_RESTART
 
-#==============================================================================
-# --- Time zones (offset to UTC) ---
-#==============================================================================
-* TIMEZONES $ROOT/TIMEZONES/v2015-02/timezones_voronoi_1x1.nc UTC_OFFSET 2000/1/1/0 C xy count * - 1 1
+(((CHEMISTRY_INPUT
 
 #==============================================================================
-# --- Quantities needed for CH4 chemistry ---
+# --- Quantities needed for CO chemistry ---
 #==============================================================================
+(((GLOBAL_OH
 * GLOBAL_OH  $ROOT/OH/v2017-04/OH_3Dglobal.geosfp.2x25.nc         OH        2013/1-12/1/0 C xyz kg/m3   * - 1 1
+)))GLOBAL_OH
+(((PROD_CO_CH4
 * PCO_CH4    $ROOT/TAGGED_CO/v2017-04/PCO_3Dglobal.geosfp.2x25.nc PCO_CH4   2013/1-12/1/0 C xyz kg/m3/s * - 1 1
+)))PROD_CO_CH4
+(((PROD_CO_NMVOC
 * PCO_NMVOC  $ROOT/TAGGED_CO/v2017-04/PCO_3Dglobal.geosfp.2x25.nc PCO_NMVOC 2013/1-12/1/0 C xyz kg/m3/s * - 1 1
+)))PROD_CO_NMVOC
 
 #==============================================================================
 # --- GMI chemistry: prod/loss rates (for strato-/mesosphere) ---
 #==============================================================================
+(((GMI_PROD_LOSS
 * GMI_LOSS_CO  $ROOT/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc  loss     2005/1-12/1/0 C xyz s-1   CO  - 1  1
 * GMI_PROD_CO  $ROOT/GMI/v2015-02/gmi.clim.CO.geos5.2x25.nc  prod     2005/1-12/1/0 C xyz v/v/s CO  - 1  1
+)))GMI_PROD_LOSS
 
 #==============================================================================
 # --- NOAA GMD monthly mean surface CH4 ---
 #==============================================================================
+(((GMD_CH4
 * NOAA_GMD_CH4 $ROOT/NOAA_GMD/v2018-01/monthly.gridded.surface.methane.1979-2020.1x1.nc SFC_CH4 1979-2020/1-12/1/0 C xy ppbv * - 1 1
+)))GMD_CH4
+
+)))CHEMISTRY_INPUT
 
 #==============================================================================
 # --- Olson land map masks ---
 #==============================================================================
+(((OLSON_LANDMAP
 * LANDTYPE00 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE00 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE01 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE01 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE02 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE02 1985/1/1/0 C xy 1 * - 1 1
@@ -972,6 +992,7 @@ Mask fractions:              false
 * LANDTYPE70 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE70 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE71 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE71 1985/1/1/0 C xy 1 * - 1 1
 * LANDTYPE72 $ROOT/OLSON_MAP/v2019-02/Olson_2001_Land_Type_Masks.025x025.generic.nc LANDTYPE72 1985/1/1/0 C xy 1 * - 1 1
+)))OLSON_LANDMAP
 
 #==============================================================================
 # --- Yuan processed MODIS leaf area index data ---
@@ -986,7 +1007,7 @@ Mask fractions:              false
 # (2) Units are "cm2 leaf/cm2 grid box".
 # (3) Data is timestamped every 8 days, starting from the 2nd of the month.
 #==============================================================================
-(((Yuan_XLAI
+(((YUAN_MODIS_LAI
 * XLAI00 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI00 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI01 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI01 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI02 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI02 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
@@ -1060,7 +1081,7 @@ Mask fractions:              false
 * XLAI70 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI70 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI71 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI71 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI72 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI72 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
-)))Yuan_XLAI
+)))YUAN_MODIS_LAI
 
 ### END SECTION BASE EMISSIONS ###
 
@@ -1070,47 +1091,33 @@ Mask fractions:              false
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper
 
+(((EMISSIONS
+
 #==============================================================================
-# --- annual scale factors ---
+# --- Annual scale factors ---
 #==============================================================================
+(((MIX.or.HTAP
 1  TOTFUEL_THISYR    $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1985-2010/1/1/0 C xy 1  1
-2  TOTFUEL_1985      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1985/1/1/0      C xy 1 -1
-3  TOTFUEL_1999      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1999/1/1/0      C xy 1 -1
-4  TOTFUEL_2006      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2006/1/1/0      C xy 1 -1
 5  TOTFUEL_2002      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2002/1/1/0      C xy 1 -1
-16 TOTFUEL_2005      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2005/1/1/0      C xy 1 -1
 27 TOTFUEL_2008_2010 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2008-2010/1/1/0 C xy 1 -1
-40 TOTFUEL_1985_2008 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 1985-2008/1/1/0 C xy 1 -1
 6  LIQFUEL_THISYR    $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1985-2010/1/1/0 C xy 1  1
 7  LIQFUEL_1985      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1985/1/1/0      C xy 1 -1
-8  LIQFUEL_1999      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1999/1/1/0      C xy 1 -1
 9  LIQFUEL_2006      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2006/1/1/0      C xy 1 -1
 10 LIQFUEL_2002      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2002/1/1/0      C xy 1 -1
-17 LIQFUEL_2005      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2005/1/1/0      C xy 1 -1
 28 LIQFUEL_2008_2010 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2008-2010/1/1/0 C xy 1 -1
-41 LIQFUEL_1985_2008 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  1985-2008/1/1/0 C xy 1 -1
-11 SOLFUEL_THISYR    $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1985-2010/1/1/0 C xy 1  1
-12 SOLFUEL_1985      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1985/1/1/0      C xy 1 -1
-13 SOLFUEL_1999      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1999/1/1/0      C xy 1 -1
-14 SOLFUEL_2006      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2006/1/1/0      C xy 1 -1
-15 SOLFUEL_2002      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2002/1/1/0      C xy 1 -1
-18 SOLFUEL_2005      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2005/1/1/0      C xy 1 -1
 19 SOLFUEL_2008      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2008/1/1/0      C xy 1 -1
 29 SOLFUEL_2008_2010 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 2008-2010/1/1/0 C xy 1 -1
-42 SOLFUEL_1985_2008 $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc SO2scalar 1985-2008/1/1/0 C xy 1 -1
-23 LIQFUEL_2008      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc COscalar  2008/1/1/0      C xy 1 -1
-24 TOTFUEL_2008      $ROOT/AnnualScalar/v2014-07/AnnualScalar.geos.1x1.nc NOxscalar 2008/1/1/0      C xy 1 -1
+)))MIX.or.HTAP
 
 #==============================================================================
-# --- diurnal scale factors ---
+# --- Diurnal scale factors ---
 #==============================================================================
+(((APEI.or.MIX.or.DICE_Africa.or.CEDS.or.EDGARv43.or.HTAP
 26 GEIA_TOD_FOSSIL 0.45/0.45/0.6/0.6/0.6/0.6/1.45/1.45/1.45/1.45/1.4/1.4/1.4/1.4/1.45/1.45/1.45/1.45/0.65/0.65/0.65/0.65/0.45/0.45 - - - xy 1 1
+)))APEI.or.MIX.or.DICE_Africa.or.CEDS.or.EDGARv43.or.HTAP
 
 #==============================================================================
-# --- seasonal scale factors ---
-#==============================================================================
-
-# for EDGAR 4.3.1:
+# --- EDGAR 4.3.1 ---
 # Using data of 2010, the calculated seasonal ratio for different species in the
 # same sector are nearly identical, possibly due to consistent activity data used.
 # Therefore we use the seasonal scale factors of CO in 2010 for most sectors,
@@ -1118,6 +1125,8 @@ Mask fractions:              false
 # For AGR, the NH3 AGR seasonal scale factors are used.
 # For AWB, the CO AGR seasonal scale factors are used.
 # For SOL, the NOx AGR seasonal scale factors are used.
+#==============================================================================
+(((EDGARv43.or.DICE_Africa
 1201 POW $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc POW 2010/1-12/1/0 C xy unitless 1
 1202 ENG $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc ENG 2010/1-12/1/0 C xy unitless 1
 1203 IND $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc IND 2010/1-12/1/0 C xy unitless 1
@@ -1130,6 +1139,7 @@ Mask fractions:              false
 1210 SOL $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc SOL 2010/1-12/1/0 C xy unitless 1
 1211 SWD $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc SWD 2010/1-12/1/0 C xy unitless 1
 1212 FFF $ROOT/EDGARv43/v2016-11/EDGAR_v43.Seasonal.1x1.nc FFF 2010/1-12/1/0 C xy unitless 1
+)))EDGARv43.or.DICE_Africa
 
 #==============================================================================
 # --- VOC speciations ---
@@ -1138,8 +1148,10 @@ Mask fractions:              false
 # emissions are scaled by 19% and biomass burning emissions are scaled by
 # 11%. More information is given in Duncan et al, JGR, 112, D22301 (2007).
 #==============================================================================
+(((APEI.or.EDGARv43.or.DICE_Africa
 52 COPROD_FOSSIL   1.19  - - - xy 1 1
 54 COPROD_BIOMASS  1.11  - - - xy 1 1
+)))APEI.or.EDGARv43.or.DICE_Africa
 
 #==============================================================================
 # --- QFED2 diurnal scale factors ---
@@ -1147,7 +1159,9 @@ Mask fractions:              false
 # Fire diurnal scaling factors (% per hour) from WRAP Report to Project
 # No. 178-6, July 2005
 #==============================================================================
+(((QFED
 75 QFED2_TOD 0.1392/0.1392/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.48/0.96/1.68/2.4/3.12/3.84/4.08/2.88/1.68/0.96/0.1368/0.1368/0.1368/0.1368/0.1368 - - - xy 1 1
+)))QFED
 
 #==============================================================================
 # --- GFAS scale factors ---
@@ -1172,8 +1186,11 @@ Mask fractions:              false
 # the fuelburn emissions) in the original AEIC code. I'm not sure if this
 # is because the netCDF data is in g instead of kg?
 #==============================================================================
+(((AEIC
 110 AEICNOCO 1.000000e-3 - -  - xy 1 1
+)))AEIC
 
+(((NEI2011_HOURLY.or.NEI2011_MONMEAN
 #==============================================================================
 # --- NEI 2005 scale factors ---
 #==============================================================================
@@ -1183,20 +1200,27 @@ Mask fractions:              false
 # --- NEI 20011 scale factors ---
 #==============================================================================
 252 NEI11_CO_YRSCALE  1.271/1.227/1.104/0.998/1.019/1.0/0.981/0.962 - 2006-2013/1/1/0 C xy 1 1
+)))NEI2011_HOURLY.or.NEI2011_MONMEAN
 
 #==============================================================================
 # --- QFED vertical partitioning ---
 # Following Fischer et al. (2014) and Travis et al. (2016), emit 35% of QFED
 # emissions above the PBL.
 #==============================================================================
+(((QFED
 311 QFED_PBL_FRAC 0.65 - - - xy 1 1
 312 QFED_FT_FRAC  0.35 - - - xy 1 1
+)))QFED
 
 #==============================================================================
 # DICE-Africa charcoal production scale factor to reduce charcoal production
 # by a factor of 5 after finding error in implementation of emission factors.
 #==============================================================================
+(((DICE_Africa
 320 DICE_CP_SF    0.20 - - - xy 1 1
+)))DICE_Africa
+
+)))EMISSIONS
 
 ### END SECTION SCALE FACTORS ###
 
@@ -1206,16 +1230,26 @@ Mask fractions:              false
 
 # ScalID Name sourceFile sourceVar sourceTime C/R/E SrcDim SrcUnit Oper Lon1/Lat1/Lon2/Lat2
 
+(((EMISSIONS
+
 #==============================================================================
 # Country/region masks
 #==============================================================================
-1000 EMEP_MASK   $ROOT/MASKS/v2018-09/EMEP_mask.geos.1x1.20151222.nc           MASK     2000/1/1/0 C xy 1 1 -30/30/45/70
+(((APEI
 1002 CANADA_MASK $ROOT/MASKS/v2018-09/Canada_mask.geos.1x1.nc                  MASK     2000/1/1/0 C xy 1 1 -141/40/-52/85
+)))APEI
+
+(((MIX
 1006 ASIA_MASK   $ROOT/MASKS/v2018-09/MIX_Asia_mask.generic.025x025.nc         MASK     2000/1/1/0 C xy 1 1 46/-12/180/82
+)))MIX
+
+(((NEI2011_HOURLY.or.NEI2011_MONMEAN.or.NEI2011_SHIP_HOURLY.or.NEI2011_SHIP_MONMEAN
 1007 CONUS_MASK  $ROOT/MASKS/v2018-09/CONUS_Mask.01x01.nc                      MASK     2000/1/1/0 C xy 1 1 -140/20/-50/60
+)))NEI2011_HOURLY.or.NEI2011_MONMEAN.or.NEI2011_SHIP_HOURLY.or.NEI2011_SHIP_MONMEAN
+
+(((DICE_Africa
 1008 AFRICA_MASK $ROOT/MASKS/v2018-09/AF_LANDMASK.geos.05x0666.global.nc       LANDMASK 1985/1/1/0 C xy 1 1 -20/-37/54/40
-1009 CHINA_MASK  $ROOT/MASKS/v2018-09/China_mask.generic.1x1.nc                MASK     2000/1/1/0 C xy 1 1  70/10/150/60
-1010 INDIA_MASK  $ROOT/MASKS/v2018-09/India_mask.generic.1x1.nc                MASK     2000/1/1/0 C xy 1 1  67/7/99/39
+)))DICE_Africa
 
 #==============================================================================
 # Tagged CO regions
@@ -1230,6 +1264,8 @@ Mask fractions:              false
 1107 TAGCO_BBOC_MASK  $ROOT/MASKS/v2018-09/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBOC_MASK  2000/1/1/0 C xy 1 1  70/8/170/90
 1108 TAGCO_BBEU_MASK  $ROOT/MASKS/v2018-09/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBEU_MASK  2000/1/1/0 C xy 1 1 -17/45/173/88
 1109 TAGCO_BBOTH_MASK $ROOT/MASKS/v2018-09/tagged_CO_masks.generic.0.5x0.5.nc TAGCO_BBOTH_MASK 2000/1/1/0 C xy 1 1 -180/-90/180/90
+
+)))EMISSIONS
 
 ### END SECTION MASKS ###
 
