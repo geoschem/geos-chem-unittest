@@ -235,10 +235,12 @@ endif
 TIMESTAMP    :=$(shell date +"%Y/%m/%d %H:%M")
 
 # Log files that will be written to the log directory
-LOG_COMP     :="compile.log"
-LOG_GC       :="$(VERSION_TAG).log"
-LOG_HMCO     :="HEMCO.log"
-BUILDINFO    :="lastbuild"
+LOG_COMP     :=compile.log
+LOG_GC       :=$(VERSION_TAG).log
+LOG_HMCO     :=HEMCO.log
+LOG_HMCO_SA  :=HEMCO.standalone.log
+LOG_HMCO_DR  :=HEMCO.dryrun.log
+BUILDINFO    :=lastbuild
 
 # Executables
 EXE          :=geos
@@ -411,15 +413,15 @@ hcobuild:
 # Run only
 hcorun:
 	@$(MAKE) cleanup_hco
-	./$(EXE_HMCO_SA) -c HEMCO_sa_Config.rc  > $(LOG_HMCO)
-	@$(MAKE) printruninfohco >> $(LOG_HMCO)
+	./$(EXE_HMCO_SA) -c HEMCO_sa_Config.rc  > $(LOG_HMCO_SA)
+	@$(MAKE) printruninfohco >> $(LOG_HMCO_SA)
 	@$(MAKE) printruninfohco
 
 # Dry Run only
 hcodryrun:
 	@$(MAKE) cleanup_hco
-	./$(EXE_HMCO_SA) -c HEMCO_sa_Config.rc --dry-run > $(LOG_HMCO)
-	@$(MAKE) printruninfohco >> $(LOG_HMCO)
+	./$(EXE_HMCO_SA) -c HEMCO_sa_Config.rc --dryrun > $(LOG_HMCO_DR)
+	@$(MAKE) printruninfohco >> $(LOG_HMCO_DR)
 	@$(MAKE) printruninfohco
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
