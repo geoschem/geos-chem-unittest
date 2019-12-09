@@ -7,7 +7,7 @@
 # EXPID allows you to specify the beginning of the file path corresponding
 # to each diagnostic collection.  For example:
 #
-#   EXPID: ./GEOSChem 
+#   EXPID: ./GEOSChem
 #      Will create netCDF files whose names begin "GEOSChem",
 #      in this run directory.
 #
@@ -39,10 +39,11 @@ COLLECTIONS: 'Restart',
              #'ConcAfterChem',
              #'DryDep',
              #'JValues',
-             #'LevelEdgeDiags',      
+             #'KppDiags',
+             #'LevelEdgeDiags',
              #'ProdLoss',
-             #'StateChm',     
-             #'StateMet',      
+             #'StateChm',
+             #'StateMet',
              #'Transport',
              #'WetLossConv',
              #'WetLossLS',
@@ -220,24 +221,24 @@ COLLECTIONS: 'Restart',
   Budget.frequency:    {FREQUENCY}
   Budget.duration:     {DURATION}
   Budget.mode:         'time-averaged'
-  Budget.fields:       'BudgetEmisDryDepFull_?ADV?           ', 'GIGCchem',  
-                       'BudgetEmisDryDepTrop_?ADV?           ', 'GIGCchem',  
-                       'BudgetEmisDryDepPBL_?ADV?            ', 'GIGCchem',  
+  Budget.fields:       'BudgetEmisDryDepFull_?ADV?           ', 'GIGCchem',
+                       'BudgetEmisDryDepTrop_?ADV?           ', 'GIGCchem',
+                       'BudgetEmisDryDepPBL_?ADV?            ', 'GIGCchem',
                        'BudgetChemistryFull_?ADV?            ', 'GIGCchem',
                        'BudgetChemistryTrop_?ADV?            ', 'GIGCchem',
-                       'BudgetChemistryPBL_?ADV?             ', 'GIGCchem',  
+                       'BudgetChemistryPBL_?ADV?             ', 'GIGCchem',
                        'BudgetTransportFull_?ADV?            ', 'GIGCchem',
                        'BudgetTransportTrop_?ADV?            ', 'GIGCchem',
-                       'BudgetTransportPBL_?ADV?             ', 'GIGCchem',  
+                       'BudgetTransportPBL_?ADV?             ', 'GIGCchem',
                        'BudgetMixingFull_?ADV?               ', 'GIGCchem',
                        'BudgetMixingTrop_?ADV?               ', 'GIGCchem',
                        'BudgetMixingPBL_?ADV?                ', 'GIGCchem',
                        'BudgetConvectionFull_?ADV?           ', 'GIGCchem',
                        'BudgetConvectionTrop_?ADV?           ', 'GIGCchem',
-                       'BudgetConvectionPBL_?ADV?            ', 'GIGCchem',  
+                       'BudgetConvectionPBL_?ADV?            ', 'GIGCchem',
                        'BudgetWetDepFull_?WET?               ', 'GIGCchem',
                        'BudgetWetDepTrop_?WET?               ', 'GIGCchem',
-                       'BudgetWetDepPBL_?WET?                ', 'GIGCchem',  
+                       'BudgetWetDepPBL_?WET?                ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE CloudConvFlux COLLECTION %%%%%
@@ -260,7 +261,7 @@ COLLECTIONS: 'Restart',
 # the surface, such as 10m.  Set the desired output altitude in meters
 # in the DEPOSITION MENU of input.geos.
 #
-# NOTES: 
+# NOTES:
 # (1) This collection requires dry deposition to be turned on.
 # (2) All of the fields in the collection must be turned on.
 # (3) This collection is best used with mode "instantaneous".
@@ -289,8 +290,8 @@ COLLECTIONS: 'Restart',
   ConcAfterChem.frequency:    {FREQUENCY}
   ConcAfterChem.duration:     {DURATION}
   ConcAfterChem.mode:         'time-averaged'
-  ConcAfterChem.fields:       'OHconcAfterChem               ', 'GIGCchem',  
-                              'HO2concAfterChem              ', 'GIGCchem',  
+  ConcAfterChem.fields:       'OHconcAfterChem               ', 'GIGCchem',
+                              'HO2concAfterChem              ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE DryDep COLLECTION %%%%%
@@ -327,6 +328,27 @@ COLLECTIONS: 'Restart',
                               'UVFluxNet_?UVFLX?             ', 'GIGCchem',
 ::
 #==============================================================================
+# %%%%% THE KppDiags COLLECTION %%%%%
+#
+# Diagnostics from the KPP solver.
+#
+# Available for full-chemistry simulations (all variations)
+#==============================================================================
+  KppDiags.template:          '%y4%m2%d2_%h2%n2z.nc4',
+  KppDiags.format:            'CFIO',
+  KppDiags.frequency:         {FREQUENCY}
+  KppDiags.duration:          {DURATION}
+  KppDiags.mode:              'time-averaged'
+  KppDiags.fields:            'KppIntCounts                  ', 'GIGCchem',
+                              'KppJacCounts                  ', 'GIGCchem',
+                              'KppTotSteps                   ', 'GIGCchem',
+                              'KppAccSteps                   ', 'GIGCchem',
+                              'KppRejSteps                   ', 'GIGCchem',
+                              'KppLuDecomps                  ', 'GIGCchem',
+                              'KppSubsts                     ', 'GIGCchem',
+                              'KppSmDecomps                  ', 'GIGCchem',
+::
+#==============================================================================
 # %%%%% THE LevelEdgeDiags COLLECTION %%%%%
 #
 # Diagnostics that are defined on grid box level edges
@@ -358,8 +380,8 @@ COLLECTIONS: 'Restart',
   ProdLoss.frequency:         {FREQUENCY}
   ProdLoss.duration:          {DURATION}
   ProdLoss.mode:              'time-averaged'
-  ProdLoss.fields:            'Prod_?PRD?                    ', 'GIGCchem', 
-                              'ProdBCPIfromBCPO              ', 'GIGCchem', 
+  ProdLoss.fields:            'Prod_?PRD?                    ', 'GIGCchem',
+                              'ProdBCPIfromBCPO              ', 'GIGCchem',
                               'ProdOCPIfromOCPO              ', 'GIGCchem',
                               'ProdSO4fromH2O2inCloud        ', 'GIGCchem',
                               'ProdSO4fromO2inCloudMetal     ', 'GIGCchem',
@@ -378,7 +400,7 @@ COLLECTIONS: 'Restart',
 # Flux outputs for different species from the RRTMG radiative transfer model:
 # (See http://wiki.geos-chem.org/Coupling_GEOS-Chem_with_RRTMG)
 #
-#    0=BA (Baseline    )  1=O3 (Ozone          )   2=ME (Methane   )   
+#    0=BA (Baseline    )  1=O3 (Ozone          )   2=ME (Methane   )
 #    3=SU (Sulfate     )  4=NI (Nitrate        )   5=AM (Ammonium  )
 #    6=BC (Black carbon)  7=OA (Organic aerosol)   8=SS (Sea Salt  )
 #    9=DU (Mineral dust) 10=PM (All part. matter) 12=ST (Strat aer.)
@@ -386,7 +408,7 @@ COLLECTIONS: 'Restart',
 # NOTES:
 # (1) You must always list the BASELINE (BA) flux output first!
 # (2) RRTMG is called for each type of flux output.  Therefore,
-#     it is a good idea to only request those fluxes that you need instead 
+#     it is a good idea to only request those fluxes that you need instead
 #     of all possible flux outputs.  This will reduce the overall run time.
 #==============================================================================
   RRTMG.template:             '%y4%m2%d2_%h2%n2z.nc4',
@@ -415,12 +437,12 @@ COLLECTIONS: 'Restart',
   StateChm.frequency:         {FREQUENCY}
   StateChm.duration:          {DURATION}
   StateChm.mode:              'time-averaged'
-  StateChm.fields:            'Chem_phSav                    ', 'GIGCchem',  
-                              'Chem_HplusSav                 ', 'GIGCchem',  
-                              'Chem_WaterSav                 ', 'GIGCchem',  
-                              'Chem_SulRatSav                ', 'GIGCchem',  
-                              'Chem_NaRatSav                 ', 'GIGCchem',  
-                              'Chem_AcidPurSav               ', 'GIGCchem',  
+  StateChm.fields:            'Chem_phSav                    ', 'GIGCchem',
+                              'Chem_HplusSav                 ', 'GIGCchem',
+                              'Chem_WaterSav                 ', 'GIGCchem',
+                              'Chem_SulRatSav                ', 'GIGCchem',
+                              'Chem_NaRatSav                 ', 'GIGCchem',
+                              'Chem_AcidPurSav               ', 'GIGCchem',
                               'Chem_BiSulSav                 ', 'GIGCchem',
                               'Chem_pHCloud                  ', 'GIGCchem',
                               'Chem_isCloud                  ', 'GIGCchem',
