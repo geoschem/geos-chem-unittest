@@ -72,7 +72,9 @@ Warnings:                    {WARNINGS}
     --> JPL_WETCHARTS          :       true
     --> SEEPS                  :       true
     --> LAKES                  :       false
-    --> FUNG                   :       true
+    --> FUNG_TERMITES          :       true
+    --> FUNG_SOIL_ABSORPTION   :       false
+    --> MeMo_SOIL_ABSORPTION   :       true
 # ----- FUTURE EMISSIONS --------------------
     --> RCP_3PD                :       false
     --> RCP_45                 :       false
@@ -422,12 +424,32 @@ Warnings:                    {WARNINGS}
 # - For tagged CH4 simulations soil absorption is treated as a loss and applied
 #   in mixing_mod.F
 #==============================================================================
-(((FUNG
+(((FUNG_TERMITES
 0 CH4_TERMITES_T     $ROOT/CH4/v2014-09/4x5/termites.geos.4x5.nc          CH4 1985/1/1/0         C xy kg/m2/s     CH4_TER - 13 1
 0 CH4_TERMITES       $ROOT/CH4/v2014-09/4x5/termites.geos.4x5.nc          CH4 1985/1/1/0         C xy kg/m2/s     CH4     - 13 1
+)))FUNG_TERMITES
+(((FUNG_SOIL_ABSORPTION
 0 CH4_SOILABSORB_T   $ROOT/CH4/v2019-10/Fung_SoilAbs/Soil_Absorption_4x5_$YYYY.nc CH4 2009-2015/1-12/1/0 C xy molec/cm2/s CH4_SAB - 14 1
-#0 CH4_SOILABSORB     $ROOT/CH4/v2019-10/Fung_SoilAbs/Soil_Absorption_4x5_$YYYY.nc CH4 2009-2015/1-12/1/0 C xy molec/cm2/s CH4     1 14 1
-)))FUNG
+#0 CH4_SOILABSORB    $ROOT/CH4/v2019-10/Fung_SoilAbs/Soil_Absorption_4x5_$YYYY.nc CH4 2009-2015/1-12/1/0 C xy molec/cm2/s CH4     1 14 1
+)))FUNG_SOIL_ABSORPTION
+
+#==============================================================================
+# --- # Soil absorption from MeMo model (Murguia-Flores et al. 2018, GMD) ---
+#
+# - Multiply soil absorption by -1 to get a "negative" flux.
+#   (Only apply the scaling factor when adding to the total CH4 simulation)
+# - For tagged CH4 simulations soil absorption is treated as a loss and applied
+#   in mixing_mod.F
+#==============================================================================
+(((MeMo_SOIL_ABSORPTION
+# Climatology
+0 CH4_SOILABSORB_T $ROOT/CH4/v2019-10/MeMo_CH4uptake_Climatology.nc CH4uptake 2009/1-12/1/0 C xy kg/m2/s CH4_SAB - 14 2
+#0 CH4_SOILABSORB  $ROOT/CH4/v2019-10/MeMo_CH4uptake_Climatology.nc CH4uptake 2009/1-12/1/0 C xy kg/m2/s CH4     1 14 2
+
+# 1990-2009
+#0 CH4_SOILABSORB_T $ROOT/CH4/v2019-10/MeMo_CH4uptake_1990-2009.nc CH4uptake 1990-2009/1-12/1/0 C xy kg/m2/s CH4_SAB - 14 2
+##0 CH4_SOILABSORB  $ROOT/CH4/v2019-10/MeMo_CH4uptake_1990-2009.nc CH4uptake 1990-2009/1-12/1/0 C xy kg/m2/s CH4     1 14 2
+)))MeMo_SOIL_ABSORPTION
 
 #==============================================================================
 # --- RCP future emission scenarios ---
