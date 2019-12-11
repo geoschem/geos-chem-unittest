@@ -443,12 +443,12 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 (((MeMo_SOIL_ABSORPTION
 # Climatology
-0 CH4_SOILABSORB_T $ROOT/CH4/v2019-10/MeMo_CH4uptake_Climatology.nc CH4uptake 2009/1-12/1/0 C xy kg/m2/s CH4_SAB - 14 2
-#0 CH4_SOILABSORB  $ROOT/CH4/v2019-10/MeMo_CH4uptake_Climatology.nc CH4uptake 2009/1-12/1/0 C xy kg/m2/s CH4     1 14 2
+0 CH4_SOILABSORB_T $ROOT/CH4/v2019-10/MeMo_SoilAbs/MeMo_CH4uptake_Climatology.nc CH4uptake 2009/1-12/1/0 C xy kg/m2/s CH4_SAB - 14 2
+#0 CH4_SOILABSORB  $ROOT/CH4/v2019-10/MeMo_SoilAbs/MeMo_CH4uptake_Climatology.nc CH4uptake 2009/1-12/1/0 C xy kg/m2/s CH4     1 14 2
 
 # 1990-2009
-#0 CH4_SOILABSORB_T $ROOT/CH4/v2019-10/MeMo_CH4uptake_1990-2009.nc CH4uptake 1990-2009/1-12/1/0 C xy kg/m2/s CH4_SAB - 14 2
-##0 CH4_SOILABSORB  $ROOT/CH4/v2019-10/MeMo_CH4uptake_1990-2009.nc CH4uptake 1990-2009/1-12/1/0 C xy kg/m2/s CH4     1 14 2
+#0 CH4_SOILABSORB_T $ROOT/CH4/v2019-10/MeMo_SoilAbs/MeMo_CH4uptake_1990-2009.nc CH4uptake 1990-2009/1-12/1/0 C xy kg/m2/s CH4_SAB - 14 2
+##0 CH4_SOILABSORB  $ROOT/CH4/v2019-10/MeMo_SoilAbs/MeMo_CH4uptake_1990-2009.nc CH4uptake 1990-2009/1-12/1/0 C xy kg/m2/s CH4     1 14 2
 )))MeMo_SOIL_ABSORPTION
 
 #==============================================================================
