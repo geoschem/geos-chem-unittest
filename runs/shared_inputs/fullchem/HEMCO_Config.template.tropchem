@@ -118,7 +118,7 @@ Warnings:                    {WARNINGS}
     --> RRTMG                  :       false
 # -----------------------------------------------------------------------------
 100     Custom                 : off   -
-101     SeaFlux                : on    DMS/ACET/ALD2/MENO3/ETNO3
+101     SeaFlux                : on    DMS/ACET/ALD2/MENO3/ETNO3/MOH
 102     ParaNOx                : on    NO/NO2/O3/HNO3
     --> LUT data format        :       nc
     --> LUT source dir         :       $ROOT/PARANOX/v2015-02
@@ -137,7 +137,7 @@ Warnings:                    {WARNINGS}
     --> Br2 scaling            :       1.0
     --> Model sea salt Br-     :       false
     --> Br- mass ratio         :       2.11e-3
-108     MEGAN                  : off   ISOP/ACET/PRPE/C2H4/ALD2/EOH/SOAP/SOAS
+108     MEGAN                  : off   ISOP/ACET/PRPE/C2H4/ALD2/EOH/MOH/SOAP/SOAS
     --> Isoprene scaling       :       1.0
     --> CO2 inhibition         :       true
     --> CO2 conc (ppmv)        :       390.0
@@ -151,7 +151,7 @@ Warnings:                    {WARNINGS}
     --> Othrterp to SOAP       :       0.050
     --> Othrterp to SOAS       :       0.050
 #10% mass yield from other terpenes to SOA
-111     GFED                   : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/MTPA/BENZ/TOLU/XYLE/NAP/EOH/SOAP
+111     GFED                   : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/MTPA/BENZ/TOLU/XYLE/NAP/EOH/MOH/SOAP
     --> GFED4                  :       true
     --> GFED_daily             :       false
     --> GFED_3hourly           :       false
@@ -2217,12 +2217,13 @@ Warnings:                    {WARNINGS}
 # --- Seawater concentrations for oceanic emissions (Extension 101) ---
 #==============================================================================
 (((SeaFlux
-#101 CH3I_SEAWATER  $ROOT/CH3I/v2014-07/ocean_ch3i.geos.4x5.nc       CH3I_OCEAN 1985/1-12/1/0 C xy kg/m3 CH3I  - 1 1
-101 DMS_SEAWATER    $ROOT/DMS/v2015-07/DMS_lana.geos.1x1.nc          DMS_OCEAN  1985/1-12/1/0 C xy kg/m3 DMS   - 1 1
-101 ACET_SEAWATER   $ROOT/ACET/v2014-07/ACET_seawater.generic.1x1.nc ACET       2005/1/1/0    C xy kg/m3 ACET  - 1 1
-101 ALD2_SEAWATER   $ROOT/ALD2/v2017-03/ALD2_seawater.geos.2x25.nc   ALD2       2006/1-12/1/0 C xy kg/m3 ALD2  - 1 1
-101 MENO3_SEAWATER  $ROOT/RONO2/v2019-05/RONO2_seawater.geos.2x25.nc MENO3      2006/1-12/1/0 C xy kg/m3 MENO3 - 1 1
-101 ETNO3_SEAWATER  $ROOT/RONO2/v2019-05/RONO2_seawater.geos.2x25.nc ETNO3      2006/1-12/1/0 C xy kg/m3 ETNO3 - 1 1
+#101 CH3I_SEAWATER  $ROOT/CH3I/v2014-07/ocean_ch3i.geos.4x5.nc         CH3I_OCEAN 1985/1-12/1/0 C xy kg/m3 CH3I  - 1 1
+101 DMS_SEAWATER    $ROOT/DMS/v2015-07/DMS_lana.geos.1x1.nc            DMS_OCEAN  1985/1-12/1/0 C xy kg/m3 DMS   - 1 1
+101 ACET_SEAWATER   $ROOT/ACET/v2014-07/ACET_seawater.generic.1x1.nc   ACET       2005/1/1/0    C xy kg/m3 ACET  - 1 1
+101 ALD2_SEAWATER   $ROOT/ALD2/v2017-03/ALD2_seawater.geos.2x25.nc     ALD2       2006/1-12/1/0 C xy kg/m3 ALD2  - 1 1
+101 MENO3_SEAWATER  $ROOT/RONO2/v2019-05/RONO2_seawater.geos.2x25.nc   MENO3      2006/1-12/1/0 C xy kg/m3 MENO3 - 1 1
+101 ETNO3_SEAWATER  $ROOT/RONO2/v2019-05/RONO2_seawater.geos.2x25.nc   ETNO3      2006/1-12/1/0 C xy kg/m3 ETNO3 - 1 1
+101 MOH_SEAWATER    $ROOT/MARINE/MOH_seawater.low.kgCm3.generic.1x1.nc MOH        2005/1/1/0    C xy kgC/m3 MOH  - 1 1
 )))SeaFlux
 
 #==============================================================================
