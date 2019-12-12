@@ -117,6 +117,7 @@ Warnings:                    {WARNINGS}
     --> OLSON_LANDMAP          :       true
     --> YUAN_MODIS_LAI         :       true
     --> RRTMG                  :       false
+    --> SfcVMR                 :       false
 # -----------------------------------------------------------------------------
 100     Custom                 : off   -
 101     SeaFlux                : on    DMS/ACET/ALD2/MENO3/ETNO3
@@ -3161,6 +3162,12 @@ Warnings:                    {WARNINGS}
 )))GMD_CH4
 
 #==============================================================================
+# --- CMIP6 monthly mean surface CH4 ---
+# NOTE: This is only used if NOAA data is unavailible (pre 1979)
+#==============================================================================
+* CMIP6_Sfc_CH4  $ROOT/CMIP6/v2019-09/CMIP6_GHG_surface_VMR_1750_2014_for_CH4.nc CH4     1750-1978/1-12/1/0 C xy ppbv * - 1 1
+
+#==============================================================================
 # --- Olson land map masks ---
 #==============================================================================
 (((OLSON_LANDMAP
@@ -3327,6 +3334,64 @@ Warnings:                    {WARNINGS}
 * XLAI71 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI71 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI72 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI72 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 )))YUAN_MODIS_LAI
+
+(((SfcVMR
+#==============================================================================
+# --- CMIP6 files ---
+#
+# Use core CMIP6 observationally constrained data from Meinshausen et al. (2017) GMD
+#==============================================================================
+* SfcVMR_CH3Cl  $ROOT/CMIP6/v2019-09/CMIP6_GHG_surface_VMR_1750_2014_for_CH3Cl.nc  CH3Cl  1750-2014/1-12/1/0 C xy ppbv * 801 1 1
+* SfcVMR_CH2Cl2 $ROOT/CMIP6/v2019-09/CMIP6_GHG_surface_VMR_1750_2014_for_CH2Cl2.nc CH2Cl2 1750-2014/1-12/1/0 C xy ppbv * 801 1 1
+* SfcVMR_CHCl3  $ROOT/CMIP6/v2019-09/CMIP6_GHG_surface_VMR_1750_2014_for_CHCl3.nc  CHCl3  1750-2014/1-12/1/0 C xy ppbv * 801 1 1
+* SfcVMR_CH3Br  $ROOT/CMIP6/v2019-09/CMIP6_GHG_surface_VMR_1750_2014_for_CH3Br.nc  CH3Br  1750-2014/1-12/1/0 C xy ppbv * 801 1 1
+
+#==============================================================================
+# --- GMI files ---
+#==============================================================================
+* SfcVMR_CCl4     $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc CCl4        1960-2100/1-12/1/0 C xy v/v * 802 1 1
+* SfcVMR_CFC113   $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc CFC113      1960-2100/1-12/1/0 C xy v/v * 802 1 1
+* SfcVMR_CFC114   $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc CFC114      1960-2100/1-12/1/0 C xy v/v * 802 1 1
+* SfcVMR_CFC115   $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc CFC115      1960-2100/1-12/1/0 C xy v/v * 802 1 1
+* SfcVMR_CFC11    $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc CFC11       1960-2100/1-12/1/0 C xy v/v * 802 1 1
+* SfcVMR_CFC12    $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc CFC12       1960-2100/1-12/1/0 C xy v/v * 802 1 1
+#* SfcVMR_CH3Br   $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc CH3Br       1960-2100/1-12/1/0 C xy v/v * 802 1 1
+* SfcVMR_CH3CCl3  $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc CH3CCl3     1960-2100/1-12/1/0 C xy v/v * 802 1 1
+#* SfcVMR_CH3Cl   $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc CH3Cl       1960-2100/1-12/1/0 C xy v/v * 802 1 1
+#* SfcVMR_CH4     $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc CH4         1960-2100/1-12/1/0 C xy v/v * 802 1 1
+* SfcVMR_H1211    $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc H1211       1960-2100/1-12/1/0 C xy v/v * 802 1 1
+* SfcVMR_H1301    $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc H1301       1960-2100/1-12/1/0 C xy v/v * 802 1 1
+* SfcVMR_HCFC141b $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc HCFC141b    1960-2100/1-12/1/0 C xy v/v * 802 1 1
+* SfcVMR_HCFC142b $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc HCFC142b    1960-2100/1-12/1/0 C xy v/v * 802 1 1
+* SfcVMR_HCFC22   $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc HCFC22      1960-2100/1-12/1/0 C xy v/v * 802 1 1
+* SfcVMR_N2O      $ROOT/SfcFix/v2019-09/GMI/surface_VMRs.nc N2O         1960-2100/1-12/1/0 C xy v/v * 802 1 1
+
+#==============================================================================
+# --- UCX files ---
+#==============================================================================
+# * SfcVMR_CCl4     $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  CCl4        1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_CFC113   $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  CFC113      1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_CFC114   $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  CFC114      1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_CFC115   $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  CFC115      1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_CFC11    $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  CFC11       1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_CFC12    $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  CFC12       1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_CH3Br    $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  CH3Br       1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_CH3CCl3  $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  CH3CCl3     1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_CH3Cl    $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  CH3Cl       1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_CH4      $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  CH4         1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_H1211    $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  H1211       1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_H1301    $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  H1301       1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_HCFC141b $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  HCFC141b    1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_HCFC142b $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  HCFC142b    1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_HCFC22   $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  HCFC22      1960-2100/1-12/1/0 C xy v/v * 802 1 1
+# * SfcVMR_N2O      $ROOT/SfcFix/v2019-09/UCX/surface_VMRs.nc  N2O         1960-2100/1-12/1/0 C xy v/v * 802 1 1
+
+#==============================================================================
+# --- Dummy files with a single surface concentration (for OCS and H2) ---
+#==============================================================================
+* SfcVMR_OCS  $ROOT/SfcFix/v2019-09/surface_VMR_OCS.nc OCS 1985/1/1/0  C xy ppbv * - 1 1
+* SfcVMR_H2   $ROOT/SfcFix/v2019-09/surface_VMR_H2.nc  H2  1985/1/1/0  C xy ppbv * - 1 1
+)))SfcVMR
 
 #==============================================================================
 # --- Inputs for the RRTMG radiative transfer model ---
@@ -3699,6 +3764,12 @@ Warnings:                    {WARNINGS}
 )))OFFLINE_BIOGENICVOC
 
 )))EMISSIONS
+
+#==============================================================================
+# Scale the CMIP6 values in pptv to ppbv
+#==============================================================================
+801 pptv2ppbv  0.001      - - - xy 1 1
+802 vv2ppbv    1000000000 - - - xy 1 1
 
 ### END SECTION SCALE FACTORS ###
 
