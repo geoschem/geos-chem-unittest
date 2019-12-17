@@ -3576,9 +3576,9 @@ Warnings:                    {WARNINGS}
 # Fire diurnal scaling factors (% per hour) from WRAP Report to Project
 # No. 178-6, July 2005
 #==============================================================================
-(((QFED.or.GFAS
+(((QFED2.or.GFAS
 75 QFED2_TOD 0.1392/0.1392/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.48/0.96/1.68/2.4/3.12/3.84/4.08/2.88/1.68/0.96/0.1368/0.1368/0.1368/0.1368/0.1368 - - - xy unitless 1
-)))QFED.or.GFAS
+)))QFED2.or.GFAS
 
 #==============================================================================
 # --- GFAS scale factors ---
@@ -3708,10 +3708,10 @@ Warnings:                    {WARNINGS}
 # Following Fischer et al. (2014) and Travis et al. (2016), emit 35% of QFED
 # emissions above the PBL.
 #==============================================================================
-(((QFED
+(((QFED2
 311 QFED_PBL_FRAC 0.65 - - - xy 1 1
 312 QFED_FT_FRAC  0.35 - - - xy 1 1
-)))QFED
+)))QFED2
 
 #==============================================================================
 # --- DICE-Africa ---

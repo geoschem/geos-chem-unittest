@@ -61,7 +61,7 @@ Warnings:                    {WARNINGS}
     --> MIX                    :       false
 # ----- GLOBAL INVENTORIES ------------------
     --> EDGARv432              :       true
-    --> QFED                   :       true
+    --> QFED2                  :       true
     --> JPL_WETCHARTS          :       true
     --> SEEPS                  :       true
     --> LAKES                  :       false
@@ -283,10 +283,10 @@ Warnings:                    {WARNINGS}
 # Use QFED v2.4r8 for CH4. The data in QFED/v2014-09 are for v2.4r5 and have
 # been found to be buggy for CH4 (same emissions on each day).
 #==============================================================================
-(((QFED
+(((QFED2
 #0 QFED_CH4  $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_ch4.006.$YYYY$MM$DD.nc4  biomass 2000-2017/1-12/1-31/0 C xy kg/m2/s     CH4 75 9 2
 0 QFED_CH4   $ROOT/CH4/v2017-10/QFED/QFEDv2.4r8.emis_ch4.$YYYY.nc              emi_ch4 2009-2015/1-12/1-31/0 C xy molec/cm2/s CH4 -  9 2
-)))QFED
+)))QFED2
 
 #==============================================================================
 # --- JPL WetCHARTs v1.0 (Bloom et al., https://doi.org/10.3334/ORNLDAAC/1502) ---
@@ -798,9 +798,9 @@ Warnings:                    {WARNINGS}
 # Fire diurnal scaling factors (% per hour) from WRAP Report to Project
 # No. 178-6, July 2005
 #==============================================================================
-(((QFED
+(((QFED2
 75 QFED2_TOD 0.1392/0.1392/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.48/0.96/1.68/2.4/3.12/3.84/4.08/2.88/1.68/0.96/0.1368/0.1368/0.1368/0.1368/0.1368 - - - xy unitless 1
-)))QFED
+)))QFED2
 
 )))EMISSIONS
 
