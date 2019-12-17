@@ -579,6 +579,10 @@ sub doCopyDirs($$) {
             $cmd = "cp ../runs/shared_inputs/Makefiles/Makefile $copyDir/Makefile";
             qx/$cmd/;
           
+            # Copy the download_data.py script for GEOS-Chem dry-runs
+            $cmd = "cp ../runs/shared_inputs/scripts/download_data.py $copyDir/download_data.py";
+            qx/$cmd/;
+
             # Copy UT/perl/getRunInfo to copied run directory
             $cmd = "cp ./getRunInfo $copyDir/getRunInfo"; 
             qx/$cmd/;

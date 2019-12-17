@@ -79,7 +79,7 @@ Mask fractions:              false
     --> RCP_60                 :       false
     --> RCP_85                 :       false
 # ----- BIOMASS BURNING EMISSIONS -----------
-    --> QFED                   :       true
+    --> QFED2                  :       true
     --> GFAS                   :       false
 # ----- NON-EMISSIONS DATA ------------------
     --> GLOBAL_OH              :       true
@@ -656,7 +656,7 @@ Mask fractions:              false
 # %%%     -- Bob Yantosca (17 Mar 2016)                           %%%
 # %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #==============================================================================
-(((QFED
+(((QFED2
 0 QFED_CO_PBL      $ROOT/QFED/v2018-07/$YYYY/$MM/qfed2.emis_co.006.$YYYY$MM$DD.nc4 biomass 2000-2017/1-12/1-31/0 C xyL=1:PBL     kg/m2/s CO      54/75/311       5 2
 0 QFED_CObbAm_PBL  -                                                               -       -                     - -             -       CObbam  54/75/311/1104  5 2
 0 QFED_CObbAf_PBL  -                                                               -       -                     - -             -       CObbaf  54/75/311/1105  5 2
@@ -671,7 +671,7 @@ Mask fractions:              false
 0 QFED_CObbOc_FT   -                                                               -       -                     - -             -       CObboc  54/75/312/1107  5 2
 0 QFED_CObbEu_FT   -                                                               -       -                     - -             -       CObbeu  54/75/312/1108  5 2
 0 QFED_CObbOth_FT  -                                                               -       -                     - -             -       CObboth 54/75/312/1109  5 2
-)))QFED
+)))QFED2
 
 #==============================================================================
 # --- GFAS biomass burning ---
@@ -1159,9 +1159,9 @@ Mask fractions:              false
 # Fire diurnal scaling factors (% per hour) from WRAP Report to Project
 # No. 178-6, July 2005
 #==============================================================================
-(((QFED
+(((QFED2
 75 QFED2_TOD 0.1392/0.1392/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.1368/0.48/0.96/1.68/2.4/3.12/3.84/4.08/2.88/1.68/0.96/0.1368/0.1368/0.1368/0.1368/0.1368 - - - xy 1 1
-)))QFED
+)))QFED2
 
 #==============================================================================
 # --- GFAS scale factors ---
@@ -1207,10 +1207,10 @@ Mask fractions:              false
 # Following Fischer et al. (2014) and Travis et al. (2016), emit 35% of QFED
 # emissions above the PBL.
 #==============================================================================
-(((QFED
+(((QFED2
 311 QFED_PBL_FRAC 0.65 - - - xy 1 1
 312 QFED_FT_FRAC  0.35 - - - xy 1 1
-)))QFED
+)))QFED2
 
 #==============================================================================
 # DICE-Africa charcoal production scale factor to reduce charcoal production

@@ -203,19 +203,9 @@ Turn on PBL Mixing?     : T
 %%% EMISSIONS MENU %%%  :
 Turn on emissions?      : T
 HEMCO Input file        : HEMCO_Config.rc
- => 1ppt MBL BRO Sim.?  : F
 Switches for UCX        :---
  => Use CH4 emissions?  : F
- => Turn on surface BCs :---
-    => CH4?             : F
-    => OCS?             : T
-    => CFCs?            : T
-    => Cl species?      : T
-    => Br species?      : F
-    => N2O?             : T
- => Set initial glob MRs:---
-    => strat. H2O?      : T
- => CFC emission year   : 0
+ => Set init. strat. H2O: T
 ------------------------+------------------------------------------------------
 %%% AEROSOL MENU %%%    :
 Online SULFATE AEROSOLS : T
@@ -362,4 +352,3 @@ Turn on P/L (ND65) diag?: T
 ------------------------+------------------------------------------------------
 END OF FILE             :
 ------------------------+------------------------------------------------------
-
