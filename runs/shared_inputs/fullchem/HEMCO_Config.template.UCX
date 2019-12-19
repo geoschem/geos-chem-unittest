@@ -97,7 +97,7 @@ Warnings:                    {WARNINGS}
 # offline emissions to 'false' and the
 # corresponding HEMCO extension to 'on':
 #   OFFLINE_DUST        - DustDead or DustGinoux
-#   OFFLINE_BIOGENICVOC - MEGAN and MEGAN_Mono
+#   OFFLINE_BIOGENICVOC - MEGAN
 #   OFFLINE_SEASALT     - SeaSalt
 #   OFFLINE_SOILNOX     - SoilNOx
 #--------------------------------------------
@@ -138,20 +138,16 @@ Warnings:                    {WARNINGS}
     --> Br2 scaling            :       1.0
     --> Model sea salt Br-     :       false
     --> Br- mass ratio         :       2.11e-3
-108     MEGAN                  : off   ISOP/ACET/PRPE/C2H4/ALD2/EOH/MOH/SOAP/SOAS
+108     MEGAN                  : on    ISOP/ACET/PRPE/C2H4/ALD2/MOH/EOH/MTPA/MTPO/LIMO/SESQ/SOAP/SOAS
     --> Isoprene scaling       :       1.0
     --> CO2 inhibition         :       true
     --> CO2 conc (ppmv)        :       390.0
     --> Isoprene to SOAP       :       0.015
     --> Isoprene to SOAS       :       0.015
-#3% mass yield from isoprene to SOA
-109     MEGAN_Mono             : off   MTPA/MTPO/LIMO/SESQ
     --> Monoterp to SOAP       :       0.050
     --> Monoterp to SOAS       :       0.050
-#10% mass yield from monoterpenes to SOA
     --> Othrterp to SOAP       :       0.050
     --> Othrterp to SOAS       :       0.050
-#10% mass yield from other terpenes to SOA
 111     GFED                   : on    NO/CO/ALK4/ACET/MEK/ALD2/PRPE/C3H8/CH2O/C2H6/SO2/NH3/BCPO/BCPI/OCPO/OCPI/POG1/POG2/MTPA/BENZ/TOLU/XYLE/NAP/EOH/MOH/SOAP
     --> GFED4                  :       true
     --> GFED_daily             :       false
@@ -2158,7 +2154,6 @@ Warnings:                    {WARNINGS}
 # --- Offline biogenic VOC emissions ---
 #==============================================================================
 (((OFFLINE_BIOGENICVOC
-(((.not.MEGAN.or.MEGAN_Mono
 0 BIOGENIC_ACET      $ROOT/OFFLINE_BIOVOC/v2019-10/{NATIVE_RES}/$YYYY/$MM/biovoc_{LATRES}.$YYYY$MM$DD.nc ACET_MEGAN    1980-2017/1-12/1-31/* C xy kgC/m2/s ACET -   4 2
 0 BIOGENIC_ALD2      $ROOT/OFFLINE_BIOVOC/v2019-10/{NATIVE_RES}/$YYYY/$MM/biovoc_{LATRES}.$YYYY$MM$DD.nc ALD2_MEGAN    1980-2017/1-12/1-31/* C xy kgC/m2/s ALD2 -   4 2
 0 BIOGENIC_C2H4      $ROOT/OFFLINE_BIOVOC/v2019-10/{NATIVE_RES}/$YYYY/$MM/biovoc_{LATRES}.$YYYY$MM$DD.nc C2H4_MEGAN    1980-2017/1-12/1-31/* C xy kgC/m2/s C2H4 -   4 2
@@ -2179,7 +2174,6 @@ Warnings:                    {WARNINGS}
 0 BIOGENIC_SESQ      $ROOT/OFFLINE_BIOVOC/v2019-10/{NATIVE_RES}/$YYYY/$MM/biovoc_{LATRES}.$YYYY$MM$DD.nc SESQ_MEGAN    1980-2017/1-12/1-31/* C xy kgC/m2/s SESQ -   4 2
 0 BIOGENIC_SESQ_SOAP -                                                                                   -             -                     - -  -        SOAP 612 4 2
 0 BIOGENIC_SESQ_SOAS -                                                                                   -             -                     - -  -        SOAS 612 4 2
-))).not.MEGAN.or.MEGAN_Mono
 )))OFFLINE_BIOGENICVOC
 
 #==============================================================================
@@ -2218,13 +2212,13 @@ Warnings:                    {WARNINGS}
 # --- Seawater concentrations for oceanic emissions (Extension 101) ---
 #==============================================================================
 (((SeaFlux
-#101 CH3I_SEAWATER  $ROOT/CH3I/v2014-07/ocean_ch3i.geos.4x5.nc         CH3I_OCEAN 1985/1-12/1/0 C xy kg/m3 CH3I  - 1 1
-101 DMS_SEAWATER    $ROOT/DMS/v2015-07/DMS_lana.geos.1x1.nc            DMS_OCEAN  1985/1-12/1/0 C xy kg/m3 DMS   - 1 1
-101 ACET_SEAWATER   $ROOT/ACET/v2014-07/ACET_seawater.generic.1x1.nc   ACET       2005/1/1/0    C xy kg/m3 ACET  - 1 1
-101 ALD2_SEAWATER   $ROOT/ALD2/v2017-03/ALD2_seawater.geos.2x25.nc     ALD2       2006/1-12/1/0 C xy kg/m3 ALD2  - 1 1
-101 MENO3_SEAWATER  $ROOT/RONO2/v2019-05/RONO2_seawater.geos.2x25.nc   MENO3      2006/1-12/1/0 C xy kg/m3 MENO3 - 1 1
-101 ETNO3_SEAWATER  $ROOT/RONO2/v2019-05/RONO2_seawater.geos.2x25.nc   ETNO3      2006/1-12/1/0 C xy kg/m3 ETNO3 - 1 1
-101 MOH_SEAWATER    $ROOT/MARINE/MOH_seawater.low.kgCm3.generic.1x1.nc MOH        2005/1/1/0    C xy kgC/m3 MOH  - 1 1
+#101 CH3I_SEAWATER  $ROOT/CH3I/v2014-07/ocean_ch3i.geos.4x5.nc               CH3I_OCEAN 1985/1-12/1/0 C xy kg/m3 CH3I  - 1 1
+101 DMS_SEAWATER    $ROOT/DMS/v2015-07/DMS_lana.geos.1x1.nc                  DMS_OCEAN  1985/1-12/1/0 C xy kg/m3 DMS   - 1 1
+101 ACET_SEAWATER   $ROOT/ACET/v2014-07/ACET_seawater.generic.1x1.nc         ACET       2005/1/1/0    C xy kg/m3 ACET  - 1 1
+101 ALD2_SEAWATER   $ROOT/ALD2/v2017-03/ALD2_seawater.geos.2x25.nc           ALD2       2006/1-12/1/0 C xy kg/m3 ALD2  - 1 1
+101 MENO3_SEAWATER  $ROOT/RONO2/v2019-05/RONO2_seawater.geos.2x25.nc         MENO3      2006/1-12/1/0 C xy kg/m3 MENO3 - 1 1
+101 ETNO3_SEAWATER  $ROOT/RONO2/v2019-05/RONO2_seawater.geos.2x25.nc         ETNO3      2006/1-12/1/0 C xy kg/m3 ETNO3 - 1 1
+101 MOH_SEAWATER    $ROOT/MOH/v2019-12/MOH_seawater.low.kgCm3.generic.1x1.nc MOH        2005/1/1/0    C xy kgC/m3 MOH  - 1 1
 )))SeaFlux
 
 #==============================================================================
@@ -2323,16 +2317,14 @@ Warnings:                    {WARNINGS}
 108  PARDF_DAVG                   ./HEMCO_restart.$YYYY$MM$DD$HH00.nc                PARDF_DAVG              $YYYY/$MM/$DD/$HH EY xy W/m2     * - 1 1
 )))HEMCO_RESTART
 108  MEGAN_AEF_ISOP               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_ISOPRENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
-(((MEGAN_Mono
-109  MEGAN_AEF_MBOX               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_MBO                 1985/1/1/0        C xy kgC/m2/s * - 1 1
-#109 MEGAN_AEF_APIN               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_ALPHA_PINENE        1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_BPIN               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_BETA_PINENE         1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_CARE               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_CARENE              1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_LIMO               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_LIMONENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
-#109 MEGAN_AEF_MYRC               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_MYRCENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_OCIM               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_OCIMENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
-109  MEGAN_AEF_SABI               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_SABINENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
-)))MEGAN_Mono
+108  MEGAN_AEF_MBOX               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_MBO                 1985/1/1/0        C xy kgC/m2/s * - 1 1
+#108 MEGAN_AEF_APIN               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_ALPHA_PINENE        1985/1/1/0        C xy kgC/m2/s * - 1 1
+108  MEGAN_AEF_BPIN               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_BETA_PINENE         1985/1/1/0        C xy kgC/m2/s * - 1 1
+108  MEGAN_AEF_CARE               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_CARENE              1985/1/1/0        C xy kgC/m2/s * - 1 1
+108  MEGAN_AEF_LIMO               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_LIMONENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
+#108 MEGAN_AEF_MYRC               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_MYRCENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
+108  MEGAN_AEF_OCIM               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_OCIMENE             1985/1/1/0        C xy kgC/m2/s * - 1 1
+108  MEGAN_AEF_SABI               $ROOT/MEGAN/v2018-05/MEGAN2.1_EF.geos.025x03125.nc      AEF_SABINENE            1985/1/1/0        C xy kgC/m2/s * - 1 1
 108  CLM4_PFT_BARE                $ROOT/MEGAN/v2018-05/CLM4_PFT.geos.025x03125.v201805.nc PFT_BARE                2000/1/1/0        C xy 1        * - 1 1
 108  CLM4_PFT_NDLF_EVGN_TMPT_TREE $ROOT/MEGAN/v2018-05/CLM4_PFT.geos.025x03125.v201805.nc PFT_NDLF_EVGN_TMPT_TREE 2000/1/1/0        C xy 1        * - 1 1
 108  CLM4_PFT_NDLF_EVGN_BORL_TREE $ROOT/MEGAN/v2018-05/CLM4_PFT.geos.025x03125.v201805.nc PFT_NDLF_EVGN_BORL_TREE 2000/1/1/0        C xy 1        * - 1 1
@@ -2349,9 +2341,7 @@ Warnings:                    {WARNINGS}
 108  CLM4_PFT_C3_NARC_GRSS        $ROOT/MEGAN/v2018-05/CLM4_PFT.geos.025x03125.v201805.nc PFT_C3_NARC_GRSS        2000/1/1/0        C xy 1        * - 1 1
 108  CLM4_PFT_C4_GRSS             $ROOT/MEGAN/v2018-05/CLM4_PFT.geos.025x03125.v201805.nc PFT_C4_GRSS             2000/1/1/0        C xy 1        * - 1 1
 108  CLM4_PFT_CROP                $ROOT/MEGAN/v2018-05/CLM4_PFT.geos.025x03125.v201805.nc PFT_CROP                2000/1/1/0        C xy 1        * - 1 1
-(((MEGAN_Mono
-109  MEGAN_ORVC                   $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc                     OCPI                    1990/1-12/1/0     C xy kgC/m2/s * - 1 1
-)))MEGAN_Mono
+108  MEGAN_ORVC                   $ROOT/SOA/v2014-07/NVOC.geos.1x1.nc                     OCPI                    1990/1-12/1/0     C xy kgC/m2/s * - 1 1
 )))MEGAN
 
 #==============================================================================
