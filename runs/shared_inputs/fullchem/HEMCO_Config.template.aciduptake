@@ -1,3 +1,4 @@
+
 #------------------------------------------------------------------------------
 #                  Harvard-NASA Emissions Component (HEMCO)                   !
 #------------------------------------------------------------------------------
@@ -112,7 +113,8 @@ Warnings:                    {WARNINGS}
     --> GMI_PROD_LOSS          :       true
     --> UCX_PROD_LOSS          :       false
     --> OMOC_RATIO             :       false
-    --> GMD_CH4                :       true
+    --> GMD_SFC_CH4            :       true
+    --> CMIP6_SFC_CH4          :       false
     --> OLSON_LANDMAP          :       true
     --> YUAN_MODIS_LAI         :       true
     --> RRTMG                  :       false
@@ -3144,15 +3146,17 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 # --- NOAA GMD monthly mean surface CH4 ---
 #==============================================================================
-(((GMD_CH4
+(((GMD_SFC_CH4
 * NOAA_GMD_CH4 $ROOT/NOAA_GMD/v2018-01/monthly.gridded.surface.methane.1979-2020.1x1.nc SFC_CH4 1979-2020/1-12/1/0 C xy ppbv * - 1 1
-)))GMD_CH4
+)))GMD_SFC_CH4
 
 #==============================================================================
 # --- CMIP6 monthly mean surface CH4 ---
 # NOTE: This is only used if NOAA data is unavailible (pre 1979)
 #==============================================================================
+(((CMIP6_SFC_CH4
 * CMIP6_Sfc_CH4  $ROOT/CMIP6/v2019-12/CMIP6_GHG_surface_VMR_$YYYY.nc CH4 1750-1978/1-12/1/0 C xy ppbv * - 1 1
+)))CMIP6_SFC_CH4
 
 #==============================================================================
 # --- Olson land map masks ---
