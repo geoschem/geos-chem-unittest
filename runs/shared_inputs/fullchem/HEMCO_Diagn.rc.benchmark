@@ -597,7 +597,9 @@ InvCEDS_CH2O         CH2O   0    1   5   2   kg/m2/s  CH2O_emission_flux_from_CE
 InvCEDS_CH4          CH4    0    1   5   2   kg/m2/s  CH4_emission_flux_from_CEDS_inventory
 InvCEDS_CO           CO     0    1   5   2   kg/m2/s  CO_emission_flux_from_CEDS_inventory
 InvCEDS_CO2          CO2    0    1   5   2   kg/m2/s  CO2_emission_flux_from_CEDS_inventory
-InvCEDS_EOH          EOH    0    1   5   2   kg/m2/s  EOH_emission_flux_from_CEDS_inventor
+InvCEDS_MOH          MOH    0    1   5   2   kg/m2/s  MOH_emission_flux_from_CEDS_inventory
+InvCEDS_EOH          EOH    0    1   5   2   kg/m2/s  EOH_emission_flux_from_CEDS_inventory
+InvCEDS_ROH          ROH    0    1   5   2   kg/m2/s  ROH_emission_flux_from_CEDS_inventory
 InvCEDS_HCOOH        HCOOH  0    1   5   2   kg/m2/s  HCOOH_emission_flux_from_CEDS_inventory
 InvCEDS_MEK          MEK    0    1   5   2   kg/m2/s  MEK_emission_flux_from_CEDS_inventory
 InvCEDS_NH3          NH3    0    1   5   2   kg/m2/s  NH3_emission_flux_from_CEDS_inventory
