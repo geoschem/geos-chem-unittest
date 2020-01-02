@@ -188,6 +188,15 @@ Clear-sky flux?         : F
 All-sky flux?           : F
 Radiation Timestep [sec]: 10800
 ------------------------+------------------------------------------------------
+%%% MERCURY MENU %%%    :
+Error check tag/tot Hg? : F
+Use dynamic ocean Hg?   : T
+Preindustrial sim?      : F
+Use GTMM soil model?    : F
+GTMM Hg rst file (bpch) : GTM.tagHg.YYYYMMDDhh
+Use Arctic river Hg?    : T
+Tie HgII(aq) red to UVB?: T
+------------------------+------------------------------------------------------
 %%% OBSPACK MENU %%%    :
 Turn on ObsPack diag?   : F
 Quiet logfile output    : F
