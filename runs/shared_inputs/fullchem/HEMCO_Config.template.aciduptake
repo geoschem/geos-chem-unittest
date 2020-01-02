@@ -1,4 +1,3 @@
-
 #------------------------------------------------------------------------------
 #                  Harvard-NASA Emissions Component (HEMCO)                   !
 #------------------------------------------------------------------------------
@@ -54,8 +53,10 @@ Warnings:                    {WARNINGS}
     --> CHEMISTRY_INPUT        :       true
 # ----- RESTART FIELDS ----------------------
     --> GC_RESTART             :       true
-    --> GC_BCs                 :       false
+    --> STATE_PSC              :       true
     --> HEMCO_RESTART          :       true
+# ----- NESTED GRID FIELDS ------------------
+    --> GC_BCs                 :       false
 # ----- REGIONAL INVENTORIES ----------------
     --> APEI                   :       true
     --> NEI2011_HOURLY         :       false

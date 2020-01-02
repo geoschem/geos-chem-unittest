@@ -53,6 +53,7 @@ Warnings:                    {WARNINGS}
     --> CHEMISTRY_INPUT        :       true
 # ----- RESTART FIELDS ----------------------
     --> GC_RESTART             :       true
+# ----- NESTED GRID FIELDS ------------------
     --> GC_BCs                 :       false
 # ----- REGIONAL INVENTORIES ----------------
     --> ZHAOZHANG              :       false

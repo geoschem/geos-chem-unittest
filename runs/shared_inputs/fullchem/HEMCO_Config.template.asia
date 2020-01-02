@@ -55,8 +55,10 @@ Warnings:                    {WARNINGS}
     --> CHEMISTRY_INPUT        :       true
 # ----- RESTART FIELDS ----------------------
     --> GC_RESTART             :       true
-    --> GC_BCs                 :       true
+    --> STATE_PSC              :       false
     --> HEMCO_RESTART          :       true
+# ----- NESTED GRID FIELDS ------------------
+    --> GC_BCs                 :       true
 # ----- REGIONAL INVENTORIES ----------------
     --> APEI                   :       false
     --> NEI2011_HOURLY         :       false
@@ -115,7 +117,7 @@ Warnings:                    {WARNINGS}
     --> UCX_PROD_LOSS          :       true
     --> OMOC_RATIO             :       false
     --> GMD_SFC_CH4            :       true
-    --> CMIP6_SFC_CH4          :       false    
+    --> CMIP6_SFC_CH4          :       false
     --> OLSON_LANDMAP          :       true
     --> YUAN_MODIS_LAI         :       true
     --> RRTMG                  :       false
