@@ -103,6 +103,7 @@ Warnings:                    {WARNINGS}
     --> OFFLINE_SEASALT        :       true
     --> OFFLINE_SOILNOX        :       true
 # ----- NON-EMISSIONS DATA ------------------
+    --> UVALBEDO               :       true
     --> OMOC_RATIO             :       false
     --> OXIDANT_FIELDS         :       true
     --> OLSON_LANDMAP          :       true
