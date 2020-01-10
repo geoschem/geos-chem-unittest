@@ -124,20 +124,20 @@ sub doPrintTime($) {
   # Get fields from lastbuild.mp
   #-------------------------------------------------------------------------
 
-  # Look for the compiler version in lastbuild.mp
-  $grep = qx/grep "COMPILER" lastbuild.mp/;
+  # Look for the compiler version in lastbuild
+  $grep = qx/grep "COMPILER" lastbuild/;
   chomp( $grep );
   @result = split( ':', $grep ); 
   $compiler = $result[1];
 
   # Look for the last commit in th code directory
-  $grep = qx/grep "LAST_COMMIT" lastbuild.mp/;
+  $grep = qx/grep "LAST_COMMIT" lastbuild/;
   chomp( $grep );
   @result = split( ':', $grep ); 
   $commitLast = $result[1];
 
   # Look for the commit date in th code directory
-  $grep = qx/grep "COMMIT_DATE" lastbuild.mp/;
+  $grep = qx/grep "COMMIT_DATE" lastbuild/;
   chomp( $grep );
   @result = split( ':', $grep );
   for ( $i=1; $i<scalar(@result); $i++ ) {
@@ -146,7 +146,7 @@ sub doPrintTime($) {
   }
 
   # Look for the GEOS-Chem version in th code directory
-  $grep = qx/grep "VERSION " lastbuild.mp/;
+  $grep = qx/grep "VERSION " lastbuild/;
   chomp( $grep );
   @result = split( ':', $grep ); 
   $version = $result[1];
@@ -157,9 +157,13 @@ sub doPrintTime($) {
  
   # Create a string of options
   foreach $word ( @options ) {
-    $grep = qx/grep "$word" lastbuild.mp/;
+    $grep = qx/grep "$word" lastbuild/;
     chomp( $grep );
-    @result = split( ':', $grep );
+
+    # Skip to next iteration if a match isn't found.
+    # This will prevent "uninitialized value" warnings.
+    if ( index($grep, ":") != -1 ) { @result = split( ':', $grep ); }   
+    else                           { next;                          }   
     
     if    ( $result[0] =~ m/MET/        ) { $optionList .= "$result[1]";     }
     elsif ( $result[0] =~ m/GRID/       ) { $optionList .= "$result[1]";     }
