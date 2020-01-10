@@ -40,8 +40,7 @@
 #  as your email address.  Everything else may be left "as-is".
 #
 # !REVISION HISTORY:
-#  23 Nov 2015 - R. Yantosca - Initial version
-#  16 Dec 2016 - R. Yantosca - Now use SLURM tag -c instead of -n
+#  See the Git history with the Gitk browser!
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -54,7 +53,7 @@ fi
 # Run GEOS-Chem (timing output goes to stderr)
 # NOTE: Using srun will tell SLURM that only this part 
 # of the script should use multiple CPUs (bmy, 12/22/16)
-srun -c $OMP_NUM_THREADS time -p ./geos.mp
+srun -c $OMP_NUM_THREADS time -p ./geos
 
 # Echo info from computational cores to log file for displaying results
 nodeName=`uname -n`
