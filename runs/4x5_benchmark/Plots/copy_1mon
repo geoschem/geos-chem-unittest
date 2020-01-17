@@ -45,7 +45,7 @@ echo " "
 cp -av ../../GC_$version/* $dir
 
 # Remove files and directories not needed for permanent storage
-rm -v $dir/geos.mp
+rm -v $dir/geos
 rm -v $dir/validate.pl
 rm -rf $dir/CodeDir
 
@@ -64,14 +64,13 @@ chmod 664 $dir/OutputDir/*
 chmod 775 $dir/Plots
 chmod 775 $dir/Plots/*
 chmod 664 $dir/Plots/*/*
-chmod 664 $dir/Plots/*pdf
 chmod 664 $dir/Plots/*txt
 chmod 664 $dir/Plots/*json
 chmod 664 $dir/Plots/input.1mon
 chmod 664 $dir/Plots/*results*
 chmod 775 $dir/getRunInfo
 chmod 775 $dir/Makefile
-chmod 775 $dir/$version.run
+chmod 775 $dir/GC_$version.run
 
 # Print reminders to screen
 echo " "
