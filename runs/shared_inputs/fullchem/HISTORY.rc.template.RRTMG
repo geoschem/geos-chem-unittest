@@ -79,6 +79,8 @@ COLLECTIONS: 'Restart',
                               'Met_PS1DRY                     ', 'GIGCchem',
                               'Met_SPHU1                      ', 'GIGCchem',
                               'Met_TMPU1                      ', 'GIGCchem',
+                              'Met_BXHEIGHT                   ', 'GIGCchem',
+                              'Met_TropLev                    ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE SpeciesConc COLLECTION %%%%%
@@ -120,15 +122,22 @@ COLLECTIONS: 'Restart',
   AerosolMass.frequency:      {FREQUENCY}
   AerosolMass.duration:       {DURATION}
   AerosolMass.mode:           'time-averaged'
-  AerosolMass.fields:         'AerMassBC                    ', 'GIGCchem',
+  AerosolMass.fields:         'AerMassASOA                  ', 'GIGCchem',
+                              'AerMassBC                    ', 'GIGCchem',
+                              'AerMassINDIOL                ', 'GIGCchem',
+                              'AerMassLVOCOA                ', 'GIGCchem',
                               'AerMassNH4                   ', 'GIGCchem',
                               'AerMassNIT                   ', 'GIGCchem',
+                              'AerMassOPOA                  ', 'GIGCchem',
                               'AerMassPOA                   ', 'GIGCchem',
                               'AerMassSAL                   ', 'GIGCchem',
                               'AerMassSO4                   ', 'GIGCchem',
                               'AerMassSOAGX                 ', 'GIGCchem',
-                              'AerMassSOAMG                 ', 'GIGCchem',
+                              'AerMassSOAIE                 ', 'GIGCchem',
+                              'AerMassTSOA                  ', 'GIGCchem',
+                              'BetaNO                       ', 'GIGCchem',
                               'PM25                         ', 'GIGCchem',
+                              'TotalBiogenicOA              ', 'GIGCchem',
                               'TotalOA                      ', 'GIGCchem',
                               'TotalOC                      ', 'GIGCchem',
 ::
@@ -476,6 +485,7 @@ COLLECTIONS: 'Restart',
                               'Met_CLDTOPS                   ', 'GIGCchem',
                               'Met_CONVDEPTH                 ', 'GIGCchem',
                               'Met_DELP                      ', 'GIGCchem',
+			      'Met_DELPDRY                   ', 'GIGCchem',
                               'Met_DQRCU                     ', 'GIGCchem',
                               'Met_DQRLSAN                   ', 'GIGCchem',
                               'Met_DTRAIN                    ', 'GIGCchem',
@@ -545,6 +555,7 @@ COLLECTIONS: 'Restart',
                               'Met_V                         ', 'GIGCchem',
                               'Met_V10M                      ', 'GIGCchem',
                               'Met_Z0                        ', 'GIGCchem',
+                              'FracOfTimeInTrop              ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE Transport COLLECTION %%%%%
