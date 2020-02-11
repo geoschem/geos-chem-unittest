@@ -424,6 +424,8 @@ COLLECTIONS: 'Restart',
                               'ProdSO4fromO3s                ', 'GIGCchem',
                               'Loss_?LOS?                    ', 'GIGCchem',
                               'LossHNO3onSeaSalt             ', 'GIGCchem',
+			      'ProdCOfromCH4                 ', 'GIGCchem',
+			      'ProdCOfromNMVOC               ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE StateChm COLLECTION %%%%%

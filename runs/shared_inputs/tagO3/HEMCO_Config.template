@@ -57,6 +57,7 @@ Warnings:                    {WARNINGS}
     --> O3_PROD_LOSS           :       true
     --> OLSON_LANDMAP          :       true
     --> YUAN_MODIS_LAI         :       true
+    --> OCEAN_O3_DRYDEP        :       true
 
 ### END SECTION EXTENSION SWITCHES ###
 
@@ -386,6 +387,17 @@ Warnings:                    {WARNINGS}
 * XLAI71 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI71 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 * XLAI72 $ROOT/Yuan_XLAI/v2019-03/Yuan_proc_MODIS_XLAI.025x025.$YYYY.nc XLAI72 2005-2016/1-12/1-31/0 I xy cm2/cm2 * - 1 1
 )))YUAN_MODIS_LAI
+
+#==============================================================================
+# --- Oceanic ozone deposition ---
+#
+# Sea surface iodide concentration and salinity to be read in for the
+# new calculations for ozone deposition to the ocean
+#==============================================================================
+(((OCEAN_O3_DRYDEP
+* surf_salinity   $ROOT/OCEAN_O3_DRYDEP/v2020-02/WOA_2013_salinity.nc                                                s_mn                   1985/1/1/0    C xy 1 * - 1 1
+* surf_iodide     $ROOT/OCEAN_O3_DRYDEP/v2020-02/Oi_prj_predicted_iodide_0.125x0.125_No_Skagerrak_Just_Ensemble.nc   Ensemble_Monthly_mean  1970/1-12/1/0 C xy 1 * - 1 1
+)))OCEAN_O3_DRYDEP
 
 ### END SECTION BASE EMISSIONS ###
 
