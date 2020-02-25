@@ -2607,7 +2607,7 @@ Warnings:                    {WARNINGS}
 # --- GEOS-Chem boundary condition file ---
 #==============================================================================
 (((GC_BCs
-* BC_  $ROOT/SAMPLE_BCs/v2019-12/tropchem/GEOSChem.BoundaryConditions.$YYYY$MM$DD_$HH$MNz.nc4 SpeciesBC_?ADV?  1980-2019/1-12/1-31/0-23 RFY xyz 1 * - 1 1
+* BC_  $ROOT/SAMPLE_BCs/v2019-12/tropchem/GEOSChem.BoundaryConditions.$YYYY$MM$DD_$HH$MNz.nc4 SpeciesBC_?ADV?  1980-2019/1-12/1-31/* RFY xyz 1 * - 1 1
 )))GC_BCs
 
 (((CHEMISTRY_INPUT
