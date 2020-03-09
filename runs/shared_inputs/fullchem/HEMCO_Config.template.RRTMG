@@ -53,7 +53,7 @@ Warnings:                    {WARNINGS}
     --> CHEMISTRY_INPUT        :       true
 # ----- RESTART FIELDS ----------------------
     --> GC_RESTART             :       true
-    --> STATE_PSC              :       true
+    --> STATE_PSC              :       false
     --> HEMCO_RESTART          :       true
 # ----- NESTED GRID FIELDS ------------------
     --> GC_BCs                 :       false
@@ -105,22 +105,21 @@ Warnings:                    {WARNINGS}
 #--------------------------------------------
     --> OFFLINE_DUST           :       true
     --> OFFLINE_BIOGENICVOC    :       true
-    --> OFFLINE_SEASALT        :       false
+    --> OFFLINE_SEASALT        :       true
     --> OFFLINE_SOILNOX        :       true
 # ----- NON-EMISSIONS DATA ------------------
     --> UVALBEDO               :       true
     --> CCM_STRAT_Bry          :       true
     --> GMI_STRAT_OH           :       true
-    --> GMI_PROD_LOSS          :       true
-    --> UCX_PROD_LOSS          :       false
+    --> GMI_PROD_LOSS          :       false
+    --> UCX_PROD_LOSS          :       true
     --> OMOC_RATIO             :       false
     --> GMD_SFC_CH4            :       true
     --> CMIP6_SFC_CH4          :       false
     --> OLSON_LANDMAP          :       true
     --> YUAN_MODIS_LAI         :       true
-    --> RRTMG                  :       false
-    --> SfcVMR                 :       true
-    --> OCEAN_O3_DRYDEP        :       true
+    --> RRTMG                  :       true
+    --> SfcVMR                 :       false
 # -----------------------------------------------------------------------------
 100     Custom                 : off   -
 101     SeaFlux                : on    DMS/ACET/ALD2/MENO3/ETNO3/MOH
@@ -133,7 +132,7 @@ Warnings:                    {WARNINGS}
     --> Use fertilizer NOx     :       true
 105     DustDead               : off   DST1/DST2/DST3/DST4
 106     DustGinoux             : off   DST1/DST2/DST3/DST4
-107     SeaSalt                : on    SALA/SALC/Br2/BrSALA/BrSALC/MOPO/MOPI
+107     SeaSalt                : off   SALA/SALC/Br2/BrSALA/BrSALC/MOPO/MOPI
     --> SALA lower radius      :       0.01
     --> SALA upper radius      :       0.5
     --> SALC lower radius      :       0.5
@@ -3219,7 +3218,7 @@ Warnings:                    {WARNINGS}
 # NOTE: This is only used if NOAA data is unavailible (pre 1979)
 #==============================================================================
 (((CMIP6_SFC_CH4
-* CMIP6_Sfc_CH4  $ROOT/CMIP6/v2020-03/CMIP6_GHG_surface_VMR_$YYYY.nc CH4 1750-1978/1-12/1/0 C xy ppbv * - 1 1
+* CMIP6_Sfc_CH4  $ROOT/CMIP6/v2019-12/CMIP6_GHG_surface_VMR_$YYYY.nc CH4 1750-1978/1-12/1/0 C xy ppbv * - 1 1
 )))CMIP6_SFC_CH4
 
 #==============================================================================
@@ -3442,10 +3441,10 @@ Warnings:                    {WARNINGS}
 #
 # Use core CMIP6 observationally constrained data from Meinshausen et al. (2017) GMD
 #==============================================================================
-* SfcVMR_CH3Cl  $ROOT/CMIP6/v2020-03/CMIP6_GHG_surface_VMR_$YYYY.nc CH3Cl  1750-2014/1-12/1/0 C xy ppbv * 801 1 1
-* SfcVMR_CH2Cl2 $ROOT/CMIP6/v2020-03/CMIP6_GHG_surface_VMR_$YYYY.nc CH2Cl2 1750-2014/1-12/1/0 C xy ppbv * 801 1 1
-* SfcVMR_CHCl3  $ROOT/CMIP6/v2020-03/CMIP6_GHG_surface_VMR_$YYYY.nc CHCl3  1750-2014/1-12/1/0 C xy ppbv * 801 1 1
-* SfcVMR_CH3Br  $ROOT/CMIP6/v2020-03/CMIP6_GHG_surface_VMR_$YYYY.nc CH3Br  1750-2014/1-12/1/0 C xy ppbv * 801 1 1
+* SfcVMR_CH3Cl  $ROOT/CMIP6/v2019-12/CMIP6_GHG_surface_VMR_$YYYY.nc CH3Cl  1750-2014/1-12/1/0 C xy ppbv * 801 1 1
+* SfcVMR_CH2Cl2 $ROOT/CMIP6/v2019-12/CMIP6_GHG_surface_VMR_$YYYY.nc CH2Cl2 1750-2014/1-12/1/0 C xy ppbv * 801 1 1
+* SfcVMR_CHCl3  $ROOT/CMIP6/v2019-12/CMIP6_GHG_surface_VMR_$YYYY.nc CHCl3  1750-2014/1-12/1/0 C xy ppbv * 801 1 1
+* SfcVMR_CH3Br  $ROOT/CMIP6/v2019-12/CMIP6_GHG_surface_VMR_$YYYY.nc CH3Br  1750-2014/1-12/1/0 C xy ppbv * 801 1 1
 
 #==============================================================================
 # --- WMO-2018 files (GMI) ---
@@ -3474,17 +3473,6 @@ Warnings:                    {WARNINGS}
 * SfcVMR_OCS  $ROOT/SfcFix/v2019-12/surface_VMR_OCS.nc OCS 1985/1/1/0  C xy ppbv * - 1 1
 * SfcVMR_H2   $ROOT/SfcFix/v2019-12/surface_VMR_H2.nc  H2  1985/1/1/0  C xy ppbv * - 1 1
 )))SfcVMR
-
-#==============================================================================
-# --- Oceanic ozone deposition ---
-#
-# Sea surface iodide concentration and salinity to be read in for the
-# new calculations for ozone deposition to the ocean
-#==============================================================================
-(((OCEAN_O3_DRYDEP
-* surf_salinity   $ROOT/OCEAN_O3_DRYDEP/v2020-02/WOA_2013_salinity.nc                                                s_mn                   1985/1/1/0    C xy 1 * - 1 1
-* surf_iodide     $ROOT/OCEAN_O3_DRYDEP/v2020-02/Oi_prj_predicted_iodide_0.125x0.125_No_Skagerrak_Just_Ensemble.nc   Ensemble_Monthly_mean  1970/1-12/1/0 C xy 1 * - 1 1
-)))OCEAN_O3_DRYDEP
 
 ### END SECTION BASE EMISSIONS ###
 
