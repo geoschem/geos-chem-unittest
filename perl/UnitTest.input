@@ -28,7 +28,7 @@
 #
 # %%% ID tags %%%
 #
-   VERSION          : 12.7.1
+   VERSION          : 12.7.2
    VERSION_TAG      : GC_{VERSION}_{TODAYSDATE}
    DESCRIPTION      : Tests GEOS-Chem 12.7.1 (edit description as necessary)
 #
