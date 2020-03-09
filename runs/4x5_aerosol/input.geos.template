@@ -22,29 +22,29 @@ Tran/conv timestep [sec]: 600
 Chem/emis timestep [sec]: 1200
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
+Species name            : BCPI
+Species name            : BCPO
 Species name            : DMS
-Species name            : SO2
-Species name            : SO4
-Species name            : SO4s
+Species name            : DST1
+Species name            : DST2
+Species name            : DST3
+Species name            : DST4
+Species name            : H2O2
 Species name            : MSA
 Species name            : NH3
 Species name            : NH4
 Species name            : NIT
 Species name            : NITs
-Species name            : H2O2
-Species name            : BCPI
 Species name            : OCPI
-Species name            : BCPO
 Species name            : OCPO
-Species name            : DST1
-Species name            : DST2
-Species name            : DST3
-Species name            : DST4
+Species name            : pFe
 Species name            : SALA
 Species name            : SALC
+Species name            : SO2
+Species name            : SO4
+Species name            : SO4s
 Species name            : SOAP
 Species name            : SOAS
-Species name            : pFe
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
