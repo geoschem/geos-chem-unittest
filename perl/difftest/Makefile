@@ -126,10 +126,6 @@ ifndef RRTMG
  RRTMG       :=n
 endif
 
-ifndef MASSCONS 
- MASSCONS    :=n
-endif
-
 ifndef BPCH_DIAG
  BPCH_DIAG   :=n
 endif
@@ -231,10 +227,6 @@ endif
 
 ifeq ($(SIM),custom)
  CHEM        :=Custom
-endif
-
-ifeq ($(SIM),masscons)
- MASSCONS    :=y
 endif
 
 ifeq ($(SIM),APM)
@@ -381,7 +373,6 @@ refonly:
                                TOMAS15=$(TOMAS15)                             \
                                TOMAS30=$(TOMAS30)                             \
                                TOMAS40=$(TOMAS40)                             \
-                               MASSCONS=$(MASSCONS)                           \
                                OMP=$(OMP)                                     \
                                TIMERS=$(TIMERS)                               \
                                TAU_PROF=$(TAU_PROF)                           \
@@ -407,7 +398,6 @@ devonly:
                                TOMAS15=$(TOMAS15)                             \
                                TOMAS30=$(TOMAS30)                             \
                                TOMAS40=$(TOMAS40)                             \
-                               MASSCONS=$(MASSCONS)                           \
                                OMP=$(OMP)                                     \
                                TIMERS=$(TIMERS)                               \
                                TAU_PROF=$(TAU_PROF)                           \
@@ -437,7 +427,6 @@ devlib:
                                TOMAS15=$(TOMAS15)                             \
                                TOMAS30=$(TOMAS30)                             \
                                TOMAS40=$(TOMAS40)                             \
-                               MASSCONS=$(MASSCONS)                           \
                                OMP=$(OMP)                                     \
                                TIMERS=$(TIMERS)                               \
                                TAU_PROF=$(TAU_PROF)                           \
@@ -467,7 +456,6 @@ devrun:
                                TOMAS15=$(TOMAS15)                             \
                                TOMAS30=$(TOMAS30)                             \
                                TOMAS40=$(TOMAS40)                             \
-                               MASSCONS=$(MASSCONS)                           \
                                OMP=$(OMP)                                     \
                                TIMERS=$(TIMERS)                               \
                                TAU_PROF=$(TAU_PROF)                           \
@@ -619,7 +607,6 @@ printbuildinfo:
 	@echo "  TOMAS40      : $(TOMAS40)"
 	@echo "  APM          : $(APM)"
 	@echo "  RRTMG        : $(RRTMG)"
-	@echo "  MASSCONS     : $(MASSCONS)"
 	@echo "  TIMERS       : $(TIMERS)"
 	@echo "  TAU_PROF     : $(TAU_PROF)"
 	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"

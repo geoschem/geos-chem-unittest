@@ -125,10 +125,6 @@ ifndef RRTMG
  RRTMG       :=n
 endif
 
-ifndef MASSCONS
- MASSCONS    :=n
-endif
-
 # Now turn OFF BPCH_DIAG by default
 ifndef BPCH_DIAG
  BPCH_DIAG   :=n
@@ -204,10 +200,6 @@ endif
 
 ifeq ($(SIM),custom)
  CHEM        :=Custom
-endif
-
-ifeq ($(SIM),masscons)
- MASSCONS    :=y
 endif
 
 ifeq ($(SIM),APM)
@@ -351,7 +343,6 @@ build:
                                 TOMAS15=$(TOMAS15)                            \
                                 TOMAS30=$(TOMAS30)                            \
                                 TOMAS40=$(TOMAS40)                            \
-                                MASSCONS=$(MASSCONS)                          \
                                 OMP=$(OMP)                                    \
                                 TIMERS=$(TIMERS)                              \
                                 TAU_PROF=$(TAU_PROF)                          \
@@ -399,7 +390,6 @@ hcobuild:
                                 TOMAS15=$(TOMAS15)                            \
                                 TOMAS30=$(TOMAS30)                            \
                                 TOMAS40=$(TOMAS40)                            \
-                                MASSCONS=$(MASSCONS)                          \
                                 OMP=yes                                       \
                                 TIMERS=$(TIMERS)                              \
                                 TAU_PROF=$(TAU_PROF)                          \
@@ -542,7 +532,6 @@ printbuildinfo:
 	@echo "  TOMAS40      : $(TOMAS40)"
 	@echo "  APM          : $(APM)"
 	@echo "  RRTMG        : $(RRTMG)"
-	@echo "  MASSCONS     : $(MASSCONS)"
 	@echo "  TIMERS       : $(TIMERS)"
 	@echo "  TAU_PROF     : $(TAU_PROF)"
 	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"
