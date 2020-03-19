@@ -94,10 +94,6 @@ ifndef FPEX
  FPEX        :=n
 endif
 
-ifndef TIMERS
- TIMERS      :=0
-endif
-
 ifndef TAU_PROF
  TAU_PROF    :=n
 endif
@@ -201,7 +197,6 @@ endif
 
 ifeq ($(SIM),benchmark)
  CHEM        :=Standard
- TIMERS      :=1
 endif
 
 ifeq ($(SIM),aciduptake)
@@ -374,7 +369,6 @@ refonly:
                                TOMAS30=$(TOMAS30)                             \
                                TOMAS40=$(TOMAS40)                             \
                                OMP=$(OMP)                                     \
-                               TIMERS=$(TIMERS)                               \
                                TAU_PROF=$(TAU_PROF)                           \
                                TAU_OPTIONS=$(TAU_OPT)                         \
                                BPCH_DIAG=$(BPCH_DIAG)                         \
@@ -399,7 +393,6 @@ devonly:
                                TOMAS30=$(TOMAS30)                             \
                                TOMAS40=$(TOMAS40)                             \
                                OMP=$(OMP)                                     \
-                               TIMERS=$(TIMERS)                               \
                                TAU_PROF=$(TAU_PROF)                           \
                                TAU_OPTIONS=$(TAU_OPT)                         \
                                BPCH_DIAG=$(BPCH_DIAG)                         \
@@ -428,7 +421,6 @@ devlib:
                                TOMAS30=$(TOMAS30)                             \
                                TOMAS40=$(TOMAS40)                             \
                                OMP=$(OMP)                                     \
-                               TIMERS=$(TIMERS)                               \
                                TAU_PROF=$(TAU_PROF)                           \
                                TAU_OPTIONS=$(TAU_OPT)                         \
                                BPCH_DIAG=$(BPCH_DIAG)                         \
@@ -457,7 +449,6 @@ devrun:
                                TOMAS30=$(TOMAS30)                             \
                                TOMAS40=$(TOMAS40)                             \
                                OMP=$(OMP)                                     \
-                               TIMERS=$(TIMERS)                               \
                                TAU_PROF=$(TAU_PROF)                           \
                                TAU_OPTIONS=$(TAU_OPT)                         \
                                BPCH_DIAG=$(BPCH_DIAG)                         \
@@ -607,7 +598,6 @@ printbuildinfo:
 	@echo "  TOMAS40      : $(TOMAS40)"
 	@echo "  APM          : $(APM)"
 	@echo "  RRTMG        : $(RRTMG)"
-	@echo "  TIMERS       : $(TIMERS)"
 	@echo "  TAU_PROF     : $(TAU_PROF)"
 	@echo "  BPCH_DIAG    : $(BPCH_DIAG)"
 	@echo "  COMPILER     : $(FC) $(COMPILER_VERSION)"
@@ -708,5 +698,4 @@ help:
 	@echo 'BOUNDS=y          Compiles with out-of-bounds error checks'
 	@echo 'FPE=y             Compiles with floating-point math error checks'
 	@echo 'TRACEBACK=y       Compiles with traceback error printout'
-	@echo 'TIMERS=1          Compiles GEOS-Chem with timers turned on'
 #EOC
