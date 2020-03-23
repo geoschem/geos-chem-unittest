@@ -38,6 +38,7 @@ COLLECTIONS: 'Restart',
              'StateMet',
              'WetLossConv',
              'WetLossLS',
+             'AdvFluxVert',
 ::
 ###############################################################################
 ### The rest of this file consists of collection definitions.               ###
@@ -319,4 +320,18 @@ COLLECTIONS: 'Restart',
   Transport.duration:         'End',
   Transport.mode:             'instantaneous'
   Transport.fields:           'Met_AgeOfAir                  ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE AdvFluxVert COLLECTION %%%%%
+#
+# Diagnostics for evaluating transport, including age of air [s]
+#
+# Available for all simulations
+#==============================================================================
+  AdvFluxVert.template:       '%y4%m2%d2_%h2%n2z.nc4',
+  AdvFluxVert.format:         'CFIO',
+  AdvFluxVert.frequency:      {FREQUENCY}
+  AdvFluxVert.duration:       {DURATION}
+  AdvFluxVert.mode:           'time-averaged'
+  AdvFluxVert.fields:         'AdvFluxVert_?ADV?             ', 'GIGCchem',
 ::
