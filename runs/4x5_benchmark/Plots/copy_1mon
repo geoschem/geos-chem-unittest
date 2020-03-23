@@ -36,6 +36,12 @@ fi
 version=$1
 dir="/n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/geos-chem/1mo_benchmarks/GC_12/$version/GCC/"
 
+if [[ ! -d "$dir" ]]; then
+   echo "Directory does not exist. Check path!"
+   echo $dir
+   exit 1
+fi
+
 echo "======================================================================="
 echo "Copying 1-month benchmark output to $dir"
 echo "======================================================================="
@@ -49,12 +55,21 @@ rm -v $dir/geos
 rm -v $dir/validate.pl
 rm -rf $dir/CodeDir
 
+# Copy select files from build process
+mkdir $dir/cmake_build
+cp $dir/build/CMakeCache.txt $dir/cmake_build/
+cp $dir/build/CMakeFiles/CMakeOutput.log $dir/cmake_build/
+rm -rf $dir/build
+mv $dir/cmake_build $dir/build
+
 # Change group name of new directories and files
 chgrp jacob_gcst $dir
 chgrp jacob_gcst $dir/*
 chgrp jacob_gcst $dir/OutputDir/*
 chgrp jacob_gcst $dir/Plots/*
 chgrp jacob_gcst $dir/Plots/*/*
+chgrp jacob_gcst $dir/build
+chgrp jacob_gcst $dir/build/*
 
 # Change permissions of new directory and files
 chmod 775 $dir
@@ -65,11 +80,11 @@ chmod 775 $dir/Plots
 chmod 775 $dir/Plots/*
 chmod 664 $dir/Plots/*/*
 chmod 664 $dir/Plots/*txt
-chmod 664 $dir/Plots/*json
-chmod 664 $dir/Plots/input.1mon
+chmod 664 $dir/Plots/*yml
 chmod 664 $dir/Plots/*results*
+chmod 755 $dir/build
+chmod 664 $dir/build/*
 chmod 775 $dir/getRunInfo
-chmod 775 $dir/Makefile
 chmod 775 $dir/GC_$version.run
 
 # Print reminders to screen
