@@ -24,7 +24,7 @@ rm -f  *.ps
 rm -f  *.gif
 rm -f  *.fullchem
 rm -f  *.txt
-rm -f  *.json
+rm -f  *.yml
 rm -f  *results*
 rm -rf Aerosols
 rm -rf Bromine
@@ -40,6 +40,7 @@ rm -rf ROy
 rm -rf Sulfur
 rm -rf JValues
 rm -rf Budget
+rm -rf Tables
 
 # Exit normally
 exit 0
