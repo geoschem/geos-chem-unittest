@@ -82,7 +82,7 @@ chmod 664 $dir/Plots/*/*
 chmod 664 $dir/Plots/*txt
 chmod 664 $dir/Plots/*yml
 chmod 664 $dir/Plots/*results*
-chmod 755 $dir/build
+chmod 775 $dir/build
 chmod 664 $dir/build/*
 chmod 775 $dir/getRunInfo
 chmod 775 $dir/GC_$version.run

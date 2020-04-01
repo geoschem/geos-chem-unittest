@@ -333,7 +333,7 @@ ND53: POPs Emissions    :  0   all
 ND59: TOMAS aerosol emis:  0   all
 ND60: TOMAS rate        :  0   all
 ND61: TOMAS 3D rate     :  0   all
-ND72: Radiative output  :  0   all
+ND72: Radiative output  :  1   all
 ------------------------+------------------------------------------------------
 %%% PLANEFLIGHT MENU %%%:
 Turn on plane flt diag? : F
