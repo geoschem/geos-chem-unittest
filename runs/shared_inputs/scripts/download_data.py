@@ -227,7 +227,7 @@ def expand_restart_file_names(paths, run_info):
                                         "025x03125_tropchem_ch.nc")
             # --------------------------------------------------------
             path = path + " --> " + realpath
-            new_list.append(path)
+        new_list.append(path)
     paths["found"] = sorted(new_list)
 
     # Search for the restart file name in the missing files
