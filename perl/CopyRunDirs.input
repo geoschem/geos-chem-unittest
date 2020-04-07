@@ -28,7 +28,7 @@
 #
 # %%% Data path and HEMCO settings %%%
 #
-   GCGRID_ROOT    : /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid
+   GCGRID_ROOT    : /n/holyscratch01/external_repos/GEOS-CHEM/gcgrid/gcdata/ExtData
    DATA_ROOT      : {GCGRIDROOT}/data/ExtData
    VERBOSE        : 0
    WARNINGS       : 1

@@ -70,7 +70,7 @@
 ###     You can change the HEMCO diagnostic configuration file by modifying
 ###     the DiagnFile setting below.
 ###############################################################################
-ROOT:                /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData/HEMCO
+ROOT:                /n/holyscratch01/external_repos/GEOS-CHEM/gcgrid/gcdata/ExtData/HEMCO
 GridFile:            HEMCO_sa_Grid.4x5.rc
 SpecFile:            HEMCO_sa_Spec.rc
 TimeFile:            HEMCO_sa_Time.rc
@@ -90,7 +90,7 @@ Warnings:            1
 PBL dry deposition:  False
 ###############################################################
 # Uncomment these lines if you are using GEOS-FP met fields!
-#METDIR:              /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData/GEOS_4x5/GEOS_FP
+#METDIR:              /n/holyscratch01/external_repos/GEOS-CHEM/gcgrid/gcdata/ExtData/GEOS_4x5/GEOS_FP
 #MET:                 GEOSFP
 #met:                 geosfp
 #CNYR:                2011
@@ -98,7 +98,7 @@ PBL dry deposition:  False
 #NC:                  nc
 ###############################################################
 # Uncomment these lines if you are using MERRA-2 met fields
-#METDIR:              /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData/GEOS_4x5/MERRA2
+#METDIR:              /n/holyscratch01/external_repos/GEOS-CHEM/gcgrid/gcdata/ExtData/GEOS_4x5/MERRA2
 #MET:                 MERRA2
 #met:                 merra2
 #CNYR:                2015
