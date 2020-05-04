@@ -108,7 +108,8 @@ EmispFe_Ship       pFe    0      10  -1   2   kg/m2/s  pFe_emission_flux_from_sh
 ###############################################################################
 #####  SESQ emissions                                                     #####
 ###############################################################################
-EmisSESQ_Biogenic  SESQ   0      3   -1   2   kg/m2/s  SESQ_emission_flux_from_biogenic_sources
+# SESQ is not an active species in GEOS-Chem; disable for now
+#EmisSESQ_Biogenic  SESQ   0      3   -1   2   kg/m2/s  SESQ_emission_flux_from_biogenic_sources
 
 ###############################################################################
 #####  Sea salt emissions                                                 ##### 
