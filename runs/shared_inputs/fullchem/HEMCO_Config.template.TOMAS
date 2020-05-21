@@ -3224,7 +3224,7 @@ Warnings:                    {WARNINGS}
 # --- NOAA GMD monthly mean surface CH4 ---
 #==============================================================================
 (((GMD_SFC_CH4
-* NOAA_GMD_CH4 $ROOT/NOAA_GMD/v2018-01/monthly.gridded.surface.methane.1979-2020.1x1.nc SFC_CH4 1979-2020/1-12/1/0 EY xy ppbv * - 1 1
+* NOAA_GMD_CH4 $ROOT/NOAA_GMD/v2018-01/monthly.gridded.surface.methane.1979-2020.1x1.nc SFC_CH4 1979-2020/1-12/1/0 RY xy ppbv * - 1 1
 )))GMD_SFC_CH4
 
 #==============================================================================

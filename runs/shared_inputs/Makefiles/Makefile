@@ -312,7 +312,7 @@ endif
 .PHONY: cleanup_output  cleanup_data     cleanup_logs   cleanup_exe
 .PHONY: printruninfo    printbuildinfo   printcodeinfo  printallinfo
 .PHONY: hemco           hcobuild         hcorun         cleanup_hco
-.PHONY: hcodataclean    printruninfohco
+.PHONY: hcodataclean    printruninfohco  build
 
 #%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 #  Default make is to print help screen            %
