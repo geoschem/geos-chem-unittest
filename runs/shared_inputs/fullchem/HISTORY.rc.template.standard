@@ -453,6 +453,9 @@ COLLECTIONS: 'Restart',
                               'Chem_HSO3AQ                   ', 'GIGCchem',
                               'Chem_SO3AQ                    ', 'GIGCchem',
                               'Chem_fupdateHOBr              ', 'GIGCchem',
+                              'Chem_GammaN2O5overall         ', 'GIGCchem',
+                              'Chem_GammaN2O5fine            ', 'GIGCchem',
+                              'Chem_YieldClNO2fine           ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% The StateMet COLLECTION %%%%%
@@ -550,61 +553,4 @@ COLLECTIONS: 'Restart',
                               'Met_Z0                        ', 'GIGCchem',
                               'FracOfTimeInTrop              ', 'GIGCchem',
 ::
-#==============================================================================
-# %%%%% THE Transport COLLECTION %%%%%
-#
-# Diagnostics for evaluating transport, including age of air [s]
-#
-# Available for all simulations
-#==============================================================================
-  Transport.template:         '%y4%m2%d2_%h2%n2z.nc4',
-  Transport.format:           'CFIO',
-  Transport.frequency:        'End',
-  Transport.duration:         'End',
-  Transport.mode:             'instantaneous'
-  Transport.fields:           'Met_AgeOfAir                  ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE WetLossConv COLLECTION %%%%%
-#
-# Loss of soluble species in convective updrafts
-#
-# Available for all simulations that have soluble species
-#==============================================================================
-  WetLossConv.template:       '%y4%m2%d2_%h2%n2z.nc4',
-  WetLossConv.format:         'CFIO',
-  WetLossConv.frequency:      {FREQUENCY}
-  WetLossConv.duration:       {DURATION}
-  WetLossConv.mode:           'time-averaged'
-  WetLossConv.fields:         'WetLossConv_?WET?             ', 'GIGCchem',
-                              'WetLossConvFrac_?WET?         ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE WetLossLS COLLECTION %%%%%
-#
-# Loss of soluble species in large-scale wetdep (i.e. rainout and washout)
-#
-# Available for all simulations that have soluble species
-#==============================================================================
-# Loss due to rainout and washout (per deposited species)
-  WetLossLS.template:         '%y4%m2%d2_%h2%n2z.nc4',
-  WetLossLS.format:           'CFIO',
-  WetLossLS.frequency:        {FREQUENCY}
-  WetLossLS.duration:         {DURATION}
-  WetLossLS.mode:             'time-averaged'
-  WetLossLS.fields:           'WetLossLS_?WET?               ', 'GIGCchem',
-::
-#==============================================================================
-# %%%%% THE BoundaryConditions COLLECTION %%%%%
-#
-# GEOS-Chem boundary conditions for use in nested grid simulations
-#
-# Available for all simulations
-#==============================================================================
-  BoundaryConditions.template:   '%y4%m2%d2_%h2%n2z.nc4',
-  BoundaryConditions.format:     'CFIO',
-  BoundaryConditions.frequency:  00000000 030000
-  BoundaryConditions.duration:   00000001 000000
-  BoundaryConditions.mode:       'instantaneous'
-  BoundaryConditions.fields:     'SpeciesBC_?ADV?             ', 'GIGCchem',
-::
+#=======================================

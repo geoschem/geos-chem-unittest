@@ -460,6 +460,9 @@ COLLECTIONS: 'Restart',
                               'Chem_HSO3AQ                   ', 'GIGCchem',
                               'Chem_SO3AQ                    ', 'GIGCchem',
                               'Chem_fupdateHOBr              ', 'GIGCchem',
+                              'Chem_GammaN2O5overall         ', 'GIGCchem',
+                              'Chem_GammaN2O5fine            ', 'GIGCchem',
+                              'Chem_YieldClNO2fine           ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% The StateMet COLLECTION %%%%%

@@ -107,7 +107,7 @@ Warnings:                    {WARNINGS}
 #--------------------------------------------
     --> OFFLINE_DUST           :       true
     --> OFFLINE_BIOGENICVOC    :       true
-    --> OFFLINE_SEASALT        :       true
+    --> OFFLINE_SEASALT        :       false
     --> OFFLINE_SOILNOX        :       true
 # ----- NON-EMISSIONS DATA ------------------
     --> UVALBEDO               :       true
@@ -135,14 +135,14 @@ Warnings:                    {WARNINGS}
     --> Use fertilizer NOx     :       true
 105     DustDead               : off   DST1/DST2/DST3/DST4
 106     DustGinoux             : off   DST1/DST2/DST3/DST4
-107     SeaSalt                : off   SALA/SALC/Br2/BrSALA/BrSALC/MOPO/MOPI
+107     SeaSalt                : on    SALA/SALC/SALACL/SALCCL/SALAAL/SALCAL/Br2/BrSALA/BrSALC/MOPO/MOPI
     --> SALA lower radius      :       0.01
     --> SALA upper radius      :       0.5
     --> SALC lower radius      :       0.5
     --> SALC upper radius      :       8.0
     --> Emit Br2               :       false
     --> Br2 scaling            :       1.0
-    --> Model sea salt Br-     :       false
+    --> Model sea salt Br-     :       true
     --> Br- mass ratio         :       2.11e-3
 108     MEGAN                  : on    ISOP/ACET/PRPE/C2H4/ALD2/MOH/EOH/MTPA/MTPO/LIMO/SESQ/SOAP/SOAS
     --> Isoprene scaling       :       1.0
