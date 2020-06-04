@@ -2587,8 +2587,6 @@ Warnings:                    {WARNINGS}
 * SPHU_NEXTDAY $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC QV       1980-2019/1-12/1-31/1/+1day     RFY xyz 1  * -  1 1
 * TMPU_NEXTDAY $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC T        1980-2019/1-12/1-31/1/+1day     RFY xyz 1  * -  1 1
 
-)))METEOROLOGY
-
 #==============================================================================
 # --- Fields for lightning emissions (Extension 103) ---
 #
@@ -2600,6 +2598,8 @@ Warnings:                    {WARNINGS}
 * FLASH_DENS $ROOT/OFFLINE_LIGHTNING/v2020-03/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  LDENS 1980-2019/1-12/1-31/0-23/+90minute RFY3 xy  1  * -  1 1
 * CONV_DEPTH $ROOT/OFFLINE_LIGHTNING/v2020-03/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  CTH   1980-2019/1-12/1-31/0-23/+90minute RFY3 xy  1  * -  1 1
 )))LightNOx
+
+)))METEOROLOGY
 
 #==============================================================================
 # --- GEOS-Chem restart file ---
