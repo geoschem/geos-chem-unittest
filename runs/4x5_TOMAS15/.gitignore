@@ -34,3 +34,4 @@ core.*
 HISTORY.rc
 GEOSChem.*nc4*
 *.json
+species_database*.yml

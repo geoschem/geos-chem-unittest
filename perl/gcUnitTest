@@ -542,6 +542,7 @@ sub doUnitTest($$) {
 
       # Replace directory tokens in a few more variables
       $CODE_DIR     =~ s/{HOME}/$home/g;
+      $CODE_DIR     =~ s/{VERSION}/$VERSION/g;
       $RUN_ROOT     =~ s/{HOME}/$home/g;
       $RUN_ROOT     =~ s/{UTROOT}/$UT_ROOT/g;
       $JOB_DIR      =~ s/{HOME}/$home/g;
@@ -751,6 +752,10 @@ sub doUnitTest($$) {
 	    	      "cp -f HEMCO_Config.rc.$met\_$grid\_$sim HEMCO_Config.rc >> $stdout\n",
 	    	      "rm -f HEMCO_Config.rc.$met\_$grid\_$sim >> $stdout\n",
 	    	      "ln -sf $rstFile GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",
+		      "cp -f $CODE_DIR/Headers/species_database*.yml . >> $stdout\n",
+		      "cat species_database_apm.yml >> species_database.yml\n",
+		      "cat species_database_tomas.yml >> species_database.yml\n",
+		      "rm species_database_apm.yml species_database_tomas.yml\n",
 	    	      "mkdir -p OutputDir\n",
 	    	      "ln -sf $RUN_ROOT/geos.$sim.sp .\n",
  	              "./geos.$sim.sp >> $logGC.sp\n",
@@ -785,7 +790,8 @@ sub doUnitTest($$) {
 	    	    "cp -f HEMCO_Config.rc.$met\_$grid\_$sim HEMCO_Config.rc >> $stdout\n",
 	    	    "rm -f HEMCO_Config.rc.$met\_$grid\_$sim >> $stdout\n",
 	    	    "ln -sf $rstFile GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",
-	    	    "mkdir -p OutputDir\n",
+		    "cp -f $CODE_DIR/Headers/species_database.yml >> $stdout\n",
+		    "mkdir -p OutputDir\n",
 	    	    "ln -sf $RUN_ROOT/geos.$chem.sp .\n",
  	            "./geos.$chem.sp >> $logGC.sp\n",
 	    	    "for f in *nc; do mv \$f \$f.sp; done\n",

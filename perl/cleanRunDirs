@@ -185,7 +185,8 @@ sub main() {
           $cmd .= "lastbuild* *.sp *.mp *info.dat input.geos.g* ";
           $cmd .= "input.geos.m* GEOSChem.Restart* core.* *.nc4 ";
 	  $cmd .= "HEMCO_Config.rc.g* HEMCO_Config.rc.m* trac_avg.* ";
-	  $cmd .= "Rn.mass.* GEOS-Chem_Species_Database.json;";
+	  $cmd .= "Rn.mass.* GEOS-Chem_Species_Database.json ";
+	  $cmd .= "species_database*.yml;";
 	  $cmd .= "rm -rf OutputDir;";
 	  $cmd .= "cd ..";
           #print "$cmd\n";

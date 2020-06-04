@@ -586,7 +586,7 @@ sub doCopyDirs($$) {
 	  # Make sure you have the difftest Makefile in Dev
 	  $cmd = "$COPY_CMD ./difftest/Dev/Makefile $devDir";
 	  qx/$cmd/;
-
+	  
 	  # Make the input.geos and HEMCO_Config.rc file from templates
 	  &makeInputs( $start, $end, $devDir, $met, $grid, $nest, $sim );
 
@@ -638,6 +638,14 @@ sub doCopyDirs($$) {
 	    }
 	  }
 
+	  # Copy species database file
+	  $cmd = "$COPY_CMD $CODE_DEV/Headers/species_database.yml $devDir ";
+	  qx/$cmd/;
+
+	   # Make a symbolic link in Ref to Dev/species_database.yml
+	  $cmd = "ln -s ../Dev/species_database.yml $refDir/species_database.yml";
+	  qx/$cmd/;
+	  
 	  # Make a symbolic link in Ref to Dev/HEMCO_Config.rc
 	  $cmd = "ln -s ../Dev/HEMCO_Config.rc $refDir/HEMCO_Config.rc";
 	  qx/$cmd/;	      

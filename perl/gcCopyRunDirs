@@ -394,6 +394,7 @@ sub doCopyDirs($$) {
       # Make sure each of these directories exist before proceeding
       &checkDir( $GCGRID_ROOT );
       &checkDir( $DATA_ROOT   );
+      &checkDir( $CODE_DIR    );
 
        # Splash page
       print '%%%%%%%%% GEOS-Chem COPY RUN DIRECTORIES %%%%%%%%%%%%%%%%%%%%%'."\n"; # 
@@ -541,12 +542,12 @@ sub doCopyDirs($$) {
             qx/$cmd/;
 
 	    # Create symbolic link to the GEOS-Chem code directory
-	    if ( !( -d $CODE_DIR ) ){
-	      print "\nWARNING: Directory $CODE_DIR does not exist, so the CodeDir symbolic link will not be included in your run directory. Please check your CODE_DIR setting in CopyRunDirs.input. You may also create the CodeDir symbolic link manually or pass CODE_DIR={yourpath} when compiling.\n\n";
-            } else {
-	      $cmd = "ln -s $CODE_DIR $copyDir/CodeDir";
-	      qx/$cmd/;
-	    }
+	    $cmd = "ln -s $CODE_DIR $copyDir/CodeDir";
+	    qx/$cmd/;
+
+	    # Copy species_database.yml file
+	    $cmd = "cp -f $CODE_DIR/Headers/species_database.yml $copyDir";
+	    qx/$cmd/;
 
 	} else {
 
@@ -605,6 +606,19 @@ sub doCopyDirs($$) {
 	      print "\nWARNING: Directory $CODE_DIR does not exist, so the CodeDir symbolic link will not be included in your run directory. Please check your CODE_DIR setting in CopyRunDirs.input. You may also create the CodeDir symbolic link manually or pass CODE_DIR={yourpath} when compiling.\n\n";
             } else {
 	      $cmd = "ln -s $CODE_DIR $copyDir/CodeDir";
+	      qx/$cmd/;
+	    }
+
+	    # Copy species_database.yml to copied run directory
+	    $cmd = "cp -f $CODE_DIR/Headers/species_database.yml $copyDir";
+	    qx/$cmd/;
+
+	    # Append APM or TOMAS species to species_database.yml if needed
+	    if ( $sim =~ m/APM/ ) {
+	      $cmd = "cat $CODE_DIR/Headers/species_database_apm.yml >> $copyDir/species_database.yml";
+	      qx/$cmd/;
+	    } elsif ( ( $sim =~ m/TOMAS15/ ) || ( $sim =~ m/TOMAS40/ ) ) {
+	      $cmd = "cat $CODE_DIR/Headers/species_database_tomas.yml >> $copyDir/species_database.yml";
 	      qx/$cmd/;
 	    }
 	    
