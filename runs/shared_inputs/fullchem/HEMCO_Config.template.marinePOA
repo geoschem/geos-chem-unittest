@@ -100,6 +100,8 @@ Warnings:                    {WARNINGS}
 # corresponding HEMCO extension to 'on':
 #   OFFLINE_DUST        - DustDead or DustGinoux
 #   OFFLINE_BIOGENICVOC - MEGAN
+#    - Note: MEGAN must always be on for certain
+#            species not in OFFLINE_BIOGENICVOC
 #   OFFLINE_SEASALT     - SeaSalt
 #   OFFLINE_SOILNOX     - SoilNOx
 #--------------------------------------------
@@ -133,14 +135,14 @@ Warnings:                    {WARNINGS}
     --> Use fertilizer NOx     :       true
 105     DustDead               : off   DST1/DST2/DST3/DST4
 106     DustGinoux             : off   DST1/DST2/DST3/DST4
-107     SeaSalt                : on    SALA/SALC/Br2/BrSALA/BrSALC/MOPO/MOPI
+107     SeaSalt                : on    SALA/SALC/SALACL/SALCCL/SALAAL/SALCAL/Br2/BrSALA/BrSALC/MOPO/MOPI
     --> SALA lower radius      :       0.01
     --> SALA upper radius      :       0.5
     --> SALC lower radius      :       0.5
     --> SALC upper radius      :       8.0
     --> Emit Br2               :       false
     --> Br2 scaling            :       1.0
-    --> Model sea salt Br-     :       false
+    --> Model sea salt Br-     :       true
     --> Br- mass ratio         :       2.11e-3
 108     MEGAN                  : on    ISOP/ACET/PRPE/C2H4/ALD2/MOH/EOH/MTPA/MTPO/LIMO/SESQ/SOAP/SOAS
     --> Isoprene scaling       :       1.0
@@ -2572,6 +2574,8 @@ Warnings:                    {WARNINGS}
 * SPHU_NEXTDAY $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC QV       1980-2019/1-12/1-31/1/+1day     RFY xyz 1  * -  1 1
 * TMPU_NEXTDAY $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC T        1980-2019/1-12/1-31/1/+1day     RFY xyz 1  * -  1 1
 
+)))METEOROLOGY
+
 #==============================================================================
 # --- Fields for lightning emissions (Extension 103) ---
 #
@@ -2579,10 +2583,10 @@ Warnings:                    {WARNINGS}
 # and convective depth are now prescribed as offline meteorology.
 #                                                    --Lee Murray (16 Jan 2019)
 #==============================================================================
+(((LightNOx
 * FLASH_DENS $ROOT/OFFLINE_LIGHTNING/v2020-03/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  LDENS 1980-2019/1-12/1-31/0-23/+90minute RFY3 xy  1  * -  1 1
 * CONV_DEPTH $ROOT/OFFLINE_LIGHTNING/v2020-03/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  CTH   1980-2019/1-12/1-31/0-23/+90minute RFY3 xy  1  * -  1 1
-
-)))METEOROLOGY
+)))LightNOx
 
 #==============================================================================
 # --- GEOS-Chem restart file ---
