@@ -546,7 +546,11 @@ sub doCopyDirs($$) {
 	    qx/$cmd/;
 
 	    # Copy species_database.yml file
-	    $cmd = "cp -f $CODE_DIR/Headers/species_database.yml $copyDir";
+            if (-d "${CODE_DIR}./Headers") {
+               $cmd = "cp -f $CODE_DIR/Headers/species_database.yml $copyDir";
+            } else {
+               $cmd = "cp -f $CODE_DIR/src/GEOS-Chem/Headers/species_database.yml $copyDir";
+	    }
 	    qx/$cmd/;
 
 	} else {
@@ -610,7 +614,11 @@ sub doCopyDirs($$) {
 	    }
 
 	    # Copy species_database.yml to copied run directory
-	    $cmd = "cp -f $CODE_DIR/Headers/species_database.yml $copyDir";
+            if (-d "${CODE_DIR}./Headers") {
+		$cmd = "cp -f $CODE_DIR/Headers/species_database.yml $copyDir";
+	    } else {
+                $cmd = "cp -f $CODE_DIR/src/GEOS-Chem/Headers/species_database.yml $copyDir";
+	    }
 	    qx/$cmd/;
 
 	    # Append APM or TOMAS species to species_database.yml if needed
