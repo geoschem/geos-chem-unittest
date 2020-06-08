@@ -24,11 +24,11 @@ Tran/conv timestep [sec]: 600
 Chem/emis timestep [sec]: 1200
 ------------------------+------------------------------------------------------
 %%% ADVECTED SPECIES MENU %%%:
-Species name            : POPG
-Species name            : POPPOCPO
-Species name            : POPPOCPI
-Species name            : POPPBCPO
-Species name            : POPPBCPI
+Species name            : POPG_PYR
+Species name            : POPPOCPO_PYR
+Species name            : POPPOCPI_PYR
+Species name            : POPPBCPO_PYR
+Species name            : POPPBCPI_PYR
 ------------------------+------------------------------------------------------
 %%% TRANSPORT MENU %%%  :
 Turn on Transport       : T
