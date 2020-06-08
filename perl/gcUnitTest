@@ -790,7 +790,7 @@ sub doUnitTest($$) {
 	    	    "cp -f HEMCO_Config.rc.$met\_$grid\_$sim HEMCO_Config.rc >> $stdout\n",
 	    	    "rm -f HEMCO_Config.rc.$met\_$grid\_$sim >> $stdout\n",
 	    	    "ln -sf $rstFile GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4\n",
-		    "cp -f $CODE_DIR/Headers/species_database.yml >> $stdout\n",
+		    "cp -f $CODE_DIR/Headers/species_database.yml . >> $stdout\n",
 		    "mkdir -p OutputDir\n",
 	    	    "ln -sf $RUN_ROOT/geos.$chem.sp .\n",
  	            "./geos.$chem.sp >> $logGC.sp\n",
