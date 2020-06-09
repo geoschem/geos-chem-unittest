@@ -350,7 +350,7 @@ Warnings:                    {WARNINGS}
 * PHIS      $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NC        PHIS     */1/1/0               C xy  1  * -  1 1
 
 # --- A1 fields ---
-* ALBEDO    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     ALBEDO   1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* ALBEDO    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     ALBEDO   1980-2020/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
 * CLDTOT    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     CLDTOT   1980-2020/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
 * EFLUX     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     EFLUX    1980-2020/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
 * EVAP      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     EVAP     1980-2020/1-12/1-31/*/+30minute RFY xy  1  * -  1 1

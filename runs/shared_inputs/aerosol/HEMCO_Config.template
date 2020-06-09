@@ -114,7 +114,7 @@ Warnings:                    {WARNINGS}
 101     SeaFlux                : on    DMS
 105     DustDead               : off   DST1/DST2/DST3/DST4
 106     DustGinoux             : off   DST1/DST2/DST3/DST4
-107     SeaSalt                : off   SALA/SALC/Br2/BrSALA/BrSALC/MOPO/MOPI
+107     SeaSalt                : off   SALA/SALC/SALACL/SALCCL/SALAAL/SALCAL/Br2/BrSALA/BrSALC/MOPO/MOPI
     --> SALA lower radius      :       0.01
     --> SALA upper radius      :       0.5
     --> SALC lower radius      :       0.5
@@ -1054,8 +1054,12 @@ Warnings:                    {WARNINGS}
 #==============================================================================
 (((OFFLINE_SEASALT
 (((.not.SeaSalt
-0 SEASALT_SALA   $ROOT/OFFLINE_SEASALT/v2019-01/{NATIVE_RES}/$YYYY/$MM/seasalt_{LATRES}.$YYYY$MM$DD.nc SALA_TOTAL   1980-2017/1-12/1-31/* C xy kg/m2/s SALA   - 3 2
-0 SEASALT_SALC   $ROOT/OFFLINE_SEASALT/v2019-01/{NATIVE_RES}/$YYYY/$MM/seasalt_{LATRES}.$YYYY$MM$DD.nc SALC_TOTAL   1980-2017/1-12/1-31/* C xy kg/m2/s SALC   - 3 2
+0 SEASALT_SALA   $ROOT/OFFLINE_SEASALT/v2019-01/{NATIVE_RES}/$YYYY/$MM/seasalt_{LATRES}.$YYYY$MM$DD.nc SALA_TOTAL   1980-2017/1-12/1-31/* C xy kg/m2/s SALA   -   3 2
+0 SEASALT_SALAAL -                                                                                     -            -                     - -  -       SALAAL 615 3 2
+0 SEASALT_SALACL -                                                                                     -            -                     - -  -       SALACL 616 3 2
+0 SEASALT_SALC   $ROOT/OFFLINE_SEASALT/v2019-01/{NATIVE_RES}/$YYYY/$MM/seasalt_{LATRES}.$YYYY$MM$DD.nc SALC_TOTAL   1980-2017/1-12/1-31/* C xy kg/m2/s SALC   -   3 2
+0 SEASALT_SALCAL -                                                                                     -            -                     - -  -       SALCAL 615 3 2
+0 SEASALT_SALCCL -                                                                                     -            -                     - -  -       SALCCL 616 3 2
 ))).not.SeaSalt
 )))OFFLINE_SEASALT
 
@@ -1865,6 +1869,19 @@ Warnings:                    {WARNINGS}
 611 MONOtoSOA 0.0567 - - - xy 1 1
 612 OTHRtoSOA 0.0567 - - - xy 1 1
 )))OFFLINE_BIOGENICVOC
+
+#==============================================================================
+# --- Offline sea salt scale factors ---
+#
+# NOTES:
+# - Sea salt alkalinity and chloride values obtained from hcox_seasalt_mod.F90
+# - BrContent obtained from '--> Br- mass ratio' in SeaSalt extension above
+#==============================================================================
+(((OFFLINE_SEASALT
+615 SSAlkalinity 0.5504  - - - xy 1 1
+616 SSChloride   1.0     - - - xy 1 1
+617 BrContent    2.11e-3 - - - xy 1 1
+)))OFFLINE_SEASALT
 
 )))EMISSIONS
 
