@@ -58,7 +58,7 @@ Warnings:                    {WARNINGS}
     --> OLSON_LANDMAP          :       true
     --> YUAN_MODIS_LAI         :       true
 #------------------------------------------------------------------------------
-1002    GC_POPs                : on    POPG/POPPOCPO/POPPBCPO
+1002    GC_POPs                : on    POPG_PYR/POPPOCPO_PYR/POPPBCPO_PYR
 
 ### END SECTION EXTENSION SWITCHES ###
 
