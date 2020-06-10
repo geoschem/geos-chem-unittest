@@ -114,13 +114,11 @@ Warnings:                    {WARNINGS}
 101     SeaFlux                : on    DMS
 105     DustDead               : off   DST1/DST2/DST3/DST4
 106     DustGinoux             : off   DST1/DST2/DST3/DST4
-107     SeaSalt                : off   SALA/SALC/SALACL/SALCCL/SALAAL/SALCAL/Br2/BrSALA/BrSALC/MOPO/MOPI
+107     SeaSalt                : off   SALA/SALC/SALACL/SALCCL/SALAAL/SALCAL/BrSALA/BrSALC/MOPO/MOPI
     --> SALA lower radius      :       0.01
     --> SALA upper radius      :       0.5
     --> SALC lower radius      :       0.5
     --> SALC upper radius      :       8.0
-    --> Emit Br2               :       false
-    --> Br2 scaling            :       1.0
     --> Model sea salt Br-     :       false
     --> Br- mass ratio         :       2.11e-3
 108     MEGAN                  : off   ISOP/ACET/PRPE/C2H4/ALD2/MOH/EOH/MTPA/MTPO/LIMO/SESQ/SOAP/SOAS
@@ -1878,8 +1876,8 @@ Warnings:                    {WARNINGS}
 # - BrContent obtained from '--> Br- mass ratio' in SeaSalt extension above
 #==============================================================================
 (((OFFLINE_SEASALT
-615 SSAlkalinity 0.5504  - - - xy 1 1
-616 SSChloride   1.0     - - - xy 1 1
+615 SSAlkalinity 1.0     - - - xy 1 1
+616 SSChloride   0.5504  - - - xy 1 1
 617 BrContent    2.11e-3 - - - xy 1 1
 )))OFFLINE_SEASALT
 
