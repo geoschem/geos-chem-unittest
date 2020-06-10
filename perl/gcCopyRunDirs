@@ -546,7 +546,7 @@ sub doCopyDirs($$) {
 	    qx/$cmd/;
 
 	    # Copy species_database.yml file
-            if (-d "${CODE_DIR}./Headers") {
+            if (-d "${CODE_DIR}/Headers") {
                $cmd = "cp -f $CODE_DIR/Headers/species_database.yml $copyDir";
             } else {
                $cmd = "cp -f $CODE_DIR/src/GEOS-Chem/Headers/species_database.yml $copyDir";
@@ -614,7 +614,7 @@ sub doCopyDirs($$) {
 	    }
 
 	    # Copy species_database.yml to copied run directory
-            if (-d "${CODE_DIR}./Headers") {
+            if (-d "${CODE_DIR}/Headers") {
 		$cmd = "cp -f $CODE_DIR/Headers/species_database.yml $copyDir";
 	    } else {
                 $cmd = "cp -f $CODE_DIR/src/GEOS-Chem/Headers/species_database.yml $copyDir";
