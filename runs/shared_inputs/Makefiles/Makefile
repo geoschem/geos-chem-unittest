@@ -357,7 +357,7 @@ run:
 # Run only
 dryrun:
 	@$(MAKE) cleanup_output
-	./geos --dry-run > $(LOG_GC)
+	./geos --dryrun > $(LOG_GC)
 	@$(MAKE) printruninfo >> $(LOG_GC)
 	@$(MAKE) printruninfo
 
