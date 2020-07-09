@@ -1,0 +1,47 @@
+#!/bin/bash
+
+#------------------------------------------------------------------------------
+#          Harvard University Atmospheric Chemistry Modeling Group            !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: clean_1mon
+#
+# !DESCRIPTION: Removes 1-month benchmark output files in the current directory
+#\\
+#\\
+# !CALLING SEQUENCE:
+#  clean_1mon
+#
+# !REVISION HISTORY: 
+#  17 Jun 2015 - M. Sulprizio- Initial version
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+rm -f  *.pdf
+rm -f  *.ps
+rm -f  *.gif
+rm -f  *.fullchem
+rm -f  *.txt
+rm -f  *.yml
+rm -f  *results*
+rm -rf Aerosols
+rm -rf Bromine
+rm -rf Chlorine
+rm -rf Emissions
+rm -rf Iodine
+rm -rf Nitrogen
+rm -rf Oxidants
+rm -rf Primary_Organics
+rm -rf Secondary_Organics
+rm -rf Secondary_Organic_Aerosols
+rm -rf ROy
+rm -rf Sulfur
+rm -rf JValues
+rm -rf Budget
+rm -rf Tables
+
+# Exit normally
+exit 0
+#EOC

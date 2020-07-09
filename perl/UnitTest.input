@@ -28,21 +28,20 @@
 #
 # %%% ID tags %%%
 #
-   VERSION          : 12.0.0
+   VERSION          : 12.8.2
    VERSION_TAG      : GC_{VERSION}_{TODAYSDATE}
-   DESCRIPTION      : Tests GEOS-Chem 12.0.0 (edit description as necessary)
+   DESCRIPTION      : Tests GEOS-Chem 12.8.2 (edit description as necessary)
 #
 # %%% Data path and HEMCO settings %%%
 #
-   DATA_ROOT        : /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData
-   HEMCO_ROOT       : {DATAROOT}/HEMCO
+   DATA_ROOT        : /n/holyscratch01/external_repos/GEOS-CHEM/gcgrid/gcdata/ExtData
    VERBOSE          : 3
    WARNINGS         : 3
 #
 # %%% Code and queue settings %%%
 #
    CODE_DIR         : {HOME}/GC/Code.{VERSION}
-   MAKE_CMD         : make -j4 BOUNDS=y DEBUG=y FPEX=y NO_ISO=y
+   MAKE_CMD         : make -j4 BOUNDS=y DEBUG=y FPEX=y
    SUBMIT           : sbatch
 #
 # %%% Unit tester path names %%%
@@ -100,11 +99,11 @@
 #--------|-----------|------|----------------|------------|--------------|-----|
 # ======= GEOS-Chem benchmark ================================================
   geosfp   4x5         -      benchmark        2016070100   201607010020   -
-# ======= Radon-Lead-Beryllium ===============================================
-  geosfp   4x5         -      RnPbBe           2016010100   201601010020   -
-  merra2   4x5         -      RnPbBe           2016010100   201601010020   -
-  geosfp   2x25        -      RnPbBe           2016010100   201601010020   -
-  merra2   2x25        -      RnPbBe           2016010100   201601010020   -
+# ======= Transport Tracers (formerly RnPbBe) ================================
+  geosfp   4x5         -      TransportTracers 2016010100   201601010020   -
+  merra2   4x5         -      TransportTracers 2016010100   201601010020   -
+  geosfp   2x25        -      TransportTracers 2016010100   201601010020   -
+  merra2   2x25        -      TransportTracers 2016010100   201601010020   -
 # ======= Mercury ============================================================
   geosfp   4x5         -      Hg               2016010100   201601010020   -
   merra2   4x5         -      Hg               2016010100   201601010020   -
@@ -125,11 +124,6 @@
   merra2   2x25        -      CH4              2016070100   201607010020   -
   geosfp   025x03125   na     CH4              2016070100   201607010010   -
   merra2   05x0625     na     CH4              2016070100   201607010020   -
-# ======= Tagged Methane ======================================================
-  geosfp   4x5         -      tagCH4           2016070100   201607010020   -
-  merra2   4x5         -      tagCH4           2016070100   201607010020   -
-  geosfp   2x25        -      tagCH4           2016070100   201607010020   -
-  merra2   2x25        -      tagCH4           2016070100   201607010020   -
 # ======= Tagged O3 ==========================================================
   geosfp   4x5         -      tagO3            2016070100   201607010020   -
   merra2   4x5         -      tagO3            2016070100   201607010020   -
@@ -173,19 +167,22 @@
 # ======= Marine POA =========================================================
   geosfp   4x5         -      marinePOA        2016070100   201607010020   -
   geosfp   2x25        -      marinePOA        2016070100   201607010020   -
+# ======= APM aerosol microphysics ===========================================
+  geosfp   4x5         -      APM              2016070100   201607010020   -
+  merra2   4x5         -      APM              2016070100   201607010020   -
 # ======= TOMAS aerosol microphysics =========================================
-  geosfp   4x5         -      TOMAS15          2016070100   201607010030   -
-  geosfp   4x5         -      TOMAS40          2016070100   201607010030   -
+  geosfp   4x5         -      TOMAS15          2016070100   201607010100   -
+  geosfp   4x5         -      TOMAS40          2016070100   201607010100   -
 # ======= RRTMG online radiative transfer ====================================
-#### NOTE: At present, RRTMG does not work with GNU Fortran (bmy, 8/6/18) ####
+### NOTE: At present, RRTMG does not work with GNU Fortran 8.2 and earlier ###
   geosfp   4x5         -      RRTMG            2016070100   201607010040   -
-  merra2   4x5         -      RRTMG            2016070100   201607010040   -
+# merra2   4x5         -      RRTMG            2016070100   201607010040   -
 # geosfp   2x25        -      RRTMG            2016070100   201607010040   -
 # merra2   2x25        -      RRTMG            2016070100   201607010040   -
 # ======= Nested model runs ==================================================
   merra2   05x0625     as     tropchem         2016070100   201607010020   -
   merra2   05x0625     na     tropchem         2016070100   201607010020   -
-  geosfp   025x03125   ch     tropchem         2016070100   201607010010   -
+  geosfp   025x03125   as     tropchem         2016070100   201607010010   -
   geosfp   025x03125   na     tropchem         2016070100   201607010010   -
  !END OF RUNS:
 #EOP

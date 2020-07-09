@@ -15,26 +15,29 @@
 #      Will create netCDF files whose names begin with "GEOSChem"
 #      in the OutputDir sub-folder of this run directory.
 #
-# EXPDSC and CoresPerNode are only used by GCHP simulations.
 #============================================================================
-EXPID:  ./GEOSChem
-EXPDSC: GEOS-Chem_devel
-CoresPerNode: 6
+EXPID:  ./OutputDir/GEOSChem
 
 #==============================================================================
 # %%%%% COLLECTION NAME DECLARATIONS %%%%%
 #
-# To disable a collection, place a "#" character in front of its name
+# To enable a collection, remove the "#" character in front of its name. The
+# Restart collection should always be turned on.
 #
-# NOTE: These are the "default" collections for GEOS-Chem.  But you can create
-# your own custom diagnostic collections below by following th e
+# NOTE: These are the "default" collections for GEOS-Chem, but you can create
+# your own customized diagnostic collections as well.
 #==============================================================================
-COLLECTIONS: 'SpeciesConc',
-             'CloudConvFlux',
-             'DryDep',
-             'LevelEdgeDiags',      
-             'ProdLoss',
-             'StateMet',      
+COLLECTIONS: 'Restart',
+             'SpeciesConc',
+             #'Budget',
+             #'CloudConvFlux',
+             #'ConcAboveSfc',
+             #'DryDep',
+             #'LevelEdgeDiags',      
+             #'ProdLoss',
+             #'StateMet',      
+             #'Transport',
+             #'BoundaryConditions',
 ::
 ###############################################################################
 ### The rest of this file consists of collection definitions.               ###
@@ -43,6 +46,25 @@ COLLECTIONS: 'SpeciesConc',
 ### collections above, ends with a double-colon ("::").                     ###
 ###############################################################################
 
+#==============================================================================
+# %%%%% THE Restart COLLECTION %%%%%
+#
+# GEOS-Chem restart file fields
+#
+# Available for all simulations
+#==============================================================================
+  Restart.filename:           './GEOSChem.Restart.%y4%m2%d2_%h2%n2z.nc4',
+  Restart.format:             'CFIO',
+  Restart.frequency:          'End',
+  Restart.duration:           'End',
+  Restart.mode:               'instantaneous'
+  Restart.fields:             'SpeciesRst_?ALL?               ', 'GIGCchem',
+                              'Met_DELPDRY                    ', 'GIGCchem',
+                              'Met_PS1WET                     ', 'GIGCchem',
+                              'Met_PS1DRY                     ', 'GIGCchem',
+                              'Met_SPHU1                      ', 'GIGCchem',
+                              'Met_TMPU1                      ', 'GIGCchem',
+::
 #==============================================================================
 # %%%%% THE SpeciesConc COLLECTION %%%%%
 #
@@ -57,7 +79,39 @@ COLLECTIONS: 'SpeciesConc',
   SpeciesConc.mode:           'time-averaged'
   SpeciesConc.fields:         'SpeciesConc_?ADV?             ', 'GIGCchem',
 ::
-
+#==============================================================================
+# %%%%% THE Budget COLLECTION %%%%%
+#
+# GEOS-Chem budget diagnostics defined as species kg/s in the column
+# (full, troposphere, or PBL) due to a single component (e.g. chemistry)
+# (default = advected species)
+#
+# Available for all simulations
+#==============================================================================
+  Budget.template:     '%y4%m2%d2_%h2%n2z.nc4',
+  Budget.format:       'CFIO',
+  Budget.frequency:    {FREQUENCY}
+  Budget.duration:     {DURATION}
+  Budget.mode:         'time-averaged'
+  Budget.fields:       'BudgetEmisDryDepFull_?ADV?           ', 'GIGCchem',  
+                       'BudgetEmisDryDepTrop_?ADV?           ', 'GIGCchem',  
+                       'BudgetEmisDryDepPBL_?ADV?            ', 'GIGCchem',  
+                       'BudgetChemistryFull_?ADV?            ', 'GIGCchem',
+                       'BudgetChemistryTrop_?ADV?            ', 'GIGCchem',
+                       'BudgetChemistryPBL_?ADV?             ', 'GIGCchem',  
+                       'BudgetTransportFull_?ADV?            ', 'GIGCchem',
+                       'BudgetTransportTrop_?ADV?            ', 'GIGCchem',
+                       'BudgetTransportPBL_?ADV?             ', 'GIGCchem',  
+                       'BudgetMixingFull_?ADV?               ', 'GIGCchem',
+                       'BudgetMixingTrop_?ADV?               ', 'GIGCchem',
+                       'BudgetMixingPBL_?ADV?                ', 'GIGCchem',  
+                       'BudgetConvectionFull_?ADV?           ', 'GIGCchem',
+                       'BudgetConvectionTrop_?ADV?           ', 'GIGCchem',
+                       'BudgetConvectionPBL_?ADV?            ', 'GIGCchem',  
+                       'BudgetWetDepFull_?WET?               ', 'GIGCchem',
+                       'BudgetWetDepTrop_?WET?               ', 'GIGCchem',
+                       'BudgetWetDepPBL_?WET?                ', 'GIGCchem',  
+::
 #==============================================================================
 # %%%%% THE CloudConvFlux COLLECTION %%%%%
 #
@@ -71,6 +125,27 @@ COLLECTIONS: 'SpeciesConc',
   CloudConvFlux.duration:     {DURATION}
   CloudConvFlux.mode:         'time-averaged'
   CloudConvFlux.fields:       'CloudConvFlux_?ADV?           ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE ConcAboveSfc COLLECTION %%%%%
+#
+# Concentrations of O3 species at a user-specified altitude above
+# the surface, such as 10m.  Set the desired output altitude in meters
+# in the DEPOSITION MENU of input.geos.
+#
+# NOTES:
+# (1) This collection requires dry deposition to be turned on.
+# (2) All of the fields in the collection must be turned on.
+# (3) This collection is best used with mode "instantaneous".
+#==============================================================================
+  ConcAboveSfc.template:      '%y4%m2%d2_%h2%n2z.nc4',
+  ConcAboveSfc.format:        'CFIO',
+  ConcAboveSfc.frequency:     {FREQUENCY}
+  ConcAboveSfc.duration:      {DURATION}
+  ConcAboveSfc.mode:          'instantaneous'
+  ConcAboveSfc.fields:        'DryDepRaALT1                  ', 'GIGCchem',
+                              'DryDepVelForALT1_?DRYALT?     ', 'GIGCchem',
+                              'SpeciesConcALT1_?DRYALT?      ', 'GIGCchem',
 ::
 #==============================================================================
 # %%%%% THE DryDep COLLECTION %%%%%
@@ -140,7 +215,6 @@ COLLECTIONS: 'SpeciesConc',
                               'Met_AIRDEN                    ', 'GIGCchem',
                               'Met_AIRVOL                    ', 'GIGCchem',
                               'Met_ALBD                      ', 'GIGCchem',
-                              'Met_AREAM2                    ', 'GIGCchem',
                               'Met_AVGW                      ', 'GIGCchem',
                               'Met_BXHEIGHT                  ', 'GIGCchem',
                               'Met_ChemGridLev               ', 'GIGCchem',
@@ -216,4 +290,32 @@ COLLECTIONS: 'SpeciesConc',
                               'Met_V                         ', 'GIGCchem',
                               'Met_V10M                      ', 'GIGCchem',
                               'Met_Z0                        ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE Transport COLLECTION %%%%%
+#
+# Diagnostics for evaluating transport, including age of air [s]
+#
+# Available for all simulations
+#==============================================================================
+  Transport.template:         '%y4%m2%d2_%h2%n2z.nc4',
+  Transport.format:           'CFIO',
+  Transport.frequency:        'End',
+  Transport.duration:         'End',
+  Transport.mode:             'instantaneous'
+  Transport.fields:           'Met_AgeOfAir                  ', 'GIGCchem',
+::
+#==============================================================================
+# %%%%% THE BoundaryConditions COLLECTION %%%%%
+#
+# GEOS-Chem boundary conditions for use in nested grid simulations
+#
+# Available for all simulations
+#==============================================================================
+  BoundaryConditions.template:   '%y4%m2%d2_%h2%n2z.nc4',
+  BoundaryConditions.format:     'CFIO',
+  BoundaryConditions.frequency:  00000000 030000
+  BoundaryConditions.duration:   00000001 000000
+  BoundaryConditions.mode:       'instantaneous'
+  BoundaryConditions.fields:     'SpeciesBC_?ADV?             ', 'GIGCchem',
 ::

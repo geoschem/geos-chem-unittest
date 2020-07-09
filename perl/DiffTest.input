@@ -23,13 +23,12 @@
 #
 # %%% ID tags %%%
 #
-   VERSION        : 12.0.0
+   VERSION        : 12.8.2
    DESCRIPTION    : Create run directory from UnitTest
 #
 # %%% Data path and HEMCO settings %%%
 #
-   DATA_ROOT      : /n/holylfs/EXTERNAL_REPOS/GEOS-CHEM/gcgrid/data/ExtData
-   HEMCO_ROOT     : {DATAROOT}/HEMCO
+   DATA_ROOT      : /n/holyscratch01/external_repos/GEOS-CHEM/gcgrid/gcdata/ExtData
    VERBOSE        : 0
    WARNINGS       : 1
 #
@@ -61,11 +60,11 @@
 #--------|-----------|------|----------------|------------|--------------|-----|
 # ======= GEOS-Chem benchmark ================================================
   geosfp   4x5         -      benchmark        2016070100   2016070101     -
-## ======= Radon-Lead-Beryllium ===============================================
-# geosfp   4x5         -      RnPbBe           2016010100   2016010101     -
-# merra2   4x5         -      RnPbBe           2016010100   2016010101     -
-# geosfp   2x25        -      RnPbBe           2016010100   2016010101     -
-# merra2   2x25        -      RnPbBe           2016010100   2016010101     -
+## ======= Transport Tracers (formerly RnPbBe) ===============================
+# geosfp   4x5         -      TransportTracers 2016010100   2016010101     -
+# merra2   4x5         -      TransportTracers 2016010100   2016010101     -
+# geosfp   2x25        -      TransportTracers 2016010100   2016010101     -
+# merra2   2x25        -      TransportTracers 2016010100   2016010101     -
 ## ======= Mercury ============================================================
 # geosfp   4x5         -      Hg               2016010100   2016010101     -
 # merra2   4x5         -      Hg               2016010100   2016010101     -
@@ -104,9 +103,6 @@
 ## ======= Carbon Dioxide =====================================================
 # geosfp   2x25        -      CO2              2016070100   2016070101     -
 # merra2   2x25        -      CO2              2016070100   2016070101     -
-## ======= Mass Convervation Test =============================================
-# geosfp   2x25        -      masscons         2016070100   2016070101     -
-# merra2   2x25        -      masscons         2016070100   2016070101     -
 ## ======= Offline Aerosols ===================================================
 # geosfp   4x5         -      aerosol          2016070100   2016070101     -
 # merra2   4x5         -      aerosol          2016070100   2016070101     -
@@ -137,6 +133,9 @@
 ## ======= Marine POA =========================================================
 # geosfp   4x5         -      marinePOA        2016070100   2016070101     -
 # geosfp   2x25        -      marinePOA        2016070100   2016070101     -
+## ======= APM aerosol microphysics ===========================================
+# geosfp   4x5         -      APM              2016070100   2016070101     -
+# merra2   4x5         -      APM              2016070100   2016070101     -
 ## ======= TOMAS aerosol microphysics =========================================
 # geosfp   4x5         -      TOMAS15          2016070100   2016070101     -
 # geosfp   4x5         -      TOMAS40          2016070100   2016070101     -
@@ -148,11 +147,8 @@
 ## ======= Nested model runs ==================================================
 # merra2   05x0625     as     tropchem         2016070100   2016070101     -
 # merra2   05x0625     na     tropchem         2016070100   2016070101     -
-# geosfp   025x03125   ch     tropchem         2016070100   2016070101     -
+# geosfp   025x03125   as     tropchem         2016070100   2016070101     -
 # geosfp   025x03125   na     tropchem         2016070100   2016070101     -
-## ======= GCHP ===============================================================
-# gchp     c24         -      standard         2016070100   2016070101     -
-# gchp     c24         -      RnPbBe           2016070100   2016070101     -
 !END OF RUNS:
 #EOP
 #------------------------------------------------------------------------------

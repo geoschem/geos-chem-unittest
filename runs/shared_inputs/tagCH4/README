@@ -1,0 +1,9 @@
+This folder (runs/shared_inputs/tagCH4) contains input files
+for GEOS-Chem TAGGED METHANE simulations, namely:
+
+(1) HEMCO configuration files
+(2) A HISTORY.rc file for netCDF diagnostics
+
+-- GEOS-Chem Support Team
+   geos-chem-support@g.harvard.edu
+   13 Feb 2018

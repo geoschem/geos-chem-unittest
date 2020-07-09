@@ -53,28 +53,25 @@ lib:
 	cp -f $(CODE)/bin/geos $(EXEC)
 
 run:
+	rm -f trac_avg*
 	./$(EXEC) >> $(LOG)
 	@$(MAKE) addsuffixref
 
 addsuffixref:
-	@for f in ./$(TRAC_RST); do                     \
-           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi; \
+	@for f in ./trac_avg*; do                                  \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi;            \
         done
-	@for f in ./trac_avg*; do                       \
-           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi; \
+	@for f in ./HEMCO_restart*nc; do                           \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi;            \
         done
-	@for f in ./HEMCO_restart*.nc; do                           \
-           if [[ "$$f" != "./HEMCO_restart.$(STARTDATE)0000.nc" ]]; \
-              then mv -f $$f $$f.Ref; fi;                           \
+	@for f in ./OutputDir/HEMCO_diagnostics*.nc; do            \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi;            \
         done
-	@for f in ./HEMCO_diagnostics*.nc; do           \
-           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi; \
+	@for f in ./HEMCO.log; do                                  \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi;            \
         done
-	@for f in ./HEMCO.log; do                       \
-           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi; \
-        done
-	@for f in ./GEOSChem*.nc4; do                   \
-           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi; \
+	@for f in ./OutputDir/GEOSChem*.nc4; do                    \
+           if [[ -f $$f ]]; then mv -f $$f $$f.Ref; fi;            \
         done
 
 clean:

@@ -88,8 +88,7 @@ After cleaning the difftest directory, type the following to compile and run the
 
      make -j4 TRACEBACK=y difftest
 
-NOTE: ISORROPIA is turned off by default for diff testing (NO_ISO=y). 
-You can add the other debug flags (BOUNDS=y DEBUG=y FPE=y etc.) if you wish.
+You can add other debug flags (BOUNDS=y DEBUG=y FPE=y etc.) if you wish.
 
 The difftest Makefile has several other options for compiling and running
 Dev and Ref. Options include the following (other compile options are
@@ -142,7 +141,7 @@ indicated by validation output that lists "IDENTICAL" for sizes, checksums,
 and diffs for the GEOS-Chem diagnostic files, GEOS-Chem restart files, and 
 HEMCO restart file, then the Dev code passed the difference test.
 
-If the restart files (GEOSChem_restart.YYYYMMDDhhmm.nc.*) are identical, 
+If the restart files (GEOSChem.Restart.YYYYMMDD_hhmmz.nc4.*) are identical, 
 but the diagnostic files (trac_avg.YYYYMMDDhhmm*) differ, then there is 
 a problem in the diagnostic output that needs to be further addressed.
 

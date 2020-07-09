@@ -1,0 +1,75 @@
+#!/bin/bash
+
+#PBS -q QUEUE_NAME
+#PBS -l ncpus=8
+#PBS -l walltime=04:00:00
+#PBS -l mem=6000MB
+#PBS -N gc_timing
+#PBS -l wd
+#PBS -o doTimeTest.log
+#PBS -j oe
+
+#------------------------------------------------------------------------------
+#                  GEOS-Chem Global Chemical Transport Model                  !
+#------------------------------------------------------------------------------
+#BOP
+#
+# !MODULE: doTimeTest.pbs
+#
+# !DESCRIPTION: This bash script submits the GEOS-Chem timing test
+#  to a computational queue using the PBS scheduler.
+#\\
+#\\
+# !REMARKS:
+#  The SBATCH tags at the top of the file request computational resources
+#  for this job via the SLURM scheduler:
+#
+#    -q QUEUE_NAME        : Specify the run queue in which you want to run the test
+#    -l ncpus=8           : Use 8 CPUs
+#    -l walltime=04:00:00 : Use 4 hours of walltime
+#    -l mem=6000MB        : Use 6000MB of memory
+#    -N gc_timing         : Name the run gc_timimng
+#    -o doTimeTest.log    : Send stdout output to this log
+#    -j oe                : Send stderr output to the same log as stdout
+#
+#  You will have to specify the queue name for your system, as well
+#  as your email address.  Everything else may be left "as-is".
+#
+#  Note that unlike in SLURM it is not straightforward in PBS to add the job id
+#  to the stdout/stderr log filename. If you run multiple timing testss from
+#  the same directory you will need to manually rename your log files or they
+#  will be overwritten
+#
+# !REVISION HISTORY:
+#  10 Jan 2020 - J. Fisher - Initial version, based on SLURM example
+#EOP
+#------------------------------------------------------------------------------
+#BOC
+
+export OMP_NUM_THREADS=${PBS_NCPUS}
+
+# Some of these may not be necessary on all systems
+ulimit -s unlimited
+ulimit -c unlimited
+ulimit -l unlimited
+export OMP_STACKSIZE=2240000
+#
+
+# Run GEOS-Chem (timing output goes to stderr)
+time -p ./geos > log.debug
+
+# Echo info from computational cores to log file for displaying results
+nodeName=`uname -n`
+echo "# of CPUs : $OMP_NUM_THREADS"
+echo "NodeName : $nodeName"
+grep "vendor_id"  /proc/cpuinfo
+grep "model name" /proc/cpuinfo
+grep "cpu MHz"    /proc/cpuinfo
+
+# Undefine variables
+unset nodeName
+
+# Exit normally
+exit 0
+#EOC
+

@@ -18,9 +18,11 @@ require 5.003;		 	     # Need this version of Perl or newer
 use English;                         # Use English language
 use Carp;                            # Get detailed error messages
 use strict;                          # Use IMPLICIT-NONE style syntax
-use UtUtils qw( &readResults
-                &makeTxtMatrix
-                &makeMatrix    );    # Get routines from UtUtils.pm
+use FindBin qw/$RealBin/;            # Look for perl modules
+use lib        $RealBin;             #  in the current folder
+use UtUtils qw/&readResults
+               &makeTxtMatrix
+               &makeMatrix/;         # Get routines from module UtUtils.pm
 #		
 # !PUBLIC MEMBER FUNCTIONS:
 #  &main()        : Driver routine for gcUnitTest

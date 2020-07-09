@@ -19,13 +19,15 @@ require 5.003;                       # Need this version of Perl or newer
 use English;                         # Use English language
 use Carp;                            # Get detailed error messages
 use strict;
-use Dates   qw( &getLocalTime   );   # Get routines from Dates.pm
-use UtUtils qw( &baseName
-                &checkDir
-                &makeHemcoCfg
-                &makeInputGeos
-                &makeHistoryRc
-                &parse          );
+use FindBin qw/$RealBin/;            # Look for perl modules
+use lib        $RealBin;             #  in the current folder
+use Dates   qw/&getLocalTime/;       # Get routines from module Dates.pm
+use UtUtils qw/&baseName
+               &checkDir
+               &makeHemcoCfg
+               &makeInputGeos
+               &makeHistoryRc
+               &parse/;              # Get routines from module UtUtils.pm
 #
 # !PUBLIC DATA MEMBERS:
 #
@@ -35,7 +37,6 @@ our $CODE_REF   = "";                # Path to reference code (REF)
 our $CODE_DEV   = "";                # Path to development code (DEV)
 our $DATA_ROOT  = "";                # Root path for GEOS-Chem data directory
 our $DESCRIBE   = "";                # Short description of unit tests
-our $HEMCO_ROOT = "";                # Root path for HEMCO emissions files
 our $JOB_DIR    = "";                # Unit Test job directory
 our $LOG_DIR    = "";                # Unit Test logs directory
 our $RUN_ROOT   = "";                # Unit Test top-level run directory
@@ -65,6 +66,8 @@ our $WARNINGS   = "1";               # Warnings setting (0-3)
 #
 # !REVISION HISTORY: 
 #  02 Oct 2015 - E. Lundgren - Initial version, based on gcCopyRunDirs
+#  30 Aug 2018 - M. Sulprizio- Remove $HEMCO_ROOT; Now pass $DATA_ROOT to
+#                              makeHemcoCfg instead
 #EOP
 #------------------------------------------------------------------------------
 #                  GEOS-Chem Global Chemical Transport Model                  !
@@ -189,11 +192,12 @@ sub makeInputs($$$$$$$$) {
   else                           { print "$errMsg\n"; exit(1);          }
 
   # Make the input.geos file in the run directory
-  &makeInputGeos( $d0, $h0, $d1, $h1, $met, $DATA_ROOT, $inpTmpl, $inpGeos );
+  &makeInputGeos( $d0, $h0, $d1, $h1, $met, $grid, $nest, $sim, $DATA_ROOT,
+		  $inpTmpl, $inpGeos );
 
   # Make the HEMCO_Config.rc file in the run directory
   &makeHemcoCfg( $hcoTmpl, $start,   $met,      $grid,       $nest,    
-                 $sim,     $VERBOSE, $WARNINGS, $HEMCO_ROOT, $hcoCfg );
+                 $sim,     $VERBOSE, $WARNINGS, $DATA_ROOT, $hcoCfg );
 
   # Make the HISTORY.rc file in the run directory
   if ( -f $histTmpl ) {
@@ -322,6 +326,8 @@ sub doCopyDirs($$) {
   my $runDir  = "";
   my $sim     = "";
   my $start   = "";
+  my $yyyymmdd= "";
+  my $hhmm    = "";
   my $home    = "";
   my $file    = "";
   my $filename= "";
@@ -368,7 +374,6 @@ sub doCopyDirs($$) {
     #------------------------------------------------------------------------
     if ( !( $txt[$i] =~ m/\#/ ) ) { 
       if    ( $txt[$i] =~ "DATA_ROOT"   ) { $DATA_ROOT = &parse( $txt[$i] ); } 
-      elsif ( $txt[$i] =~ "HEMCO_ROOT"  ) { $HEMCO_ROOT= &parse( $txt[$i] ); } 
       elsif ( $txt[$i] =~ "UNIT_TEST_ROOT") { $UT_ROOT = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "JOB_DIR"     ) { $JOB_DIR   = &parse( $txt[$i] ); }
       elsif ( $txt[$i] =~ "LOG_DIR"     ) { $LOG_DIR   = &parse( $txt[$i] ); }
@@ -394,7 +399,6 @@ sub doCopyDirs($$) {
       # Strip spaces from directory paths
       $COPY_PATH  =~ s/ //g;
       $DATA_ROOT  =~ s/ //g;
-      $HEMCO_ROOT =~ s/ //g;
       $RUN_ROOT   =~ s/ //g; 
       $UT_ROOT    =~ s/ //g;
 
@@ -412,8 +416,6 @@ sub doCopyDirs($$) {
       $LOG_DIR    =~ s/{HOME}/$home/g;
       $LOG_DIR    =~ s/{UTROOT}/$UT_ROOT/g;
       $LOG_DIR    =~ s/{VERSION}/$VERSION/g;
-      $HEMCO_ROOT =~ s/{HOME}/$home/g;
-      $HEMCO_ROOT =~ s/{DATAROOT}/$DATA_ROOT/g;
       $RUN_DIR    =~ s/{RUNROOT}/$RUN_ROOT/g;
       $RUN_DIR    =~ s/{UTROOT}/$UT_ROOT/g;
 
@@ -431,7 +433,6 @@ sub doCopyDirs($$) {
       &checkDir( $CODE_REF   );
       &checkDir( $CODE_DEV   );
       &checkDir( $DATA_ROOT  );
-      &checkDir( $HEMCO_ROOT );
 
        # Splash page
       print '%%%%%%%%% GEOS-Chem CREATE DIFFTEST DIRECTORIES %%%%%%%%%'."\n"; # 
@@ -487,6 +488,11 @@ sub doCopyDirs($$) {
 	  $extra   =~ s/\_//g;
 	  $extra   =~ s/\.//g;
 
+	  # Get start date and hour
+	  $yyyymmdd= substr( $start, 0, 8 );
+	  $hhmm    = substr( $start, 8, 2 );
+	  $hhmm   .= "00";
+	  
 	  # Define the run directory name
 	  $runDir   = &getRunDir( $met, $grid, $nest, $sim );
 	  &checkDir( $runDir );
@@ -536,19 +542,21 @@ sub doCopyDirs($$) {
 	  # Hardcode number of tracers for several simulations for now
 	  # Eventually, find a better way to obtain these values
           if    ( $sim =~ m/standard/    ) {
-             $nTracers = "135";
+             $nTracers = "162";
+          } elsif ( $sim =~ m/benchmark/ ) {
+             $nTracers = "183";
           } elsif ( $sim =~ m/complexSOA_SVPOA/ ) {
-             $nTracers = "132";
+             $nTracers = "171";
           } elsif ( $sim =~ m/complexSOA/ ) {
-             $nTracers = "125";
+             $nTracers = "164";
           } elsif ( $sim =~ m/tropchem/  ) {
-             $nTracers = "105";
+             $nTracers = "145";
           } elsif ( $sim =~ m/aerosol/   ) {
-             $nTracers = "22";
+             $nTracers = "23";
           } elsif ( $sim =~ m/POPs/      ) {
              $nTracers = "5";
-          } elsif ( $sim =~ m/RnPbBe/    ) {
-             $nTracers = "4";
+          } elsif ( $sim =~ m/TransportTracers/ ) {
+             $nTracers = "16";
           } elsif ( $sim =~ m/Hg/        ) {
              $nTracers = "3";
           } else {
@@ -586,8 +594,9 @@ sub doCopyDirs($$) {
 	  $cmd =  "rm -f $devDir/input.geos.template";	    
 	  $cmd .= " $devDir/HISTORY.rc.template";
 	  $cmd .= " $devDir/HEMCO_Config.template";
+	  $cmd .= " $devDir/HEMCO_Config.rc.*";
 	  $cmd .= " $devDir/trac_avg.*";
-	  $cmd .= " $devDir/GEOSChem_restart.*";
+	  $cmd .= " $devDir/GEOSChem.Restart.*";
 	  $cmd .= " $devDir/lastbuild*";
 	  $cmd .= " $devDir/geos.*";
 	  $cmd .= " $devDir/Ox.mass.*";
@@ -599,22 +608,22 @@ sub doCopyDirs($$) {
    	  qx/$cmd/;
 
 	  # Create symbolic link to initial GC restart file
-	  $rstRoot = "$DATA_ROOT/SPC_RESTARTS/initial_GEOSChem_rst.";
+	  $rstRoot = "$DATA_ROOT/GEOSCHEM_RESTARTS/v2018-11/initial_GEOSChem_rst.";
 	  if ( length( $nest ) > 0 ) {
 	    $rstFile = "$rstRoot$grid\_$sim\_$nest.nc";
 	  } else {
 	    if ( ( $sim =~ m/RRTMG/ ) ) {
 	      $rstFile = "$rstRoot$grid\_tropchem.nc";
-	    } elsif ( $sim =~ m/RnPbBe/ ) {
-	      $rstFile = "$rstRoot$grid\_RnPbBePasv_72L.nc";
+	    } elsif ( $sim =~ m/TransportTracers/ ) {
+	      $rstFile = "$rstRoot$grid\_TransportTracers.nc";
 	    } else {
 	      $rstFile = "$rstRoot$notDir.nc";
 	    }
 	  }
 	  if ( !( -f $rstFile ) ){
-	    print "\nWARNING: File $rstFile does not exist, so a sample restart file will not be included in your run directory. Sample restart files can be found in the SPC_RESTARTS directory or you can use your own restart file.\n\n";
+	    print "\nWARNING: File $rstFile does not exist, so a sample restart file will not be included in your run directory. Sample restart files can be found in the SPECIESCONC_RESTARTS directory or you can use your own restart file.\n\n";
   	  } else {
-	    $cmd = "ln -sf $rstFile $devDir/GEOSChem_restart.${start}00.nc";
+	    $cmd = "ln -sf $rstFile $devDir/GEOSChem.Restart.${yyyymmdd}_${hhmm}z.nc4";
 	    qx/$cmd/;
           }
 
@@ -622,7 +631,7 @@ sub doCopyDirs($$) {
 	  @files = <$copyDir/Dev/*>;
 	  foreach $file (@files) {
 	    if ( $file =~ /\.dat$/i || $file =~ m/HEMCO_restart/ ||
-                 $file =~ m/GEOSChem_restart/ ) {
+                 $file =~ m/GEOSChem.Restart/ ) {
 	      $filename   = &baseName( $file );
 	      $cmd = "ln -s $file $refDir/$filename";
 	      qx/$cmd/;	      
@@ -630,15 +639,15 @@ sub doCopyDirs($$) {
 	  }
 
 	  # Make a symbolic link in Ref to Dev/HEMCO_Config.rc
-	  $cmd = "ln -s $devDir/HEMCO_Config.rc $refDir/HEMCO_Config.rc";
+	  $cmd = "ln -s ../Dev/HEMCO_Config.rc $refDir/HEMCO_Config.rc";
 	  qx/$cmd/;	      
 
 	  # Make a symbolic link in Ref to Dev/HEMCO_Diagn.rc
-	  $cmd = "ln -s $devDir/HEMCO_Diagn.rc $refDir/HEMCO_Diagn.rc";
+	  $cmd = "ln -s ../Dev/HEMCO_Diagn.rc $refDir/HEMCO_Diagn.rc";
 	  qx/$cmd/;
 
 	  # Make a symbolic link in Ref to Dev/input.geos
-	  $cmd = "ln -s $devDir/input.geos $refDir/input.geos";
+	  $cmd = "ln -s ../Dev/input.geos $refDir/input.geos";
 	  qx/$cmd/;	      
 	  
           # Copy UT/perl/getRunInfo to Dev directory
@@ -646,13 +655,17 @@ sub doCopyDirs($$) {
           qx/$cmd/; 
 
 	  # Make a symbolic link in Ref to Dev/HISTORY.rc
-	  $cmd = "ln -s $devDir/HISTORY.rc $refDir/HISTORY.rc";
+	  $cmd = "ln -s ../Dev/HISTORY.rc $refDir/HISTORY.rc";
 	  qx/$cmd/;
 
 	  # Copy UT/perl/validate to Dev directory 
           $cmd = "cp ./validate.pl $devDir"; 
           qx/$cmd/;  
-        }
+
+	  # Create OutputDir
+	  $cmd = "mkdir -p $devDir/OutputDir $refDir/OutputDir";
+	  qx/$cmd/;
+      }
 
 	# Increment counter
 	$i++;

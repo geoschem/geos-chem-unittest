@@ -1,7 +1,7 @@
 README for GEOS-Chem timing test run directory
 19 Dec 2016
 GEOS-Chem Support Team
-geos-chem-support@as.harvard.edu
+geos-chem-support@g.harvard.edu
 
 This directory contains the following files or sets of files:
 
@@ -26,7 +26,7 @@ Installation steps:
 
     For more instructions see:
 
-    http://wiki.seas.harvard.edu/geos-chem/index.php/Creating_GEOS-Chem_run_directories
+    http://wiki.seg.harvard.edu/geos-chem/index.php/Creating_GEOS-Chem_run_directories
 
 
 (3) Compile the code (piping the output to a log file for later reference):
@@ -84,7 +84,7 @@ IF YOU ARE USING THE SLURM SCHEDULER, THEN FOLLOW THESE INSTRUCTIONS:
 
        GEOS-Chem Time Test output
        ====================================================================
-       Machine or node name: : holyseas04.rc.fas.harvard.edu
+       Machine or node name: : holyseas04.rc.fg.harvard.edu
        CPU vendor            : AuthenticAMD
        CPU model name        : AMD Opteron(tm) Processor 6376                 
        CPU speed [MHz]       : 2300.078
@@ -100,7 +100,7 @@ IF YOU ARE USING THE SLURM SCHEDULER, THEN FOLLOW THESE INSTRUCTIONS:
     actual GEOS-Chem time test will run for 7 model days.
 
     Report this information to the GEOS-Chem Support Team
-    at geos-chem-support@as.harvard.edu
+    at geos-chem-support@g.harvard.edu
 
 
 

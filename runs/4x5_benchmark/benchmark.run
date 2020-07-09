@@ -3,10 +3,8 @@
 #SBATCH -c 24
 #SBATCH -N 1
 #SBATCH -t 0-12:00
-#SBATCH -p huce_intel
-#SBATCH --exclusive
-#SBATCH -w holyjacob01
-#SBATCH --mem=10000
+#SBATCH -p jacob_dev
+#SBATCH --mem=15000
 #SBATCH --mail-type=END
 
 #------------------------------------------------------------------------------
@@ -22,8 +20,8 @@
 # !REMARKS:
 #  Designed to be used with the geosfp_4x5_standard run directory created
 #  by the GEOS-Chem Unit Tester. To use this script, you must first compile
-#  the GEOS-Chem code using the command "make -j4 mpbuild" to create the
-#  geos.mp executable.
+#  the GEOS-Chem code using the command "make -j4 build" to create the
+#  geos executable.
 #
 #  NOTES:
 #  (1) This script is customized for the Harvard "Odyssey" cluster.  If you
@@ -61,11 +59,10 @@
 #BOC
 
 # Load environment modules
-# This will load the IFORT11 compiler (version 11.1.069). If you use a 
-# different compiler, make sure to load the proper modules. Examples of 
-# other bash scripts for loading modules can be found in the ~/init/ folder
+# This will load the IFORT17 compiler.
+# If you use a different compiler, make sure to load the proper modules.
 source ~/.bashrc
-source ~/init/init.gc-classic.ifort11.centos7
+source ~/init/init.gc-classic.ifort17.centos7
 
 # Set the proper # of threads for OpenMP
 # SLURM_CPUS_PER_TASK ensures this matches the number you set with -c above
@@ -76,7 +73,7 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 #-------------------------------------------------
 
 # Define GEOS-Chem version number (X.Y.Z)
-version=12.0.0
+version=12.7.0
 
 # Define version ID (prefix "GC_" to the version
 # so that file names won't begin with a number)
@@ -90,7 +87,7 @@ log=$id.log
 #-------------------------------------------------
 
 # Run GEOS-Chem and pipe output to log
-srun -c $OMP_NUM_THREADS time -p ./geos.mp >> $log
+srun -c $OMP_NUM_THREADS time -p ./geos >> $log
 
 # Echo end time
 echo '===> Run ended at' `date` >> $log

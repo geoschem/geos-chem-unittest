@@ -11,8 +11,8 @@
 # !DESCRIPTION: This script extracts information from the input.geos file
 #  and prints the result. The input arguments are (1) the location of file
 #  input.geos, and (2) the ID of run information to be extracted. Mapping 
-#  between ID and input.geos information are is as follows: 0:MET, 1:GRID,
-#  2:SIM, 3:NEST, 4:START, and 5:END.
+#  between ID and input.geos information are is as follows: 0:START, 1:END,
+#  3:STARTDATE, 4:ENDDATE.
 #\\
 #\\
 # !USES:
@@ -36,15 +36,11 @@ use strict;                      # Use "IMPLICIT NONE" syntax
 #                                                                             .
 #  ID value   Information returned
 #  -------------------------------------------------------------------
-#  0          Met field type      (geosfp, merra2, etc.             )
-#  1          Horizontal grid     (4x5, 2x25, etc.                  )
-#  2          Simulation type     (standard, benchmark, RnPbBe, etc.)
-#  3          Nested grid option  (na, ch, as, etc.                 )
-#  4          Start date & time   (in YYYYMMDDhhmm format           )
-#  5          End   date & time   (in YYYYMMDDhhmm format           )
-#  6          Root data directory
-#  7          Start date only     (in YYYYMMDD format               )
-#  8          End   date only     (in YYYYMMDD format               )
+#  1          Start date & time   (in YYYYMMDDhhmm format           )
+#  2          End   date & time   (in YYYYMMDDhhmm format           )
+#  3          Start date only     (in YYYYMMDD format               )
+#  4          End   date only     (in YYYYMMDD format               )
+#  5          Simulation name
 #
 # !REVISION HISTORY: 
 #  06 Apr 2015 - E. Lundgren - Initial version
@@ -78,6 +74,8 @@ sub getInfo($$) {
 #                              YYYYMMDD and hh:mm:ss to hhmmss
 #  19 Sep 2017 - R. Yantosca - Add options to return start & end time in just
 #                              YYYYMMDD format (e.g. for use in filenames)
+#  05 Nov 2018 - M. Sulprizio- Add options to return start & end time in hhmm
+#                              format for use in filenames
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -98,11 +96,11 @@ sub getInfo($$) {
   # Make sure that an input.geos file is found; otherwise print a "";
   if ( -f "$rundir/input.geos" ) {
   
-    # get start run time if $id is 4 or 7, end run time is $id is 5 or 8
-    if ( $id == 4 || $id == 5 || $id == 7 || $id == 8 )  {
+    # Get start run time if $id is 1 or 3, end run time if $id is 2 or 4
+    if ( $id == 1 || $id == 2 || $id == 3 || $id == 4 )  {
         
-      if    ( $id == 4 || $id == 7 ) { $runstr = "Start"; }
-      elsif ( $id == 5 || $id == 8 ) { $runstr = "End";   }
+      if    ( $id == 1 || $id == 3 ) { $runstr = "Start"; }
+      elsif ( $id == 2 || $id == 4 ) { $runstr = "End";   }
    
       # Grep for date & time in input.geos
       $line = qx( grep "$runstr.*YYYYMMDD" $rundir/input.geos );
@@ -111,69 +109,35 @@ sub getInfo($$) {
       # Split by spaces
       @linestrings = split( ' ', $line );
   
-      # Place start and end times into YYYYMMDDhhmm format (ID = 4 or 5)
-      # or just YYYYMMDD format (ID = 7 or 8)
+      # Place start and end times into YYYYMMDDhhmm format (ID = 1 or 2)
+      # or just YYYYMMDD format (ID = 3 or 4)
       $runinfo = "$linestrings[4]$linestrings[5]";
-      if    ( $id == 4 || $id == 5 ) { $runinfo = substr( $runinfo, 0, 12 ); } 
-      elsif ( $id == 7 || $id == 8 ) { $runinfo = substr( $runinfo, 0, 8  ); }
+      if    ( $id == 1 || $id == 2 ) { $runinfo = substr( $runinfo, 0, 12 ); } 
+      elsif ( $id == 3 || $id == 4 ) { $runinfo = substr( $runinfo, 0, 8  ); }
 
-    } else {
- 
-      # Grep for input.geos header
-      $line = qx( grep "GEOS-CHEM UNIT TEST SIMULATION" $rundir/input.geos );
+    } elsif ( $id == 5 ) {
+
+      # Grep for line in input.geos
+      $line = qx( grep "Simulation name" $rundir/input.geos );
       chomp( $line );
-      
+
       # Split by spaces
       @linestrings = split( ' ', $line );
       
-      # Extract the original run directory name
-      $runstr = "$linestrings[4]";
+      # Extract the simulation name
+      $runinfo = "$linestrings[3]";
       
-      # Split by '_' delimiter
-      @runinfoarray  = split( '_', $runstr );
-      
-      # If the id is less than the # of rundirstrings, then extract the 
-      # run info from the rundir name. Else, set runinfo to 'n' which is 
-      # used as NEST for non-nested simulations
-      if ( $id < 0+@runinfoarray ) {
-      
-        # Special case for complexSOA_SVPOA
-	if ( ( $id == 2 || $id == 3 ) && 0+@runinfoarray == 4 ) {
-	  if ( $runinfoarray[3] eq "SVPOA" ) {
-	    if ( $id == 2 ) { $runinfo = "complexSOA_SVPOA" } # SIM=complexSOA_SVPOA
-	    if ( $id == 3 ) { $runinfo = "n" }                # NEST=n
-	  } else {
-	    $runinfo = "$runinfoarray[$id]"; 
-	  }
-        } else {
-         $runinfo = "$runinfoarray[$id]"; 
-        }	
-
-      } else {
-        $runinfo = "n";
-      }
-
-    }				
+    } 
 
   } elsif ( -f "$rundir/HEMCO_sa_Config.rc" ) {
 
-    # Hardcode simulation type to HEMCO for now
-    if ( $id == 2 ) {
-
-       $runinfo = "HEMCO"
-
-    # Hardcode nest to "n" for now
-    } elsif ( $id == 3 ) {
-
-       $runinfo = "n"
-
-    # Get start run time if $id is 4 or 7, end run time is $id is 5 or 8
-    } elsif ( $id == 4 || $id == 5 || $id == 7 || $id == 8 ) {
+    # Get start run time if $id is 1 or 3, end run time if $id is 2 or 4
+    if ( $id == 1 || $id == 2 || $id == 3 || $id == 4 ) {
 
       if ( -f "$rundir/HEMCO_sa_Time.rc" ) {
 
-	if ( $id == 4 || $id == 7 ) { $runstr = "START"; }
-	if ( $id == 5 || $id == 8 ) { $runstr = "END";   }
+	if ( $id == 1 || $id == 3 ) { $runstr = "START"; }
+	if ( $id == 2 || $id == 4 ) { $runstr = "END";   }
 
 	# Grep for start and date
 	$line = qx( grep "$runstr" $rundir/HEMCO_sa_Time.rc );
@@ -187,30 +151,20 @@ sub getInfo($$) {
 	@dates = split( '-', $linestrings[1] );
 	@times = split( ':', $linestrings[2] );
 
-        # Return start and end times in YYYYMMDDhhmm format (ID = 4 or 5)
-	# or just YYYYMMDD format (ID = 7 or 8)
-	if ( $id == 7 || $id == 8 ) { 
-	  $runinfo = "$dates[0]$dates[1]$dates[2]";
-        } elsif ( $id == 4 || $id == 5 ) {
+        # Return start and end times in YYYYMMDDhhmm format (ID = 1 or 2)
+	# or just YYYYMMDD format (ID = 3 or 4)
+	if ( $id == 1 || $id == 2 ) { 
  	  $runinfo = "$dates[0]$dates[1]$dates[2]$times[0]$times[1]";
+        } elsif ( $id == 3 || $id == 4 ) {
+	  $runinfo = "$dates[0]$dates[1]$dates[2]";
         }
       }
 
-    } else {
+    } elsif ( $id == 5 ) {
 
-      if ($id == 0) { $runstr = "MET:" }
-      if ($id == 1) { $runstr = "RES:" }
-
-      # Grep for input.geos header
-      $line = qx( grep "$runstr" $rundir/HEMCO_sa_Config.rc );
-      chomp( $line );
+      # Hardcode simulation name; it doesn't matter for HEMCO SA
+      $runinfo = "standard";
       
-      # Split by spaces
-      @linestrings = split( ' ', $line );
-
-      # Return met or grid type
-      $runinfo = "$linestrings[1]";
-
     }
 
   }
@@ -241,6 +195,7 @@ sub main() {
 # !REVISION HISTORY:
 #  07 Apr 2015 - E. Lundgren - Initial version
 #  20 Sep 2017 - R. Yantosca - ID can now be from 0-8
+#  05 Nov 2018 - M. Sulprizio- ID can now be from 0-10
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -251,7 +206,7 @@ sub main() {
   my $msg   = "";
 
   # Exits with an error message if the ID argument is not within valid range
-  if ( $nArgs >= 0 && $nArgs <= 8 ) {
+  if ( $nArgs >= 0 && $nArgs <= 10 ) {
     &getInfo( @ARGV ); 
   } else { 
     $msg = "getRunInfo: $ARGV[1] is an invalid value for the ID argument!";

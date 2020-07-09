@@ -27,9 +27,3 @@ CopyRunDir.input : Default input file for gcCopyRunDirs
 
 NOTE: many other "template" versions of UnitTest.input (specifying different
 options) may be found in the inputs/ subdirectory.
-
-                 
-Other Files:
--------------
-Makefile         : Makefile used for Unit Tester run directories and run
-                   directories copied from the Unit Tester

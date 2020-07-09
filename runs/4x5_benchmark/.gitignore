@@ -7,7 +7,7 @@ log.*
 trac_avg.*
 trac_rst.*
 ocean_rst.*
-GEOSChem_restart*
+GEOSChem.Restart*
 GEOSChem_diagnostics*
 diaginfo.dat
 tracerinfo.dat
@@ -19,6 +19,7 @@ input.geos.geos*
 input.geos.merra*
 *.log
 HEMCO*Config.rc
+HEMCO_Config.rc.*
 HEMCO*restart*sp
 HEMCO*restart*mp
 HEMCO*diagnostics*
@@ -32,3 +33,4 @@ tracer*mass*.dat
 core.*
 HISTORY.rc
 GEOSChem.*nc4*
+*.json

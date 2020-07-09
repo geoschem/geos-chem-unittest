@@ -15,8 +15,10 @@
 #
 require 5.003;                 # Need this version of Perl or newer
 use strict;                    # Force IMPLICIT NONE-style declarations
-use UtUtils qw( &cleanDir
-                &parse    );   # Get routines from the UtUtils module
+use FindBin qw/$RealBin/;      # Look for perl modules
+use lib        $RealBin;       #  in the current folder
+use UtUtils qw/&cleanDir
+               &parse/;        # Get routines from module UtUtils.pm
 #
 # !PUBLIC MEMBER FUNCTIONS:
 #
@@ -181,7 +183,10 @@ sub main() {
           $cmd .= "rm -f input.geos HEMCO_Config.rc HEMCO.log ";
           $cmd .= "HEMCO_diagnostics.* HISTORY.rc Ox.mass.* Makefile ";
           $cmd .= "lastbuild* *.sp *.mp *info.dat input.geos.g* ";
-          $cmd .= "input.geos.m* GEOSChem_restart* core.* *.nc4;";
+          $cmd .= "input.geos.m* GEOSChem.Restart* core.* *.nc4 ";
+	  $cmd .= "HEMCO_Config.rc.g* HEMCO_Config.rc.m* trac_avg.* ";
+	  $cmd .= "Rn.mass.* GEOS-Chem_Species_Database.json;";
+	  $cmd .= "rm -rf OutputDir;";
 	  $cmd .= "cd ..";
           #print "$cmd\n";
 	  qx/$cmd/;

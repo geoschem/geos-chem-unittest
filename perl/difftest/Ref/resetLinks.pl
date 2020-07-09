@@ -44,7 +44,7 @@ foreach $file ( @files ) {
   # Re-establish links for files (*.dat, *.rc, *.geos extensions)
   # NOTE: $ is the regexp which means "look at the end of the line"
   if ( $file =~ m/.dat$/ || $file =~ m/.rc$/ || $file =~ m/.geos$/ ||
-       $file =~ m/GEOSChem_restart/ ) {
+       $file =~ m/GEOSChem.Restart/ ) {
     $cmd = "rm -f $file; ln -s ../Dev/$file .";
     print "$cmd\n";
     qx/$cmd/;

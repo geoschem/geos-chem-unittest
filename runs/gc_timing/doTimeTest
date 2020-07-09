@@ -37,7 +37,7 @@
 #    ./doTimeTest > doTimeTest.log.$$ 2>&1
 #
 # !REVISION HISTORY:
-#  23 Nov 2015 - M. Sulprizio- Initial version
+#  See the Git history with the Gitk browser!
 #EOP
 #------------------------------------------------------------------------------
 #BOC
@@ -48,7 +48,7 @@ if [[ "x$SLURM_CPUS_PER_TASK" != x ]]; then
 fi
 
 # Run GEOS-Chem and pipe output to log
-time -p ./geos.mp
+time -p ./geos
 
 # Echo info from computational cores to log file for displaying results
 nodeName=`uname -n`
