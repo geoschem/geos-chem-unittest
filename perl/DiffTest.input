@@ -23,7 +23,7 @@
 #
 # %%% ID tags %%%
 #
-   VERSION        : 12.9.0
+   VERSION        : 12.9.1
    DESCRIPTION    : Create run directory from UnitTest
 #
 # %%% Data path and HEMCO settings %%%
