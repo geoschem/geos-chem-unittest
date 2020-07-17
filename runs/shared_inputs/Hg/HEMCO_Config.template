@@ -68,6 +68,19 @@ Warnings:                    {WARNINGS}
     --> NATURAL                :       true
     --> SOILDIST               :       true
     --> QFED2                  :       false
+    --> EDGAR_TOT              :       false
+    --> EDGAR_CEM              :       false
+    --> EDGAR_CHLOR            :       false
+    --> EDGAR_COMB_A           :       false
+    --> EDGAR_COMB_B           :       false
+    --> EDGAR_GLASS            :       false
+    --> EDGAR_GOLDA            :       false
+    --> EDGAR_GOLDB            :       false
+    --> EDGAR_IRO              :       false
+    --> EDGAR_NFEOTH           :       false
+    --> EDGAR_SHIP	       :       false
+    --> EDGAR_TRO              :       false
+    --> EDGAR_WASTE            :       false
 # ----- NON-EMISSIONS DATA ------------------
     --> OXIDANT_FIELDS         :       true
     --> BrOx_GC                :       true
@@ -200,6 +213,86 @@ Warnings:                    {WARNINGS}
 0 WHET_HG2 $ROOT/MERCURY/v2018-04/WHET_Hg2.geos.1x1.2010_final.nc Hg2 2010/1/1/0 C xy kg/m2/s Hg2 - 1 1
 0 WHET_HGP $ROOT/MERCURY/v2018-04/WHET_HgP.geos.1x1.2010_final.nc HgP 2010/1/1/0 C xy kg/m2/s Hg2 - 1 1
 )))WHET
+
+#==============================================================================
+#---EDGAR emissions inventory---
+# Either use total (all sectors) or individual sectors, but not both
+#==============================================================================
+
+(((EDGAR_TOT
+0 EDGAR_TOT_HG0 $ROOT/MERCURY/v2020-07/EDGAR_totals_$YYYY_Hg.nc emi_hg_g 1970-2012/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 EDGAR_TOT_HG2 $ROOT/MERCURY/v2020-07/EDGAR_totals_$YYYY_Hg.nc emi_hg_d 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 EDGAR_TOT_HGP $ROOT/MERCURY/v2020-07/EDGAR_totals_$YYYY_Hg.nc emi_hg_p 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+)))EDGAR_TOT
+
+(((EDGAR_CEM
+0 EDGAR_CEM_HG0 $ROOT/MERCURY/v2020-07/EDGAR_cement_$YYYY_Hg.nc emi_hg_g 1970-2012/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 EDGAR_CEM_HG2 $ROOT/MERCURY/v2020-07/EDGAR_cement_$YYYY_Hg.nc emi_hg_d 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 EDGAR_CEM_HGP $ROOT/MERCURY/v2020-07/EDGAR_cement_$YYYY_Hg.nc emi_hg_p 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+)))EDGAR_CEM
+
+(((EDGAR_CHLOR
+0 EDGAR_CHLOR_HG0 $ROOT/MERCURY/v2020-07/EDGAR_chlor_$YYYY_Hg.nc emi_hg_g 1970-2012/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 EDGAR_CHLOR_HG2 $ROOT/MERCURY/v2020-07/EDGAR_chlor_$YYYY_Hg.nc emi_hg_d 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+)))EDGAR_CHLOR
+
+(((EDGAR_COMB_A
+0 EDGAR_COMB_A_HG0 $ROOT/MERCURY/v2020-07/EDGAR_comb_power_ind_$YYYY_Hg.nc emi_hg_g 1970-2012/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 EDGAR_COMB_A_HG2 $ROOT/MERCURY/v2020-07/EDGAR_comb_power_ind_$YYYY_Hg.nc emi_hg_d 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 EDGAR_COMB_A_HGP $ROOT/MERCURY/v2020-07/EDGAR_comb_power_ind_$YYYY_Hg.nc emi_hg_p 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+)))EDGAR_COMB_A
+
+(((EDGAR_COMB_B
+0 EDGAR_COMB_B_HG0 $ROOT/MERCURY/v2020-07/EDGAR_comb_res_oth_$YYYY_Hg.nc emi_hg_g 1970-2012/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 EDGAR_COMB_B_HG2 $ROOT/MERCURY/v2020-07/EDGAR_comb_res_oth_$YYYY_Hg.nc emi_hg_d 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 EDGAR_COMB_B_HGP $ROOT/MERCURY/v2020-07/EDGAR_comb_res_oth_$YYYY_Hg.nc emi_hg_p 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+)))EDGAR_COMB_B
+
+(((EDGAR_GLASS
+0 EDGAR_GLASS_HG0 $ROOT/MERCURY/v2020-07/EDGAR_glass_$YYYY_Hg.nc emi_hg_g 1970-2012/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 EDGAR_GLASS_HG2 $ROOT/MERCURY/v2020-07/EDGAR_glass_$YYYY_Hg.nc emi_hg_d 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 EDGAR_GLASS_HGP $ROOT/MERCURY/v2020-07/EDGAR_glass_$YYYY_Hg.nc emi_hg_p 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+)))EDGAR_GLASS
+
+(((EDGAR_GOLDA
+0 EDGAR_GOLDA_HG0 $ROOT/MERCURY/v2020-07/EDGAR_gold_A_$YYYY_Hg.nc emi_hg_g 1970-2012/1/1/0 C xy kg/m2/s Hg0 - 1 1
+)))EDGAR_GOLDA
+
+(((EDGAR_GOLDB
+0 EDGAR_GOLDB_HG0 $ROOT/MERCURY/v2020-07/EDGAR_gold_L_$YYYY_Hg.nc emi_hg_g 1970-2012/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 EDGAR_GOLDB_HG2 $ROOT/MERCURY/v2020-07/EDGAR_gold_L_$YYYY_Hg.nc emi_hg_d 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 EDGAR_GOLDB_HGP $ROOT/MERCURY/v2020-07/EDGAR_gold_L_$YYYY_Hg.nc emi_hg_p 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+)))EDGAR_GOLDB
+
+(((EDGAR_IRO
+0 EDGAR_IRO_HG0 $ROOT/MERCURY/v2020-07/EDGAR_Iro_$YYYY_Hg.nc emi_hg_g 1970-2012/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 EDGAR_IRO_HG2 $ROOT/MERCURY/v2020-07/EDGAR_Iro_$YYYY_Hg.nc emi_hg_d 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 EDGAR_IRO_HGP $ROOT/MERCURY/v2020-07/EDGAR_Iro_$YYYY_Hg.nc emi_hg_p 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+)))EDGAR_IRO
+
+(((EDGAR_NFEOTH
+0 EDGAR_NFEOTH_HG0 $ROOT/MERCURY/v2020-07/EDGAR_nfe_oth_$YYYY_Hg.nc emi_hg_g 1970-2012/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 EDGAR_NFEOTH_HG2 $ROOT/MERCURY/v2020-07/EDGAR_nfe_oth_$YYYY_Hg.nc emi_hg_d 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 EDGAR_NFEOTH_HGP $ROOT/MERCURY/v2020-07/EDGAR_nfe_oth_$YYYY_Hg.nc emi_hg_p 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+)))EDGAR_NFEOTH
+
+(((EDGAR_SHIP
+0 EDGAR_SHIP_HG0 $ROOT/MERCURY/v2020-07/EDGAR_shipping_$YYYY_Hg.nc emi_hg_g 1970-2012/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 EDGAR_SHIP_HG2 $ROOT/MERCURY/v2020-07/EDGAR_shipping_$YYYY_Hg.nc emi_hg_d 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 EDGAR_SHIP_HGP $ROOT/MERCURY/v2020-07/EDGAR_shipping_$YYYY_Hg.nc emi_hg_p 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+)))EDGAR_SHIP
+
+(((EDGAR_TRO
+0 EDGAR_TRO_HG0 $ROOT/MERCURY/v2020-07/EDGAR_tro_roa_$YYYY_Hg.nc emi_hg_g 1970-2012/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 EDGAR_TRO_HG2 $ROOT/MERCURY/v2020-07/EDGAR_tro_roa_$YYYY_Hg.nc emi_hg_d 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 EDGAR_TRO_HGP $ROOT/MERCURY/v2020-07/EDGAR_tro_roa_$YYYY_Hg.nc emi_hg_p 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+)))EDGAR_TRO
+
+(((EDGAR_WASTE
+0 EDGAR_WASTE_HG0 $ROOT/MERCURY/v2020-07/EDGAR_waste_$YYYY_Hg.nc emi_hg_g 1970-2012/1/1/0 C xy kg/m2/s Hg0 - 1 1
+0 EDGAR_WASTE_HG2 $ROOT/MERCURY/v2020-07/EDGAR_waste_$YYYY_Hg.nc emi_hg_d 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+0 EDGAR_WASTE_HGP $ROOT/MERCURY/v2020-07/EDGAR_waste_$YYYY_Hg.nc emi_hg_p 1970-2012/1/1/0 C xy kg/m2/s Hg2 - 1 1
+)))EDGAR_WASTE
 
 #==============================================================================
 # --- Emissions Controls for Coal Fired Power Plants  ---
@@ -350,86 +443,96 @@ Warnings:                    {WARNINGS}
 * PHIS      $METDIR/$CNYR/01/$MET.$CNYR0101.CN.$RES.$NC        PHIS     */1/1/0               C xy  1  * -  1 1
 
 # --- A1 fields ---
-* ALBEDO    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     ALBEDO   1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* CLDTOT    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     CLDTOT   1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* EFLUX     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     EFLUX    1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* EVAP      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     EVAP     1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* FRSEAICE  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     FRSEAICE 1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* FRSNO     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     FRSNO    1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* GRN       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     GRN      1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* GWETROOT  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     GWETROOT 1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* GWETTOP   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     GWETTOP  1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* HFLUX     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     HFLUX    1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* LAI       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     LAI      1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* LWI       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     LWI      1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* LWGNT     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     LWGNT    1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* PARDF     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PARDF    1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* PARDR     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PARDR    1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* PBLH      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PBLH     1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* PRECANV   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECANV  1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* PRECCON   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECCON  1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* PRECLSC   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECLSC  1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* PRECSNO   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECSNO  1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* PRECTOT   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECTOT  1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* SEAICE00  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE00 1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* SEAICE10  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE10 1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* SEAICE20  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE20 1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* SEAICE30  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE30 1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* SEAICE40  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE40 1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* SEAICE50  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE50 1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* SEAICE60  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE60 1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* SEAICE70  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE70 1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* SEAICE80  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE80 1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* SEAICE90  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE90 1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* SLP       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SLP      1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* SNODP     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SNODP    1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* SNOMAS    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SNOMAS   1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* SWGDN     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SWGDN    1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* TO3       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     TO3      1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* TROPPT    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     TROPPT   1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* TS        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     TS       1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* T2M       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     T2M      1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* U10M      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     U10M     1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* USTAR     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     USTAR    1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* V10M      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     V10M     1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
-* Z0M       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     Z0M      1980-2020/1-12/1-31/*/+30minute EFY xy  1  * -  1 1
+* ALBEDO    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     ALBEDO   1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* CLDTOT    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     CLDTOT   1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* EFLUX     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     EFLUX    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* EVAP      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     EVAP     1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* FRSEAICE  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     FRSEAICE 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* FRSNO     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     FRSNO    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* GRN       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     GRN      1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* GWETROOT  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     GWETROOT 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* GWETTOP   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     GWETTOP  1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* HFLUX     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     HFLUX    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* LAI       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     LAI      1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* LWI       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     LWI      1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* LWGNT     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     LWGNT    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PARDF     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PARDF    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PARDR     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PARDR    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PBLH      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PBLH     1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PRECANV   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECANV  1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PRECCON   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECCON  1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PRECLSC   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECLSC  1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PRECSNO   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECSNO  1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* PRECTOT   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     PRECTOT  1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE00  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE00 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE10  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE10 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE20  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE20 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE30  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE30 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE40  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE40 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE50  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE50 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE60  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE60 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE70  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE70 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE80  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE80 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SEAICE90  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SEAICE90 1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SLP       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SLP      1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SNODP     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SNODP    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SNOMAS    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SNOMAS   1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* SWGDN     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     SWGDN    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* TO3       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     TO3      1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* TROPPT    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     TROPPT   1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* TS        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     TS       1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* T2M       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     T2M      1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* U10M      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     U10M     1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* USTAR     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     USTAR    1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* V10M      $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     V10M     1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
+* Z0M       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A1.$RES.$NC     Z0M      1980-2019/1-12/1-31/*/+30minute RFY xy  1  * -  1 1
 
 # --- A3cld fields ---
-* CLOUD     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  CLOUD    1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* OPTDEPTH  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  OPTDEPTH 1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* QI        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  QI       1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* QL        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  QL       1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* TAUCLI    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  TAUCLI   1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* TAUCLW    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  TAUCLW   1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
+* CLOUD     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  CLOUD    1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* OPTDEPTH  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  OPTDEPTH 1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* QI        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  QI       1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* QL        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  QL       1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* TAUCLI    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  TAUCLI   1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* TAUCLW    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3cld.$RES.$NC  TAUCLW   1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
 
 # --- A3dyn fields ---
-* DTRAIN    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  DTRAIN   1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* OMEGA     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  OMEGA    1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* RH        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  RH       1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* U         $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  U        1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* V         $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  V        1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
+* DTRAIN    $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  DTRAIN   1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* OMEGA     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  OMEGA    1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* RH        $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  RH       1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* U         $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  U        1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* V         $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3dyn.$RES.$NC  V        1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
 
 # --- A3mstC fields ---
-* DQRCU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC DQRCU    1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* DQRLSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC DQRLSAN  1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* REEVAPCN  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC REEVAPCN 1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* REEVAPLS  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC REEVAPLS 1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
+* DQRCU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC DQRCU    1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* DQRLSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC DQRLSAN  1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* REEVAPCN  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC REEVAPCN 1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* REEVAPLS  $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstC.$RES.$NC REEVAPLS 1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
 
 # --- A3mstE fields ---
-* CMFMC     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC CMFMC    1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* PFICU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFICU    1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* PFILSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFILSAN  1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* PFLCU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFLCU    1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
-* PFLLSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFLLSAN  1980-2020/1-12/1-31/*/+90minute EFY xyz 1  * -  1 1
+* CMFMC     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC CMFMC    1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* PFICU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFICU    1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* PFILSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFILSAN  1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* PFLCU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFLCU    1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
+* PFLLSAN   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.A3mstE.$RES.$NC PFLLSAN  1980-2019/1-12/1-31/*/+90minute RFY xyz 1  * -  1 1
 
 # --- I3 fields ---
-* PS       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     PS       1980-2020/1-12/1-31/*           EFY xy  1  * -  1 1
-* SPHU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     QV       1980-2020/1-12/1-31/*           EFY xyz 1  * -  1 1
-* TMPU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     T        1980-2020/1-12/1-31/*           EFY xyz 1  * -  1 1
+* PS       $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     PS       1980-2019/1-12/1-31/*           RFY xy  1  * -  1 1
+* SPHU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     QV       1980-2019/1-12/1-31/*           RFY xyz 1  * -  1 1
+* TMPU     $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC     T        1980-2019/1-12/1-31/*           RFY xyz 1  * -  1 1
 
-* PS_NEXTDAY   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC PS       1980-2020/1-12/1-31/1/+1day     EFY xy  1  * -  1 1
-* SPHU_NEXTDAY $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC QV       1980-2020/1-12/1-31/1/+1day     EFY xyz 1  * -  1 1
-* TMPU_NEXTDAY $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC T        1980-2020/1-12/1-31/1/+1day     EFY xyz 1  * -  1 1
+* PS_NEXTDAY   $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC PS       1980-2019/1-12/1-31/1/+1day     RFY xy  1  * -  1 1
+* SPHU_NEXTDAY $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC QV       1980-2019/1-12/1-31/1/+1day     RFY xyz 1  * -  1 1
+* TMPU_NEXTDAY $METDIR/$YYYY/$MM/$MET.$YYYY$MM$DD.I3.$RES.$NC T        1980-2019/1-12/1-31/1/+1day     RFY xyz 1  * -  1 1
+
+#==============================================================================
+# --- Fields for lightning emissions (Extension 103) ---
+#
+# Native-resolution lightning flash rates constrained to LIS/OTD climatology
+# and convective depth are now prescribed as offline meteorology.
+#                                                    --Lee Murray (16 Jan 2019)
+#==============================================================================
+* FLASH_DENS $ROOT/OFFLINE_LIGHTNING/v2019-01/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  LDENS 1980-2019/1-12/1-31/0-23/+90minute RFY3 xy  1  * -  1 1
+* CONV_DEPTH $ROOT/OFFLINE_LIGHTNING/v2019-01/$MET/$YYYY/FLASH_CTH_$MET_{NATIVE_RES}_$YYYY_$MM.nc4  CTH   1980-2019/1-12/1-31/0-23/+90minute RFY3 xy  1  * -  1 1
 
 )))METEOROLOGY
 
@@ -456,7 +559,7 @@ Warnings:                    {WARNINGS}
 # --- GEOS-Chem boundary condition file ---
 #==============================================================================
 (((GC_BCs
-* BC_  $ROOT/SAMPLE_BCs/v2019-05/tropchem/GEOSChem.BoundaryConditions.$YYYY$MM$DD_$HH$MNz.nc4 SpeciesBC_?ADV?  1980-2020/1-12/1-31/* EY xyz 1 * - 1 1
+* BC_  $ROOT/SAMPLE_BCs/v2019-05/tropchem/GEOSChem.BoundaryConditions.$YYYY$MM$DD_$HH$MNz.nc4 SpeciesBC_?ADV?  1980-2019/1-12/1-31/* RFY xyz 1 * - 1 1
 )))GC_BCs
 
 (((CHEMISTRY_INPUT
