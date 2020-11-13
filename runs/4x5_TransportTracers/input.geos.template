@@ -1,23 +1,22 @@
 ------------------------+------------------------------------------------------
 %%% SIMULATION MENU %%% :
-Start YYYYMMDD, hhmmss  : {DATE1} {TIME1}
-End   YYYYMMDD, hhmmss  : {DATE2} {TIME2}
+Start YYYYMMDD, hhmmss  : 20130704 000000
+End   YYYYMMDD, hhmmss  : 20130705 000000
 Run directory           : ./
-Root data directory     : {DATA_ROOT}
-Met field               : {MET}
-Simulation name         : {SIM}
-Species database file   : ./species_database.yml
+Root data directory     : /data10/ctm
+Met field               : geosfp
+Simulation name         : TransportTracers
 Turn on debug printout? : F
 Use GC classic timers?  : F
 ------------------------+------------------------------------------------------
 %%% GRID MENU %%%       :
-Grid resolution         : {RES}
-Longitude min/max       : {LON_RANGE}
-Latitude  min/max       : {LAT_RANGE}
- Half-sized polar boxes?: {HALF_POLAR}
-Number of levels        : {NLEV}
-Nested grid simulation? : {NESTED_SIM}
- Buffer zone (N S E W ) :  {BUFFER_ZONE}
+Grid resolution         : 2.0x2.5
+Longitude min/max       : -180.0 180.0
+Latitude  min/max       :  -90  90.0
+ Half-sized polar boxes?: T
+Number of levels        : 72
+Nested grid simulation? : F
+ Buffer zone (N S E W ) : 0  0  0  0
 ------------------------+------------------------------------------------------
 %%% TIMESTEP MENU %%%   :
 Tran/conv timestep [sec]: 600
@@ -40,7 +39,37 @@ Species name            : COUniformEmis25dayTracer
 Species name            : GlobEmis90dayTracer
 Species name            : NHEmis90dayTracer
 Species name            : SHEmis90dayTracer
-------------------------+------------------------------------------------------
+Species name            : FE_F1
+Species name            : AL_F1
+Species name            : TI_F1
+Species name            : MG_F1
+Species name            : K_F1
+Species name            : SI_F1
+Species name            : CA_F1
+Species name            : MN_F1
+Species name            : AS_F1
+Species name            : CD_F1
+Species name            : PB_F1
+Species name            : NI_F1
+Species name            : FE_F2
+Species name            : AL_F2
+Species name            : TI_F2
+Species name            : MG_F2
+Species name            : K_F2
+Species name            : SI_F2
+Species name            : CA_F2
+Species name            : MN_F2
+Species name            : AS_F2
+Species name            : CD_F2
+Species name            : PB_F2
+Species name            : NI_F2
+Species name            : MG_C3
+Species name            : K_C3
+Species name            : CA_C3
+Species name            : MG_C4
+Species name            : K_C4
+Species name            : CA_C4
+#------------------------+------------------------------------------------------
 %%% PASSIVE SPECIES MENU %%%:
 Passive species name    : PassiveTracer            1.0    -1       1.0e-7   Passive_tracer_for_mass_conservation_evaluation
 Passive species name    : SF6Tracer                146.0  -1       1.0e-20  Sulfur_hexafluoride
@@ -119,7 +148,7 @@ Overhead O3 for FAST-JX :---
 Gamma HO2               : 0.2
 ------------------------+------------------------------------------------------
 %%% PHOTOLYSIS MENU %%% :
-FAST-JX directory       : {DATA_ROOT}/CHEM_INPUTS/FAST_JX/v2020-02/
+FAST-JX directory       : /data10/ctm/CHEM_INPUTS/FAST_JX/v2020-02/
 ------------------------+------------------------------------------------------
 %%% RADIATION MENU %%%  :
 AOD Wavelength (nm)     : 550
@@ -170,7 +199,7 @@ diaginfo.dat path       : diaginfo.dat
 tracerinfo.dat path     : tracerinfo.dat
 ------------------------+------------------------------------------------------
 %%% DIAGNOSTIC MENU %%% :
-Binary punch file name  : trac_avg.geosfp_4x5_benchmark.YYYYMMDDhhmm
+Binary punch file name  : trac_avg.geosfp_2x25.YYYYMMDDhhmm
 Diagnostic Entries ---> :  L   Tracers to print out for each diagnostic
 ND03: Hg emissions, P/L :  0   all
 ND06: Dust aer source   :  1   all
