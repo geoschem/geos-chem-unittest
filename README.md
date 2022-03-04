@@ -2,6 +2,8 @@
 
 # README for the GEOS-Chem Unit Tester repository
 
+NOTE: THIS REPOSITORY HAS BEEN ARCHIVED!  THE UNIT TESTER IS NO LONGER SUPPORTED.
+
 This repository (https://github.com/gcst/geos-chem-unittest) contains GEOS-Chem Unit Tester package.
 
 ## Overview
